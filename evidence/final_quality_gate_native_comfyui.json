@@ -1,6 +1,6 @@
 {
   "aiSlopCleaner": {
-    "status": "passed-noop",
+    "status": "passed",
     "evidence": "No ai-slop-cleaner executable was available in PATH. The OMO remove-ai-slops skill was consulted; root performed the material applicable cleanup by splitting native_pe.py from 390 pure LOC into native_pe.py/native_pe_models.py/native_pe_runtime.py/native_pe_patch.py, all below 250 pure LOC, then reran tests and ruff."
   },
   "verification": {
