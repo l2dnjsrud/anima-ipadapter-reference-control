@@ -1,0 +1,90 @@
+{
+  "pass": true,
+  "best_scale": 1.0,
+  "generated_count": 40,
+  "nonblank": true,
+  "thresholds": {
+    "mean_uplift": 0.03,
+    "improved_rate": 0.75,
+    "min_pixel_std": 5.0
+  },
+  "scale_summaries": [
+    {
+      "scale": 0.5,
+      "cases": 8,
+      "mean_ip_cosine": 0.7601726278662682,
+      "mean_no_ip_cosine": 0.7289404571056366,
+      "mean_uplift": 0.03123217076063156,
+      "improved_rate": 0.625
+    },
+    {
+      "scale": 1.0,
+      "cases": 8,
+      "mean_ip_cosine": 0.8226727917790413,
+      "mean_no_ip_cosine": 0.7289404571056366,
+      "mean_uplift": 0.0937323346734047,
+      "improved_rate": 0.875
+    },
+    {
+      "scale": 1.5,
+      "cases": 8,
+      "mean_ip_cosine": 0.7584537267684937,
+      "mean_no_ip_cosine": 0.7289404571056366,
+      "mean_uplift": 0.029513269662857056,
+      "improved_rate": 0.625
+    },
+    {
+      "scale": 2.0,
+      "cases": 8,
+      "mean_ip_cosine": 0.7698170468211174,
+      "mean_no_ip_cosine": 0.7289404571056366,
+      "mean_uplift": 0.040876589715480804,
+      "improved_rate": 0.75
+    }
+  ],
+  "selected_checkpoint": "/data/ai/models/ipadapter/anima_ip_adapter_quality_20260610.safetensors",
+  "refs": [
+    {
+      "ref_id": "ref00",
+      "path": "post_image_dataset/resized/001-100/SG-083/mrcolor_panel_style_v4_split_edge_strict_probe_00494_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02718_SG-083-10_page_719x957_s01.png",
+      "image_size": [
+        1200,
+        896
+      ]
+    },
+    {
+      "ref_id": "ref01",
+      "path": "post_image_dataset/resized/001-100/SG-034/mrcolor_panel_style_v4_split_edge_strict_probe_00219_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01056_SG-034-10_page_2046x2874_s01.png",
+      "image_size": [
+        768,
+        1344
+      ]
+    },
+    {
+      "ref_id": "ref02",
+      "path": "post_image_dataset/resized/101-200/SG-169/mrcolor_panel_style_v4_split_edge_strict_probe_00994_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05709_SG-169-09_page_967x818_s01.png",
+      "image_size": [
+        960,
+        1120
+      ]
+    },
+    {
+      "ref_id": "ref03",
+      "path": "post_image_dataset/resized/101-200/SG-126/mrcolor_panel_style_v4_split_edge_strict_probe_00761_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04287_SG-126-14_page_2072x2889_s02.png",
+      "image_size": [
+        800,
+        1344
+      ]
+    }
+  ],
+  "seeds": [
+    20260610,
+    20260611
+  ],
+  "scales": [
+    0.5,
+    1.0,
+    1.5,
+    2.0
+  ]
+}

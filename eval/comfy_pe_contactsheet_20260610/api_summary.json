@@ -1,0 +1,258 @@
+[
+  {
+    "mode": "no_ip",
+    "scale": 0.0,
+    "prompt_id": "5d843d21-a055-48f5-99ae-cad4a285361e",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "5d843d21-a055-48f5-99ae-cad4a285361e",
+            "timestamp": 1781065927076
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "6",
+              "8",
+              "11",
+              "13",
+              "15"
+            ],
+            "prompt_id": "5d843d21-a055-48f5-99ae-cad4a285361e",
+            "timestamp": 1781065927148
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "5d843d21-a055-48f5-99ae-cad4a285361e",
+            "timestamp": 1781065930559
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_ref03_matched_20260610",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "mode": "ip_0p5",
+    "scale": 0.5,
+    "prompt_id": "144a7c0d-428d-45c2-8258-2c09f283e762",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "144a7c0d-428d-45c2-8258-2c09f283e762",
+            "timestamp": 1781065931115
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15"
+            ],
+            "prompt_id": "144a7c0d-428d-45c2-8258-2c09f283e762",
+            "timestamp": 1781065931119
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "144a7c0d-428d-45c2-8258-2c09f283e762",
+            "timestamp": 1781065935425
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_0p5_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_ref03_matched_20260610",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "mode": "ip_1p0",
+    "scale": 1.0,
+    "prompt_id": "7cce1020-56ea-49c7-a12a-65a4f096d9aa",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "7cce1020-56ea-49c7-a12a-65a4f096d9aa",
+            "timestamp": 1781065937120
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15",
+              "1",
+              "2",
+              "3"
+            ],
+            "prompt_id": "7cce1020-56ea-49c7-a12a-65a4f096d9aa",
+            "timestamp": 1781065937167
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "7cce1020-56ea-49c7-a12a-65a4f096d9aa",
+            "timestamp": 1781065941647
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_1p0_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_ref03_matched_20260610",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "mode": "ip_1p5",
+    "scale": 1.5,
+    "prompt_id": "043bd510-b86c-451f-8fde-d671feaefd48",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "043bd510-b86c-451f-8fde-d671feaefd48",
+            "timestamp": 1781065943127
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15",
+              "1",
+              "2",
+              "3"
+            ],
+            "prompt_id": "043bd510-b86c-451f-8fde-d671feaefd48",
+            "timestamp": 1781065943173
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "043bd510-b86c-451f-8fde-d671feaefd48",
+            "timestamp": 1781065947398
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_1p5_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_ref03_matched_20260610",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "mode": "ip_2p0",
+    "scale": 2.0,
+    "prompt_id": "8510a9b6-49ff-4885-bf9a-b49902fead2b",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "8510a9b6-49ff-4885-bf9a-b49902fead2b",
+            "timestamp": 1781065949134
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15",
+              "1",
+              "2",
+              "3"
+            ],
+            "prompt_id": "8510a9b6-49ff-4885-bf9a-b49902fead2b",
+            "timestamp": 1781065949178
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "8510a9b6-49ff-4885-bf9a-b49902fead2b",
+            "timestamp": 1781065953379
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_2p0_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_ref03_matched_20260610",
+        "type": "output"
+      }
+    ]
+  }
+]

@@ -1,0 +1,116 @@
+{
+  "checkpoint": "/data/ai/models/ipadapter/anima_ip_adapter_quality_20260610.safetensors",
+  "prompt": "masterpiece, best quality, score_7, safe. 1girl, solo, standing in a cafe, holding a coffee cup, looking at viewer, smile, soft lighting.",
+  "negative_prompt": "low quality, blurry, bad anatomy, text, watermark",
+  "seeds": [
+    20260610
+  ],
+  "scales": [
+    0.5,
+    1.0,
+    1.5,
+    2.0
+  ],
+  "refs": [
+    {
+      "ref_id": "ref03",
+      "path": "post_image_dataset/resized/101-200/SG-126/mrcolor_panel_style_v4_split_edge_strict_probe_00761_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04287_SG-126-14_page_2072x2889_s02.png",
+      "image_size": [
+        800,
+        1344
+      ]
+    }
+  ],
+  "jobs": [
+    {
+      "job_id": "ref03_seed20260610_no_ip_none",
+      "ref_id": "ref03",
+      "ref_path": "post_image_dataset/resized/101-200/SG-126/mrcolor_panel_style_v4_split_edge_strict_probe_00761_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04287_SG-126-14_page_2072x2889_s02.png",
+      "seed": 20260610,
+      "mode": "no_ip",
+      "scale": null,
+      "job_dir": "/home/wktwin/anima-ipadapter-reference-control/eval/comfy_pe_contactsheet_20260610/score_images/ref03/seed_20260610/no_ip_none",
+      "image_size": [
+        800,
+        1344
+      ],
+      "command": [
+        "comfyui-api-matched"
+      ]
+    },
+    {
+      "job_id": "ref03_seed20260610_ip_0p5",
+      "ref_id": "ref03",
+      "ref_path": "post_image_dataset/resized/101-200/SG-126/mrcolor_panel_style_v4_split_edge_strict_probe_00761_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04287_SG-126-14_page_2072x2889_s02.png",
+      "seed": 20260610,
+      "mode": "ip",
+      "scale": 0.5,
+      "job_dir": "/home/wktwin/anima-ipadapter-reference-control/eval/comfy_pe_contactsheet_20260610/score_images/ref03/seed_20260610/ip_0p5",
+      "image_size": [
+        800,
+        1344
+      ],
+      "command": [
+        "comfyui-api-matched"
+      ]
+    },
+    {
+      "job_id": "ref03_seed20260610_ip_1p0",
+      "ref_id": "ref03",
+      "ref_path": "post_image_dataset/resized/101-200/SG-126/mrcolor_panel_style_v4_split_edge_strict_probe_00761_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04287_SG-126-14_page_2072x2889_s02.png",
+      "seed": 20260610,
+      "mode": "ip",
+      "scale": 1.0,
+      "job_dir": "/home/wktwin/anima-ipadapter-reference-control/eval/comfy_pe_contactsheet_20260610/score_images/ref03/seed_20260610/ip_1p0",
+      "image_size": [
+        800,
+        1344
+      ],
+      "command": [
+        "comfyui-api-matched"
+      ]
+    },
+    {
+      "job_id": "ref03_seed20260610_ip_1p5",
+      "ref_id": "ref03",
+      "ref_path": "post_image_dataset/resized/101-200/SG-126/mrcolor_panel_style_v4_split_edge_strict_probe_00761_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04287_SG-126-14_page_2072x2889_s02.png",
+      "seed": 20260610,
+      "mode": "ip",
+      "scale": 1.5,
+      "job_dir": "/home/wktwin/anima-ipadapter-reference-control/eval/comfy_pe_contactsheet_20260610/score_images/ref03/seed_20260610/ip_1p5",
+      "image_size": [
+        800,
+        1344
+      ],
+      "command": [
+        "comfyui-api-matched"
+      ]
+    },
+    {
+      "job_id": "ref03_seed20260610_ip_2p0",
+      "ref_id": "ref03",
+      "ref_path": "post_image_dataset/resized/101-200/SG-126/mrcolor_panel_style_v4_split_edge_strict_probe_00761_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04287_SG-126-14_page_2072x2889_s02.png",
+      "seed": 20260610,
+      "mode": "ip",
+      "scale": 2.0,
+      "job_dir": "/home/wktwin/anima-ipadapter-reference-control/eval/comfy_pe_contactsheet_20260610/score_images/ref03/seed_20260610/ip_2p0",
+      "image_size": [
+        800,
+        1344
+      ],
+      "command": [
+        "comfyui-api-matched"
+      ]
+    }
+  ],
+  "out_dir": "/home/wktwin/anima-ipadapter-reference-control/eval/comfy_pe_contactsheet_20260610",
+  "ref_root": "post_image_dataset/resized",
+  "infer_steps": 20,
+  "guidance_scale": 3.5,
+  "flow_shift": 3.0,
+  "thresholds": {
+    "mean_uplift": 0.03,
+    "improved_rate": 0.75,
+    "min_pixel_std": 5.0
+  }
+}

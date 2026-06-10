@@ -1,0 +1,15 @@
+{
+  "line_src": "/home/wktwin/anima-lora-training-bundle/image_dataset/MS-138/MS-138__MS_138-05_LLM.jpg",
+  "color_reference_src": "/home/wktwin/anima-lora-training-bundle/.pytest_cache/image_dataset_color/101-200/SG-138/SG-138-05.jpg",
+  "width": 1152,
+  "height": 816,
+  "denoise_values": [
+    0.12,
+    0.22,
+    0.32
+  ],
+  "ip_strength": 0.8,
+  "ip_end_percent": 0.7,
+  "positive": "masterpiece, best quality, same comic page as input, preserve exact panel borders, preserve exact speech bubble positions, convert pale blue rough manga line art into clean fully colored manhwa page, natural skin tones, fabric colors, soft cel shading, detailed backgrounds",
+  "negative": "new layout, different composition, character sheet, isolated standing characters, text, watermark, logo, monochrome, grayscale, blue pencil rough, unfinished, blank page, distorted anatomy"
+}

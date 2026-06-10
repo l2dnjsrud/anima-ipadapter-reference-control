@@ -1,0 +1,65 @@
+{
+  "pass": true,
+  "best_scale": 1.0,
+  "generated_count": 5,
+  "nonblank": true,
+  "thresholds": {
+    "mean_uplift": 0.03,
+    "improved_rate": 0.75,
+    "min_pixel_std": 5.0
+  },
+  "scale_summaries": [
+    {
+      "scale": 0.5,
+      "cases": 1,
+      "mean_ip_cosine": 0.801675021648407,
+      "mean_no_ip_cosine": 0.7134328484535217,
+      "mean_uplift": 0.08824217319488525,
+      "improved_rate": 1.0
+    },
+    {
+      "scale": 1.0,
+      "cases": 1,
+      "mean_ip_cosine": 0.8716216683387756,
+      "mean_no_ip_cosine": 0.7134328484535217,
+      "mean_uplift": 0.1581888198852539,
+      "improved_rate": 1.0
+    },
+    {
+      "scale": 1.5,
+      "cases": 1,
+      "mean_ip_cosine": 0.7679902911186218,
+      "mean_no_ip_cosine": 0.7134328484535217,
+      "mean_uplift": 0.0545574426651001,
+      "improved_rate": 1.0
+    },
+    {
+      "scale": 2.0,
+      "cases": 1,
+      "mean_ip_cosine": 0.823958158493042,
+      "mean_no_ip_cosine": 0.7134328484535217,
+      "mean_uplift": 0.11052531003952026,
+      "improved_rate": 1.0
+    }
+  ],
+  "selected_checkpoint": "/data/ai/models/ipadapter/anima_ip_adapter_quality_20260610.safetensors",
+  "refs": [
+    {
+      "ref_id": "ref03",
+      "path": "post_image_dataset/resized/101-200/SG-126/mrcolor_panel_style_v4_split_edge_strict_probe_00761_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04287_SG-126-14_page_2072x2889_s02.png",
+      "image_size": [
+        800,
+        1344
+      ]
+    }
+  ],
+  "seeds": [
+    20260610
+  ],
+  "scales": [
+    0.5,
+    1.0,
+    1.5,
+    2.0
+  ]
+}

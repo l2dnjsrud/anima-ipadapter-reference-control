@@ -1,0 +1,2419 @@
+[
+  {
+    "ref_id": "ref00",
+    "ref_path": "post_image_dataset/resized/001-100/SG-083/mrcolor_panel_style_v4_split_edge_strict_probe_00494_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02718_SG-083-10_page_719x957_s01.png",
+    "seed": 20260610,
+    "mode": "no_ip",
+    "scale": null,
+    "image_size": [
+      1200,
+      896
+    ],
+    "width": 896,
+    "height": 1200,
+    "prompt_id": "4a9dc613-8882-45ce-9e92-5aa9f5acdf0d",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "4a9dc613-8882-45ce-9e92-5aa9f5acdf0d",
+            "timestamp": 1781066202570
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "6",
+              "7",
+              "8",
+              "11",
+              "13",
+              "15"
+            ],
+            "prompt_id": "4a9dc613-8882-45ce-9e92-5aa9f5acdf0d",
+            "timestamp": 1781066202646
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "4a9dc613-8882-45ce-9e92-5aa9f5acdf0d",
+            "timestamp": 1781066206008
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "no_ip_none_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref00/seed_20260610",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref00",
+    "ref_path": "post_image_dataset/resized/001-100/SG-083/mrcolor_panel_style_v4_split_edge_strict_probe_00494_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02718_SG-083-10_page_719x957_s01.png",
+    "seed": 20260610,
+    "mode": "ip",
+    "scale": 0.5,
+    "image_size": [
+      1200,
+      896
+    ],
+    "width": 896,
+    "height": 1200,
+    "prompt_id": "6ae2b82a-0c28-4cd2-9592-cbb78b817d8a",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "6ae2b82a-0c28-4cd2-9592-cbb78b817d8a",
+            "timestamp": 1781066206593
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15"
+            ],
+            "prompt_id": "6ae2b82a-0c28-4cd2-9592-cbb78b817d8a",
+            "timestamp": 1781066206597
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "6ae2b82a-0c28-4cd2-9592-cbb78b817d8a",
+            "timestamp": 1781066210910
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_0p5_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref00/seed_20260610",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref00",
+    "ref_path": "post_image_dataset/resized/001-100/SG-083/mrcolor_panel_style_v4_split_edge_strict_probe_00494_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02718_SG-083-10_page_719x957_s01.png",
+    "seed": 20260610,
+    "mode": "ip",
+    "scale": 1.0,
+    "image_size": [
+      1200,
+      896
+    ],
+    "width": 896,
+    "height": 1200,
+    "prompt_id": "edcb2169-d8ce-4a11-88e7-505f752eec3e",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "edcb2169-d8ce-4a11-88e7-505f752eec3e",
+            "timestamp": 1781066211600
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15",
+              "1",
+              "2",
+              "3"
+            ],
+            "prompt_id": "edcb2169-d8ce-4a11-88e7-505f752eec3e",
+            "timestamp": 1781066211632
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "edcb2169-d8ce-4a11-88e7-505f752eec3e",
+            "timestamp": 1781066215709
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_1p0_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref00/seed_20260610",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref00",
+    "ref_path": "post_image_dataset/resized/001-100/SG-083/mrcolor_panel_style_v4_split_edge_strict_probe_00494_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02718_SG-083-10_page_719x957_s01.png",
+    "seed": 20260610,
+    "mode": "ip",
+    "scale": 1.5,
+    "image_size": [
+      1200,
+      896
+    ],
+    "width": 896,
+    "height": 1200,
+    "prompt_id": "3a5ababa-2f59-4b59-a2cc-eac517e98137",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "3a5ababa-2f59-4b59-a2cc-eac517e98137",
+            "timestamp": 1781066216609
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15",
+              "1",
+              "2",
+              "3"
+            ],
+            "prompt_id": "3a5ababa-2f59-4b59-a2cc-eac517e98137",
+            "timestamp": 1781066216654
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "3a5ababa-2f59-4b59-a2cc-eac517e98137",
+            "timestamp": 1781066220855
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_1p5_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref00/seed_20260610",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref00",
+    "ref_path": "post_image_dataset/resized/001-100/SG-083/mrcolor_panel_style_v4_split_edge_strict_probe_00494_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02718_SG-083-10_page_719x957_s01.png",
+    "seed": 20260610,
+    "mode": "ip",
+    "scale": 2.0,
+    "image_size": [
+      1200,
+      896
+    ],
+    "width": 896,
+    "height": 1200,
+    "prompt_id": "4e445071-654e-4a6f-95c9-b070dda2cb68",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "4e445071-654e-4a6f-95c9-b070dda2cb68",
+            "timestamp": 1781066221616
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15",
+              "1",
+              "2",
+              "3"
+            ],
+            "prompt_id": "4e445071-654e-4a6f-95c9-b070dda2cb68",
+            "timestamp": 1781066221660
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "4e445071-654e-4a6f-95c9-b070dda2cb68",
+            "timestamp": 1781066225852
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_2p0_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref00/seed_20260610",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref00",
+    "ref_path": "post_image_dataset/resized/001-100/SG-083/mrcolor_panel_style_v4_split_edge_strict_probe_00494_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02718_SG-083-10_page_719x957_s01.png",
+    "seed": 20260611,
+    "mode": "no_ip",
+    "scale": null,
+    "image_size": [
+      1200,
+      896
+    ],
+    "width": 896,
+    "height": 1200,
+    "prompt_id": "f2427268-0100-4857-b7ab-c07428283068",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "f2427268-0100-4857-b7ab-c07428283068",
+            "timestamp": 1781066226624
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "13",
+              "15"
+            ],
+            "prompt_id": "f2427268-0100-4857-b7ab-c07428283068",
+            "timestamp": 1781066226668
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "f2427268-0100-4857-b7ab-c07428283068",
+            "timestamp": 1781066229926
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "no_ip_none_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref00/seed_20260611",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref00",
+    "ref_path": "post_image_dataset/resized/001-100/SG-083/mrcolor_panel_style_v4_split_edge_strict_probe_00494_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02718_SG-083-10_page_719x957_s01.png",
+    "seed": 20260611,
+    "mode": "ip",
+    "scale": 0.5,
+    "image_size": [
+      1200,
+      896
+    ],
+    "width": 896,
+    "height": 1200,
+    "prompt_id": "a56e7934-02bd-4ba9-815c-1070b5b447e9",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "a56e7934-02bd-4ba9-815c-1070b5b447e9",
+            "timestamp": 1781066230633
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15"
+            ],
+            "prompt_id": "a56e7934-02bd-4ba9-815c-1070b5b447e9",
+            "timestamp": 1781066230637
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "a56e7934-02bd-4ba9-815c-1070b5b447e9",
+            "timestamp": 1781066234883
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_0p5_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref00/seed_20260611",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref00",
+    "ref_path": "post_image_dataset/resized/001-100/SG-083/mrcolor_panel_style_v4_split_edge_strict_probe_00494_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02718_SG-083-10_page_719x957_s01.png",
+    "seed": 20260611,
+    "mode": "ip",
+    "scale": 1.0,
+    "image_size": [
+      1200,
+      896
+    ],
+    "width": 896,
+    "height": 1200,
+    "prompt_id": "1ca0e670-de85-4c21-a04f-0a8c7df8ba1d",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "1ca0e670-de85-4c21-a04f-0a8c7df8ba1d",
+            "timestamp": 1781066235641
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15",
+              "1",
+              "2",
+              "3"
+            ],
+            "prompt_id": "1ca0e670-de85-4c21-a04f-0a8c7df8ba1d",
+            "timestamp": 1781066235686
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "1ca0e670-de85-4c21-a04f-0a8c7df8ba1d",
+            "timestamp": 1781066239923
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_1p0_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref00/seed_20260611",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref00",
+    "ref_path": "post_image_dataset/resized/001-100/SG-083/mrcolor_panel_style_v4_split_edge_strict_probe_00494_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02718_SG-083-10_page_719x957_s01.png",
+    "seed": 20260611,
+    "mode": "ip",
+    "scale": 1.5,
+    "image_size": [
+      1200,
+      896
+    ],
+    "width": 896,
+    "height": 1200,
+    "prompt_id": "9886854e-3038-46c2-8055-fd123becf0c4",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "9886854e-3038-46c2-8055-fd123becf0c4",
+            "timestamp": 1781066240651
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15",
+              "1",
+              "2",
+              "3"
+            ],
+            "prompt_id": "9886854e-3038-46c2-8055-fd123becf0c4",
+            "timestamp": 1781066240699
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "9886854e-3038-46c2-8055-fd123becf0c4",
+            "timestamp": 1781066245010
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_1p5_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref00/seed_20260611",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref00",
+    "ref_path": "post_image_dataset/resized/001-100/SG-083/mrcolor_panel_style_v4_split_edge_strict_probe_00494_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02718_SG-083-10_page_719x957_s01.png",
+    "seed": 20260611,
+    "mode": "ip",
+    "scale": 2.0,
+    "image_size": [
+      1200,
+      896
+    ],
+    "width": 896,
+    "height": 1200,
+    "prompt_id": "d20b7a9c-48fc-4d11-94c2-7f8da61795f2",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "d20b7a9c-48fc-4d11-94c2-7f8da61795f2",
+            "timestamp": 1781066245659
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15",
+              "1",
+              "2",
+              "3"
+            ],
+            "prompt_id": "d20b7a9c-48fc-4d11-94c2-7f8da61795f2",
+            "timestamp": 1781066245690
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "d20b7a9c-48fc-4d11-94c2-7f8da61795f2",
+            "timestamp": 1781066249904
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_2p0_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref00/seed_20260611",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref01",
+    "ref_path": "post_image_dataset/resized/001-100/SG-034/mrcolor_panel_style_v4_split_edge_strict_probe_00219_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01056_SG-034-10_page_2046x2874_s01.png",
+    "seed": 20260610,
+    "mode": "no_ip",
+    "scale": null,
+    "image_size": [
+      768,
+      1344
+    ],
+    "width": 1344,
+    "height": 768,
+    "prompt_id": "efcf25d5-1a7c-4621-84fa-f3532f1d9741",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "efcf25d5-1a7c-4621-84fa-f3532f1d9741",
+            "timestamp": 1781066250668
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "6",
+              "7",
+              "8",
+              "13",
+              "15"
+            ],
+            "prompt_id": "efcf25d5-1a7c-4621-84fa-f3532f1d9741",
+            "timestamp": 1781066250717
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "efcf25d5-1a7c-4621-84fa-f3532f1d9741",
+            "timestamp": 1781066253893
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "no_ip_none_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref01/seed_20260610",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref01",
+    "ref_path": "post_image_dataset/resized/001-100/SG-034/mrcolor_panel_style_v4_split_edge_strict_probe_00219_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01056_SG-034-10_page_2046x2874_s01.png",
+    "seed": 20260610,
+    "mode": "ip",
+    "scale": 0.5,
+    "image_size": [
+      768,
+      1344
+    ],
+    "width": 1344,
+    "height": 768,
+    "prompt_id": "0d481f6c-fd5a-4247-92d3-85c9d6d1f5e1",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "0d481f6c-fd5a-4247-92d3-85c9d6d1f5e1",
+            "timestamp": 1781066254682
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15"
+            ],
+            "prompt_id": "0d481f6c-fd5a-4247-92d3-85c9d6d1f5e1",
+            "timestamp": 1781066254686
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "0d481f6c-fd5a-4247-92d3-85c9d6d1f5e1",
+            "timestamp": 1781066258834
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_0p5_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref01/seed_20260610",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref01",
+    "ref_path": "post_image_dataset/resized/001-100/SG-034/mrcolor_panel_style_v4_split_edge_strict_probe_00219_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01056_SG-034-10_page_2046x2874_s01.png",
+    "seed": 20260610,
+    "mode": "ip",
+    "scale": 1.0,
+    "image_size": [
+      768,
+      1344
+    ],
+    "width": 1344,
+    "height": 768,
+    "prompt_id": "30f36e33-44cc-4753-ade2-ac5c4a583720",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "30f36e33-44cc-4753-ade2-ac5c4a583720",
+            "timestamp": 1781066259690
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15",
+              "1",
+              "2",
+              "3"
+            ],
+            "prompt_id": "30f36e33-44cc-4753-ade2-ac5c4a583720",
+            "timestamp": 1781066259737
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "30f36e33-44cc-4753-ade2-ac5c4a583720",
+            "timestamp": 1781066263819
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_1p0_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref01/seed_20260610",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref01",
+    "ref_path": "post_image_dataset/resized/001-100/SG-034/mrcolor_panel_style_v4_split_edge_strict_probe_00219_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01056_SG-034-10_page_2046x2874_s01.png",
+    "seed": 20260610,
+    "mode": "ip",
+    "scale": 1.5,
+    "image_size": [
+      768,
+      1344
+    ],
+    "width": 1344,
+    "height": 768,
+    "prompt_id": "093429dc-0f6b-44a8-9e57-8136de9d6876",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "093429dc-0f6b-44a8-9e57-8136de9d6876",
+            "timestamp": 1781066264699
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15",
+              "1",
+              "2",
+              "3"
+            ],
+            "prompt_id": "093429dc-0f6b-44a8-9e57-8136de9d6876",
+            "timestamp": 1781066264745
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "093429dc-0f6b-44a8-9e57-8136de9d6876",
+            "timestamp": 1781066268849
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_1p5_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref01/seed_20260610",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref01",
+    "ref_path": "post_image_dataset/resized/001-100/SG-034/mrcolor_panel_style_v4_split_edge_strict_probe_00219_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01056_SG-034-10_page_2046x2874_s01.png",
+    "seed": 20260610,
+    "mode": "ip",
+    "scale": 2.0,
+    "image_size": [
+      768,
+      1344
+    ],
+    "width": 1344,
+    "height": 768,
+    "prompt_id": "77e7629c-cd5e-40a9-9f0f-d97638696e37",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "77e7629c-cd5e-40a9-9f0f-d97638696e37",
+            "timestamp": 1781066269707
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15",
+              "1",
+              "2",
+              "3"
+            ],
+            "prompt_id": "77e7629c-cd5e-40a9-9f0f-d97638696e37",
+            "timestamp": 1781066269737
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "77e7629c-cd5e-40a9-9f0f-d97638696e37",
+            "timestamp": 1781066273860
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_2p0_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref01/seed_20260610",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref01",
+    "ref_path": "post_image_dataset/resized/001-100/SG-034/mrcolor_panel_style_v4_split_edge_strict_probe_00219_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01056_SG-034-10_page_2046x2874_s01.png",
+    "seed": 20260611,
+    "mode": "no_ip",
+    "scale": null,
+    "image_size": [
+      768,
+      1344
+    ],
+    "width": 1344,
+    "height": 768,
+    "prompt_id": "f05fd2b4-4875-4944-bd0f-489556e9bbed",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "f05fd2b4-4875-4944-bd0f-489556e9bbed",
+            "timestamp": 1781066274716
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "13",
+              "15"
+            ],
+            "prompt_id": "f05fd2b4-4875-4944-bd0f-489556e9bbed",
+            "timestamp": 1781066274764
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "f05fd2b4-4875-4944-bd0f-489556e9bbed",
+            "timestamp": 1781066277940
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "no_ip_none_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref01/seed_20260611",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref01",
+    "ref_path": "post_image_dataset/resized/001-100/SG-034/mrcolor_panel_style_v4_split_edge_strict_probe_00219_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01056_SG-034-10_page_2046x2874_s01.png",
+    "seed": 20260611,
+    "mode": "ip",
+    "scale": 0.5,
+    "image_size": [
+      768,
+      1344
+    ],
+    "width": 1344,
+    "height": 768,
+    "prompt_id": "888f6bcf-081f-4b43-9973-3a1c71099a84",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "888f6bcf-081f-4b43-9973-3a1c71099a84",
+            "timestamp": 1781066278730
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15"
+            ],
+            "prompt_id": "888f6bcf-081f-4b43-9973-3a1c71099a84",
+            "timestamp": 1781066278734
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "888f6bcf-081f-4b43-9973-3a1c71099a84",
+            "timestamp": 1781066282885
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_0p5_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref01/seed_20260611",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref01",
+    "ref_path": "post_image_dataset/resized/001-100/SG-034/mrcolor_panel_style_v4_split_edge_strict_probe_00219_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01056_SG-034-10_page_2046x2874_s01.png",
+    "seed": 20260611,
+    "mode": "ip",
+    "scale": 1.0,
+    "image_size": [
+      768,
+      1344
+    ],
+    "width": 1344,
+    "height": 768,
+    "prompt_id": "6eca1dab-a42f-4471-81a6-b341066d727b",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "6eca1dab-a42f-4471-81a6-b341066d727b",
+            "timestamp": 1781066283737
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15",
+              "1",
+              "2",
+              "3"
+            ],
+            "prompt_id": "6eca1dab-a42f-4471-81a6-b341066d727b",
+            "timestamp": 1781066283782
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "6eca1dab-a42f-4471-81a6-b341066d727b",
+            "timestamp": 1781066287862
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_1p0_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref01/seed_20260611",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref01",
+    "ref_path": "post_image_dataset/resized/001-100/SG-034/mrcolor_panel_style_v4_split_edge_strict_probe_00219_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01056_SG-034-10_page_2046x2874_s01.png",
+    "seed": 20260611,
+    "mode": "ip",
+    "scale": 1.5,
+    "image_size": [
+      768,
+      1344
+    ],
+    "width": 1344,
+    "height": 768,
+    "prompt_id": "ebc0f648-634e-4011-bdde-985cbb5f0c2e",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "ebc0f648-634e-4011-bdde-985cbb5f0c2e",
+            "timestamp": 1781066288746
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15",
+              "1",
+              "2",
+              "3"
+            ],
+            "prompt_id": "ebc0f648-634e-4011-bdde-985cbb5f0c2e",
+            "timestamp": 1781066288791
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "ebc0f648-634e-4011-bdde-985cbb5f0c2e",
+            "timestamp": 1781066292946
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_1p5_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref01/seed_20260611",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref01",
+    "ref_path": "post_image_dataset/resized/001-100/SG-034/mrcolor_panel_style_v4_split_edge_strict_probe_00219_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01056_SG-034-10_page_2046x2874_s01.png",
+    "seed": 20260611,
+    "mode": "ip",
+    "scale": 2.0,
+    "image_size": [
+      768,
+      1344
+    ],
+    "width": 1344,
+    "height": 768,
+    "prompt_id": "8286f3d9-962b-491c-a94f-affb64601112",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "8286f3d9-962b-491c-a94f-affb64601112",
+            "timestamp": 1781066293756
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15",
+              "1",
+              "2",
+              "3"
+            ],
+            "prompt_id": "8286f3d9-962b-491c-a94f-affb64601112",
+            "timestamp": 1781066293787
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "8286f3d9-962b-491c-a94f-affb64601112",
+            "timestamp": 1781066297902
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_2p0_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref01/seed_20260611",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref02",
+    "ref_path": "post_image_dataset/resized/101-200/SG-169/mrcolor_panel_style_v4_split_edge_strict_probe_00994_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05709_SG-169-09_page_967x818_s01.png",
+    "seed": 20260610,
+    "mode": "no_ip",
+    "scale": null,
+    "image_size": [
+      960,
+      1120
+    ],
+    "width": 1120,
+    "height": 960,
+    "prompt_id": "f82ce42a-89b1-454c-a08c-86c38c774445",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "f82ce42a-89b1-454c-a08c-86c38c774445",
+            "timestamp": 1781066298763
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "6",
+              "7",
+              "8",
+              "13",
+              "15"
+            ],
+            "prompt_id": "f82ce42a-89b1-454c-a08c-86c38c774445",
+            "timestamp": 1781066298811
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "f82ce42a-89b1-454c-a08c-86c38c774445",
+            "timestamp": 1781066302090
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "no_ip_none_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref02/seed_20260610",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref02",
+    "ref_path": "post_image_dataset/resized/101-200/SG-169/mrcolor_panel_style_v4_split_edge_strict_probe_00994_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05709_SG-169-09_page_967x818_s01.png",
+    "seed": 20260610,
+    "mode": "ip",
+    "scale": 0.5,
+    "image_size": [
+      960,
+      1120
+    ],
+    "width": 1120,
+    "height": 960,
+    "prompt_id": "88f39dca-49d9-4c71-8950-0541976cecbb",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "88f39dca-49d9-4c71-8950-0541976cecbb",
+            "timestamp": 1781066302773
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15"
+            ],
+            "prompt_id": "88f39dca-49d9-4c71-8950-0541976cecbb",
+            "timestamp": 1781066302778
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "88f39dca-49d9-4c71-8950-0541976cecbb",
+            "timestamp": 1781066307056
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_0p5_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref02/seed_20260610",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref02",
+    "ref_path": "post_image_dataset/resized/101-200/SG-169/mrcolor_panel_style_v4_split_edge_strict_probe_00994_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05709_SG-169-09_page_967x818_s01.png",
+    "seed": 20260610,
+    "mode": "ip",
+    "scale": 1.0,
+    "image_size": [
+      960,
+      1120
+    ],
+    "width": 1120,
+    "height": 960,
+    "prompt_id": "941ed116-84a3-4178-8605-353701eac5c3",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "941ed116-84a3-4178-8605-353701eac5c3",
+            "timestamp": 1781066307781
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15",
+              "1",
+              "2",
+              "3"
+            ],
+            "prompt_id": "941ed116-84a3-4178-8605-353701eac5c3",
+            "timestamp": 1781066307827
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "941ed116-84a3-4178-8605-353701eac5c3",
+            "timestamp": 1781066312072
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_1p0_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref02/seed_20260610",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref02",
+    "ref_path": "post_image_dataset/resized/101-200/SG-169/mrcolor_panel_style_v4_split_edge_strict_probe_00994_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05709_SG-169-09_page_967x818_s01.png",
+    "seed": 20260610,
+    "mode": "ip",
+    "scale": 1.5,
+    "image_size": [
+      960,
+      1120
+    ],
+    "width": 1120,
+    "height": 960,
+    "prompt_id": "09bb25a0-050c-40e0-9856-d86533ef4d40",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "09bb25a0-050c-40e0-9856-d86533ef4d40",
+            "timestamp": 1781066312791
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15",
+              "1",
+              "2",
+              "3"
+            ],
+            "prompt_id": "09bb25a0-050c-40e0-9856-d86533ef4d40",
+            "timestamp": 1781066312839
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "09bb25a0-050c-40e0-9856-d86533ef4d40",
+            "timestamp": 1781066317308
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_1p5_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref02/seed_20260610",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref02",
+    "ref_path": "post_image_dataset/resized/101-200/SG-169/mrcolor_panel_style_v4_split_edge_strict_probe_00994_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05709_SG-169-09_page_967x818_s01.png",
+    "seed": 20260610,
+    "mode": "ip",
+    "scale": 2.0,
+    "image_size": [
+      960,
+      1120
+    ],
+    "width": 1120,
+    "height": 960,
+    "prompt_id": "4cb99ba7-c4c8-4f96-8462-32dbd9f585d2",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "4cb99ba7-c4c8-4f96-8462-32dbd9f585d2",
+            "timestamp": 1781066317799
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15",
+              "1",
+              "2",
+              "3"
+            ],
+            "prompt_id": "4cb99ba7-c4c8-4f96-8462-32dbd9f585d2",
+            "timestamp": 1781066317829
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "4cb99ba7-c4c8-4f96-8462-32dbd9f585d2",
+            "timestamp": 1781066322204
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_2p0_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref02/seed_20260610",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref02",
+    "ref_path": "post_image_dataset/resized/101-200/SG-169/mrcolor_panel_style_v4_split_edge_strict_probe_00994_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05709_SG-169-09_page_967x818_s01.png",
+    "seed": 20260611,
+    "mode": "no_ip",
+    "scale": null,
+    "image_size": [
+      960,
+      1120
+    ],
+    "width": 1120,
+    "height": 960,
+    "prompt_id": "28eaf7bc-0554-4040-ba1b-c8937be3bf8c",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "28eaf7bc-0554-4040-ba1b-c8937be3bf8c",
+            "timestamp": 1781066322808
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "13",
+              "15"
+            ],
+            "prompt_id": "28eaf7bc-0554-4040-ba1b-c8937be3bf8c",
+            "timestamp": 1781066322839
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "28eaf7bc-0554-4040-ba1b-c8937be3bf8c",
+            "timestamp": 1781066326120
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "no_ip_none_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref02/seed_20260611",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref02",
+    "ref_path": "post_image_dataset/resized/101-200/SG-169/mrcolor_panel_style_v4_split_edge_strict_probe_00994_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05709_SG-169-09_page_967x818_s01.png",
+    "seed": 20260611,
+    "mode": "ip",
+    "scale": 0.5,
+    "image_size": [
+      960,
+      1120
+    ],
+    "width": 1120,
+    "height": 960,
+    "prompt_id": "f9777d34-9a68-4535-906a-84f414878607",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "f9777d34-9a68-4535-906a-84f414878607",
+            "timestamp": 1781066326817
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15"
+            ],
+            "prompt_id": "f9777d34-9a68-4535-906a-84f414878607",
+            "timestamp": 1781066326821
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "f9777d34-9a68-4535-906a-84f414878607",
+            "timestamp": 1781066331144
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_0p5_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref02/seed_20260611",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref02",
+    "ref_path": "post_image_dataset/resized/101-200/SG-169/mrcolor_panel_style_v4_split_edge_strict_probe_00994_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05709_SG-169-09_page_967x818_s01.png",
+    "seed": 20260611,
+    "mode": "ip",
+    "scale": 1.0,
+    "image_size": [
+      960,
+      1120
+    ],
+    "width": 1120,
+    "height": 960,
+    "prompt_id": "18e6fd0a-d249-4dc7-bbfd-1abf91786677",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "18e6fd0a-d249-4dc7-bbfd-1abf91786677",
+            "timestamp": 1781066331825
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15",
+              "1",
+              "2",
+              "3"
+            ],
+            "prompt_id": "18e6fd0a-d249-4dc7-bbfd-1abf91786677",
+            "timestamp": 1781066331857
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "18e6fd0a-d249-4dc7-bbfd-1abf91786677",
+            "timestamp": 1781066336096
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_1p0_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref02/seed_20260611",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref02",
+    "ref_path": "post_image_dataset/resized/101-200/SG-169/mrcolor_panel_style_v4_split_edge_strict_probe_00994_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05709_SG-169-09_page_967x818_s01.png",
+    "seed": 20260611,
+    "mode": "ip",
+    "scale": 1.5,
+    "image_size": [
+      960,
+      1120
+    ],
+    "width": 1120,
+    "height": 960,
+    "prompt_id": "71f553cb-8e66-489c-9d25-fd49fb618dd8",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "71f553cb-8e66-489c-9d25-fd49fb618dd8",
+            "timestamp": 1781066336834
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15",
+              "1",
+              "2",
+              "3"
+            ],
+            "prompt_id": "71f553cb-8e66-489c-9d25-fd49fb618dd8",
+            "timestamp": 1781066336865
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "71f553cb-8e66-489c-9d25-fd49fb618dd8",
+            "timestamp": 1781066341077
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_1p5_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref02/seed_20260611",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref02",
+    "ref_path": "post_image_dataset/resized/101-200/SG-169/mrcolor_panel_style_v4_split_edge_strict_probe_00994_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05709_SG-169-09_page_967x818_s01.png",
+    "seed": 20260611,
+    "mode": "ip",
+    "scale": 2.0,
+    "image_size": [
+      960,
+      1120
+    ],
+    "width": 1120,
+    "height": 960,
+    "prompt_id": "849a9e76-b043-4ec9-9541-c1288472a1f2",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "849a9e76-b043-4ec9-9541-c1288472a1f2",
+            "timestamp": 1781066341842
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15",
+              "1",
+              "2",
+              "3"
+            ],
+            "prompt_id": "849a9e76-b043-4ec9-9541-c1288472a1f2",
+            "timestamp": 1781066341874
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "849a9e76-b043-4ec9-9541-c1288472a1f2",
+            "timestamp": 1781066346093
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_2p0_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref02/seed_20260611",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref03",
+    "ref_path": "post_image_dataset/resized/101-200/SG-126/mrcolor_panel_style_v4_split_edge_strict_probe_00761_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04287_SG-126-14_page_2072x2889_s02.png",
+    "seed": 20260610,
+    "mode": "no_ip",
+    "scale": null,
+    "image_size": [
+      800,
+      1344
+    ],
+    "width": 1344,
+    "height": 800,
+    "prompt_id": "535a9964-63cc-42b3-8feb-5b6b1fe92ccb",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "535a9964-63cc-42b3-8feb-5b6b1fe92ccb",
+            "timestamp": 1781066346850
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "6",
+              "7",
+              "8",
+              "13",
+              "15"
+            ],
+            "prompt_id": "535a9964-63cc-42b3-8feb-5b6b1fe92ccb",
+            "timestamp": 1781066346898
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "535a9964-63cc-42b3-8feb-5b6b1fe92ccb",
+            "timestamp": 1781066350173
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "no_ip_none_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref03/seed_20260610",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref03",
+    "ref_path": "post_image_dataset/resized/101-200/SG-126/mrcolor_panel_style_v4_split_edge_strict_probe_00761_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04287_SG-126-14_page_2072x2889_s02.png",
+    "seed": 20260610,
+    "mode": "ip",
+    "scale": 0.5,
+    "image_size": [
+      800,
+      1344
+    ],
+    "width": 1344,
+    "height": 800,
+    "prompt_id": "4d955484-60bc-47d7-a666-64755765fef0",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "4d955484-60bc-47d7-a666-64755765fef0",
+            "timestamp": 1781066350859
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15"
+            ],
+            "prompt_id": "4d955484-60bc-47d7-a666-64755765fef0",
+            "timestamp": 1781066350863
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "4d955484-60bc-47d7-a666-64755765fef0",
+            "timestamp": 1781066355137
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_0p5_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref03/seed_20260610",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref03",
+    "ref_path": "post_image_dataset/resized/101-200/SG-126/mrcolor_panel_style_v4_split_edge_strict_probe_00761_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04287_SG-126-14_page_2072x2889_s02.png",
+    "seed": 20260610,
+    "mode": "ip",
+    "scale": 1.0,
+    "image_size": [
+      800,
+      1344
+    ],
+    "width": 1344,
+    "height": 800,
+    "prompt_id": "a9cdfead-5d80-43b5-b7a5-700e57497dcc",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "a9cdfead-5d80-43b5-b7a5-700e57497dcc",
+            "timestamp": 1781066355868
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15",
+              "1",
+              "2",
+              "3"
+            ],
+            "prompt_id": "a9cdfead-5d80-43b5-b7a5-700e57497dcc",
+            "timestamp": 1781066355902
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "a9cdfead-5d80-43b5-b7a5-700e57497dcc",
+            "timestamp": 1781066360154
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_1p0_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref03/seed_20260610",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref03",
+    "ref_path": "post_image_dataset/resized/101-200/SG-126/mrcolor_panel_style_v4_split_edge_strict_probe_00761_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04287_SG-126-14_page_2072x2889_s02.png",
+    "seed": 20260610,
+    "mode": "ip",
+    "scale": 1.5,
+    "image_size": [
+      800,
+      1344
+    ],
+    "width": 1344,
+    "height": 800,
+    "prompt_id": "2e6198eb-5717-4975-9497-bb3b1a42e2e8",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "2e6198eb-5717-4975-9497-bb3b1a42e2e8",
+            "timestamp": 1781066360876
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15",
+              "1",
+              "2",
+              "3"
+            ],
+            "prompt_id": "2e6198eb-5717-4975-9497-bb3b1a42e2e8",
+            "timestamp": 1781066360906
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "2e6198eb-5717-4975-9497-bb3b1a42e2e8",
+            "timestamp": 1781066365169
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_1p5_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref03/seed_20260610",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref03",
+    "ref_path": "post_image_dataset/resized/101-200/SG-126/mrcolor_panel_style_v4_split_edge_strict_probe_00761_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04287_SG-126-14_page_2072x2889_s02.png",
+    "seed": 20260610,
+    "mode": "ip",
+    "scale": 2.0,
+    "image_size": [
+      800,
+      1344
+    ],
+    "width": 1344,
+    "height": 800,
+    "prompt_id": "866bd891-c063-4f90-852f-cb493cd45d62",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "866bd891-c063-4f90-852f-cb493cd45d62",
+            "timestamp": 1781066365884
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15",
+              "1",
+              "2",
+              "3"
+            ],
+            "prompt_id": "866bd891-c063-4f90-852f-cb493cd45d62",
+            "timestamp": 1781066365913
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "866bd891-c063-4f90-852f-cb493cd45d62",
+            "timestamp": 1781066370237
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_2p0_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref03/seed_20260610",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref03",
+    "ref_path": "post_image_dataset/resized/101-200/SG-126/mrcolor_panel_style_v4_split_edge_strict_probe_00761_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04287_SG-126-14_page_2072x2889_s02.png",
+    "seed": 20260611,
+    "mode": "no_ip",
+    "scale": null,
+    "image_size": [
+      800,
+      1344
+    ],
+    "width": 1344,
+    "height": 800,
+    "prompt_id": "e491607b-284e-46fd-9779-65206b645fda",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "e491607b-284e-46fd-9779-65206b645fda",
+            "timestamp": 1781066370892
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "13",
+              "15"
+            ],
+            "prompt_id": "e491607b-284e-46fd-9779-65206b645fda",
+            "timestamp": 1781066370925
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "e491607b-284e-46fd-9779-65206b645fda",
+            "timestamp": 1781066374241
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "no_ip_none_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref03/seed_20260611",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref03",
+    "ref_path": "post_image_dataset/resized/101-200/SG-126/mrcolor_panel_style_v4_split_edge_strict_probe_00761_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04287_SG-126-14_page_2072x2889_s02.png",
+    "seed": 20260611,
+    "mode": "ip",
+    "scale": 0.5,
+    "image_size": [
+      800,
+      1344
+    ],
+    "width": 1344,
+    "height": 800,
+    "prompt_id": "70ea6413-0024-4dbd-b641-b5f21a265744",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "70ea6413-0024-4dbd-b641-b5f21a265744",
+            "timestamp": 1781066374906
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15"
+            ],
+            "prompt_id": "70ea6413-0024-4dbd-b641-b5f21a265744",
+            "timestamp": 1781066374910
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "70ea6413-0024-4dbd-b641-b5f21a265744",
+            "timestamp": 1781066379231
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_0p5_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref03/seed_20260611",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref03",
+    "ref_path": "post_image_dataset/resized/101-200/SG-126/mrcolor_panel_style_v4_split_edge_strict_probe_00761_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04287_SG-126-14_page_2072x2889_s02.png",
+    "seed": 20260611,
+    "mode": "ip",
+    "scale": 1.0,
+    "image_size": [
+      800,
+      1344
+    ],
+    "width": 1344,
+    "height": 800,
+    "prompt_id": "015df517-92ca-490e-887a-03206d67f1b7",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "015df517-92ca-490e-887a-03206d67f1b7",
+            "timestamp": 1781066379914
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15",
+              "1",
+              "2",
+              "3"
+            ],
+            "prompt_id": "015df517-92ca-490e-887a-03206d67f1b7",
+            "timestamp": 1781066379943
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "015df517-92ca-490e-887a-03206d67f1b7",
+            "timestamp": 1781066384145
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_1p0_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref03/seed_20260611",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref03",
+    "ref_path": "post_image_dataset/resized/101-200/SG-126/mrcolor_panel_style_v4_split_edge_strict_probe_00761_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04287_SG-126-14_page_2072x2889_s02.png",
+    "seed": 20260611,
+    "mode": "ip",
+    "scale": 1.5,
+    "image_size": [
+      800,
+      1344
+    ],
+    "width": 1344,
+    "height": 800,
+    "prompt_id": "fd319540-11db-4313-b321-a348c3bbdc23",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "fd319540-11db-4313-b321-a348c3bbdc23",
+            "timestamp": 1781066384922
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15",
+              "1",
+              "2",
+              "3"
+            ],
+            "prompt_id": "fd319540-11db-4313-b321-a348c3bbdc23",
+            "timestamp": 1781066384954
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "fd319540-11db-4313-b321-a348c3bbdc23",
+            "timestamp": 1781066389189
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_1p5_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref03/seed_20260611",
+        "type": "output"
+      }
+    ]
+  },
+  {
+    "ref_id": "ref03",
+    "ref_path": "post_image_dataset/resized/101-200/SG-126/mrcolor_panel_style_v4_split_edge_strict_probe_00761_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04287_SG-126-14_page_2072x2889_s02.png",
+    "seed": 20260611,
+    "mode": "ip",
+    "scale": 2.0,
+    "image_size": [
+      800,
+      1344
+    ],
+    "width": 1344,
+    "height": 800,
+    "prompt_id": "46b0575d-9d19-473f-9f3c-fb448dd9124b",
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "46b0575d-9d19-473f-9f3c-fb448dd9124b",
+            "timestamp": 1781066389930
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "5",
+              "18",
+              "6",
+              "7",
+              "8",
+              "9",
+              "11",
+              "13",
+              "15",
+              "1",
+              "2",
+              "3"
+            ],
+            "prompt_id": "46b0575d-9d19-473f-9f3c-fb448dd9124b",
+            "timestamp": 1781066389959
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "46b0575d-9d19-473f-9f3c-fb448dd9124b",
+            "timestamp": 1781066394242
+          }
+        ]
+      ]
+    },
+    "images": [
+      {
+        "filename": "ip_2p0_00001_.png",
+        "subfolder": "anima_ipadapter/comfy_pe_full_refeval_20260610/ref03/seed_20260611",
+        "type": "output"
+      }
+    ]
+  }
+]

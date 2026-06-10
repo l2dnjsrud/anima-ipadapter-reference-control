@@ -1,0 +1,301 @@
+{
+  "1": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "codex_linecolor_ms138_line.jpg"
+    }
+  },
+  "2": {
+    "class_type": "ImageScale",
+    "inputs": {
+      "image": [
+        "1",
+        0
+      ],
+      "upscale_method": "lanczos",
+      "width": 1152,
+      "height": 816,
+      "crop": "disabled"
+    }
+  },
+  "3": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "codex_linecolor_sg138_color_ref.jpg"
+    }
+  },
+  "4": {
+    "class_type": "ImageScale",
+    "inputs": {
+      "image": [
+        "3",
+        0
+      ],
+      "upscale_method": "lanczos",
+      "width": 1152,
+      "height": 816,
+      "crop": "disabled"
+    }
+  },
+  "5": {
+    "class_type": "AnimaPEEncodeImage",
+    "inputs": {
+      "image": [
+        "4",
+        0
+      ],
+      "encoder_name": "pe",
+      "device": "auto",
+      "dtype": "bfloat16",
+      "cache_encoder": true
+    }
+  },
+  "6": {
+    "class_type": "AnimaPEIPAdapterLoader",
+    "inputs": {
+      "ipadapter_name": "anima_ip_adapter_quality_20260610.safetensors"
+    }
+  },
+  "7": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "anima-base-v1.0.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "8": {
+    "class_type": "ModelSamplingFlux",
+    "inputs": {
+      "model": [
+        "7",
+        0
+      ],
+      "max_shift": 3.0,
+      "base_shift": 3.0,
+      "width": 1152,
+      "height": 816
+    }
+  },
+  "9": {
+    "class_type": "AnimaPEIPAdapterApply",
+    "inputs": {
+      "model": [
+        "8",
+        0
+      ],
+      "adapter": [
+        "6",
+        0
+      ],
+      "features": [
+        "5",
+        0
+      ],
+      "strength": 0.8,
+      "start_percent": 0.0,
+      "end_percent": 0.7,
+      "preserve_wrapper": true
+    }
+  },
+  "10": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen_3_06b_base.safetensors",
+      "type": "qwen_image",
+      "device": "default"
+    }
+  },
+  "11": {
+    "class_type": "CLIPTextEncodeFlux",
+    "inputs": {
+      "clip": [
+        "10",
+        0
+      ],
+      "clip_l": "masterpiece, best quality, same comic page as input, preserve exact panel borders, preserve exact speech bubble positions, convert pale blue rough manga line art into clean fully colored manhwa page, natural skin tones, fabric colors, soft cel shading, detailed backgrounds",
+      "t5xxl": "masterpiece, best quality, same comic page as input, preserve exact panel borders, preserve exact speech bubble positions, convert pale blue rough manga line art into clean fully colored manhwa page, natural skin tones, fabric colors, soft cel shading, detailed backgrounds",
+      "guidance": 3.2
+    }
+  },
+  "12": {
+    "class_type": "CLIPTextEncodeFlux",
+    "inputs": {
+      "clip": [
+        "10",
+        0
+      ],
+      "clip_l": "new layout, different composition, character sheet, isolated standing characters, text, watermark, logo, monochrome, grayscale, blue pencil rough, unfinished, blank page, distorted anatomy",
+      "t5xxl": "new layout, different composition, character sheet, isolated standing characters, text, watermark, logo, monochrome, grayscale, blue pencil rough, unfinished, blank page, distorted anatomy",
+      "guidance": 3.2
+    }
+  },
+  "13": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "qwen/qwen_image_vae.safetensors"
+    }
+  },
+  "14": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "2",
+        0
+      ],
+      "vae": [
+        "13",
+        0
+      ]
+    }
+  },
+  "21": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": [
+        "9",
+        0
+      ],
+      "seed": 20260711,
+      "steps": 24,
+      "cfg": 3.2,
+      "sampler_name": "er_sde",
+      "scheduler": "simple",
+      "positive": [
+        "11",
+        0
+      ],
+      "negative": [
+        "12",
+        0
+      ],
+      "latent_image": [
+        "14",
+        0
+      ],
+      "denoise": 0.12
+    }
+  },
+  "31": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "21",
+        0
+      ],
+      "vae": [
+        "13",
+        0
+      ]
+    }
+  },
+  "41": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "31",
+        0
+      ],
+      "filename_prefix": "anima_ipadapter/line_color_ms138_lowdenoise_0.12"
+    }
+  },
+  "22": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": [
+        "9",
+        0
+      ],
+      "seed": 20260712,
+      "steps": 24,
+      "cfg": 3.2,
+      "sampler_name": "er_sde",
+      "scheduler": "simple",
+      "positive": [
+        "11",
+        0
+      ],
+      "negative": [
+        "12",
+        0
+      ],
+      "latent_image": [
+        "14",
+        0
+      ],
+      "denoise": 0.22
+    }
+  },
+  "32": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "22",
+        0
+      ],
+      "vae": [
+        "13",
+        0
+      ]
+    }
+  },
+  "42": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "32",
+        0
+      ],
+      "filename_prefix": "anima_ipadapter/line_color_ms138_lowdenoise_0.22"
+    }
+  },
+  "23": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": [
+        "9",
+        0
+      ],
+      "seed": 20260713,
+      "steps": 24,
+      "cfg": 3.2,
+      "sampler_name": "er_sde",
+      "scheduler": "simple",
+      "positive": [
+        "11",
+        0
+      ],
+      "negative": [
+        "12",
+        0
+      ],
+      "latent_image": [
+        "14",
+        0
+      ],
+      "denoise": 0.32
+    }
+  },
+  "33": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "23",
+        0
+      ],
+      "vae": [
+        "13",
+        0
+      ]
+    }
+  },
+  "43": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "33",
+        0
+      ],
+      "filename_prefix": "anima_ipadapter/line_color_ms138_lowdenoise_0.32"
+    }
+  }
+}

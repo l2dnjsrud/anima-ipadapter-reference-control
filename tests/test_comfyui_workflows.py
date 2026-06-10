@@ -69,6 +69,7 @@ def test_native_workflow_is_normal_comfyui_graph() -> None:
         "EmptySD3LatentImage",
         "RandomNoise",
         "CFGGuider",
+        "ModelSamplingFlux",
         "KSamplerSelect",
         "BasicScheduler",
         "SamplerCustomAdvanced",
@@ -98,6 +99,26 @@ def test_native_workflow_links_apply_model_to_sampler_path() -> None:
         for input_slot in apply_node["inputs"]
         if input_slot.get("link") is not None
     }
-    assert nodes[input_sources["model"]]["type"] == "UNETLoader"
+    assert nodes[input_sources["model"]]["type"] == "ModelSamplingFlux"
     assert nodes[input_sources["adapter"]]["type"] == "AnimaPEIPAdapterLoader"
     assert nodes[input_sources["features"]]["type"] == "AnimaPEEncodeImage"
+
+
+def test_native_workflow_matches_reference_eval_sampling_shift() -> None:
+    workflow = _load_workflow(NATIVE_WORKFLOW)
+    nodes = {node["id"]: node for node in workflow["nodes"]}
+    links = {link[0]: link for link in workflow["links"]}
+
+    sampling_node = next(node for node in workflow["nodes"] if node["type"] == "ModelSamplingFlux")
+    max_shift, base_shift, width, height = sampling_node["widgets_values"]
+
+    assert max_shift == 3.0
+    assert base_shift == 3.0
+    assert (width, height) == (1344, 800)
+
+    input_sources = {
+        input_slot["name"]: links[input_slot["link"]][1]
+        for input_slot in sampling_node["inputs"]
+        if input_slot.get("link") is not None
+    }
+    assert nodes[input_sources["model"]]["type"] == "UNETLoader"
