@@ -48,13 +48,19 @@ If those paths differ, edit the node widgets in ComfyUI.
 
 ## ComfyUI Workflow
 
-Import this JSON workflow in ComfyUI:
+Import one of these JSON workflows in ComfyUI:
 
 ```text
 workflows/anima_ipadapter_reference_generate.json
+workflows/anima_ipadapter_contactsheet_ref03_ersde.json
 ```
 
-The workflow is:
+`anima_ipadapter_reference_generate.json` is the generic reference-control UI.
+`anima_ipadapter_contactsheet_ref03_ersde.json` reproduces the verified
+contact-sheet `ref03 / seed 20260610 / ip_scale 1.0` case. On the local
+ComfyUI02 install it expects `codex_contact_ref03.png` in the input directory.
+
+Both workflows are:
 
 ```text
 Load Image -> Anima IP-Adapter Generate -> Save Image
