@@ -11,6 +11,7 @@ Python process, then returns the generated image back to ComfyUI.
 
 - Candidate checkpoint: `checkpoints/anima_ip_adapter_quality_20260610.safetensors`
 - Recommended inference scale: `--ip_scale 1.0`
+- Recommended sampler for reproducing the shipped evaluation sheet: `er_sde`
 - Evaluation status: PASS
 - Generated evaluation images: 40
 - Nonblank check: PASS
@@ -58,6 +59,10 @@ The workflow is:
 ```text
 Load Image -> Anima IP-Adapter Generate -> Save Image
 ```
+
+For contact-sheet-like outputs, keep the node sampler at `er_sde`. The Anima
+CLI defaults to `euler`, but the packaged evaluation sheet was generated with
+`er_sde`.
 
 The evaluation markdown and contact sheet are not ComfyUI workflows; they remain
 under `eval/` only as evidence.
@@ -112,6 +117,7 @@ encoder, VAE, PE-Core encoder, and project virtualenv available.
   --infer_steps 20 \
   --guidance_scale 3.5 \
   --flow_shift 3.0 \
+  --sampler er_sde \
   --image_size 960 1120 \
   --save_path output/tests/ipadapter_reference \
   --ip_adapter_weight /home/wktwin/anima-ipadapter-reference-control/checkpoints/anima_ip_adapter_quality_20260610.safetensors \

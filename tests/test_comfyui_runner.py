@@ -31,6 +31,7 @@ def test_build_command_resolves_relative_paths_against_anima_root(tmp_path: Path
         flow_shift=3.0,
         ip_scale=1.0,
         attn_mode="flash",
+        sampler="er_sde",
         match_reference_size=True,
     )
 
@@ -48,6 +49,7 @@ def test_build_command_resolves_relative_paths_against_anima_root(tmp_path: Path
         "960",
         "1120",
     ]
+    assert command[command.index("--sampler") + 1] == "er_sde"
     assert "--ip_image_match_size" in command
 
 

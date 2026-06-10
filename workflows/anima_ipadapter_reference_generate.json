@@ -86,6 +86,10 @@
           "type": "COMBO"
         },
         {
+          "name": "sampler",
+          "type": "COMBO"
+        },
+        {
           "name": "match_reference_size",
           "type": "BOOLEAN"
         },
@@ -146,13 +150,14 @@
         3.0,
         1.0,
         "flash",
+        "er_sde",
         false,
         "/home/wktwin/anima-lora-training-bundle/anima_lora",
         "/home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python",
         "models/diffusion_models/anima-base-v1.0.safetensors",
         "models/text_encoders/qwen_3_06b_base.safetensors",
         "models/vae/qwen_image_vae.safetensors",
-        "/data/ai/comfyui02/custom_nodes/anima-ipadapter-reference-control/checkpoints/anima_ip_adapter_quality_20260610.safetensors",
+        "/data/ai/models/ipadapter/anima_ip_adapter_quality_20260610.safetensors",
         "/home/wktwin/anima-lora-training-bundle/anima_lora/output/comfy_ipadapter"
       ],
       "title": "Generate with Anima IP-Adapter"

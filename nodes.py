@@ -78,6 +78,7 @@ class AnimaIPAdapterGenerate:
                     {"default": 1.0, "min": 0.0, "max": 3.0, "step": 0.05},
                 ),
                 "attn_mode": (["flash", "torch", "sageattn", "flex", "xformers"],),
+                "sampler": (["er_sde", "euler", "lcm"],),
                 "match_reference_size": ("BOOLEAN", {"default": False}),
                 "anima_root": ("STRING", {"default": str(DEFAULT_ANIMA_ROOT)}),
                 "python_executable": ("STRING", {"default": str(DEFAULT_PYTHON)}),
@@ -111,6 +112,7 @@ class AnimaIPAdapterGenerate:
         flow_shift: float,
         ip_scale: float,
         attn_mode: str,
+        sampler: str,
         match_reference_size: bool,
         anima_root: str,
         python_executable: str,
@@ -142,6 +144,7 @@ class AnimaIPAdapterGenerate:
             flow_shift=float(flow_shift),
             ip_scale=float(ip_scale),
             attn_mode=attn_mode,
+            sampler=sampler,
             match_reference_size=bool(match_reference_size),
         )
         paths.output_dir.mkdir(parents=True, exist_ok=True)

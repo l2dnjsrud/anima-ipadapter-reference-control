@@ -14,6 +14,7 @@ SUPPORTED_ATTN_MODES: Final[tuple[str, ...]] = (
     "flex",
     "xformers",
 )
+SUPPORTED_SAMPLERS: Final[tuple[str, ...]] = ("euler", "er_sde", "lcm")
 
 
 @dataclass(frozen=True, slots=True)
@@ -39,6 +40,7 @@ class GenerationOptions:
     flow_shift: float
     ip_scale: float
     attn_mode: str
+    sampler: str
     match_reference_size: bool
 
 
@@ -58,6 +60,15 @@ class UnsupportedAttnModeError(RuntimeError):
     def __str__(self) -> str:
         modes = ", ".join(SUPPORTED_ATTN_MODES)
         return f"Unsupported attention mode {self.attn_mode!r}; expected one of: {modes}"
+
+
+@dataclass(frozen=True, slots=True)
+class UnsupportedSamplerError(RuntimeError):
+    sampler: str
+
+    def __str__(self) -> str:
+        samplers = ", ".join(SUPPORTED_SAMPLERS)
+        return f"Unsupported sampler {self.sampler!r}; expected one of: {samplers}"
 
 
 @dataclass(frozen=True, slots=True)
@@ -123,6 +134,8 @@ def build_command(
 ) -> list[str]:
     if options.attn_mode not in SUPPORTED_ATTN_MODES:
         raise UnsupportedAttnModeError(attn_mode=options.attn_mode)
+    if options.sampler not in SUPPORTED_SAMPLERS:
+        raise UnsupportedSamplerError(sampler=options.sampler)
 
     resolved = resolved_paths(paths)
     command = [
@@ -151,6 +164,8 @@ def build_command(
         str(options.guidance_scale),
         "--flow_shift",
         str(options.flow_shift),
+        "--sampler",
+        options.sampler,
         "--image_size",
         str(options.height),
         str(options.width),
