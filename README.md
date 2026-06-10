@@ -33,18 +33,31 @@ cd anima-ipadapter-reference-control
 sudo git lfs pull
 ```
 
-Restart ComfyUI after cloning. On the local machine used for this package, the
-node defaults assume:
+For an existing clone:
+
+```bash
+cd /data/ai/comfyui02/custom_nodes/anima-ipadapter-reference-control
+sudo git pull
+sudo git lfs pull
+```
+
+Put the trained adapter where ComfyUI model selector nodes can see it:
+
+```text
+/data/ai/models/ipadapter/anima_ip_adapter_quality_20260610.safetensors
+```
+
+Restart ComfyUI after cloning or pulling. On the local machine used for this
+package, the runner defaults assume:
 
 ```text
 Anima source: /home/wktwin/anima-lora-training-bundle/anima_lora
 Anima python: /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python
-DiT:          models/diffusion_models/anima-base-v1.0.safetensors
-Text encoder: models/text_encoders/qwen_3_06b_base.safetensors
-VAE:          models/vae/qwen_image_vae.safetensors
+Comfy models: /data/ai/models
 ```
 
-If those paths differ, edit the node widgets in ComfyUI.
+If those paths differ, set `ANIMA_LORA_ROOT`, `ANIMA_LORA_PYTHON`, or
+`ANIMA_COMFY_MODELS_ROOT` before starting ComfyUI.
 
 ## ComfyUI Workflow
 
@@ -65,6 +78,19 @@ Both workflows are:
 ```text
 Load Image -> Anima IP-Adapter Generate -> Save Image
 ```
+
+The `Anima IP-Adapter Generate` node uses ComfyUI-style model selectors:
+
+```text
+ipadapter_name
+dit_name
+text_encoder_name
+vae_name
+```
+
+Select `anima_ip_adapter_quality_20260610.safetensors` for `ipadapter_name`.
+The runner resolves the selected names through ComfyUI `folder_paths` instead
+of exposing raw checkpoint paths as text widgets.
 
 For contact-sheet-like outputs, keep the node sampler at `er_sde`. The Anima
 CLI defaults to `euler`, but the packaged evaluation sheet was generated with
@@ -160,8 +186,8 @@ for reproducibility and future reruns.
 
 `Anima IP-Adapter Generate` accepts a ComfyUI `IMAGE` reference, writes it to a
 temporary PNG, runs `inference.py` with `--ip_adapter_weight`, `--ip_image`, and
-`--ip_scale`, then loads the newest PNG from `output_dir` and returns it as a
-ComfyUI image.
+`--ip_scale`, then loads the newest PNG from the selected output subdirectory
+and returns it as a ComfyUI image.
 
 This is intentionally not wired through `comfyui_ipadapter_plus`; that custom
 node targets standard SD/SDXL IP-Adapter checkpoints, while this checkpoint is

@@ -5,8 +5,14 @@
     {
       "id": 1,
       "type": "LoadImage",
-      "pos": [40, 160],
-      "size": [320, 314],
+      "pos": [
+        40,
+        160
+      ],
+      "size": [
+        320,
+        314
+      ],
       "flags": {},
       "order": 0,
       "mode": 0,
@@ -15,7 +21,9 @@
         {
           "name": "IMAGE",
           "type": "IMAGE",
-          "links": [1],
+          "links": [
+            1
+          ],
           "slot_index": 0
         },
         {
@@ -28,14 +36,22 @@
       "properties": {
         "Node name for S&R": "LoadImage"
       },
-      "widgets_values": ["reference.jpg"],
+      "widgets_values": [
+        "reference.jpg"
+      ],
       "title": "Load reference image"
     },
     {
       "id": 2,
       "type": "AnimaIPAdapterGenerate",
-      "pos": [430, 70],
-      "size": [520, 710],
+      "pos": [
+        430,
+        70
+      ],
+      "size": [
+        520,
+        640
+      ],
       "flags": {},
       "order": 1,
       "mode": 0,
@@ -94,31 +110,23 @@
           "type": "BOOLEAN"
         },
         {
-          "name": "anima_root",
-          "type": "STRING"
+          "name": "ipadapter_name",
+          "type": "COMBO"
         },
         {
-          "name": "python_executable",
-          "type": "STRING"
+          "name": "dit_name",
+          "type": "COMBO"
         },
         {
-          "name": "dit_path",
-          "type": "STRING"
+          "name": "text_encoder_name",
+          "type": "COMBO"
         },
         {
-          "name": "text_encoder_path",
-          "type": "STRING"
+          "name": "vae_name",
+          "type": "COMBO"
         },
         {
-          "name": "vae_path",
-          "type": "STRING"
-        },
-        {
-          "name": "checkpoint_path",
-          "type": "STRING"
-        },
-        {
-          "name": "output_dir",
+          "name": "output_subdir",
           "type": "STRING"
         }
       ],
@@ -126,7 +134,9 @@
         {
           "name": "image",
           "type": "IMAGE",
-          "links": [2],
+          "links": [
+            2
+          ],
           "slot_index": 0
         },
         {
@@ -143,6 +153,7 @@
         "masterpiece, best quality, score_7, safe. manga panel layout, clean line art, expressive character, cinematic composition.",
         "low quality, blurry, bad anatomy, text, watermark",
         20260610,
+        "fixed",
         1120,
         960,
         20,
@@ -152,21 +163,25 @@
         "flash",
         "er_sde",
         false,
-        "/home/wktwin/anima-lora-training-bundle/anima_lora",
-        "/home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python",
-        "models/diffusion_models/anima-base-v1.0.safetensors",
-        "models/text_encoders/qwen_3_06b_base.safetensors",
-        "models/vae/qwen_image_vae.safetensors",
-        "/data/ai/models/ipadapter/anima_ip_adapter_quality_20260610.safetensors",
-        "/home/wktwin/anima-lora-training-bundle/anima_lora/output/comfy_ipadapter"
+        "anima_ip_adapter_quality_20260610.safetensors",
+        "anima-base-v1.0.safetensors",
+        "qwen_3_06b_base.safetensors",
+        "qwen/qwen_image_vae.safetensors",
+        "comfy_ipadapter"
       ],
       "title": "Generate with Anima IP-Adapter"
     },
     {
       "id": 3,
       "type": "SaveImage",
-      "pos": [1010, 260],
-      "size": [320, 270],
+      "pos": [
+        1010,
+        260
+      ],
+      "size": [
+        320,
+        270
+      ],
       "flags": {},
       "order": 2,
       "mode": 0,
@@ -181,20 +196,39 @@
       "properties": {
         "Node name for S&R": "SaveImage"
       },
-      "widgets_values": ["anima_ipadapter/reference_control"],
+      "widgets_values": [
+        "anima_ipadapter/reference_control"
+      ],
       "title": "Save generated image"
     }
   ],
   "links": [
-    [1, 1, 0, 2, 0, "IMAGE"],
-    [2, 2, 0, 3, 0, "IMAGE"]
+    [
+      1,
+      1,
+      0,
+      2,
+      0,
+      "IMAGE"
+    ],
+    [
+      2,
+      2,
+      0,
+      3,
+      0,
+      "IMAGE"
+    ]
   ],
   "groups": [],
   "config": {},
   "extra": {
     "ds": {
       "scale": 1,
-      "offset": [0, 0]
+      "offset": [
+        0,
+        0
+      ]
     }
   },
   "version": 0.4

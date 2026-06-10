@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+import os
 import tempfile
 import time
 from pathlib import Path
 from typing import Final
 
+import folder_paths
 import numpy as np
 import torch
 from PIL import Image
@@ -13,6 +15,7 @@ try:
     from .runner import (
         GenerationOptions,
         RunnerPaths,
+        SUPPORTED_ATTN_MODES,
         build_command,
         build_subprocess_env,
         newest_png,
@@ -24,6 +27,7 @@ except ImportError:
     from runner import (
         GenerationOptions,
         RunnerPaths,
+        SUPPORTED_ATTN_MODES,
         build_command,
         build_subprocess_env,
         newest_png,
@@ -33,21 +37,59 @@ except ImportError:
     )
 
 
-REPO_ROOT: Final[Path] = Path(__file__).resolve().parent
-DEFAULT_ANIMA_ROOT: Final[Path] = Path("/home/wktwin/anima-lora-training-bundle/anima_lora")
-DEFAULT_PYTHON: Final[Path] = DEFAULT_ANIMA_ROOT / ".venv/bin/python"
-DEFAULT_DIT: Final[str] = "models/diffusion_models/anima-base-v1.0.safetensors"
-DEFAULT_TEXT_ENCODER: Final[str] = "models/text_encoders/qwen_3_06b_base.safetensors"
-DEFAULT_VAE: Final[str] = "models/vae/qwen_image_vae.safetensors"
-DEFAULT_CHECKPOINT: Final[Path] = (
-    REPO_ROOT / "checkpoints/anima_ip_adapter_quality_20260610.safetensors"
+DEFAULT_ANIMA_ROOT: Final[Path] = Path(
+    os.environ.get("ANIMA_LORA_ROOT", "/home/wktwin/anima-lora-training-bundle/anima_lora")
 )
-DEFAULT_OUTPUT_DIR: Final[Path] = DEFAULT_ANIMA_ROOT / "output/comfy_ipadapter"
+DEFAULT_PYTHON: Final[Path] = Path(
+    os.environ.get("ANIMA_LORA_PYTHON", str(DEFAULT_ANIMA_ROOT / ".venv/bin/python"))
+)
+DEFAULT_COMFY_MODELS_ROOT: Final[Path] = Path(
+    os.environ.get("ANIMA_COMFY_MODELS_ROOT", "/data/ai/models")
+)
+DEFAULT_IPADAPTER_NAME: Final[str] = "anima_ip_adapter_quality_20260610.safetensors"
+DEFAULT_DIT_NAME: Final[str] = "anima-base-v1.0.safetensors"
+DEFAULT_TEXT_ENCODER_NAME: Final[str] = "qwen_3_06b_base.safetensors"
+DEFAULT_VAE_NAME: Final[str] = "qwen/qwen_image_vae.safetensors"
+DEFAULT_OUTPUT_SUBDIR: Final[str] = "comfy_ipadapter"
 DEFAULT_PROMPT: Final[str] = (
     "masterpiece, best quality, score_7, safe. manga panel layout, clean line art, "
     "expressive character, cinematic composition."
 )
 DEFAULT_NEGATIVE_PROMPT: Final[str] = "low quality, blurry, bad anatomy, text, watermark"
+SAMPLER_CHOICES: Final[tuple[str, ...]] = ("er_sde", "euler", "lcm")
+
+
+def _ensure_model_folders() -> None:
+    if "ipadapter" not in folder_paths.folder_names_and_paths:
+        current_paths = [str(Path(folder_paths.models_dir) / "ipadapter")]
+        folder_paths.folder_names_and_paths["ipadapter"] = (
+            current_paths,
+            folder_paths.supported_pt_extensions,
+        )
+    for folder_name in ("ipadapter", "diffusion_models", "text_encoders", "vae"):
+        folder = DEFAULT_COMFY_MODELS_ROOT / folder_name
+        if folder.exists():
+            folder_paths.add_model_folder_path(folder_name, str(folder), is_default=True)
+
+
+def _model_names(folder_name: str, preferred_name: str) -> list[str]:
+    _ensure_model_folders()
+    names = folder_paths.get_filename_list(folder_name)
+    if preferred_name in names:
+        return [preferred_name, *[name for name in names if name != preferred_name]]
+    return names or [preferred_name]
+
+
+def _model_path(folder_name: str, model_name: str) -> Path:
+    _ensure_model_folders()
+    return Path(folder_paths.get_full_path_or_raise(folder_name, model_name))
+
+
+def _output_dir(output_subdir: str) -> Path:
+    candidate = Path(output_subdir or DEFAULT_OUTPUT_SUBDIR).expanduser()
+    if candidate.is_absolute():
+        return candidate
+    return DEFAULT_ANIMA_ROOT / "output" / candidate
 
 
 class AnimaIPAdapterGenerate:
@@ -77,16 +119,16 @@ class AnimaIPAdapterGenerate:
                     "FLOAT",
                     {"default": 1.0, "min": 0.0, "max": 3.0, "step": 0.05},
                 ),
-                "attn_mode": (["flash", "torch", "sageattn", "flex", "xformers"],),
-                "sampler": (["er_sde", "euler", "lcm"],),
+                "attn_mode": (list(SUPPORTED_ATTN_MODES),),
+                "sampler": (list(SAMPLER_CHOICES),),
                 "match_reference_size": ("BOOLEAN", {"default": False}),
-                "anima_root": ("STRING", {"default": str(DEFAULT_ANIMA_ROOT)}),
-                "python_executable": ("STRING", {"default": str(DEFAULT_PYTHON)}),
-                "dit_path": ("STRING", {"default": DEFAULT_DIT}),
-                "text_encoder_path": ("STRING", {"default": DEFAULT_TEXT_ENCODER}),
-                "vae_path": ("STRING", {"default": DEFAULT_VAE}),
-                "checkpoint_path": ("STRING", {"default": str(DEFAULT_CHECKPOINT)}),
-                "output_dir": ("STRING", {"default": str(DEFAULT_OUTPUT_DIR)}),
+                "ipadapter_name": (_model_names("ipadapter", DEFAULT_IPADAPTER_NAME),),
+                "dit_name": (_model_names("diffusion_models", DEFAULT_DIT_NAME),),
+                "text_encoder_name": (
+                    _model_names("text_encoders", DEFAULT_TEXT_ENCODER_NAME),
+                ),
+                "vae_name": (_model_names("vae", DEFAULT_VAE_NAME),),
+                "output_subdir": ("STRING", {"default": DEFAULT_OUTPUT_SUBDIR}),
             }
         }
 
@@ -114,23 +156,21 @@ class AnimaIPAdapterGenerate:
         attn_mode: str,
         sampler: str,
         match_reference_size: bool,
-        anima_root: str,
-        python_executable: str,
-        dit_path: str,
-        text_encoder_path: str,
-        vae_path: str,
-        checkpoint_path: str,
-        output_dir: str,
+        ipadapter_name: str,
+        dit_name: str,
+        text_encoder_name: str,
+        vae_name: str,
+        output_subdir: str,
     ) -> tuple[torch.Tensor, str]:
         paths = resolved_paths(
             RunnerPaths(
-                python_executable=Path(python_executable),
-                anima_root=Path(anima_root),
-                dit=Path(dit_path),
-                text_encoder=Path(text_encoder_path),
-                vae=Path(vae_path),
-                checkpoint=Path(checkpoint_path),
-                output_dir=Path(output_dir),
+                python_executable=DEFAULT_PYTHON,
+                anima_root=DEFAULT_ANIMA_ROOT,
+                dit=_model_path("diffusion_models", dit_name),
+                text_encoder=_model_path("text_encoders", text_encoder_name),
+                vae=_model_path("vae", vae_name),
+                checkpoint=_model_path("ipadapter", ipadapter_name),
+                output_dir=_output_dir(output_subdir),
             )
         )
         options = GenerationOptions(
