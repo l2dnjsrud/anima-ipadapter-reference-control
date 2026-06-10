@@ -138,12 +138,57 @@ directory is `root:root` with mode `755`, so `safetensors` returned
 `Permission denied (os error 13)`. The repo-local checkpoint is the current
 loadable smoke artifact.
 
+## Local color-panel pilot
+
+A bounded 16-step pilot was run on 2026-06-10 from the same local color-panel
+manifest, using 32 rows at 256 px resolution:
+
+```bash
+HF_HUB_DISABLE_XET=1 /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python training/siglip_real_smoke.py \
+  --manifest-path training/manifests/local_color_pairs_pilot_20260610.jsonl \
+  --image-root /home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best \
+  --steps 16 \
+  --resolution 256 \
+  --device cuda:0 \
+  --output-path checkpoints/anima_siglip_ip_adapter_pilot_20260610.safetensors \
+  --max-rows 32
+```
+
+Observed result:
+
+- final_loss: `0.1321239024400711`
+- mean_loss: `0.22480368381366134`
+- finite_loss: `true`
+- trainable_parameters: `335860892`
+- checkpoint: `checkpoints/anima_siglip_ip_adapter_pilot_20260610.safetensors`
+- SigLIP loader: loadable as `IPAdapterSigLIP`
+- PE-Core checkpoint: rejected by the SigLIP loader, as intended
+
+Proxy evaluation artifacts:
+
+```text
+eval/siglip_color_pilot_20260610/metrics.json
+eval/siglip_color_pilot_20260610/report.md
+```
+
+Proxy result:
+
+- key_match: `true`
+- common_tensors: `255`
+- changed_tensors: `142`
+- relative_l2_delta: `0.0008295682970535739`
+- decision: `scale_after_siglip_workflow_eval`
+
+This proves the pilot moved away from the one-step smoke checkpoint and stayed
+checkpoint-compatible. It does not prove visual quality yet because the native
+SigLIP ComfyUI/API image-generation workflow has not produced contact sheets.
+
 ## What blocks real full training
 
-- No high-quality trained SigLIP2 TimeResampler/IPCrossAttn checkpoint is present in this repo. The current SigLIP checkpoint is a one-step smoke artifact only.
+- No high-quality trained SigLIP2 TimeResampler/IPCrossAttn checkpoint is present in this repo. The current SigLIP checkpoints are a one-step smoke artifact and a 16-step pilot artifact only.
 - The Hugging Face dataset is about 36.5 GiB; I did not download it without explicit approval.
 - The public dataset appears to contain image tar shards only. Wenaka's training script expects a paired `training_pairs_final2.jsonl` with `ref_id`, `tgt_id`, and `prompt`, which is not exposed in the dataset preview or file list.
-- Full training still needs explicit runtime approval, a target output path that the current user can write, and a quality gate based on reference-control contact sheets.
+- Full training still needs explicit runtime approval, a target output path that the current user can write, and a native SigLIP reference-control contact-sheet quality gate.
 
 ## Full-training outline
 
@@ -153,4 +198,4 @@ loadable smoke artifact.
 4. Run bounded real smoke through the frozen Anima DiT/VAE/text-encoder loss path.
 5. Save a SigLIP checkpoint with `resampler.time_proj.*`, `resampler.layers.*`, `intermediate_encoder.*`, `ip_cross_attns.*`, and `ip_scales.*` keys.
 6. Load it through `AnimaSigLIPIPAdapterLoader`; do not use the PE-Core checkpoint with this loader.
-7. Scale to a pilot training run, then evaluate against no-IP and PE-Core baselines with contact sheets before calling it usable.
+7. Wire the native SigLIP ComfyUI/API workflow, then evaluate against no-IP and PE-Core baselines with contact sheets before calling it usable.

@@ -4,6 +4,10 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
+MAX_PILOT_STEPS = 64
+MAX_PILOT_ROWS = 256
+
+
 @dataclass(frozen=True, slots=True)
 class SmokeInputError(Exception):
     detail: str
@@ -57,7 +61,9 @@ class SmokeSummary:
     rows_loaded: int
     first_loss: float
     final_loss: float
+    mean_loss: float
     finite_loss: bool
+    loss_history: tuple[float, ...]
     trainable_parameters: int
     frozen_base_parameters: int
     checkpoint: CheckpointVerification

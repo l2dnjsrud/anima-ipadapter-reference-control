@@ -1,0 +1,34 @@
+{
+  "methodology": "checkpoint_delta_proxy_plus_existing_pe_contact_sheet_baseline",
+  "siglip_visual_eval_available": false,
+  "checkpoint_delta": {
+    "smoke_checkpoint": "checkpoints/anima_siglip_ip_adapter_smoke_20260610.safetensors",
+    "pilot_checkpoint": "checkpoints/anima_siglip_ip_adapter_pilot_20260610.safetensors",
+    "smoke_tensors": 255,
+    "pilot_tensors": 255,
+    "common_tensors": 255,
+    "missing_in_pilot": [],
+    "extra_in_pilot": [],
+    "shape_mismatches": [],
+    "key_match": true,
+    "changed_tensors": 142,
+    "unchanged_tensors": 113,
+    "relative_l2_delta": 0.0008295682970535739,
+    "mean_abs_delta": 4.09281898554994e-06,
+    "max_abs_delta": 0.0002288818359375
+  },
+  "pe_baseline": {
+    "summary_path": "eval/comfy_pe_full_contactsheet_20260610/summary.json",
+    "passed": true,
+    "best_scale": 1.0,
+    "generated_count": 40,
+    "best_mean_uplift": 0.0937323346734047,
+    "best_improved_rate": 0.875
+  },
+  "decision": {
+    "label": "scale_after_siglip_workflow_eval",
+    "scale_next": true,
+    "quality_proven": false,
+    "reason": "pilot moved from smoke, but SigLIP image-generation workflow is not evaluated yet"
+  }
+}

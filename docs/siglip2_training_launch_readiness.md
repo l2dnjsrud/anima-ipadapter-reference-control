@@ -7,16 +7,18 @@ Date: 2026-06-10
 Do not start full SigLIP2/TimeResampler/IPCrossAttn training yet.
 
 The native code path has passed a real one-step frozen-Anima SigLIP2 smoke
-training run on the local curated color-panel dataset. That proves the training
-path can load Anima/Qwen/VAE/SigLIP2, train only the adapter modules, write a
-loadable SigLIP-family checkpoint, and reject the PE-Core checkpoint with the
-SigLIP loader.
+training run and a bounded 16-step color-panel pilot on the local curated
+color-panel dataset. That proves the training path can load
+Anima/Qwen/VAE/SigLIP2, train only the adapter modules, write loadable
+SigLIP-family checkpoints, and reject the PE-Core checkpoint with the SigLIP
+loader.
 
 This is not a high-quality usable reference-control checkpoint yet. Full
 quality training still needs explicit runtime approval, a writable final model
-location, and contact-sheet evaluation against no-IP and PE-Core baselines. The
-PE IP-Adapter-only line-art colorization track is stopped; line-art colorization
-needs spatial conditioning in addition to reference control.
+location, and native SigLIP contact-sheet evaluation against no-IP and PE-Core
+baselines. The PE IP-Adapter-only line-art colorization track is stopped;
+line-art colorization needs spatial conditioning in addition to reference
+control.
 
 ## What Is Ready
 
@@ -36,6 +38,11 @@ needs spatial conditioning in addition to reference control.
   - `/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best`
 - The smoke checkpoint exists at:
   - `checkpoints/anima_siglip_ip_adapter_smoke_20260610.safetensors`
+- The 16-step pilot checkpoint exists at:
+  - `checkpoints/anima_siglip_ip_adapter_pilot_20260610.safetensors`
+- Pilot proxy evaluation exists at:
+  - `eval/siglip_color_pilot_20260610/metrics.json`
+  - `eval/siglip_color_pilot_20260610/report.md`
 - Focused tests cover:
   - valid SigLIP checkpoint loading
   - malformed checkpoint rejection
@@ -152,6 +159,52 @@ Observed smoke summary:
 }
 ```
 
+## Bounded Pilot Result
+
+Command:
+
+```bash
+HF_HUB_DISABLE_XET=1 /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python training/siglip_real_smoke.py \
+  --manifest-path training/manifests/local_color_pairs_pilot_20260610.jsonl \
+  --image-root /home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best \
+  --steps 16 \
+  --resolution 256 \
+  --device cuda:0 \
+  --output-path checkpoints/anima_siglip_ip_adapter_pilot_20260610.safetensors \
+  --max-rows 32
+```
+
+Observed pilot summary:
+
+```json
+{
+  "steps": 16,
+  "rows_loaded": 32,
+  "first_loss": 0.1699729710817337,
+  "final_loss": 0.1321239024400711,
+  "mean_loss": 0.22480368381366134,
+  "finite_loss": true,
+  "trainable_parameters": 335860892,
+  "checkpoint": {
+    "output_path": "checkpoints/anima_siglip_ip_adapter_pilot_20260610.safetensors",
+    "loadable": true,
+    "pe_checkpoint_rejected": true
+  }
+}
+```
+
+Proxy comparison against the smoke checkpoint:
+
+- key_match: `true`
+- common_tensors: `255`
+- changed_tensors: `142`
+- relative_l2_delta: `0.0008295682970535739`
+- decision: `scale_after_siglip_workflow_eval`
+
+Interpretation: scale is justified only after the native SigLIP UI/API
+workflow can generate contact sheets. The pilot is a training/runtime proof and
+a checkpoint-movement proof, not a visual-quality proof.
+
 ## Output Checkpoint Contract
 
 The trained adapter should be saved as a SigLIP-family checkpoint, not a PE-Core
@@ -208,14 +261,14 @@ Stop and ask before proceeding if any of these are true:
 
 ## Next Executable Step
 
-Scale from the completed one-step smoke to a quality-oriented pilot. The most
-likely path is:
+Move from checkpoint proof to visual proof. The next path is:
 
-1. Decide whether the pilot uses only the local color-panel manifest or also
-   downloads Wenaka shards.
+1. Build a normal native SigLIP ComfyUI API workflow and UI workflow using
+   `AnimaSigLIPIPAdapterLoader`, `AnimaSigLIPEncodeImage`, and
+   `AnimaSigLIPIPAdapterApply`.
 2. Make `/data/ai/models/ipadapter/` writable for the final SigLIP artifact, or
    choose a repo-local output plus a manual copy command.
-3. Run a short pilot with more rows and steps than the one-step smoke.
-4. Load the pilot checkpoint through `AnimaSigLIPIPAdapterLoader`.
-5. Generate contact sheets against no-IP and PE-Core baselines.
-6. Continue only if reference appearance improves without layout collapse.
+3. Load the pilot checkpoint through `AnimaSigLIPIPAdapterLoader`.
+4. Generate contact sheets against no-IP and PE-Core baselines.
+5. Continue to longer training only if reference appearance improves without
+   layout collapse.

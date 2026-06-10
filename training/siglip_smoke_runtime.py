@@ -7,7 +7,12 @@ import torch
 
 from siglip_model import SigLIPFeatures
 from training.siglip_smoke_data import load_anima_pixels, load_siglip_image
-from training.siglip_smoke_types import SmokeConfig, SmokeInputError
+from training.siglip_smoke_types import (
+    MAX_PILOT_ROWS,
+    MAX_PILOT_STEPS,
+    SmokeConfig,
+    SmokeInputError,
+)
 
 
 def encode_target_latents(
@@ -81,6 +86,12 @@ def noise_args() -> SimpleNamespace:
 def validate_config(config: SmokeConfig) -> None:
     if config.steps < 1:
         raise SmokeInputError("steps must be >= 1")
+    if config.steps > MAX_PILOT_STEPS:
+        raise SmokeInputError(f"steps must be <= {MAX_PILOT_STEPS} for bounded pilot runs")
+    if config.max_rows < 1:
+        raise SmokeInputError("max_rows must be >= 1")
+    if config.max_rows > MAX_PILOT_ROWS:
+        raise SmokeInputError(f"max_rows must be <= {MAX_PILOT_ROWS} for bounded pilot runs")
     required_paths = (
         config.manifest_path,
         config.image_root,

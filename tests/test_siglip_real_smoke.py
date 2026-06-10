@@ -16,7 +16,15 @@ from training.siglip_real_smoke import (
 )
 from training.siglip_smoke_data import load_pair_rows, resolve_pair_paths
 from training.siglip_smoke_patch import patched_cross_attention
-from training.siglip_smoke_types import SmokeInputError
+from training.siglip_smoke_runtime import validate_config
+from training.siglip_smoke_types import (
+    MAX_PILOT_ROWS,
+    MAX_PILOT_STEPS,
+    CheckpointVerification,
+    SmokeConfig,
+    SmokeInputError,
+    SmokeSummary,
+)
 
 
 def test_load_pair_rows_parses_limited_manifest(tmp_path: Path) -> None:
@@ -103,6 +111,60 @@ def test_patched_cross_attention_adds_adapter_block_output() -> None:
     assert torch.allclose(after, before)
 
 
+def test_validate_config_accepts_bounded_pilot_limits(tmp_path: Path) -> None:
+    config = _config(tmp_path, steps=16, max_rows=128)
+
+    validate_config(config)
+
+    assert config.steps > 8
+    assert config.max_rows > 64
+
+
+def test_validate_config_rejects_unbounded_pilot_steps(tmp_path: Path) -> None:
+    config = _config(tmp_path, steps=MAX_PILOT_STEPS + 1, max_rows=4)
+
+    try:
+        validate_config(config)
+    except SmokeInputError as error:
+        assert f"steps must be <= {MAX_PILOT_STEPS}" in str(error)
+    else:
+        raise AssertionError("unbounded pilot steps should fail")
+
+
+def test_validate_config_rejects_unbounded_pilot_rows(tmp_path: Path) -> None:
+    config = _config(tmp_path, steps=1, max_rows=MAX_PILOT_ROWS + 1)
+
+    try:
+        validate_config(config)
+    except SmokeInputError as error:
+        assert f"max_rows must be <= {MAX_PILOT_ROWS}" in str(error)
+    else:
+        raise AssertionError("unbounded pilot rows should fail")
+
+
+def test_smoke_summary_records_deterministic_loss_history() -> None:
+    summary = SmokeSummary(
+        steps=3,
+        rows_loaded=3,
+        first_loss=0.3,
+        final_loss=0.1,
+        mean_loss=0.2,
+        finite_loss=True,
+        loss_history=(0.3, 0.2, 0.1),
+        trainable_parameters=10,
+        frozen_base_parameters=20,
+        checkpoint=CheckpointVerification(
+            output_path="checkpoints/example.safetensors",
+            loadable=True,
+            pe_checkpoint_rejected=True,
+        ),
+    )
+
+    assert summary.loss_history == (0.3, 0.2, 0.1)
+    expected_mean = sum(summary.loss_history) / len(summary.loss_history)
+    assert abs(summary.mean_loss - expected_mean) < 1e-9
+
+
 def _tiny_adapter() -> IPAdapterSigLIP:
     return IPAdapterSigLIP(
         siglip_dim=4,
@@ -120,6 +182,33 @@ def _tiny_adapter() -> IPAdapterSigLIP:
         ip_heads=2,
         time_embed_dim=6,
         use_intermediate_encoder=True,
+    )
+
+
+def _config(tmp_path: Path, *, steps: int, max_rows: int) -> SmokeConfig:
+    manifest = tmp_path / "pairs.jsonl"
+    image_root = tmp_path / "images"
+    image_root.mkdir()
+    dit_path = tmp_path / "dit.safetensors"
+    text_path = tmp_path / "text.safetensors"
+    vae_path = tmp_path / "vae.safetensors"
+    for path in (manifest, dit_path, text_path, vae_path):
+        path.write_text("", encoding="utf-8")
+    return SmokeConfig(
+        manifest_path=manifest,
+        image_root=image_root,
+        output_path=tmp_path / "out.safetensors",
+        dit_path=dit_path,
+        text_encoder_path=text_path,
+        vae_path=vae_path,
+        pe_checkpoint_path=tmp_path / "pe.safetensors",
+        siglip_model_id="google/siglip2-base-patch16-512",
+        device="cpu",
+        steps=steps,
+        resolution=256,
+        lr=1e-5,
+        seed=20260610,
+        max_rows=max_rows,
     )
 
 

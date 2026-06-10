@@ -49,6 +49,8 @@ from training.siglip_smoke_runtime import (  # noqa: E402
 )
 from training.siglip_smoke_types import (  # noqa: E402
     CheckpointVerification,
+    MAX_PILOT_ROWS,
+    MAX_PILOT_STEPS,
     SmokeConfig,
     SmokeInputError,
     SmokeSummary,
@@ -194,7 +196,9 @@ def run_real_smoke(config: SmokeConfig) -> SmokeSummary:
         rows_loaded=len(rows),
         first_loss=losses[0],
         final_loss=losses[-1],
+        mean_loss=sum(losses) / len(losses),
         finite_loss=all(math.isfinite(loss) for loss in losses),
+        loss_history=tuple(losses),
         trainable_parameters=trainable_parameter_count(adapter),
         frozen_base_parameters=frozen_params,
         checkpoint=checkpoint,
@@ -212,11 +216,11 @@ def main(
     pe_checkpoint_path: Annotated[Path, typer.Option()] = DEFAULT_PE,
     siglip_model_id: Annotated[str, typer.Option()] = DEFAULT_SIGLIP,
     device: Annotated[str, typer.Option()] = "cuda:0",
-    steps: Annotated[int, typer.Option(min=1, max=8)] = 1,
+    steps: Annotated[int, typer.Option(min=1, max=MAX_PILOT_STEPS)] = 1,
     resolution: Annotated[int, typer.Option(min=64, max=512)] = 256,
     lr: Annotated[float, typer.Option(min=1e-7, max=1e-2)] = 1e-5,
     seed: Annotated[int, typer.Option()] = 20260610,
-    max_rows: Annotated[int, typer.Option(min=1, max=64)] = 4,
+    max_rows: Annotated[int, typer.Option(min=1, max=MAX_PILOT_ROWS)] = 4,
 ) -> None:
     config = SmokeConfig(
         manifest_path=manifest_path,
