@@ -1,0 +1,6 @@
+anima_models:
+  base_path: /data/ai
+  diffusion_models: models/diffusion_models
+  text_encoders: models/text_encoders
+  vae: models/vae
+  ipadapter: models/ipadapter

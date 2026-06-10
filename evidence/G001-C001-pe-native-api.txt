@@ -1,0 +1,60 @@
+C001 PE native ComfyUI API evidence
+Date: 2026-06-10 Asia/Seoul
+Channel: HTTP/API against temporary ComfyUI base-directory on port 8112
+
+Reason for temporary base-directory:
+- /data/ai/comfyui02/custom_nodes is root-owned in this environment, so the node was mounted through /home/wktwin/.cache/anima_ipadapter_comfyui_base/custom_nodes/anima-ipadapter-reference-control for runtime QA.
+- The model selector used the actual model directory /data/ai/models/ipadapter via tools/comfyui_extra_model_paths.yaml.
+
+Final-code verification note:
+- This run was executed after refactoring native_pe.py into native_pe_models.py/native_pe_runtime.py/native_pe_patch.py.
+
+System/API:
+- GET /system_stats before prompt: HTTP/1.1 200 OK
+- ComfyUI: 0.21.1
+- Python: 3.12.3
+- PyTorch: 2.11.0+cu130
+- Device: cuda:0 NVIDIA RTX PRO 6000 Blackwell Server Edition
+
+Node surface:
+- Custom node import time reported for /home/wktwin/.cache/anima_ipadapter_comfyui_base/custom_nodes/anima-ipadapter-reference-control.
+- AnimaPEIPAdapterLoader exposes ipadapter_name selector with anima_ip_adapter_quality_20260610.safetensors from /data/ai/models/ipadapter.
+- AnimaPEIPAdapterApply exposes MODEL input/output and adapter/features sockets.
+
+Prompt graph:
+- LoadImage(reference.png)
+- AnimaPEIPAdapterLoader(anima_ip_adapter_quality_20260610.safetensors)
+- AnimaPEEncodeImage(pe, auto, bfloat16)
+- UNETLoader(anima-base-v1.0.safetensors)
+- AnimaPEIPAdapterApply(strength=1.0)
+- CLIPLoader(qwen_3_06b_base.safetensors, qwen_image)
+- CLIPTextEncodeFlux positive/negative
+- EmptySD3LatentImage(512x640)
+- RandomNoise(seed=20260610)
+- BasicScheduler(simple, steps=4)
+- KSamplerSelect(er_sde)
+- SamplerCustomAdvanced -> VAEDecode(qwen/qwen_image_vae.safetensors) -> SaveImage
+
+POST /prompt response:
+{"prompt_id": "2499e3a0-2764-46a5-8127-96cb945d2a86", "number": 0, "node_errors": {}}
+
+History result:
+- status_str: success
+- completed: true
+- output: /home/wktwin/.cache/anima_ipadapter_comfyui_base/output/anima_ipadapter/pe_native_api_final_00001_.png
+
+Runtime log highlights:
+- IPAdapterNetwork: K=16, encoder=pe, context_dim=1024, num_blocks=28, hidden=2048/16h, ip_scale=1.0, params=153.2M
+- PE IP-Adapter: patched 28 ComfyUI cross-attn blocks
+- Prompt executed in 8.02 seconds
+
+Output image stats:
+- size: 512x640
+- extrema: R=(96,255), G=(61,255), B=(79,255)
+- mean: [227.177, 214.234, 218.788]
+- stddev: [22.961, 28.661, 25.426]
+- conclusion: nonblank generated image
+
+Cleanup receipt:
+- stopped ComfyUI exec session 64630 with Ctrl-C
+- verified curl to 127.0.0.1:8112/system_stats fails with rc=7 after shutdown

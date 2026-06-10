@@ -3,9 +3,11 @@
 ComfyUI custom node package for the trained Anima PE-Core IP-Adapter
 reference-control candidate.
 
-This repo is now cloneable directly into `ComfyUI/custom_nodes/`. The node is a
-runner node: it calls the verified `anima_lora/inference.py` path in a separate
-Python process, then returns the generated image back to ComfyUI.
+This repo is now cloneable directly into `ComfyUI/custom_nodes/`. The primary
+path is a native ComfyUI graph: load the Anima DiT normally, encode a reference
+image, apply the PE IP-Adapter as a `MODEL` patch, then sample with standard
+ComfyUI sampler/VAE nodes. The older one-shot runner node is kept only for CLI
+reproduction of the shipped evaluation sheet.
 
 ## Status
 
@@ -64,33 +66,41 @@ If those paths differ, set `ANIMA_LORA_ROOT`, `ANIMA_LORA_PYTHON`, or
 Import one of these JSON workflows in ComfyUI:
 
 ```text
+workflows/anima_ipadapter_pe_native_reference.json
 workflows/anima_ipadapter_reference_generate.json
 workflows/anima_ipadapter_contactsheet_ref03_ersde.json
 ```
 
-`anima_ipadapter_reference_generate.json` is the generic reference-control UI.
+Use `anima_ipadapter_pe_native_reference.json` first. It is the normal ComfyUI
+workflow shape:
+
+```text
+LoadImage
+  -> AnimaPEEncodeImage
+AnimaPEIPAdapterLoader + UNETLoader
+  -> AnimaPEIPAdapterApply
+  -> CFGGuider / BasicScheduler / SamplerCustomAdvanced
+  -> VAEDecode
+  -> SaveImage
+```
+
+The PE loader uses the `ipadapter_name` model selector. Select:
+
+```text
+anima_ip_adapter_quality_20260610.safetensors
+```
+
+The legacy workflows remain available:
+
+```text
+workflows/anima_ipadapter_reference_generate.json
+workflows/anima_ipadapter_contactsheet_ref03_ersde.json
+```
+
+`anima_ipadapter_reference_generate.json` calls the Anima CLI in a subprocess.
 `anima_ipadapter_contactsheet_ref03_ersde.json` reproduces the verified
 contact-sheet `ref03 / seed 20260610 / ip_scale 1.0` case. On the local
 ComfyUI02 install it expects `codex_contact_ref03.png` in the input directory.
-
-Both workflows are:
-
-```text
-Load Image -> Anima IP-Adapter Generate -> Save Image
-```
-
-The `Anima IP-Adapter Generate` node uses ComfyUI-style model selectors:
-
-```text
-ipadapter_name
-dit_name
-text_encoder_name
-vae_name
-```
-
-Select `anima_ip_adapter_quality_20260610.safetensors` for `ipadapter_name`.
-The runner resolves the selected names through ComfyUI `folder_paths` instead
-of exposing raw checkpoint paths as text widgets.
 
 For contact-sheet-like outputs, keep the node sampler at `er_sde`. The Anima
 CLI defaults to `euler`, but the packaged evaluation sheet was generated with
@@ -105,10 +115,20 @@ under `eval/` only as evidence.
 __init__.py
 nodes.py
 runner.py
+native_pe.py
+native_pe_models.py
+native_pe_patch.py
+native_pe_runtime.py
+native_siglip.py
+siglip_checkpoint.py
+siglip_model.py
 checkpoints/
   anima_ip_adapter_quality_20260610.safetensors
 workflows/
+  anima_ipadapter_pe_native_reference.json
   anima_ipadapter_reference_generate.json
+docs/
+  siglip_training.md
 eval/reference_eval_quality_20260610_c003/
   report.md
   summary.json
@@ -184,14 +204,31 @@ for reproducibility and future reruns.
 
 ## Node Behavior
 
-`Anima IP-Adapter Generate` accepts a ComfyUI `IMAGE` reference, writes it to a
-temporary PNG, runs `inference.py` with `--ip_adapter_weight`, `--ip_image`, and
-`--ip_scale`, then loads the newest PNG from the selected output subdirectory
-and returns it as a ComfyUI image.
+The recommended PE path has three nodes:
+
+- `AnimaPEIPAdapterLoader`: loads a PE-Core checkpoint from the ComfyUI
+  `ipadapter` model selector.
+- `AnimaPEEncodeImage`: encodes a ComfyUI `IMAGE` reference with PE-Core.
+- `AnimaPEIPAdapterApply`: clones the `MODEL`, patches Anima cross-attention
+  during sampling, and restores the patch after each call.
+
+`Anima IP-Adapter Generate` is the legacy runner node. It accepts a ComfyUI
+`IMAGE` reference, writes it to a temporary PNG, runs `inference.py` with
+`--ip_adapter_weight`, `--ip_image`, and `--ip_scale`, then loads the newest PNG
+from the selected output subdirectory and returns it as a ComfyUI image.
 
 This is intentionally not wired through `comfyui_ipadapter_plus`; that custom
 node targets standard SD/SDXL IP-Adapter checkpoints, while this checkpoint is
 for the Anima DiT PE-Core IP-Adapter path.
+
+## SigLIP2 Branch
+
+The Wenaka-style SigLIP2/TimeResampler/IPCrossAttn branch is implemented as
+native scaffolding in `native_siglip.py`, `siglip_model.py`, and
+`siglip_checkpoint.py`. It rejects the PE-Core checkpoint clearly and uses the
+same ComfyUI `ipadapter_name` selector style. A real SigLIP checkpoint is not
+included yet; `docs/siglip_training.md` records the trainability proof, dataset
+size, and remaining full-training blocker.
 
 ## Training Summary
 

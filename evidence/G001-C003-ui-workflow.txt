@@ -1,0 +1,52 @@
+C003 UI workflow JSON evidence
+Date: 2026-06-10 Asia/Seoul
+Channel: parsed-workflow CLI inspection
+
+Workflow file:
+- workflows/anima_ipadapter_pe_native_reference.json
+
+Parsed result:
+{
+  "workflow": "workflows/anima_ipadapter_pe_native_reference.json",
+  "node_count": 17,
+  "link_count": 18,
+  "contains_generate_node": false,
+  "required_nodes_present": [
+    "AnimaPEEncodeImage",
+    "AnimaPEIPAdapterApply",
+    "AnimaPEIPAdapterLoader",
+    "BasicScheduler",
+    "CFGGuider",
+    "CLIPLoader",
+    "CLIPTextEncodeFlux",
+    "EmptySD3LatentImage",
+    "KSamplerSelect",
+    "LoadImage",
+    "RandomNoise",
+    "SamplerCustomAdvanced",
+    "SaveImage",
+    "UNETLoader",
+    "VAEDecode",
+    "VAELoader"
+  ],
+  "apply_inputs": {
+    "model": "UNETLoader",
+    "adapter": "AnimaPEIPAdapterLoader",
+    "features": "AnimaPEEncodeImage"
+  },
+  "sampler": ["er_sde"],
+  "seed": [20260610, "fixed"],
+  "save_prefix": ["anima_ipadapter/pe_native_reference"]
+}
+
+Supporting test:
+- /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python -m pytest tests/test_comfyui_workflows.py -q
+- Result: 4 passed in 1.10s
+
+Conclusion:
+- The UI workflow is a standard graph with LoadImage, model/text/VAE/sampler nodes, and Anima PE Loader/Encode/Apply nodes.
+- It does not use the legacy one-shot AnimaIPAdapterGenerate node as the primary path.
+- RandomNoise uses a fixed seed widget value aligned to ComfyUI seed control behavior.
+
+Cleanup receipt:
+- No server, tmux session, browser context, or temp workflow file was created for C003.

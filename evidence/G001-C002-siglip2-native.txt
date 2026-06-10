@@ -1,0 +1,44 @@
+C002 SigLIP2 native branch evidence
+Date: 2026-06-10 Asia/Seoul
+Channel: CLI stdout (tmux is not installed in this environment)
+
+Implemented branch:
+- siglip_model.py: SigLIPFeatures, CrossLayerEncoder, TimeResampler, IPCrossAttn, IPAdapterSigLIP.
+- siglip_checkpoint.py: shape-based SigLIP checkpoint detection, PE-Core rejection, malformed checkpoint rejection.
+- native_siglip.py: ComfyUI Loader/Encode/Apply nodes using model selector for ipadapter_name; Apply uses ModelPatcher.set_model_attn2_patch semantics.
+- docs/siglip_training.md: dataset facts, dry-run proof, full-training blocker/outline.
+
+Verification commands:
+- /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python -m pytest tests/test_native_siglip.py -q
+  Result: 9 passed in 1.39s
+- /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python -m ruff check native_siglip.py siglip_checkpoint.py siglip_model.py training/siglip_proof.py tests/test_native_siglip.py
+  Result: All checks passed!
+- /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python training/siglip_proof.py
+  Result:
+  {
+    "proof": "siglip_time_resampler_ipcrossattn",
+    "synthetic_loss": 1.6653422790113837e-05,
+    "checked_rows": 0,
+    "missing_images": [],
+    "full_training_started": false
+  }
+
+HF dataset check:
+- Source: https://huggingface.co/datasets/Wenaka/anima-ip-adapter-dataset
+- HEAD requests for images_00.tar through images_13.tar:
+  {
+    "tar_count": 14,
+    "tar_total_bytes": 34190796800,
+    "tar_total_gib": 31.843
+  }
+
+Training status:
+- A real SigLIP2 TimeResampler/IPCrossAttn checkpoint was not trained in this cycle.
+- Full training was intentionally not started because it requires downloading/mounting at least 31.843 GiB of tar shards plus GPU time for the frozen Anima generation path.
+- The public dataset tar shards also do not expose paired ref/tgt/prompt metadata in the file listing; docs/siglip_training.md records the required paired metadata shape.
+- This is not presented as completed full training; it is a native implementation plus trainability proof with the exact remaining approval/data blocker captured.
+
+Cleanup receipt:
+- No ComfyUI/API server was started for C002.
+- No dataset shards were downloaded.
+- No tmux session was created because tmux is unavailable in PATH.
