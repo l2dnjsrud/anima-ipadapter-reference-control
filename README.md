@@ -224,12 +224,32 @@ The next training stage is documented in:
 
 ```text
 docs/siglip2_training_launch_readiness.md
+docs/ipadapter_reference_research.md
 ```
 
 Current state: the native SigLIP2/TimeResampler/IPCrossAttn code path and
 synthetic trainability proof pass, but full training should not start until the
 paired `ref_id`/`tgt_id`/`prompt` metadata is available or generated and the
 about-36.5-GiB dataset download/storage requirement is approved.
+
+For local color-panel smoke tests, generate Wenaka-style sample pairs from the
+current color winner:
+
+```bash
+/home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python tools/generate_pair_manifest.py \
+  /home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best \
+  --output evidence/color_panel_style_v5_best_sample_pairs_64.jsonl \
+  --limit 64
+```
+
+Then validate the row shape without starting training:
+
+```bash
+/home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python training/siglip_proof.py \
+  --pairs-path evidence/color_panel_style_v5_best_sample_pairs_64.jsonl \
+  --image-dir /home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best \
+  --rows-to-check 8
+```
 
 ## Node Behavior
 
