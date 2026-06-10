@@ -1,0 +1,38 @@
+{
+  "aiSlopCleaner": {
+    "status": "passed",
+    "evidence": "ai-slop-cleaner executable was not available on PATH; bounded changed-file review was performed for bench/ip_adapter/reference_eval.py and tests/test_ip_adapter_reference_eval.py. rg scan for TODO/FIXME/placeholder/lorem/hack/slop/obviously/just/simple/dummy returned no matches. The report command-evidence fix is covered by a targeted regression test, and ruff check/format passed."
+  },
+  "verification": {
+    "status": "passed",
+    "commands": [
+      "./.venv/bin/python bench/ip_adapter/reference_eval.py score --manifest output/bench/ip_adapter/reference_eval_quality_20260610_c003/manifest.json --device cuda:0 --min-std 5 --mean-uplift-threshold 0.03 --improved-rate-threshold 0.75",
+      "./.venv/bin/python -m pytest -q tests/test_ip_adapter_reference_eval.py tests/test_identity_pairs.py tests/test_caption_index.py",
+      "./.venv/bin/python -m ruff check bench/ip_adapter/reference_eval.py tests/test_ip_adapter_reference_eval.py bench/ip_adapter/pair_audit.py scripts/preprocess/build_caption_index.py library/datasets/base.py tests/test_caption_index.py tests/test_identity_pairs.py",
+      "./.venv/bin/python -m ruff format --check bench/ip_adapter/reference_eval.py tests/test_ip_adapter_reference_eval.py bench/ip_adapter/pair_audit.py scripts/preprocess/build_caption_index.py library/datasets/base.py tests/test_caption_index.py tests/test_identity_pairs.py",
+      "git diff --check -- bench/ip_adapter/reference_eval.py tests/test_ip_adapter_reference_eval.py bench/ip_adapter/pair_audit.py scripts/preprocess/build_caption_index.py library/datasets/base.py tests/test_caption_index.py tests/test_identity_pairs.py"
+    ],
+    "evidence": "Appended C003 transcript at /home/wktwin/.omo/ulw-loop/ipadapter-quality-20260610/evidence/G001-C003-quality-eval.cli.txt shows score pass=True best_scale=1.0, Commands section printed from report.md, 42 pytest cases passed, ruff check passed, ruff format --check passed, and git diff --check passed."
+  },
+  "codeReview": {
+    "recommendation": "APPROVE",
+    "architectStatus": "CLEAR",
+    "evidence": "codex-ultrawork-reviewer /root/ipadapter_final_reviewer_r2 returned UNCONDITIONAL APPROVAL / OKAY to complete after the previous command-evidence blocker was fixed."
+  },
+  "criteriaCoverage": {
+    "totalCriteria": 3,
+    "passCount": 3,
+    "adversarialClassesCovered": [
+      "cache readiness",
+      "dirty worktree preservation",
+      "missing tmux fallback via PTY transcript",
+      "long training OOM/traceback/nan scan",
+      "checkpoint metadata verification",
+      "no-IP baseline comparison",
+      "IP scale sweep",
+      "nonblank image checks",
+      "misleading success output guarded by thresholds",
+      "report command reproducibility"
+    ]
+  }
+}

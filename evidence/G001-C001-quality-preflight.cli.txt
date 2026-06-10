@@ -1,0 +1,134 @@
+Script started on 2026-06-10 09:08:40+09:00 [COMMAND="/home/wktwin/.omo/ulw-loop/ipadapter-quality-20260610/preflight_c001.sh" <not executed on terminal>]
+# C001 quality preflight
+2026-06-10T09:08:40+09:00
+
+## cwd/git
+/home/wktwin/anima-lora-training-bundle/anima_lora
+ M bench/ip_adapter/pair_audit.md
+ M bench/ip_adapter/pair_audit.py
+ M library/datasets/base.py
+ M scripts/preprocess/build_caption_index.py
+ M tests/test_caption_index.py
+ M tests/test_identity_pairs.py
+?? .omo/
+?? bench/ip_adapter/reference_eval.py
+?? configs/custom/
+?? configs/gui-methods/tlora_color_panel_style_v1_pilot.toml
+?? configs/gui-methods/tlora_color_panel_style_v2_strict_pilot.toml
+?? configs/gui-methods/tlora_color_panel_style_v4_full.toml
+?? configs/gui-methods/tlora_color_panel_style_v5_best.toml
+?? configs/gui-methods/tlora_storyboard_v2.toml
+?? tests/test_ip_adapter_reference_eval.py
+
+## GPU
+0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 572 MiB, 0 %
+1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 6520 MiB, 0 %
+
+## cache counts
+resized_images=816
+vae_latents_npz=816
+text_encoder_cache=816
+pe_cache=816
+centroid=-rw-rw-r-- 1 wktwin wktwin 4.2K Jun  9 18:34 post_image_dataset/ip_adapter/anima_pe_centroid_pe.safetensors
+uncond_te=-rw-rw-r-- 1 wktwin wktwin 1.1M Jun  1 12:21 post_image_dataset/_anima_uncond_te.safetensors
+
+## checkpoint readiness
+-rw-rw-r-- 1 wktwin wktwin 293M Jun  9 18:47 output/ckpt/anima_ip_adapter.safetensors
+
+## fixed references
+OK post_image_dataset/resized/001-100/SG-083/mrcolor_panel_style_v4_split_edge_strict_probe_00494_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02718_SG-083-10_page_719x957_s01.png
+OK post_image_dataset/resized/001-100/SG-034/mrcolor_panel_style_v4_split_edge_strict_probe_00219_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01056_SG-034-10_page_2046x2874_s01.png
+OK post_image_dataset/resized/101-200/SG-169/mrcolor_panel_style_v4_split_edge_strict_probe_00994_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05709_SG-169-09_page_967x818_s01.png
+OK post_image_dataset/resized/101-200/SG-126/mrcolor_panel_style_v4_split_edge_strict_probe_00761_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04287_SG-126-14_page_2072x2889_s02.png
+
+## harness tests
+.....                                                                    [100%]
+5 passed in 0.11s
+All checks passed!
+
+## pair audit
+pair audit → bench/ip_adapter/pair_audit.md
+  images: 1016
+  character:     0 imgs ( 0.0%),    0 groups≥2, 0 pairs
+  copyright:  1016 imgs (100.0%),  205 groups≥2, 2,456 pairs
+  artist   :  1016 imgs (100.0%),    3 groups≥2, 178,184 pairs
+  reachable (distinct positive at some tier): 1016/1016 (100.0%); self-only: 0
+  cross-artist characters (≥2 artists): 0
+  path-fallback images: 1016
+# IP-Adapter distinct-pair audit (Phase 0)
+
+Generated 2026-06-10T00:08:41+00:00 from `post_image_dataset/captions/caption_index.json`
+
+(index built 2026-06-09T09:40:40+00:00 · vocab `models/captioners/anima-tagger-v2/vocab.json`).
+
+
+**Dataset: 1016 captioned images.**
+
+
+## Tiered positive-pair coverage
+
+| Tier | Coverage | Groups ≥2 imgs | Same-group positive pairs (Σ nC2) |
+|---|---|---|---|
+| **Character** | 0 imgs / 0% | 0 | 0 |
+| **Copyright** | 1016 imgs / 100% | 205 | 2,456 |
+| **Artist** | 1016 imgs / 100% | 3 | 178,184 |
+
+## Tiered reachability (deployment sampler)
+
+Each image routed through the character → copyright → artist backoff; tier = tightest level with a *distinct* same-identity partner.
+
+| Resolves at | Images | % |
+|---|---|---|
+| Character | 0 | 0.0% |
+| Copyright | 967 | 95.2% |
+| Artist | 49 | 4.8% |
+| self-only (no distinct positive) | 0 | 0.0% |
+
+**1016 / 1016 (100.0%) images have a distinct positive at some tier.**
+ Of the 0 character-tier images, 0 also have a *different-artist* partner (usable for `identity_cross_artist`).
+
+## Top cross-artist characters
+
+0 characters appear across ≥2 artists — the tightest, most valuable identity signal.
+
+| Character | Artists | Images |
+|---|---|---|
+
+## Group imbalance (largest groups → inverse-sqrt cap)
+
+- **Character**: _none_
+- **Copyright**: `path:101-200/SG-123` (16), `path:101-200/SG-126` (15), `path:001-100/SG-059` (12), `path:101-200/SG-127` (12), `path:101-200/SG-128` (12)
+- **Artist**: `path:001-100` (406), `path:101-200` (362), `path:201-292 (완결)` (248)
+
+## Caveats
+
+- **Vocab-limited character classification.** Characters are tagged via the Anima Tagger vocab (frequency-cutoff subset); rarer character tags fall through to the franchise/artist tiers. For generic layout/style captions, the caption-index builder may also add `path:` groups so distinct-pair training does not silently collapse to self-pairs.
+- **Artist/source groups.** Real artist tags are exact `@artist` caption tags. `path:` artist groups are a source-folder fallback and should be read as same-collection, not verified authorship.
+- **Sampling policy is not in the index.** This audit applies the tiered backoff; the shared `caption_index.json` only stores typed tags + groups.
+- **Path fallback active.** 1016 images received path-derived identity groups because their captions had no semantic character/copyright/artist tags.
+
+## dry-run evaluation manifest
+refs=4 jobs=40
+manifest=output/bench/ip_adapter/preflight_current_20260610/manifest.json
+run_script=output/bench/ip_adapter/preflight_current_20260610/run_eval.sh
+thresholds: mean_uplift>=0.03 improved_rate>=0.75 min_pixel_std>5.0
+manifest_assertions=pass refs=4 jobs=40 thresholds={'mean_uplift': 0.03, 'improved_rate': 0.75, 'min_pixel_std': 5.0}
+
+## first planned commands
+#!/usr/bin/env bash
+set -euo pipefail
+cd /home/wktwin/anima-lora-training-bundle/anima_lora
+
+/home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python inference.py --dit models/diffusion_models/anima-base-v1.0.safetensors --text_encoder models/text_encoders/qwen_3_06b_base.safetensors --vae models/vae/qwen_image_vae.safetensors --vae_chunk_size 64 --vae_disable_cache --attn_mode flash --lora_multiplier 1.0 --prompt 'masterpiece, best quality, score_7, safe. An anime girl wearing a black tank-top and denim shorts is standing outdoors. She'"'"'s holding a rectangular sign out in front of her that reads "ANIMA". She'"'"'s looking at the viewer with a smile. The background features some trees and blue sky with clouds.' --negative_prompt 'worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, sepia' --image_size 1024 1024 --infer_steps 28 --flow_shift 1.0 --sampler er_sde --guidance_scale 4.0 --seed 42 --save_path output/tests --save_path output/bench/ip_adapter/preflight_current_20260610/images/ref00/seed_20260610/no_ip_none --prompt 'masterpiece, best quality, score_7, safe. 1girl, solo, standing in a cafe, holding a coffee cup, looking at viewer, smile, soft lighting.' --negative_prompt 'low quality, blurry, bad anatomy, text, watermark' --seed 20260610 --infer_steps 16 --guidance_scale 3.5 --flow_shift 3.0 --image_size 1200 896
+/home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python inference.py --dit models/diffusion_models/anima-base-v1.0.safetensors --text_encoder models/text_encoders/qwen_3_06b_base.safetensors --vae models/vae/qwen_image_vae.safetensors --vae_chunk_size 64 --vae_disable_cache --attn_mode flash --lora_multiplier 1.0 --prompt 'masterpiece, best quality, score_7, safe. An anime girl wearing a black tank-top and denim shorts is standing outdoors. She'"'"'s holding a rectangular sign out in front of her that reads "ANIMA". She'"'"'s looking at the viewer with a smile. The background features some trees and blue sky with clouds.' --negative_prompt 'worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, sepia' --image_size 1024 1024 --infer_steps 28 --flow_shift 1.0 --sampler er_sde --guidance_scale 4.0 --seed 42 --save_path output/tests --save_path output/bench/ip_adapter/preflight_current_20260610/images/ref00/seed_20260610/ip_0p5 --prompt 'masterpiece, best quality, score_7, safe. 1girl, solo, standing in a cafe, holding a coffee cup, looking at viewer, smile, soft lighting.' --negative_prompt 'low quality, blurry, bad anatomy, text, watermark' --seed 20260610 --infer_steps 16 --guidance_scale 3.5 --flow_shift 3.0 --image_size 1200 896 --ip_adapter_weight output/ckpt/anima_ip_adapter.safetensors --ip_image post_image_dataset/resized/001-100/SG-083/mrcolor_panel_style_v4_split_edge_strict_probe_00494_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02718_SG-083-10_page_719x957_s01.png --ip_scale 0.5
+/home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python inference.py --dit models/diffusion_models/anima-base-v1.0.safetensors --text_encoder models/text_encoders/qwen_3_06b_base.safetensors --vae models/vae/qwen_image_vae.safetensors --vae_chunk_size 64 --vae_disable_cache --attn_mode flash --lora_multiplier 1.0 --prompt 'masterpiece, best quality, score_7, safe. An anime girl wearing a black tank-top and denim shorts is standing outdoors. She'"'"'s holding a rectangular sign out in front of her that reads "ANIMA". She'"'"'s looking at the viewer with a smile. The background features some trees and blue sky with clouds.' --negative_prompt 'worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, sepia' --image_size 1024 1024 --infer_steps 28 --flow_shift 1.0 --sampler er_sde --guidance_scale 4.0 --seed 42 --save_path output/tests --save_path output/bench/ip_adapter/preflight_current_20260610/images/ref00/seed_20260610/ip_1p0 --prompt 'masterpiece, best quality, score_7, safe. 1girl, solo, standing in a cafe, holding a coffee cup, looking at viewer, smile, soft lighting.' --negative_prompt 'low quality, blurry, bad anatomy, text, watermark' --seed 20260610 --infer_steps 16 --guidance_scale 3.5 --flow_shift 3.0 --image_size 1200 896 --ip_adapter_weight output/ckpt/anima_ip_adapter.safetensors --ip_image post_image_dataset/resized/001-100/SG-083/mrcolor_panel_style_v4_split_edge_strict_probe_00494_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02718_SG-083-10_page_719x957_s01.png --ip_scale 1.0
+/home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python inference.py --dit models/diffusion_models/anima-base-v1.0.safetensors --text_encoder models/text_encoders/qwen_3_06b_base.safetensors --vae models/vae/qwen_image_vae.safetensors --vae_chunk_size 64 --vae_disable_cache --attn_mode flash --lora_multiplier 1.0 --prompt 'masterpiece, best quality, score_7, safe. An anime girl wearing a black tank-top and denim shorts is standing outdoors. She'"'"'s holding a rectangular sign out in front of her that reads "ANIMA". She'"'"'s looking at the viewer with a smile. The background features some trees and blue sky with clouds.' --negative_prompt 'worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, sepia' --image_size 1024 1024 --infer_steps 28 --flow_shift 1.0 --sampler er_sde --guidance_scale 4.0 --seed 42 --save_path output/tests --save_path output/bench/ip_adapter/preflight_current_20260610/images/ref00/seed_20260610/ip_1p5 --prompt 'masterpiece, best quality, score_7, safe. 1girl, solo, standing in a cafe, holding a coffee cup, looking at viewer, smile, soft lighting.' --negative_prompt 'low quality, blurry, bad anatomy, text, watermark' --seed 20260610 --infer_steps 16 --guidance_scale 3.5 --flow_shift 3.0 --image_size 1200 896 --ip_adapter_weight output/ckpt/anima_ip_adapter.safetensors --ip_image post_image_dataset/resized/001-100/SG-083/mrcolor_panel_style_v4_split_edge_strict_probe_00494_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02718_SG-083-10_page_719x957_s01.png --ip_scale 1.5
+
+## acceptance thresholds
+mean_uplift>=0.03
+improved_rate>=0.75
+nonblank=min_pixel_std>5.0
+
+cleanup: script exited; no background process/session left
+
+Script done on 2026-06-10 09:08:41+09:00 [COMMAND_EXIT_CODE="0"]

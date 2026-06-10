@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "createdAt": "2026-06-09T23:45:09.489Z",
+  "updatedAt": "2026-06-10T01:09:44.371Z",
+  "briefPath": ".omo/ulw-loop/ipadapter-quality-20260610/brief.md",
+  "goalsPath": ".omo/ulw-loop/ipadapter-quality-20260610/goals.json",
+  "ledgerPath": ".omo/ulw-loop/ipadapter-quality-20260610/ledger.jsonl",
+  "codexGoalMode": "aggregate",
+  "goals": [
+    {
+      "id": "G001-anima-ipadapter-reference-control",
+      "title": "사용자 요청: anima-ipadapter를 고퀄 reference-control 모델로 바로 믿고 쓸 수 있는 수준까지 끌...",
+      "objective": "사용자 요청: anima-ipadapter를 고퀄 reference-control 모델로 바로 믿고 쓸 수 있는 수준까지 끌어올린다. lazycodex/ulw-loop와 Codex goal을 사용해 끊기지 않고 진행한다. 현재 상태: PE-Core IP-Adapter proof는 완료되어 preprocess cache 816개, checkpoint output/ckpt/anima_ip_adapter.safetensors, inference proof가 존재한다. 이번 목표는 proof가 아니라 실사용 품질이다. 범위: 현재 repo /home/wktwin/anima-lora-training-bundle/anima_lora 의 PE-Core path를 기준으로 한다. SigLIP2/Qwen3-VL은 현재 registry에 없으므로 이번 완료 기준에는 포함하지 않는다. 성공 기준은 최소 3개: (1) 현재 데이터/캐시/GPU/기존 checkpoint/평가 기준을 재검증하고, no-IP baseline과 IP-control 비교가 가능한 고정 seed/ref/prompt evaluation plan을 CLI transcript로 남긴다. (2) 짧은 proof가 아니라 sample_ratio와 epoch/step 수를 늘린 stronger training run을 tmux/CLI로 실제 수행해 새 high-quality candidate checkpoint를 저장하고 training/validation diagnostics를 남긴다. (3) 새 checkpoint로 여러 reference images와 seeds에 대해 IP_SCALE sweep 및 no-IP baseline을 생성하고, reference similarity/이미지 nonblank/시각 비교 sheet 또는 report로 실사용 여부를 판정한다. (4) 최종 산출물로 usable preset/명령/report를 repo에 남기고 tests/lint/reviewer quality gate를 통과한다. 실패/보류 조건: GPU OOM/시간 초과/품질 지표가 no-IP 대비 개선되지 않으면 goal complete가 아니라 blocker 또는 추가 iteration으로 기록한다.",
+      "status": "complete",
+      "successCriteria": [
+        {
+          "id": "C001",
+          "scenario": "CLI transcript channel via script(1): from /home/wktwin/anima-lora-training-bundle/anima_lora, verify GPU/cache/checkpoint/data readiness, regenerate pair audit, choose fixed held-out refs/seeds/prompts, and run a lightweight no-IP vs current-IP baseline evaluation plan dry-run/metric harness. Pass when caches are 816/816/816/816, pair audit is 100% reachable, baseline eval commands are concrete and reproducible, and evidence records the acceptance thresholds for high-quality reference control.",
+          "userModel": "happy",
+          "expectedEvidence": ".omo/ulw-loop/ipadapter-quality-20260610/evidence/G001-C001-quality-preflight.cli.txt",
+          "capturedEvidence": "/home/wktwin/.omo/ulw-loop/ipadapter-quality-20260610/evidence/G001-C001-quality-preflight.cli.txt | caches resized/vae/te/pe=816/816/816/816; pair audit 1016/1016 reachable; fixed refs=4 seeds=2 scales=4; dry-run manifest jobs=40; thresholds mean_uplift>=0.03 improved_rate>=0.75 min_pixel_std>5.0; cleanup: script exited, no background session left",
+          "status": "pass",
+          "capturedAt": "2026-06-10T00:08:53.319Z"
+        },
+        {
+          "id": "C002",
+          "scenario": "PTY transcript channel via Codex exec session (tmux unavailable in this container): launch a stronger PE-Core IP-Adapter training run, not the proof preset, with a larger sample_ratio/epoch budget and validation baselines enabled when feasible. Capture live logs, GPU status, validation diagnostics, checkpoint metadata, and cleanup. Pass when a new candidate checkpoint newer than the proof checkpoint exists, has ss_network_spec=ip_adapter and ip_gate tensors, logs show nonzero IP diagnostics without traceback/OOM, and validation/baseline evidence is recorded. If OOM/time/NaN occurs, record fail or blocked with transcript.",
+          "userModel": "edge",
+          "expectedEvidence": ".omo/ulw-loop/ipadapter-quality-20260610/evidence/G001-C002-strong-train.tmux.txt",
+          "capturedEvidence": "PTY transcript evidence: /home/wktwin/.omo/ulw-loop/ipadapter-quality-20260610/evidence/G001-C002-strong-train.tmux.txt. Training command completed with exit code 0. Full-data PE-Core IP-Adapter run: sample_ratio=1.0, 796 train images, 20 validation images, 8 epochs, 6368 steps, validation_baselines enabled, seed=20260610, no CMMD. Final checkpoint saved at output/ckpt/anima_ip_adapter_quality_20260610.safetensors (306330824 bytes / 293M, Jun 10 09:37), plus epoch checkpoints at 2/4/6. Progress JSONL output/logs/anima_ip_adapter_quality_20260610.progress.jsonl ended with run_end status ok, final_step=6368, error=None. Checkpoint metadata confirms ss_network_spec=ip_adapter, ss_network_module=networks.methods.ip_adapter, ss_encoder=pe, ss_encoder_dim=1024, ss_num_epochs=8, ss_steps=6368, ss_num_train_images=796, ss_num_validation_images=20, ss_network_args include centroid path and pe_lora_enabled=false. Safetensors contains 132 tensors, including 28 ip_gate tensors and 56 to_k_ip/to_v_ip tensors. Progress gate opened from abs_mean 0.0001003817 at step 20 to abs_mean 0.0043882984 / abs_max 0.0114135742 at step 6368. IP runtime diagnostics showed nonzero adapter runtime at epoch 1/2: mean=7.135e-01 max=2.825e+00 N=2408 calls and mean=8.042e-01 max=4.655e+00 N=2352 calls. Error scan for traceback/runtimeerror/OOM/nan/inf/exception across transcript and progress JSONL returned no matches. Final validation logged primary=0.0944216, no_ip=0.0960600, no_ip_delta=0.0016384, shuffled_ref=0.0944155.",
+          "status": "pass",
+          "capturedAt": "2026-06-10T00:38:47.270Z"
+        },
+        {
+          "id": "C003",
+          "scenario": "CLI transcript channel via script(1): evaluate the new candidate checkpoint on at least 4 real reference images and at least 2 fixed seeds with no-IP baseline plus IP_SCALE sweep; compute PE pooled-cosine reference similarity, nonblank/pixel-variance checks, and create a contact sheet plus markdown report. This criterion passes only when: every generated image is nonblank; the selected IP setting improves mean PE similarity over no-IP by >=0.03; at least 75% of evaluated ref/seed cases improve over no-IP; the report records the selected checkpoint, exact commands, refs, seeds, scales, and limitations; targeted tests plus ruff/diff-check are clean; and final reviewer approves. Any threshold miss is a criterion failure requiring another training/eval iteration before completion.",
+          "userModel": "regression",
+          "expectedEvidence": ".omo/ulw-loop/ipadapter-quality-20260610/evidence/G001-C003-quality-eval.cli.txt",
+          "capturedEvidence": "C003 PASS after reviewer reproducibility fix. Existing 40 generated images retained; score regenerated report from manifest output/bench/ip_adapter/reference_eval_quality_20260610_c003/manifest.json. Report now includes Commands section with generation manifest, generation script output/bench/ip_adapter/reference_eval_quality_20260610_c003/run_eval.sh, note that run_eval.sh contains exact no-IP/IP-scale commands for every job, and exact score command. Metrics unchanged: pass=True, best_scale=1.0, nonblank=True, generated_count=40, mean_ip_cosine=0.7987642139, mean_no_ip_cosine=0.7013783976, mean_uplift=0.0973858163 >= 0.03, improved_rate=0.875 >= 0.75. Tests/QA rerun in appended C003 transcript: pytest 42 passed; ruff check passed; ruff format --check passed; git diff --check passed. Transcript appended at /home/wktwin/.omo/ulw-loop/ipadapter-quality-20260610/evidence/G001-C003-quality-eval.cli.txt",
+          "status": "pass",
+          "capturedAt": "2026-06-10T01:03:06.896Z"
+        }
+      ],
+      "attempt": 1,
+      "createdAt": "2026-06-09T23:45:09.489Z",
+      "updatedAt": "2026-06-10T01:09:44.371Z",
+      "startedAt": "2026-06-09T23:49:11.727Z",
+      "completedAt": "2026-06-10T01:09:44.371Z",
+      "evidence": "Final reviewer r2 gave UNCONDITIONAL APPROVAL / OKAY to complete. C001-C003 all pass. Candidate checkpoint output/ckpt/anima_ip_adapter_quality_20260610.safetensors is trained and evaluated. Recommended scale=1.0; C003 metrics pass=True, generated_count=40, nonblank=True, mean_uplift=0.0973858163, improved_rate=0.875. Report now records exact command artifacts and limitations. QA clean: pytest 42 passed, ruff check passed, ruff format --check passed, git diff --check passed."
+    }
+  ],
+  "codexObjective": "Complete the durable ulw-loop plan in .omo/ulw-loop/ipadapter-quality-20260610/goals.json, including later accepted/appended stories, under the original brief constraints; use .omo/ulw-loop/ipadapter-quality-20260610/ledger.jsonl as the audit trail.",
+  "aggregateCompletion": {
+    "status": "complete",
+    "completedAt": "2026-06-10T01:09:44.371Z",
+    "evidence": "Final reviewer r2 gave UNCONDITIONAL APPROVAL / OKAY to complete. C001-C003 all pass. Candidate checkpoint output/ckpt/anima_ip_adapter_quality_20260610.safetensors is trained and evaluated. Recommended scale=1.0; C003 metrics pass=True, generated_count=40, nonblank=True, mean_uplift=0.0973858163, improved_rate=0.875. Report now records exact command artifacts and limitations. QA clean: pytest 42 passed, ruff check passed, ruff format --check passed, git diff --check passed.",
+    "codexGoal": {
+      "goal": {
+        "status": "complete",
+        "objective": "Complete the durable ulw-loop plan in .omo/ulw-loop/ipadapter-quality-20260610/goals.json, including later accepted/appended stories, under the original brief constraints; use .omo/ulw-loop/ipadapter-quality-20260610/ledger.jsonl as the audit trail.",
+        "tokensUsed": 1254069,
+        "timeUsedSeconds": 5042
+      }
+    }
+  }
+}
