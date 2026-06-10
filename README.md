@@ -218,6 +218,19 @@ Continue high-quality reference-control work through the separate
 SigLIP2/TimeResampler/IPCrossAttn training stage. Use EasyControl/ControlNet-like
 conditioning for line-art colorization.
 
+## SigLIP2 Training Readiness
+
+The next training stage is documented in:
+
+```text
+docs/siglip2_training_launch_readiness.md
+```
+
+Current state: the native SigLIP2/TimeResampler/IPCrossAttn code path and
+synthetic trainability proof pass, but full training should not start until the
+paired `ref_id`/`tgt_id`/`prompt` metadata is available or generated and the
+about-36.5-GiB dataset download/storage requirement is approved.
+
 ## Node Behavior
 
 The recommended PE path has three nodes:

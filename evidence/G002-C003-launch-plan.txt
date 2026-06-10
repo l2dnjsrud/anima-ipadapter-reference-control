@@ -1,0 +1,24 @@
+G002 C003 launch-plan evidence
+Date: 2026-06-10 Asia/Seoul
+
+Document added:
+- docs/siglip2_training_launch_readiness.md
+
+Document records:
+- Real-training verdict: do not start yet.
+- Required model/data inputs.
+- Wenaka dataset inventory and size.
+- Missing pair metadata blocker.
+- Dry-run commands.
+- Output checkpoint tensor contract.
+- ComfyUI loader target.
+- Evaluation gate.
+- Stop conditions for dataset download and long GPU training.
+
+README update:
+- README.md now links to docs/siglip2_training_launch_readiness.md and records
+  that full training is blocked on pair metadata and approval for the dataset
+  download/storage requirement.
+
+This criterion is satisfied by the tracked documentation diff in the same commit
+as this evidence file.

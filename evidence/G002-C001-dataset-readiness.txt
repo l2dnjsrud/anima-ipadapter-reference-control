@@ -1,0 +1,32 @@
+G002 C001 dataset readiness evidence
+Date: 2026-06-10 Asia/Seoul
+
+Goal:
+Prepare the next high-quality Anima SigLIP2/TimeResampler/IPCrossAttn
+reference-control checkpoint training stage without starting an unapproved large
+download or full training run.
+
+Dataset checked:
+- https://huggingface.co/datasets/Wenaka/anima-ip-adapter-dataset
+- Dataset commit: 687b09ba08d8fda8c415b43cc0aacf6fc1d2661c
+- Public: yes
+- Gated: no
+- Hub API usedStorage: 39,190,230,897 bytes, about 36.5 GiB
+- Top-level files: .gitattributes plus images_00.tar through images_13.tar
+- Tar shard total from HEAD metadata: 34,190,796,800 bytes, about 31.843 GiB
+
+Local inventory:
+- Candidate extracted images exist under /home/wktwin/anima-lora-training-bundle/image_dataset/
+- Example local sidecars exist as JPG/TXT pairs.
+- No local images_00.tar shard copy was found under /home/wktwin or /data/ai.
+- No local training_pairs*.jsonl, pair CSV, or ref_id/tgt_id/prompt row metadata
+  was found.
+
+Readiness verdict:
+Full SigLIP2 training cannot start yet. The blocker is not the native adapter
+code path; it is the missing paired ref/tgt/prompt metadata plus explicit
+approval for dataset download/storage and long GPU runtime.
+
+Cleanup receipt:
+- No Hugging Face tar shards were downloaded.
+- No full training job was started.

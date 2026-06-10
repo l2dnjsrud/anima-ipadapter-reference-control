@@ -1,0 +1,32 @@
+G002 C002 SigLIP dry-run evidence
+Date: 2026-06-10 Asia/Seoul
+
+Commands:
+
+/home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python -m pytest tests/test_native_siglip.py -q
+Result:
+9 passed in 1.14s
+
+/home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python training/siglip_proof.py
+Result:
+{
+  "proof": "siglip_time_resampler_ipcrossattn",
+  "synthetic_loss": 1.6653422790113837e-05,
+  "checked_rows": 0,
+  "missing_images": [],
+  "full_training_started": false
+}
+
+/home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python -m ruff check native_siglip.py siglip_checkpoint.py siglip_model.py training/siglip_proof.py tests/test_native_siglip.py
+Result:
+All checks passed!
+
+Interpretation:
+The native SigLIP2/TimeResampler/IPCrossAttn scaffolding is testable and can run
+a synthetic optimization proof. This does not prove final image quality and does
+not claim a trained production checkpoint.
+
+Cleanup receipt:
+- No ComfyUI server was started for this criterion.
+- No dataset shards were downloaded.
+- No full training job was started.
