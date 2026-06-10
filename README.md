@@ -1,7 +1,11 @@
-# Anima IP-Adapter Reference-Control Candidate
+# Anima IP-Adapter Reference-Control
 
-This repository packages the trained PE-Core IP-Adapter candidate and its
-evaluation evidence separately from the main `anima_lora` working tree.
+ComfyUI custom node package for the trained Anima PE-Core IP-Adapter
+reference-control candidate.
+
+This repo is now cloneable directly into `ComfyUI/custom_nodes/`. The node is a
+runner node: it calls the verified `anima_lora/inference.py` path in a separate
+Python process, then returns the generated image back to ComfyUI.
 
 ## Status
 
@@ -17,11 +21,57 @@ The model is a layout/style reference-control candidate measured with the same
 PE-Core family used by the local IP-Adapter path. It is not yet a verified
 character-identity recovery model.
 
+## ComfyUI Install
+
+Run this on the ComfyUI machine:
+
+```bash
+cd /data/ai/comfyui02/custom_nodes
+sudo git clone https://github.com/l2dnjsrud/anima-ipadapter-reference-control.git
+cd anima-ipadapter-reference-control
+sudo git lfs pull
+```
+
+Restart ComfyUI after cloning. On the local machine used for this package, the
+node defaults assume:
+
+```text
+Anima source: /home/wktwin/anima-lora-training-bundle/anima_lora
+Anima python: /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python
+DiT:          models/diffusion_models/anima-base-v1.0.safetensors
+Text encoder: models/text_encoders/qwen_3_06b_base.safetensors
+VAE:          models/vae/qwen_image_vae.safetensors
+```
+
+If those paths differ, edit the node widgets in ComfyUI.
+
+## ComfyUI Workflow
+
+Import this JSON workflow in ComfyUI:
+
+```text
+workflows/anima_ipadapter_reference_generate.json
+```
+
+The workflow is:
+
+```text
+Load Image -> Anima IP-Adapter Generate -> Save Image
+```
+
+The evaluation markdown and contact sheet are not ComfyUI workflows; they remain
+under `eval/` only as evidence.
+
 ## Layout
 
 ```text
+__init__.py
+nodes.py
+runner.py
 checkpoints/
   anima_ip_adapter_quality_20260610.safetensors
+workflows/
+  anima_ipadapter_reference_generate.json
 eval/reference_eval_quality_20260610_c003/
   report.md
   summary.json
@@ -93,6 +143,17 @@ eval/reference_eval_quality_20260610_c003/run_eval.sh
 `tools/reference_eval.py` is a snapshot of the evaluation harness from the
 source `anima_lora` checkout. It depends on that project layout and is included
 for reproducibility and future reruns.
+
+## Node Behavior
+
+`Anima IP-Adapter Generate` accepts a ComfyUI `IMAGE` reference, writes it to a
+temporary PNG, runs `inference.py` with `--ip_adapter_weight`, `--ip_image`, and
+`--ip_scale`, then loads the newest PNG from `output_dir` and returns it as a
+ComfyUI image.
+
+This is intentionally not wired through `comfyui_ipadapter_plus`; that custom
+node targets standard SD/SDXL IP-Adapter checkpoints, while this checkpoint is
+for the Anima DiT PE-Core IP-Adapter path.
 
 ## Training Summary
 

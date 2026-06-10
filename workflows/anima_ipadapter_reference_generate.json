@@ -1,0 +1,196 @@
+{
+  "last_node_id": 3,
+  "last_link_id": 2,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "LoadImage",
+      "pos": [40, 160],
+      "size": [320, 314],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [1],
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": ["reference.jpg"],
+      "title": "Load reference image"
+    },
+    {
+      "id": 2,
+      "type": "AnimaIPAdapterGenerate",
+      "pos": [430, 70],
+      "size": [520, 710],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "reference_image",
+          "type": "IMAGE",
+          "link": 1
+        },
+        {
+          "name": "prompt",
+          "type": "STRING"
+        },
+        {
+          "name": "negative_prompt",
+          "type": "STRING"
+        },
+        {
+          "name": "seed",
+          "type": "INT"
+        },
+        {
+          "name": "height",
+          "type": "INT"
+        },
+        {
+          "name": "width",
+          "type": "INT"
+        },
+        {
+          "name": "steps",
+          "type": "INT"
+        },
+        {
+          "name": "guidance_scale",
+          "type": "FLOAT"
+        },
+        {
+          "name": "flow_shift",
+          "type": "FLOAT"
+        },
+        {
+          "name": "ip_scale",
+          "type": "FLOAT"
+        },
+        {
+          "name": "attn_mode",
+          "type": "COMBO"
+        },
+        {
+          "name": "match_reference_size",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "anima_root",
+          "type": "STRING"
+        },
+        {
+          "name": "python_executable",
+          "type": "STRING"
+        },
+        {
+          "name": "dit_path",
+          "type": "STRING"
+        },
+        {
+          "name": "text_encoder_path",
+          "type": "STRING"
+        },
+        {
+          "name": "vae_path",
+          "type": "STRING"
+        },
+        {
+          "name": "checkpoint_path",
+          "type": "STRING"
+        },
+        {
+          "name": "output_dir",
+          "type": "STRING"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [2],
+          "slot_index": 0
+        },
+        {
+          "name": "output_path",
+          "type": "STRING",
+          "links": [],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "AnimaIPAdapterGenerate"
+      },
+      "widgets_values": [
+        "masterpiece, best quality, score_7, safe. manga panel layout, clean line art, expressive character, cinematic composition.",
+        "low quality, blurry, bad anatomy, text, watermark",
+        20260610,
+        1120,
+        960,
+        20,
+        3.5,
+        3.0,
+        1.0,
+        "flash",
+        false,
+        "/home/wktwin/anima-lora-training-bundle/anima_lora",
+        "/home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python",
+        "models/diffusion_models/anima-base-v1.0.safetensors",
+        "models/text_encoders/qwen_3_06b_base.safetensors",
+        "models/vae/qwen_image_vae.safetensors",
+        "/data/ai/comfyui02/custom_nodes/anima-ipadapter-reference-control/checkpoints/anima_ip_adapter_quality_20260610.safetensors",
+        "/home/wktwin/anima-lora-training-bundle/anima_lora/output/comfy_ipadapter"
+      ],
+      "title": "Generate with Anima IP-Adapter"
+    },
+    {
+      "id": 3,
+      "type": "SaveImage",
+      "pos": [1010, 260],
+      "size": [320, 270],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 2
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": ["anima_ipadapter/reference_control"],
+      "title": "Save generated image"
+    }
+  ],
+  "links": [
+    [1, 1, 0, 2, 0, "IMAGE"],
+    [2, 2, 0, 3, 0, "IMAGE"]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 1,
+      "offset": [0, 0]
+    }
+  },
+  "version": 0.4
+}
