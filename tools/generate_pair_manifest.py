@@ -1,66 +1,40 @@
 from __future__ import annotations
 
 import json
-from dataclasses import asdict, dataclass
+from dataclasses import asdict
 from pathlib import Path
-from typing import Final
 
 import typer
 
+if __package__:
+    from tools.pair_manifest_types import (
+        CAPTION_SUFFIX,
+        CliUsageError,
+        DatasetLayoutError,
+        ImageEntry,
+        PairBuildResult,
+        PairManifestSummary,
+        PairRow,
+        audit_dataset,
+        make_split_metadata,
+        write_summary,
+    )
+else:
+    from pair_manifest_types import (
+        CAPTION_SUFFIX,
+        CliUsageError,
+        DatasetLayoutError,
+        ImageEntry,
+        PairBuildResult,
+        PairManifestSummary,
+        PairRow,
+        audit_dataset,
+        make_split_metadata,
+        write_summary,
+    )
 
-IMAGE_SUFFIX: Final = ".jpg"
-CAPTION_SUFFIX: Final = ".txt"
+
 app = typer.Typer(add_completion=False)
-
-
-@dataclass(frozen=True, slots=True)
-class DatasetLayoutError(Exception):
-    path: Path
-    detail: str
-
-    def __str__(self) -> str:
-        return f"{self.detail}: {self.path}"
-
-
-@dataclass(frozen=True, slots=True)
-class CliUsageError(Exception):
-    detail: str
-
-    def __str__(self) -> str:
-        return self.detail
-
-
-@dataclass(frozen=True, slots=True)
-class ImageEntry:
-    relative_dir: str
-    image_id: str
-    caption: str
-
-
-@dataclass(frozen=True, slots=True)
-class PairRow:
-    ref_id: str
-    tgt_id: str
-    prompt: str
-
-
-@dataclass(frozen=True, slots=True)
-class PairManifestSummary:
-    dataset_root: str
-    directories: int
-    source_images: int
-    rows: int
-    skipped_singleton_directories: int
-    output_path: str | None
-    wrote_output: bool
-
-
-@dataclass(frozen=True, slots=True)
-class PairBuildResult:
-    rows: list[PairRow]
-    directories: int
-    source_images: int
-    skipped_singleton_directories: int
 
 
 def build_manifest(
@@ -73,13 +47,19 @@ def build_manifest(
     if not dataset_root.is_dir():
         raise DatasetLayoutError(dataset_root, "Dataset root is not a directory")
 
-    image_paths = sorted(
-        path
-        for path in dataset_root.rglob("*")
-        if path.is_file() and path.suffix.lower() == IMAGE_SUFFIX
-    )
+    audit = audit_dataset(dataset_root)
+    if audit.missing_captions:
+        raise DatasetLayoutError(
+            dataset_root / audit.missing_captions[0],
+            "Missing caption sidecar",
+        )
+    if audit.duplicate_ids:
+        raise DatasetLayoutError(
+            dataset_root / audit.duplicate_ids[0],
+            "Duplicate image id",
+        )
     groups: dict[str, list[ImageEntry]] = {}
-    for image_path in image_paths:
+    for image_path in audit.image_paths:
         entry = _load_entry(dataset_root, image_path)
         groups.setdefault(entry.relative_dir, []).append(entry)
 
@@ -103,14 +83,20 @@ def build_manifest(
                 return PairBuildResult(
                     rows=rows,
                     directories=len(groups),
-                    source_images=len(image_paths),
+                    source_images=len(audit.image_paths),
+                    caption_count=audit.caption_count,
                     skipped_singleton_directories=skipped_singleton_directories,
+                    missing_captions=audit.missing_captions,
+                    duplicate_ids=audit.duplicate_ids,
                 )
     return PairBuildResult(
         rows=rows,
         directories=len(groups),
-        source_images=len(image_paths),
+        source_images=len(audit.image_paths),
+        caption_count=audit.caption_count,
         skipped_singleton_directories=skipped_singleton_directories,
+        missing_captions=audit.missing_captions,
+        duplicate_ids=audit.duplicate_ids,
     )
 
 
@@ -135,6 +121,7 @@ def generate_manifest(
     dry_run: bool,
     allow_self_pairs: bool,
     limit: int | None,
+    summary_output_path: Path | None = None,
 ) -> PairManifestSummary:
     """Create pair rows and optionally persist them."""
     result = build_manifest(
@@ -142,31 +129,52 @@ def generate_manifest(
         allow_self_pairs=allow_self_pairs,
         limit=limit,
     )
+    split = make_split_metadata(len(result.rows))
     wrote_output = False
     if count_only:
         return PairManifestSummary(
             dataset_root=str(dataset_root),
             directories=result.directories,
             source_images=result.source_images,
+            caption_count=result.caption_count,
             rows=len(result.rows),
             skipped_singleton_directories=result.skipped_singleton_directories,
+            missing_captions=result.missing_captions,
+            duplicate_ids=result.duplicate_ids,
+            split=split,
             output_path=None,
+            summary_path=None,
             wrote_output=False,
+            wrote_summary=False,
         )
     if output_path is None:
         raise CliUsageError("--output is required unless --count-only is used")
+    summary_path = summary_output_path or output_path.with_suffix(".summary.json")
+    wrote_summary = False
     if not dry_run:
         write_manifest(result.rows, output_path)
         wrote_output = True
-    return PairManifestSummary(
+    summary = PairManifestSummary(
         dataset_root=str(dataset_root),
         directories=result.directories,
         source_images=result.source_images,
+        caption_count=result.caption_count,
         rows=len(result.rows),
         skipped_singleton_directories=result.skipped_singleton_directories,
+        missing_captions=result.missing_captions,
+        duplicate_ids=result.duplicate_ids,
+        split=split,
         output_path=str(output_path),
+        summary_path=str(summary_path),
         wrote_output=wrote_output,
+        wrote_summary=not dry_run,
     )
+    if not dry_run:
+        write_summary(summary, summary_path)
+        wrote_summary = True
+    if wrote_summary:
+        return summary
+    return summary
 
 
 def _load_entry(dataset_root: Path, image_path: Path) -> ImageEntry:
@@ -189,6 +197,11 @@ def main(
         "--output",
         "-o",
         help="Output JSONL path for ref_id/tgt_id/prompt rows.",
+    ),
+    summary_output_path: Path | None = typer.Option(
+        None,
+        "--summary-output",
+        help="Output JSON path for audit and split metadata.",
     ),
     count_only: bool = typer.Option(
         False,
@@ -221,6 +234,7 @@ def main(
             dry_run=dry_run,
             allow_self_pairs=allow_self_pairs,
             limit=limit,
+            summary_output_path=summary_output_path,
         )
     except CliUsageError as error:
         raise typer.BadParameter(str(error)) from error

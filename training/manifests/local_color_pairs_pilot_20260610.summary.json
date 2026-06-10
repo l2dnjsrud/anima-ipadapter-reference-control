@@ -1,0 +1,27 @@
+{
+  "dataset_root": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best",
+  "directories": 269,
+  "source_images": 1571,
+  "caption_count": 1571,
+  "rows": 1537,
+  "skipped_singleton_directories": 34,
+  "missing_captions": [],
+  "duplicate_ids": [],
+  "split": {
+    "strategy": "sorted_95_5",
+    "train": {
+      "start_index": 0,
+      "end_index_exclusive": 1460,
+      "rows": 1460
+    },
+    "validation": {
+      "start_index": 1460,
+      "end_index_exclusive": 1537,
+      "rows": 77
+    }
+  },
+  "output_path": "training/manifests/local_color_pairs_pilot_20260610.jsonl",
+  "summary_path": "training/manifests/local_color_pairs_pilot_20260610.summary.json",
+  "wrote_output": true,
+  "wrote_summary": true
+}

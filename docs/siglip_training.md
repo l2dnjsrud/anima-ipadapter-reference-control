@@ -3,11 +3,13 @@
 ## What landed locally
 
 - Native SigLIP2/IP-Adapter scaffolding lives in `siglip_model.py`, `siglip_checkpoint.py`, and `native_siglip.py`.
+- Real frozen-Anima SigLIP2 smoke training lives in `training/siglip_real_smoke.py` with small helpers under `training/siglip_smoke_*.py`.
 - The upstream Wenaka `TransformerEncoderLayer(memory=...)` bug is avoided by a real cross-attention fusion layer.
 - The upstream loader constructor mismatch is avoided by detecting checkpoint tensor shapes and constructing `IPAdapterSigLIP` with explicit dimensions.
 - PE-Core checkpoints are rejected by the SigLIP loader with a clear message instead of being partially loaded as SigLIP.
 - `AnimaSigLIPIPAdapterLoader` uses the ComfyUI `ipadapter` model selector, not a raw filesystem path.
 - `AnimaSigLIPIPAdapterApply` clones the ComfyUI `MODEL` and registers an `attn2_patch`, matching ComfyUI `ModelPatcher.set_model_attn2_patch` semantics.
+- A one-step smoke checkpoint was written to `checkpoints/anima_siglip_ip_adapter_smoke_20260610.safetensors` and loads through `siglip_checkpoint.load_siglip_adapter`.
 
 ## Dataset facts checked on 2026-06-10
 
@@ -73,18 +75,82 @@ Expected pair row shape:
 {"ref_id": "4279862", "tgt_id": "4279889", "prompt": "clean character reference prompt"}
 ```
 
+## Local color-panel real smoke
+
+The first real, bounded SigLIP2 smoke was run on 2026-06-10 with the curated
+local color-panel dataset:
+
+```text
+/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best
+```
+
+Generated manifest:
+
+```text
+training/manifests/local_color_pairs_pilot_20260610.jsonl
+training/manifests/local_color_pairs_pilot_20260610.summary.json
+```
+
+Manifest audit summary:
+
+- 1,537 pair rows
+- 1,460 train rows and 77 validation rows by deterministic sorted 95/5 split
+- every row has `ref_id`, `tgt_id`, and `prompt`
+- every referenced JPG and TXT sidecar exists
+- malformed missing-caption input fails safely
+
+Real smoke command:
+
+```bash
+HF_HUB_DISABLE_XET=1 /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python training/siglip_real_smoke.py \
+  --manifest-path training/manifests/local_color_pairs_pilot_20260610.jsonl \
+  --image-root /home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best \
+  --steps 1 \
+  --resolution 256 \
+  --device cuda:0 \
+  --output-path checkpoints/anima_siglip_ip_adapter_smoke_20260610.safetensors \
+  --max-rows 4
+```
+
+Observed result:
+
+```json
+{
+  "steps": 1,
+  "rows_loaded": 4,
+  "first_loss": 0.1699729710817337,
+  "final_loss": 0.1699729710817337,
+  "finite_loss": true,
+  "trainable_parameters": 335860892,
+  "frozen_base_parameters": 2913827059,
+  "checkpoint": {
+    "output_path": "checkpoints/anima_siglip_ip_adapter_smoke_20260610.safetensors",
+    "loadable": true,
+    "pe_checkpoint_rejected": true
+  }
+}
+```
+
+The canonical write target
+`/data/ai/models/ipadapter/anima_siglip_ip_adapter_smoke_20260610.safetensors`
+was attempted after the real training step reached checkpoint save, but the
+directory is `root:root` with mode `755`, so `safetensors` returned
+`Permission denied (os error 13)`. The repo-local checkpoint is the current
+loadable smoke artifact.
+
 ## What blocks real full training
 
-- No trained SigLIP2 TimeResampler/IPCrossAttn checkpoint is present in this repo.
+- No high-quality trained SigLIP2 TimeResampler/IPCrossAttn checkpoint is present in this repo. The current SigLIP checkpoint is a one-step smoke artifact only.
 - The Hugging Face dataset is about 36.5 GiB; I did not download it without explicit approval.
 - The public dataset appears to contain image tar shards only. Wenaka's training script expects a paired `training_pairs_final2.jsonl` with `ref_id`, `tgt_id`, and `prompt`, which is not exposed in the dataset preview or file list.
-- Full training still needs the Anima DiT, Qwen text encoder, Qwen image VAE, SigLIP2 weights, extracted image shards, paired metadata, and GPU memory for the frozen base model plus trainable adapter.
+- Full training still needs explicit runtime approval, a target output path that the current user can write, and a quality gate based on reference-control contact sheets.
 
 ## Full-training outline
 
-1. Download or mount the dataset shards after approval.
-2. Provide or generate paired metadata with `ref_id`, `tgt_id`, and `prompt`.
-3. Run the dry-run proof against a few local rows and confirm no missing images.
-4. Replace the synthetic proof loop with the frozen Anima DiT/VAE/text-encoder loss path from Wenaka's script.
+1. Choose the approved dataset scope: local color-panel pairs, downloaded Wenaka shards, or both.
+2. Generate paired metadata with `ref_id`, `tgt_id`, and `prompt`.
+3. Run the dry-run proof and local manifest audit against the selected rows.
+4. Run bounded real smoke through the frozen Anima DiT/VAE/text-encoder loss path.
 5. Save a SigLIP checkpoint with `resampler.time_proj.*`, `resampler.layers.*`, `intermediate_encoder.*`, `ip_cross_attns.*`, and `ip_scales.*` keys.
 6. Load it through `AnimaSigLIPIPAdapterLoader`; do not use the PE-Core checkpoint with this loader.
+7. Scale to a pilot training run, then evaluate against no-IP and PE-Core baselines with contact sheets before calling it usable.

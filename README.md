@@ -227,28 +227,51 @@ docs/siglip2_training_launch_readiness.md
 docs/ipadapter_reference_research.md
 ```
 
-Current state: the native SigLIP2/TimeResampler/IPCrossAttn code path and
-synthetic trainability proof pass, but full training should not start until the
-paired `ref_id`/`tgt_id`/`prompt` metadata is available or generated and the
-about-36.5-GiB dataset download/storage requirement is approved.
+Current state: the native SigLIP2/TimeResampler/IPCrossAttn code path,
+synthetic trainability proof, and a real one-step frozen-Anima SigLIP2 smoke run
+all pass. The smoke checkpoint is loadable, but it is not a high-quality
+reference-control model yet. Full quality training should not start until the
+pilot runtime, final model location, and contact-sheet evaluation gate are
+approved.
 
-For local color-panel smoke tests, generate Wenaka-style sample pairs from the
-current color winner:
+For local color-panel tests, generate Wenaka-style pairs from the current color
+winner:
 
 ```bash
 /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python tools/generate_pair_manifest.py \
   /home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best \
-  --output evidence/color_panel_style_v5_best_sample_pairs_64.jsonl \
-  --limit 64
+  --output training/manifests/local_color_pairs_pilot_20260610.jsonl
 ```
 
-Then validate the row shape without starting training:
+The recorded local manifest has 1,537 pair rows with a deterministic 1,460/77
+train/validation split.
+
+Then validate the row shape without starting real Anima training:
 
 ```bash
 /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python training/siglip_proof.py \
-  --pairs-path evidence/color_panel_style_v5_best_sample_pairs_64.jsonl \
+  --pairs-path training/manifests/local_color_pairs_pilot_20260610.jsonl \
   --image-dir /home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best \
   --rows-to-check 8
+```
+
+For the bounded real smoke:
+
+```bash
+HF_HUB_DISABLE_XET=1 /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python training/siglip_real_smoke.py \
+  --manifest-path training/manifests/local_color_pairs_pilot_20260610.jsonl \
+  --image-root /home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best \
+  --steps 1 \
+  --resolution 256 \
+  --device cuda:0 \
+  --output-path checkpoints/anima_siglip_ip_adapter_smoke_20260610.safetensors \
+  --max-rows 4
+```
+
+Smoke output:
+
+```text
+checkpoints/anima_siglip_ip_adapter_smoke_20260610.safetensors
 ```
 
 ## Node Behavior
@@ -275,9 +298,10 @@ for the Anima DiT PE-Core IP-Adapter path.
 The Wenaka-style SigLIP2/TimeResampler/IPCrossAttn branch is implemented as
 native scaffolding in `native_siglip.py`, `siglip_model.py`, and
 `siglip_checkpoint.py`. It rejects the PE-Core checkpoint clearly and uses the
-same ComfyUI `ipadapter_name` selector style. A real SigLIP checkpoint is not
-included yet; `docs/siglip_training.md` records the trainability proof, dataset
-size, and remaining full-training blocker.
+same ComfyUI `ipadapter_name` selector style. The current real SigLIP
+checkpoint is a one-step smoke artifact, not a production-quality checkpoint;
+`docs/siglip_training.md` records the smoke evidence, dataset facts, and
+remaining full-training gate.
 
 ## Training Summary
 

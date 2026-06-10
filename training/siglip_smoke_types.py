@@ -1,0 +1,63 @@
+from __future__ import annotations
+
+from dataclasses import dataclass
+from pathlib import Path
+
+
+@dataclass(frozen=True, slots=True)
+class SmokeInputError(Exception):
+    detail: str
+
+    def __str__(self) -> str:
+        return self.detail
+
+
+@dataclass(frozen=True, slots=True)
+class PairRow:
+    ref_id: str
+    tgt_id: str
+    prompt: str
+
+
+@dataclass(frozen=True, slots=True)
+class PairPaths:
+    ref_image: Path
+    target_image: Path
+    target_caption: Path
+
+
+@dataclass(frozen=True, slots=True)
+class SmokeConfig:
+    manifest_path: Path
+    image_root: Path
+    output_path: Path
+    dit_path: Path
+    text_encoder_path: Path
+    vae_path: Path
+    pe_checkpoint_path: Path
+    siglip_model_id: str
+    device: str
+    steps: int
+    resolution: int
+    lr: float
+    seed: int
+    max_rows: int
+
+
+@dataclass(frozen=True, slots=True)
+class CheckpointVerification:
+    output_path: str
+    loadable: bool
+    pe_checkpoint_rejected: bool
+
+
+@dataclass(frozen=True, slots=True)
+class SmokeSummary:
+    steps: int
+    rows_loaded: int
+    first_loss: float
+    final_loss: float
+    finite_loss: bool
+    trainable_parameters: int
+    frozen_base_parameters: int
+    checkpoint: CheckpointVerification

@@ -6,10 +6,17 @@ Date: 2026-06-10
 
 Do not start full SigLIP2/TimeResampler/IPCrossAttn training yet.
 
-The native code path is ready for a dry run, but the real training run is still
-blocked by paired metadata and storage/runtime approval. The PE IP-Adapter-only
-line-art colorization track is stopped; line-art colorization needs spatial
-conditioning in addition to reference control.
+The native code path has passed a real one-step frozen-Anima SigLIP2 smoke
+training run on the local curated color-panel dataset. That proves the training
+path can load Anima/Qwen/VAE/SigLIP2, train only the adapter modules, write a
+loadable SigLIP-family checkpoint, and reject the PE-Core checkpoint with the
+SigLIP loader.
+
+This is not a high-quality usable reference-control checkpoint yet. Full
+quality training still needs explicit runtime approval, a writable final model
+location, and contact-sheet evaluation against no-IP and PE-Core baselines. The
+PE IP-Adapter-only line-art colorization track is stopped; line-art colorization
+needs spatial conditioning in addition to reference control.
 
 ## What Is Ready
 
@@ -24,6 +31,11 @@ conditioning in addition to reference control.
   - `CrossLayerEncoder`
   - `TimeResampler`
   - `IPCrossAttn`
+- Real smoke training exists in `training/siglip_real_smoke.py`.
+- Local pair metadata was generated from:
+  - `/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best`
+- The smoke checkpoint exists at:
+  - `checkpoints/anima_siglip_ip_adapter_smoke_20260610.safetensors`
 - Focused tests cover:
   - valid SigLIP checkpoint loading
   - malformed checkpoint rejection
@@ -72,7 +84,15 @@ Checked facts:
 - Tar shard total by HEAD requests: `34,190,796,800` bytes, about `31.843 GiB`.
 - Local extracted image candidates exist under:
   - `/home/wktwin/anima-lora-training-bundle/image_dataset/`
-- No local `training_pairs*.jsonl`, pair CSV, or row-level `ref_id`/`tgt_id`/`prompt` metadata was found.
+- The current preferred local training source is the curated color-panel winner:
+  - `/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best`
+- Generated local color-panel metadata:
+  - `training/manifests/local_color_pairs_pilot_20260610.jsonl`
+  - `training/manifests/local_color_pairs_pilot_20260610.summary.json`
+- The local color-panel manifest contains 1,537 pair rows with deterministic
+  train/validation counts of 1,460 and 77.
+- No original Wenaka `training_pairs*.jsonl`, pair CSV, or row-level
+  `ref_id`/`tgt_id`/`prompt` metadata was found.
 
 ## Dry-Run Commands
 
@@ -96,6 +116,40 @@ Focused validation:
 ```bash
 /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python -m pytest tests/test_native_siglip.py -q
 /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python -m ruff check native_siglip.py siglip_checkpoint.py siglip_model.py training/siglip_proof.py tests/test_native_siglip.py
+```
+
+## Real Smoke Command
+
+Use this for a bounded one-step training smoke, not a quality run:
+
+```bash
+HF_HUB_DISABLE_XET=1 /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python training/siglip_real_smoke.py \
+  --manifest-path training/manifests/local_color_pairs_pilot_20260610.jsonl \
+  --image-root /home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best \
+  --steps 1 \
+  --resolution 256 \
+  --device cuda:0 \
+  --output-path checkpoints/anima_siglip_ip_adapter_smoke_20260610.safetensors \
+  --max-rows 4
+```
+
+Observed smoke summary:
+
+```json
+{
+  "steps": 1,
+  "rows_loaded": 4,
+  "first_loss": 0.1699729710817337,
+  "final_loss": 0.1699729710817337,
+  "finite_loss": true,
+  "trainable_parameters": 335860892,
+  "frozen_base_parameters": 2913827059,
+  "checkpoint": {
+    "output_path": "checkpoints/anima_siglip_ip_adapter_smoke_20260610.safetensors",
+    "loadable": true,
+    "pe_checkpoint_rejected": true
+  }
+}
 ```
 
 ## Output Checkpoint Contract
@@ -124,6 +178,12 @@ The target ComfyUI loader is:
 AnimaSigLIPIPAdapterLoader
 ```
 
+Current write-location note: writing the smoke checkpoint directly under
+`/data/ai/models/ipadapter/` failed because that directory is `root:root` mode
+`755` for this shell. The repo-local smoke checkpoint is loadable; copying or
+training directly into the ComfyUI model directory needs a writable destination
+or a user-run privileged copy step.
+
 ## Evaluation Gate
 
 A checkpoint is not considered usable until it passes all of these:
@@ -148,9 +208,14 @@ Stop and ask before proceeding if any of these are true:
 
 ## Next Executable Step
 
-Create or obtain the paired metadata. The most likely path is:
+Scale from the completed one-step smoke to a quality-oriented pilot. The most
+likely path is:
 
-1. Inspect Wenaka's original training scripts for the exact pair generation rule.
-2. Generate a candidate `training_pairs_final2.jsonl` from local image ids and captions, or obtain the original file.
-3. Run `training/siglip_proof.py --pairs-path ... --image-dir ... --rows-to-check 8`.
-4. Only after that, implement and launch the real frozen-Anima training loop.
+1. Decide whether the pilot uses only the local color-panel manifest or also
+   downloads Wenaka shards.
+2. Make `/data/ai/models/ipadapter/` writable for the final SigLIP artifact, or
+   choose a repo-local output plus a manual copy command.
+3. Run a short pilot with more rows and steps than the one-step smoke.
+4. Load the pilot checkpoint through `AnimaSigLIPIPAdapterLoader`.
+5. Generate contact sheets against no-IP and PE-Core baselines.
+6. Continue only if reference appearance improves without layout collapse.
