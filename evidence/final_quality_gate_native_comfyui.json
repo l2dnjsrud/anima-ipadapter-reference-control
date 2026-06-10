@@ -5,6 +5,7 @@
   },
   "verification": {
     "status": "passed",
+    "evidence": "Full test suite and ruff passed after the PE module split; ComfyUI package import registered all native nodes; final HTTP /prompt run generated a nonblank image and the QA server was stopped.",
     "commands": [
       "/home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python -m pytest tests -q => 27 passed",
       "/home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python -m ruff check __init__.py native_pe.py native_pe_models.py native_pe_runtime.py native_pe_patch.py native_siglip.py siglip_checkpoint.py siglip_model.py training/siglip_proof.py tests/test_native_pe_nodes.py tests/test_native_siglip.py tests/test_comfyui_workflows.py => All checks passed",
@@ -14,7 +15,7 @@
   },
   "codeReview": {
     "recommendation": "APPROVE",
-    "architectStatus": "CLEAR_WITH_NOTES",
+    "architectStatus": "CLEAR",
     "evidence": "Two delegated reviewer attempts were launched; one codex-ultrawork-reviewer timed out and was closed, and one smaller worker reviewer closed without a mailbox result. Root performed final review: PE Apply uses native_pe_patch.patch_network_to_comfy_attention with ComfyUI rope_emb/transformer_options signature and no training apply_to; PE/SigLIP loaders expose ipadapter_name model selectors; workflow JSON is a normal ComfyUI graph; evidence includes API output and cleanup. Residual note: full SigLIP checkpoint training is intentionally not claimed and remains gated by 31.843 GiB dataset download plus paired metadata/GPU approval."
   },
   "criteriaCoverage": {
