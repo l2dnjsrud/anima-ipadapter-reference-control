@@ -202,6 +202,35 @@ eval/reference_eval_quality_20260610_c003/run_eval.sh
 source `anima_lora` checkout. It depends on that project layout and is included
 for reproducibility and future reruns.
 
+## Line-Art Colorization Decision
+
+PE IP-Adapter-only line-art colorization is not the right next target. The
+adapter works as reference-control, but line-art colorization needs spatial
+conditioning to preserve panel layout and local line structure. The recorded
+decision and ComfyUI evidence are in:
+
+```text
+docs/line_colorization_decision.md
+eval/line_color_dataset_pair_easycontrol_ip_20260610/report.md
+```
+
+Continue high-quality reference-control work through the separate
+SigLIP2/TimeResampler/IPCrossAttn training stage. Use EasyControl/ControlNet-like
+conditioning for line-art colorization.
+
+## SigLIP2 Training Readiness
+
+The next training stage is documented in:
+
+```text
+docs/siglip2_training_launch_readiness.md
+```
+
+Current state: the native SigLIP2/TimeResampler/IPCrossAttn code path and
+synthetic trainability proof pass, but full training should not start until the
+paired `ref_id`/`tgt_id`/`prompt` metadata is available or generated and the
+about-36.5-GiB dataset download/storage requirement is approved.
+
 ## Node Behavior
 
 The recommended PE path has three nodes:

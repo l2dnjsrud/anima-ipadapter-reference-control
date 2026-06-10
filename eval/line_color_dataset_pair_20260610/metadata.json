@@ -1,0 +1,13 @@
+{
+  "line_src": "/home/wktwin/anima-lora-training-bundle/image_dataset/MS-138/MS-138__MS_138-05_LLM.jpg",
+  "color_reference_src": "/home/wktwin/anima-lora-training-bundle/.pytest_cache/image_dataset_color/101-200/SG-138/SG-138-05.jpg",
+  "width": 1152,
+  "height": 816,
+  "denoise_values": [
+    0.42,
+    0.58,
+    0.74
+  ],
+  "positive": "masterpiece, best quality, colored manhwa comic page, clean inked line art, full color, soft cel shading, detailed painted backgrounds, preserve original panel layout and character poses, blank speech bubbles, wuxia historical fantasy comic style",
+  "negative": "low quality, blurry, distorted panel layout, changed composition, text, watermark, logo, monochrome, grayscale, blue pencil rough, unfinished sketch, blank page, bad anatomy"
+}

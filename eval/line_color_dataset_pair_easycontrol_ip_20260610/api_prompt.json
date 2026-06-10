@@ -1,0 +1,303 @@
+{
+  "1": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "codex_linecolor_ms138_line.jpg"
+    }
+  },
+  "2": {
+    "class_type": "ImageScale",
+    "inputs": {
+      "image": [
+        "1",
+        0
+      ],
+      "upscale_method": "lanczos",
+      "width": 1152,
+      "height": 816,
+      "crop": "disabled"
+    }
+  },
+  "3": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "codex_linecolor_sg138_color_ref.jpg"
+    }
+  },
+  "4": {
+    "class_type": "ImageScale",
+    "inputs": {
+      "image": [
+        "3",
+        0
+      ],
+      "upscale_method": "lanczos",
+      "width": 1152,
+      "height": 816,
+      "crop": "disabled"
+    }
+  },
+  "5": {
+    "class_type": "AnimaPEEncodeImage",
+    "inputs": {
+      "image": [
+        "4",
+        0
+      ],
+      "encoder_name": "pe",
+      "device": "auto",
+      "dtype": "bfloat16",
+      "cache_encoder": true
+    }
+  },
+  "6": {
+    "class_type": "AnimaPEIPAdapterLoader",
+    "inputs": {
+      "ipadapter_name": "anima_ip_adapter_quality_20260610.safetensors"
+    }
+  },
+  "7": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "anima-base-v1.0.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "8": {
+    "class_type": "ModelSamplingFlux",
+    "inputs": {
+      "model": [
+        "7",
+        0
+      ],
+      "max_shift": 3.0,
+      "base_shift": 3.0,
+      "width": 1152,
+      "height": 816
+    }
+  },
+  "9": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "qwen/qwen_image_vae.safetensors"
+    }
+  },
+  "10": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen_3_06b_base.safetensors",
+      "type": "qwen_image",
+      "device": "default"
+    }
+  },
+  "11": {
+    "class_type": "CLIPTextEncodeFlux",
+    "inputs": {
+      "clip": [
+        "10",
+        0
+      ],
+      "clip_l": "safe for work, colored manhwa comic page, wuxia historical fantasy, clean black line art, full color, soft cel shading, natural skin tones, cloth and background colors, preserve the input page layout, preserve panel borders and speech bubbles, no written text inside speech bubbles",
+      "t5xxl": "safe for work, colored manhwa comic page, wuxia historical fantasy, clean black line art, full color, soft cel shading, natural skin tones, cloth and background colors, preserve the input page layout, preserve panel borders and speech bubbles, no written text inside speech bubbles",
+      "guidance": 3.2
+    }
+  },
+  "12": {
+    "class_type": "CLIPTextEncodeFlux",
+    "inputs": {
+      "clip": [
+        "10",
+        0
+      ],
+      "clip_l": "nsfw, nude, naked, erotic, sexual, exposed body, cleavage, bed scene, underwear, fetish, new layout, character sheet, isolated figures, distorted panels, text, watermark, logo, low quality, blurry, monochrome, grayscale, blue-only sketch",
+      "t5xxl": "nsfw, nude, naked, erotic, sexual, exposed body, cleavage, bed scene, underwear, fetish, new layout, character sheet, isolated figures, distorted panels, text, watermark, logo, low quality, blurry, monochrome, grayscale, blue-only sketch",
+      "guidance": 3.2
+    }
+  },
+  "21": {
+    "class_type": "AnimaEasyControlPatch",
+    "inputs": {
+      "model": [
+        "8",
+        0
+      ],
+      "vae": [
+        "9",
+        0
+      ],
+      "image": [
+        "2",
+        0
+      ],
+      "base_model": "anima",
+      "easycontrol_lora": "anima_colorize_full.safetensors",
+      "strength": 1.0,
+      "target_megapixels": 0.0,
+      "cond_scale_override": 0.0
+    }
+  },
+  "31": {
+    "class_type": "AnimaPEIPAdapterApply",
+    "inputs": {
+      "model": [
+        "21",
+        0
+      ],
+      "adapter": [
+        "6",
+        0
+      ],
+      "features": [
+        "5",
+        0
+      ],
+      "strength": 0.45,
+      "start_percent": 0.0,
+      "end_percent": 0.75,
+      "preserve_wrapper": true
+    }
+  },
+  "41": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": [
+        "31",
+        0
+      ],
+      "seed": 20260801,
+      "steps": 24,
+      "cfg": 3.2,
+      "sampler_name": "er_sde",
+      "scheduler": "simple",
+      "positive": [
+        "11",
+        0
+      ],
+      "negative": [
+        "12",
+        0
+      ],
+      "latent_image": [
+        "21",
+        1
+      ],
+      "denoise": 1.0
+    }
+  },
+  "51": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "41",
+        0
+      ],
+      "vae": [
+        "9",
+        0
+      ]
+    }
+  },
+  "61": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "51",
+        0
+      ],
+      "filename_prefix": "anima_ipadapter/line_color_ms138_easy1p0_ip0p45"
+    }
+  },
+  "22": {
+    "class_type": "AnimaEasyControlPatch",
+    "inputs": {
+      "model": [
+        "8",
+        0
+      ],
+      "vae": [
+        "9",
+        0
+      ],
+      "image": [
+        "2",
+        0
+      ],
+      "base_model": "anima",
+      "easycontrol_lora": "anima_colorize_full.safetensors",
+      "strength": 1.2,
+      "target_megapixels": 0.0,
+      "cond_scale_override": 0.0
+    }
+  },
+  "32": {
+    "class_type": "AnimaPEIPAdapterApply",
+    "inputs": {
+      "model": [
+        "22",
+        0
+      ],
+      "adapter": [
+        "6",
+        0
+      ],
+      "features": [
+        "5",
+        0
+      ],
+      "strength": 0.7,
+      "start_percent": 0.0,
+      "end_percent": 0.75,
+      "preserve_wrapper": true
+    }
+  },
+  "42": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": [
+        "32",
+        0
+      ],
+      "seed": 20260802,
+      "steps": 24,
+      "cfg": 3.2,
+      "sampler_name": "er_sde",
+      "scheduler": "simple",
+      "positive": [
+        "11",
+        0
+      ],
+      "negative": [
+        "12",
+        0
+      ],
+      "latent_image": [
+        "22",
+        1
+      ],
+      "denoise": 1.0
+    }
+  },
+  "52": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "42",
+        0
+      ],
+      "vae": [
+        "9",
+        0
+      ]
+    }
+  },
+  "62": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "52",
+        0
+      ],
+      "filename_prefix": "anima_ipadapter/line_color_ms138_easy1p2_ip0p70"
+    }
+  }
+}

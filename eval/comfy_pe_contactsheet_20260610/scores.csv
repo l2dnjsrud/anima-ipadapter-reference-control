@@ -1,0 +1,6 @@
+ref_id,seed,mode,scale,image_path,cosine,pixel_std,pixel_mean,pixel_min,pixel_max
+ref03,20260610,no_ip,,/home/wktwin/anima-ipadapter-reference-control/eval/comfy_pe_contactsheet_20260610/score_images/ref03/seed_20260610/no_ip_none/no_ip_00001_.png,0.713433,74.154327,135.574478,14,255
+ref03,20260610,ip,0.5,/home/wktwin/anima-ipadapter-reference-control/eval/comfy_pe_contactsheet_20260610/score_images/ref03/seed_20260610/ip_0p5/ip_0p5_00001_.png,0.801675,71.910065,131.884186,0,255
+ref03,20260610,ip,1.0,/home/wktwin/anima-ipadapter-reference-control/eval/comfy_pe_contactsheet_20260610/score_images/ref03/seed_20260610/ip_1p0/ip_1p0_00001_.png,0.871622,69.133247,127.760231,0,255
+ref03,20260610,ip,1.5,/home/wktwin/anima-ipadapter-reference-control/eval/comfy_pe_contactsheet_20260610/score_images/ref03/seed_20260610/ip_1p5/ip_1p5_00001_.png,0.767990,67.967827,117.970375,0,255
+ref03,20260610,ip,2.0,/home/wktwin/anima-ipadapter-reference-control/eval/comfy_pe_contactsheet_20260610/score_images/ref03/seed_20260610/ip_2p0/ip_2p0_00001_.png,0.823958,68.381546,108.747017,0,255
