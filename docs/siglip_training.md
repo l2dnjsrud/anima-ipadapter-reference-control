@@ -386,3 +386,29 @@ recover train or held-out identity/layout/character count. This suggests the
 objective was a useful correction, but the frozen SigLIP2 adapter path still
 needs either a stronger anime/VL encoder or a trainable image-encoder stage to
 reach the requested high-quality reference-control target.
+
+## 2026-06-11 contrastive weight sweep
+
+The c014 contrastive checkpoint was evaluated through the isolated ComfyUI API at
+weights `0.6`, `1.0`, `1.4`, and `1.8` across the same three train and three
+held-out references:
+
+- Evidence:
+  `eval/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep/report.md`
+- Contact sheet:
+  `eval/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep/contact_sheet.jpg`
+- Decision: `weight_sweep_no_usable_quality`
+
+The sweep confirms that the checkpoint has a tunable reference-influence
+channel. Higher weights can lower simple pixel distance to the reference,
+especially for sky/crowd/color palette cases. The visual result still fails the
+target bar: identity, layout, panel composition, and character count are not
+stable, and higher weights often introduce generic group scenes or excessive
+speech bubbles.
+
+Current conclusion after c015: frozen SigLIP2 adapter tuning has learned a weak
+style/composition pressure, but not the high-fidelity reference-control channel
+the user wants. More inference-scale tuning on this checkpoint is not a credible
+route to production quality. The next implementation path needs a trainable
+image encoder/calibration stage or a stronger anime/VL encoder while preserving
+the native ComfyUI patch surface.

@@ -344,6 +344,18 @@ Interpretation: objective pressure helps, but is not sufficient by itself.
 Frozen SigLIP2 remains a weak main path for the requested high-quality Anima
 reference-control checkpoint.
 
+The same c014 checkpoint was also swept at inference weights `0.6`, `1.0`,
+`1.4`, and `1.8`:
+
+```text
+eval/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep/report.md
+eval/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep/contact_sheet.jpg
+```
+
+Interpretation: inference scale is not the missing fix. It can intensify style
+or layout pressure, but it does not recover stable identity/layout control and
+often worsens generic-scene collapse.
+
 ## Stop Conditions
 
 Stop and ask before proceeding if any of these are true:
