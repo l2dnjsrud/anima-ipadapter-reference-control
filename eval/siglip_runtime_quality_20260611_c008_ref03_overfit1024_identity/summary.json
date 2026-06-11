@@ -1,0 +1,161 @@
+{
+  "base_url": "http://127.0.0.1:8115",
+  "checkpoint": "anima_siglip_ip_adapter_ref03_overfit1024_20260611.safetensors",
+  "positive": "masterpiece, best quality, score_7, safe, colored wuxia manhwa comic panel, male martial arts master in a dramatic palace interior, fully clothed traditional robe, speech bubble, clean ink lines, cel shaded anime style, cinematic lighting",
+  "negative": "low quality, blurry, bad anatomy, deformed face, text, watermark, extra limbs, abstract, washed out, noise, female, woman, girl, breasts, cleavage, nude, bare skin, bed, romance, kissing",
+  "steps": 16,
+  "results": {
+    "no_ip": {
+      "prompt_id": "27cc7ba3-71ed-4570-892c-5edce6e687a5",
+      "image": "eval/siglip_runtime_quality_20260611_c008_ref03_overfit1024_identity/no_ip.png",
+      "image_info": {
+        "filename": "no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c008_ref03_overfit1024_identity",
+        "type": "output"
+      }
+    },
+    "overfit_w08": {
+      "prompt_id": "9c8e78d4-0976-44ba-88ef-79433b8e5277",
+      "image": "eval/siglip_runtime_quality_20260611_c008_ref03_overfit1024_identity/overfit_w08.png",
+      "image_info": {
+        "filename": "overfit_w08_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c008_ref03_overfit1024_identity",
+        "type": "output"
+      },
+      "weight": 0.8
+    },
+    "overfit_w16": {
+      "prompt_id": "a7ba56b1-7ef2-430b-9f18-11d61340ff9e",
+      "image": "eval/siglip_runtime_quality_20260611_c008_ref03_overfit1024_identity/overfit_w16.png",
+      "image_info": {
+        "filename": "overfit_w16_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c008_ref03_overfit1024_identity",
+        "type": "output"
+      },
+      "weight": 1.6
+    },
+    "overfit_w24": {
+      "prompt_id": "4300ba49-f064-4e5c-b246-a4e378815509",
+      "image": "eval/siglip_runtime_quality_20260611_c008_ref03_overfit1024_identity/overfit_w24.png",
+      "image_info": {
+        "filename": "overfit_w24_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c008_ref03_overfit1024_identity",
+        "type": "output"
+      },
+      "weight": 2.4
+    },
+    "overfit_w32": {
+      "prompt_id": "d56cb480-2bf1-4fc3-abc9-7a0587521952",
+      "image": "eval/siglip_runtime_quality_20260611_c008_ref03_overfit1024_identity/overfit_w32.png",
+      "image_info": {
+        "filename": "overfit_w32_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c008_ref03_overfit1024_identity",
+        "type": "output"
+      },
+      "weight": 3.2
+    },
+    "overfit_w04": {
+      "prompt_id": "669dd174-bf2b-4c9b-abd9-847f847988ad",
+      "image": "eval/siglip_runtime_quality_20260611_c008_ref03_overfit1024_identity/overfit_w04.png",
+      "image_info": {
+        "filename": "overfit_w04_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c008_ref03_overfit1024_identity",
+        "type": "output"
+      },
+      "weight": 0.4
+    },
+    "overfit_w06": {
+      "prompt_id": "0c8c0630-98e2-4cc9-b269-057287c2aae7",
+      "image": "eval/siglip_runtime_quality_20260611_c008_ref03_overfit1024_identity/overfit_w06.png",
+      "image_info": {
+        "filename": "overfit_w06_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c008_ref03_overfit1024_identity",
+        "type": "output"
+      },
+      "weight": 0.6
+    },
+    "overfit_w10": {
+      "prompt_id": "d4592109-f70f-4a72-9e58-839c4bd0c1f7",
+      "image": "eval/siglip_runtime_quality_20260611_c008_ref03_overfit1024_identity/overfit_w10.png",
+      "image_info": {
+        "filename": "overfit_w10_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c008_ref03_overfit1024_identity",
+        "type": "output"
+      },
+      "weight": 1.0
+    },
+    "overfit_w12": {
+      "prompt_id": "fd52e3ad-d367-4be2-b7f5-d61cd92442dd",
+      "image": "eval/siglip_runtime_quality_20260611_c008_ref03_overfit1024_identity/overfit_w12.png",
+      "image_info": {
+        "filename": "overfit_w12_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c008_ref03_overfit1024_identity",
+        "type": "output"
+      },
+      "weight": 1.2
+    }
+  },
+  "metrics": {
+    "reference": {
+      "mean_abs_vs_no_ip": 108.2132568359375,
+      "rms_vs_no_ip": 135.26519775390625,
+      "mean_abs_vs_reference": 0.0,
+      "rms_vs_reference": 0.0
+    },
+    "no_ip": {
+      "mean_abs_vs_no_ip": 0.0,
+      "rms_vs_no_ip": 0.0,
+      "mean_abs_vs_reference": 108.2132568359375,
+      "rms_vs_reference": 135.26519775390625
+    },
+    "overfit_w04": {
+      "mean_abs_vs_no_ip": 75.24378967285156,
+      "rms_vs_no_ip": 105.88988494873047,
+      "mean_abs_vs_reference": 89.64712524414062,
+      "rms_vs_reference": 121.12576293945312
+    },
+    "overfit_w06": {
+      "mean_abs_vs_no_ip": 97.00419616699219,
+      "rms_vs_no_ip": 126.29800415039062,
+      "mean_abs_vs_reference": 61.364498138427734,
+      "rms_vs_reference": 90.25479888916016
+    },
+    "overfit_w08": {
+      "mean_abs_vs_no_ip": 97.1575927734375,
+      "rms_vs_no_ip": 126.78952026367188,
+      "mean_abs_vs_reference": 51.955421447753906,
+      "rms_vs_reference": 80.89266967773438
+    },
+    "overfit_w10": {
+      "mean_abs_vs_no_ip": 95.9727783203125,
+      "rms_vs_no_ip": 125.1788558959961,
+      "mean_abs_vs_reference": 46.865169525146484,
+      "rms_vs_reference": 75.78458404541016
+    },
+    "overfit_w12": {
+      "mean_abs_vs_no_ip": 94.7853012084961,
+      "rms_vs_no_ip": 124.07064056396484,
+      "mean_abs_vs_reference": 48.71929168701172,
+      "rms_vs_reference": 77.96760559082031
+    },
+    "overfit_w16": {
+      "mean_abs_vs_no_ip": 94.30899810791016,
+      "rms_vs_no_ip": 121.55003356933594,
+      "mean_abs_vs_reference": 79.12948608398438,
+      "rms_vs_reference": 105.09988403320312
+    },
+    "overfit_w24": {
+      "mean_abs_vs_no_ip": 65.25334167480469,
+      "rms_vs_no_ip": 77.458740234375,
+      "mean_abs_vs_reference": 80.91570281982422,
+      "rms_vs_reference": 95.80148315429688
+    },
+    "overfit_w32": {
+      "mean_abs_vs_no_ip": 60.600059509277344,
+      "rms_vs_no_ip": 70.91302490234375,
+      "mean_abs_vs_reference": 79.31474304199219,
+      "rms_vs_reference": 94.32225799560547
+    }
+  },
+  "contact_sheet": "eval/siglip_runtime_quality_20260611_c008_ref03_overfit1024_identity/contact_sheet.jpg"
+}

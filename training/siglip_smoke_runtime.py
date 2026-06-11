@@ -22,7 +22,9 @@ def encode_target_latents(
     device: torch.device,
     dtype: torch.dtype,
 ) -> torch.Tensor:
-    pixels = load_anima_pixels(path, resolution=resolution).to(device=device, dtype=dtype)
+    pixels = load_anima_pixels(path, resolution=resolution).to(
+        device=device, dtype=dtype
+    )
     with torch.no_grad():
         return vae.encode_pixels_to_latents(pixels).to(device=device, dtype=dtype)
 
@@ -42,7 +44,9 @@ def encode_prompt(
         text_encoder=str(text_encoder_path),
         text_encoder_cpu=False,
     )
-    cond, _null = prepare_text_inputs(args, device, anima, shared_models={"text_encoder": text_encoder})
+    cond, _null = prepare_text_inputs(
+        args, device, anima, shared_models={"text_encoder": text_encoder}
+    )
     return cond["embed"][0].to(device=device, dtype=dtype)
 
 
@@ -55,12 +59,17 @@ def encode_siglip_features(
 ) -> SigLIPFeatures:
     image = load_siglip_image(image_path)
     inputs = processor(images=[image], return_tensors="pt", do_resize=False)
-    inputs = {key: value.to(device=device, dtype=dtype) for key, value in inputs.items()}
+    inputs = {
+        key: value.to(device=device, dtype=dtype) for key, value in inputs.items()
+    }
     with torch.no_grad():
         outputs = model(**inputs, output_hidden_states=True)
     hidden_states = outputs.hidden_states
     shallow = torch.cat(
-        [hidden_states[len(hidden_states) // 4], hidden_states[len(hidden_states) // 2]],
+        [
+            hidden_states[len(hidden_states) // 4],
+            hidden_states[len(hidden_states) // 2],
+        ],
         dim=1,
     )
     return SigLIPFeatures(deep=outputs.last_hidden_state, shallow=shallow)
@@ -87,11 +96,15 @@ def validate_config(config: SmokeConfig) -> None:
     if config.steps < 1:
         raise SmokeInputError("steps must be >= 1")
     if config.steps > MAX_PILOT_STEPS:
-        raise SmokeInputError(f"steps must be <= {MAX_PILOT_STEPS} for bounded pilot runs")
+        raise SmokeInputError(
+            f"steps must be <= {MAX_PILOT_STEPS} for bounded pilot runs"
+        )
     if config.max_rows < 1:
         raise SmokeInputError("max_rows must be >= 1")
     if config.max_rows > MAX_PILOT_ROWS:
-        raise SmokeInputError(f"max_rows must be <= {MAX_PILOT_ROWS} for bounded pilot runs")
+        raise SmokeInputError(
+            f"max_rows must be <= {MAX_PILOT_ROWS} for bounded pilot runs"
+        )
     required_paths = (
         config.manifest_path,
         config.image_root,
@@ -102,6 +115,13 @@ def validate_config(config: SmokeConfig) -> None:
     for path in required_paths:
         if not path.exists():
             raise SmokeInputError(f"required path not found: {path}")
+    if (
+        config.init_checkpoint_path is not None
+        and not config.init_checkpoint_path.is_file()
+    ):
+        raise SmokeInputError(
+            f"init checkpoint not found: {config.init_checkpoint_path}"
+        )
 
 
 def seed_everything(seed: int) -> None:

@@ -4,8 +4,8 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-MAX_PILOT_STEPS = 64
-MAX_PILOT_ROWS = 256
+MAX_PILOT_STEPS = 1024
+MAX_PILOT_ROWS = 2048
 
 
 @dataclass(frozen=True, slots=True)
@@ -46,6 +46,7 @@ class SmokeConfig:
     lr: float
     seed: int
     max_rows: int
+    init_checkpoint_path: Path | None = None
 
 
 @dataclass(frozen=True, slots=True)
@@ -67,3 +68,4 @@ class SmokeSummary:
     trainable_parameters: int
     frozen_base_parameters: int
     checkpoint: CheckpointVerification
+    init_checkpoint_path: str | None = None

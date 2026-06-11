@@ -4,3 +4,12 @@ __pycache__/
 .ruff_cache/
 .DS_Store
 .venv/
+.tmp/
+checkpoints/*_continue_20260611.safetensors
+checkpoints/*overfit*.safetensors
+training/overfit_inputs/
+eval/siglip_runtime_quality_20260611_c*/*.api_prompt.json
+eval/siglip_runtime_quality_20260611_c*/*.history.json
+eval/siglip_runtime_quality_20260611_c*/*.response.json
+eval/siglip_runtime_quality_20260611_c*/*.prompt_id
+eval/siglip_runtime_quality_20260611_c*/*.png

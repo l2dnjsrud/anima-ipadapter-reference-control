@@ -8,7 +8,7 @@
 - The upstream loader constructor mismatch is avoided by detecting checkpoint tensor shapes and constructing `IPAdapterSigLIP` with explicit dimensions.
 - PE-Core checkpoints are rejected by the SigLIP loader with a clear message instead of being partially loaded as SigLIP.
 - `AnimaSigLIPIPAdapterLoader` uses the ComfyUI `ipadapter` model selector, not a raw filesystem path.
-- `AnimaSigLIPIPAdapterApply` clones the ComfyUI `MODEL` and registers an `attn2_patch`, matching ComfyUI `ModelPatcher.set_model_attn2_patch` semantics.
+- `AnimaSigLIPIPAdapterApply` clones the ComfyUI `MODEL` and installs a PE-style UNet/model wrapper that temporarily patches the live Anima DiT `cross_attn.forward` calls during sampling. The previous `attn2_patch`-only path can execute as a node but is not sufficient for the Anima/Qwen workflow surface.
 - A one-step smoke checkpoint was written to `checkpoints/anima_siglip_ip_adapter_smoke_20260610.safetensors` and loads through `siglip_checkpoint.load_siglip_adapter`.
 
 ## Dataset facts checked on 2026-06-10
@@ -199,3 +199,67 @@ SigLIP ComfyUI/API image-generation workflow has not produced contact sheets.
 5. Save a SigLIP checkpoint with `resampler.time_proj.*`, `resampler.layers.*`, `intermediate_encoder.*`, `ip_cross_attns.*`, and `ip_scales.*` keys.
 6. Load it through `AnimaSigLIPIPAdapterLoader`; do not use the PE-Core checkpoint with this loader.
 7. Wire the native SigLIP ComfyUI/API workflow, then evaluate against no-IP and PE-Core baselines with contact sheets before calling it usable.
+
+## 2026-06-11 runtime and tuning result
+
+The native SigLIP apply path was changed from an `attn2_patch`-only node to a
+PE-style sampling wrapper that temporarily patches the live Anima DiT
+`cross_attn.forward` calls. This fixed the zero-effect bug:
+
+- no-IP and `weight=0` are pixel-identical,
+- `weight>0` changes generated pixels,
+- the node can produce good-looking prompt-aligned comic panels.
+
+However, this does **not** prove a finished reference-control model. The latest
+quality run is documented in:
+
+```text
+eval/siglip_runtime_quality_20260611_c007_self512_identity/report.md
+```
+
+Summary:
+
+- `color64_continue` improved prompt-aligned visual strength when the prompt
+  explicitly contained old monk / white beard / prayer beads hints.
+- `color64_continue`, `self64_continue`, and `self512_continue` all failed the
+  stricter identity test where those identity tokens were removed from the
+  prompt.
+- The best matched-prompt contact sheet is:
+  `eval/siglip_runtime_quality_20260611_c004_color64_matched/contact_sheet.jpg`.
+- The identity failure evidence is:
+  `eval/siglip_runtime_quality_20260611_c007_self512_identity/contact_sheet.jpg`.
+
+Therefore the current local SigLIP checkpoints should be treated as research
+artifacts, not a ready-to-trust IP-Adapter. More short tuning on adjacent panel
+pairs is unlikely to solve identity control. The next training step needs
+identity-aware or same-image reconstruction data, cached feature training for
+longer runs, and a validation gate that removes identity words from the prompt.
+
+## 2026-06-11 one-image overfit gate
+
+A one-image overfit gate was run after the `self512` identity failure. It used
+the same `codex_contact_ref03.png` monk image as both reference and target, but
+the training and evaluation prompt intentionally removed direct identity words
+such as old, bald, white beard, and prayer beads.
+
+Result:
+
+- Checkpoint:
+  `checkpoints/anima_siglip_ip_adapter_ref03_overfit1024_20260611.safetensors`
+  (local ignored artifact)
+- Evidence:
+  `eval/siglip_runtime_quality_20260611_c008_ref03_overfit1024_identity/contact_sheet.jpg`
+- Report:
+  `eval/siglip_runtime_quality_20260611_c008_ref03_overfit1024_identity/report.md`
+- Decision: `overfit_pass_generalization_required`
+
+The overfit checkpoint visibly recovered the bald monk face, red beads, robe
+color, speech bubble, and crop without prompt-side identity hints. This means
+the native SigLIP route is not a proven dead end. The remaining problem is
+generalization and scale stability: the current local color/self checkpoints do
+not carry identity across held-out prompts, and high overfit weights can still
+collapse.
+
+Training code now caches repeated one-row target latents, text embeddings, and
+SigLIP features so the next focused overfit/ablation runs do not waste most of
+their time recomputing fixed inputs.

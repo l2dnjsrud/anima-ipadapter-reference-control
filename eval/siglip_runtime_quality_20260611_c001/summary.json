@@ -1,0 +1,79 @@
+{
+  "base_url": "http://127.0.0.1:8114",
+  "workflow": "eval/siglip_native_workflow_eval_20260611/api_prompt_siglip_smoke.json",
+  "results": {
+    "no_ip": {
+      "prompt_id": "5bac9d01-c76a-4c99-ba1e-6a4361a35a48",
+      "image": "eval/siglip_runtime_quality_20260611_c001/no_ip.png",
+      "weight": null
+    },
+    "siglip_w0": {
+      "prompt_id": "ab6419c7-f155-4cb3-8565-10d55b9a500e",
+      "image": "eval/siglip_runtime_quality_20260611_c001/siglip_w0.png",
+      "weight": 0.0
+    },
+    "siglip_w1": {
+      "prompt_id": "7eca7dfc-bb26-4001-854a-b36074ee33fe",
+      "image": "eval/siglip_runtime_quality_20260611_c001/siglip_w1.png",
+      "weight": 1.0
+    },
+    "siglip_w2": {
+      "prompt_id": "57f28a29-6231-4296-a61f-f4f5fcca092f",
+      "image": "eval/siglip_runtime_quality_20260611_c001/siglip_w2.png",
+      "weight": 2.0
+    },
+    "siglip_w5": {
+      "prompt_id": "bf2ae6cd-086b-4701-9750-18bd5677ea4e",
+      "image": "eval/siglip_runtime_quality_20260611_c001/siglip_w5.png",
+      "weight": 5.0
+    }
+  },
+  "metrics": {
+    "no_ip": {
+      "mean_abs_vs_no_ip": 0.0,
+      "rms_vs_no_ip": 0.0,
+      "max_abs_vs_no_ip": 0,
+      "size": [
+        1344,
+        800
+      ]
+    },
+    "siglip_w0": {
+      "mean_abs_vs_no_ip": 0.0,
+      "rms_vs_no_ip": 0.0,
+      "max_abs_vs_no_ip": 0,
+      "size": [
+        1344,
+        800
+      ]
+    },
+    "siglip_w1": {
+      "mean_abs_vs_no_ip": 32.20637679811508,
+      "rms_vs_no_ip": 42.85016632080078,
+      "max_abs_vs_no_ip": 195,
+      "size": [
+        1344,
+        800
+      ]
+    },
+    "siglip_w2": {
+      "mean_abs_vs_no_ip": 39.48661303323413,
+      "rms_vs_no_ip": 49.1883430480957,
+      "max_abs_vs_no_ip": 215,
+      "size": [
+        1344,
+        800
+      ]
+    },
+    "siglip_w5": {
+      "mean_abs_vs_no_ip": 78.19210131448413,
+      "rms_vs_no_ip": 89.71704864501953,
+      "max_abs_vs_no_ip": 203,
+      "size": [
+        1344,
+        800
+      ]
+    }
+  },
+  "contact_sheet": "eval/siglip_runtime_quality_20260611_c001/contact_sheet.jpg"
+}

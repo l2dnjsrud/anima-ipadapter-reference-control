@@ -19,8 +19,9 @@ from __future__ import annotations
 
 import json
 import math
+import random
 import sys
-from dataclasses import asdict
+from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Annotated
 
@@ -36,7 +37,7 @@ for candidate in (ROOT, ANIMA_ROOT):
         sys.path.insert(0, str(candidate))
 
 from siglip_checkpoint import SigLIPCheckpointError, load_siglip_adapter  # noqa: E402
-from siglip_model import IPAdapterSigLIP  # noqa: E402
+from siglip_model import IPAdapterSigLIP, SigLIPFeatures  # noqa: E402
 from training.siglip_smoke_data import load_pair_rows, resolve_pair_paths  # noqa: E402
 from training.siglip_smoke_patch import patched_cross_attention  # noqa: E402
 from training.siglip_smoke_runtime import (  # noqa: E402
@@ -54,18 +55,30 @@ from training.siglip_smoke_types import (  # noqa: E402
     SmokeConfig,
     SmokeInputError,
     SmokeSummary,
+    PairRow,
 )
 
 
 DEFAULT_DIT = ANIMA_ROOT / "models/diffusion_models/anima-base-v1.0.safetensors"
 DEFAULT_TEXT = ANIMA_ROOT / "models/text_encoders/qwen_3_06b_base.safetensors"
 DEFAULT_VAE = ANIMA_ROOT / "models/vae/qwen_image_vae.safetensors"
-DEFAULT_OUTPUT = Path("/data/ai/models/ipadapter/anima_siglip_ip_adapter_smoke_20260610.safetensors")
-DEFAULT_PE = Path("/data/ai/models/ipadapter/anima_ip_adapter_quality_20260610.safetensors")
+DEFAULT_OUTPUT = Path(
+    "/data/ai/models/ipadapter/anima_siglip_ip_adapter_smoke_20260610.safetensors"
+)
+DEFAULT_PE = Path(
+    "/data/ai/models/ipadapter/anima_ip_adapter_quality_20260610.safetensors"
+)
 DEFAULT_SIGLIP = "google/siglip2-base-patch16-512"
 
 app = typer.Typer(add_completion=False)
 console = Console()
+
+
+@dataclass(slots=True)
+class PreparedTrainingRow:
+    latents: torch.Tensor
+    crossattn_emb: torch.Tensor
+    features: SigLIPFeatures
 
 
 def freeze_module(module: torch.nn.Module) -> int:
@@ -78,7 +91,25 @@ def freeze_module(module: torch.nn.Module) -> int:
 
 
 def trainable_parameter_count(module: torch.nn.Module) -> int:
-    return sum(parameter.numel() for parameter in module.parameters() if parameter.requires_grad)
+    return sum(
+        parameter.numel()
+        for parameter in module.parameters()
+        if parameter.requires_grad
+    )
+
+
+def load_trainable_adapter(
+    config: SmokeConfig, device: torch.device, dtype: torch.dtype
+) -> IPAdapterSigLIP:
+    if config.init_checkpoint_path is None:
+        adapter = IPAdapterSigLIP()
+    else:
+        adapter = load_siglip_adapter(config.init_checkpoint_path)
+    adapter.to(device=device, dtype=dtype)
+    adapter.train()
+    for parameter in adapter.parameters():
+        parameter.requires_grad_(True)
+    return adapter
 
 
 def save_adapter_checkpoint(adapter: IPAdapterSigLIP, output_path: Path) -> None:
@@ -90,11 +121,17 @@ def save_adapter_checkpoint(adapter: IPAdapterSigLIP, output_path: Path) -> None
     save_file(
         state,
         str(output_path),
-        metadata={"format": "pt", "ss_encoder": "siglip2", "ss_adapter": "IPAdapterSigLIP"},
+        metadata={
+            "format": "pt",
+            "ss_encoder": "siglip2",
+            "ss_adapter": "IPAdapterSigLIP",
+        },
     )
 
 
-def verify_checkpoint(output_path: Path, pe_checkpoint_path: Path) -> CheckpointVerification:
+def verify_checkpoint(
+    output_path: Path, pe_checkpoint_path: Path
+) -> CheckpointVerification:
     load_siglip_adapter(output_path)
     pe_rejected = False
     try:
@@ -108,12 +145,57 @@ def verify_checkpoint(output_path: Path, pe_checkpoint_path: Path) -> Checkpoint
     )
 
 
+def prepare_training_row(
+    row: PairRow,
+    config: SmokeConfig,
+    vae,
+    text_encoder: torch.nn.Module,
+    anima: torch.nn.Module,
+    siglip: torch.nn.Module,
+    processor,
+    prepare_text_inputs,
+    device: torch.device,
+    dtype: torch.dtype,
+) -> PreparedTrainingRow:
+    paths = resolve_pair_paths(row, config.image_root)
+    latents = encode_target_latents(
+        vae, paths.target_image, config.resolution, device, dtype
+    ).detach()
+    crossattn_emb = encode_prompt(
+        row.prompt,
+        config.text_encoder_path,
+        text_encoder,
+        anima,
+        prepare_text_inputs,
+        device,
+        dtype,
+    ).detach()
+    features = encode_siglip_features(
+        siglip,
+        processor,
+        paths.ref_image,
+        device,
+        dtype,
+    )
+    return PreparedTrainingRow(
+        latents=latents,
+        crossattn_emb=crossattn_emb,
+        features=_detach_features(features),
+    )
+
+
+def _detach_features(features: SigLIPFeatures) -> SigLIPFeatures:
+    shallow = features.shallow.detach() if features.shallow is not None else None
+    return SigLIPFeatures(deep=features.deep.detach(), shallow=shallow)
+
+
 def run_real_smoke(config: SmokeConfig) -> SmokeSummary:
     validate_config(config)
     seed_everything(config.seed)
     device = torch.device(config.device)
     dtype = torch.bfloat16 if device.type == "cuda" else torch.float32
     rows = load_pair_rows(config.manifest_path, limit=config.max_rows)
+    random.Random(config.seed).shuffle(rows)
 
     from library.anima.weights import load_anima_model, load_qwen3_text_encoder
     from library.inference.text import prepare_text_inputs
@@ -129,7 +211,9 @@ def run_real_smoke(config: SmokeConfig) -> SmokeSummary:
     frozen_params = freeze_module(anima)
     vae = load_vae(str(config.vae_path), device=device, dtype=dtype, eval=True)
     frozen_params += freeze_module(vae)
-    text_encoder, _ = load_qwen3_text_encoder(str(config.text_encoder_path), dtype=dtype, device=str(device))
+    text_encoder, _ = load_qwen3_text_encoder(
+        str(config.text_encoder_path), dtype=dtype, device=str(device)
+    )
     frozen_params += freeze_module(text_encoder)
     siglip = SiglipVisionModel.from_pretrained(
         config.siglip_model_id,
@@ -139,15 +223,42 @@ def run_real_smoke(config: SmokeConfig) -> SmokeSummary:
     processor = AutoImageProcessor.from_pretrained(config.siglip_model_id)
     frozen_params += freeze_module(siglip)
 
-    adapter = IPAdapterSigLIP().to(device=device, dtype=dtype)
+    adapter = load_trainable_adapter(config, device, dtype)
     optimizer = torch.optim.AdamW(adapter.parameters(), lr=config.lr)
     scheduler = FlowMatchEulerDiscreteScheduler(num_train_timesteps=1000, shift=1.0)
     losses: list[float] = []
+    single_row_cache = (
+        prepare_training_row(
+            rows[0],
+            config,
+            vae,
+            text_encoder,
+            anima,
+            siglip,
+            processor,
+            prepare_text_inputs,
+            device,
+            dtype,
+        )
+        if len(rows) == 1
+        else None
+    )
 
     for step in range(config.steps):
         row = rows[step % len(rows)]
-        paths = resolve_pair_paths(row, config.image_root)
-        latents = encode_target_latents(vae, paths.target_image, config.resolution, device, dtype)
+        prepared = single_row_cache or prepare_training_row(
+            row,
+            config,
+            vae,
+            text_encoder,
+            anima,
+            siglip,
+            processor,
+            prepare_text_inputs,
+            device,
+            dtype,
+        )
+        latents = prepared.latents
         noise = torch.randn_like(latents)
         noisy, timesteps, _sigmas = get_noisy_model_input_and_timesteps(
             noise_args(),
@@ -157,34 +268,32 @@ def run_real_smoke(config: SmokeConfig) -> SmokeSummary:
             device,
             dtype,
         )
-        crossattn_emb = encode_prompt(
-            row.prompt,
-            config.text_encoder_path,
-            text_encoder,
-            anima,
-            prepare_text_inputs,
-            device,
-            dtype,
-        )
-        features = encode_siglip_features(
-            siglip,
-            processor,
-            paths.ref_image,
-            device,
-            dtype,
-        )
-        image_tokens = adapter.encode_ref(features, timestep=timesteps)
+        image_tokens = adapter.encode_ref(prepared.features, timestep=timesteps)
         padding_mask = torch.zeros(
-            latents.shape[0], 1, latents.shape[-2], latents.shape[-1], device=device, dtype=dtype
+            latents.shape[0],
+            1,
+            latents.shape[-2],
+            latents.shape[-1],
+            device=device,
+            dtype=dtype,
         )
 
         optimizer.zero_grad(set_to_none=True)
         with patched_cross_attention(anima, adapter, image_tokens):
-            model_pred = anima(noisy.unsqueeze(2), timesteps, crossattn_emb, padding_mask=padding_mask)
+            model_pred = anima(
+                noisy.unsqueeze(2),
+                timesteps,
+                prepared.crossattn_emb,
+                padding_mask=padding_mask,
+            )
         target = noise - latents
-        loss = torch.nn.functional.mse_loss(model_pred.squeeze(2).float(), target.float())
+        loss = torch.nn.functional.mse_loss(
+            model_pred.squeeze(2).float(), target.float()
+        )
         if not torch.isfinite(loss):
-            raise SmokeInputError(f"non-finite loss at step {step}: {float(loss.detach().cpu())}")
+            raise SmokeInputError(
+                f"non-finite loss at step {step}: {float(loss.detach().cpu())}"
+            )
         loss.backward()
         optimizer.step()
         losses.append(float(loss.detach().cpu()))
@@ -202,13 +311,20 @@ def run_real_smoke(config: SmokeConfig) -> SmokeSummary:
         trainable_parameters=trainable_parameter_count(adapter),
         frozen_base_parameters=frozen_params,
         checkpoint=checkpoint,
+        init_checkpoint_path=str(config.init_checkpoint_path)
+        if config.init_checkpoint_path
+        else None,
     )
 
 
 @app.command()
 def main(
-    manifest_path: Annotated[Path, typer.Option()] = Path("training/manifests/local_color_pairs_pilot_20260610.jsonl"),
-    image_root: Annotated[Path, typer.Option()] = Path("/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best"),
+    manifest_path: Annotated[Path, typer.Option()] = Path(
+        "training/manifests/local_color_pairs_pilot_20260610.jsonl"
+    ),
+    image_root: Annotated[Path, typer.Option()] = Path(
+        "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best"
+    ),
     output_path: Annotated[Path, typer.Option()] = DEFAULT_OUTPUT,
     dit_path: Annotated[Path, typer.Option()] = DEFAULT_DIT,
     text_encoder_path: Annotated[Path, typer.Option()] = DEFAULT_TEXT,
@@ -221,6 +337,7 @@ def main(
     lr: Annotated[float, typer.Option(min=1e-7, max=1e-2)] = 1e-5,
     seed: Annotated[int, typer.Option()] = 20260610,
     max_rows: Annotated[int, typer.Option(min=1, max=MAX_PILOT_ROWS)] = 4,
+    init_checkpoint_path: Annotated[Path | None, typer.Option()] = None,
 ) -> None:
     config = SmokeConfig(
         manifest_path=manifest_path,
@@ -237,6 +354,7 @@ def main(
         lr=lr,
         seed=seed,
         max_rows=max_rows,
+        init_checkpoint_path=init_checkpoint_path,
     )
     summary = run_real_smoke(config)
     console.print_json(json.dumps(asdict(summary), ensure_ascii=True))

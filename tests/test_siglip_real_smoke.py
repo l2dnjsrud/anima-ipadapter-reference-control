@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+from dataclasses import replace
 from pathlib import Path
 
 import torch
@@ -10,6 +11,7 @@ from siglip_checkpoint import SigLIPCheckpointError, load_siglip_adapter
 from siglip_model import IPAdapterSigLIP
 from training.siglip_real_smoke import (
     freeze_module,
+    load_trainable_adapter,
     save_adapter_checkpoint,
     trainable_parameter_count,
     verify_checkpoint,
@@ -94,6 +96,18 @@ def test_checkpoint_roundtrip_and_pe_rejection(tmp_path: Path) -> None:
         raise AssertionError("PE checkpoint should be rejected by SigLIP loader")
 
 
+def test_load_trainable_adapter_can_continue_from_checkpoint(tmp_path: Path) -> None:
+    checkpoint = tmp_path / "siglip.safetensors"
+    save_adapter_checkpoint(_tiny_adapter(), checkpoint)
+    config = _config(tmp_path, steps=1, max_rows=1)
+    config = replace(config, init_checkpoint_path=checkpoint)
+
+    adapter = load_trainable_adapter(config, torch.device("cpu"), torch.float32)
+
+    assert adapter.training is True
+    assert trainable_parameter_count(adapter) > 0
+
+
 def test_patched_cross_attention_adds_adapter_block_output() -> None:
     anima = _FakeAnima()
     adapter = _FakeAdapter()
@@ -140,6 +154,18 @@ def test_validate_config_rejects_unbounded_pilot_rows(tmp_path: Path) -> None:
         assert f"max_rows must be <= {MAX_PILOT_ROWS}" in str(error)
     else:
         raise AssertionError("unbounded pilot rows should fail")
+
+
+def test_validate_config_rejects_missing_init_checkpoint(tmp_path: Path) -> None:
+    config = _config(tmp_path, steps=1, max_rows=1)
+    config = replace(config, init_checkpoint_path=tmp_path / "missing.safetensors")
+
+    try:
+        validate_config(config)
+    except SmokeInputError as error:
+        assert "init checkpoint not found" in str(error)
+    else:
+        raise AssertionError("missing init checkpoint should fail")
 
 
 def test_smoke_summary_records_deterministic_loss_history() -> None:

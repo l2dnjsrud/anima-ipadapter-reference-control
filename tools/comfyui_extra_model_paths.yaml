@@ -4,3 +4,6 @@ anima_models:
   text_encoders: models/text_encoders
   vae: models/vae
   ipadapter: models/ipadapter
+repo_ipadapter:
+  base_path: /home/wktwin/anima-ipadapter-reference-control
+  ipadapter: checkpoints

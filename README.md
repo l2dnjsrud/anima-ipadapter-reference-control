@@ -110,14 +110,29 @@ For that workflow, the loader selector must list:
 anima_siglip_ip_adapter_pilot_20260610.safetensors
 ```
 
-As of the 2026-06-11 live ComfyUI API check, that pilot checkpoint was present
-only in this repo's `checkpoints/` folder and was not visible under
-`/data/ai/models/ipadapter/`, so SigLIP image generation was blocked at prompt
-validation. The base no-IP API graph did run successfully. See:
+As of the 2026-06-11 recovery run, the SigLIP apply node patches the live Anima
+DiT through a PE-style sampling wrapper instead of relying on the old
+`attn2_patch`-only path. The zero-effect bug is fixed: `weight=0` matches no-IP
+pixels and `weight>0` changes generated images. This still does not make the
+SigLIP checkpoints finished reference-control models. Prompt-aligned generations
+can look good, but the stricter identity test still fails after `color64`,
+`self64`, and `self512` continuation runs. See:
 
 ```text
 eval/siglip_native_workflow_eval_20260611/report.md
+eval/siglip_runtime_quality_20260611_c007_self512_identity/report.md
 ```
+
+A stricter one-image overfit gate then passed:
+
+```text
+eval/siglip_runtime_quality_20260611_c008_ref03_overfit1024_identity/report.md
+eval/siglip_runtime_quality_20260611_c008_ref03_overfit1024_identity/contact_sheet.jpg
+```
+
+That run recovered the ref03 monk identity without direct identity prompt words,
+so the SigLIP path is not a hard runtime dead end. It is still an overfit proof,
+not a generalized ready-to-trust reference-control checkpoint.
 
 The legacy workflows remain available:
 
@@ -257,11 +272,12 @@ docs/ipadapter_reference_research.md
 ```
 
 Current state: the native SigLIP2/TimeResampler/IPCrossAttn code path,
-synthetic trainability proof, and a real one-step frozen-Anima SigLIP2 smoke run
-all pass. The smoke checkpoint is loadable, but it is not a high-quality
-reference-control model yet. Full quality training should not start until the
-pilot runtime, final model location, and contact-sheet evaluation gate are
-approved.
+synthetic trainability proof, real frozen-Anima smoke training, continuation
+loading, and native ComfyUI API execution all pass. The available SigLIP
+checkpoints are still research artifacts, not high-quality reference-control
+models. The best current result is prompt-aligned style/composition influence;
+blind identity transfer is not solved by the local adjacent-panel or
+self-reconstruction pilots.
 
 For local color-panel tests, generate Wenaka-style pairs from the current color
 winner:
@@ -325,14 +341,14 @@ for the Anima DiT PE-Core IP-Adapter path.
 ## SigLIP2 Branch
 
 The Wenaka-style SigLIP2/TimeResampler/IPCrossAttn branch is implemented as
-native scaffolding in `native_siglip.py`, `siglip_model.py`, and
-`siglip_checkpoint.py`. It rejects the PE-Core checkpoint clearly and uses the
-same ComfyUI `ipadapter_name` selector style. The current pilot checkpoint is
-`checkpoints/anima_siglip_ip_adapter_pilot_20260610.safetensors`, but it is not
-quality-proven yet. `eval/siglip_native_workflow_eval_20260611/report.md`
-records the first native UI/API workflow validation and the current model-folder
-blocker. `docs/siglip_training.md` records the smoke evidence, dataset facts,
-and remaining full-training gate.
+native scaffolding in `native_siglip.py`, `native_siglip_runtime.py`,
+`siglip_model.py`, and `siglip_checkpoint.py`. It rejects the PE-Core checkpoint
+clearly and uses the same ComfyUI `ipadapter_name` selector style. The current
+pilot checkpoint is `checkpoints/anima_siglip_ip_adapter_pilot_20260610.safetensors`.
+Continuation checkpoints from 2026-06-11 are local experiment artifacts and are
+ignored by git unless deliberately promoted. `docs/siglip_training.md` records
+the smoke evidence, runtime fix, continuation runs, and why identity-control
+requires a better training set and validation gate.
 
 ## Training Summary
 

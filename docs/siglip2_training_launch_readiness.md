@@ -4,7 +4,7 @@ Date: 2026-06-10
 
 ## Verdict
 
-Do not start full SigLIP2/TimeResampler/IPCrossAttn training yet.
+Do not start broad full-dataset SigLIP2/TimeResampler/IPCrossAttn training yet.
 
 The native code path has passed a real one-step frozen-Anima SigLIP2 smoke
 training run and a bounded 16-step color-panel pilot on the local curated
@@ -13,12 +13,12 @@ Anima/Qwen/VAE/SigLIP2, train only the adapter modules, write loadable
 SigLIP-family checkpoints, and reject the PE-Core checkpoint with the SigLIP
 loader.
 
-This is not a high-quality usable reference-control checkpoint yet. Full
-quality training still needs explicit runtime approval, a writable final model
-location, and native SigLIP contact-sheet evaluation against no-IP and PE-Core
-baselines. The PE IP-Adapter-only line-art colorization track is stopped;
-line-art colorization needs spatial conditioning in addition to reference
-control.
+This is not a high-quality usable reference-control checkpoint yet. The native
+runtime now affects generated pixels, but the current checkpoints fail blind
+identity/reference control when prompt-side identity hints are removed. The next
+training step is a targeted one-image overfit gate, not a broad full-dataset
+launch. The PE IP-Adapter-only line-art colorization track is stopped; line-art
+colorization needs spatial conditioning in addition to reference control.
 
 ## What Is Ready
 
@@ -27,7 +27,10 @@ control.
   - `AnimaSigLIPEncodeImage`
   - `AnimaSigLIPIPAdapterApply`
 - The loader uses the ComfyUI `ipadapter` model selector.
-- The apply node patches the ComfyUI `MODEL` through an `attn2_patch`.
+- The apply node patches the ComfyUI `MODEL` through a PE-style UNet/model
+  wrapper that temporarily patches live Anima DiT cross-attention. This replaced
+  the initial `attn2_patch`-only surface after live API evidence showed that
+  execution alone could still match no-IP pixels.
 - The synthetic proof exercises:
   - SigLIP deep and shallow feature fusion
   - `CrossLayerEncoder`
@@ -257,21 +260,49 @@ workflows/anima_ipadapter_siglip_native_reference.json
 eval/siglip_native_workflow_eval_20260611/report.md
 ```
 
-The normal no-IP ComfyUI API graph queued successfully and produced a nonblank
-image through `/view`, but the SigLIP prompt failed before generation:
+That first run was blocked because the live `ipadapter_name` selector did not
+include `anima_siglip_ip_adapter_pilot_20260610.safetensors`. A later isolated
+ComfyUI run used the repo-local custom node and `tools/comfyui_extra_model_paths.yaml`
+to expose repo-local checkpoints under the normal `ipadapter` model selector.
+
+The runtime no-op was then fixed by replacing the `attn2_patch`-only path with a
+PE-style model wrapper that temporarily patches the live Anima DiT
+`cross_attn.forward` calls during sampling.
+
+Evidence:
+
+- `eval/siglip_runtime_quality_20260611_c001/contact_sheet.jpg`
+  - `weight=0` is pixel-identical to no-IP.
+  - `weight>0` changes generated pixels, proving the native SigLIP path is no
+    longer a no-op.
+- `eval/siglip_runtime_quality_20260611_c004_color64_matched/contact_sheet.jpg`
+  - prompt-aligned generations can look visually strong when prompt text
+    contains the reference identity attributes.
+- `eval/siglip_runtime_quality_20260611_c007_self512_identity/contact_sheet.jpg`
+  - blind identity/reference control still fails when direct prompt hints such
+    as old, bald, white beard, and prayer beads are removed.
+
+Latest decision:
 
 ```text
-HTTP 400 prompt_outputs_failed_validation
-AnimaSigLIPIPAdapterLoader: value_not_in_list
+partial_pass_training_required
 ```
 
-The live `ipadapter_name` selector did not include
-`anima_siglip_ip_adapter_pilot_20260610.safetensors`. A non-sudo install into
-`/data/ai/models/ipadapter/` failed with `Permission denied`, so visual
-reference-control quality is still unproven. The next executable step is to
-install the pilot checkpoint into the live ComfyUI `ipadapter` model directory,
-refresh or restart ComfyUI, and rerun the SigLIP/no-IP/PE contact-sheet
-comparison.
+Current interpretation after `c007`: the native runtime is usable for
+experimentation, but the checkpoint has not learned a reliable image-reference
+channel. A one-image overfit gate was needed to determine whether the adapter
+could learn reference identity at all when the prompt withholds identity
+details.
+
+The follow-up `c008` overfit gate passed:
+
+```text
+eval/siglip_runtime_quality_20260611_c008_ref03_overfit1024_identity/report.md
+eval/siglip_runtime_quality_20260611_c008_ref03_overfit1024_identity/contact_sheet.jpg
+```
+
+This proves the native SigLIP route is not a hard runtime impossibility. It
+does not prove generalized reference-control quality.
 
 ## Stop Conditions
 
@@ -283,17 +314,23 @@ Stop and ask before proceeding if any of these are true:
 - Full training would start a long GPU run.
 - The validation split is missing.
 - The checkpoint cannot be loaded through `AnimaSigLIPIPAdapterLoader`.
+- A small multi-reference identity run cannot reproduce held-out references
+  after the one-image overfit gate has passed; in that case this exact SigLIP
+  adapter route should be paused in favor of a stronger anime/VL encoder path.
 
 ## Next Executable Step
 
-Move from checkpoint proof to visual proof. The next path is:
+Move from one-image overfit proof to the smallest generalization proof. The next
+path is:
 
-1. Build a normal native SigLIP ComfyUI API workflow and UI workflow using
-   `AnimaSigLIPIPAdapterLoader`, `AnimaSigLIPEncodeImage`, and
-   `AnimaSigLIPIPAdapterApply`.
-2. Make `/data/ai/models/ipadapter/` writable for the final SigLIP artifact, or
-   choose a repo-local output plus a manual copy command.
-3. Load the pilot checkpoint through `AnimaSigLIPIPAdapterLoader`.
-4. Generate contact sheets against no-IP and PE-Core baselines.
-5. Continue to longer training only if reference appearance improves without
-   layout collapse.
+1. Build a small identity-aware self-reconstruction manifest from several
+   distinct color-panel references.
+2. Cache repeated target latents, prompt embeddings, and SigLIP features so the
+   training loop can run longer without wasting time on fixed inputs.
+3. Train a bounded multi-reference checkpoint from the overfit or self512
+   continuation.
+4. Evaluate with prompts that remove identity/color tokens and require the image
+   encoder to carry those attributes.
+5. If the multi-reference checkpoint still cannot recover held-out references,
+   stop short local SigLIP tuning and move to a Qwen-VL/anime-image-encoder
+   based reference-control plan.
