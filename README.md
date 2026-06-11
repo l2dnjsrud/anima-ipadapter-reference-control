@@ -67,6 +67,7 @@ Import one of these JSON workflows in ComfyUI:
 
 ```text
 workflows/anima_ipadapter_pe_native_reference.json
+workflows/anima_ipadapter_siglip_native_reference.json
 workflows/anima_ipadapter_reference_generate.json
 workflows/anima_ipadapter_contactsheet_ref03_ersde.json
 ```
@@ -88,6 +89,34 @@ The PE loader uses the `ipadapter_name` model selector. Select:
 
 ```text
 anima_ip_adapter_quality_20260610.safetensors
+```
+
+`anima_ipadapter_siglip_native_reference.json` is the native SigLIP2 pilot
+workflow. It uses:
+
+```text
+LoadImage
+  -> AnimaSigLIPEncodeImage
+AnimaSigLIPIPAdapterLoader + UNETLoader
+  -> AnimaSigLIPIPAdapterApply
+  -> CFGGuider / BasicScheduler / SamplerCustomAdvanced
+  -> VAEDecode
+  -> SaveImage
+```
+
+For that workflow, the loader selector must list:
+
+```text
+anima_siglip_ip_adapter_pilot_20260610.safetensors
+```
+
+As of the 2026-06-11 live ComfyUI API check, that pilot checkpoint was present
+only in this repo's `checkpoints/` folder and was not visible under
+`/data/ai/models/ipadapter/`, so SigLIP image generation was blocked at prompt
+validation. The base no-IP API graph did run successfully. See:
+
+```text
+eval/siglip_native_workflow_eval_20260611/report.md
 ```
 
 The legacy workflows remain available:
@@ -298,10 +327,12 @@ for the Anima DiT PE-Core IP-Adapter path.
 The Wenaka-style SigLIP2/TimeResampler/IPCrossAttn branch is implemented as
 native scaffolding in `native_siglip.py`, `siglip_model.py`, and
 `siglip_checkpoint.py`. It rejects the PE-Core checkpoint clearly and uses the
-same ComfyUI `ipadapter_name` selector style. The current real SigLIP
-checkpoint is a one-step smoke artifact, not a production-quality checkpoint;
-`docs/siglip_training.md` records the smoke evidence, dataset facts, and
-remaining full-training gate.
+same ComfyUI `ipadapter_name` selector style. The current pilot checkpoint is
+`checkpoints/anima_siglip_ip_adapter_pilot_20260610.safetensors`, but it is not
+quality-proven yet. `eval/siglip_native_workflow_eval_20260611/report.md`
+records the first native UI/API workflow validation and the current model-folder
+blocker. `docs/siglip_training.md` records the smoke evidence, dataset facts,
+and remaining full-training gate.
 
 ## Training Summary
 

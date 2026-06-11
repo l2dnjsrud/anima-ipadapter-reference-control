@@ -248,6 +248,31 @@ A checkpoint is not considered usable until it passes all of these:
 - Reference-control contact sheet shows a measurable improvement over no-IP baseline.
 - Line-art colorization is evaluated separately with spatial control enabled.
 
+## 2026-06-11 Native Workflow Check
+
+Native SigLIP UI/API workflow validation was added in:
+
+```text
+workflows/anima_ipadapter_siglip_native_reference.json
+eval/siglip_native_workflow_eval_20260611/report.md
+```
+
+The normal no-IP ComfyUI API graph queued successfully and produced a nonblank
+image through `/view`, but the SigLIP prompt failed before generation:
+
+```text
+HTTP 400 prompt_outputs_failed_validation
+AnimaSigLIPIPAdapterLoader: value_not_in_list
+```
+
+The live `ipadapter_name` selector did not include
+`anima_siglip_ip_adapter_pilot_20260610.safetensors`. A non-sudo install into
+`/data/ai/models/ipadapter/` failed with `Permission denied`, so visual
+reference-control quality is still unproven. The next executable step is to
+install the pilot checkpoint into the live ComfyUI `ipadapter` model directory,
+refresh or restart ComfyUI, and rerun the SigLIP/no-IP/PE contact-sheet
+comparison.
+
 ## Stop Conditions
 
 Stop and ask before proceeding if any of these are true:

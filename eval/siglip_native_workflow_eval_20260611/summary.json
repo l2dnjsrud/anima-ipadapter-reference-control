@@ -1,0 +1,55 @@
+{
+  "id": "siglip_native_workflow_eval_20260611",
+  "date": "2026-06-11",
+  "status": "blocked",
+  "quality_proven": false,
+  "blocked_reason": "The trained SigLIP pilot checkpoint is not visible in the live ComfyUI AnimaSigLIPIPAdapterLoader ipadapter_name selector, and the current shell cannot copy it into /data/ai/models/ipadapter without elevated permissions.",
+  "comfyui": {
+    "base_url": "http://127.0.0.1:8102",
+    "version": "0.21.1",
+    "runtime_pid": 1962939,
+    "custom_node_path": "/data/ai/comfyui02/custom_nodes/anima-ipadapter-reference-control"
+  },
+  "checkpoint": {
+    "repo_path": "checkpoints/anima_siglip_ip_adapter_pilot_20260610.safetensors",
+    "comfy_name": "anima_siglip_ip_adapter_pilot_20260610.safetensors",
+    "model_dir_path": "/data/ai/models/ipadapter/anima_siglip_ip_adapter_pilot_20260610.safetensors",
+    "visible_in_loader_selector": false,
+    "copy_attempt": {
+      "command": "install -m 0644 checkpoints/anima_siglip_ip_adapter_pilot_20260610.safetensors /data/ai/models/ipadapter/anima_siglip_ip_adapter_pilot_20260610.safetensors",
+      "exit_code": 1,
+      "error": "Permission denied"
+    }
+  },
+  "workflow": {
+    "ui_workflow": "workflows/anima_ipadapter_siglip_native_reference.json",
+    "api_prompt_siglip": "eval/siglip_native_workflow_eval_20260611/api_prompt_siglip_smoke.json",
+    "api_prompt_no_ip": "eval/siglip_native_workflow_eval_20260611/api_prompt_no_ip_smoke.json",
+    "shape_tests": "8 passed in 1.17s"
+  },
+  "siglip_api_attempt": {
+    "http_status": 400,
+    "error_type": "prompt_outputs_failed_validation",
+    "node": "2",
+    "class_type": "AnimaSigLIPIPAdapterLoader",
+    "validation_error": "value_not_in_list",
+    "response": "eval/siglip_native_workflow_eval_20260611/prompt_siglip_smoke.response.json"
+  },
+  "no_ip_api_smoke": {
+    "status": "success",
+    "prompt_id": "59348a21-244a-4534-9799-5d1c5bd4cb8b",
+    "history": "eval/siglip_native_workflow_eval_20260611/prompt_no_ip_smoke.history.json",
+    "image": "eval/siglip_native_workflow_eval_20260611/no_ip_smoke_view_api.png",
+    "image_size": [
+      1344,
+      800
+    ],
+    "pixel_stddev": [
+      65.15680157433759,
+      67.53473091345194,
+      67.153692899367
+    ],
+    "nonblank": true
+  },
+  "decision": "Do not claim SigLIP reference-control quality from this run. The ComfyUI API and no-IP graph work, but the SigLIP IP-Adapter branch cannot execute until the pilot checkpoint is installed into the live ComfyUI ipadapter model directory and ComfyUI refreshes its model list."
+}
