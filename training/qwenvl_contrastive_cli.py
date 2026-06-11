@@ -62,6 +62,7 @@ def train(
     seed: Annotated[int, typer.Option()] = 20260620,
     contrastive_weight: Annotated[float, typer.Option()] = 0.35,
     contrastive_margin: Annotated[float, typer.Option()] = 0.05,
+    calibrator_bottleneck_dim: Annotated[int | None, typer.Option()] = None,
     qwenvl_model_id: Annotated[str, typer.Option()] = DEFAULT_QWENVL,
     instruction: Annotated[str, typer.Option()] = DEFAULT_INSTRUCTION,
 ) -> None:
@@ -86,6 +87,7 @@ def train(
         config,
         contrastive_weight=contrastive_weight,
         contrastive_margin=contrastive_margin,
+        calibrator_bottleneck_dim=calibrator_bottleneck_dim,
         instruction=instruction,
     )
     console.print_json(json.dumps(asdict(summary), indent=2))

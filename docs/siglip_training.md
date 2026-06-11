@@ -637,3 +637,43 @@ The next credible training stage needs one of:
 - a PE-quality teacher/control target that supervises more than denoising MSE;
 - an anime-domain image encoder trained or adapted specifically for panel
   identity, color palette, and layout.
+
+## 2026-06-11 QwenVL feature calibration check
+
+A QwenVL feature-calibration branch was added after the c003 collapse. It keeps
+the same QwenVL checkpoint family and ComfyUI node surface, but adds an
+identity-initialized trainable `feature_calibrator.*` module before the
+TimeResampler:
+
+- `qwenvl_feature_calibration.py`
+- `tests/test_qwenvl_feature_calibration.py`
+
+The calibrated continuation command wrapped
+`anima_qwenvl_ip_adapter_identity128_contrastive_0064_20260611.safetensors`
+with a 128-wide feature calibrator and ran 64 contrastive steps on the same
+local color self-reconstruction manifest. The run completed with finite loss:
+
+- checkpoint:
+  `checkpoints/anima_qwenvl_ip_adapter_identity128_calibrated_contrastive_0064_20260611.safetensors`
+  (local ignored artifact)
+- rows loaded: `16`
+- first/final loss: `0.25603` / `0.19008`
+- mean loss: `0.21313`
+- mean contrastive loss: `0.05004`
+- checkpoint loadable through the QwenVL loader
+- PE checkpoint rejected by the QwenVL loader
+
+ComfyUI API quality evidence:
+
+- `eval/qwenvl_runtime_quality_20260611_c004_calibrated_contrastive_weight_sweep/report.md`
+- `eval/qwenvl_runtime_quality_20260611_c004_calibrated_contrastive_weight_sweep/contact_sheet.jpg`
+
+Decision: `qwen_feature_calibration_changes_outputs_but_reference_collapse_remains`
+
+Interpretation: the feature-calibration path trains and loads correctly, but it
+does not solve the visual target. The c004 sheet still collapses most
+references toward the same yellow-robed street/interior conversation scene. It
+does not preserve reference-specific color, identity, character count, panel
+layout, or held-out composition. This makes a longer run on the same frozen
+QwenVL embedding plus adapter/calibrator recipe a poor next step unless the
+objective or encoder supervision changes.

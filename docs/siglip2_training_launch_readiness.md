@@ -500,3 +500,11 @@ is:
 8. Next executable step: design a trainable image-encoder/calibrator or
    teacher-supervised objective that explicitly penalizes reference collapse
    before launching another broad run.
+9. A QwenVL feature-calibration continuation has now also been tested:
+   - `eval/qwenvl_runtime_quality_20260611_c004_calibrated_contrastive_weight_sweep/report.md`
+   - `eval/qwenvl_runtime_quality_20260611_c004_calibrated_contrastive_weight_sweep/contact_sheet.jpg`
+10. The result is still not a quality pass. The calibrator trains and changes
+    images, but the contact sheet keeps collapsing references toward the same
+    yellow-robed street/interior scene. Do not launch a longer broad run on
+    this frozen-QwenVL adapter/calibrator recipe without a changed objective,
+    stronger teacher signal, or trainable/anime-domain image encoder stage.

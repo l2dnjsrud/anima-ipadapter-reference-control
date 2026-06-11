@@ -58,6 +58,7 @@ class QwenVLContrastiveSummary:
     init_checkpoint_path: str | None
     contrastive_weight: float
     contrastive_margin: float
+    calibrator_bottleneck_dim: int | None
 
 
 def run_qwenvl_contrastive_smoke(
@@ -65,6 +66,7 @@ def run_qwenvl_contrastive_smoke(
     *,
     contrastive_weight: float,
     contrastive_margin: float,
+    calibrator_bottleneck_dim: int | None = None,
     instruction: str = DEFAULT_INSTRUCTION,
 ) -> QwenVLContrastiveSummary:
     validate_config(config)
@@ -100,7 +102,11 @@ def run_qwenvl_contrastive_smoke(
     )
     frozen_params += freeze_module(embedder)
 
-    adapter = load_trainable_qwenvl_adapter(config, device)
+    adapter = load_trainable_qwenvl_adapter(
+        config,
+        device,
+        calibrator_bottleneck_dim=calibrator_bottleneck_dim,
+    )
     optimizer = torch.optim.AdamW(adapter.parameters(), lr=config.lr)
     scheduler = FlowMatchEulerDiscreteScheduler(num_train_timesteps=1000, shift=1.0)
     cache = prepare_qwenvl_cache(
@@ -190,6 +196,7 @@ def run_qwenvl_contrastive_smoke(
         ),
         contrastive_weight=contrastive_weight,
         contrastive_margin=contrastive_margin,
+        calibrator_bottleneck_dim=calibrator_bottleneck_dim,
     )
 
 

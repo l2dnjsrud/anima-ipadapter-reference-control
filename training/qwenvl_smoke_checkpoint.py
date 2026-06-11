@@ -6,18 +6,30 @@ import torch
 from safetensors.torch import save_file
 
 from qwenvl_checkpoint import QwenVLCheckpointError, load_qwenvl_adapter
+from qwenvl_feature_calibration import wrap_qwenvl_with_calibrator
 from qwenvl_model import IPAdapterQwenVL
 from training.siglip_smoke_types import CheckpointVerification, SmokeConfig
 
 
 def load_trainable_qwenvl_adapter(
-    config: SmokeConfig, device: torch.device
+    config: SmokeConfig,
+    device: torch.device,
+    *,
+    calibrator_bottleneck_dim: int | None = None,
 ) -> IPAdapterQwenVL:
     adapter = (
         IPAdapterQwenVL()
         if config.init_checkpoint_path is None
         else load_qwenvl_adapter(config.init_checkpoint_path)
     )
+    if calibrator_bottleneck_dim is not None and not hasattr(
+        adapter,
+        "feature_calibrator",
+    ):
+        adapter = wrap_qwenvl_with_calibrator(
+            adapter,
+            bottleneck_dim=calibrator_bottleneck_dim,
+        )
     adapter.to(device=device, dtype=torch.float32)
     adapter.train()
     for parameter in adapter.parameters():
