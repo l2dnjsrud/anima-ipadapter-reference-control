@@ -530,3 +530,27 @@ it a credible next branch for adapter training. The previous QwenVL plan should
 not assume `1024` dimensions: the current public 2B embedding checkpoint emits
 `2048` dimensions by default, with optional custom/MRL dimensions documented by
 the model card.
+
+## 2026-06-11 QwenVL adapter family scaffold
+
+The first QwenVL implementation step adds a separate checkpoint family instead
+of overloading the SigLIP loader:
+
+- `qwenvl_model.py`
+- `qwenvl_checkpoint.py`
+- `tests/test_qwenvl_adapter.py`
+
+The new `IPAdapterQwenVL` reuses the proven Anima-side `TimeResampler` and
+`IPCrossAttn` modules, but consumes normalized Qwen3-VL embeddings directly.
+The default input contract is `[B, 2048]` or `[B, T, 2048]`, matching the public
+`Qwen/Qwen3-VL-Embedding-2B` default output. Checkpoints include a persistent
+`qwenvl_family` marker so checkpoint families stay fail-loud:
+
+- QwenVL detector rejects PE-Core checkpoints.
+- QwenVL detector rejects SigLIP checkpoints without the marker.
+- SigLIP detector rejects QwenVL-marked checkpoints.
+
+Current status: this is a model/checkpoint scaffold and synthetic shape smoke,
+not a quality claim. The next useful step is adding a QwenVL image encoder node
+or cached embedding loader, then running the same bounded Anima denoising smoke
+that the SigLIP branch uses.

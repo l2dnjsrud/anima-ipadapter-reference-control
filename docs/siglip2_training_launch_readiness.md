@@ -431,6 +431,19 @@ candidate encoder is available and does not collapse the reference set into one
 generic vector. Any QwenVL adapter smoke should start from a `2048`-dim input
 contract or explicitly document a projection/truncation stage.
 
+The first QwenVL adapter scaffold now exists:
+
+```text
+qwenvl_model.py
+qwenvl_checkpoint.py
+tests/test_qwenvl_adapter.py
+```
+
+It intentionally uses a separate `qwenvl_family` checkpoint marker. The QwenVL
+detector rejects PE-Core and SigLIP checkpoints, while the SigLIP detector
+rejects QwenVL-marked checkpoints. This prevents the next ComfyUI branch from
+silently accepting the wrong family and producing another no-op-looking run.
+
 ## Stop Conditions
 
 Stop and ask before proceeding if any of these are true:
@@ -462,3 +475,5 @@ is:
    frozen-SigLIP tuning as the main path and move to a Qwen-VL/anime-image-
    encoder based reference-control plan. The first Qwen branch should target
    `Qwen/Qwen3-VL-Embedding-2B` with a `2048`-dim adapter input.
+6. Add the QwenVL image encoder/cached-embedding node and run a bounded
+   denoising smoke before any long training run.

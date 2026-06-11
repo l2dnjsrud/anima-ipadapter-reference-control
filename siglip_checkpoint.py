@@ -54,6 +54,10 @@ def detect_siglip_checkpoint(state: TensorState) -> SigLIPCheckpointSpec:
             "This is the PE-Core Anima IP-Adapter checkpoint, not a SigLIP2 "
             "TimeResampler/IPCrossAttn checkpoint. Use the PE loader for it."
         )
+    if "qwenvl_family" in keys:
+        raise SigLIPCheckpointError(
+            "This is a QwenVL embedding IP-Adapter checkpoint, not a SigLIP2 checkpoint."
+        )
     if "resampler.latents" in keys and "resampler.time_proj.weight" not in keys:
         raise SigLIPCheckpointError(
             "Found an older Perceiver-style checkpoint without resampler.time_proj; "
