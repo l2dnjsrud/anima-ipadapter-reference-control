@@ -554,3 +554,26 @@ Current status: this is a model/checkpoint scaffold and synthetic shape smoke,
 not a quality claim. The next useful step is adding a QwenVL image encoder node
 or cached embedding loader, then running the same bounded Anima denoising smoke
 that the SigLIP branch uses.
+
+## 2026-06-11 QwenVL native ComfyUI node surface
+
+The QwenVL branch now has a native ComfyUI node surface:
+
+- `AnimaQwenVLIPAdapterLoader`
+- `AnimaQwenVLEncodeImage`
+- `AnimaQwenVLIPAdapterApply`
+
+`AnimaQwenVLEncodeImage` uses the public
+`Qwen/Qwen3-VL-Embedding-2B` sentence-transformers path and returns normalized
+`2048`-dim image embeddings. `AnimaQwenVLIPAdapterApply` reuses the same Anima
+cross-attention patch surface that made the SigLIP path visibly affect pixels.
+
+Evidence:
+
+- `eval/qwenvl_native_workflow_eval_20260611/report.md`
+- `eval/qwenvl_native_workflow_eval_20260611/object_info_AnimaQwenVLIPAdapterLoader.json`
+- `eval/qwenvl_native_workflow_eval_20260611/object_info_AnimaQwenVLEncodeImage.json`
+- `eval/qwenvl_native_workflow_eval_20260611/object_info_AnimaQwenVLIPAdapterApply.json`
+
+Current status: node registration and synthetic runtime patch tests pass. The
+branch still needs a trained QwenVL checkpoint before any image quality claim.

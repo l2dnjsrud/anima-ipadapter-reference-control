@@ -444,6 +444,19 @@ detector rejects PE-Core and SigLIP checkpoints, while the SigLIP detector
 rejects QwenVL-marked checkpoints. This prevents the next ComfyUI branch from
 silently accepting the wrong family and producing another no-op-looking run.
 
+The native QwenVL ComfyUI node surface is also registered:
+
+```text
+eval/qwenvl_native_workflow_eval_20260611/report.md
+eval/qwenvl_native_workflow_eval_20260611/object_info_AnimaQwenVLIPAdapterLoader.json
+eval/qwenvl_native_workflow_eval_20260611/object_info_AnimaQwenVLEncodeImage.json
+eval/qwenvl_native_workflow_eval_20260611/object_info_AnimaQwenVLIPAdapterApply.json
+```
+
+The nodes are visible through ComfyUI `object_info`, but this remains a
+registration/runtime-surface proof only. A trained QwenVL checkpoint is still
+required before no-IP vs adapter generation quality can be evaluated.
+
 ## Stop Conditions
 
 Stop and ask before proceeding if any of these are true:
@@ -476,4 +489,6 @@ is:
    encoder based reference-control plan. The first Qwen branch should target
    `Qwen/Qwen3-VL-Embedding-2B` with a `2048`-dim adapter input.
 6. Add the QwenVL image encoder/cached-embedding node and run a bounded
-   denoising smoke before any long training run.
+   denoising smoke before any long training run. The node surface is now in
+   place; the remaining work is the bounded QwenVL denoising smoke/checkpoint
+   and contact-sheet evaluation.
