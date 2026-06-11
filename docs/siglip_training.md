@@ -339,3 +339,50 @@ ready path to high-quality generalized Anima reference control. Further work
 should shift to a stronger anime/VL image encoder or a pair objective that trains
 the image encoder/adapter together, rather than only extending short local
 SigLIP2 adapter tuning.
+
+## 2026-06-11 reference-swap contrastive objective
+
+The next ablation added a bounded reference-swap objective. For the same
+target/noise/prompt, the model is trained so prediction with the correct
+reference is closer to the target than prediction with a deterministic wrong
+reference:
+
+```text
+loss = correct_reference_mse
+     + contrastive_weight * relu(correct_mse - wrong_mse + margin)
+```
+
+Implementation:
+
+- `training/siglip_reference_loss.py`
+- `training/siglip_prepared_cache.py`
+- `training/siglip_contrastive_smoke.py`
+- `training/siglip_contrastive_cli.py`
+- `tests/test_siglip_reference_loss.py`
+
+Smoke evidence:
+
+- `checkpoints/anima_siglip_ip_adapter_identity128_contrastive_0064_20260611.safetensors`
+  (local ignored artifact)
+  - `steps=64`, `rows_loaded=16`, `mean_contrastive_loss=0.04606`,
+    checkpoint loadable.
+- `checkpoints/anima_siglip_ip_adapter_identity128_contrastive_0512_20260611.safetensors`
+  (local ignored artifact)
+  - `steps=512`, `rows_loaded=32`, `mean_contrastive_loss=0.09111`,
+    checkpoint loadable.
+  - Tensor movement from the fp32 baseline: 253/255 tensors changed,
+    relative L2 `0.00723`, max scale movement `0.00056`.
+
+Visual evidence:
+
+- `eval/siglip_runtime_quality_20260611_c014_identity128_contrastive_neutral_prompt/report.md`
+- `eval/siglip_runtime_quality_20260611_c014_identity128_contrastive_neutral_prompt/reference_output_pairs.jpg`
+- Decision: `contrastive_improves_reference_distance_but_quality_still_fail`
+
+Compared with c013, c014 lowers mean pixel distance to several references and
+increases reference-dependent variation. It also avoids some of the prior
+two-character conversation collapse. However, it still does not faithfully
+recover train or held-out identity/layout/character count. This suggests the
+objective was a useful correction, but the frozen SigLIP2 adapter path still
+needs either a stronger anime/VL encoder or a trainable image-encoder stage to
+reach the requested high-quality reference-control target.

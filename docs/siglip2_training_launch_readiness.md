@@ -329,6 +329,21 @@ not make frozen SigLIP2 adapter tuning produce usable generalized reference
 control. The current route should be considered a research baseline, not the
 main path for a high-quality checkpoint.
 
+A reference-swap contrastive objective was then added and tested. It trains the
+same target/noise/prompt against both a correct and a deterministic wrong
+reference so the adapter is penalized when the wrong reference is competitive.
+The 512-step c014 checkpoint moved parameters and improved several reference
+distance metrics, but still failed visual identity/layout control:
+
+```text
+eval/siglip_runtime_quality_20260611_c014_identity128_contrastive_neutral_prompt/report.md
+eval/siglip_runtime_quality_20260611_c014_identity128_contrastive_neutral_prompt/reference_output_pairs.jpg
+```
+
+Interpretation: objective pressure helps, but is not sufficient by itself.
+Frozen SigLIP2 remains a weak main path for the requested high-quality Anima
+reference-control checkpoint.
+
 ## Stop Conditions
 
 Stop and ask before proceeding if any of these are true:
