@@ -532,3 +532,19 @@ is:
     This makes the issue broader than page complexity; the next training launch
     needs a stronger reference-discrimination objective, trainable
     feature/encoder adaptation, or an anime-domain image encoder path.
+15. A four-image single-character micro-train has now been run from the c021
+    selected references:
+    - `training/manifests/local_color_single_character_identity4_20260611.jsonl`
+    - `eval/siglip_runtime_quality_20260611_c022_single_character_identity4_trainfit/report.md`
+    - `eval/siglip_runtime_quality_20260611_c022_single_character_identity4_trainfit/contact_sheet.jpg`
+    - `eval/siglip_runtime_quality_20260611_c023_single_character_identity4_heldout/report.md`
+    - `eval/siglip_runtime_quality_20260611_c023_single_character_identity4_heldout/contact_sheet.jpg`
+16. Result: the single-character framing is easier and more diagnostic than
+    page-level evaluation. The c022 train-fit sheet proves the adapter can learn
+    coarse palette and face-direction signals from focused color references.
+    The c023 held-out sheet shows partial transfer for black/tan references but
+    still misses identity-specific details such as beard, age, glasses,
+    gold/fire palette, and full-body layout. This is not a final quality pass
+    and not yet a reason to launch broad training unchanged. The next launch
+    should scale a diverse single-character set first, then add a stronger
+    identity/palette discrimination loss before returning to page layouts.

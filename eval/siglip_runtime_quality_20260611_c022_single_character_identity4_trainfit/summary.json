@@ -1,0 +1,84 @@
+{
+  "checkpoint": "anima_siglip_ip_adapter_single_character_identity4_pe_query_patch_0256_20260611.safetensors",
+  "training": {
+    "steps": 256,
+    "rows_loaded": 4,
+    "first_loss": 0.22382895648479462,
+    "final_loss": 0.13005425035953522,
+    "mean_loss": 0.2278406125260517,
+    "mean_base_loss": 0.1967822091828566,
+    "mean_contrastive_loss": 0.03507533890660852,
+    "mean_teacher_loss": 0.02704146476389724,
+    "finite_loss": true,
+    "init_checkpoint_path": "checkpoints/anima_siglip_ip_adapter_identity128_pe_query_patch_0064_20260611.safetensors",
+    "output_path": "checkpoints/anima_siglip_ip_adapter_single_character_identity4_pe_query_patch_0256_20260611.safetensors"
+  },
+  "weights": [
+    0.7,
+    1.0,
+    1.4
+  ],
+  "pre_eval": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c021_single_character_diagnostic",
+  "results": {
+    "bearded_tan_robe_post_w0p7": {
+      "prompt_id": "a3daf6ef-f60f-4087-9f5a-7f63abd20b68",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c022_single_character_identity4_trainfit/bearded_tan_robe_post_w0p7.png",
+      "weight": 0.7
+    },
+    "bearded_tan_robe_post_w1p0": {
+      "prompt_id": "05751528-a052-4411-af4f-89e1c88c63ca",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c022_single_character_identity4_trainfit/bearded_tan_robe_post_w1p0.png",
+      "weight": 1.0
+    },
+    "bearded_tan_robe_post_w1p4": {
+      "prompt_id": "e094063a-3294-4a2a-9b18-585d637b349d",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c022_single_character_identity4_trainfit/bearded_tan_robe_post_w1p4.png",
+      "weight": 1.4
+    },
+    "blue_robed_elder_post_w0p7": {
+      "prompt_id": "5a766184-b7b1-43aa-9201-9cd233745866",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c022_single_character_identity4_trainfit/blue_robed_elder_post_w0p7.png",
+      "weight": 0.7
+    },
+    "blue_robed_elder_post_w1p0": {
+      "prompt_id": "a8ede634-1b9a-4174-b417-7c6ae34d6eab",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c022_single_character_identity4_trainfit/blue_robed_elder_post_w1p0.png",
+      "weight": 1.0
+    },
+    "blue_robed_elder_post_w1p4": {
+      "prompt_id": "9c661cde-c043-4408-b04d-8701c83e9f92",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c022_single_character_identity4_trainfit/blue_robed_elder_post_w1p4.png",
+      "weight": 1.4
+    },
+    "black_robe_closeup_post_w0p7": {
+      "prompt_id": "a2859d0e-84c4-4474-b9ef-d8e2db40cb75",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c022_single_character_identity4_trainfit/black_robe_closeup_post_w0p7.png",
+      "weight": 0.7
+    },
+    "black_robe_closeup_post_w1p0": {
+      "prompt_id": "344aa8ad-19ed-4c37-81b9-0b8f75c5b81d",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c022_single_character_identity4_trainfit/black_robe_closeup_post_w1p0.png",
+      "weight": 1.0
+    },
+    "black_robe_closeup_post_w1p4": {
+      "prompt_id": "a8fe2b11-a114-4bf9-8459-97345bdd0eb6",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c022_single_character_identity4_trainfit/black_robe_closeup_post_w1p4.png",
+      "weight": 1.4
+    },
+    "golden_angry_face_post_w0p7": {
+      "prompt_id": "ba26456c-6610-4050-8a8b-feda7d021b95",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c022_single_character_identity4_trainfit/golden_angry_face_post_w0p7.png",
+      "weight": 0.7
+    },
+    "golden_angry_face_post_w1p0": {
+      "prompt_id": "01beacec-8416-494d-b90b-314805c7a811",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c022_single_character_identity4_trainfit/golden_angry_face_post_w1p0.png",
+      "weight": 1.0
+    },
+    "golden_angry_face_post_w1p4": {
+      "prompt_id": "48de2896-1281-40ca-98c4-d6a15c4b6ed4",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c022_single_character_identity4_trainfit/golden_angry_face_post_w1p4.png",
+      "weight": 1.4
+    }
+  }
+}

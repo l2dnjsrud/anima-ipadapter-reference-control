@@ -739,3 +739,57 @@ stable identity. The failure is therefore not only a multi-panel page-layout
 problem. The next useful work should change the learning signal or encoder
 adaptation strategy rather than spending a long run on the same frozen-SigLIP
 adapter-only recipe.
+
+## 2026-06-11 Single-character micro-training
+
+A four-reference single-character manifest was created from the c021 selected
+references:
+
+```text
+training/manifests/local_color_single_character_identity4_20260611.jsonl
+training/manifests/local_color_single_character_identity4_20260611.summary.json
+```
+
+The manifest contains these labels:
+
+- `bearded_tan_robe`
+- `blue_robed_elder`
+- `black_robe_closeup`
+- `golden_angry_face`
+
+The run continued from the PE-style query-patch checkpoint for 256 steps:
+
+```text
+checkpoints/anima_siglip_ip_adapter_single_character_identity4_pe_query_patch_0256_20260611.safetensors
+```
+
+Observed training summary:
+
+- rows loaded: `4`
+- first/final loss: `0.22382895648479462` / `0.13005425035953522`
+- mean loss: `0.2278406125260517`
+- mean base loss: `0.1967822091828566`
+- mean contrastive loss: `0.03507533890660852`
+- mean teacher loss: `0.02704146476389724`
+- finite loss: `true`
+
+ComfyUI API quality evidence:
+
+- `eval/siglip_runtime_quality_20260611_c022_single_character_identity4_trainfit/report.md`
+- `eval/siglip_runtime_quality_20260611_c022_single_character_identity4_trainfit/contact_sheet.jpg`
+- `eval/siglip_runtime_quality_20260611_c023_single_character_identity4_heldout/report.md`
+- `eval/siglip_runtime_quality_20260611_c023_single_character_identity4_heldout/contact_sheet.jpg`
+
+Decision:
+
+- c022: `single_character_identity4_trainfit_improves_palette_but_not_identity_pass`
+- c023: `single_character_identity4_heldout_partial_transfer_not_quality_pass`
+
+Interpretation: the user was right that single-character references are the
+cleaner comparison target. The train-fit sheet shows an actual learning signal:
+blue robe palette, black/red robe palette, and side/profile direction improve
+after the 256-step micro-train. The held-out sheet shows partial transfer on
+black/tan references, but also overfit and missed identity details. Beard,
+age, glasses, gold/fire palette, and unusual facial intensity are still not
+reliable. This keeps the goal active: single-character-first training is useful
+as the next diagnostic path, but the current checkpoint is not a quality pass.

@@ -1,0 +1,12 @@
+{
+  "source": "eval/siglip_runtime_quality_20260611_c021_single_character_diagnostic/selected_references.json",
+  "image_root": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best",
+  "rows": 4,
+  "labels": [
+    "bearded_tan_robe",
+    "blue_robed_elder",
+    "black_robe_closeup",
+    "golden_angry_face"
+  ],
+  "manifest": "training/manifests/local_color_single_character_identity4_20260611.jsonl"
+}
