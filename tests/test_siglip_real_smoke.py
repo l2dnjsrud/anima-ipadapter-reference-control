@@ -12,6 +12,7 @@ from siglip_model import IPAdapterSigLIP
 from training.siglip_real_smoke import (
     freeze_module,
     load_trainable_adapter,
+    PREPARED_ROW_CACHE_LIMIT,
     save_adapter_checkpoint,
     trainable_parameter_count,
     verify_checkpoint,
@@ -102,10 +103,12 @@ def test_load_trainable_adapter_can_continue_from_checkpoint(tmp_path: Path) -> 
     config = _config(tmp_path, steps=1, max_rows=1)
     config = replace(config, init_checkpoint_path=checkpoint)
 
-    adapter = load_trainable_adapter(config, torch.device("cpu"), torch.float32)
+    adapter = load_trainable_adapter(config, torch.device("cpu"), torch.bfloat16)
+    first_param = next(adapter.parameters())
 
     assert adapter.training is True
     assert trainable_parameter_count(adapter) > 0
+    assert first_param.dtype is torch.float32
 
 
 def test_patched_cross_attention_adds_adapter_block_output() -> None:
@@ -132,6 +135,7 @@ def test_validate_config_accepts_bounded_pilot_limits(tmp_path: Path) -> None:
 
     assert config.steps > 8
     assert config.max_rows > 64
+    assert PREPARED_ROW_CACHE_LIMIT >= 128
 
 
 def test_validate_config_rejects_unbounded_pilot_steps(tmp_path: Path) -> None:

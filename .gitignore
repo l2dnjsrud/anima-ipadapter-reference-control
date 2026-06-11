@@ -8,6 +8,8 @@ __pycache__/
 checkpoints/*_continue_20260611.safetensors
 checkpoints/*overfit*.safetensors
 checkpoints/*identity8*.safetensors
+checkpoints/*identity128*.safetensors
+checkpoints/*fp32*.safetensors
 training/overfit_inputs/
 eval/siglip_runtime_quality_20260611_c*/*.api_prompt.json
 eval/siglip_runtime_quality_20260611_c*/*.history.json

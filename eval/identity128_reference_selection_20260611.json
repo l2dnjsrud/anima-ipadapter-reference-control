@@ -1,0 +1,46 @@
+{
+  "selection": [
+    {
+      "label": "train000",
+      "image": "identity128_train000.jpg",
+      "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/001-100/SG-001/mrcolor_panel_style_v5_edge_trim_strict_00001_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00012_SG-001-08_page_1965x1714_s01.jpg",
+      "in_train": true,
+      "ref_id": "001-100/SG-001/mrcolor_panel_style_v5_edge_trim_strict_00001_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00012_SG-001-08_page_1965x1714_s01"
+    },
+    {
+      "label": "train064",
+      "image": "identity128_train064.jpg",
+      "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/101-200/SG-126/mrcolor_panel_style_v5_edge_trim_strict_00274_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_04273_SG-126-09_page_1965x906_s01.jpg",
+      "in_train": true,
+      "ref_id": "101-200/SG-126/mrcolor_panel_style_v5_edge_trim_strict_00274_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_04273_SG-126-09_page_1965x906_s01"
+    },
+    {
+      "label": "train127",
+      "image": "identity128_train127.jpg",
+      "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-292/mrcolor_panel_style_v5_edge_trim_strict_00555_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_09319_SG-292-11_page_1211x899_s01.jpg",
+      "in_train": true,
+      "ref_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-292/mrcolor_panel_style_v5_edge_trim_strict_00555_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_09319_SG-292-11_page_1211x899_s01"
+    },
+    {
+      "label": "heldout0112",
+      "image": "identity128_heldout0112.jpg",
+      "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/001-100/SG-019/mrcolor_panel_style_v4_split_edge_strict_probe_00112_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00564_SG-019-02_page_2079x2879_s03.jpg",
+      "in_train": false,
+      "ref_id": "001-100/SG-019/mrcolor_panel_style_v4_split_edge_strict_probe_00112_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00564_SG-019-02_page_2079x2879_s03"
+    },
+    {
+      "label": "heldout0560",
+      "image": "identity128_heldout0560.jpg",
+      "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/001-100/SG-089/mrcolor_panel_style_v4_split_edge_strict_probe_00543_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03009_SG-089-11_page_2079x2907_s01.jpg",
+      "in_train": false,
+      "ref_id": "001-100/SG-089/mrcolor_panel_style_v4_split_edge_strict_probe_00543_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03009_SG-089-11_page_2079x2907_s01"
+    },
+    {
+      "label": "heldout1008",
+      "image": "identity128_heldout1008.jpg",
+      "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/101-200/SG-159/mrcolor_panel_style_v4_split_edge_strict_probe_00959_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05392_SG-159-04_page_1965x1112_s01.jpg",
+      "in_train": false,
+      "ref_id": "101-200/SG-159/mrcolor_panel_style_v4_split_edge_strict_probe_00959_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05392_SG-159-04_page_1965x1112_s01"
+    }
+  ]
+}

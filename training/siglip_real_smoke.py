@@ -69,7 +69,7 @@ DEFAULT_PE = Path(
     "/data/ai/models/ipadapter/anima_ip_adapter_quality_20260610.safetensors"
 )
 DEFAULT_SIGLIP = "google/siglip2-base-patch16-512"
-PREPARED_ROW_CACHE_LIMIT = 16
+PREPARED_ROW_CACHE_LIMIT = 128
 
 app = typer.Typer(add_completion=False)
 console = Console()
@@ -106,7 +106,7 @@ def load_trainable_adapter(
         adapter = IPAdapterSigLIP()
     else:
         adapter = load_siglip_adapter(config.init_checkpoint_path)
-    adapter.to(device=device, dtype=dtype)
+    adapter.to(device=device, dtype=torch.float32)
     adapter.train()
     for parameter in adapter.parameters():
         parameter.requires_grad_(True)
@@ -194,7 +194,7 @@ def run_real_smoke(config: SmokeConfig) -> SmokeSummary:
     validate_config(config)
     seed_everything(config.seed)
     device = torch.device(config.device)
-    dtype = torch.bfloat16 if device.type == "cuda" else torch.float32
+    dtype = torch.float32
     rows = load_pair_rows(config.manifest_path, limit=config.max_rows)
     random.Random(config.seed).shuffle(rows)
 

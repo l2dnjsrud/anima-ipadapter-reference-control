@@ -1,0 +1,265 @@
+{
+  "base_url": "http://127.0.0.1:8115",
+  "checkpoint": "anima_siglip_ip_adapter_identity128_1024_20260611.safetensors",
+  "positive": "masterpiece, best quality, score_7, safe, full color manhwa comic panel, character scene, dramatic interior or exterior, fully clothed traditional clothing, speech bubble, clean ink lines, cel shaded anime style, cinematic lighting",
+  "negative": "low quality, blurry, bad anatomy, deformed face, text, watermark, extra limbs, abstract, washed out, noise, nude, explicit, gore",
+  "steps": 16,
+  "selection_file": "eval/identity128_reference_selection_20260611.json",
+  "results": {
+    "no_ip": {
+      "prompt_id": "387b9686-4640-4bbc-b3c3-0d19fc420888",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c011_identity128_neutral_prompt/no_ip.png",
+      "image_info": {
+        "filename": "no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c011_identity128_neutral_prompt",
+        "type": "output"
+      }
+    },
+    "train000_w08": {
+      "prompt_id": "a39634cc-5071-4620-91b6-d15c8f3138d8",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c011_identity128_neutral_prompt/train000_w08.png",
+      "image_info": {
+        "filename": "train000_w08_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c011_identity128_neutral_prompt",
+        "type": "output"
+      },
+      "weight": 0.8,
+      "reference": {
+        "label": "train000",
+        "image": "identity128_train000.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/001-100/SG-001/mrcolor_panel_style_v5_edge_trim_strict_00001_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00012_SG-001-08_page_1965x1714_s01.jpg",
+        "in_train": true,
+        "ref_id": "001-100/SG-001/mrcolor_panel_style_v5_edge_trim_strict_00001_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00012_SG-001-08_page_1965x1714_s01"
+      }
+    },
+    "train000_w10": {
+      "prompt_id": "1ee5c461-1328-4bc2-9414-94a94698a0f5",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c011_identity128_neutral_prompt/train000_w10.png",
+      "image_info": {
+        "filename": "train000_w10_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c011_identity128_neutral_prompt",
+        "type": "output"
+      },
+      "weight": 1.0,
+      "reference": {
+        "label": "train000",
+        "image": "identity128_train000.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/001-100/SG-001/mrcolor_panel_style_v5_edge_trim_strict_00001_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00012_SG-001-08_page_1965x1714_s01.jpg",
+        "in_train": true,
+        "ref_id": "001-100/SG-001/mrcolor_panel_style_v5_edge_trim_strict_00001_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00012_SG-001-08_page_1965x1714_s01"
+      }
+    },
+    "train000_w12": {
+      "prompt_id": "9342e46d-2a91-4f0e-b2cc-7f3f33cfa9fa",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c011_identity128_neutral_prompt/train000_w12.png",
+      "image_info": {
+        "filename": "train000_w12_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c011_identity128_neutral_prompt",
+        "type": "output"
+      },
+      "weight": 1.2,
+      "reference": {
+        "label": "train000",
+        "image": "identity128_train000.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/001-100/SG-001/mrcolor_panel_style_v5_edge_trim_strict_00001_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00012_SG-001-08_page_1965x1714_s01.jpg",
+        "in_train": true,
+        "ref_id": "001-100/SG-001/mrcolor_panel_style_v5_edge_trim_strict_00001_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00012_SG-001-08_page_1965x1714_s01"
+      }
+    },
+    "train064_w10": {
+      "prompt_id": "2f407bab-4a32-435b-8b14-aab4bd084dbf",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c011_identity128_neutral_prompt/train064_w10.png",
+      "image_info": {
+        "filename": "train064_w10_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c011_identity128_neutral_prompt",
+        "type": "output"
+      },
+      "weight": 1.0,
+      "reference": {
+        "label": "train064",
+        "image": "identity128_train064.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/101-200/SG-126/mrcolor_panel_style_v5_edge_trim_strict_00274_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_04273_SG-126-09_page_1965x906_s01.jpg",
+        "in_train": true,
+        "ref_id": "101-200/SG-126/mrcolor_panel_style_v5_edge_trim_strict_00274_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_04273_SG-126-09_page_1965x906_s01"
+      }
+    },
+    "train127_w10": {
+      "prompt_id": "f55baac5-90d3-4534-8e41-446d8710fd03",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c011_identity128_neutral_prompt/train127_w10.png",
+      "image_info": {
+        "filename": "train127_w10_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c011_identity128_neutral_prompt",
+        "type": "output"
+      },
+      "weight": 1.0,
+      "reference": {
+        "label": "train127",
+        "image": "identity128_train127.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-292/mrcolor_panel_style_v5_edge_trim_strict_00555_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_09319_SG-292-11_page_1211x899_s01.jpg",
+        "in_train": true,
+        "ref_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-292/mrcolor_panel_style_v5_edge_trim_strict_00555_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_09319_SG-292-11_page_1211x899_s01"
+      }
+    },
+    "heldout0112_w08": {
+      "prompt_id": "3cf5c325-824a-45fd-8b86-f8d601082b05",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c011_identity128_neutral_prompt/heldout0112_w08.png",
+      "image_info": {
+        "filename": "heldout0112_w08_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c011_identity128_neutral_prompt",
+        "type": "output"
+      },
+      "weight": 0.8,
+      "reference": {
+        "label": "heldout0112",
+        "image": "identity128_heldout0112.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/001-100/SG-019/mrcolor_panel_style_v4_split_edge_strict_probe_00112_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00564_SG-019-02_page_2079x2879_s03.jpg",
+        "in_train": false,
+        "ref_id": "001-100/SG-019/mrcolor_panel_style_v4_split_edge_strict_probe_00112_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00564_SG-019-02_page_2079x2879_s03"
+      }
+    },
+    "heldout0112_w10": {
+      "prompt_id": "875ddea5-45c8-4ac5-8a2b-05e3b14a07d4",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c011_identity128_neutral_prompt/heldout0112_w10.png",
+      "image_info": {
+        "filename": "heldout0112_w10_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c011_identity128_neutral_prompt",
+        "type": "output"
+      },
+      "weight": 1.0,
+      "reference": {
+        "label": "heldout0112",
+        "image": "identity128_heldout0112.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/001-100/SG-019/mrcolor_panel_style_v4_split_edge_strict_probe_00112_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00564_SG-019-02_page_2079x2879_s03.jpg",
+        "in_train": false,
+        "ref_id": "001-100/SG-019/mrcolor_panel_style_v4_split_edge_strict_probe_00112_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00564_SG-019-02_page_2079x2879_s03"
+      }
+    },
+    "heldout0112_w12": {
+      "prompt_id": "5c10f870-b944-4bd1-8c48-8196ed17e362",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c011_identity128_neutral_prompt/heldout0112_w12.png",
+      "image_info": {
+        "filename": "heldout0112_w12_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c011_identity128_neutral_prompt",
+        "type": "output"
+      },
+      "weight": 1.2,
+      "reference": {
+        "label": "heldout0112",
+        "image": "identity128_heldout0112.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/001-100/SG-019/mrcolor_panel_style_v4_split_edge_strict_probe_00112_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00564_SG-019-02_page_2079x2879_s03.jpg",
+        "in_train": false,
+        "ref_id": "001-100/SG-019/mrcolor_panel_style_v4_split_edge_strict_probe_00112_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00564_SG-019-02_page_2079x2879_s03"
+      }
+    },
+    "heldout0560_w10": {
+      "prompt_id": "2f7c942d-f82a-4278-ab83-fbe63be18cc5",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c011_identity128_neutral_prompt/heldout0560_w10.png",
+      "image_info": {
+        "filename": "heldout0560_w10_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c011_identity128_neutral_prompt",
+        "type": "output"
+      },
+      "weight": 1.0,
+      "reference": {
+        "label": "heldout0560",
+        "image": "identity128_heldout0560.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/001-100/SG-089/mrcolor_panel_style_v4_split_edge_strict_probe_00543_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03009_SG-089-11_page_2079x2907_s01.jpg",
+        "in_train": false,
+        "ref_id": "001-100/SG-089/mrcolor_panel_style_v4_split_edge_strict_probe_00543_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03009_SG-089-11_page_2079x2907_s01"
+      }
+    },
+    "heldout1008_w10": {
+      "prompt_id": "e3d16b48-b5ab-40da-8f23-172359b74359",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c011_identity128_neutral_prompt/heldout1008_w10.png",
+      "image_info": {
+        "filename": "heldout1008_w10_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c011_identity128_neutral_prompt",
+        "type": "output"
+      },
+      "weight": 1.0,
+      "reference": {
+        "label": "heldout1008",
+        "image": "identity128_heldout1008.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/101-200/SG-159/mrcolor_panel_style_v4_split_edge_strict_probe_00959_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05392_SG-159-04_page_1965x1112_s01.jpg",
+        "in_train": false,
+        "ref_id": "101-200/SG-159/mrcolor_panel_style_v4_split_edge_strict_probe_00959_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05392_SG-159-04_page_1965x1112_s01"
+      }
+    }
+  },
+  "metrics": {
+    "no_ip": {
+      "mean_abs_vs_no_ip": 0.0
+    },
+    "train000_w08": {
+      "mean_abs_vs_no_ip": 58.8880500793457,
+      "rms_vs_no_ip": 82.18458557128906,
+      "mean_abs_vs_reference": 93.1107177734375,
+      "rms_vs_reference": 108.87264251708984,
+      "in_train": true
+    },
+    "train000_w10": {
+      "mean_abs_vs_no_ip": 66.04655456542969,
+      "rms_vs_no_ip": 87.68970489501953,
+      "mean_abs_vs_reference": 91.080078125,
+      "rms_vs_reference": 106.09112548828125,
+      "in_train": true
+    },
+    "train000_w12": {
+      "mean_abs_vs_no_ip": 67.18592071533203,
+      "rms_vs_no_ip": 86.52900695800781,
+      "mean_abs_vs_reference": 80.49159240722656,
+      "rms_vs_reference": 95.6763916015625,
+      "in_train": true
+    },
+    "train064_w10": {
+      "mean_abs_vs_no_ip": 58.540889739990234,
+      "rms_vs_no_ip": 80.63861846923828,
+      "mean_abs_vs_reference": 68.96040344238281,
+      "rms_vs_reference": 90.33817291259766,
+      "in_train": true
+    },
+    "train127_w10": {
+      "mean_abs_vs_no_ip": 53.077598571777344,
+      "rms_vs_no_ip": 75.15047454833984,
+      "mean_abs_vs_reference": 70.67472076416016,
+      "rms_vs_reference": 92.55361938476562,
+      "in_train": true
+    },
+    "heldout0112_w08": {
+      "mean_abs_vs_no_ip": 59.74479293823242,
+      "rms_vs_no_ip": 83.2219009399414,
+      "mean_abs_vs_reference": 110.80133819580078,
+      "rms_vs_reference": 135.1981964111328,
+      "in_train": false
+    },
+    "heldout0112_w10": {
+      "mean_abs_vs_no_ip": 64.03092956542969,
+      "rms_vs_no_ip": 87.24828338623047,
+      "mean_abs_vs_reference": 114.05338287353516,
+      "rms_vs_reference": 137.9505615234375,
+      "in_train": false
+    },
+    "heldout0112_w12": {
+      "mean_abs_vs_no_ip": 68.36041259765625,
+      "rms_vs_no_ip": 91.06114196777344,
+      "mean_abs_vs_reference": 114.71976470947266,
+      "rms_vs_reference": 138.60003662109375,
+      "in_train": false
+    },
+    "heldout0560_w10": {
+      "mean_abs_vs_no_ip": 65.05664825439453,
+      "rms_vs_no_ip": 87.80845642089844,
+      "mean_abs_vs_reference": 121.62460327148438,
+      "rms_vs_reference": 142.7415771484375,
+      "in_train": false
+    },
+    "heldout1008_w10": {
+      "mean_abs_vs_no_ip": 58.286834716796875,
+      "rms_vs_no_ip": 80.26226043701172,
+      "mean_abs_vs_reference": 68.72482299804688,
+      "rms_vs_reference": 90.75239562988281,
+      "in_train": false
+    }
+  },
+  "reference_output_pairs": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c011_identity128_neutral_prompt/reference_output_pairs.jpg"
+}

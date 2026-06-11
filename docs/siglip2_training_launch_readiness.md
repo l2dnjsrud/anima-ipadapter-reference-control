@@ -313,6 +313,22 @@ eval/siglip_runtime_quality_20260611_c009_identity8_reference_sweep/report.md
 eval/siglip_runtime_quality_20260611_c009_identity8_reference_sweep/contact_sheet.jpg
 ```
 
+The larger `identity128` runs made the limitation clearer. bf16 continuations
+changed generated pixels but left `ip_scales` effectively frozen; fp32 training
+fixed the parameter-movement issue, moving 253 of 255 adapter tensors and
+changing scale values. The resulting c013 visual sheet still failed the quality
+bar:
+
+```text
+eval/siglip_runtime_quality_20260611_c013_identity128_fp32_neutral_prompt/report.md
+eval/siglip_runtime_quality_20260611_c013_identity128_fp32_neutral_prompt/reference_output_pairs.jpg
+```
+
+Interpretation: there was a real training precision problem, but fixing it did
+not make frozen SigLIP2 adapter tuning produce usable generalized reference
+control. The current route should be considered a research baseline, not the
+main path for a high-quality checkpoint.
+
 ## Stop Conditions
 
 Stop and ask before proceeding if any of these are true:
@@ -339,6 +355,6 @@ is:
 3. Train from `self512` or `identity8` for a bounded larger run.
 4. Evaluate with prompts that remove identity/color tokens and require the image
    encoder to carry those attributes.
-5. If the larger checkpoint still cannot recover held-out references, stop
-   short local SigLIP tuning and move to a Qwen-VL/anime-image-encoder based
-   reference-control plan.
+5. Because the larger fp32 checkpoint still cannot recover held-out references,
+   stop short local SigLIP tuning as the main path and move to a
+   Qwen-VL/anime-image-encoder based reference-control plan.

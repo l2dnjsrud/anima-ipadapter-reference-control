@@ -286,3 +286,56 @@ including held-out references, so reference influence is no longer limited to
 the single-image overfit case. It still does not faithfully recover held-out
 identity. The next useful scale-up is a larger balanced self-reconstruction set
 with a held-out validation sheet, not another adjacent-panel-only run.
+
+## 2026-06-11 identity128 and fp32 continuation
+
+A 128-reference color self-reconstruction manifest was built from the local
+`image_dataset_color_panel_style_v5_best` set:
+
+- Manifest:
+  `training/manifests/local_color_self_identity128_20260611.jsonl`
+- Selection:
+  `eval/identity128_reference_selection_20260611.json`
+- bf16 continuation checkpoints:
+  `checkpoints/anima_siglip_ip_adapter_identity128_1024_20260611.safetensors`
+  and
+  `checkpoints/anima_siglip_ip_adapter_identity128_2048_20260611.safetensors`
+  (local ignored artifacts)
+- bf16 evidence:
+  `eval/siglip_runtime_quality_20260611_c010_identity128_reference_sweep/report.md`,
+  `eval/siglip_runtime_quality_20260611_c011_identity128_neutral_prompt/report.md`,
+  and
+  `eval/siglip_runtime_quality_20260611_c012_identity128_2048_neutral_prompt/report.md`
+
+The bf16 identity128 continuations lowered finite losses and changed pixels, but
+`ip_scales` stayed effectively unchanged from the earlier identity8 checkpoint.
+That made the poor visual result ambiguous: the route might have been weak, or
+the trainable adapter might have been numerically stalled.
+
+The training path was then changed to keep the trainable adapter in fp32 during
+bounded CUDA smoke training. A fp32 1024-step continuation from the identity128
+2048-step checkpoint produced:
+
+- Checkpoint:
+  `checkpoints/anima_siglip_ip_adapter_identity128_fp32_3072_20260611.safetensors`
+  (local ignored artifact)
+- Evidence:
+  `eval/siglip_runtime_quality_20260611_c013_identity128_fp32_neutral_prompt/report.md`
+- Pair sheet:
+  `eval/siglip_runtime_quality_20260611_c013_identity128_fp32_neutral_prompt/reference_output_pairs.jpg`
+- Decision: `fp32_training_moves_weights_but_quality_still_fail`
+
+Runtime inspection showed the fp32 run moved 253 of 255 adapter tensors, with
+relative L2 movement `0.01685` from the previous checkpoint versus `0.00440` for
+the preceding bf16 continuation. This confirms there was a real training
+precision/stability problem. However, the c013 sheet still collapses most
+references into similar two-character court/interior scenes and does not recover
+train or held-out reference identity/layout reliably.
+
+Current conclusion: the native SigLIP route is not impossible in principle,
+because the one-image overfit passed and fp32 training can move the adapter. But
+the current frozen SigLIP2 encoder plus this small adapter/objective is not a
+ready path to high-quality generalized Anima reference control. Further work
+should shift to a stronger anime/VL image encoder or a pair objective that trains
+the image encoder/adapter together, rather than only extending short local
+SigLIP2 adapter tuning.
