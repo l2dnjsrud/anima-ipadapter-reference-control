@@ -1071,3 +1071,38 @@ and green demon/non-human traits. This is a useful negative result: adding a
 short token-retrieval loss to the existing adapter is not enough. The next
 branch should train a stronger image-feature calibrator/encoder or explicit
 identity/palette/prop tokens before another denoising-centered run.
+
+## 2026-06-11 Attribute-prompt runtime gate
+
+The c030 failure was re-tested with per-reference attribute prompts instead of
+the generic solo portrait prompt. The attribute prompts name visible identity,
+palette, prop, expression, and non-human traits from the same eight
+single-character references.
+
+QwenVL evidence:
+
+- `eval/qwenvl_runtime_quality_20260611_c031_attribute_prompt_runtime/report.md`
+- `eval/qwenvl_runtime_quality_20260611_c031_attribute_prompt_runtime/contact_sheet.jpg`
+- `eval/qwenvl_runtime_quality_20260611_c031_attribute_prompt_runtime/pe_similarity_metrics.json`
+
+SigLIP evidence:
+
+- `eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/report.md`
+- `eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/contact_sheet.jpg`
+- `eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/pe_similarity_metrics.json`
+
+Decision: `siglip_attribute_prompt_reference_control_pass`
+
+The native SigLIP path now produces visually high-quality, reference-controlled
+ComfyUI outputs when the prompt carries the reference's visible attributes. PE
+similarity confirms the visual result: `pe_space_w14` improves over no-IP on
+8/8 cases with mean uplift `0.0603`, and `pe_retrieval_w14` improves on 7/8
+cases with mean uplift `0.0670`.
+
+This is not a claim that generic-prompt reference-only generation is solved.
+The practical recipe is prompt/caption + adapter: good attribute prompts give
+the base model the semantic target, while the native SigLIP adapter pulls
+costume, palette, face framing, expression, and visual style toward the
+reference. The next improvement should automate those attributes by generating
+caption/attribute manifests for train/eval and by exposing the same recipe in
+the ComfyUI workflow docs.

@@ -27,6 +27,18 @@ The retrieval loss stayed close to the configured margin, so this short run did
 not prove that the QwenVL embedding branch learned a strong matching-vs-wrong
 reference separation signal.
 
+## PE Similarity Metrics
+
+Metric file:
+`eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/pe_similarity_metrics.json`
+
+| variant | cases | mean uplift vs no-IP | improved rate |
+| --- | ---: | ---: | ---: |
+| qwen_base_w1 | 8 | -0.0024 | 50.00% |
+| qwen_base_w14 | 8 | 0.0496 | 62.50% |
+| qwen_retrieval_w1 | 8 | 0.0056 | 62.50% |
+| qwen_retrieval_w14 | 8 | -0.0077 | 50.00% |
+
 ## Runtime Summary
 
 This sheet was generated through an isolated ComfyUI API server on

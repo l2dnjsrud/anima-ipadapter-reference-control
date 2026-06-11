@@ -630,3 +630,20 @@ is:
     solve the problem. The next useful branch needs a stronger trainable
     image-feature calibrator/encoder or explicit identity/palette/prop tokens
     supervised by Qwen/PE features before any longer generation-quality run.
+32. Attribute-prompt runtime gates were added after c030:
+    - `eval/qwenvl_runtime_quality_20260611_c031_attribute_prompt_runtime/report.md`
+    - `eval/qwenvl_runtime_quality_20260611_c031_attribute_prompt_runtime/contact_sheet.jpg`
+    - `eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/report.md`
+    - `eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/contact_sheet.jpg`
+33. Result: `siglip_attribute_prompt_reference_control_pass`. With
+    per-reference attribute prompts, the native SigLIP path finally produces
+    high-quality ComfyUI outputs that are visibly closer to the reference than
+    no-IP. PE metrics agree: `pe_space_w14` improves on 8/8 cases with mean
+    uplift `0.0603`; `pe_retrieval_w14` improves on 7/8 with mean uplift
+    `0.0670`.
+34. Launch recommendation: treat prompt/caption quality as the main production
+    bottleneck. Keep the native SigLIP PE-space/PE-retrieval adapter path, then
+    build automatic attribute/caption generation for the color single-character
+    dataset and ComfyUI workflows. Do not present the earlier generic-prompt
+    path as solved; present the supported recipe as attribute prompt plus
+    reference adapter.

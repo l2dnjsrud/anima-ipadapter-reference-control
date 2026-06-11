@@ -1,0 +1,328 @@
+{
+  "base_url": "http://127.0.0.1:8116",
+  "checkpoints": {
+    "clean32": "anima_siglip_ip_adapter_single_character_clean32_pe_query_patch_0512_20260611.safetensors",
+    "pe_space": "anima_siglip_ip_adapter_single_character_clean32_pe_space_init_0512_20260611.safetensors",
+    "pe_retrieval": "anima_siglip_ip_adapter_single_character_clean32_pe_retrieval_0128_20260611.safetensors"
+  },
+  "comparison": "reference / no_ip / clean32_w14 / pe_space_w14 / pe_retrieval_w14",
+  "attribute_prompts": {
+    "train00": "long black-haired wuxia swordsman in a black sleeveless robe with red trim, stern face, arm thrust forward, warm orange sky",
+    "train07": "angry long black-haired martial artist close-up, dark robe, sharp eyebrows, tense expression, night palace background",
+    "train14": "old wrinkled bearded man with messy black and gray hair, tan robe, exaggerated surprised face, rough comic portrait",
+    "train23": "young scholar with square glasses, black official hat, folding fan, pale face, blue gray robe",
+    "heldout00": "pale purple-skinned villain with very long black hair, black armored robe, side-facing stern face, night background",
+    "heldout02": "bald old monk with long white gray beard, thick eyebrows, prayer beads, angry stern face",
+    "heldout05": "screaming black-haired man close-up, open mouth, side profile, intense speed lines",
+    "heldout07": "green non-human demon face with red glowing eye, sharp nose, orange background"
+  },
+  "samples": [
+    {
+      "label": "train00",
+      "split": "train",
+      "ref_id": "001-100/SG-005/mrcolor_panel_style_v4_split_edge_strict_probe_00027_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00117_SG-005-13_page_2062x2105_s02",
+      "seed": 20260634
+    },
+    {
+      "label": "train07",
+      "split": "train",
+      "ref_id": "001-100/SG-047/mrcolor_panel_style_v4_split_edge_strict_probe_00320_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01571_SG-047-12_page_1965x2897_s03",
+      "seed": 20260635
+    },
+    {
+      "label": "train14",
+      "split": "train",
+      "ref_id": "001-100/SG-083/mrcolor_panel_style_v4_split_edge_strict_probe_00494_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02718_SG-083-10_page_719x957_s01",
+      "seed": 20260636
+    },
+    {
+      "label": "train23",
+      "split": "train",
+      "ref_id": "101-200/SG-145/mrcolor_panel_style_v4_split_edge_strict_probe_00907_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04994_SG-145-03_page_2150x2955_s01",
+      "seed": 20260637
+    },
+    {
+      "label": "heldout00",
+      "split": "heldout",
+      "ref_id": "001-100/SG-015/mrcolor_panel_style_v5_edge_trim_strict_00031_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00464_SG-015-14_page_985x1775_s01",
+      "seed": 20260638
+    },
+    {
+      "label": "heldout02",
+      "split": "heldout",
+      "ref_id": "001-100/SG-071/mrcolor_panel_style_v4_split_edge_strict_probe_00444_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02306_SG-071-05_page_1115x1356_s01",
+      "seed": 20260639
+    },
+    {
+      "label": "heldout05",
+      "split": "heldout",
+      "ref_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-244/mrcolor_panel_style_v4_split_edge_strict_probe_01334_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_08090_SG-244-08_page_2130x1528_s01",
+      "seed": 20260640
+    },
+    {
+      "label": "heldout07",
+      "split": "heldout",
+      "ref_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-274/mrcolor_panel_style_v4_split_edge_strict_probe_01452_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_08754_SG-274-04_page_1407x1264_s03",
+      "seed": 20260641
+    }
+  ],
+  "results": {
+    "train00_no_ip": {
+      "prompt_id": "4644d71a-a985-443b-9fff-264dfc84cb9e",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/train00_no_ip.png",
+      "image_info": {
+        "filename": "train00_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime"
+      }
+    },
+    "train00_clean32_w14": {
+      "prompt_id": "c3b9bcf2-33f0-4de6-bce6-498c6edaa6f6",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/train00_clean32_w14.png",
+      "image_info": {
+        "filename": "train00_clean32_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime"
+      }
+    },
+    "train00_pe_space_w14": {
+      "prompt_id": "ce53bf53-d629-491d-a763-8e0aba43bf45",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/train00_pe_space_w14.png",
+      "image_info": {
+        "filename": "train00_pe_space_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime"
+      }
+    },
+    "train00_pe_retrieval_w14": {
+      "prompt_id": "9626ac99-6da9-4cc3-baa3-f45dbd3756c8",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/train00_pe_retrieval_w14.png",
+      "image_info": {
+        "filename": "train00_pe_retrieval_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime"
+      }
+    },
+    "train07_no_ip": {
+      "prompt_id": "e6307111-2a0f-4405-809a-b6448f0b33fc",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/train07_no_ip.png",
+      "image_info": {
+        "filename": "train07_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime"
+      }
+    },
+    "train07_clean32_w14": {
+      "prompt_id": "7feefb2e-7648-4a07-9ae8-62acc1f72b3d",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/train07_clean32_w14.png",
+      "image_info": {
+        "filename": "train07_clean32_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime"
+      }
+    },
+    "train07_pe_space_w14": {
+      "prompt_id": "50b0e46b-cb38-4c14-a90c-4bcc650497ed",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/train07_pe_space_w14.png",
+      "image_info": {
+        "filename": "train07_pe_space_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime"
+      }
+    },
+    "train07_pe_retrieval_w14": {
+      "prompt_id": "2d8d745b-11c8-41c0-8fff-bdf7d7e0c2ac",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/train07_pe_retrieval_w14.png",
+      "image_info": {
+        "filename": "train07_pe_retrieval_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime"
+      }
+    },
+    "train14_no_ip": {
+      "prompt_id": "f5c23094-6345-4d97-b86b-a460d021bbfd",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/train14_no_ip.png",
+      "image_info": {
+        "filename": "train14_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime"
+      }
+    },
+    "train14_clean32_w14": {
+      "prompt_id": "f19ee6a2-a515-4131-95e7-27f91a7e4c76",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/train14_clean32_w14.png",
+      "image_info": {
+        "filename": "train14_clean32_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime"
+      }
+    },
+    "train14_pe_space_w14": {
+      "prompt_id": "116d8902-96dd-4b72-95e2-a41c27287374",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/train14_pe_space_w14.png",
+      "image_info": {
+        "filename": "train14_pe_space_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime"
+      }
+    },
+    "train14_pe_retrieval_w14": {
+      "prompt_id": "a4e7a68b-699e-4f41-9e6a-422b298a0826",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/train14_pe_retrieval_w14.png",
+      "image_info": {
+        "filename": "train14_pe_retrieval_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime"
+      }
+    },
+    "train23_no_ip": {
+      "prompt_id": "a5675a9b-2504-4f6d-b6df-7bd8041a5341",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/train23_no_ip.png",
+      "image_info": {
+        "filename": "train23_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime"
+      }
+    },
+    "train23_clean32_w14": {
+      "prompt_id": "a283b441-5b3b-49e6-97b4-09127d38a9c2",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/train23_clean32_w14.png",
+      "image_info": {
+        "filename": "train23_clean32_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime"
+      }
+    },
+    "train23_pe_space_w14": {
+      "prompt_id": "86eb0a3a-05e3-4466-8c35-b3279c8de645",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/train23_pe_space_w14.png",
+      "image_info": {
+        "filename": "train23_pe_space_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime"
+      }
+    },
+    "train23_pe_retrieval_w14": {
+      "prompt_id": "05861927-36de-4fe8-85a9-fb1f46d0246d",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/train23_pe_retrieval_w14.png",
+      "image_info": {
+        "filename": "train23_pe_retrieval_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime"
+      }
+    },
+    "heldout00_no_ip": {
+      "prompt_id": "b82bd83e-b9bf-4f33-bd22-7fe97879fc64",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/heldout00_no_ip.png",
+      "image_info": {
+        "filename": "heldout00_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime"
+      }
+    },
+    "heldout00_clean32_w14": {
+      "prompt_id": "874b8338-4d53-4f9b-8a81-261f59b10454",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/heldout00_clean32_w14.png",
+      "image_info": {
+        "filename": "heldout00_clean32_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime"
+      }
+    },
+    "heldout00_pe_space_w14": {
+      "prompt_id": "2a1f348b-0556-40a7-9797-ce0ac3035478",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/heldout00_pe_space_w14.png",
+      "image_info": {
+        "filename": "heldout00_pe_space_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime"
+      }
+    },
+    "heldout00_pe_retrieval_w14": {
+      "prompt_id": "36ae452f-11ad-4863-b3aa-c40e9a7fb101",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/heldout00_pe_retrieval_w14.png",
+      "image_info": {
+        "filename": "heldout00_pe_retrieval_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime"
+      }
+    },
+    "heldout02_no_ip": {
+      "prompt_id": "67297335-0531-40c5-a756-585828575aea",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/heldout02_no_ip.png",
+      "image_info": {
+        "filename": "heldout02_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime"
+      }
+    },
+    "heldout02_clean32_w14": {
+      "prompt_id": "30bf0bd1-e9ca-48a4-9e29-78d9703848a1",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/heldout02_clean32_w14.png",
+      "image_info": {
+        "filename": "heldout02_clean32_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime"
+      }
+    },
+    "heldout02_pe_space_w14": {
+      "prompt_id": "647f8ffd-44b1-4861-9a23-992115466d1a",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/heldout02_pe_space_w14.png",
+      "image_info": {
+        "filename": "heldout02_pe_space_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime"
+      }
+    },
+    "heldout02_pe_retrieval_w14": {
+      "prompt_id": "1ba9addc-bc37-4bb7-a59b-10ec3c66f694",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/heldout02_pe_retrieval_w14.png",
+      "image_info": {
+        "filename": "heldout02_pe_retrieval_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime"
+      }
+    },
+    "heldout05_no_ip": {
+      "prompt_id": "d2a192e7-8c2e-488d-8814-1bf784e92e36",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/heldout05_no_ip.png",
+      "image_info": {
+        "filename": "heldout05_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime"
+      }
+    },
+    "heldout05_clean32_w14": {
+      "prompt_id": "456eea27-5b4d-4eda-99fd-ee4a0abe8c28",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/heldout05_clean32_w14.png",
+      "image_info": {
+        "filename": "heldout05_clean32_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime"
+      }
+    },
+    "heldout05_pe_space_w14": {
+      "prompt_id": "5531ace6-59f9-4dd8-b3e8-7445a6097de1",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/heldout05_pe_space_w14.png",
+      "image_info": {
+        "filename": "heldout05_pe_space_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime"
+      }
+    },
+    "heldout05_pe_retrieval_w14": {
+      "prompt_id": "df3791a1-4bf0-41c8-bd28-25462edc4d94",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/heldout05_pe_retrieval_w14.png",
+      "image_info": {
+        "filename": "heldout05_pe_retrieval_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime"
+      }
+    },
+    "heldout07_no_ip": {
+      "prompt_id": "dfb61eaa-81c3-44fd-8900-94c9a3c345d5",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/heldout07_no_ip.png",
+      "image_info": {
+        "filename": "heldout07_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime"
+      }
+    },
+    "heldout07_clean32_w14": {
+      "prompt_id": "e34b4f69-59c9-4c72-9817-6c867c15d166",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/heldout07_clean32_w14.png",
+      "image_info": {
+        "filename": "heldout07_clean32_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime"
+      }
+    },
+    "heldout07_pe_space_w14": {
+      "prompt_id": "aeba4812-b139-4e8c-88a0-24c740c29aee",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/heldout07_pe_space_w14.png",
+      "image_info": {
+        "filename": "heldout07_pe_space_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime"
+      }
+    },
+    "heldout07_pe_retrieval_w14": {
+      "prompt_id": "c0585a4a-0ce8-4ae0-8282-74e1da6ab076",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/heldout07_pe_retrieval_w14.png",
+      "image_info": {
+        "filename": "heldout07_pe_retrieval_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime"
+      }
+    }
+  },
+  "contact_sheet": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c032_attribute_prompt_runtime/contact_sheet.jpg"
+}
