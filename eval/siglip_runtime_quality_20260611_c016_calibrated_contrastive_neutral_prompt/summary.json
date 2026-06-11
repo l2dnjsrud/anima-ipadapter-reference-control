@@ -1,0 +1,113 @@
+{
+  "base_url": "http://127.0.0.1:8116",
+  "checkpoint": "anima_siglip_ip_adapter_identity128_calibrated_contrastive_0064_20260611.safetensors",
+  "results": {
+    "no_ip": {
+      "prompt_id": "ade651bc-2971-4622-971a-38ffc0ff3419",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c016_calibrated_contrastive_neutral_prompt/no_ip.png",
+      "image_info": {
+        "filename": "no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c016_calibrated_contrastive_neutral_prompt",
+        "type": "output"
+      }
+    },
+    "train000_w10": {
+      "prompt_id": "0aa2db43-6803-4479-972a-a3c540c5d3e0",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c016_calibrated_contrastive_neutral_prompt/train000_w10.png",
+      "image_info": {
+        "filename": "train000_w10_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c016_calibrated_contrastive_neutral_prompt",
+        "type": "output"
+      }
+    },
+    "train064_w10": {
+      "prompt_id": "d6bf4796-58b9-4f8b-a278-821099b4da8e",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c016_calibrated_contrastive_neutral_prompt/train064_w10.png",
+      "image_info": {
+        "filename": "train064_w10_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c016_calibrated_contrastive_neutral_prompt",
+        "type": "output"
+      }
+    },
+    "train127_w10": {
+      "prompt_id": "93509011-2937-4b79-aa42-bed44b476a81",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c016_calibrated_contrastive_neutral_prompt/train127_w10.png",
+      "image_info": {
+        "filename": "train127_w10_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c016_calibrated_contrastive_neutral_prompt",
+        "type": "output"
+      }
+    },
+    "heldout0112_w10": {
+      "prompt_id": "1d5f3d72-dd8c-47ce-8e6d-d99aedcaf38e",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c016_calibrated_contrastive_neutral_prompt/heldout0112_w10.png",
+      "image_info": {
+        "filename": "heldout0112_w10_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c016_calibrated_contrastive_neutral_prompt",
+        "type": "output"
+      }
+    },
+    "heldout0560_w10": {
+      "prompt_id": "12cb1970-d8b8-4762-bf54-a38693a9aae3",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c016_calibrated_contrastive_neutral_prompt/heldout0560_w10.png",
+      "image_info": {
+        "filename": "heldout0560_w10_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c016_calibrated_contrastive_neutral_prompt",
+        "type": "output"
+      }
+    },
+    "heldout1008_w10": {
+      "prompt_id": "2d85ede1-72bc-4a51-871d-596005f473e3",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c016_calibrated_contrastive_neutral_prompt/heldout1008_w10.png",
+      "image_info": {
+        "filename": "heldout1008_w10_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c016_calibrated_contrastive_neutral_prompt",
+        "type": "output"
+      }
+    }
+  },
+  "rows": [
+    {
+      "label": "train000_w10",
+      "reference": "identity128_train000.jpg",
+      "d_no_ip": 77.35631815592448,
+      "d_ref": 60.68488057454427,
+      "d_c014": 23.110626220703125
+    },
+    {
+      "label": "train064_w10",
+      "reference": "identity128_train064.jpg",
+      "d_no_ip": 55.01103210449219,
+      "d_ref": 59.50592041015625,
+      "d_c014": 29.425516764322918
+    },
+    {
+      "label": "train127_w10",
+      "reference": "identity128_train127.jpg",
+      "d_no_ip": 48.10413106282552,
+      "d_ref": 67.61599222819011,
+      "d_c014": 19.340220133463543
+    },
+    {
+      "label": "heldout0112_w10",
+      "reference": "identity128_heldout0112.jpg",
+      "d_no_ip": 86.27889506022136,
+      "d_ref": 109.98451741536458,
+      "d_c014": 53.4649658203125
+    },
+    {
+      "label": "heldout0560_w10",
+      "reference": "identity128_heldout0560.jpg",
+      "d_no_ip": 91.59041341145833,
+      "d_ref": 89.17444356282552,
+      "d_c014": 56.13585917154948
+    },
+    {
+      "label": "heldout1008_w10",
+      "reference": "identity128_heldout1008.jpg",
+      "d_no_ip": 66.26383972167969,
+      "d_ref": 69.49805196126302,
+      "d_c014": 41.04491678873698
+    }
+  ]
+}

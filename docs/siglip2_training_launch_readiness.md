@@ -356,6 +356,25 @@ Interpretation: inference scale is not the missing fix. It can intensify style
 or layout pressure, but it does not recover stable identity/layout control and
 often worsens generic-scene collapse.
 
+The next branch added an identity-initialized trainable feature calibrator in
+front of the native SigLIP adapter. The checkpoint loader now preserves
+backward compatibility for old SigLIP checkpoints and reconstructs calibrated
+checkpoints when `feature_calibrator.*` tensors are present. Two bounded
+calibrated continuations were tested:
+
+```text
+eval/siglip_runtime_quality_20260611_c016_calibrated_contrastive_neutral_prompt/report.md
+eval/siglip_runtime_quality_20260611_c016_calibrated_contrastive_neutral_prompt/contact_sheet.jpg
+eval/siglip_runtime_quality_20260611_c017_calibrated_contrastive0576_neutral_prompt/report.md
+eval/siglip_runtime_quality_20260611_c017_calibrated_contrastive0576_neutral_prompt/contact_sheet.jpg
+```
+
+Interpretation: calibration is a valid trainable path and produces a better
+early signal than pure frozen-adapter tuning, but it is not a completed quality
+solution. The 64-step checkpoint improves some rows; the 576-step continuation
+then drifts toward generic scene averages. A broad full-dataset run should not
+start until the objective or encoder signal changes again.
+
 ## Stop Conditions
 
 Stop and ask before proceeding if any of these are true:

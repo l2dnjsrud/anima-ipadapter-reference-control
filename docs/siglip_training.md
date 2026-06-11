@@ -412,3 +412,42 @@ the user wants. More inference-scale tuning on this checkpoint is not a credible
 route to production quality. The next implementation path needs a trainable
 image encoder/calibration stage or a stronger anime/VL encoder while preserving
 the native ComfyUI patch surface.
+
+## 2026-06-11 feature calibration path
+
+An identity-initialized trainable feature-calibration module was added in front
+of the native SigLIP adapter path. Calibrated checkpoints keep the existing
+ComfyUI node surface and add `feature_calibrator.*` tensors to the SigLIP
+checkpoint state; old uncalibrated checkpoints still load through the same
+loader.
+
+The first calibrated seed wrapped
+`anima_siglip_ip_adapter_identity128_contrastive_0512_20260611.safetensors` with
+a 256-wide feature calibrator. A 64-step contrastive continuation produced:
+
+- `checkpoints/anima_siglip_ip_adapter_identity128_calibrated_contrastive_0064_20260611.safetensors`
+- load type: `CalibratedIPAdapterSigLIP`
+- changed tensors: 261
+- changed calibration tensors: 8
+- relative L2 from calibrated seed: `0.00232`
+- API evidence:
+  `eval/siglip_runtime_quality_20260611_c016_calibrated_contrastive_neutral_prompt/report.md`
+- Decision: `calibration_path_executes_and_improves_some_rows_but_not_quality_pass`
+
+A longer 512-step continuation from the 64-step checkpoint produced:
+
+- `checkpoints/anima_siglip_ip_adapter_identity128_calibrated_contrastive_0576_20260611.safetensors`
+- load type: `CalibratedIPAdapterSigLIP`
+- changed tensors from c016: 261
+- changed calibration tensors from c016: 8
+- relative L2 from c016: `0.00671`
+- API evidence:
+  `eval/siglip_runtime_quality_20260611_c017_calibrated_contrastive0576_neutral_prompt/report.md`
+- Decision: `longer_calibrated_contrastive_training_overfits_scene_average`
+
+Interpretation: feature calibration is a real trainable path and gives a better
+early signal than frozen adapter-only tuning. It still does not pass the
+high-quality reference-control target. More steps on the same contrastive
+objective can overfit toward generic group/court scenes, so the next attempt
+should change the objective or image-encoder signal instead of only increasing
+step count.
