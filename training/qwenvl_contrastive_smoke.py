@@ -18,23 +18,17 @@ from training.qwenvl_prepared_cache import (  # noqa: E402
     get_qwenvl_prepared,
     prepare_qwenvl_cache,
 )
-from training.qwenvl_real_smoke import (  # noqa: E402
-    DEFAULT_INSTRUCTION,
-    PreparedQwenVLRow,
-)
+from training.qwenvl_real_smoke import DEFAULT_INSTRUCTION  # noqa: E402
 from training.qwenvl_smoke_checkpoint import (  # noqa: E402
     load_trainable_qwenvl_adapter,
     save_qwenvl_adapter_checkpoint,
     verify_qwenvl_checkpoint,
 )
+from training.qwenvl_step import QwenVLStepWeights, run_qwenvl_step  # noqa: E402
 from training.siglip_real_smoke import freeze_module, trainable_parameter_count  # noqa: E402
-from training.siglip_reference_loss import (  # noqa: E402
-    reference_margin_loss,
-    wrong_reference_index,
-)
+from training.siglip_reference_loss import wrong_reference_index  # noqa: E402
 from training.siglip_smoke_data import load_pair_rows  # noqa: E402
-from training.siglip_smoke_patch import patched_cross_attention  # noqa: E402
-from training.siglip_smoke_runtime import noise_args, seed_everything, validate_config  # noqa: E402
+from training.siglip_smoke_runtime import seed_everything, validate_config  # noqa: E402
 from training.siglip_smoke_types import (  # noqa: E402
     CheckpointVerification,
     SmokeConfig,
@@ -51,6 +45,7 @@ class QwenVLContrastiveSummary:
     mean_loss: float
     mean_base_loss: float
     mean_contrastive_loss: float
+    mean_retrieval_loss: float
     finite_loss: bool
     trainable_parameters: int
     frozen_base_parameters: int
@@ -58,6 +53,8 @@ class QwenVLContrastiveSummary:
     init_checkpoint_path: str | None
     contrastive_weight: float
     contrastive_margin: float
+    retrieval_weight: float
+    retrieval_margin: float
     calibrator_bottleneck_dim: int | None
 
 
@@ -66,6 +63,8 @@ def run_qwenvl_contrastive_smoke(
     *,
     contrastive_weight: float,
     contrastive_margin: float,
+    retrieval_weight: float = 0.0,
+    retrieval_margin: float = 0.2,
     calibrator_bottleneck_dim: int | None = None,
     instruction: str = DEFAULT_INSTRUCTION,
 ) -> QwenVLContrastiveSummary:
@@ -124,6 +123,11 @@ def run_qwenvl_contrastive_smoke(
     losses: list[float] = []
     base_losses: list[float] = []
     contrastive_losses: list[float] = []
+    retrieval_losses: list[float] = []
+    weights = QwenVLStepWeights(
+        contrastive=contrastive_weight,
+        retrieval=retrieval_weight,
+    )
 
     for step in range(config.steps):
         row_index = step % len(rows)
@@ -155,17 +159,19 @@ def run_qwenvl_contrastive_smoke(
             dtype,
             instruction,
         )
-        base_loss, contrastive_loss, loss = _step_loss(
-            anima,
-            adapter,
-            prepared,
-            wrong_prepared,
-            scheduler,
-            device,
-            dtype,
-            contrastive_margin,
-            contrastive_weight,
+        step_losses = run_qwenvl_step(
+            anima=anima,
+            adapter=adapter,
+            prepared=prepared,
+            wrong_prepared=wrong_prepared,
+            scheduler=scheduler,
+            device=device,
+            dtype=dtype,
+            weights=weights,
+            contrastive_margin=contrastive_margin,
+            retrieval_margin=retrieval_margin,
         )
+        loss = step_losses.total
         if not torch.isfinite(loss):
             raise SmokeInputError(
                 f"non-finite loss at step {step}: {float(loss.detach().cpu())}"
@@ -174,8 +180,9 @@ def run_qwenvl_contrastive_smoke(
         loss.backward()
         optimizer.step()
         losses.append(float(loss.detach().cpu()))
-        base_losses.append(float(base_loss.detach().cpu()))
-        contrastive_losses.append(float(contrastive_loss.detach().cpu()))
+        base_losses.append(float(step_losses.base.detach().cpu()))
+        contrastive_losses.append(float(step_losses.contrastive.detach().cpu()))
+        retrieval_losses.append(float(step_losses.retrieval.detach().cpu()))
 
     save_qwenvl_adapter_checkpoint(adapter, config.output_path)
     checkpoint = verify_qwenvl_checkpoint(config.output_path, config.pe_checkpoint_path)
@@ -187,6 +194,7 @@ def run_qwenvl_contrastive_smoke(
         mean_loss=sum(losses) / len(losses),
         mean_base_loss=sum(base_losses) / len(base_losses),
         mean_contrastive_loss=sum(contrastive_losses) / len(contrastive_losses),
+        mean_retrieval_loss=sum(retrieval_losses) / len(retrieval_losses),
         finite_loss=all(math.isfinite(loss) for loss in losses),
         trainable_parameters=trainable_parameter_count(adapter),
         frozen_base_parameters=frozen_params,
@@ -196,64 +204,7 @@ def run_qwenvl_contrastive_smoke(
         ),
         contrastive_weight=contrastive_weight,
         contrastive_margin=contrastive_margin,
+        retrieval_weight=retrieval_weight,
+        retrieval_margin=retrieval_margin,
         calibrator_bottleneck_dim=calibrator_bottleneck_dim,
     )
-
-
-def _step_loss(
-    anima: torch.nn.Module,
-    adapter,
-    prepared: PreparedQwenVLRow,
-    wrong_prepared: PreparedQwenVLRow,
-    scheduler,
-    device: torch.device,
-    dtype: torch.dtype,
-    contrastive_margin: float,
-    contrastive_weight: float,
-) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
-    latents = prepared.latents
-    noise = torch.randn_like(latents)
-    from library.runtime.noise import get_noisy_model_input_and_timesteps
-
-    noisy, timesteps, _sigmas = get_noisy_model_input_and_timesteps(
-        noise_args(), scheduler, latents, noise, device, dtype
-    )
-    padding_mask = torch.zeros(
-        latents.shape[0],
-        1,
-        latents.shape[-2],
-        latents.shape[-1],
-        device=device,
-        dtype=dtype,
-    )
-    target = noise - latents
-    correct_pred = _predict_qwenvl(
-        anima, adapter, prepared, noisy, timesteps, padding_mask
-    )
-    wrong_pred = _predict_qwenvl(
-        anima, adapter, wrong_prepared, noisy, timesteps, padding_mask
-    )
-    base_loss = torch.nn.functional.mse_loss(correct_pred.float(), target.float())
-    contrastive_loss = reference_margin_loss(
-        correct_pred, wrong_pred, target, margin=contrastive_margin
-    )
-    return base_loss, contrastive_loss, base_loss + contrastive_weight * contrastive_loss
-
-
-def _predict_qwenvl(
-    anima: torch.nn.Module,
-    adapter,
-    prepared: PreparedQwenVLRow,
-    noisy: torch.Tensor,
-    timesteps: torch.Tensor,
-    padding_mask: torch.Tensor,
-) -> torch.Tensor:
-    image_tokens = adapter.encode_ref(prepared.embedding, timestep=timesteps)
-    with patched_cross_attention(anima, adapter, image_tokens):
-        pred = anima(
-            noisy.unsqueeze(2),
-            timesteps,
-            prepared.crossattn_emb,
-            padding_mask=padding_mask,
-        )
-    return pred.squeeze(2)

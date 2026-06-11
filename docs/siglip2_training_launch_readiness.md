@@ -614,3 +614,19 @@ is:
     unchanged. The next useful experiment should train the image
     encoder/calibrator itself, or derive explicit identity/palette/prop tokens
     from Qwen/PE teacher features before denoising.
+29. A QwenVL token-retrieval pilot was added and tested on the same
+    single-character clean32 gate:
+    - `training/qwenvl_token_retrieval.py`
+    - `training/qwenvl_step.py`
+    - `eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/report.md`
+    - `eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/contact_sheet.jpg`
+30. Result: `qwen_retrieval_single_character_not_quality_pass`. The checkpoint
+    is loadable in ComfyUI and affects images, but the visual outputs still
+    collapse toward generic black-haired wuxia male portraits. It misses elder
+    beard/baldness, scholar props, screaming expression, and green demon
+    identity.
+31. Updated next step: keep the single-character held-out gate as the first
+    quality check, but stop expecting short adapter-token retrieval alone to
+    solve the problem. The next useful branch needs a stronger trainable
+    image-feature calibrator/encoder or explicit identity/palette/prop tokens
+    supervised by Qwen/PE features before any longer generation-quality run.

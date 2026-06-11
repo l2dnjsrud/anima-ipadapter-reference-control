@@ -1026,3 +1026,48 @@ more strongly at frozen SigLIP feature insufficiency for anime identity,
 palette, and prop attributes. The next branch should train a stronger
 image-feature calibrator/encoder or use Qwen/PE teacher features to produce
 explicit identity/palette/prop tokens before denoising.
+
+## 2026-06-11 QwenVL single-character retrieval pilot
+
+After the PE retrieval pilot, a QwenVL token-retrieval branch was added:
+
+```text
+training/qwenvl_token_retrieval.py
+training/qwenvl_step.py
+```
+
+The branch continues from the calibrated QwenVL identity128 checkpoint and adds
+a margin loss that makes the adapter token mean prefer the matching QwenVL image
+embedding over a deterministic wrong-reference embedding.
+
+Checkpoint:
+
+```text
+checkpoints/anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors
+```
+
+Observed 128-step summary:
+
+- rows loaded: `32`
+- first/final loss: `0.2704607844352722` / `0.3180232048034668`
+- mean loss: `0.32662612583953887`
+- mean base loss: `0.21053104143356904`
+- mean contrastive loss: `0.04986031912267208`
+- mean QwenVL retrieval loss: `0.20726001169532537`
+- finite loss: `true`
+
+ComfyUI API quality evidence:
+
+- `eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/report.md`
+- `eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/contact_sheet.jpg`
+- `eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/summary.json`
+
+Decision: `qwen_retrieval_single_character_not_quality_pass`
+
+Interpretation: the QwenVL retrieval adapter changes images, but it still
+collapses toward a generic black-haired wuxia male template. It misses old
+bearded identity, glasses/fan/scholar props, screaming close-crop expression,
+and green demon/non-human traits. This is a useful negative result: adding a
+short token-retrieval loss to the existing adapter is not enough. The next
+branch should train a stronger image-feature calibrator/encoder or explicit
+identity/palette/prop tokens before another denoising-centered run.

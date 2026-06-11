@@ -1,0 +1,381 @@
+{
+  "base_url": "http://127.0.0.1:8116",
+  "checkpoints": {
+    "base": "anima_qwenvl_ip_adapter_identity128_calibrated_contrastive_0064_20260611.safetensors",
+    "retrieval": "anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors"
+  },
+  "comparison": "reference / no_ip / qwen_base_w1 / qwen_base_w14 / qwen_retrieval_w1 / qwen_retrieval_w14",
+  "samples": [
+    {
+      "label": "train00",
+      "split": "train",
+      "ref_id": "001-100/SG-005/mrcolor_panel_style_v4_split_edge_strict_probe_00027_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00117_SG-005-13_page_2062x2105_s02",
+      "seed": 20260658
+    },
+    {
+      "label": "train07",
+      "split": "train",
+      "ref_id": "001-100/SG-047/mrcolor_panel_style_v4_split_edge_strict_probe_00320_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01571_SG-047-12_page_1965x2897_s03",
+      "seed": 20260659
+    },
+    {
+      "label": "train14",
+      "split": "train",
+      "ref_id": "001-100/SG-083/mrcolor_panel_style_v4_split_edge_strict_probe_00494_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02718_SG-083-10_page_719x957_s01",
+      "seed": 20260660
+    },
+    {
+      "label": "train23",
+      "split": "train",
+      "ref_id": "101-200/SG-145/mrcolor_panel_style_v4_split_edge_strict_probe_00907_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04994_SG-145-03_page_2150x2955_s01",
+      "seed": 20260661
+    },
+    {
+      "label": "heldout00",
+      "split": "heldout",
+      "ref_id": "001-100/SG-015/mrcolor_panel_style_v5_edge_trim_strict_00031_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00464_SG-015-14_page_985x1775_s01",
+      "seed": 20260662
+    },
+    {
+      "label": "heldout02",
+      "split": "heldout",
+      "ref_id": "001-100/SG-071/mrcolor_panel_style_v4_split_edge_strict_probe_00444_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02306_SG-071-05_page_1115x1356_s01",
+      "seed": 20260663
+    },
+    {
+      "label": "heldout05",
+      "split": "heldout",
+      "ref_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-244/mrcolor_panel_style_v4_split_edge_strict_probe_01334_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_08090_SG-244-08_page_2130x1528_s01",
+      "seed": 20260664
+    },
+    {
+      "label": "heldout07",
+      "split": "heldout",
+      "ref_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-274/mrcolor_panel_style_v4_split_edge_strict_probe_01452_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_08754_SG-274-04_page_1407x1264_s03",
+      "seed": 20260665
+    }
+  ],
+  "results": {
+    "train00_no_ip": {
+      "prompt_id": "b4a8ff93-eb5c-47db-b673-894a2e58269d",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/train00_no_ip.png",
+      "image_info": {
+        "filename": "train00_no_ip_00002_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "train00_qwen_base_w1": {
+      "prompt_id": "c3020430-99aa-49e7-9c11-7e6dcc4267dd",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/train00_qwen_base_w1.png",
+      "image_info": {
+        "filename": "train00_qwen_base_w1_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "train00_qwen_base_w14": {
+      "prompt_id": "d1c0c0a9-73f3-4b57-8270-3eb052e91e25",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/train00_qwen_base_w14.png",
+      "image_info": {
+        "filename": "train00_qwen_base_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "train00_qwen_retrieval_w1": {
+      "prompt_id": "f99d8d92-3f7c-40e9-9235-a694d454bb48",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/train00_qwen_retrieval_w1.png",
+      "image_info": {
+        "filename": "train00_qwen_retrieval_w1_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "train00_qwen_retrieval_w14": {
+      "prompt_id": "a1c904b6-7c09-479a-84e4-ddfaaddd61cd",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/train00_qwen_retrieval_w14.png",
+      "image_info": {
+        "filename": "train00_qwen_retrieval_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "train07_no_ip": {
+      "prompt_id": "1ff0d18f-d2ab-43a3-9fc0-35820cfc911c",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/train07_no_ip.png",
+      "image_info": {
+        "filename": "train07_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "train07_qwen_base_w1": {
+      "prompt_id": "f1ae0924-a92e-40db-85da-37d2fedbcb7e",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/train07_qwen_base_w1.png",
+      "image_info": {
+        "filename": "train07_qwen_base_w1_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "train07_qwen_base_w14": {
+      "prompt_id": "b0788740-076a-4e1d-a8ab-c3d6d9c16c81",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/train07_qwen_base_w14.png",
+      "image_info": {
+        "filename": "train07_qwen_base_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "train07_qwen_retrieval_w1": {
+      "prompt_id": "e3e7e859-d632-4e19-909d-d77526239923",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/train07_qwen_retrieval_w1.png",
+      "image_info": {
+        "filename": "train07_qwen_retrieval_w1_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "train07_qwen_retrieval_w14": {
+      "prompt_id": "fdc97926-b786-410d-be3b-5f53028e0d67",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/train07_qwen_retrieval_w14.png",
+      "image_info": {
+        "filename": "train07_qwen_retrieval_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "train14_no_ip": {
+      "prompt_id": "0a04f1a6-e01d-40a4-9756-33d77fed0c82",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/train14_no_ip.png",
+      "image_info": {
+        "filename": "train14_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "train14_qwen_base_w1": {
+      "prompt_id": "28537dd2-74b3-4b68-86f7-e2b648eb81ec",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/train14_qwen_base_w1.png",
+      "image_info": {
+        "filename": "train14_qwen_base_w1_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "train14_qwen_base_w14": {
+      "prompt_id": "bd531ea9-20f3-4dd0-8811-25cd85c3bef0",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/train14_qwen_base_w14.png",
+      "image_info": {
+        "filename": "train14_qwen_base_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "train14_qwen_retrieval_w1": {
+      "prompt_id": "df5eec2f-6063-4ac7-91c1-b3cc8f2eedb7",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/train14_qwen_retrieval_w1.png",
+      "image_info": {
+        "filename": "train14_qwen_retrieval_w1_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "train14_qwen_retrieval_w14": {
+      "prompt_id": "dfa3b230-9831-4890-8034-e4f3ac7bfa9f",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/train14_qwen_retrieval_w14.png",
+      "image_info": {
+        "filename": "train14_qwen_retrieval_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "train23_no_ip": {
+      "prompt_id": "ec207f04-b12d-4f3e-9474-a5f3e8f327a8",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/train23_no_ip.png",
+      "image_info": {
+        "filename": "train23_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "train23_qwen_base_w1": {
+      "prompt_id": "7a305297-373d-4eb0-ab8f-e68b1c0a01b7",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/train23_qwen_base_w1.png",
+      "image_info": {
+        "filename": "train23_qwen_base_w1_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "train23_qwen_base_w14": {
+      "prompt_id": "af0277ca-1457-4c70-8e2e-24e68998c197",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/train23_qwen_base_w14.png",
+      "image_info": {
+        "filename": "train23_qwen_base_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "train23_qwen_retrieval_w1": {
+      "prompt_id": "a19bd215-d115-4ab8-acfa-b96f693089b8",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/train23_qwen_retrieval_w1.png",
+      "image_info": {
+        "filename": "train23_qwen_retrieval_w1_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "train23_qwen_retrieval_w14": {
+      "prompt_id": "84869797-3b78-4ad0-974d-bcf2ecf61f29",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/train23_qwen_retrieval_w14.png",
+      "image_info": {
+        "filename": "train23_qwen_retrieval_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "heldout00_no_ip": {
+      "prompt_id": "14814c2d-f8a5-45f0-987f-4a90cc64823f",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/heldout00_no_ip.png",
+      "image_info": {
+        "filename": "heldout00_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "heldout00_qwen_base_w1": {
+      "prompt_id": "5810c093-cf88-4d7e-98b9-41b65a120256",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/heldout00_qwen_base_w1.png",
+      "image_info": {
+        "filename": "heldout00_qwen_base_w1_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "heldout00_qwen_base_w14": {
+      "prompt_id": "87b7f76c-9f99-458f-b595-bffbbc81b7c8",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/heldout00_qwen_base_w14.png",
+      "image_info": {
+        "filename": "heldout00_qwen_base_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "heldout00_qwen_retrieval_w1": {
+      "prompt_id": "482ffba1-b304-4d54-b909-bd2152b9c700",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/heldout00_qwen_retrieval_w1.png",
+      "image_info": {
+        "filename": "heldout00_qwen_retrieval_w1_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "heldout00_qwen_retrieval_w14": {
+      "prompt_id": "2e7740c8-d234-4beb-a538-a401cc1dd824",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/heldout00_qwen_retrieval_w14.png",
+      "image_info": {
+        "filename": "heldout00_qwen_retrieval_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "heldout02_no_ip": {
+      "prompt_id": "a8d5321d-f2fc-4ab3-ae87-dc92fec727d9",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/heldout02_no_ip.png",
+      "image_info": {
+        "filename": "heldout02_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "heldout02_qwen_base_w1": {
+      "prompt_id": "70845533-ee74-4a7e-bafb-2cfef215f71d",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/heldout02_qwen_base_w1.png",
+      "image_info": {
+        "filename": "heldout02_qwen_base_w1_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "heldout02_qwen_base_w14": {
+      "prompt_id": "f4e30f4b-0331-4c30-a596-d790ace65f4c",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/heldout02_qwen_base_w14.png",
+      "image_info": {
+        "filename": "heldout02_qwen_base_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "heldout02_qwen_retrieval_w1": {
+      "prompt_id": "452b6e9f-e72f-4ffc-9a56-20fc23e508c6",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/heldout02_qwen_retrieval_w1.png",
+      "image_info": {
+        "filename": "heldout02_qwen_retrieval_w1_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "heldout02_qwen_retrieval_w14": {
+      "prompt_id": "7f94ced6-44df-485a-bbe3-7c2b855e1812",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/heldout02_qwen_retrieval_w14.png",
+      "image_info": {
+        "filename": "heldout02_qwen_retrieval_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "heldout05_no_ip": {
+      "prompt_id": "9bfcc215-2be8-43ee-8f4d-52b64ec4907f",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/heldout05_no_ip.png",
+      "image_info": {
+        "filename": "heldout05_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "heldout05_qwen_base_w1": {
+      "prompt_id": "bdb1b3a0-4891-4088-b53e-8a2fb6d1bf74",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/heldout05_qwen_base_w1.png",
+      "image_info": {
+        "filename": "heldout05_qwen_base_w1_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "heldout05_qwen_base_w14": {
+      "prompt_id": "ff915751-a97f-49c3-8dab-e241fb713f1d",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/heldout05_qwen_base_w14.png",
+      "image_info": {
+        "filename": "heldout05_qwen_base_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "heldout05_qwen_retrieval_w1": {
+      "prompt_id": "6de296ae-950b-4e51-b855-4efdadc576c6",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/heldout05_qwen_retrieval_w1.png",
+      "image_info": {
+        "filename": "heldout05_qwen_retrieval_w1_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "heldout05_qwen_retrieval_w14": {
+      "prompt_id": "1b441084-7d7e-4d85-987f-dca329781536",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/heldout05_qwen_retrieval_w14.png",
+      "image_info": {
+        "filename": "heldout05_qwen_retrieval_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "heldout07_no_ip": {
+      "prompt_id": "cd526b3d-0f62-4e89-a867-ed61c027cc4d",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/heldout07_no_ip.png",
+      "image_info": {
+        "filename": "heldout07_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "heldout07_qwen_base_w1": {
+      "prompt_id": "cbda826d-f8a2-4911-b364-579bc86b84d9",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/heldout07_qwen_base_w1.png",
+      "image_info": {
+        "filename": "heldout07_qwen_base_w1_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "heldout07_qwen_base_w14": {
+      "prompt_id": "a3a86573-e985-4b32-b906-b7e57c0e4e42",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/heldout07_qwen_base_w14.png",
+      "image_info": {
+        "filename": "heldout07_qwen_base_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "heldout07_qwen_retrieval_w1": {
+      "prompt_id": "76d652de-8969-479c-8cc5-afce15021715",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/heldout07_qwen_retrieval_w1.png",
+      "image_info": {
+        "filename": "heldout07_qwen_retrieval_w1_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    },
+    "heldout07_qwen_retrieval_w14": {
+      "prompt_id": "90cf25cc-9def-4405-8cae-5aa6d2218ca9",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/heldout07_qwen_retrieval_w14.png",
+      "image_info": {
+        "filename": "heldout07_qwen_retrieval_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c030_single_character_retrieval"
+      }
+    }
+  },
+  "contact_sheet": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/contact_sheet.jpg"
+}

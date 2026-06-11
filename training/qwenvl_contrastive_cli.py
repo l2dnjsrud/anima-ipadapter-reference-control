@@ -62,6 +62,8 @@ def train(
     seed: Annotated[int, typer.Option()] = 20260620,
     contrastive_weight: Annotated[float, typer.Option()] = 0.35,
     contrastive_margin: Annotated[float, typer.Option()] = 0.05,
+    retrieval_weight: Annotated[float, typer.Option()] = 0.0,
+    retrieval_margin: Annotated[float, typer.Option()] = 0.2,
     calibrator_bottleneck_dim: Annotated[int | None, typer.Option()] = None,
     qwenvl_model_id: Annotated[str, typer.Option()] = DEFAULT_QWENVL,
     instruction: Annotated[str, typer.Option()] = DEFAULT_INSTRUCTION,
@@ -87,6 +89,8 @@ def train(
         config,
         contrastive_weight=contrastive_weight,
         contrastive_margin=contrastive_margin,
+        retrieval_weight=retrieval_weight,
+        retrieval_margin=retrieval_margin,
         calibrator_bottleneck_dim=calibrator_bottleneck_dim,
         instruction=instruction,
     )
