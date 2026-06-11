@@ -488,7 +488,15 @@ is:
    frozen-SigLIP tuning as the main path and move to a Qwen-VL/anime-image-
    encoder based reference-control plan. The first Qwen branch should target
    `Qwen/Qwen3-VL-Embedding-2B` with a `2048`-dim adapter input.
-6. Add the QwenVL image encoder/cached-embedding node and run a bounded
-   denoising smoke before any long training run. The node surface is now in
-   place; the remaining work is the bounded QwenVL denoising smoke/checkpoint
-   and contact-sheet evaluation.
+6. The QwenVL image encoder node, bounded denoising smoke, and QwenVL
+   contact-sheet evaluation have now been run:
+   - `eval/qwenvl_runtime_quality_20260611_c001_smoke/report.md`
+   - `eval/qwenvl_runtime_quality_20260611_c002_identity128_weight_sweep/contact_sheet.jpg`
+   - `eval/qwenvl_runtime_quality_20260611_c003_contrastive_weight_sweep/contact_sheet.jpg`
+7. The result is not a quality pass. QwenVL adapter-only tuning changes the
+   output, but the outputs still collapse toward a dataset-average yellow-robed
+   interior scene and do not preserve reference-specific identity/layout/color.
+   Do not spend a long GPU run on the same frozen-encoder adapter-only recipe.
+8. Next executable step: design a trainable image-encoder/calibrator or
+   teacher-supervised objective that explicitly penalizes reference collapse
+   before launching another broad run.

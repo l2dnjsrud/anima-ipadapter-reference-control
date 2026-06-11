@@ -1,0 +1,108 @@
+{
+  "base_url": "http://127.0.0.1:8118",
+  "checkpoint": "anima_qwenvl_ip_adapter_identity128_0064_20260611.safetensors",
+  "results": {
+    "no_ip": {
+      "prompt_id": "371a25da-8118-458c-a192-1bb1bf64011d",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c001_identity128/no_ip.png",
+      "image_info": {
+        "filename": "no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c001",
+        "type": "output"
+      }
+    },
+    "train000_w1": {
+      "prompt_id": "bfcec89f-2717-4e08-8b69-98b70f054448",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c001_identity128/train000_w1.png",
+      "image_info": {
+        "filename": "train000_w1_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c001",
+        "type": "output"
+      }
+    },
+    "train064_w1": {
+      "prompt_id": "912c1973-53b7-4724-825a-f363e64f0ad7",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c001_identity128/train064_w1.png",
+      "image_info": {
+        "filename": "train064_w1_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c001",
+        "type": "output"
+      }
+    },
+    "train127_w1": {
+      "prompt_id": "002e53bf-daae-4452-abd4-fe37ebb040b1",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c001_identity128/train127_w1.png",
+      "image_info": {
+        "filename": "train127_w1_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c001",
+        "type": "output"
+      }
+    },
+    "heldout0112_w1": {
+      "prompt_id": "d23f09da-803d-4d05-b66c-06493f1373af",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c001_identity128/heldout0112_w1.png",
+      "image_info": {
+        "filename": "heldout0112_w1_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c001",
+        "type": "output"
+      }
+    },
+    "heldout0560_w1": {
+      "prompt_id": "0c4f6fe5-30e2-43a4-b5fc-6fd22b5201e1",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c001_identity128/heldout0560_w1.png",
+      "image_info": {
+        "filename": "heldout0560_w1_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c001",
+        "type": "output"
+      }
+    },
+    "heldout1008_w1": {
+      "prompt_id": "06ef251f-4616-4004-847c-96d65ae9efd0",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c001_identity128/heldout1008_w1.png",
+      "image_info": {
+        "filename": "heldout1008_w1_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c001",
+        "type": "output"
+      }
+    }
+  },
+  "rows": [
+    {
+      "label": "train000",
+      "d_no_ip": 29.645143508911133,
+      "d_ref": 91.99809265136719,
+      "stddev": 42.89903264493011
+    },
+    {
+      "label": "train064",
+      "d_no_ip": 29.041275024414062,
+      "d_ref": 53.19540786743164,
+      "stddev": 42.77580782017585
+    },
+    {
+      "label": "train127",
+      "d_no_ip": 29.891319274902344,
+      "d_ref": 54.44960403442383,
+      "stddev": 43.22081706492013
+    },
+    {
+      "label": "heldout0112",
+      "d_no_ip": 29.645784378051758,
+      "d_ref": 131.862548828125,
+      "stddev": 43.067097698898266
+    },
+    {
+      "label": "heldout0560",
+      "d_no_ip": 29.4459228515625,
+      "d_ref": 132.3211669921875,
+      "stddev": 42.458524602173576
+    },
+    {
+      "label": "heldout1008",
+      "d_no_ip": 28.89626693725586,
+      "d_ref": 59.0263671875,
+      "stddev": 42.565555063723586
+    }
+  ],
+  "contact_sheet": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c001_identity128/contact_sheet.jpg"
+}

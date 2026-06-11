@@ -577,3 +577,63 @@ Evidence:
 
 Current status: node registration and synthetic runtime patch tests pass. The
 branch still needs a trained QwenVL checkpoint before any image quality claim.
+
+## 2026-06-11 QwenVL bounded training and ComfyUI quality check
+
+A native QwenVL training smoke was added for the same Anima denoising objective
+used by the SigLIP branch:
+
+- `training/qwenvl_real_smoke.py`
+- `training/qwenvl_smoke_checkpoint.py`
+- `training/qwenvl_smoke_cli.py`
+- `training/qwenvl_prepared_cache.py`
+- `training/qwenvl_contrastive_smoke.py`
+- `training/qwenvl_contrastive_cli.py`
+- `tests/test_qwenvl_smoke.py`
+- `tests/test_qwenvl_contrastive.py`
+
+Smoke evidence:
+
+- `eval/qwenvl_runtime_quality_20260611_c001_smoke/report.md`
+- `checkpoints/anima_qwenvl_ip_adapter_smoke_0002_20260611.safetensors`
+  (local ignored artifact)
+- `checkpoints/anima_qwenvl_ip_adapter_identity128_0064_20260611.safetensors`
+  (local ignored artifact)
+- `checkpoints/anima_qwenvl_ip_adapter_identity128_contrastive_0064_20260611.safetensors`
+  (local ignored artifact)
+
+The 64-step identity128 candidate trained with finite loss and saved a
+QwenVL-marked checkpoint:
+
+- rows loaded: `16`
+- first/final loss: `0.22585` / `0.10778`
+- checkpoint loadable through the QwenVL loader
+- PE checkpoint rejected by the QwenVL loader
+
+ComfyUI API quality evidence:
+
+- `eval/qwenvl_runtime_quality_20260611_c001_identity128/report.md`
+- `eval/qwenvl_runtime_quality_20260611_c002_identity128_weight_sweep/report.md`
+- `eval/qwenvl_runtime_quality_20260611_c002_identity128_weight_sweep/contact_sheet.jpg`
+- `eval/qwenvl_runtime_quality_20260611_c003_contrastive_weight_sweep/report.md`
+- `eval/qwenvl_runtime_quality_20260611_c003_contrastive_weight_sweep/contact_sheet.jpg`
+
+Decision: `qwenvl_adapter_only_changes_outputs_but_not_quality_pass`
+
+Interpretation: QwenVL is a stronger and cleaner embedding candidate than the
+frozen SigLIP2 branch, and the native ComfyUI path works end to end. However,
+the current adapter-only QwenVL runs still fail the requested reference-control
+bar. The adapter changes images relative to no-IP, but both the plain denoising
+checkpoint and the reference-swap contrastive checkpoint collapse most
+references toward a similar yellow-robed interior/crowd scene. They do not
+preserve reference-specific identity, layout, character count, or color palette.
+
+Current conclusion after QwenVL c003: adapter-only tuning on frozen generic
+image embeddings is not enough for production-quality Anima reference control.
+The next credible training stage needs one of:
+
+- trainable image-encoder or feature-calibrator adaptation with a stronger
+  reference discrimination objective;
+- a PE-quality teacher/control target that supervises more than denoising MSE;
+- an anime-domain image encoder trained or adapted specifically for panel
+  identity, color palette, and layout.
