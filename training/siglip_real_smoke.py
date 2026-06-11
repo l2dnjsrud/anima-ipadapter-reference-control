@@ -69,6 +69,7 @@ DEFAULT_PE = Path(
     "/data/ai/models/ipadapter/anima_ip_adapter_quality_20260610.safetensors"
 )
 DEFAULT_SIGLIP = "google/siglip2-base-patch16-512"
+PREPARED_ROW_CACHE_LIMIT = 16
 
 app = typer.Typer(add_completion=False)
 console = Console()
@@ -227,36 +228,43 @@ def run_real_smoke(config: SmokeConfig) -> SmokeSummary:
     optimizer = torch.optim.AdamW(adapter.parameters(), lr=config.lr)
     scheduler = FlowMatchEulerDiscreteScheduler(num_train_timesteps=1000, shift=1.0)
     losses: list[float] = []
-    single_row_cache = (
-        prepare_training_row(
-            rows[0],
-            config,
-            vae,
-            text_encoder,
-            anima,
-            siglip,
-            processor,
-            prepare_text_inputs,
-            device,
-            dtype,
-        )
-        if len(rows) == 1
+    prepared_cache = (
+        [
+            prepare_training_row(
+                row,
+                config,
+                vae,
+                text_encoder,
+                anima,
+                siglip,
+                processor,
+                prepare_text_inputs,
+                device,
+                dtype,
+            )
+            for row in rows
+        ]
+        if len(rows) <= PREPARED_ROW_CACHE_LIMIT
         else None
     )
 
     for step in range(config.steps):
-        row = rows[step % len(rows)]
-        prepared = single_row_cache or prepare_training_row(
-            row,
-            config,
-            vae,
-            text_encoder,
-            anima,
-            siglip,
-            processor,
-            prepare_text_inputs,
-            device,
-            dtype,
+        row_index = step % len(rows)
+        prepared = (
+            prepared_cache[row_index]
+            if prepared_cache is not None
+            else prepare_training_row(
+                rows[row_index],
+                config,
+                vae,
+                text_encoder,
+                anima,
+                siglip,
+                processor,
+                prepare_text_inputs,
+                device,
+                dtype,
+            )
         )
         latents = prepared.latents
         noise = torch.randn_like(latents)

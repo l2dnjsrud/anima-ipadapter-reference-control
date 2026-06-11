@@ -134,6 +134,14 @@ That run recovered the ref03 monk identity without direct identity prompt words,
 so the SigLIP path is not a hard runtime dead end. It is still an overfit proof,
 not a generalized ready-to-trust reference-control checkpoint.
 
+A follow-up 8-reference sweep shows visible reference-dependent changes, but
+held-out identity recovery is still incomplete:
+
+```text
+eval/siglip_runtime_quality_20260611_c009_identity8_reference_sweep/report.md
+eval/siglip_runtime_quality_20260611_c009_identity8_reference_sweep/contact_sheet.jpg
+```
+
 The legacy workflows remain available:
 
 ```text

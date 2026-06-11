@@ -1,0 +1,15 @@
+{
+  "source": "training/manifests/local_color_self_reconstruct_20260611.jsonl",
+  "rows": 8,
+  "source_indices": [
+    0,
+    224,
+    449,
+    673,
+    897,
+    1121,
+    1346,
+    1570
+  ],
+  "output_path": "training/manifests/local_color_self_identity8_20260611.jsonl"
+}

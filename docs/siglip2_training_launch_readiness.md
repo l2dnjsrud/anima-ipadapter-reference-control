@@ -304,6 +304,15 @@ eval/siglip_runtime_quality_20260611_c008_ref03_overfit1024_identity/contact_she
 This proves the native SigLIP route is not a hard runtime impossibility. It
 does not prove generalized reference-control quality.
 
+The follow-up `c009` identity8 sweep also shows reference-dependent image
+changes across several references, including held-out references, but held-out
+identity recovery remains incomplete:
+
+```text
+eval/siglip_runtime_quality_20260611_c009_identity8_reference_sweep/report.md
+eval/siglip_runtime_quality_20260611_c009_identity8_reference_sweep/contact_sheet.jpg
+```
+
 ## Stop Conditions
 
 Stop and ask before proceeding if any of these are true:
@@ -320,17 +329,16 @@ Stop and ask before proceeding if any of these are true:
 
 ## Next Executable Step
 
-Move from one-image overfit proof to the smallest generalization proof. The next
-path is:
+Move from tiny reference influence to a real generalization proof. The next path
+is:
 
-1. Build a small identity-aware self-reconstruction manifest from several
-   distinct color-panel references.
-2. Cache repeated target latents, prompt embeddings, and SigLIP features so the
-   training loop can run longer without wasting time on fixed inputs.
-3. Train a bounded multi-reference checkpoint from the overfit or self512
-   continuation.
+1. Build a larger balanced self-reconstruction manifest with distinct
+   characters, color palettes, close-up/wide panels, and a held-out split.
+2. Reuse the cached target/text/SigLIP feature path for short runs, and add
+   persistent feature caches before any long run.
+3. Train from `self512` or `identity8` for a bounded larger run.
 4. Evaluate with prompts that remove identity/color tokens and require the image
    encoder to carry those attributes.
-5. If the multi-reference checkpoint still cannot recover held-out references,
-   stop short local SigLIP tuning and move to a Qwen-VL/anime-image-encoder
-   based reference-control plan.
+5. If the larger checkpoint still cannot recover held-out references, stop
+   short local SigLIP tuning and move to a Qwen-VL/anime-image-encoder based
+   reference-control plan.

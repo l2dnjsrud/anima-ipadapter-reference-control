@@ -263,3 +263,26 @@ collapse.
 Training code now caches repeated one-row target latents, text embeddings, and
 SigLIP features so the next focused overfit/ablation runs do not waste most of
 their time recomputing fixed inputs.
+
+## 2026-06-11 identity8 reference sweep
+
+The cache was expanded to precompute repeated target latents, text embeddings,
+and SigLIP features for up to 16 rows. This made a small 8-reference
+self-reconstruction run practical:
+
+- Manifest:
+  `training/manifests/local_color_self_identity8_20260611.jsonl`
+- Checkpoint:
+  `checkpoints/anima_siglip_ip_adapter_identity8_1024_20260611.safetensors`
+  (local ignored artifact)
+- Report:
+  `eval/siglip_runtime_quality_20260611_c009_identity8_reference_sweep/report.md`
+- Contact sheet:
+  `eval/siglip_runtime_quality_20260611_c009_identity8_reference_sweep/contact_sheet.jpg`
+- Decision: `reference_influence_seen_identity_generalization_incomplete`
+
+The checkpoint changes generated images differently for different references,
+including held-out references, so reference influence is no longer limited to
+the single-image overfit case. It still does not faithfully recover held-out
+identity. The next useful scale-up is a larger balanced self-reconstruction set
+with a held-out validation sheet, not another adjacent-panel-only run.
