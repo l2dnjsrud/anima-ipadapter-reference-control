@@ -6,6 +6,7 @@ from typing import Protocol
 
 import torch
 
+from native_ip_attention import ip_attention_contribution
 from siglip_model import IPAdapterSigLIP
 
 
@@ -45,6 +46,7 @@ def patched_cross_attention(
         original = cross_attn.forward
         originals.append((cross_attn, original))
         cross_attn.forward = _patched_forward(
+            cross_attn,
             original,
             adapter,
             image_tokens,
@@ -59,6 +61,7 @@ def patched_cross_attention(
 
 
 def _patched_forward(
+    attention: CrossAttentionLike,
     original: CrossAttnForward,
     adapter: IPAdapterSigLIP,
     image_tokens: torch.Tensor,
@@ -72,6 +75,18 @@ def _patched_forward(
         rope_cos_sin: tuple[torch.Tensor, torch.Tensor] | None = None,
     ) -> torch.Tensor:
         base = original(x, attn_params, context, rope_cos_sin)
-        return base + adapter.forward_block(block_idx, x, image_tokens, weight)
+        contribution = ip_attention_contribution(
+            attention=attention,
+            adapter=adapter,
+            block_idx=block_idx,
+            x=x,
+            image_tokens=image_tokens,
+            weight=weight,
+            result=base,
+            context=context,
+            rope_emb=rope_cos_sin,
+            transformer_options={},
+        )
+        return base + contribution
 
     return forward

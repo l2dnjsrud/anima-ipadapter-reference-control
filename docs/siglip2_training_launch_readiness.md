@@ -508,3 +508,16 @@ is:
     yellow-robed street/interior scene. Do not launch a longer broad run on
     this frozen-QwenVL adapter/calibrator recipe without a changed objective,
     stronger teacher signal, or trainable/anime-domain image encoder stage.
+11. A PE-style query patch correction has now been tested for the native
+    SigLIP/QwenVL runtime and SigLIP training path:
+    - `eval/siglip_runtime_quality_20260611_c019_pe_query_patch_weight_sweep/report.md`
+    - `eval/siglip_runtime_quality_20260611_c019_pe_query_patch_weight_sweep/contact_sheet.jpg`
+    - `eval/siglip_runtime_quality_20260611_c020_pe_query_patch_trained_weight_sweep/report.md`
+    - `eval/siglip_runtime_quality_20260611_c020_pe_query_patch_trained_weight_sweep/contact_sheet.jpg`
+12. This correction is worth keeping because it makes the native path use the
+    same cross-attention query geometry as PE-Core and increases
+    reference-dependent variation. It is not a quality pass yet. The short
+    c020 continuation still misses held-out palette/layout/identity and
+    distorts at high weights, so the next launch should use this corrected
+    patch surface but still require a stronger held-out reference gate before
+    broad training.

@@ -677,3 +677,40 @@ does not preserve reference-specific color, identity, character count, panel
 layout, or held-out composition. This makes a longer run on the same frozen
 QwenVL embedding plus adapter/calibrator recipe a poor next step unless the
 objective or encoder supervision changes.
+
+## 2026-06-11 PE-style query patch correction
+
+A runtime/training geometry mismatch was found by comparing the native SigLIP
+patch with the PE-Core patch. The PE path computes the normal Anima
+cross-attention query through `compute_qkv` and attends that query to cached IP
+K/V. The native SigLIP/QwenVL patch was instead adding a separate
+`IPCrossAttn(x, image_tokens)` stream based on pre-attention hidden states.
+
+The native patch now prefers the PE-style query path when the attention module
+exposes `compute_qkv`, while keeping the old path as a fallback for tests or
+older attention objects:
+
+- `native_ip_attention.py`
+- `native_siglip_runtime.py`
+- `training/siglip_smoke_patch.py`
+- `tests/test_native_ip_attention.py`
+
+ComfyUI API evidence:
+
+- `eval/siglip_runtime_quality_20260611_c019_pe_query_patch_weight_sweep/report.md`
+- `eval/siglip_runtime_quality_20260611_c019_pe_query_patch_weight_sweep/contact_sheet.jpg`
+- `eval/siglip_runtime_quality_20260611_c020_pe_query_patch_trained_weight_sweep/report.md`
+- `eval/siglip_runtime_quality_20260611_c020_pe_query_patch_trained_weight_sweep/contact_sheet.jpg`
+
+Decision:
+
+- c019: `query_patch_increases_reference_influence_but_not_quality_pass`
+- c020: `short_query_patch_retrain_not_quality_pass`
+
+Interpretation: the PE-style query patch is a real correction. It increases
+reference-dependent variation compared with the earlier generic yellow-robed
+collapse. It still does not pass the high-quality gate: train and held-out rows
+do not reliably recover reference palette, layout, or identity, and higher
+weights can distort figures. The corrected patch surface should be kept, but a
+64-step continuation is not enough to produce a production-quality SigLIP
+reference-control checkpoint.

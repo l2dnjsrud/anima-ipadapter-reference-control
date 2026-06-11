@@ -8,9 +8,11 @@ from typing import Protocol
 import torch
 
 try:
+    from .native_ip_attention import ip_attention_contribution
     from .native_pe_runtime import find_anima_diffusion_model, runtime_dtype
     from .siglip_model import IPAdapterSigLIP, SigLIPFeatures
 except ImportError:
+    from native_ip_attention import ip_attention_contribution
     from native_pe_runtime import find_anima_diffusion_model, runtime_dtype
     from siglip_model import IPAdapterSigLIP, SigLIPFeatures
 
@@ -125,7 +127,7 @@ def patch_siglip_to_comfy_attention(
         original = cross_attn.forward
         patched.append((cross_attn, original))
         cross_attn.forward = _make_siglip_forward(
-            original, adapter, idx, image_tokens, weight
+            cross_attn, original, adapter, idx, image_tokens, weight
         )
     return _PatchHandle(forwards=tuple(patched))
 
@@ -136,6 +138,7 @@ def remove_siglip_patches(handle: _PatchHandle) -> None:
 
 
 def _make_siglip_forward(
+    attention: Any,
     original: Callable[..., torch.Tensor],
     adapter: IPAdapterSigLIP,
     block_idx: int,
@@ -152,11 +155,40 @@ def _make_siglip_forward(
         tokens = _match_batch(
             image_tokens.to(device=x.device, dtype=module_dtype), x.shape[0]
         )
-        return result + adapter.forward_block(block_idx, query, tokens, weight).to(
-            result
+        context, rope_emb, transformer_options = _attention_inputs(args, kwargs)
+        contribution = ip_attention_contribution(
+            attention=attention,
+            adapter=adapter,
+            block_idx=block_idx,
+            x=query,
+            image_tokens=tokens,
+            weight=weight,
+            result=result,
+            context=context,
+            rope_emb=rope_emb,
+            transformer_options=transformer_options,
         )
+        return result + contribution.to(result)
 
     return patched_forward
+
+
+def _attention_inputs(
+    args: tuple[Any, ...],
+    kwargs: dict[str, Any],
+) -> tuple[torch.Tensor | None, Any | None, dict[str, Any]]:
+    context = kwargs.get("context")
+    rope_emb = kwargs.get("rope_emb", kwargs.get("rope_cos_sin"))
+    transformer_options = kwargs.get("transformer_options", {})
+    if len(args) >= 3 and torch.is_tensor(args[2]):
+        context = args[2]
+    elif len(args) >= 2 and (torch.is_tensor(args[1]) or args[1] is None):
+        context = args[1]
+    if len(args) >= 4:
+        rope_emb = args[3]
+    if isinstance(context, torch.Tensor) or context is None:
+        return context, rope_emb, transformer_options
+    return None, rope_emb, transformer_options
 
 
 def _clone_features(features: SigLIPFeatures) -> SigLIPFeatures:
