@@ -1,0 +1,31 @@
+{
+  "checkpoint": "anima_siglip_ip_adapter_identity128_pe_query_patch_0064_20260611.safetensors",
+  "seed": 20260631,
+  "width": 768,
+  "height": 1024,
+  "weights": [
+    0.7,
+    1.0,
+    1.4
+  ],
+  "prompt": "masterpiece, best quality, score_7, safe, solo wuxia martial artist portrait, upper body, full color manhwa comic panel, clean ink lines, cel shaded anime style, traditional robe, dramatic lighting, simple palace background, no text",
+  "negative_prompt": "low quality, blurry, bad anatomy, deformed face, text, watermark, extra limbs, abstract, washed out, noise, nude, explicit, gore, multiple people",
+  "references": [
+    {
+      "label": "bearded_tan_robe",
+      "path": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/001-100/SG-083/mrcolor_panel_style_v5_edge_trim_strict_00183_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_02718_SG-083-10_page_719x957_s01.jpg"
+    },
+    {
+      "label": "blue_robed_elder",
+      "path": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-261/mrcolor_panel_style_v5_edge_trim_strict_00509_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_08444_SG-261-14_page_871x1765_s01.jpg"
+    },
+    {
+      "label": "black_robe_closeup",
+      "path": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/001-100/SG-022/mrcolor_panel_style_v5_edge_trim_strict_00054_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00687_SG-022-06_page_1965x2841_s01.jpg"
+    },
+    {
+      "label": "golden_angry_face",
+      "path": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/101-200/SG-193/mrcolor_panel_style_v4_split_edge_strict_probe_01101_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_06482_SG-193-11_page_1163x1589_s01.jpg"
+    }
+  ]
+}

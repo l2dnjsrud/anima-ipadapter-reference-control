@@ -714,3 +714,28 @@ do not reliably recover reference palette, layout, or identity, and higher
 weights can distort figures. The corrected patch surface should be kept, but a
 64-step continuation is not enough to produce a production-quality SigLIP
 reference-control checkpoint.
+
+## 2026-06-11 Single-character diagnostic
+
+The page/contact-sheet references were simplified to four manually selected
+single-character color crops from the color-panel dataset. The evaluation used a
+fixed solo portrait prompt, one no-IP baseline, and SigLIP weights `0.7`, `1.0`,
+and `1.4` through the isolated ComfyUI API on port `8116`.
+
+Evidence:
+
+- `eval/siglip_runtime_quality_20260611_c021_single_character_diagnostic/report.md`
+- `eval/siglip_runtime_quality_20260611_c021_single_character_diagnostic/contact_sheet.jpg`
+- `eval/siglip_runtime_quality_20260611_c021_single_character_diagnostic/summary.json`
+- `eval/siglip_runtime_quality_20260611_c021_single_character_diagnostic/candidate_sheet.jpg`
+
+Decision: `single_character_diagnostic_not_quality_pass`
+
+Interpretation: simplifying the reference to single-character crops does not
+rescue the current SigLIP checkpoint. The adapter changes no-IP output and
+produces reference-dependent variation, but it still fails to preserve core
+attributes such as beard/age, blue robe palette, gold hair/fire palette, and
+stable identity. The failure is therefore not only a multi-panel page-layout
+problem. The next useful work should change the learning signal or encoder
+adaptation strategy rather than spending a long run on the same frozen-SigLIP
+adapter-only recipe.

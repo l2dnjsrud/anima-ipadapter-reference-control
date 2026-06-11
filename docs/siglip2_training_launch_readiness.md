@@ -521,3 +521,14 @@ is:
     distorts at high weights, so the next launch should use this corrected
     patch surface but still require a stronger held-out reference gate before
     broad training.
+13. A single-character diagnostic has now been run to separate page-layout
+    difficulty from adapter generalization:
+    - `eval/siglip_runtime_quality_20260611_c021_single_character_diagnostic/report.md`
+    - `eval/siglip_runtime_quality_20260611_c021_single_character_diagnostic/contact_sheet.jpg`
+14. Result: `single_character_diagnostic_not_quality_pass`. Even with
+    single-character references and a fixed solo portrait prompt, the current
+    SigLIP query-patch checkpoint changes outputs but does not reliably preserve
+    beard/age, blue robe palette, gold hair/fire palette, or stable identity.
+    This makes the issue broader than page complexity; the next training launch
+    needs a stronger reference-discrimination objective, trainable
+    feature/encoder adaptation, or an anime-domain image encoder path.

@@ -1,0 +1,82 @@
+{
+  "results": {
+    "no_ip": {
+      "prompt_id": "1eb8de7d-8a13-4890-b3a5-76c8999cc837",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c021_single_character_diagnostic/no_ip.png",
+      "weight": null,
+      "mode": "no_ip"
+    },
+    "bearded_tan_robe_w0p7": {
+      "prompt_id": "5007d4cd-94d7-431e-9d88-73b0cdef9d62",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c021_single_character_diagnostic/bearded_tan_robe_w0p7.png",
+      "weight": 0.7,
+      "mode": "ip"
+    },
+    "bearded_tan_robe_w1p0": {
+      "prompt_id": "d3ba96c1-f8c2-436c-8463-a8618d7dcc6d",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c021_single_character_diagnostic/bearded_tan_robe_w1p0.png",
+      "weight": 1.0,
+      "mode": "ip"
+    },
+    "bearded_tan_robe_w1p4": {
+      "prompt_id": "1e741e1b-e64f-4e73-8c07-c271a2fcbbb4",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c021_single_character_diagnostic/bearded_tan_robe_w1p4.png",
+      "weight": 1.4,
+      "mode": "ip"
+    },
+    "blue_robed_elder_w0p7": {
+      "prompt_id": "8e7fa2ba-5928-492d-a838-7908a8ac1d7a",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c021_single_character_diagnostic/blue_robed_elder_w0p7.png",
+      "weight": 0.7,
+      "mode": "ip"
+    },
+    "blue_robed_elder_w1p0": {
+      "prompt_id": "c35ffbd7-2f92-44e4-a16c-0e7ff1247281",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c021_single_character_diagnostic/blue_robed_elder_w1p0.png",
+      "weight": 1.0,
+      "mode": "ip"
+    },
+    "blue_robed_elder_w1p4": {
+      "prompt_id": "c45e5cdc-1421-453a-be48-8cd15cbfc665",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c021_single_character_diagnostic/blue_robed_elder_w1p4.png",
+      "weight": 1.4,
+      "mode": "ip"
+    },
+    "black_robe_closeup_w0p7": {
+      "prompt_id": "75cd5787-293e-4ef0-982a-8e7c5952260f",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c021_single_character_diagnostic/black_robe_closeup_w0p7.png",
+      "weight": 0.7,
+      "mode": "ip"
+    },
+    "black_robe_closeup_w1p0": {
+      "prompt_id": "a3f568be-b0ec-48cc-9698-4a6ca444fbcf",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c021_single_character_diagnostic/black_robe_closeup_w1p0.png",
+      "weight": 1.0,
+      "mode": "ip"
+    },
+    "black_robe_closeup_w1p4": {
+      "prompt_id": "c816fc97-4f5d-4a59-8347-5f735c709fa1",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c021_single_character_diagnostic/black_robe_closeup_w1p4.png",
+      "weight": 1.4,
+      "mode": "ip"
+    },
+    "golden_angry_face_w0p7": {
+      "prompt_id": "f54138c7-9949-4fbf-a9cb-5cdb31b61449",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c021_single_character_diagnostic/golden_angry_face_w0p7.png",
+      "weight": 0.7,
+      "mode": "ip"
+    },
+    "golden_angry_face_w1p0": {
+      "prompt_id": "edeff2d3-5adc-429d-8463-75fcf9a35a05",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c021_single_character_diagnostic/golden_angry_face_w1p0.png",
+      "weight": 1.0,
+      "mode": "ip"
+    },
+    "golden_angry_face_w1p4": {
+      "prompt_id": "0f4e8b00-d69b-4d8a-8db1-c3a300321555",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c021_single_character_diagnostic/golden_angry_face_w1p4.png",
+      "weight": 1.4,
+      "mode": "ip"
+    }
+  }
+}
