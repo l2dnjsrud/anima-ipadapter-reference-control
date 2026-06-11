@@ -1,0 +1,127 @@
+{
+  "base_url": "http://127.0.0.1:8116",
+  "checkpoint": "anima_siglip_ip_adapter_identity128_pe_teacher_0064_20260611.safetensors",
+  "comparison": "reference / no_ip / c016 calibrated contrastive / c017 overfit / c018 PE-teacher",
+  "results": {
+    "no_ip": {
+      "prompt_id": "9174c3a2-f2d9-4bba-9c22-220817d05f07",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c018_pe_teacher_distill/no_ip.png",
+      "image_info": {
+        "filename": "no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c018_pe_teacher_distill",
+        "type": "output"
+      }
+    },
+    "train000_w10": {
+      "prompt_id": "f020bda5-bb1c-4f90-bf9a-30069fedd7c0",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c018_pe_teacher_distill/train000_w10.png",
+      "image_info": {
+        "filename": "train000_w10_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c018_pe_teacher_distill",
+        "type": "output"
+      }
+    },
+    "train064_w10": {
+      "prompt_id": "1f926e6a-172f-4d12-b801-87a02924463c",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c018_pe_teacher_distill/train064_w10.png",
+      "image_info": {
+        "filename": "train064_w10_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c018_pe_teacher_distill",
+        "type": "output"
+      }
+    },
+    "train127_w10": {
+      "prompt_id": "f78476ce-af1b-442f-8b25-06c20becf3fd",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c018_pe_teacher_distill/train127_w10.png",
+      "image_info": {
+        "filename": "train127_w10_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c018_pe_teacher_distill",
+        "type": "output"
+      }
+    },
+    "heldout0112_w10": {
+      "prompt_id": "d53d9766-1558-4308-944e-c2f6d1e89f13",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c018_pe_teacher_distill/heldout0112_w10.png",
+      "image_info": {
+        "filename": "heldout0112_w10_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c018_pe_teacher_distill",
+        "type": "output"
+      }
+    },
+    "heldout0560_w10": {
+      "prompt_id": "638fc1a9-e85b-47ba-8de4-f39e3d08a119",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c018_pe_teacher_distill/heldout0560_w10.png",
+      "image_info": {
+        "filename": "heldout0560_w10_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c018_pe_teacher_distill",
+        "type": "output"
+      }
+    },
+    "heldout1008_w10": {
+      "prompt_id": "7fbefba2-5da4-4462-846f-06b987eaa07b",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c018_pe_teacher_distill/heldout1008_w10.png",
+      "image_info": {
+        "filename": "heldout1008_w10_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c018_pe_teacher_distill",
+        "type": "output"
+      }
+    }
+  },
+  "rows": [
+    {
+      "label": "train000_w10",
+      "reference": "mrcolor_panel_style_v5_edge_trim_strict_00001_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00012_SG-001-08_page_1965x1714_s01.jpg",
+      "d_no_ip": 89.8961410522461,
+      "d_ref": 69.54935455322266,
+      "d_c016": 32.321537017822266,
+      "d_c017": 58.055824279785156,
+      "stddev": 69.94728911084896
+    },
+    {
+      "label": "train064_w10",
+      "reference": "mrcolor_panel_style_v5_edge_trim_strict_00274_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_04273_SG-126-09_page_1965x906_s01.jpg",
+      "d_no_ip": 58.61521911621094,
+      "d_ref": 66.76717376708984,
+      "d_c016": 21.7352237701416,
+      "d_c017": 48.64393997192383,
+      "stddev": 70.18038479783765
+    },
+    {
+      "label": "train127_w10",
+      "reference": "mrcolor_panel_style_v5_edge_trim_strict_00555_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_09319_SG-292-11_page_1211x899_s01.jpg",
+      "d_no_ip": 55.9172477722168,
+      "d_ref": 74.30284118652344,
+      "d_c016": 40.013004302978516,
+      "d_c017": 53.215843200683594,
+      "stddev": 71.13617544338022
+    },
+    {
+      "label": "heldout0112_w10",
+      "reference": "mrcolor_panel_style_v4_split_edge_strict_probe_00112_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00564_SG-019-02_page_2079x2879_s03.jpg",
+      "d_no_ip": 83.72100830078125,
+      "d_ref": 111.01158905029297,
+      "d_c016": 38.21186828613281,
+      "d_c017": 78.59010314941406,
+      "stddev": 81.20727606899521
+    },
+    {
+      "label": "heldout0560_w10",
+      "reference": "mrcolor_panel_style_v4_split_edge_strict_probe_00543_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03009_SG-089-11_page_2079x2907_s01.jpg",
+      "d_no_ip": 89.44857025146484,
+      "d_ref": 90.93634796142578,
+      "d_c016": 39.963130950927734,
+      "d_c017": 76.16372680664062,
+      "stddev": 81.86383621162652
+    },
+    {
+      "label": "heldout1008_w10",
+      "reference": "mrcolor_panel_style_v4_split_edge_strict_probe_00959_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05392_SG-159-04_page_1965x1112_s01.jpg",
+      "d_no_ip": 63.220664978027344,
+      "d_ref": 76.93174743652344,
+      "d_c016": 37.75522994995117,
+      "d_c017": 54.5626335144043,
+      "stddev": 73.5767498055581
+    }
+  ],
+  "contact_sheet": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c018_pe_teacher_distill/contact_sheet.jpg"
+}

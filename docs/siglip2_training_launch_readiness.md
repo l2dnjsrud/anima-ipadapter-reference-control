@@ -375,6 +375,47 @@ solution. The 64-step checkpoint improves some rows; the 576-step continuation
 then drifts toward generic scene averages. A broad full-dataset run should not
 start until the objective or encoder signal changes again.
 
+The next objective change used PE-teacher distillation. A frozen PE adapter
+provided the teacher denoising prediction for the same target/noise/timestep
+while the native SigLIP adapter optimized base MSE, contrastive MSE, and teacher
+MSE. The implementation is covered by:
+
+```text
+training/pe_teacher_features.py
+training/pe_teacher_distillation.py
+training/siglip_teacher_smoke.py
+training/siglip_teacher_cli.py
+tests/test_pe_teacher_distillation.py
+```
+
+The 64-step candidate completed with finite losses:
+
+```text
+checkpoint: checkpoints/anima_siglip_ip_adapter_identity128_pe_teacher_0064_20260611.safetensors
+steps: 64
+rows_loaded: 16
+mean_loss: 0.23133
+mean_base_loss: 0.20576
+mean_contrastive_loss: 0.04206
+mean_teacher_loss: 0.03011
+```
+
+ComfyUI evidence:
+
+```text
+eval/siglip_runtime_quality_20260611_c018_pe_teacher_distill/report.md
+eval/siglip_runtime_quality_20260611_c018_pe_teacher_distill/contact_sheet.jpg
+eval/siglip_runtime_quality_20260611_c018_pe_teacher_weight_sweep/contact_sheet.jpg
+```
+
+Interpretation: PE-teacher distillation is valid code and does affect generated
+images, but it still fails the visual quality gate. Outputs become
+reference-dependent, yet they do not reliably inherit reference color,
+identity, panel layout, or composition. The c018 weight sweep shows no simple
+runtime weight that recovers quality: low weights return toward no-IP and high
+weights distort scene content. This makes a broad frozen-SigLIP2 training run a
+poor use of GPU time unless the image encoder signal changes.
+
 ## Stop Conditions
 
 Stop and ask before proceeding if any of these are true:
@@ -402,5 +443,6 @@ is:
 4. Evaluate with prompts that remove identity/color tokens and require the image
    encoder to carry those attributes.
 5. Because the larger fp32 checkpoint still cannot recover held-out references,
-   stop short local SigLIP tuning as the main path and move to a
-   Qwen-VL/anime-image-encoder based reference-control plan.
+   and PE-teacher distillation also fails the visual gate, stop short local
+   frozen-SigLIP tuning as the main path and move to a Qwen-VL/anime-image-
+   encoder based reference-control plan.

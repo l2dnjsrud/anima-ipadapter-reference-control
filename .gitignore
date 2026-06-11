@@ -11,9 +11,11 @@ checkpoints/*identity8*.safetensors
 checkpoints/*identity128*.safetensors
 checkpoints/*fp32*.safetensors
 checkpoints/*contrastive*.safetensors
+checkpoints/*teacher*.safetensors
 training/overfit_inputs/
 eval/siglip_runtime_quality_20260611_c*/*.api_prompt.json
 eval/siglip_runtime_quality_20260611_c*/*.history.json
 eval/siglip_runtime_quality_20260611_c*/*.response.json
 eval/siglip_runtime_quality_20260611_c*/*.prompt_id
 eval/siglip_runtime_quality_20260611_c*/*.png
+eval/siglip_runtime_quality_20260611_c*/train.log

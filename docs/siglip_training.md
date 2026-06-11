@@ -451,3 +451,57 @@ high-quality reference-control target. More steps on the same contrastive
 objective can overfit toward generic group/court scenes, so the next attempt
 should change the objective or image-encoder signal instead of only increasing
 step count.
+
+## 2026-06-11 PE-teacher distillation attempt
+
+The next bounded attempt used the stronger PE adapter as a frozen teacher for
+the native SigLIP path. The training objective kept the previous
+base/contrastive denoising losses and added an MSE term that asks the SigLIP
+adapter prediction to match the PE adapter prediction for the same
+target/noise/timestep/prompt.
+
+Code added:
+
+- `training/pe_teacher_features.py`
+- `training/pe_teacher_distillation.py`
+- `training/siglip_teacher_smoke.py`
+- `training/siglip_teacher_cli.py`
+- `tests/test_pe_teacher_distillation.py`
+
+Smoke and candidate evidence:
+
+- 2-step smoke checkpoint:
+  `checkpoints/anima_siglip_ip_adapter_teacher_smoke_0002_20260611.safetensors`
+  (local ignored artifact), finite loss, SigLIP-loadable, PE-rejected.
+- 64-step candidate:
+  `checkpoints/anima_siglip_ip_adapter_identity128_pe_teacher_0064_20260611.safetensors`
+  (local ignored artifact)
+  - `steps=64`, `rows_loaded=16`, `mean_loss=0.23133`,
+    `mean_base_loss=0.20576`, `mean_contrastive_loss=0.04206`,
+    `mean_teacher_loss=0.03011`
+  - `trainable_parameters=336650396`
+  - checkpoint loadable through `AnimaSigLIPIPAdapterLoader`, PE checkpoint
+    rejected by the SigLIP loader.
+
+ComfyUI API evidence:
+
+- `eval/siglip_runtime_quality_20260611_c018_pe_teacher_distill/report.md`
+- `eval/siglip_runtime_quality_20260611_c018_pe_teacher_distill/contact_sheet.jpg`
+- `eval/siglip_runtime_quality_20260611_c018_pe_teacher_weight_sweep/contact_sheet.jpg`
+
+Decision: `pe_teacher_distillation_changes_outputs_but_not_quality_pass`
+
+Interpretation: the PE-teacher path proves that the native SigLIP adapter can
+receive a stronger supervised signal and that the runtime patch remains
+functional. It does not solve the actual quality target. The c018 contact sheet
+shows reference-dependent outputs, but the generated images do not reliably
+inherit reference color, character identity, panel layout, or composition.
+The weight sweep confirms this is not an inference-strength issue: lower
+weights collapse toward no-IP and higher weights distort scenes rather than
+recovering the reference.
+
+Current conclusion after c018: this exact frozen SigLIP2 plus adapter/calibrator
+route is a weak research branch, not a production reference-control checkpoint.
+The next credible path is a stronger anime/VL image encoder or a trainable
+image-encoder adaptation stage, most likely Qwen-VL style features or an
+anime-domain SigLIP/PE-like encoder, before another broad training run.
