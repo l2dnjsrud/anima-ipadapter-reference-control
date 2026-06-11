@@ -32,6 +32,7 @@ from training.siglip_real_smoke import (  # noqa: E402
 from training.siglip_prepared_cache import get_prepared, prepare_cache  # noqa: E402
 from training.siglip_reference_loss import (  # noqa: E402
     reference_margin_loss,
+    reference_token_separation_loss,
     wrong_reference_index,
 )
 from training.siglip_smoke_data import load_pair_rows  # noqa: E402
@@ -53,6 +54,7 @@ class TeacherSmokeSummary:
     mean_base_loss: float
     mean_contrastive_loss: float
     mean_teacher_loss: float
+    mean_token_loss: float
     finite_loss: bool
     trainable_parameters: int
     frozen_base_parameters: int
@@ -69,6 +71,8 @@ def run_teacher_smoke(
     contrastive_weight: float,
     contrastive_margin: float,
     teacher_weight: float,
+    token_weight: float = 0.0,
+    token_max_similarity: float = 0.2,
     pe_encoder_name: str = "pe",
 ) -> TeacherSmokeSummary:
     validate_config(config)
@@ -137,6 +141,7 @@ def run_teacher_smoke(
     base_losses: list[float] = []
     contrastive_losses: list[float] = []
     teacher_losses: list[float] = []
+    token_losses: list[float] = []
 
     for step in range(config.steps):
         row_index = step % len(rows)
@@ -204,12 +209,22 @@ def run_teacher_smoke(
         wrong_pred = _predict(
             anima, adapter, wrong_prepared, noisy, timesteps, padding_mask
         )
+        correct_tokens = adapter.encode_ref(prepared.features, timestep=timesteps)
+        wrong_tokens = adapter.encode_ref(wrong_prepared.features, timestep=timesteps)
         base_loss = torch.nn.functional.mse_loss(correct_pred.float(), target.float())
         contrastive_loss = reference_margin_loss(
             correct_pred, wrong_pred, target, margin=contrastive_margin
         )
         teacher_loss = teacher_distillation_loss(correct_pred, teacher_pred)
-        loss = base_loss + contrastive_weight * contrastive_loss + teacher_weight * teacher_loss
+        token_loss = reference_token_separation_loss(
+            correct_tokens, wrong_tokens, max_similarity=token_max_similarity
+        )
+        loss = (
+            base_loss
+            + contrastive_weight * contrastive_loss
+            + teacher_weight * teacher_loss
+            + token_weight * token_loss
+        )
         if not torch.isfinite(loss):
             raise SmokeInputError(
                 f"non-finite loss at step {step}: {float(loss.detach().cpu())}"
@@ -220,6 +235,7 @@ def run_teacher_smoke(
         base_losses.append(float(base_loss.detach().cpu()))
         contrastive_losses.append(float(contrastive_loss.detach().cpu()))
         teacher_losses.append(float(teacher_loss.detach().cpu()))
+        token_losses.append(float(token_loss.detach().cpu()))
 
     save_adapter_checkpoint(adapter, config.output_path)
     checkpoint = verify_checkpoint(config.output_path, config.pe_checkpoint_path)
@@ -232,6 +248,7 @@ def run_teacher_smoke(
         mean_base_loss=sum(base_losses) / len(base_losses),
         mean_contrastive_loss=sum(contrastive_losses) / len(contrastive_losses),
         mean_teacher_loss=sum(teacher_losses) / len(teacher_losses),
+        mean_token_loss=sum(token_losses) / len(token_losses),
         finite_loss=all(math.isfinite(loss) for loss in losses),
         trainable_parameters=trainable_parameter_count(adapter),
         frozen_base_parameters=frozen_params,

@@ -568,3 +568,19 @@ is:
     an anime/Qwen-VL image encoder stage that is explicitly optimized for
     identity and palette retention. Do not return to page-layout or line-art
     colorization tests until this single-character gate passes.
+20. A token-level reference separation continuation has now been tested from
+    clean32:
+    - `eval/siglip_runtime_quality_20260611_c026_single_character_token_sep_runtime/report.md`
+    - `eval/siglip_runtime_quality_20260611_c026_single_character_token_sep_runtime/contact_sheet.jpg`
+    - `eval/siglip_runtime_quality_20260611_c026_single_character_token_sep_runtime/summary.json`
+21. Result: `single_character_token_sep_not_quality_pass`. Token separation
+    increases variation and changes the generated images, but it does not
+    preserve the reference's identity, props, palette, beard/age, demon face,
+    or cropped expression. In multiple cases it pushes the output into a
+    different learned template instead of bringing it closer to the reference.
+22. Next executable step: do not scale token-separation-only training. Keep the
+    single-character gate, then add a semantic reference anchor before the next
+    run. Viable anchors are anime/VL teacher image features, explicit
+    identity/palette/prop attributes, paired reference-target supervision, or a
+    trainable image encoder/calibrator that first passes a reference-retrieval
+    or attribute-retention gate.

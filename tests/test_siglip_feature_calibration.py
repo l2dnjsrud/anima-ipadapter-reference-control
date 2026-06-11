@@ -10,6 +10,7 @@ from siglip_checkpoint import (
 from siglip_feature_calibration import (
     CalibratedIPAdapterSigLIP,
     SigLIPFeatureCalibrator,
+    wrap_siglip_with_calibrator,
 )
 from siglip_model import IPAdapterSigLIP, SigLIPFeatures
 
@@ -106,6 +107,23 @@ def test_checkpoint_builder_keeps_uncalibrated_state_type() -> None:
     loaded = build_siglip_adapter_from_state(_tiny_adapter().state_dict())
 
     assert type(loaded) is IPAdapterSigLIP
+
+
+def test_wrap_siglip_with_calibrator_preserves_base_weights() -> None:
+    base = _tiny_adapter()
+    wrapped = wrap_siglip_with_calibrator(base, bottleneck_dim=4)
+
+    assert isinstance(wrapped, CalibratedIPAdapterSigLIP)
+    assert torch.allclose(wrapped.resampler.latents, base.resampler.latents)
+    assert "feature_calibrator.deep_down.weight" in wrapped.state_dict()
+
+
+def test_wrap_siglip_with_calibrator_keeps_existing_calibrator() -> None:
+    calibrated = _tiny_calibrated_adapter()
+
+    wrapped = wrap_siglip_with_calibrator(calibrated, bottleneck_dim=2)
+
+    assert wrapped is calibrated
 
 
 def test_checkpoint_builder_rejects_malformed_calibration_shape() -> None:

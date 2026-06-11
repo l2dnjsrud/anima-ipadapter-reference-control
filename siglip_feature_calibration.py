@@ -104,6 +104,49 @@ class CalibratedIPAdapterSigLIP(IPAdapterSigLIP):
         return self.feature_calibrator(_as_features(features))
 
 
+def wrap_siglip_with_calibrator(
+    adapter: IPAdapterSigLIP,
+    *,
+    bottleneck_dim: int,
+) -> CalibratedIPAdapterSigLIP:
+    """Attach an identity-initialized SigLIP feature calibrator to a checkpoint."""
+    if isinstance(adapter, CalibratedIPAdapterSigLIP):
+        return adapter
+    wrapped = CalibratedIPAdapterSigLIP(
+        siglip_dim=_siglip_dim(adapter),
+        siglip_shallow_dim=_siglip_shallow_dim(adapter),
+        dit_dim=adapter.resampler.proj_out.weight.shape[0],
+        num_blocks=adapter.num_blocks,
+        num_queries=adapter.num_queries,
+        resampler_depth=len(adapter.resampler.layers),
+        resampler_heads=_resampler_heads(adapter),
+        resampler_dim=adapter.resampler.latents.shape[2],
+        resampler_dim_head=_resampler_dim_head(adapter),
+        intermediate_dim=_intermediate_dim(adapter),
+        intermediate_layers=_intermediate_layers(adapter),
+        intermediate_heads=_intermediate_heads(adapter),
+        ip_heads=_ip_heads(adapter),
+        time_embed_dim=adapter.resampler.time_proj.weight.shape[0],
+        use_intermediate_encoder=adapter.use_intermediate_encoder,
+        calibrator_bottleneck_dim=bottleneck_dim,
+    )
+    missing, unexpected = wrapped.load_state_dict(adapter.state_dict(), strict=False)
+    allowed_missing = {
+        "feature_calibrator.deep_norm.weight",
+        "feature_calibrator.deep_norm.bias",
+        "feature_calibrator.deep_down.weight",
+        "feature_calibrator.deep_up.weight",
+        "feature_calibrator.shallow_norm.weight",
+        "feature_calibrator.shallow_norm.bias",
+        "feature_calibrator.shallow_down.weight",
+        "feature_calibrator.shallow_up.weight",
+    }
+    if set(missing) != allowed_missing or unexpected:
+        msg = f"could not wrap SigLIP adapter with calibrator: missing={missing}, unexpected={unexpected}"
+        raise RuntimeError(msg)
+    return wrapped
+
+
 def _as_features(features: SigLIPFeatures | torch.Tensor) -> SigLIPFeatures:
     match features:
         case SigLIPFeatures():
@@ -121,3 +164,47 @@ def _calibrate_stream(
     up: nn.Linear,
 ) -> torch.Tensor:
     return x + up(F.gelu(down(norm(x))))
+
+
+def _siglip_dim(adapter: IPAdapterSigLIP) -> int:
+    if adapter.intermediate_encoder is None:
+        return adapter.resampler.proj_in.weight.shape[1]
+    return adapter.intermediate_encoder.deep_proj.weight.shape[1]
+
+
+def _siglip_shallow_dim(adapter: IPAdapterSigLIP) -> int:
+    if adapter.intermediate_encoder is None:
+        return _siglip_dim(adapter)
+    return adapter.intermediate_encoder.shallow_proj.weight.shape[1]
+
+
+def _intermediate_dim(adapter: IPAdapterSigLIP) -> int:
+    if adapter.intermediate_encoder is None:
+        return adapter.resampler.proj_in.weight.shape[1]
+    return adapter.intermediate_encoder.shallow_proj.weight.shape[0]
+
+
+def _intermediate_layers(adapter: IPAdapterSigLIP) -> int:
+    return len(adapter.intermediate_encoder.layers) if adapter.intermediate_encoder else 1
+
+
+def _intermediate_heads(adapter: IPAdapterSigLIP) -> int:
+    if adapter.intermediate_encoder is None:
+        return 1
+    return adapter.intermediate_encoder.layers[0].cross_attn.num_heads
+
+
+def _resampler_heads(adapter: IPAdapterSigLIP) -> int:
+    inner_dim = adapter.resampler.layers[0][0].to_q.weight.shape[0]
+    return inner_dim // _resampler_dim_head(adapter)
+
+
+def _resampler_dim_head(adapter: IPAdapterSigLIP) -> int:
+    inner_dim = adapter.resampler.layers[0][0].to_q.weight.shape[0]
+    return 64 if inner_dim % 64 == 0 else inner_dim
+
+
+def _ip_heads(adapter: IPAdapterSigLIP) -> int:
+    head_dim = adapter.ip_cross_attns[0].norm_ip_q.scale.shape[0]
+    dit_dim = adapter.resampler.proj_out.weight.shape[0]
+    return dit_dim // head_dim if head_dim > 0 and dit_dim % head_dim == 0 else 1

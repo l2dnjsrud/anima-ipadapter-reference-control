@@ -45,6 +45,20 @@ def reference_margin_loss(
     return hinge.mean()
 
 
+def reference_token_separation_loss(
+    correct_tokens: torch.Tensor,
+    wrong_tokens: torch.Tensor,
+    *,
+    max_similarity: float,
+) -> torch.Tensor:
+    """Penalize adapter image tokens that collapse across different references."""
+    _validate_token_shapes(correct_tokens=correct_tokens, wrong_tokens=wrong_tokens)
+    correct = F.normalize(correct_tokens.float().mean(dim=1), dim=-1)
+    wrong = F.normalize(wrong_tokens.float().mean(dim=1), dim=-1)
+    similarity = (correct * wrong).sum(dim=-1)
+    return torch.relu(similarity - max_similarity).mean()
+
+
 def _validate_prediction_shapes(
     *,
     correct_prediction: torch.Tensor,
@@ -64,3 +78,14 @@ def _mean_squared_error_per_row(
 ) -> torch.Tensor:
     squared_error = F.mse_loss(prediction.float(), target.float(), reduction="none")
     return squared_error.reshape(squared_error.shape[0], -1).mean(dim=1)
+
+
+def _validate_token_shapes(
+    *,
+    correct_tokens: torch.Tensor,
+    wrong_tokens: torch.Tensor,
+) -> None:
+    if correct_tokens.shape != wrong_tokens.shape:
+        raise SmokeInputError("correct_tokens must match wrong_tokens shape")
+    if correct_tokens.ndim != 3:
+        raise SmokeInputError("reference tokens must have shape [batch, token, dim]")

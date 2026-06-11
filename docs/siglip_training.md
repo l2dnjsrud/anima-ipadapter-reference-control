@@ -845,3 +845,51 @@ usually amplifies a learned template instead of improving fidelity. The next
 step should keep this single-character gate, but change the objective or encoder
 adaptation path rather than launching a long run of the same frozen-SigLIP
 adapter-only recipe.
+
+## 2026-06-11 Clean32 token-separation continuation
+
+A token-level reference separation loss was added and tested as the first
+objective change after the clean32 run. The loss compares correct-reference and
+wrong-reference image tokens and penalizes overly high cosine similarity:
+
+```text
+training/siglip_reference_loss.py
+training/siglip_teacher_smoke.py
+training/siglip_teacher_cli.py
+```
+
+The run continued from the clean32 checkpoint for 256 steps:
+
+```text
+checkpoints/anima_siglip_ip_adapter_single_character_clean32_token_sep_0256_20260611.safetensors
+```
+
+Observed training summary:
+
+- rows loaded: `32`
+- first/final loss: `0.3259349763393402` / `0.19840562343597412`
+- mean loss: `0.29138473694911227`
+- mean base loss: `0.1944809732667636`
+- mean contrastive loss: `0.04216717180679552`
+- mean teacher loss: `0.0204733534837942`
+- mean token loss: `0.15726202292717062`
+- finite loss: `true`
+- trainable parameters: `336650396`
+
+ComfyUI API quality evidence:
+
+- `eval/siglip_runtime_quality_20260611_c026_single_character_token_sep_runtime/report.md`
+- `eval/siglip_runtime_quality_20260611_c026_single_character_token_sep_runtime/contact_sheet.jpg`
+- `eval/siglip_runtime_quality_20260611_c026_single_character_token_sep_runtime/summary.json`
+
+Decision: `single_character_token_sep_not_quality_pass`
+
+Interpretation: token separation works mechanically and increases visual
+variation relative to clean32, but it does not improve reference fidelity. The
+token variants still miss beard/age, glasses/fan, demon face, cropped screaming
+face, exact palette, and stable identity. In several cases the token run pushes
+the output into a different learned template instead of preserving the
+reference. Do not launch a longer token-separation-only run unchanged. The next
+branch needs a semantic reference anchor, such as anime/VL teacher features,
+explicit identity/palette/prop attributes, paired reference-target supervision,
+or a trainable image encoder/calibrator optimized for reference retrieval.

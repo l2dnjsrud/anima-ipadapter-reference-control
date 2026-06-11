@@ -4,6 +4,7 @@ import torch
 
 from training.siglip_reference_loss import (
     reference_margin_loss,
+    reference_token_separation_loss,
     wrong_reference_index,
 )
 from training.siglip_smoke_types import SmokeInputError
@@ -50,3 +51,33 @@ def test_reference_margin_loss_positive_when_wrong_is_too_close() -> None:
     loss = reference_margin_loss(correct, wrong, target, margin=0.25)
 
     assert torch.allclose(loss, torch.tensor(1.25))
+
+
+def test_reference_token_separation_loss_is_zero_when_references_are_distinct() -> None:
+    correct = torch.tensor([[[1.0, 0.0], [1.0, 0.0]]])
+    wrong = torch.tensor([[[0.0, 1.0], [0.0, 1.0]]])
+
+    loss = reference_token_separation_loss(correct, wrong, max_similarity=0.2)
+
+    assert torch.equal(loss, torch.zeros_like(loss))
+
+
+def test_reference_token_separation_loss_penalizes_collapsed_tokens() -> None:
+    correct = torch.tensor([[[1.0, 0.0], [1.0, 0.0]]])
+    wrong = correct.clone()
+
+    loss = reference_token_separation_loss(correct, wrong, max_similarity=0.2)
+
+    assert torch.allclose(loss, torch.tensor(0.8))
+
+
+def test_reference_token_separation_loss_rejects_shape_mismatch() -> None:
+    correct = torch.zeros(1, 2, 3)
+    wrong = torch.zeros(1, 3, 3)
+
+    try:
+        reference_token_separation_loss(correct, wrong, max_similarity=0.2)
+    except SmokeInputError as error:
+        assert "must match" in str(error)
+    else:
+        raise AssertionError("shape mismatch should fail")
