@@ -505,3 +505,28 @@ route is a weak research branch, not a production reference-control checkpoint.
 The next credible path is a stronger anime/VL image encoder or a trainable
 image-encoder adaptation stage, most likely Qwen-VL style features or an
 anime-domain SigLIP/PE-like encoder, before another broad training run.
+
+## 2026-06-11 Qwen3-VL embedding probe
+
+The next encoder candidate was checked before writing another adapter training
+loop. `Qwen/Qwen3-VL-Embedding-2B` exists on Hugging Face, is a
+sentence-transformers multimodal embedding model, and locally produced
+embeddings for six identity128 color-panel reference images.
+
+Evidence:
+
+- `eval/qwen3vl_embedding_probe_20260611/report.md`
+- `eval/qwen3vl_embedding_probe_20260611/summary.json`
+
+Probe result:
+
+- embedding shape: `[6, 2048]`
+- off-diagonal cosine mean: `0.563116`
+- off-diagonal cosine min/max: `0.424949` / `0.737467`
+
+Interpretation: the Qwen3-VL embedding model loads locally and separates the
+test references better than a collapsed generic style vector would. This makes
+it a credible next branch for adapter training. The previous QwenVL plan should
+not assume `1024` dimensions: the current public 2B embedding checkpoint emits
+`2048` dimensions by default, with optional custom/MRL dimensions documented by
+the model card.

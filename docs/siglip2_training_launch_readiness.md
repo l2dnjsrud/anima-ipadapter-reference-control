@@ -416,6 +416,21 @@ runtime weight that recovers quality: low weights return toward no-IP and high
 weights distort scene content. This makes a broad frozen-SigLIP2 training run a
 poor use of GPU time unless the image encoder signal changes.
 
+Qwen3-VL embedding was then probed as the next encoder signal:
+
+```text
+eval/qwen3vl_embedding_probe_20260611/report.md
+eval/qwen3vl_embedding_probe_20260611/summary.json
+```
+
+The public `Qwen/Qwen3-VL-Embedding-2B` checkpoint loads locally and emits
+`2048`-dim normalized image embeddings. On six identity128 color-panel
+references the off-diagonal cosine range was `0.424949` to `0.737467`, with
+mean `0.563116`. This is not yet adapter quality evidence, but it proves the
+candidate encoder is available and does not collapse the reference set into one
+generic vector. Any QwenVL adapter smoke should start from a `2048`-dim input
+contract or explicitly document a projection/truncation stage.
+
 ## Stop Conditions
 
 Stop and ask before proceeding if any of these are true:
@@ -445,4 +460,5 @@ is:
 5. Because the larger fp32 checkpoint still cannot recover held-out references,
    and PE-teacher distillation also fails the visual gate, stop short local
    frozen-SigLIP tuning as the main path and move to a Qwen-VL/anime-image-
-   encoder based reference-control plan.
+   encoder based reference-control plan. The first Qwen branch should target
+   `Qwen/Qwen3-VL-Embedding-2B` with a `2048`-dim adapter input.
