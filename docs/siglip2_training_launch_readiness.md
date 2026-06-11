@@ -600,3 +600,17 @@ is:
     next branch should train an anime identity/palette/prop feature calibrator
     or retrieval objective before denoising, then re-enter the same
     single-character held-out gate.
+26. A PE-space retrieval pilot was added and tested:
+    - `training/pe_token_retrieval.py`
+    - `training/siglip_teacher_step.py`
+    - `training/siglip_teacher_runtime.py`
+    - `eval/siglip_runtime_quality_20260611_c029_single_character_pe_retrieval_runtime/report.md`
+    - `eval/siglip_runtime_quality_20260611_c029_single_character_pe_retrieval_runtime/contact_sheet.jpg`
+27. Result: `single_character_pe_retrieval_not_quality_pass`. The branch proves
+    PE-token retrieval can run through training and ComfyUI, but the generated
+    images still collapse toward the young black-haired wuxia template and miss
+    elder, scholar-prop, screaming-face, and demon identities.
+28. Updated next step: do not add more frozen-SigLIP adapter-side objectives
+    unchanged. The next useful experiment should train the image
+    encoder/calibrator itself, or derive explicit identity/palette/prop tokens
+    from Qwen/PE teacher features before denoising.

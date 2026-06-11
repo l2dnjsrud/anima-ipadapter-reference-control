@@ -978,3 +978,51 @@ encoder/resampler side. The next branch should train a stronger
 image-feature calibrator or retrieval/ID/palette objective before broad
 denoising, or use Qwen/PE teacher features to supervise identity/palette/prop
 tokens directly.
+
+## 2026-06-11 PE-space retrieval pilot
+
+After c028, a PE-token retrieval branch was added:
+
+```text
+training/pe_token_retrieval.py
+training/siglip_teacher_step.py
+training/siglip_teacher_runtime.py
+```
+
+The branch continues from the PE-space checkpoint and adds a margin loss that
+makes native SigLIP image tokens prefer the matching PE tokens over a
+deterministic wrong-reference PE token set. This is a direct resampler-side
+retrieval signal, not only another denoiser-output loss.
+
+Checkpoint:
+
+```text
+checkpoints/anima_siglip_ip_adapter_single_character_clean32_pe_retrieval_0128_20260611.safetensors
+```
+
+Observed 128-step summary:
+
+- rows loaded: `32`
+- first/final loss: `0.22356687486171722` / `0.4331858456134796`
+- mean loss: `0.3135300036519766`
+- mean base loss: `0.19486997387139127`
+- mean teacher loss: `0.01949366783082951`
+- mean PE-token loss: `0.0016404704861088248`
+- mean PE-retrieval loss: `0.20024060737341642`
+- finite loss: `true`
+
+ComfyUI API quality evidence:
+
+- `eval/siglip_runtime_quality_20260611_c029_single_character_pe_retrieval_runtime/report.md`
+- `eval/siglip_runtime_quality_20260611_c029_single_character_pe_retrieval_runtime/contact_sheet.jpg`
+- `eval/siglip_runtime_quality_20260611_c029_single_character_pe_retrieval_runtime/summary.json`
+
+Decision: `single_character_pe_retrieval_not_quality_pass`
+
+Interpretation: PE-space K/V initialization plus pairwise PE-token retrieval is
+still insufficient. The images remain clean, but elder identity, scholar props,
+screaming crop, and green demon identity are not preserved. The failure points
+more strongly at frozen SigLIP feature insufficiency for anime identity,
+palette, and prop attributes. The next branch should train a stronger
+image-feature calibrator/encoder or use Qwen/PE teacher features to produce
+explicit identity/palette/prop tokens before denoising.

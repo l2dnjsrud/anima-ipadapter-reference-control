@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import math
 import random
 import sys
 from pathlib import Path
@@ -13,35 +12,33 @@ for candidate in (ROOT, ANIMA_ROOT):
     if str(candidate) not in sys.path:
         sys.path.insert(0, str(candidate))
 
-from native_pe_models import load_pe_adapter_spec  # noqa: E402
-from native_pe_runtime import load_network  # noqa: E402
 from training.pe_teacher_distillation import (  # noqa: E402
     predict_with_pe_teacher,
-    teacher_distillation_loss,
 )
 from training.pe_teacher_features import get_pe_features, prepare_pe_cache  # noqa: E402
-from training.pe_teacher_token_alignment import pe_token_alignment_loss  # noqa: E402
-from training.pe_space_siglip_adapter import load_teacher_adapter  # noqa: E402
 from training.siglip_contrastive_smoke import _predict  # noqa: E402
 from training.siglip_real_smoke import (  # noqa: E402
-    freeze_module,
     save_adapter_checkpoint,
     trainable_parameter_count,
     verify_checkpoint,
 )
 from training.siglip_prepared_cache import get_prepared, prepare_cache  # noqa: E402
-from training.siglip_reference_loss import (  # noqa: E402
-    reference_margin_loss,
-    reference_token_separation_loss,
-    wrong_reference_index,
-)
+from training.siglip_reference_loss import wrong_reference_index  # noqa: E402
 from training.siglip_smoke_data import load_pair_rows  # noqa: E402
 from training.siglip_smoke_runtime import noise_args, seed_everything, validate_config  # noqa: E402
 from training.siglip_smoke_types import (  # noqa: E402
     SmokeConfig,
     SmokeInputError,
 )
-from training.siglip_teacher_summary import TeacherSmokeSummary  # noqa: E402
+from training.siglip_teacher_summary import (  # noqa: E402
+    TeacherSmokeSummary,
+    build_teacher_smoke_summary,
+)
+from training.siglip_teacher_step import (  # noqa: E402
+    TeacherLossWeights,
+    compute_teacher_step_losses,
+)
+from training.siglip_teacher_runtime import load_teacher_runtime  # noqa: E402
 
 
 def run_teacher_smoke(
@@ -54,6 +51,8 @@ def run_teacher_smoke(
     token_max_similarity: float = 0.2,
     pe_token_weight: float = 0.0,
     pe_token_block_stride: int = 4,
+    pe_retrieval_weight: float = 0.0,
+    pe_retrieval_margin: float = 0.2,
     pe_kv_init: bool = False,
     pe_encoder_name: str = "pe",
 ) -> TeacherSmokeSummary:
@@ -68,54 +67,37 @@ def run_teacher_smoke(
         raise SmokeInputError("teacher smoke requires at least two loaded rows")
     random.Random(config.seed).shuffle(rows)
 
-    from library.anima.weights import load_anima_model, load_qwen3_text_encoder
-    from library.inference.text import prepare_text_inputs
-    from library.models.qwen_vae import load_vae
     from library.runtime.noise import (
         FlowMatchEulerDiscreteScheduler,
         get_noisy_model_input_and_timesteps,
     )
-    from library.vision import encode_pe_from_imageminus1to1, load_pe_encoder
-    from transformers import AutoImageProcessor, SiglipVisionModel
 
-    anima = load_anima_model(device, str(config.dit_path), "torch", device, dtype)
-    anima.to(device=device, dtype=dtype)
-    frozen_params = freeze_module(anima)
-    vae = load_vae(str(config.vae_path), device=device, dtype=dtype, eval=True)
-    frozen_params += freeze_module(vae)
-    text_encoder, _ = load_qwen3_text_encoder(
-        str(config.text_encoder_path), dtype=dtype, device=str(device)
+    runtime = load_teacher_runtime(
+        config,
+        device=device,
+        dtype=dtype,
+        pe_kv_init=pe_kv_init,
+        pe_encoder_name=pe_encoder_name,
     )
-    frozen_params += freeze_module(text_encoder)
-    siglip = SiglipVisionModel.from_pretrained(
-        config.siglip_model_id, torch_dtype=dtype, trust_remote_code=True
-    ).to(device)
-    processor = AutoImageProcessor.from_pretrained(config.siglip_model_id)
-    frozen_params += freeze_module(siglip)
-
-    pe_spec = load_pe_adapter_spec(config.pe_checkpoint_path)
-    pe_network = load_network(pe_spec, strength=1.0).to(device=device, dtype=dtype)
-    pe_encoder = load_pe_encoder(device, name=pe_encoder_name, dtype=torch.bfloat16)
-    adapter = load_teacher_adapter(config, pe_network, device, dtype, pe_kv_init=pe_kv_init)
-    optimizer = torch.optim.AdamW(adapter.parameters(), lr=config.lr)
+    optimizer = torch.optim.AdamW(runtime.adapter.parameters(), lr=config.lr)
     scheduler = FlowMatchEulerDiscreteScheduler(num_train_timesteps=1000, shift=1.0)
     cache = prepare_cache(
         rows,
         config,
-        vae,
-        text_encoder,
-        anima,
-        siglip,
-        processor,
-        prepare_text_inputs,
+        runtime.vae,
+        runtime.text_encoder,
+        runtime.anima,
+        runtime.siglip,
+        runtime.processor,
+        runtime.prepare_text_inputs,
         device,
         dtype,
     )
     pe_cache = prepare_pe_cache(
         rows,
         config,
-        pe_encoder,
-        encode_pe_from_imageminus1to1,
+        runtime.pe_encoder,
+        runtime.encode_pe_from_imageminus1to1,
         device,
         dtype,
     )
@@ -125,34 +107,43 @@ def run_teacher_smoke(
     teacher_losses: list[float] = []
     token_losses: list[float] = []
     pe_token_losses: list[float] = []
+    pe_retrieval_losses: list[float] = []
+    weights = TeacherLossWeights(
+        contrastive=contrastive_weight,
+        teacher=teacher_weight,
+        token=token_weight,
+        pe_token=pe_token_weight,
+        pe_retrieval=pe_retrieval_weight,
+    )
 
     for step in range(config.steps):
         row_index = step % len(rows)
+        wrong_index = wrong_reference_index(row_index, len(rows))
         prepared = get_prepared(
             cache,
             rows,
             row_index,
             config,
-            vae,
-            text_encoder,
-            anima,
-            siglip,
-            processor,
-            prepare_text_inputs,
+            runtime.vae,
+            runtime.text_encoder,
+            runtime.anima,
+            runtime.siglip,
+            runtime.processor,
+            runtime.prepare_text_inputs,
             device,
             dtype,
         )
         wrong_prepared = get_prepared(
             cache,
             rows,
-            wrong_reference_index(row_index, len(rows)),
+            wrong_index,
             config,
-            vae,
-            text_encoder,
-            anima,
-            siglip,
-            processor,
-            prepare_text_inputs,
+            runtime.vae,
+            runtime.text_encoder,
+            runtime.anima,
+            runtime.siglip,
+            runtime.processor,
+            runtime.prepare_text_inputs,
             device,
             dtype,
         )
@@ -170,18 +161,29 @@ def run_teacher_smoke(
             rows,
             row_index,
             config,
-            pe_encoder,
-            encode_pe_from_imageminus1to1,
+            runtime.pe_encoder,
+            runtime.encode_pe_from_imageminus1to1,
+            device,
+            dtype,
+        )
+        wrong_pe_features = get_pe_features(
+            pe_cache,
+            rows,
+            wrong_index,
+            config,
+            runtime.pe_encoder,
+            runtime.encode_pe_from_imageminus1to1,
             device,
             dtype,
         )
         with torch.no_grad():
-            pe_tokens = pe_network.encode_ip_tokens(pe_features).detach()
+            pe_tokens = runtime.pe_network.encode_ip_tokens(pe_features).detach()
+            wrong_pe_tokens = runtime.pe_network.encode_ip_tokens(wrong_pe_features).detach()
 
         optimizer.zero_grad(set_to_none=True)
         teacher_pred = predict_with_pe_teacher(
-            anima=anima,
-            network=pe_network,
+            anima=runtime.anima,
+            network=runtime.pe_network,
             pe_features=pe_features,
             noisy=noisy,
             timesteps=timesteps,
@@ -189,35 +191,31 @@ def run_teacher_smoke(
             padding_mask=padding_mask,
         )
         correct_pred = _predict(
-            anima, adapter, prepared, noisy, timesteps, padding_mask
+            runtime.anima, runtime.adapter, prepared, noisy, timesteps, padding_mask
         )
         wrong_pred = _predict(
-            anima, adapter, wrong_prepared, noisy, timesteps, padding_mask
+            runtime.anima, runtime.adapter, wrong_prepared, noisy, timesteps, padding_mask
         )
-        correct_tokens = adapter.encode_ref(prepared.features, timestep=timesteps)
-        wrong_tokens = adapter.encode_ref(wrong_prepared.features, timestep=timesteps)
-        base_loss = torch.nn.functional.mse_loss(correct_pred.float(), target.float())
-        contrastive_loss = reference_margin_loss(
-            correct_pred, wrong_pred, target, margin=contrastive_margin
-        )
-        teacher_loss = teacher_distillation_loss(correct_pred, teacher_pred)
-        token_loss = reference_token_separation_loss(
-            correct_tokens, wrong_tokens, max_similarity=token_max_similarity
-        )
-        pe_token_loss = pe_token_alignment_loss(
-            adapter,
-            pe_network,
-            student_tokens=correct_tokens,
+        correct_tokens = runtime.adapter.encode_ref(prepared.features, timestep=timesteps)
+        wrong_tokens = runtime.adapter.encode_ref(wrong_prepared.features, timestep=timesteps)
+        step_losses = compute_teacher_step_losses(
+            adapter=runtime.adapter,
+            pe_network=runtime.pe_network,
+            correct_pred=correct_pred,
+            wrong_pred=wrong_pred,
+            target=target,
+            teacher_pred=teacher_pred,
+            correct_tokens=correct_tokens,
+            wrong_tokens=wrong_tokens,
             pe_tokens=pe_tokens,
-            block_stride=pe_token_block_stride,
+            wrong_pe_tokens=wrong_pe_tokens,
+            weights=weights,
+            contrastive_margin=contrastive_margin,
+            token_max_similarity=token_max_similarity,
+            pe_token_block_stride=pe_token_block_stride,
+            pe_retrieval_margin=pe_retrieval_margin,
         )
-        loss = (
-            base_loss
-            + contrastive_weight * contrastive_loss
-            + teacher_weight * teacher_loss
-            + token_weight * token_loss
-            + pe_token_weight * pe_token_loss
-        )
+        loss = step_losses.total
         if not torch.isfinite(loss):
             raise SmokeInputError(
                 f"non-finite loss at step {step}: {float(loss.detach().cpu())}"
@@ -225,32 +223,29 @@ def run_teacher_smoke(
         loss.backward()
         optimizer.step()
         losses.append(float(loss.detach().cpu()))
-        base_losses.append(float(base_loss.detach().cpu()))
-        contrastive_losses.append(float(contrastive_loss.detach().cpu()))
-        teacher_losses.append(float(teacher_loss.detach().cpu()))
-        token_losses.append(float(token_loss.detach().cpu()))
-        pe_token_losses.append(float(pe_token_loss.detach().cpu()))
+        base_losses.append(float(step_losses.base.detach().cpu()))
+        contrastive_losses.append(float(step_losses.contrastive.detach().cpu()))
+        teacher_losses.append(float(step_losses.teacher.detach().cpu()))
+        token_losses.append(float(step_losses.token.detach().cpu()))
+        pe_token_losses.append(float(step_losses.pe_token.detach().cpu()))
+        pe_retrieval_losses.append(float(step_losses.pe_retrieval.detach().cpu()))
 
-    save_adapter_checkpoint(adapter, config.output_path)
+    save_adapter_checkpoint(runtime.adapter, config.output_path)
     checkpoint = verify_checkpoint(config.output_path, config.pe_checkpoint_path)
-    return TeacherSmokeSummary(
+    return build_teacher_smoke_summary(
         steps=config.steps,
         rows_loaded=len(rows),
-        first_loss=losses[0],
-        final_loss=losses[-1],
-        mean_loss=sum(losses) / len(losses),
-        mean_base_loss=sum(base_losses) / len(base_losses),
-        mean_contrastive_loss=sum(contrastive_losses) / len(contrastive_losses),
-        mean_teacher_loss=sum(teacher_losses) / len(teacher_losses),
-        mean_token_loss=sum(token_losses) / len(token_losses),
-        mean_pe_token_loss=sum(pe_token_losses) / len(pe_token_losses),
-        finite_loss=all(math.isfinite(loss) for loss in losses),
-        trainable_parameters=trainable_parameter_count(adapter),
-        frozen_base_parameters=frozen_params,
+        losses=losses,
+        base_losses=base_losses,
+        contrastive_losses=contrastive_losses,
+        teacher_losses=teacher_losses,
+        token_losses=token_losses,
+        pe_token_losses=pe_token_losses,
+        pe_retrieval_losses=pe_retrieval_losses,
+        trainable_parameters=trainable_parameter_count(runtime.adapter),
+        frozen_base_parameters=runtime.frozen_params,
         checkpoint=checkpoint,
-        init_checkpoint_path=str(config.init_checkpoint_path)
-        if config.init_checkpoint_path
-        else None,
+        init_checkpoint_path=config.init_checkpoint_path,
         contrastive_weight=contrastive_weight,
         contrastive_margin=contrastive_margin,
         teacher_weight=teacher_weight,
@@ -258,4 +253,6 @@ def run_teacher_smoke(
         token_max_similarity=token_max_similarity,
         pe_token_weight=pe_token_weight,
         pe_token_block_stride=pe_token_block_stride,
+        pe_retrieval_weight=pe_retrieval_weight,
+        pe_retrieval_margin=pe_retrieval_margin,
     )
