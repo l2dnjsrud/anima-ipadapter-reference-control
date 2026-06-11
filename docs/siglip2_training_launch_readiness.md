@@ -548,3 +548,23 @@ is:
     and not yet a reason to launch broad training unchanged. The next launch
     should scale a diverse single-character set first, then add a stronger
     identity/palette discrimination loss before returning to page layouts.
+17. A larger visually curated single-character color subset has now been built
+    and tested:
+    - `training/manifests/local_color_single_character_clean32_20260611.jsonl`
+    - `training/manifests/local_color_single_character_clean32_heldout8_20260611.jsonl`
+    - `eval/siglip_runtime_quality_20260611_c024_single_character_clean32_selection/candidate_sheet.jpg`
+    - `eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/report.md`
+    - `eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/contact_sheet.jpg`
+18. Result: `single_character_clean32_runtime_not_quality_pass`. The clean32
+    run confirms that single-character testing is the clearest first gate: the
+    adapter influence is visible, but fidelity is still not good enough.
+    Clean32 strengthens broad dark/red/blue wuxia styling and stern male faces,
+    while still missing glasses/fan, beard/age, non-human face, exact palette,
+    and stable identity. Higher weight tends to amplify the learned template
+    instead of improving reference fidelity.
+19. Next executable step: keep the single-character train/held-out gate, but
+    change the training recipe before any long run. The next branch should add
+    stronger reference-discrimination or feature-calibration losses, or move to
+    an anime/Qwen-VL image encoder stage that is explicitly optimized for
+    identity and palette retention. Do not return to page-layout or line-art
+    colorization tests until this single-character gate passes.

@@ -793,3 +793,55 @@ black/tan references, but also overfit and missed identity details. Beard,
 age, glasses, gold/fire palette, and unusual facial intensity are still not
 reliable. This keeps the goal active: single-character-first training is useful
 as the next diagnostic path, but the current checkpoint is not a quality pass.
+
+## 2026-06-11 Clean32 single-character color run
+
+The next run scaled the single-character diagnostic from four hand-picked
+references to a curated color-panel subset:
+
+```text
+training/manifests/local_color_single_character_clean32_20260611.jsonl
+training/manifests/local_color_single_character_clean32_heldout8_20260611.jsonl
+training/manifests/local_color_single_character_clean32_20260611.summary.json
+```
+
+Selection evidence:
+
+- `eval/siglip_runtime_quality_20260611_c024_single_character_clean32_selection/candidate_sheet.jpg`
+
+The clean32 checkpoint continued from the PE-style query-patch checkpoint for
+512 steps:
+
+```text
+checkpoints/anima_siglip_ip_adapter_single_character_clean32_pe_query_patch_0512_20260611.safetensors
+```
+
+Observed training summary:
+
+- rows loaded: `32`
+- first/final loss: `0.4276636838912964` / `0.14298595488071442`
+- mean loss: `0.23064063434139825`
+- mean base loss: `0.18559964589803712`
+- mean contrastive loss: `0.043380077069741674`
+- mean teacher loss: `0.025011859186633956`
+- finite loss: `true`
+- trainable parameters: `336650396`
+
+ComfyUI API quality evidence:
+
+- `eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/report.md`
+- `eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/contact_sheet.jpg`
+- `eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/summary.json`
+
+Decision: `single_character_clean32_runtime_not_quality_pass`
+
+Interpretation: single-character evaluation is the correct first gate. It makes
+reference influence visible and avoids confusing page-layout difficulty with
+adapter failure. The clean32 checkpoint changes outputs beyond no-IP and can
+push broad dark/red/blue wuxia palette, stern faces, and robe styling. However,
+it still does not preserve reference-specific identity, props, beard/age,
+glasses/fan, non-human face, or exact palette reliably. Stronger `1.4` weight
+usually amplifies a learned template instead of improving fidelity. The next
+step should keep this single-character gate, but change the objective or encoder
+adaptation path rather than launching a long run of the same frozen-SigLIP
+adapter-only recipe.

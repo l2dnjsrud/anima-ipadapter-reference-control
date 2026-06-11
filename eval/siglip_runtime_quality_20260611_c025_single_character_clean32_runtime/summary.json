@@ -1,0 +1,382 @@
+{
+  "base_url": "http://127.0.0.1:8116",
+  "checkpoints": {
+    "pe_base": "anima_siglip_ip_adapter_identity128_pe_query_patch_0064_20260611.safetensors",
+    "identity4": "anima_siglip_ip_adapter_single_character_identity4_pe_query_patch_0256_20260611.safetensors",
+    "clean32": "anima_siglip_ip_adapter_single_character_clean32_pe_query_patch_0512_20260611.safetensors"
+  },
+  "comparison": "reference / no_ip / pe_base_w1 / identity4_w1 / clean32_w1 / clean32_w14",
+  "samples": [
+    {
+      "label": "train00",
+      "split": "train",
+      "ref_id": "001-100/SG-005/mrcolor_panel_style_v4_split_edge_strict_probe_00027_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00117_SG-005-13_page_2062x2105_s02",
+      "seed": 20260634
+    },
+    {
+      "label": "train07",
+      "split": "train",
+      "ref_id": "001-100/SG-047/mrcolor_panel_style_v4_split_edge_strict_probe_00320_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01571_SG-047-12_page_1965x2897_s03",
+      "seed": 20260635
+    },
+    {
+      "label": "train14",
+      "split": "train",
+      "ref_id": "001-100/SG-083/mrcolor_panel_style_v4_split_edge_strict_probe_00494_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02718_SG-083-10_page_719x957_s01",
+      "seed": 20260636
+    },
+    {
+      "label": "train23",
+      "split": "train",
+      "ref_id": "101-200/SG-145/mrcolor_panel_style_v4_split_edge_strict_probe_00907_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04994_SG-145-03_page_2150x2955_s01",
+      "seed": 20260637
+    },
+    {
+      "label": "heldout00",
+      "split": "heldout",
+      "ref_id": "001-100/SG-015/mrcolor_panel_style_v5_edge_trim_strict_00031_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00464_SG-015-14_page_985x1775_s01",
+      "seed": 20260638
+    },
+    {
+      "label": "heldout02",
+      "split": "heldout",
+      "ref_id": "001-100/SG-071/mrcolor_panel_style_v4_split_edge_strict_probe_00444_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02306_SG-071-05_page_1115x1356_s01",
+      "seed": 20260639
+    },
+    {
+      "label": "heldout05",
+      "split": "heldout",
+      "ref_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-244/mrcolor_panel_style_v4_split_edge_strict_probe_01334_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_08090_SG-244-08_page_2130x1528_s01",
+      "seed": 20260640
+    },
+    {
+      "label": "heldout07",
+      "split": "heldout",
+      "ref_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-274/mrcolor_panel_style_v4_split_edge_strict_probe_01452_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_08754_SG-274-04_page_1407x1264_s03",
+      "seed": 20260641
+    }
+  ],
+  "results": {
+    "train00_no_ip": {
+      "prompt_id": "8a5e9e4c-9857-4028-b815-ce24523658f3",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/train00_no_ip.png",
+      "image_info": {
+        "filename": "train00_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "train00_pe_base_w1": {
+      "prompt_id": "decbeb58-d205-4fe1-bc69-f061b2ed97d4",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/train00_pe_base_w1.png",
+      "image_info": {
+        "filename": "train00_pe_base_w1_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "train00_identity4_w1": {
+      "prompt_id": "e21ecc8e-b8af-4fab-b121-62ced55ee69d",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/train00_identity4_w1.png",
+      "image_info": {
+        "filename": "train00_identity4_w1_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "train00_clean32_w1": {
+      "prompt_id": "e3605f08-8533-4b23-9f58-d48fb8db4ed1",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/train00_clean32_w1.png",
+      "image_info": {
+        "filename": "train00_clean32_w1_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "train00_clean32_w14": {
+      "prompt_id": "0b780463-7df1-4402-87d6-6abd6b29c1e5",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/train00_clean32_w14.png",
+      "image_info": {
+        "filename": "train00_clean32_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "train07_no_ip": {
+      "prompt_id": "4d5e646d-1583-40df-bee2-4fc41af3d389",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/train07_no_ip.png",
+      "image_info": {
+        "filename": "train07_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "train07_pe_base_w1": {
+      "prompt_id": "fe5168d4-97bf-4649-a687-fcba0bbf6394",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/train07_pe_base_w1.png",
+      "image_info": {
+        "filename": "train07_pe_base_w1_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "train07_identity4_w1": {
+      "prompt_id": "7414d118-10d7-436d-8328-3649e6c70b6d",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/train07_identity4_w1.png",
+      "image_info": {
+        "filename": "train07_identity4_w1_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "train07_clean32_w1": {
+      "prompt_id": "c4ff8e9d-37af-4828-afd6-8c21f7eeeb44",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/train07_clean32_w1.png",
+      "image_info": {
+        "filename": "train07_clean32_w1_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "train07_clean32_w14": {
+      "prompt_id": "f30e4cad-978d-4888-a2e2-1f8a99026ab7",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/train07_clean32_w14.png",
+      "image_info": {
+        "filename": "train07_clean32_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "train14_no_ip": {
+      "prompt_id": "e9ec0636-97f8-41a8-b71c-26c4e1690be2",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/train14_no_ip.png",
+      "image_info": {
+        "filename": "train14_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "train14_pe_base_w1": {
+      "prompt_id": "6b8d213e-a118-48c7-a018-78016781cc07",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/train14_pe_base_w1.png",
+      "image_info": {
+        "filename": "train14_pe_base_w1_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "train14_identity4_w1": {
+      "prompt_id": "7366ec14-67f7-46a2-9a87-9a9f74c4269e",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/train14_identity4_w1.png",
+      "image_info": {
+        "filename": "train14_identity4_w1_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "train14_clean32_w1": {
+      "prompt_id": "fd367efb-17d4-44e0-8e21-f9e812e70181",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/train14_clean32_w1.png",
+      "image_info": {
+        "filename": "train14_clean32_w1_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "train14_clean32_w14": {
+      "prompt_id": "e7b176b5-03a1-44a2-bab8-603a47bc5cd4",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/train14_clean32_w14.png",
+      "image_info": {
+        "filename": "train14_clean32_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "train23_no_ip": {
+      "prompt_id": "5b08e212-ec30-44d3-9c2f-4d8c398da1e0",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/train23_no_ip.png",
+      "image_info": {
+        "filename": "train23_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "train23_pe_base_w1": {
+      "prompt_id": "5caea018-df75-442f-a9e2-06f2fc76cf33",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/train23_pe_base_w1.png",
+      "image_info": {
+        "filename": "train23_pe_base_w1_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "train23_identity4_w1": {
+      "prompt_id": "80c078fa-595a-4ed8-8120-2dce61edb1f2",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/train23_identity4_w1.png",
+      "image_info": {
+        "filename": "train23_identity4_w1_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "train23_clean32_w1": {
+      "prompt_id": "8620d890-6ab1-41cb-811f-49448b1f1b4a",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/train23_clean32_w1.png",
+      "image_info": {
+        "filename": "train23_clean32_w1_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "train23_clean32_w14": {
+      "prompt_id": "05cbb5df-f6e5-49d5-8e92-6b511120059f",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/train23_clean32_w14.png",
+      "image_info": {
+        "filename": "train23_clean32_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "heldout00_no_ip": {
+      "prompt_id": "1817d436-6cfd-4cfa-beb8-2d248ae62251",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/heldout00_no_ip.png",
+      "image_info": {
+        "filename": "heldout00_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "heldout00_pe_base_w1": {
+      "prompt_id": "848c3f4a-7c8f-497e-8bc9-b7b388a390b4",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/heldout00_pe_base_w1.png",
+      "image_info": {
+        "filename": "heldout00_pe_base_w1_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "heldout00_identity4_w1": {
+      "prompt_id": "593d7312-d529-4c8a-8d0f-e461c3bb8055",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/heldout00_identity4_w1.png",
+      "image_info": {
+        "filename": "heldout00_identity4_w1_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "heldout00_clean32_w1": {
+      "prompt_id": "c5009976-f317-41b4-accf-63d8bf008fb9",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/heldout00_clean32_w1.png",
+      "image_info": {
+        "filename": "heldout00_clean32_w1_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "heldout00_clean32_w14": {
+      "prompt_id": "17657bc9-13c9-4d51-ba43-940771398001",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/heldout00_clean32_w14.png",
+      "image_info": {
+        "filename": "heldout00_clean32_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "heldout02_no_ip": {
+      "prompt_id": "452d5dc8-4967-4ec9-8258-637ed3308f82",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/heldout02_no_ip.png",
+      "image_info": {
+        "filename": "heldout02_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "heldout02_pe_base_w1": {
+      "prompt_id": "1a3b1a94-ff85-4d6c-91c4-8f7e19402213",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/heldout02_pe_base_w1.png",
+      "image_info": {
+        "filename": "heldout02_pe_base_w1_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "heldout02_identity4_w1": {
+      "prompt_id": "c4622d7f-4786-4c1d-9c34-621ff1878c41",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/heldout02_identity4_w1.png",
+      "image_info": {
+        "filename": "heldout02_identity4_w1_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "heldout02_clean32_w1": {
+      "prompt_id": "2241d03d-3e38-40f9-816e-26d0fb36aa3c",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/heldout02_clean32_w1.png",
+      "image_info": {
+        "filename": "heldout02_clean32_w1_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "heldout02_clean32_w14": {
+      "prompt_id": "82cbf525-15be-45aa-83ed-d760d6f67622",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/heldout02_clean32_w14.png",
+      "image_info": {
+        "filename": "heldout02_clean32_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "heldout05_no_ip": {
+      "prompt_id": "f9e22b6c-939f-4965-a042-e476b9fdc06b",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/heldout05_no_ip.png",
+      "image_info": {
+        "filename": "heldout05_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "heldout05_pe_base_w1": {
+      "prompt_id": "48eb9a8f-a920-4f59-92e2-261f6bbd93fa",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/heldout05_pe_base_w1.png",
+      "image_info": {
+        "filename": "heldout05_pe_base_w1_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "heldout05_identity4_w1": {
+      "prompt_id": "d92b8b57-2ec7-48a0-a602-d61ff6b2d9e5",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/heldout05_identity4_w1.png",
+      "image_info": {
+        "filename": "heldout05_identity4_w1_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "heldout05_clean32_w1": {
+      "prompt_id": "4c3c98d1-2c66-4c64-9816-b5e9a8852183",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/heldout05_clean32_w1.png",
+      "image_info": {
+        "filename": "heldout05_clean32_w1_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "heldout05_clean32_w14": {
+      "prompt_id": "1b85307d-8911-4f04-85dd-ab45b571f85b",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/heldout05_clean32_w14.png",
+      "image_info": {
+        "filename": "heldout05_clean32_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "heldout07_no_ip": {
+      "prompt_id": "c304a5bd-08ee-41c7-bc62-797282b6ee52",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/heldout07_no_ip.png",
+      "image_info": {
+        "filename": "heldout07_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "heldout07_pe_base_w1": {
+      "prompt_id": "d7f8c620-2df1-4703-b04e-b7b2331ba1ef",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/heldout07_pe_base_w1.png",
+      "image_info": {
+        "filename": "heldout07_pe_base_w1_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "heldout07_identity4_w1": {
+      "prompt_id": "433a2cec-a2c0-4f68-94d6-36532fa5594a",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/heldout07_identity4_w1.png",
+      "image_info": {
+        "filename": "heldout07_identity4_w1_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "heldout07_clean32_w1": {
+      "prompt_id": "029d36e8-d70f-4b31-a153-84469bb7d309",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/heldout07_clean32_w1.png",
+      "image_info": {
+        "filename": "heldout07_clean32_w1_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    },
+    "heldout07_clean32_w14": {
+      "prompt_id": "43803c37-4406-4345-a9f3-87f87c18fbc0",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/heldout07_clean32_w14.png",
+      "image_info": {
+        "filename": "heldout07_clean32_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime"
+      }
+    }
+  },
+  "contact_sheet": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c025_single_character_clean32_runtime/contact_sheet.jpg"
+}
