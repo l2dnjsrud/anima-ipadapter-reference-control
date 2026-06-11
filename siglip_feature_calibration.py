@@ -56,6 +56,7 @@ class CalibratedIPAdapterSigLIP(IPAdapterSigLIP):
         siglip_dim: int = 768,
         siglip_shallow_dim: int = 768,
         dit_dim: int = 2048,
+        ip_hidden_dim: int | None = None,
         num_blocks: int = 28,
         num_queries: int = 32,
         resampler_depth: int = 4,
@@ -74,6 +75,7 @@ class CalibratedIPAdapterSigLIP(IPAdapterSigLIP):
             siglip_dim=siglip_dim,
             siglip_shallow_dim=siglip_shallow_dim,
             dit_dim=dit_dim,
+            ip_hidden_dim=ip_hidden_dim,
             num_blocks=num_blocks,
             num_queries=num_queries,
             resampler_depth=resampler_depth,
@@ -115,7 +117,8 @@ def wrap_siglip_with_calibrator(
     wrapped = CalibratedIPAdapterSigLIP(
         siglip_dim=_siglip_dim(adapter),
         siglip_shallow_dim=_siglip_shallow_dim(adapter),
-        dit_dim=adapter.resampler.proj_out.weight.shape[0],
+        dit_dim=_dit_dim(adapter),
+        ip_hidden_dim=adapter.resampler.proj_out.weight.shape[0],
         num_blocks=adapter.num_blocks,
         num_queries=adapter.num_queries,
         resampler_depth=len(adapter.resampler.layers),
@@ -206,5 +209,9 @@ def _resampler_dim_head(adapter: IPAdapterSigLIP) -> int:
 
 def _ip_heads(adapter: IPAdapterSigLIP) -> int:
     head_dim = adapter.ip_cross_attns[0].norm_ip_q.scale.shape[0]
-    dit_dim = adapter.resampler.proj_out.weight.shape[0]
+    dit_dim = _dit_dim(adapter)
     return dit_dim // head_dim if head_dim > 0 and dit_dim % head_dim == 0 else 1
+
+
+def _dit_dim(adapter: IPAdapterSigLIP) -> int:
+    return adapter.ip_cross_attns[0].to_k_ip.weight.shape[0]

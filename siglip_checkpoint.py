@@ -30,6 +30,7 @@ class SigLIPCheckpointSpec:
     siglip_dim: int
     siglip_shallow_dim: int
     dit_dim: int
+    ip_hidden_dim: int
     num_blocks: int
     num_queries: int
     resampler_depth: int
@@ -85,7 +86,8 @@ def detect_siglip_checkpoint(state: TensorState) -> SigLIPCheckpointSpec:
         raise SigLIPCheckpointError("Malformed SigLIP checkpoint: no TimeResampler layers found.")
 
     resampler_dim = state["resampler.latents"].shape[2]
-    dit_dim = state["resampler.proj_out.weight"].shape[0]
+    ip_hidden_dim = state["resampler.proj_out.weight"].shape[0]
+    dit_dim = _first_tensor_shape(state, "ip_cross_attns.0.to_k_ip.weight")[0]
     inner_dim = _first_tensor_shape(state, "resampler.layers.0.0.to_q.weight")[0]
     resampler_heads, resampler_dim_head = _infer_attention_split(inner_dim)
     use_intermediate = "intermediate_encoder.shallow_proj.weight" in keys
@@ -116,6 +118,7 @@ def detect_siglip_checkpoint(state: TensorState) -> SigLIPCheckpointSpec:
         siglip_dim=siglip_dim,
         siglip_shallow_dim=siglip_shallow_dim,
         dit_dim=dit_dim,
+        ip_hidden_dim=ip_hidden_dim,
         num_blocks=max(block_indices) + 1,
         num_queries=state["resampler.latents"].shape[1],
         resampler_depth=max(layer_indices) + 1,
@@ -145,6 +148,7 @@ def build_siglip_adapter_from_state(state: TensorState) -> IPAdapterSigLIP:
         "siglip_dim": spec.siglip_dim,
         "siglip_shallow_dim": spec.siglip_shallow_dim,
         "dit_dim": spec.dit_dim,
+        "ip_hidden_dim": spec.ip_hidden_dim,
         "num_blocks": spec.num_blocks,
         "num_queries": spec.num_queries,
         "resampler_depth": spec.resampler_depth,

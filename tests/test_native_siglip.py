@@ -71,6 +71,38 @@ def test_siglip_checkpoint_detection_round_trips_tiny_state() -> None:
     ).shape == (1, 3, 16)
 
 
+def test_siglip_checkpoint_round_trips_asymmetric_ip_token_dim() -> None:
+    adapter = IPAdapterSigLIP(
+        siglip_dim=8,
+        siglip_shallow_dim=8,
+        dit_dim=16,
+        ip_hidden_dim=8,
+        num_blocks=2,
+        num_queries=3,
+        resampler_depth=1,
+        resampler_heads=2,
+        resampler_dim=16,
+        resampler_dim_head=8,
+        intermediate_dim=8,
+        intermediate_layers=1,
+        intermediate_heads=2,
+        ip_heads=4,
+        time_embed_dim=10,
+        use_intermediate_encoder=True,
+    )
+    features = SigLIPFeatures(torch.randn(1, 5, 8), torch.randn(1, 7, 8))
+
+    spec = detect_siglip_checkpoint(adapter.state_dict())
+    loaded = build_siglip_adapter_from_state(adapter.state_dict())
+    image_tokens = loaded.encode_ref(features, timestep=torch.tensor([0.5]))
+    output = loaded.forward_block(1, torch.randn(1, 4, 16), image_tokens)
+
+    assert spec.dit_dim == 16
+    assert spec.ip_hidden_dim == 8
+    assert image_tokens.shape == (1, 3, 8)
+    assert output.shape == (1, 4, 16)
+
+
 def test_siglip_checkpoint_detection_rejects_malformed_state() -> None:
     state = {"resampler.time_proj.weight": torch.empty(10, 1)}
 

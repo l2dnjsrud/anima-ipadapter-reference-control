@@ -893,3 +893,88 @@ reference. Do not launch a longer token-separation-only run unchanged. The next
 branch needs a semantic reference anchor, such as anime/VL teacher features,
 explicit identity/palette/prop attributes, paired reference-target supervision,
 or a trainable image encoder/calibrator optimized for reference retrieval.
+
+## 2026-06-11 PE-token and PE-space semantic-anchor runs
+
+Two stronger semantic-anchor branches were tested after token separation.
+
+The first branch added direct PE K/V descriptor alignment:
+
+```text
+training/pe_teacher_token_alignment.py
+training/siglip_teacher_summary.py
+```
+
+The PE-token-anchor checkpoint continued from clean32 for 256 steps:
+
+```text
+checkpoints/anima_siglip_ip_adapter_single_character_clean32_pe_token_anchor_0256_20260611.safetensors
+```
+
+Observed c027 training summary:
+
+- rows loaded: `32`
+- first/final loss: `0.3050529956817627` / `0.21933485567569733`
+- mean loss: `0.26382563475635834`
+- mean base loss: `0.1882707678596489`
+- mean contrastive loss: `0.043121844122651964`
+- mean teacher loss: `0.022011573988493183`
+- mean PE-token loss: `0.13854585964872967`
+- finite loss: `true`
+
+ComfyUI API quality evidence:
+
+- `eval/siglip_runtime_quality_20260611_c027_single_character_pe_token_anchor_runtime/report.md`
+- `eval/siglip_runtime_quality_20260611_c027_single_character_pe_token_anchor_runtime/contact_sheet.jpg`
+- `eval/siglip_runtime_quality_20260611_c027_single_character_pe_token_anchor_runtime/summary.json`
+
+Decision: `single_character_pe_token_anchor_not_quality_pass`
+
+The second branch changed the native SigLIP architecture so `dit_dim=2048` and
+`ip_hidden_dim=1024` can differ, then initialized the SigLIP adapter with the
+PE adapter's trained K/V projections and gates:
+
+```text
+siglip_model.py
+siglip_checkpoint.py
+training/pe_space_siglip_adapter.py
+```
+
+The PE-space checkpoint trained for 512 steps:
+
+```text
+checkpoints/anima_siglip_ip_adapter_single_character_clean32_pe_space_init_0512_20260611.safetensors
+```
+
+Observed c028 training summary:
+
+- rows loaded: `32`
+- first/final loss: `0.5026331543922424` / `0.18201853334903717`
+- mean loss: `0.22448686529241968`
+- mean base loss: `0.19500588972005062`
+- mean contrastive loss: `0.0499068612116389`
+- mean teacher loss: `0.016648300783572267`
+- mean PE-token loss: `0.01605273197731094`
+- finite loss: `true`
+- trainable parameters: `218159260`
+
+ComfyUI API quality evidence:
+
+- `eval/siglip_runtime_quality_20260611_c028_single_character_pe_space_init_runtime/report.md`
+- `eval/siglip_runtime_quality_20260611_c028_single_character_pe_space_init_runtime/contact_sheet.jpg`
+- `eval/siglip_runtime_quality_20260611_c028_single_character_pe_space_init_runtime/summary.json`
+
+Decision: `single_character_pe_space_init_not_quality_pass`
+
+Interpretation: c027 and c028 are meaningful engineering progress but not
+quality passes. PE-token alignment improves stability; PE-space initialization
+proves the native loader/runtime can use asymmetric PE-token-space checkpoints.
+However, both still miss identity-specific details such as elder beard/baldness,
+glasses/fan, cropped screaming expression, and green demon face. The c028
+failure is especially informative: once PE K/V is reused, the model becomes
+clean and sharp but collapses toward a narrow young black-haired wuxia male
+template. This points away from more adapter-only tuning and toward the
+encoder/resampler side. The next branch should train a stronger
+image-feature calibrator or retrieval/ID/palette objective before broad
+denoising, or use Qwen/PE teacher features to supervise identity/palette/prop
+tokens directly.

@@ -584,3 +584,19 @@ is:
     identity/palette/prop attributes, paired reference-target supervision, or a
     trainable image encoder/calibrator that first passes a reference-retrieval
     or attribute-retention gate.
+23. Two PE semantic-anchor branches have now been tested:
+    - `eval/siglip_runtime_quality_20260611_c027_single_character_pe_token_anchor_runtime/report.md`
+    - `eval/siglip_runtime_quality_20260611_c027_single_character_pe_token_anchor_runtime/contact_sheet.jpg`
+    - `eval/siglip_runtime_quality_20260611_c028_single_character_pe_space_init_runtime/report.md`
+    - `eval/siglip_runtime_quality_20260611_c028_single_character_pe_space_init_runtime/contact_sheet.jpg`
+24. Result: both are still not quality passes. The PE-token-anchor run improves
+    visual stability but does not preserve identity/props. The PE-space-init
+    run proves the native SigLIP loader/runtime can handle asymmetric
+    `dit_dim=2048` / `ip_hidden_dim=1024` checkpoints and reuse PE K/V
+    projections, but visually it collapses toward a clean young black-haired
+    wuxia male template.
+25. Next executable step: stop adapter-only frozen-SigLIP scaling. The remaining
+    bottleneck is the image feature/resampler side, not only the K/V patch. The
+    next branch should train an anime identity/palette/prop feature calibrator
+    or retrieval objective before denoising, then re-enter the same
+    single-character held-out gate.

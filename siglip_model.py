@@ -204,6 +204,7 @@ class IPAdapterSigLIP(nn.Module):
         siglip_dim: int = 768,
         siglip_shallow_dim: int = 768,
         dit_dim: int = 2048,
+        ip_hidden_dim: int | None = None,
         num_blocks: int = 28,
         num_queries: int = 32,
         resampler_depth: int = 4,
@@ -221,6 +222,8 @@ class IPAdapterSigLIP(nn.Module):
         self.num_blocks = num_blocks
         self.num_queries = num_queries
         self.use_intermediate_encoder = use_intermediate_encoder
+        self.dit_dim = dit_dim
+        self.ip_hidden_dim = ip_hidden_dim or dit_dim
         self.intermediate_encoder = (
             CrossLayerEncoder(
                 siglip_shallow_dim, siglip_dim, intermediate_dim, intermediate_layers, intermediate_heads
@@ -230,11 +233,11 @@ class IPAdapterSigLIP(nn.Module):
         )
         input_dim = intermediate_dim if use_intermediate_encoder else siglip_dim
         self.resampler = TimeResampler(
-            input_dim, resampler_dim, dit_dim, num_queries, resampler_depth,
+            input_dim, resampler_dim, self.ip_hidden_dim, num_queries, resampler_depth,
             resampler_dim_head, resampler_heads, time_embed_dim
         )
         self.ip_cross_attns = nn.ModuleList(
-            [IPCrossAttn(dit_dim, dit_dim, ip_heads) for _ in range(num_blocks)]
+            [IPCrossAttn(dit_dim, self.ip_hidden_dim, ip_heads) for _ in range(num_blocks)]
         )
         self.ip_scales = nn.ParameterList(
             [nn.Parameter(torch.full((1,), 0.01)) for _ in range(num_blocks)]

@@ -72,6 +72,9 @@ def main(
     teacher_weight: Annotated[float, typer.Option(min=0.0, max=10.0)] = 0.5,
     token_weight: Annotated[float, typer.Option(min=0.0, max=10.0)] = 0.0,
     token_max_similarity: Annotated[float, typer.Option(min=-1.0, max=1.0)] = 0.2,
+    pe_token_weight: Annotated[float, typer.Option(min=0.0, max=10.0)] = 0.0,
+    pe_token_block_stride: Annotated[int, typer.Option(min=1, max=28)] = 4,
+    pe_kv_init: Annotated[bool, typer.Option()] = False,
     pe_encoder_name: Annotated[str, typer.Option()] = "pe",
 ) -> None:
     summary = run_teacher_smoke(
@@ -97,6 +100,9 @@ def main(
         teacher_weight=teacher_weight,
         token_weight=token_weight,
         token_max_similarity=token_max_similarity,
+        pe_token_weight=pe_token_weight,
+        pe_token_block_stride=pe_token_block_stride,
+        pe_kv_init=pe_kv_init,
         pe_encoder_name=pe_encoder_name,
     )
     console.print_json(json.dumps(asdict(summary), ensure_ascii=True))
