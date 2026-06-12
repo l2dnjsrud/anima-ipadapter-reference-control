@@ -1722,7 +1722,23 @@ contact sheet 수동 검수 결과 23장이 `target_positive`로 승인되었고
 
 다음 루프는 c079다. c079는 c074 real seed 10장과 c078 synthetic target-positive 23장을 섞되, c077 guard/proxy false-positive와 기존 guard data를 함께 넣어 과도한 green-human collapse를 막아야 한다. 학습 후에는 clean32+heldout8 및 direct-green focus gate에서 current best runtime preset과 비교해야 한다.
 
-## 30. 근거 파일 색인
+## 30. c079 Synthetic-Positive QwenVL Calibrator
+
+c079는 c078에서 확보한 synthetic direct-green target-positive 23장과 c074 real target-positive 10장을 실제 QwenVL IP-Adapter 학습에 투입한 루프다. 목표는 단순히 녹색 피부 prompt를 강하게 만드는 것이 아니라, current best runtime preset `blend_species_face` 및 c075보다 direct-green/non-human reference-control이 좋아지는지 확인하는 것이었다.
+
+새 도구는 `tools/c079_manifest_types.py`, `tools/c079_manifest_io.py`, `tools/c079_synthetic_positive_manifest.py`이고 테스트는 `tests/test_c079_synthetic_positive_manifest.py`다. manifest는 `training/manifests/c079_synthetic_positive_direct_green_20260612.jsonl`에 만들었다. 구성은 c074 real positive `10`, c078 synthetic target positive `23`, c077 guard/proxy `36`, source rows `80`이고, 반복 후 총 `248` rows다. `heldout_rows_used`는 `0`이다.
+
+학습은 previous retrieval checkpoint `checkpoints/anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors`에서 시작했고, c063에서 만든 `--train-calibrator-only` 경로를 사용했다. 출력 checkpoint는 `checkpoints/anima_qwenvl_ip_adapter_c079_synthetic_positive_calibrator_b128_0128_20260612.safetensors`다. 첫 저장은 `/data/ai/models/ipadapter` 권한 문제로 실패했으나, 실패 로그를 `eval/qwenvl_c079_synthetic_positive_training_20260612/train_stdout_permission_failure.txt`에 보존하고 repo-local ignored checkpoint 경로로 재실행했다. 최종 학습 summary는 `rows_loaded=248`, `steps=128`, `final_loss=0.2041460872`, `finite_loss=true`, `trainable_parameters=528384`, checkpoint `loadable=true`, `pe_checkpoint_rejected=true`를 기록했다.
+
+ComfyUI gate는 isolated `127.0.0.1:8116`에서 진행했다. 비교 column은 `no_ip`, current best `blend_species_face`, c075 baseline `c075_tag_positive_w14`, 신규 `c079_synthetic_positive_w14`다. clean32+heldout8 `40` samples에서 `160` PNG를 만들고, direct-green focus `33` samples에서 `132` PNG를 추가로 만들었다. 총 generated PNG는 `292`, blank image는 `0`, 최소 pixel std는 `35.321`이다. disk full로 ComfyUI temp output 복사 중 한 번 실패했지만, 중복 temp output만 정리하고 손상된 PNG 한 장을 재생성해 최종 artifact consistency를 통과했다. 생성 후 ComfyUI server를 종료했고 port `8116`은 닫혔다.
+
+metric 결과는 부분 개선과 미승격을 동시에 보여준다. clean32+heldout8 PE mean uplift는 `blend_species_face=0.0608932152`, `c075=0.0262199253`, `c079=0.0329968661`이고, QwenVL mean uplift는 `blend_species_face=0.0421902567`, `c075=0.0349742755`, `c079=0.0338256791`이다. direct-green focus에서는 PE mean uplift가 `blend_species_face=0.3416856171`, `c075=0.2800143618`, `c079=0.2937260229`이고, QwenVL mean uplift가 `blend_species_face=0.0291833697`, `c075=0.0386207013`, `c079=0.0388706634`다.
+
+시각 검수 기준으로 c079는 c075보다 direct-green 속성 신호를 조금 보강했지만, 원본별 identity를 안정적으로 유지하지 못한다. `contact_sheet_direct_green.jpg`에서 녹색 피부와 뿔/귀 실루엣은 일부 유지되지만 작은 체형, 밝은 색감, 장식, 귀여운 표정, 비인간 얼굴 구조가 대부분 성인형 green humanoid villain으로 수렴한다. `contact_sheet_heldout.jpg`에서도 c079는 c075와 거의 같은 방향이고, 핵심 실패인 heldout07 non-human side-profile monster는 여전히 사람형 dark villain으로 붕괴한다.
+
+c079 decision은 `not_promoted_c079_synthetic_positive_calibrator_partial_direct_green_gain`이다. runtime은 pass이고 direct-green QwenVL에서는 c075를 아주 조금 앞섰지만, current best `blend_species_face`를 넘지 못했고 high-quality reference-control checkpoint로 승격할 수 없다. 다음 루프는 synthetic-positive 단순 반복이 아니라 실제 paired direct-green 데이터, synthetic source-target identity pair, 또는 QwenVL/SigLIP encoder-side reference feature objective 쪽으로 가야 한다.
+
+## 31. 근거 파일 색인
 
 핵심 문서:
 
@@ -1945,6 +1961,14 @@ QwenVL 주요 평가:
 - `eval/c078_synthetic_direct_green_bootstrap_20260612/manual_visual_labels.csv`
 - `eval/c078_synthetic_direct_green_bootstrap_20260612/visual_audit.md`
 - `eval/c078_synthetic_direct_green_bootstrap_20260612/visual_label_template.csv`
+- `eval/qwenvl_c079_synthetic_positive_training_20260612/report.md`
+- `eval/qwenvl_c079_synthetic_positive_training_20260612/summary.json`
+- `eval/qwenvl_c079_synthetic_positive_gate_20260612/report.md`
+- `eval/qwenvl_c079_synthetic_positive_gate_20260612/visual_audit.md`
+- `eval/qwenvl_c079_synthetic_positive_gate_20260612/pe_similarity_metrics.json`
+- `eval/qwenvl_c079_synthetic_positive_gate_20260612/qwenvl_similarity_metrics.json`
+- `eval/qwenvl_c079_synthetic_positive_gate_20260612/direct_green_pe_similarity_metrics.json`
+- `eval/qwenvl_c079_synthetic_positive_gate_20260612/direct_green_qwenvl_similarity_metrics.json`
 
 생성/학습 manifest:
 
@@ -1964,6 +1988,8 @@ QwenVL 주요 평가:
 - `training/manifests/c066_direct_green_non_human_pairs_20260612.jsonl`
 - `training/manifests/c075_tag_positive_direct_green_20260612.jsonl`
 - `training/manifests/c075_tag_positive_direct_green_20260612.summary.json`
+- `training/manifests/c079_synthetic_positive_direct_green_20260612.jsonl`
+- `training/manifests/c079_synthetic_positive_direct_green_20260612.summary.json`
 - `eval/c067_attribute_teacher_reranker_seed_20260612/attribute_query_manifest.jsonl`
 - `eval/c068_reviewed_attribute_label_seed_20260612/reviewed_attribute_labels.jsonl`
 
@@ -2004,6 +2030,10 @@ QwenVL 주요 평가:
 - `tools/c078_synthetic_bootstrap.py`
 - `tools/c078_comfy_generation.py`
 - `tests/test_c078_synthetic_bootstrap.py`
+- `tools/c079_manifest_types.py`
+- `tools/c079_manifest_io.py`
+- `tools/c079_synthetic_positive_manifest.py`
+- `tests/test_c079_synthetic_positive_manifest.py`
 - `tools/siglip_auto_caption_eval.py`
 - `tools/score_siglip_auto_caption_metrics.py`
 - `workflows/anima_ipadapter_siglip_native_reference.json`
