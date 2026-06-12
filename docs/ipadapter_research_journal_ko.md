@@ -834,6 +834,52 @@ c056에서 c055가 c052보다 좋아졌지만 이전 retrieval checkpoint를 agg
 
 다만 이것은 최종 고퀄 reference-control pass가 아니라 “현재 best runtime candidate”다. `train07`은 여전히 generic close-up이고, `train23`의 fan, `train00`의 정확한 손/동작, speech bubble/page-specific detail은 안정적으로 복구되지 않는다. 또 `train14`와 `train23`에서는 `c055_w06` 같은 낮은 c055 weight가 더 나은 특수 trait를 보인다. 따라서 다음 루프는 `blend_prev14_c05504`를 UI workflow/current recipe로 고정하면서 더 큰 heldout gate를 돌리거나, 이 blend를 단일 checkpoint로 distill/continuation하는 방향이다.
 
+### 7.34 2026-06-12 QwenVL larger runtime blend gate c058
+
+목표: c057에서 best runtime candidate가 된 `blend_prev14_c05504`를 8장 소규모가 아니라 clean32 train 전체와 heldout8 전체, 총 40개 단일 캐릭터 샘플에서 검증한다. 비교군은 `no_ip`, 이전 retrieval checkpoint `prev_w14`, 그리고 runtime blend `blend_prev14_c05504`다.
+
+산출물:
+
+- output: `eval/qwenvl_c055_larger_blend_gate_20260612_c058/`
+- train contact sheet: `eval/qwenvl_c055_larger_blend_gate_20260612_c058/contact_sheet_train.jpg`
+- heldout contact sheet: `eval/qwenvl_c055_larger_blend_gate_20260612_c058/contact_sheet_heldout.jpg`
+- report: `eval/qwenvl_c055_larger_blend_gate_20260612_c058/report.md`
+- summary: `eval/qwenvl_c055_larger_blend_gate_20260612_c058/summary.json`
+- PE metric: `eval/qwenvl_c055_larger_blend_gate_20260612_c058/pe_similarity_metrics.json`
+- QwenVL metric: `eval/qwenvl_c055_larger_blend_gate_20260612_c058/qwenvl_similarity_metrics.json`
+- visual audit: `eval/qwenvl_c055_larger_blend_gate_20260612_c058/visual_audit.md`
+
+비교 recipe:
+
+- `no_ip`
+- `prev_w14`
+- `blend_prev14_c05504`
+
+수치:
+
+| variant | PE mean uplift | PE improved | QwenVL mean uplift | QwenVL improved |
+|---|---:|---:|---:|---:|
+| `blend_prev14_c05504` | `+0.0496` | `0.725` | `+0.0416` | `0.800` |
+| `prev_w14` | `+0.0292` | `0.750` | `+0.0362` | `0.725` |
+
+검증:
+
+- generated PNG: `120`
+- blank image: `0`
+- train contact sheet size: `1068x12040`
+- heldout contact sheet size: `1068x3304`
+- ComfyUI isolated server는 생성 후 종료했고 `127.0.0.1:8116` listen process가 남지 않았다.
+
+시각 감사:
+
+- broad character cue, hair/costume/color cue, bald/old/headwear cue는 `no_ip`보다 강해졌고, 평균 metric도 `prev_w14`를 넘었다.
+- 그러나 exact pose/crop, speech bubble, panel layout, fan/hand prop, non-human silhouette는 아직 안정적이지 않다.
+- `heldout07`은 구조적 실패다. reference는 green demon side-head close-up인데, `prev_w14`/`blend_prev14_c05504`는 full-body dark demon/assassin으로 이동한다.
+
+결정: `best_runtime_candidate_not_final_quality_pass_distillation_or_training_next`
+
+c058 기준 `blend_prev14_c05504`는 현재까지 가장 강한 QwenVL runtime recipe지만, “바로 믿고 쓰는 고퀄 reference-control 모델”은 아니다. 단순 runtime weight sweep만 반복해도 한계가 보이므로 다음 루프는 `prev_w14 + c055_w04`를 단일 checkpoint로 distill하거나, c058 failure class를 반영한 continuation/encoder adaptation으로 가야 한다.
+
 ## 8. 현재 판단
 
 ### 바로 믿고 쓸 수 있는 것
@@ -863,6 +909,7 @@ c056에서 c055가 c052보다 좋아졌지만 이전 retrieval checkpoint를 agg
 - c055 기준 clean32 train rows와 c052 positive rows를 섞은 QwenVL mixed continuation은 정상 종료했고 checkpoint도 loadable이다.
 - c056 기준 c055는 c052 대비 시각/metric 모두 개선됐지만 이전 retrieval checkpoint를 aggregate로 넘지 못했다. quality pass가 아니라 c057 weight/blend runtime gate로 이어간다.
 - c057 기준 `blend_prev14_c05504`는 현재 최고 runtime recipe다. PE metric은 이전 retrieval을 넘고 QwenVL metric은 거의 동률이지만, pose/prop/detail 안정성이 아직 부족하므로 최종 quality pass로 보지 않는다.
+- c058 기준 `blend_prev14_c05504`는 40-sample larger gate에서 평균 metric best가 되었지만, heldout visual audit에서 pose/crop, speech bubble, prop, non-human silhouette 실패가 남아 final quality pass는 아니다. 다음은 distillation 또는 failure-focused continuation이다.
 - 선화 채색은 IP-Adapter 단독 목표가 아니다. line-control/colorize control과 결합해야 한다.
 - InterleaveThinker와 i1도 현 단계에서는 완성 IP-Adapter 모델이 아니다. 각각 agentic loop와 T2I recipe 참고 자료로만 사용한다.
 
@@ -874,7 +921,7 @@ SigLIP 계열은 한 장 overfit이 성공했고, PE-style patch/PE-space/retrie
 
 1. 현재 SigLIP recipe를 실험용으로 문서화하되, c035 decision은 `not_ready`로 유지한다.
 2. 다음 방향은 `agentic_reference_control_loop`를 먼저 만들고, 그 결과로 `train_stronger_encoder`를 실행할지 결정하는 것이다.
-3. frozen SigLIP2 adapter-only 반복이 아니라 anime/manhwa 특화 encoder, QwenVL feature calibrator, image-encoder adaptation, 또는 i1식 data/recaption recipe를 검증한다. 단, c037 기준 pooled PE/QwenVL/SigLIP2 feature는 모두 weak identity proxy를 통과하지 못했고 c038은 duplicate sanity만 통과했으며 c039/c040 후보 mining은 아직 true same-character label을 자동 확정하지 못했다. c041/c042 reviewed seed도 너무 작고 raw feature gate를 통과하지 못했다. c043-c052 결과 QwenVL pooled가 reviewed identity ranking/gating metric으로 가장 유효하고 diverse seed에서도 안정적이므로, c053에서 bounded QwenVL continuation을 실행했다. c054 생성 gate에서는 일부 특수 trait 개선은 확인했지만 metric regression이 있었다. c055는 clean32와 c052 positives를 섞은 metric-preserving mixed continuation이고, c056에서는 c052보다 개선됐지만 이전 retrieval을 넘지 못했다. c057에서는 previous retrieval + c055 runtime blend가 현재 최고 후보가 되었다. 다음은 더 큰 heldout gate 또는 blend distillation이다.
+3. frozen SigLIP2 adapter-only 반복이 아니라 anime/manhwa 특화 encoder, QwenVL feature calibrator, image-encoder adaptation, 또는 i1식 data/recaption recipe를 검증한다. 단, c037 기준 pooled PE/QwenVL/SigLIP2 feature는 모두 weak identity proxy를 통과하지 못했고 c038은 duplicate sanity만 통과했으며 c039/c040 후보 mining은 아직 true same-character label을 자동 확정하지 못했다. c041/c042 reviewed seed도 너무 작고 raw feature gate를 통과하지 못했다. c043-c052 결과 QwenVL pooled가 reviewed identity ranking/gating metric으로 가장 유효하고 diverse seed에서도 안정적이므로, c053에서 bounded QwenVL continuation을 실행했다. c054 생성 gate에서는 일부 특수 trait 개선은 확인했지만 metric regression이 있었다. c055는 clean32와 c052 positives를 섞은 metric-preserving mixed continuation이고, c056에서는 c052보다 개선됐지만 이전 retrieval을 넘지 못했다. c057에서는 previous retrieval + c055 runtime blend가 현재 최고 후보가 되었고, c058 larger gate에서는 평균 metric best까지 확인했다. 다만 시각적으로 final pass가 아니므로 다음은 blend distillation 또는 failure-focused continuation이다.
 4. 자동 attribute prompt vocabulary는 유지하되, 이것만으로 identity 문제를 해결했다고 보지 않는다.
 5. single-character suite를 더 큰 held-out set으로 확장하고, metric과 visual audit gate를 계속 같이 사용한다.
 6. FaceID-like 목표는 별도 단계로 분리한다. same-character group mining과 애니/만화 identity encoder가 먼저 필요하다.
@@ -912,6 +959,7 @@ SigLIP 계열은 한 장 overfit이 성공했고, PE-style patch/PE-space/retrie
 - `eval/qwenvl_c055_mixed_training_20260612/report.md`
 - `eval/qwenvl_c055_generation_gate_20260612_c056/report.md`
 - `eval/qwenvl_c055_runtime_blend_gate_20260612_c057/report.md`
+- `eval/qwenvl_c055_larger_blend_gate_20260612_c058/report.md`
 
 PE baseline:
 
@@ -957,6 +1005,10 @@ QwenVL 주요 평가:
 - `eval/qwenvl_c055_runtime_blend_gate_20260612_c057/visual_audit.md`
 - `eval/qwenvl_c055_runtime_blend_gate_20260612_c057/pe_similarity_metrics.json`
 - `eval/qwenvl_c055_runtime_blend_gate_20260612_c057/qwenvl_similarity_metrics.json`
+- `eval/qwenvl_c055_larger_blend_gate_20260612_c058/report.md`
+- `eval/qwenvl_c055_larger_blend_gate_20260612_c058/visual_audit.md`
+- `eval/qwenvl_c055_larger_blend_gate_20260612_c058/pe_similarity_metrics.json`
+- `eval/qwenvl_c055_larger_blend_gate_20260612_c058/qwenvl_similarity_metrics.json`
 
 생성/학습 manifest:
 
