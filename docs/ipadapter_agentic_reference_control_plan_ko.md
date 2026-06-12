@@ -195,3 +195,15 @@ c045 결과를 사용해 전체 same-page 후보를 QwenVL pooled로 rank했다.
 raw same-page 후보는 `372`쌍이고, face/upper-body filter threshold `0.08` 후 `65`쌍이 남았다. QwenVL top40은 `27`개 SG page에 분산됐다. visual review 결과 top10은 대부분 clean same-character pair이고 top20까지는 라벨링 효율이 좋다. rank 21 이후부터는 group panel, partial/back crop, different-character noise가 늘어난다.
 
 다음 loop는 top20을 우선 수동 라벨링한 뒤 더 큰 reviewed feature gate를 반복한다.
+
+## 2026-06-12 c047-c048 QwenVL reviewed seed expansion
+
+c046 top20을 수동 라벨링하고 c044 hard negatives와 결합해 QwenVL pooled gate를 반복했다.
+
+- top20 review: `eval/qwenvl_top20_reviewed_identity_20260612_c047/report.md`
+- combined gate: `eval/qwenvl_combined_seed_feature_probe_20260612_c048/report.md`
+- 결정: `qwenvl_pooled_identity_gate_stable_on_combined_seed`
+
+c047 결과는 `20`개 중 `positive_usable=14`다. c048 combined seed는 `18 positive / 15 negative`이고, QwenVL pooled는 margin `0.087629`, AUC `0.907407`로 통과했다.
+
+다음 loop는 QwenVL pooled를 primary ranking/gating metric으로 채택하고, 더 다양한 캐릭터가 포함된 larger reviewed identity set을 만든다. 이 단계가 끝나기 전에는 IP-Adapter K/V 학습을 시작하지 않는다.
