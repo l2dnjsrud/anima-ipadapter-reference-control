@@ -1426,7 +1426,93 @@ c065 decision은 `existing_encoder_feature_separation_not_viable_for_c065_checkp
 
 다음 루프 우선순위는 `direct_green_non_human_mining`이다. color dataset 전체에서 green monster, non-human demon, red eye, side-profile direct positives를 먼저 채굴하고, 같은 pair-separation gate를 다시 통과시켜야 한다. 그 다음에야 encoder-side checkpoint나 attribute teacher/reranker 학습으로 넘어가는 것이 맞다.
 
-## 17. 근거 파일 색인
+## 17. c066 Direct Green / Non-Human Mining
+
+c066은 c065의 `direct_green_monster_positive_count=0`과 proxy feature-separation 실패를 받은 다음 루프다. 목표는 바로 checkpoint를 학습하는 것이 아니라, local color dataset 안에서 heldout 누수 없이 쓸 수 있는 직접 green/non-human positive가 실제로 충분한지 확인하는 것이었다.
+
+계획 문서는 `docs/c066_direct_green_non_human_mining_plan_ko.md`다.
+
+사용 데이터:
+
+- Image root: `/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best`
+- Clean32 train: `training/manifests/local_color_single_character_clean32_20260611.jsonl`
+- Clean32 heldout: `training/manifests/local_color_single_character_clean32_heldout8_20260611.jsonl`
+- c061 selected attributes: `eval/qwenvl_c061_instruction_calibration_gate_20260612/summary.json`
+- c065 pair attributes: `training/manifests/c065_failure_attribute_pairs_20260612.jsonl`
+
+새 도구:
+
+- `tools/c066_candidate_types.py`
+- `tools/build_c066_direct_green_candidates.py`
+- `tests/test_c066_direct_green_candidates.py`
+
+이 도구는 세 근거를 같이 본다.
+
+1. sidecar caption keyword scan
+2. c061/c065 selected attribute keyword scan
+3. image-level green-pixel scan
+
+중요하게, `direct_green_attribute`와 `direct_green_pixel_candidate`를 분리했다. green pixel이 많다고 해서 바로 “green non-human character”라고 판정하면 잎, 배경, 방, 찻잔 같은 색상 노이즈가 학습 positive로 들어가기 때문이다.
+
+실행 산출물:
+
+- Candidate manifest: `training/manifests/c066_direct_green_non_human_candidates_20260612.jsonl`
+- Candidate summary: `training/manifests/c066_direct_green_non_human_candidates_20260612.summary.json`
+- Pair manifest: `training/manifests/c066_direct_green_non_human_pairs_20260612.jsonl`
+- Review sheet: `eval/c066_direct_green_non_human_mining_20260612/green_top16_probe_sheet.jpg`
+- Probe summary/report: `eval/c066_direct_green_non_human_mining_20260612/summary.json`, `report.md`
+
+후보 채굴 결과:
+
+- total candidates: `120`
+- positive candidates: `78`
+- negative candidates: `42`
+- direct green character attribute positives: `0`
+- direct green pixel candidates: `40`
+- non-human proxy positives: `38`
+- heldout rows used: `0`
+- missing paths: `0`
+- sidecar caption keyword hits: `0`
+
+source bucket:
+
+- `direct_green_pixel_candidate`: `40`
+- `fang_profile_proxy`: `17`
+- `human_negative`: `20`
+- `old_headwear_negative`: `22`
+- `pale_non_human_proxy`: `11`
+- `red_eye_proxy`: `10`
+
+review sheet 기준으로 top green-pixel 후보는 대부분 잎, 배경, 실내 소품, 찻잔, 장면 조명 계열이었다. 즉 color dataset 안에 green pixel은 있지만, clean32 heldout의 `green monster face with red glowing eye` 같은 직접 실패 속성 positive는 train 쪽에서 확인되지 않았다. sidecar caption도 전부 `mrcolor_panel_style`, `full color manga panel`, `character panel` 같은 스타일 설명이라 후보 라벨 근거로는 쓸 수 없었다.
+
+feature probe는 `training/manifests/c066_direct_green_non_human_pairs_20260612.jsonl`의 156 pair를 QwenVL, SigLIP2, PE로 실행했다.
+
+전체 결과:
+
+| encoder | margin | AUC | midpoint | decision |
+| --- | ---: | ---: | ---: | --- |
+| QwenVL | `-0.000703` | `0.509615` | `0.487179` | `feature_not_sufficiently_separated` |
+| SigLIP2 | `0.008130` | `0.537229` | `0.532051` | `feature_not_sufficiently_separated` |
+| PE | `0.009635` | `0.523915` | `0.506410` | `feature_not_sufficiently_separated` |
+
+green-pixel bucket만 따로 봐도 기준을 넘지 못했다.
+
+| encoder | green-pixel margin | green-pixel AUC |
+| --- | ---: | ---: |
+| QwenVL | `0.034769` | `0.543750` |
+| SigLIP2 | `0.029138` | `0.600000` |
+| PE | `0.039530` | `0.571250` |
+
+gate는 margin `>= 0.05`, AUC `>= 0.70`이었으므로 c066은 통과하지 못했다.
+
+c066 decision은 `direct_green_data_insufficient_attribute_teacher_required`다.
+
+따라서 지금 데이터로 바로 encoder-side checkpoint를 학습하지 않는다. green pixel 후보는 실제 target character positive가 아니고, 기존 encoder feature도 그 후보군을 안정적으로 분리하지 못한다. 다음 루프는 더 긴 IP-Adapter continuation이 아니라 다음 둘 중 하나여야 한다.
+
+1. QwenVL/vision-captioning 기반으로 전체 color dataset에 직접 green/non-human 속성 annotation을 새로 붙이고 review sheet로 확인한다.
+2. 직접 green/non-human, red eye, profile, beard/headwear를 맞히는 explicit attribute teacher/reranker를 먼저 만든 뒤, 그 teacher를 사용해 encoder-side objective를 설계한다.
+
+## 18. 근거 파일 색인
 
 핵심 문서:
 
@@ -1476,6 +1562,9 @@ c065 decision은 `existing_encoder_feature_separation_not_viable_for_c065_checkp
 - `docs/c065_encoder_side_failure_attribute_plan_ko.md`
 - `eval/c065_encoder_side_failure_attribute_20260612/report.md`
 - `eval/c065_encoder_side_failure_attribute_20260612/summary.json`
+- `docs/c066_direct_green_non_human_mining_plan_ko.md`
+- `eval/c066_direct_green_non_human_mining_20260612/report.md`
+- `eval/c066_direct_green_non_human_mining_20260612/summary.json`
 
 PE baseline:
 
@@ -1557,6 +1646,9 @@ QwenVL 주요 평가:
 - `eval/c065_encoder_side_failure_attribute_20260612/qwenvl_pair_probe.json`
 - `eval/c065_encoder_side_failure_attribute_20260612/siglip_pair_probe.json`
 - `eval/c065_encoder_side_failure_attribute_20260612/pe_pair_probe.json`
+- `eval/c066_direct_green_non_human_mining_20260612/qwenvl_pair_probe.json`
+- `eval/c066_direct_green_non_human_mining_20260612/siglip_pair_probe.json`
+- `eval/c066_direct_green_non_human_mining_20260612/pe_pair_probe.json`
 
 생성/학습 manifest:
 
@@ -1571,6 +1663,9 @@ QwenVL 주요 평가:
 - `training/manifests/c060_qwenvl_failure_focused_clean32_c052_20260612.jsonl`
 - `training/manifests/c065_failure_attribute_pairs_20260612.jsonl`
 - `training/manifests/c065_failure_attribute_pairs_20260612.summary.json`
+- `training/manifests/c066_direct_green_non_human_candidates_20260612.jsonl`
+- `training/manifests/c066_direct_green_non_human_candidates_20260612.summary.json`
+- `training/manifests/c066_direct_green_non_human_pairs_20260612.jsonl`
 
 현재 가장 중요한 실행 레시피 근거:
 
