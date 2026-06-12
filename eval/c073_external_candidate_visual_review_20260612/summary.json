@@ -1,0 +1,31 @@
+{
+  "source": "c073_external_candidate_visual_review",
+  "source_c072_commit": "ad60ea7",
+  "candidate_count": 12,
+  "c072_candidate_rows": 12,
+  "downloaded_count": 12,
+  "failed_count": 0,
+  "reviewed_rows": 12,
+  "label_counts": {
+    "useful_proxy_non_human": 5,
+    "guard_false_positive_human": 7
+  },
+  "unique_target_positive_count": 0,
+  "target_positive_confirmed_count": 0,
+  "minimum_target_positive_required": 4,
+  "label_schema": [
+    "target_positive",
+    "useful_proxy_non_human",
+    "guard_false_positive_human",
+    "guard_false_positive_background_object",
+    "reject_unclear"
+  ],
+  "heldout_rows_used": 0,
+  "large_downloads_performed": false,
+  "contact_sheet_path": ".tmp/c073_external_candidate_visual_review/contact_sheet.jpg",
+  "contact_sheet_written": true,
+  "committed_external_images": false,
+  "committed_external_image_count": 0,
+  "decision": "external_manual_data_required",
+  "next_training_or_data_action": "collect more external/user/manual direct-green non-human target positives before training"
+}
