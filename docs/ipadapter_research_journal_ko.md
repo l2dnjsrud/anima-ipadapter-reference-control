@@ -1710,7 +1710,19 @@ contact sheet 검수 결과 c074 seed 10장은 기존대로 `target_positive`지
 
 c077 decision은 `manual_needed_more_target_positives`다. source가 완전히 막힌 것은 아니지만, 지금 후보군은 고품질 direct-green reference-control checkpoint를 학습할 만큼의 양성 데이터가 아니다. 다음 루프는 checkpoint training이 아니라 더 강한 source acquisition, 사용자 제공 direct-green 샘플, 또는 synthetic/direct-green bootstrap source 검토로 가야 한다.
 
-## 29. 근거 파일 색인
+## 29. c078 Synthetic Direct-Green Bootstrap Source
+
+c078은 c077에서 public/HF sample source가 신규 target-positive를 만들지 못한 뒤, synthetic source가 실제 학습 전제로 쓸 수 있는지 확인한 루프다. 목적은 checkpoint training이 아니라, c079 학습 manifest로 넘길 수 있는 visually confirmed direct-green/non-human reference 후보를 확보하는 것이었다.
+
+새 도구는 `tools/c078_synthetic_bootstrap.py`, `tools/c078_comfy_generation.py`이고 테스트는 `tests/test_c078_synthetic_bootstrap.py`다. 계획 문서는 `docs/c078_synthetic_direct_green_bootstrap_plan_ko.md`에 작성했다. ComfyUI02 API `http://127.0.0.1:8102`에서 `anima-base-v1.0.safetensors`, `qwen_3_06b_base.safetensors`, `qwen/qwen_image_vae.safetensors`를 사용해 text-only 생성했다.
+
+prompt manifest는 24개 single-character direct-green/non-human prompt로 구성했다. goblin, lizardfolk, oni, slime, alien, frog yokai, dragonkin, orc, serpent folk, plant monster, insectoid 등 다양한 species cue를 넣었고, negative에는 multiple characters, normal human skin, text/watermark, nude/nsfw를 넣었다. 생성 결과는 24장 모두 성공했고 blank image는 0개다. raw generated PNG는 `.tmp/c078_synthetic_direct_green_bootstrap/generated/` 아래에만 두고 커밋하지 않았다.
+
+contact sheet 수동 검수 결과 23장이 `target_positive`로 승인되었고, `c078_synth_21` 1장은 두 캐릭터가 함께 생성되어 `reject_unclear`로 제외했다. 따라서 c078은 신규 target-positive 23장으로 threshold 12장을 통과했고, decision은 `ready_for_c079_training_manifest`다.
+
+다음 루프는 c079다. c079는 c074 real seed 10장과 c078 synthetic target-positive 23장을 섞되, c077 guard/proxy false-positive와 기존 guard data를 함께 넣어 과도한 green-human collapse를 막아야 한다. 학습 후에는 clean32+heldout8 및 direct-green focus gate에서 current best runtime preset과 비교해야 한다.
+
+## 30. 근거 파일 색인
 
 핵심 문서:
 
@@ -1923,6 +1935,16 @@ QwenVL 주요 평가:
 - `eval/c077_direct_green_target_positive_acquisition_20260612/reviewed_external_labels.jsonl`
 - `eval/c077_direct_green_target_positive_acquisition_20260612/manual_visual_labels.csv`
 - `eval/c077_direct_green_target_positive_acquisition_20260612/visual_audit.md`
+- `docs/c078_synthetic_direct_green_bootstrap_plan_ko.md`
+- `eval/c078_synthetic_direct_green_bootstrap_20260612/report.md`
+- `eval/c078_synthetic_direct_green_bootstrap_20260612/summary.json`
+- `eval/c078_synthetic_direct_green_bootstrap_20260612/generation_summary.json`
+- `eval/c078_synthetic_direct_green_bootstrap_20260612/prompt_manifest.jsonl`
+- `eval/c078_synthetic_direct_green_bootstrap_20260612/generation_manifest.jsonl`
+- `eval/c078_synthetic_direct_green_bootstrap_20260612/reviewed_synthetic_labels.jsonl`
+- `eval/c078_synthetic_direct_green_bootstrap_20260612/manual_visual_labels.csv`
+- `eval/c078_synthetic_direct_green_bootstrap_20260612/visual_audit.md`
+- `eval/c078_synthetic_direct_green_bootstrap_20260612/visual_label_template.csv`
 
 생성/학습 manifest:
 
@@ -1979,6 +2001,9 @@ QwenVL 주요 평가:
 - `tools/c077_target_positive_acquisition.py`
 - `tools/c077_acquisition_report.py`
 - `tests/test_c077_target_positive_acquisition.py`
+- `tools/c078_synthetic_bootstrap.py`
+- `tools/c078_comfy_generation.py`
+- `tests/test_c078_synthetic_bootstrap.py`
 - `tools/siglip_auto_caption_eval.py`
 - `tools/score_siglip_auto_caption_metrics.py`
 - `workflows/anima_ipadapter_siglip_native_reference.json`

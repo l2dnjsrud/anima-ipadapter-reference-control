@@ -1,0 +1,18 @@
+{
+  "source": "c078_synthetic_direct_green_bootstrap",
+  "prompt_count": 24,
+  "generated_count": 24,
+  "blank_count": 0,
+  "reviewed_rows": 24,
+  "new_target_positive_confirmed_count": 23,
+  "target_positive_threshold_total": 24,
+  "target_positive_threshold_new": 12,
+  "command_surface": "ComfyUI02 API text-only Anima/Qwen image generation",
+  "heldout_rows_used": 0,
+  "training_started": false,
+  "raw_generated_images_committed": false,
+  "contact_sheet_path": ".tmp/c078_synthetic_direct_green_bootstrap/contact_sheet.jpg",
+  "contact_sheet_written": true,
+  "decision": "ready_for_c079_training_manifest",
+  "next_training_or_data_action": "build c079 training manifest from visually confirmed synthetic target positives plus guard data"
+}

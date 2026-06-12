@@ -1,0 +1,25 @@
+candidate_id,manual_label,manual_note
+c078_synth_00,target_positive,green-skinned goblin/orc-like single character with non-human ears and tusks
+c078_synth_01,target_positive,green lizardfolk single character with tail and scales
+c078_synth_02,target_positive,green-skinned horned/elf-like single character with clear non-human traits
+c078_synth_03,target_positive,green plant-spirit single character with non-human hair silhouette
+c078_synth_04,target_positive,green slime-like single character with translucent body
+c078_synth_05,target_positive,green alien/princess single character with antennae and non-human ears
+c078_synth_06,target_positive,green non-human martial artist single character
+c078_synth_07,target_positive,green dragonkin/lizard single character with tail
+c078_synth_08,target_positive,green orc/goblin single character with pointed ears
+c078_synth_09,target_positive,green serpent/dragonkin single character with tail and scales
+c078_synth_10,target_positive,green goblin mage single character with non-human face
+c078_synth_11,target_positive,green plant/cactus dryad single character
+c078_synth_12,target_positive,green horned demon/troll single character
+c078_synth_13,target_positive,green turtle guardian single character with shell armor cue
+c078_synth_14,target_positive,green frog/gecko non-human single character
+c078_synth_15,target_positive,green plant monster single character with leafy hair
+c078_synth_16,target_positive,green kobold/goblin hooded single character
+c078_synth_17,target_positive,green leaf fairy/plant non-human single character
+c078_synth_18,target_positive,green gargoyle/demon single character with wings and horns
+c078_synth_19,target_positive,green toad/slime non-human single character with hood
+c078_synth_20,target_positive,green insectoid single character with antennae and wings
+c078_synth_21,reject_unclear,two characters are present, so exclude from single-character target-positive training
+c078_synth_22,target_positive,green willow/tree spirit single character with branch horns
+c078_synth_23,target_positive,green salamander/lizard single character with tail
