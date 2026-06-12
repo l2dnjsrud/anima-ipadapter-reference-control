@@ -1447,3 +1447,29 @@ Decision:
 This proves the training/checkpoint surface is healthy. It does not prove visual
 reference-control quality. The next required step is a c035-style
 single-character ComfyUI/API generation gate using the c053 checkpoint.
+
+## 2026-06-12 c054 QwenVL c052 generation smoke gate
+
+c053 was evaluated through the isolated ComfyUI API on the same 8-case
+single-character smoke surface used for prior QwenVL runtime checks.
+
+- Contact sheet:
+  `eval/qwenvl_c052_generation_gate_20260612_c054/contact_sheet.jpg`
+- Report:
+  `eval/qwenvl_c052_generation_gate_20260612_c054/report.md`
+- Visual audit:
+  `eval/qwenvl_c052_generation_gate_20260612_c054/visual_audit.md`
+- PE metrics:
+  `eval/qwenvl_c052_generation_gate_20260612_c054/pe_similarity_metrics.json`
+- QwenVL metrics:
+  `eval/qwenvl_c052_generation_gate_20260612_c054/qwenvl_similarity_metrics.json`
+
+Decision:
+`qwen_c052_partial_visual_improvement_metric_regression_not_quality_pass`.
+
+c053 improves several difficult visual traits, especially the old monk and green
+demon rows, but the previous retrieval checkpoint still wins aggregate PE and
+QwenVL pooled metrics. Therefore the next training loop should not simply scale
+c053 longer. It should preserve the special-trait gains while adding hard
+negative contrastive pressure, previous-retrieval distillation, or a QwenVL
+feature calibrator.

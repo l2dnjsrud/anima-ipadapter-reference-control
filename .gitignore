@@ -25,6 +25,11 @@ eval/qwenvl_runtime_quality_20260611_c*/*.api_prompt.json
 eval/qwenvl_runtime_quality_20260611_c*/*.history.json
 eval/qwenvl_runtime_quality_20260611_c*/*.response.json
 eval/qwenvl_runtime_quality_20260611_c*/*.png
+eval/qwenvl_*/*.api_prompt.json
+eval/qwenvl_*/*.history.json
+eval/qwenvl_*/*.response.json
+eval/qwenvl_*/*.prompt_id
+eval/qwenvl_*/*.png
 eval/siglip_runtime_quality_20260612_*/*.api_prompt.json
 eval/siglip_runtime_quality_20260612_*/*.history.json
 eval/siglip_runtime_quality_20260612_*/*.response.json

@@ -332,9 +332,29 @@ c052 positive usable pair `29`개를 양방향으로 펼쳐 `58` row 학습 mani
 
 결론은 `qwenvl_c052_bounded_training_smoke_passed_generation_gate_pending`이다. 즉 bounded training은 가능하지만, 아직 결과물이 reference-control로 잘 작동한다고 말할 수는 없다. 다음 decision point는 c053 checkpoint를 ComfyUI runtime에 노출하고 c035-style single-character generation gate에서 contact sheet와 metric/visual audit를 확인하는 것이다.
 
+## c054 QwenVL c052 generation smoke gate
+
+산출물:
+
+- `eval/qwenvl_c052_generation_gate_20260612_c054/contact_sheet.jpg`
+- `eval/qwenvl_c052_generation_gate_20260612_c054/pe_similarity_metrics.json`
+- `eval/qwenvl_c052_generation_gate_20260612_c054/qwenvl_similarity_metrics.json`
+- `eval/qwenvl_c052_generation_gate_20260612_c054/visual_audit.md`
+- `eval/qwenvl_c052_generation_gate_20260612_c054/report.md`
+
+결과:
+
+| variant | PE mean uplift | PE improved | QwenVL mean uplift | QwenVL improved |
+|---|---:|---:|---:|---:|
+| `qwen_prev_retrieval_w14` | `+0.0983` | `0.875` | `+0.0377` | `0.875` |
+| `qwen_c052_w1` | `+0.0377` | `0.625` | `+0.0174` | `0.500` |
+| `qwen_c052_w14` | `+0.0394` | `0.625` | `+0.0231` | `0.625` |
+
+결론은 `qwen_c052_partial_visual_improvement_metric_regression_not_quality_pass`다. c053은 `heldout00`, `heldout02`, `heldout07`처럼 특수 visual trait에서 실제 개선이 있지만, aggregate metric과 안정성은 이전 retrieval checkpoint보다 낮다. 따라서 다음 방향은 c053을 길게 scale-up하는 것이 아니라, hard-negative contrastive mix나 QwenVL feature calibrator로 c053의 special-trait gain을 보존하면서 metric strength를 회복하는 것이다.
+
 ## 실행 명령
 
-현재 단계에서는 full training command를 실행하지 않는다. 다음에 할 일은 c053 local checkpoint를 ComfyUI에서 선택 가능하게 노출하고 generation gate를 실행하는 것이다.
+현재 단계에서는 full training command를 실행하지 않는다. 다음에 할 일은 c054 결과를 기준으로 targeted continuation 또는 QwenVL feature calibrator 중 더 싼 쪽을 먼저 실험하는 것이다.
 
 새 agentic audit loop의 상세 계획은 `docs/ipadapter_agentic_reference_control_plan_ko.md`에 둔다.
 

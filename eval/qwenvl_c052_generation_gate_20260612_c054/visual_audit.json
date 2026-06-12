@@ -1,0 +1,73 @@
+{
+  "decision": "qwen_c052_partial_visual_improvement_metric_regression_not_quality_pass",
+  "contact_sheet": "eval/qwenvl_c052_generation_gate_20260612_c054/contact_sheet.jpg",
+  "columns": [
+    "reference",
+    "no_ip",
+    "qwen_prev_retrieval_w14",
+    "qwen_c052_w1",
+    "qwen_c052_w14"
+  ],
+  "overall": {
+    "nonblank_images": 32,
+    "blank_images": 0,
+    "c053_best_or_competitive_cases": 4,
+    "clear_c053_losses": 2,
+    "mixed_cases": 2
+  },
+  "case_notes": [
+    {
+      "sample": "train00",
+      "best_visual": "mixed",
+      "notes": "c053 keeps black robe, red trim, and orange palette, but neither c053 variant preserves the reference arm-crossing action as well as needed."
+    },
+    {
+      "sample": "train07",
+      "best_visual": "mixed",
+      "notes": "c053 w14 is sharper and angry, but the face remains generic and loses the exact reference framing."
+    },
+    {
+      "sample": "train14",
+      "best_visual": "qwen_prev_retrieval_w14",
+      "notes": "c053 moves away from the exaggerated old bearded face and returns toward a black-haired wuxia template."
+    },
+    {
+      "sample": "train23",
+      "best_visual": "qwen_c052_w1",
+      "notes": "c053 keeps glasses, official hat, dark robe, and scholar framing. Fan/hand fidelity remains incomplete."
+    },
+    {
+      "sample": "heldout00",
+      "best_visual": "qwen_c052_w1",
+      "notes": "c053 produces a side-facing pale villain with dark armor and long black hair, visually closer than the previous retrieval row despite lower pooled metrics."
+    },
+    {
+      "sample": "heldout02",
+      "best_visual": "qwen_c052_w14",
+      "notes": "c053 w14 strongly preserves bald head, white beard, red prayer beads, and monk palette. This is one of the clearest improvements."
+    },
+    {
+      "sample": "heldout05",
+      "best_visual": "qwen_prev_retrieval_w14",
+      "notes": "c053 keeps the shouting side profile but does not clearly beat the previous retrieval output or no-IP prompt result."
+    },
+    {
+      "sample": "heldout07",
+      "best_visual": "qwen_c052_w1",
+      "notes": "c053 preserves green demon skin and red glowing eye; w1 is closest in profile composition, while w14 adds horns but softens the snarling expression."
+    }
+  ],
+  "metric_summary": {
+    "pe_mean_uplift": {
+      "qwen_prev_retrieval_w14": 0.09832939505577087,
+      "qwen_c052_w1": 0.03773315250873566,
+      "qwen_c052_w14": 0.0394430086016655
+    },
+    "qwenvl_mean_uplift": {
+      "qwen_prev_retrieval_w14": 0.03769288957118988,
+      "qwen_c052_w1": 0.017389558255672455,
+      "qwen_c052_w14": 0.023080073297023773
+    }
+  },
+  "next": "Do not scale this c053 adapter as-is. Keep c053 evidence, then train a targeted continuation or metric-head/calibrator that preserves c053 special-trait wins while recovering PE/QwenVL metric strength."
+}
