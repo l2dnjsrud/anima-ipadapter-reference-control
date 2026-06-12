@@ -220,3 +220,17 @@ c046 rank 21-40을 수동 라벨링하고 c048 seed와 결합해 QwenVL pooled g
 c049는 `20`개 중 `positive_usable=3`, `different_character=9`, `unclear=2`로 top20 대비 precision이 크게 낮다. c050 combined seed는 `19 positive / 17 negative`이고 QwenVL pooled는 margin `0.081599`, AUC `0.900929`로 통과했다.
 
 해석: QwenVL pooled metric은 안정적이지만, 단순히 rank를 아래로 더 내려 보는 방식은 positive 효율이 떨어진다. 다음 loop는 새 SG page/새 캐릭터 다양성을 늘리는 broader mining으로 바꾼다.
+
+## 2026-06-12 c051-c052 diverse seed expansion
+
+새 SG page를 우선하는 diverse sampler를 만들고, c050 seed에 결합해 QwenVL pooled gate를 다시 확인했다.
+
+- sampler: `tools/select_diverse_review_candidates.py`
+- sampler test: `tests/test_select_diverse_review_candidates.py`
+- diverse review: `eval/qwenvl_diverse_identity_candidates_20260612_c051/report.md`
+- combined diverse gate: `eval/qwenvl_combined_diverse_feature_probe_20260612_c052/report.md`
+- 결정: `qwenvl_pooled_identity_gate_stable_on_diverse_seed`
+
+c051은 `32`개 모두 새 SG page이고 `positive_usable=10`, `different_character=12`, `unclear=3`이다. c052 combined seed는 `29 positive / 29 negative`이고 QwenVL pooled는 margin `0.072203`, AUC `0.913199`로 통과했다.
+
+해석: 더 다양한 reviewed seed에서도 QwenVL pooled feature gate가 유지된다. 다음 loop는 이 seed를 사용한 bounded adapter/metric-head training pilot과 실제 c035-style generation audit이다.

@@ -51,6 +51,8 @@ SELECTED: `agentic_reference_control_loop` -> `train_stronger_encoder`
 | Combined seed gate c048 | c044 hard negatives + c047 positives로 QwenVL gate 반복 | 18 positive / 15 negative, margin 0.088, AUC 0.907 | QwenVL gate stable |
 | QwenVL rank21-40 c049 | c046 rank21-40 수동 라벨링 | same 9, different 9, unclear 2, usable positive 3 | precision drops |
 | Combined rank40 gate c050 | c048 + c049로 QwenVL gate 반복 | 19 positive / 17 negative, margin 0.082, AUC 0.901 | QwenVL gate still stable |
+| QwenVL diverse review c051 | face 0.07 + QwenVL rank + 새 SG page 우선 sampling | 32 reviewed, all new SG pages, usable positive 10 | diversity expansion useful |
+| Combined diverse gate c052 | c050 + c051로 QwenVL gate 반복 | 29 positive / 29 negative, margin 0.072, AUC 0.913 | QwenVL gate stable on diverse seed |
 | QwenVL adapter-only | QwenVL embedding을 adapter에 직접 연결 | 출력 변화는 있으나 generic wuxia/interior collapse | 현재 방식 보류 |
 | line-art colorization | IP-Adapter 단독 선화 채색 | 색/스타일 압력은 있으나 구조 보존 실패. EasyControl 결합 필요 | 별도 spatial-control track |
 | InterleaveThinker | agentic interleaved generation 연구 | planner/critic loop가 출력 편차를 찾고 지시를 수정한다 | reference-control audit loop 참고 |
@@ -296,6 +298,23 @@ c049에서 c046 rank 21-40을 라벨링했다. 결과는 `same_character=9`, `di
 c050에서 c048 seed와 c049 rows를 결합했다. combined seed는 reviewed rows `52`, positive pairs `19`, negative pairs `17`다. QwenVL pooled는 margin `0.081599`, AUC `0.900929`, midpoint accuracy `0.861111`로 계속 통과했다.
 
 결론은 `qwenvl_pooled_identity_gate_stable_on_rank40_combined_seed`다. 다음 loop는 단순히 rank를 더 내리는 것이 아니라, 중복 protagonist 편중을 줄이고 새 SG page/새 캐릭터를 더 넣는 broader mining으로 가야 한다.
+
+## c051-c052 Diverse seed expansion and stability check
+
+산출물:
+
+- `tools/select_diverse_review_candidates.py`
+- `tools/select_diverse_review_candidates_cli.py`
+- `tests/test_select_diverse_review_candidates.py`
+- `eval/qwenvl_diverse_identity_candidates_20260612_c051/report.md`
+- `eval/qwenvl_combined_diverse_feature_probe_20260612_c052/report.md`
+- `eval/qwenvl_combined_diverse_feature_probe_20260612_c052/qwenvl_pooled_report.md`
+
+c051에서 face threshold를 `0.07`로 낮춘 109개 후보를 QwenVL로 ranking하고, c050에서 이미 본 pair/page를 반영해 새 SG page 우선으로 `32`개를 선택했다. 결과는 `32`개 모두 new-page rows이고, 수동 라벨 기준 `positive_usable=10`, `different_character=12`, `unclear=3`이다.
+
+c052에서 c050과 c051을 결합했다. combined seed는 reviewed rows `84`, feature-probe rows `58`, positive pairs `29`, negative pairs `29`다. QwenVL pooled는 margin `0.072203`, AUC `0.913199`, midpoint accuracy `0.862069`로 통과했다.
+
+결론은 `qwenvl_pooled_identity_gate_stable_on_diverse_seed`다. 이제 데이터/feature gate는 bounded training pilot으로 넘어갈 수 있다. 단, 최종 판단은 c035-style single-character generation gate를 통과해야 한다.
 
 ## 실행 명령
 
