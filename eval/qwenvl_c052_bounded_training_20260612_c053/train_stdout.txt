@@ -1,0 +1,603 @@
+2026-06-12 17:20:54 INFO     Loading DiT model from               weights.py:167
+                             /home/wktwin/anima-lora-training-bun               
+                             dle/anima_lora/models/diffusion_mode               
+                             ls/anima-base-v1.0.safetensors,                    
+                             device=cuda:0                                      
+                    INFO     Loading model files:              lora_utils.py:163
+                             ['/home/wktwin/anima-lora-trainin                  
+                             g-bundle/anima_lora/models/diffus                  
+                             ion_models/anima-base-v1.0.safete                  
+                             nsors']                                            
+                    INFO     Loading state dict. Dtype of      lora_utils.py:320
+                             weight: torch.float32, hook                        
+                             enabled: False                                     
+Loading anima-base-v1.0.safetensors:   0%|          | 0/545 [00:00<?, ?it/s]Loading anima-base-v1.0.safetensors:   0%|          | 1/545 [00:00<01:07,  8.04it/s]Loading anima-base-v1.0.safetensors:   8%|▊         | 41/545 [00:00<00:02, 216.72it/s]Loading anima-base-v1.0.safetensors:  16%|█▌        | 86/545 [00:00<00:01, 310.71it/s]Loading anima-base-v1.0.safetensors:  24%|██▍       | 130/545 [00:00<00:01, 357.32it/s]Loading anima-base-v1.0.safetensors:  32%|███▏      | 174/545 [00:00<00:00, 384.17it/s]Loading anima-base-v1.0.safetensors:  39%|███▉      | 214/545 [00:00<00:00, 387.21it/s]Loading anima-base-v1.0.safetensors:  47%|████▋     | 254/545 [00:00<00:00, 381.27it/s]Loading anima-base-v1.0.safetensors:  54%|█████▍    | 296/545 [00:00<00:00, 389.65it/s]Loading anima-base-v1.0.safetensors:  62%|██████▏   | 340/545 [00:00<00:00, 402.34it/s]Loading anima-base-v1.0.safetensors:  71%|███████   | 385/545 [00:01<00:00, 415.29it/s]Loading anima-base-v1.0.safetensors:  83%|████████▎ | 451/545 [00:01<00:00, 488.71it/s]                                                                                       2026-06-12 17:20:55 INFO     Loaded DiT model from                weights.py:210
+                             /home/wktwin/anima-lora-training-bun               
+                             dle/anima_lora/models/diffusion_mode               
+                             ls/anima-base-v1.0.safetensors,                    
+                             unexpected missing keys: 0,                        
+                             unexpected keys: 0                                 
+                    INFO     Initializing VAE                   qwen_vae.py:1880
+2026-06-12 17:20:56 INFO     Loading VAE from                   qwen_vae.py:1904
+                             /home/wktwin/anima-lora-training-b                 
+                             undle/anima_lora/models/vae/qwen_i                 
+                             mage_vae.safetensors                               
+                    INFO     Converted ComfyUI AutoencoderKL    qwen_vae.py:1800
+                             state dict keys to official format                 
+                    INFO     Loaded VAE: <All keys matched      qwen_vae.py:1911
+                             successfully>                                      
+                    INFO     Loading Qwen3 text encoder from      weights.py:397
+                             /home/wktwin/anima-lora-training-bun               
+                             dle/anima_lora/models/text_encoders/               
+                             qwen_3_06b_base.safetensors                        
+2026-06-12 17:21:04 INFO     Loaded Qwen3 state dict: <All keys   weights.py:450
+                             matched successfully>                              
+                    INFO     Loaded Qwen3 text encoder.           weights.py:458
+                             Parameters: 596,049,920                            
+2026-06-12 17:21:05 INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V                
+                             L-Embedding-2B/resolve/main/modules                
+                             .json "HTTP/1.1 307 Temporary                      
+                             Redirect"                                          
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-                
+                             cache/models/Qwen/Qwen3-VL-Embeddin                
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764                
+                             fec6bb7bda/modules.json "HTTP/1.1                  
+                             200 OK"                                            
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V                
+                             L-Embedding-2B/resolve/main/config_                
+                             sentence_transformers.json                         
+                             "HTTP/1.1 307 Temporary Redirect"                  
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+                    WARNING  Warning: You are sending               _http.py:916
+                             unauthenticated requests to the HF                 
+                             Hub. Please set a HF_TOKEN to enable               
+                             higher rate limits and faster                      
+                             downloads.                                         
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-                
+                             cache/models/Qwen/Qwen3-VL-Embeddin                
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764                
+                             fec6bb7bda/config_sentence_transfor                
+                             mers.json "HTTP/1.1 200 OK"                        
+                    INFO     Loading SentenceTransformer model from model.py:992
+                             Qwen/Qwen3-VL-Embedding-2B.                        
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V                
+                             L-Embedding-2B/resolve/main/config_                
+                             sentence_transformers.json                         
+                             "HTTP/1.1 307 Temporary Redirect"                  
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-                
+                             cache/models/Qwen/Qwen3-VL-Embeddin                
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764                
+                             fec6bb7bda/config_sentence_transfor                
+                             mers.json "HTTP/1.1 200 OK"                        
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V                
+                             L-Embedding-2B/resolve/main/README.                
+                             md "HTTP/1.1 307 Temporary                         
+                             Redirect"                                          
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-                
+                             cache/models/Qwen/Qwen3-VL-Embeddin                
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764                
+                             fec6bb7bda/README.md "HTTP/1.1 200                 
+                             OK"                                                
+2026-06-12 17:21:06 INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V                
+                             L-Embedding-2B/resolve/main/modules                
+                             .json "HTTP/1.1 307 Temporary                      
+                             Redirect"                                          
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-                
+                             cache/models/Qwen/Qwen3-VL-Embeddin                
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764                
+                             fec6bb7bda/modules.json "HTTP/1.1                  
+                             200 OK"                                            
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V                
+                             L-Embedding-2B/resolve/main/sentenc                
+                             e_bert_config.json "HTTP/1.1 307                   
+                             Temporary Redirect"                                
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-                
+                             cache/models/Qwen/Qwen3-VL-Embeddin                
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764                
+                             fec6bb7bda/sentence_bert_config.jso                
+                             n "HTTP/1.1 200 OK"                                
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V                
+                             L-Embedding-2B/resolve/main/adapter                
+                             _config.json "HTTP/1.1 404 Not                     
+                             Found"                                             
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V                
+                             L-Embedding-2B/resolve/main/config.                
+                             json "HTTP/1.1 307 Temporary                       
+                             Redirect"                                          
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-                
+                             cache/models/Qwen/Qwen3-VL-Embeddin                
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764                
+                             fec6bb7bda/config.json "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V                
+                             L-Embedding-2B/resolve/main/config.                
+                             json "HTTP/1.1 307 Temporary                       
+                             Redirect"                                          
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-                
+                             cache/models/Qwen/Qwen3-VL-Embeddin                
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764                
+                             fec6bb7bda/config.json "HTTP/1.1                   
+                             200 OK"                                            
+Loading weights:   0%|          | 0/625 [00:00<?, ?it/s]Loading weights:  34%|███▍      | 215/625 [00:00<00:00, 2144.18it/s]Loading weights: 100%|██████████| 625/625 [00:00<00:00, 4884.31it/s]
+2026-06-12 17:21:07 INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V                
+                             L-Embedding-2B/resolve/main/process                
+                             or_config.json "HTTP/1.1 404 Not                   
+                             Found"                                             
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V                
+                             L-Embedding-2B/resolve/main/preproc                
+                             essor_config.json "HTTP/1.1 307                    
+                             Temporary Redirect"                                
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-                
+                             cache/models/Qwen/Qwen3-VL-Embeddin                
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764                
+                             fec6bb7bda/preprocessor_config.json                
+                              "HTTP/1.1 200 OK"                                 
+2026-06-12 17:21:08 INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V                
+                             L-Embedding-2B/resolve/main/process                
+                             or_config.json "HTTP/1.1 404 Not                   
+                             Found"                                             
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V                
+                             L-Embedding-2B/resolve/main/preproc                
+                             essor_config.json "HTTP/1.1 307                    
+                             Temporary Redirect"                                
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-                
+                             cache/models/Qwen/Qwen3-VL-Embeddin                
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764                
+                             fec6bb7bda/preprocessor_config.json                
+                              "HTTP/1.1 200 OK"                                 
+                    INFO     HTTP Request: GET                   _client.py:1025
+                             https://huggingface.co/api/models/Q                
+                             wen/Qwen3-VL-Embedding-2B/tree/main                
+                             /additional_chat_templates?recursiv                
+                             e=false&expand=false "HTTP/1.1 404                 
+                             Not Found"                                         
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V                
+                             L-Embedding-2B/resolve/main/process                
+                             or_config.json "HTTP/1.1 404 Not                   
+                             Found"                                             
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V                
+                             L-Embedding-2B/resolve/main/chat_te                
+                             mplate.json "HTTP/1.1 404 Not                      
+                             Found"                                             
+2026-06-12 17:21:09 INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V                
+                             L-Embedding-2B/resolve/main/chat_te                
+                             mplate.jinja "HTTP/1.1 307                         
+                             Temporary Redirect"                                
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-                
+                             cache/models/Qwen/Qwen3-VL-Embeddin                
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764                
+                             fec6bb7bda/chat_template.jinja                     
+                             "HTTP/1.1 200 OK"                                  
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V                
+                             L-Embedding-2B/resolve/main/audio_t                
+                             okenizer_config.json "HTTP/1.1 404                 
+                             Not Found"                                         
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V                
+                             L-Embedding-2B/resolve/main/process                
+                             or_config.json "HTTP/1.1 404 Not                   
+                             Found"                                             
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V                
+                             L-Embedding-2B/resolve/main/preproc                
+                             essor_config.json "HTTP/1.1 307                    
+                             Temporary Redirect"                                
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-                
+                             cache/models/Qwen/Qwen3-VL-Embeddin                
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764                
+                             fec6bb7bda/preprocessor_config.json                
+                              "HTTP/1.1 200 OK"                                 
+2026-06-12 17:21:10 INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V                
+                             L-Embedding-2B/resolve/main/process                
+                             or_config.json "HTTP/1.1 404 Not                   
+                             Found"                                             
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V                
+                             L-Embedding-2B/resolve/main/preproc                
+                             essor_config.json "HTTP/1.1 307                    
+                             Temporary Redirect"                                
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-                
+                             cache/models/Qwen/Qwen3-VL-Embeddin                
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764                
+                             fec6bb7bda/preprocessor_config.json                
+                              "HTTP/1.1 200 OK"                                 
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V                
+                             L-Embedding-2B/resolve/main/config.                
+                             json "HTTP/1.1 307 Temporary                       
+                             Redirect"                                          
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-                
+                             cache/models/Qwen/Qwen3-VL-Embeddin                
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764                
+                             fec6bb7bda/config.json "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V                
+                             L-Embedding-2B/resolve/main/tokeniz                
+                             er_config.json "HTTP/1.1 307                       
+                             Temporary Redirect"                                
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-                
+                             cache/models/Qwen/Qwen3-VL-Embeddin                
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764                
+                             fec6bb7bda/tokenizer_config.json                   
+                             "HTTP/1.1 200 OK"                                  
+                    INFO     HTTP Request: GET                   _client.py:1025
+                             https://huggingface.co/api/models/Q                
+                             wen/Qwen3-VL-Embedding-2B/tree/main                
+                             /additional_chat_templates?recursiv                
+                             e=false&expand=false "HTTP/1.1 404                 
+                             Not Found"                                         
+2026-06-12 17:21:11 INFO     HTTP Request: GET                   _client.py:1025
+                             https://huggingface.co/api/models/Q                
+                             wen/Qwen3-VL-Embedding-2B/tree/main                
+                             ?recursive=true&expand=false                       
+                             "HTTP/1.1 200 OK"                                  
+                    INFO     HTTP Request: GET                   _client.py:1025
+                             https://huggingface.co/api/models/Q                
+                             wen/Qwen3-VL-Embedding-2B "HTTP/1.1                
+                             200 OK"                                            
+2026-06-12 17:21:12 INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V                
+                             L-Embedding-2B/resolve/main/process                
+                             or_config.json "HTTP/1.1 404 Not                   
+                             Found"                                             
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V                
+                             L-Embedding-2B/resolve/main/video_p                
+                             reprocessor_config.json "HTTP/1.1                  
+                             307 Temporary Redirect"                            
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-                
+                             cache/models/Qwen/Qwen3-VL-Embeddin                
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764                
+                             fec6bb7bda/video_preprocessor_confi                
+                             g.json "HTTP/1.1 200 OK"                           
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V                
+                             L-Embedding-2B/resolve/main/preproc                
+                             essor_config.json "HTTP/1.1 307                    
+                             Temporary Redirect"                                
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-                
+                             cache/models/Qwen/Qwen3-VL-Embeddin                
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764                
+                             fec6bb7bda/preprocessor_config.json                
+                              "HTTP/1.1 200 OK"                                 
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V                
+                             L-Embedding-2B/resolve/main/process                
+                             or_config.json "HTTP/1.1 404 Not                   
+                             Found"                                             
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V                
+                             L-Embedding-2B/resolve/main/video_p                
+                             reprocessor_config.json "HTTP/1.1                  
+                             307 Temporary Redirect"                            
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-                
+                             cache/models/Qwen/Qwen3-VL-Embeddin                
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764                
+                             fec6bb7bda/video_preprocessor_confi                
+                             g.json "HTTP/1.1 200 OK"                           
+2026-06-12 17:21:13 INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V                
+                             L-Embedding-2B/resolve/main/preproc                
+                             essor_config.json "HTTP/1.1 307                    
+                             Temporary Redirect"                                
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-                
+                             cache/models/Qwen/Qwen3-VL-Embeddin                
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764                
+                             fec6bb7bda/preprocessor_config.json                
+                              "HTTP/1.1 200 OK"                                 
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V                
+                             L-Embedding-2B/resolve/main/1_Pooli                
+                             ng/config.json "HTTP/1.1 307                       
+                             Temporary Redirect"                                
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-                
+                             cache/models/Qwen/Qwen3-VL-Embeddin                
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764                
+                             fec6bb7bda/1_Pooling%2Fconfig.json                 
+                             "HTTP/1.1 200 OK"                                  
+                    INFO     HTTP Request: GET                   _client.py:1025
+                             https://huggingface.co/api/models/Q                
+                             wen/Qwen3-VL-Embedding-2B "HTTP/1.1                
+                             200 OK"                                            
+2026-06-12 17:21:14 INFO     Loaded 1 prompt with these keys:       model.py:259
+                             ['default']                                        
+                    WARNING  Default prompt name is set to        logging.py:333
+                             'default'. This prompt will be                     
+                             applied to all inference calls,                    
+                             except if a `prompt` or                            
+                             `prompt_name` parameter is provided.               
+2026-06-12 17:21:15 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  3.78it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  3.77it/s]
+2026-06-12 17:21:16 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.61it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.60it/s]
+2026-06-12 17:21:17 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.72it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.70it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 12.46it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.71it/s]
+2026-06-12 17:21:18 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.96it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.95it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.92it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 10.54it/s]
+2026-06-12 17:21:19 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 17.34it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.92it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.91it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.20it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.18it/s]
+2026-06-12 17:21:20 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.84it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.82it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.79it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.77it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 10.75it/s]
+2026-06-12 17:21:21 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.85it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.83it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.34it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.80it/s]
+2026-06-12 17:21:22 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.56it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.38it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.17it/s]
+2026-06-12 17:21:23 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 20.91it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.59it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.57it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 10.24it/s]
+2026-06-12 17:21:24 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 10.44it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  6.89it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  6.88it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.83it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.82it/s]
+2026-06-12 17:21:25 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  8.91it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  8.88it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.67it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.65it/s]
+2026-06-12 17:21:26 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  8.74it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  8.72it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.69it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.68it/s]
+2026-06-12 17:21:27 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.32it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.30it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 10.20it/s]
+2026-06-12 17:21:28 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.21it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.19it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.21it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.19it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.38it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.36it/s]
+2026-06-12 17:21:29 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.65it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.63it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.92it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.90it/s]
+2026-06-12 17:21:30 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.61it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.59it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.56it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.54it/s]
+2026-06-12 17:21:31 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.70it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.69it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.27it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.26it/s]
+2026-06-12 17:21:32 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.38it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.36it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.47it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.46it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.57it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.54it/s]
+2026-06-12 17:21:33 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.50it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.47it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.57it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.55it/s]
+2026-06-12 17:21:34 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.59it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.57it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.30it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.28it/s]
+2026-06-12 17:21:35 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.34it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.32it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  8.58it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  8.57it/s]
+2026-06-12 17:21:36 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.73it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.71it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.70it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.68it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.73it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.71it/s]
+2026-06-12 17:21:37 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.29it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.28it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 10.10it/s]
+2026-06-12 17:21:38 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.69it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.67it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 10.34it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0                                     
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.82it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.80it/s]
+{
+  "steps": 64,
+  "rows_loaded": 58,
+  "first_loss": 0.2666643261909485,
+  "final_loss": 0.20333166420459747,
+  "mean_loss": 0.26166787440888584,
+  "mean_base_loss": 0.17217512452043593,
+  "mean_contrastive_loss": 0.049985086312517524,
+  "mean_retrieval_loss": 0.20570848579518497,
+  "finite_loss": true,
+  "trainable_parameters": 308176540,
+  "frozen_base_parameters": 4947838963,
+  "checkpoint": {
+    "output_path": "checkpoints/anima_qwenvl_ip_adapter_c052_identity_retrieval_0064_20260612.safetensors",
+    "loadable": true,
+    "pe_checkpoint_rejected": true
+  },
+  "init_checkpoint_path": "checkpoints/anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors",
+  "contrastive_weight": 0.35,
+  "contrastive_margin": 0.05,
+  "retrieval_weight": 0.35,
+  "retrieval_margin": 0.2,
+  "calibrator_bottleneck_dim": null
+}

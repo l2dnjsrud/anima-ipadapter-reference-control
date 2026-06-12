@@ -1,0 +1,7 @@
+{
+  "source": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_combined_diverse_feature_probe_20260612_c052/usable_positive_pairs.jsonl",
+  "positive_pairs": 29,
+  "rows": 58,
+  "direction": "bidirectional_anchor_candidate",
+  "prompt": "mrcolor_panel_style, full color manga panel, clean webtoon coloring, manhwa panel art, character panel, close-up panel, action panel, single panel"
+}

@@ -1419,3 +1419,31 @@ c052 into a bounded adapter or metric-head training pilot and evaluate it with
 the c035-style single-character generation gate. Avoid treating the feature gate
 as final quality proof; it only says the reviewed seed is now large/diverse
 enough to justify the next pilot.
+
+## 2026-06-12 c053 QwenVL c052 bounded continuation
+
+c052 positives were converted into a bounded QwenVL adapter training manifest:
+
+- Manifest:
+  `training/manifests/c052_positive_identity_pairs_20260612.jsonl`
+- Summary:
+  `training/manifests/c052_positive_identity_pairs_20260612.summary.json`
+- Report:
+  `eval/qwenvl_c052_bounded_training_20260612_c053/report.md`
+- Training log:
+  `eval/qwenvl_c052_bounded_training_20260612_c053/train_stdout.txt`
+- Local checkpoint:
+  `checkpoints/anima_qwenvl_ip_adapter_c052_identity_retrieval_0064_20260612.safetensors`
+
+The manifest has `29` c052 positive pairs expanded bidirectionally to `58`
+training rows. The run continued from
+`anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors`
+for `64` steps with contrastive and retrieval losses. It ended with finite loss,
+final loss `0.2033316642`, a loadable checkpoint, and PE checkpoint rejection.
+
+Decision:
+`qwenvl_c052_bounded_training_smoke_passed_generation_gate_pending`.
+
+This proves the training/checkpoint surface is healthy. It does not prove visual
+reference-control quality. The next required step is a c035-style
+single-character ComfyUI/API generation gate using the c053 checkpoint.

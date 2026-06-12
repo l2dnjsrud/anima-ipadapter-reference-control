@@ -662,6 +662,33 @@ c050 combined seed와 c051 diverse reviewed rows를 결합해 QwenVL pooled gate
 
 다양성 확장 후에도 QwenVL pooled gate는 안정적으로 통과했다. 이제 데이터/feature gate 기준으로는 adapter 또는 metric-head의 bounded training pilot을 시작할 수 있는 seed가 만들어졌다. 단, 이것은 아직 생성 품질 통과가 아니다.
 
+### 7.29 2026-06-12 QwenVL c052 bounded training c053
+
+c052의 positive usable pair만 사용해 QwenVL adapter continuation을 한 번 실행했다.
+
+- manifest: `training/manifests/c052_positive_identity_pairs_20260612.jsonl`
+- manifest summary: `training/manifests/c052_positive_identity_pairs_20260612.summary.json`
+- source positives: `eval/qwenvl_combined_diverse_feature_probe_20260612_c052/usable_positive_pairs.jsonl`
+- report: `eval/qwenvl_c052_bounded_training_20260612_c053/report.md`
+- log: `eval/qwenvl_c052_bounded_training_20260612_c053/train_stdout.txt`
+- summary: `eval/qwenvl_c052_bounded_training_20260612_c053/summary.json`
+- local checkpoint: `checkpoints/anima_qwenvl_ip_adapter_c052_identity_retrieval_0064_20260612.safetensors`
+
+결과:
+
+- positive pairs: `29`
+- bidirectional training rows: `58`
+- steps: `64`
+- init checkpoint: `anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors`
+- final_loss: `0.2033316642`
+- finite_loss: `true`
+- checkpoint loadable: `true`
+- PE checkpoint rejected: `true`
+
+결정: `qwenvl_c052_bounded_training_smoke_passed_generation_gate_pending`
+
+이 실험은 학습 surface와 checkpoint compatibility가 정상임을 확인했다. 그러나 아직 생성 품질을 증명하지 않았다. 새 checkpoint는 `.gitignore`의 `checkpoints/*qwenvl*.safetensors` 정책 때문에 local artifact로 유지하고, 커밋에는 manifest, 로그, summary/report, import 회귀 테스트만 포함한다. 다음 단계는 이 checkpoint를 ComfyUI가 볼 수 있게 노출한 뒤 c035-style single-character generation/contact-sheet gate를 실행하는 것이다.
+
 ## 8. 현재 판단
 
 ### 바로 믿고 쓸 수 있는 것
@@ -686,6 +713,7 @@ c050 combined seed와 c051 diverse reviewed rows를 결합해 QwenVL pooled gate
 - c047/c048 기준 QwenVL pooled identity gate는 combined seed에서도 안정적으로 통과했다. 다음 단계는 이 metric을 사용해 더 큰 reviewed identity set을 만들고, 그 다음 adapter/metric-head 학습 여부를 결정하는 것이다.
 - c049/c050 기준 top40 하위권은 노이즈가 크지만 QwenVL pooled gate 자체는 rank40 combined seed에서도 안정적이다.
 - c051/c052 기준 새 SG page를 우선하는 diverse seed에서도 QwenVL pooled gate는 안정적이다. 이제 다음은 bounded training pilot과 c035-style generation gate다.
+- c053 기준 c052 positive seed로 QwenVL bounded continuation은 정상 종료했고 checkpoint도 loadable이다. 다만 이것은 학습/로드 gate 통과일 뿐, 아직 생성 품질 gate 통과가 아니다.
 - 선화 채색은 IP-Adapter 단독 목표가 아니다. line-control/colorize control과 결합해야 한다.
 - InterleaveThinker와 i1도 현 단계에서는 완성 IP-Adapter 모델이 아니다. 각각 agentic loop와 T2I recipe 참고 자료로만 사용한다.
 
@@ -697,7 +725,7 @@ SigLIP 계열은 한 장 overfit이 성공했고, PE-style patch/PE-space/retrie
 
 1. 현재 SigLIP recipe를 실험용으로 문서화하되, c035 decision은 `not_ready`로 유지한다.
 2. 다음 방향은 `agentic_reference_control_loop`를 먼저 만들고, 그 결과로 `train_stronger_encoder`를 실행할지 결정하는 것이다.
-3. frozen SigLIP2 adapter-only 반복이 아니라 anime/manhwa 특화 encoder, QwenVL feature calibrator, image-encoder adaptation, 또는 i1식 data/recaption recipe를 검증한다. 단, c037 기준 pooled PE/QwenVL/SigLIP2 feature는 모두 weak identity proxy를 통과하지 못했고 c038은 duplicate sanity만 통과했으며 c039/c040 후보 mining은 아직 true same-character label을 자동 확정하지 못했다. c041/c042 reviewed seed도 너무 작고 raw feature gate를 통과하지 못했다. c043-c052 결과 QwenVL pooled가 reviewed identity ranking/gating metric으로 가장 유효하고 diverse seed에서도 안정적이므로, 다음 단계는 bounded adapter/metric-head training pilot과 c035-style generation gate다.
+3. frozen SigLIP2 adapter-only 반복이 아니라 anime/manhwa 특화 encoder, QwenVL feature calibrator, image-encoder adaptation, 또는 i1식 data/recaption recipe를 검증한다. 단, c037 기준 pooled PE/QwenVL/SigLIP2 feature는 모두 weak identity proxy를 통과하지 못했고 c038은 duplicate sanity만 통과했으며 c039/c040 후보 mining은 아직 true same-character label을 자동 확정하지 못했다. c041/c042 reviewed seed도 너무 작고 raw feature gate를 통과하지 못했다. c043-c052 결과 QwenVL pooled가 reviewed identity ranking/gating metric으로 가장 유효하고 diverse seed에서도 안정적이므로, c053에서 bounded QwenVL continuation을 실행했다. 다음은 이 checkpoint의 c035-style generation gate다.
 4. 자동 attribute prompt vocabulary는 유지하되, 이것만으로 identity 문제를 해결했다고 보지 않는다.
 5. single-character suite를 더 큰 held-out set으로 확장하고, metric과 visual audit gate를 계속 같이 사용한다.
 6. FaceID-like 목표는 별도 단계로 분리한다. same-character group mining과 애니/만화 identity encoder가 먼저 필요하다.
@@ -730,6 +758,7 @@ SigLIP 계열은 한 장 overfit이 성공했고, PE-style patch/PE-space/retrie
 - `eval/qwenvl_combined_rank40_feature_probe_20260612_c050/report.md`
 - `eval/qwenvl_diverse_identity_candidates_20260612_c051/report.md`
 - `eval/qwenvl_combined_diverse_feature_probe_20260612_c052/report.md`
+- `eval/qwenvl_c052_bounded_training_20260612_c053/report.md`
 
 PE baseline:
 
@@ -764,6 +793,7 @@ QwenVL 주요 평가:
 - `eval/qwenvl_runtime_quality_20260611_c030_single_character_retrieval/report.md`
 - `eval/qwenvl_runtime_quality_20260611_c031_attribute_prompt_runtime/report.md`
 - `eval/qwenvl_metric_probe_20260612_c036_c035/report.md`
+- `eval/qwenvl_c052_bounded_training_20260612_c053/report.md`
 
 생성/학습 manifest:
 
@@ -773,6 +803,7 @@ QwenVL 주요 평가:
 - `training/manifests/local_color_single_character_identity4_20260611.jsonl`
 - `training/manifests/local_color_single_character_clean32_20260611.jsonl`
 - `training/manifests/local_color_single_character_clean32_heldout8_20260611.jsonl`
+- `training/manifests/c052_positive_identity_pairs_20260612.jsonl`
 
 현재 가장 중요한 실행 레시피 근거:
 

@@ -234,3 +234,15 @@ c049는 `20`개 중 `positive_usable=3`, `different_character=9`, `unclear=2`로
 c051은 `32`개 모두 새 SG page이고 `positive_usable=10`, `different_character=12`, `unclear=3`이다. c052 combined seed는 `29 positive / 29 negative`이고 QwenVL pooled는 margin `0.072203`, AUC `0.913199`로 통과했다.
 
 해석: 더 다양한 reviewed seed에서도 QwenVL pooled feature gate가 유지된다. 다음 loop는 이 seed를 사용한 bounded adapter/metric-head training pilot과 실제 c035-style generation audit이다.
+
+## 2026-06-12 c053 QwenVL bounded training pilot
+
+c052의 usable positive pair를 양방향 `58` row training manifest로 변환하고, QwenVL adapter continuation을 `64` step으로 제한해 실행했다.
+
+- manifest: `training/manifests/c052_positive_identity_pairs_20260612.jsonl`
+- report: `eval/qwenvl_c052_bounded_training_20260612_c053/report.md`
+- summary: `eval/qwenvl_c052_bounded_training_20260612_c053/summary.json`
+- local checkpoint: `checkpoints/anima_qwenvl_ip_adapter_c052_identity_retrieval_0064_20260612.safetensors`
+- 결정: `qwenvl_c052_bounded_training_smoke_passed_generation_gate_pending`
+
+결과는 finite loss, loadable checkpoint, QwenVL/PE family separation 모두 통과했다. 다만 agentic loop의 품질 판단은 여전히 generation/contact-sheet gate가 기준이다. 다음 loop는 c053 checkpoint를 ComfyUI가 볼 수 있게 하고, c035-style single-character suite에서 no-IP baseline 대비 실제 reference 반영을 검증한다.

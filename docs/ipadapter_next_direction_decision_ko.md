@@ -316,9 +316,25 @@ c052에서 c050과 c051을 결합했다. combined seed는 reviewed rows `84`, fe
 
 결론은 `qwenvl_pooled_identity_gate_stable_on_diverse_seed`다. 이제 데이터/feature gate는 bounded training pilot으로 넘어갈 수 있다. 단, 최종 판단은 c035-style single-character generation gate를 통과해야 한다.
 
+## c053 QwenVL c052 bounded training pilot
+
+산출물:
+
+- `training/manifests/c052_positive_identity_pairs_20260612.jsonl`
+- `training/manifests/c052_positive_identity_pairs_20260612.summary.json`
+- `eval/qwenvl_c052_bounded_training_20260612_c053/summary.json`
+- `eval/qwenvl_c052_bounded_training_20260612_c053/report.md`
+- `eval/qwenvl_c052_bounded_training_20260612_c053/train_stdout.txt`
+
+c052 positive usable pair `29`개를 양방향으로 펼쳐 `58` row 학습 manifest를 만들고, 기존 `anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors`에서 `64` step continuation을 실행했다.
+
+결과는 finite loss `true`, final loss `0.2033316642`, checkpoint loadable `true`, PE checkpoint rejection `true`다.
+
+결론은 `qwenvl_c052_bounded_training_smoke_passed_generation_gate_pending`이다. 즉 bounded training은 가능하지만, 아직 결과물이 reference-control로 잘 작동한다고 말할 수는 없다. 다음 decision point는 c053 checkpoint를 ComfyUI runtime에 노출하고 c035-style single-character generation gate에서 contact sheet와 metric/visual audit를 확인하는 것이다.
+
 ## 실행 명령
 
-현재 단계에서는 full training command를 실행하지 않는다. 다음에 할 일은 데이터/encoder 준비 검증이다.
+현재 단계에서는 full training command를 실행하지 않는다. 다음에 할 일은 c053 local checkpoint를 ComfyUI에서 선택 가능하게 노출하고 generation gate를 실행하는 것이다.
 
 새 agentic audit loop의 상세 계획은 `docs/ipadapter_agentic_reference_control_plan_ko.md`에 둔다.
 
