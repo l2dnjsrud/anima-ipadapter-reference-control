@@ -46,6 +46,7 @@ SELECTED: `agentic_reference_control_loop` -> `train_stronger_encoder`
 | Broad face filter c043 | same-page 후보를 160개로 넓히고 QwenVL face/upper-body filter로 리뷰 후보 확장 | threshold 0.08 기준 30개 유지, 22개 SG page 분산. identity label 자동 확정은 아님 | needs manual labels |
 | Reviewed face seed c044 | c043 후보 30쌍을 수동 identity 라벨링 | same 12, different 15, unclear 3, usable positive 8 | seed expanded but small |
 | Reviewed face feature c045 | c044 seed에서 feature separation 재검증 | QwenVL pooled margin 0.066/AUC 0.792로 pass, 다른 feature는 fail | use QwenVL for ranking |
+| QwenVL-ranked candidates c046 | 전체 same-page 후보 372쌍을 face-filter 후 QwenVL pooled로 ranking | face-filtered 65쌍, top40은 27개 SG page 분산, top20까지 precision 좋음 | label top20 next |
 | QwenVL adapter-only | QwenVL embedding을 adapter에 직접 연결 | 출력 변화는 있으나 generic wuxia/interior collapse | 현재 방식 보류 |
 | line-art colorization | IP-Adapter 단독 선화 채색 | 색/스타일 압력은 있으나 구조 보존 실패. EasyControl 결합 필요 | 별도 spatial-control track |
 | InterleaveThinker | agentic interleaved generation 연구 | planner/critic loop가 출력 편차를 찾고 지시를 수정한다 | reference-control audit loop 참고 |
@@ -252,6 +253,18 @@ c044에서 c043 kept 30쌍을 보수적으로 라벨링했다. 결과는 `same_c
 c045에서 c042 feature probe를 반복했다. QwenVL pooled가 margin `0.066209`, AUC `0.791667`로 처음 reviewed identity proxy gate를 통과했다. SigLIP pooled, PE pooled, SigLIP layer -6 token metric은 통과하지 못했다.
 
 결론은 `qwenvl_pooled_passes_small_reviewed_identity_proxy`다. 이 결과는 QwenVL pooled를 더 큰 후보 ranking metric으로 쓸 수 있다는 뜻이지, IP-Adapter 생성 품질이 해결됐다는 뜻은 아니다. 다음 loop는 QwenVL pooled로 broader candidate pool을 rank하고, 더 큰 reviewed identity manifest를 만든다.
+
+## c046 QwenVL-ranked identity candidate mining
+
+산출물:
+
+- `tools/rank_identity_candidate_pairs.py`
+- `tests/test_rank_identity_candidate_pairs.py`
+- `eval/qwenvl_ranked_identity_candidates_20260612_c046/report.md`
+
+전체 same-page non-duplicate 후보 `372`개를 만들고, c043 face/upper-body filter threshold `0.08`로 `65`개를 남긴 뒤 QwenVL pooled similarity로 ranking했다. top40은 `27`개 SG page에 분산됐고, top10 similarity range는 `0.9155` to `0.9632`, top20 lower bound는 `0.8801`이다.
+
+결론은 `qwenvl_ranking_improves_candidate_precision_top20`이다. top10은 대부분 clean same-character pair였고 top20까지 리뷰 효율이 좋다. rank 21 이후부터는 다른 인물, group panel, back/partial crop 노이즈가 늘어난다. 다음 loop는 top20을 먼저 라벨링한다.
 
 ## 실행 명령
 

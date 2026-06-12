@@ -1401,9 +1401,12 @@ tested whether the current feature spaces can provide a stronger identity gate:
 - c044-c045: conservative labels produced 8 usable positives and 15 negatives;
   QwenVL pooled passed the small reviewed identity proxy with margin `0.066209`
   and AUC `0.791667`.
+- c046: QwenVL pooled ranked 65 face-filtered candidates from all 372
+  same-page candidates; visual review confirms top20 has much better
+  same-character density than the unranked pool.
 
 Current decision: do not start long SigLIP adapter training yet. First convert
-c045 into a QwenVL-ranked broader mining loop and build a larger reviewed
-identity manifest. If QwenVL remains stable on the larger set, use it as a
-ranking/gating metric. If raw features fail on the larger reviewed set, train a
-small metric head/calibrator before any IP-Adapter K/V training.
+c046 top20 into a larger reviewed identity manifest. If QwenVL remains stable
+on the larger set, use it as a ranking/gating metric. If raw features fail on
+the larger reviewed set, train a small metric head/calibrator before any
+IP-Adapter K/V training.

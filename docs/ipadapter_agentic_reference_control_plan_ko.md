@@ -183,3 +183,15 @@ c043 kept 30쌍을 보수적으로 라벨링하고 feature gate를 반복했다.
 c044 결과는 `same_character=12`, `different_character=15`, `unclear=3`, `positive_usable=8`이다. c045에서 QwenVL pooled는 margin `0.066209`, AUC `0.791667`로 gate를 통과했다. SigLIP pooled, PE pooled, SigLIP layer `-6` token metric은 fail이다.
 
 해석: QwenVL pooled를 후보 ranking metric으로 쓰는 것은 정당화됐다. 하지만 seed가 작고 일부 캐릭터에 편중되어 있으므로 adapter 학습을 시작하지 않는다. 다음 loop는 QwenVL pooled로 broader same-page/near-page 후보를 rank하고 더 큰 reviewed identity manifest를 만드는 것이다.
+
+## 2026-06-12 c046 QwenVL-ranked candidate mining
+
+c045 결과를 사용해 전체 same-page 후보를 QwenVL pooled로 rank했다.
+
+- ranking tool: `tools/rank_identity_candidate_pairs.py`
+- 산출물: `eval/qwenvl_ranked_identity_candidates_20260612_c046/report.md`
+- 결정: `qwenvl_ranking_improves_candidate_precision_top20`
+
+raw same-page 후보는 `372`쌍이고, face/upper-body filter threshold `0.08` 후 `65`쌍이 남았다. QwenVL top40은 `27`개 SG page에 분산됐다. visual review 결과 top10은 대부분 clean same-character pair이고 top20까지는 라벨링 효율이 좋다. rank 21 이후부터는 group panel, partial/back crop, different-character noise가 늘어난다.
+
+다음 loop는 top20을 우선 수동 라벨링한 뒤 더 큰 reviewed feature gate를 반복한다.
