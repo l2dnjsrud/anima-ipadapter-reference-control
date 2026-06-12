@@ -1512,7 +1512,50 @@ c066 decision은 `direct_green_data_insufficient_attribute_teacher_required`다.
 1. QwenVL/vision-captioning 기반으로 전체 color dataset에 직접 green/non-human 속성 annotation을 새로 붙이고 review sheet로 확인한다.
 2. 직접 green/non-human, red eye, profile, beard/headwear를 맞히는 explicit attribute teacher/reranker를 먼저 만든 뒤, 그 teacher를 사용해 encoder-side objective를 설계한다.
 
-## 18. 근거 파일 색인
+## 18. c067 Attribute Teacher / Reranker Seed
+
+c067은 c066의 두 번째 후속안, 즉 explicit attribute teacher/reranker를 먼저 만드는 루프다. 목표는 checkpoint 학습이 아니다. c066에서 직접 green/non-human positive가 부족하고 green pixel 후보가 배경/소품 오탐으로 섞였기 때문에, 다음 학습에 넣을 후보를 QwenVL 이미지-텍스트 retrieval로 다시 걸러낼 수 있는지 확인했다.
+
+사용 데이터는 heldout 누수를 막기 위해 다음으로 제한했다.
+
+- clean32 train: `training/manifests/local_color_single_character_clean32_20260611.jsonl`
+- clean32 heldout exclusion: `training/manifests/local_color_single_character_clean32_heldout8_20260611.jsonl`
+- c066 후보: `training/manifests/c066_direct_green_non_human_candidates_20260612.jsonl`
+
+새 도구는 `tools/c067_attribute_teacher_core.py`다. 이 도구는 clean32 train을 먼저 넣고, c066 후보를 추가로 붙여 중복 image id를 제거한다. 만들어진 candidate manifest는 `eval/c067_attribute_teacher_reranker_seed_20260612/attribute_query_manifest.jsonl`이며, summary는 다음과 같다.
+
+- candidate_count: `72`
+- source_counts: clean32_train `32`, c066 `40`
+- query_count: `6`
+- heldout_rows_used: `0`
+- missing_paths: `0`
+
+attribute query는 다음 6개로 고정했다.
+
+- `direct_green_non_human_face`
+- `red_glowing_eye`
+- `side_profile_silhouette`
+- `beard_headwear_crop`
+- `human_negative`
+- `background_object_green`
+
+scoring은 기존 `tools/build_reference_prompt_manifest.py`의 `Qwen3VLReferenceTextScorer`를 사용했다. 모델은 `Qwen/Qwen3-VL-Embedding-2B`다. 산출물은 다음이다.
+
+- scores: `eval/c067_attribute_teacher_reranker_seed_20260612/attribute_scores.jsonl`
+- top-k: `eval/c067_attribute_teacher_reranker_seed_20260612/attribute_topk.json`
+- review sheet: `eval/c067_attribute_teacher_reranker_seed_20260612/attribute_review_sheet.jpg`
+- report: `eval/c067_attribute_teacher_reranker_seed_20260612/report.md`
+- visual audit: `eval/c067_attribute_teacher_reranker_seed_20260612/visual_audit.md`
+
+결과는 `72` candidates x `6` queries = `432` score rows다. QwenVL retrieval 자체는 정상 작동했고, `direct_green_teacher_candidate_count=6`으로 score guard 기준 후보는 생겼다. 하지만 review sheet를 보면 `direct_green_non_human_face` top-k는 clean positive로 보기 어렵다. 상위 후보가 모자/그림자 강한 노인 얼굴, red-eye monk-like character, 일반 인물 클로즈업, 찻잔, 초록 배경/소품 패널까지 섞인다. 즉 c066의 오탐 원인인 green/background/object entanglement가 여전히 남아 있다.
+
+반대로 `red_glowing_eye`, `side_profile_silhouette`, `beard_headwear_crop`은 리뷰 큐로는 유용하다. 해당 top-k에는 실제 붉은 눈, 측면 얼굴, 노인/수염/관모 crop 후보가 꽤 들어온다. `background_object_green`도 찻잔, 나뭇잎, 건물 장식, 초록 배경을 잘 잡아서 false-positive guard로 의미가 있다.
+
+c067 decision은 `attribute_review_queue_manual_annotation_required`다.
+
+따라서 c067 산출물은 다음 encoder-side objective의 자동 positive manifest가 아니라, attribute review queue로만 사용한다. 특히 direct green/non-human은 수동 label 또는 더 강한 captioning teacher가 먼저 필요하다. 다음 루프는 c067 top-k를 사람이 확인해 positive/negative label manifest로 만드는 단계이거나, QwenVL captioning으로 character skin/species와 background/object color를 분리하는 annotation stage여야 한다.
+
+## 19. 근거 파일 색인
 
 핵심 문서:
 
@@ -1565,6 +1608,9 @@ c066 decision은 `direct_green_data_insufficient_attribute_teacher_required`다.
 - `docs/c066_direct_green_non_human_mining_plan_ko.md`
 - `eval/c066_direct_green_non_human_mining_20260612/report.md`
 - `eval/c066_direct_green_non_human_mining_20260612/summary.json`
+- `eval/c067_attribute_teacher_reranker_seed_20260612/report.md`
+- `eval/c067_attribute_teacher_reranker_seed_20260612/summary.json`
+- `eval/c067_attribute_teacher_reranker_seed_20260612/visual_audit.md`
 
 PE baseline:
 
@@ -1649,6 +1695,9 @@ QwenVL 주요 평가:
 - `eval/c066_direct_green_non_human_mining_20260612/qwenvl_pair_probe.json`
 - `eval/c066_direct_green_non_human_mining_20260612/siglip_pair_probe.json`
 - `eval/c066_direct_green_non_human_mining_20260612/pe_pair_probe.json`
+- `eval/c067_attribute_teacher_reranker_seed_20260612/attribute_scores.jsonl`
+- `eval/c067_attribute_teacher_reranker_seed_20260612/attribute_topk.json`
+- `eval/c067_attribute_teacher_reranker_seed_20260612/attribute_review_sheet.jpg`
 
 생성/학습 manifest:
 
@@ -1666,10 +1715,12 @@ QwenVL 주요 평가:
 - `training/manifests/c066_direct_green_non_human_candidates_20260612.jsonl`
 - `training/manifests/c066_direct_green_non_human_candidates_20260612.summary.json`
 - `training/manifests/c066_direct_green_non_human_pairs_20260612.jsonl`
+- `eval/c067_attribute_teacher_reranker_seed_20260612/attribute_query_manifest.jsonl`
 
 현재 가장 중요한 실행 레시피 근거:
 
 - `tools/build_reference_prompt_manifest.py`
+- `tools/c067_attribute_teacher_core.py`
 - `tools/siglip_auto_caption_eval.py`
 - `tools/score_siglip_auto_caption_metrics.py`
 - `workflows/anima_ipadapter_siglip_native_reference.json`

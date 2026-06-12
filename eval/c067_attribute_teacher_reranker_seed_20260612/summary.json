@@ -1,0 +1,16 @@
+{
+  "candidate_count": 72,
+  "query_count": 6,
+  "heldout_rows_used": 0,
+  "missing_paths": 0,
+  "source_counts": {
+    "clean32_train": 32,
+    "c066": 40
+  },
+  "scorer_status": "scored",
+  "decision": "attribute_review_queue_manual_annotation_required",
+  "score_rows": 432,
+  "top_k": 8,
+  "direct_green_teacher_candidate_count": 6,
+  "visual_audit": "direct_green_non_human_topk_not_clean; red_eye/profile/beard queues useful; background_object_green guard useful"
+}
