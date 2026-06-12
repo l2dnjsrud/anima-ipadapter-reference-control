@@ -38,6 +38,7 @@ SELECTED: `agentic_reference_control_loop` -> `train_stronger_encoder`
 | SigLIP c035 | 32-case single-character suite 검증 | best uplift `+0.0577`, improved rate `0.65625`, identity gate `16/32` | not ready |
 | QwenVL c036 metric probe | Qwen3-VL pooled image embedding이 c035 판단과 맞는지 확인 | `siglip_ref_retrieval_w14` uplift `+0.0446`, improved rate `0.90625`, 그러나 identity-fail row uplift가 identity-pass보다 높음 | auxiliary metric only |
 | Identity feature c037 | PE/QwenVL/SigLIP2 pooled feature가 약한 identity-positive/negative pair를 분리하는지 확인 | 세 encoder 모두 AUC `< 0.60`, margin `< 0.05` | pooled identity feature not ready |
+| Strict panel c038 | duplicate panel sanity control에서 feature pipeline 확인 | QwenVL/SigLIP2/PE pooled와 SigLIP `mean_max_token` 모두 duplicate panel을 분리 | sanity pass, identity unsolved |
 | QwenVL adapter-only | QwenVL embedding을 adapter에 직접 연결 | 출력 변화는 있으나 generic wuxia/interior collapse | 현재 방식 보류 |
 | line-art colorization | IP-Adapter 단독 선화 채색 | 색/스타일 압력은 있으나 구조 보존 실패. EasyControl 결합 필요 | 별도 spatial-control track |
 | InterleaveThinker | agentic interleaved generation 연구 | planner/critic loop가 출력 편차를 찾고 지시를 수정한다 | reference-control audit loop 참고 |
@@ -84,7 +85,8 @@ SELECTED: `agentic_reference_control_loop` -> `train_stronger_encoder`
 3. 모델
    - frozen SigLIP2 adapter-only를 반복하지 않는다.
    - 후보는 anime/manhwa 특화 SigLIP/PE-like encoder, QwenVL feature calibrator, 또는 image encoder LoRA/adaptation이다.
-   - c036 기준 QwenVL pooled embedding은 identity gate와 충분히 맞지 않으므로, pooled cosine 하나를 주 loss나 pass/fail gate로 쓰지 않는다.
+   - c036/c037 기준 QwenVL/SigLIP2/PE pooled embedding은 identity gate와 충분히 맞지 않으므로, pooled cosine 하나를 주 loss나 pass/fail gate로 쓰지 않는다.
+   - c038 strict duplicate sanity는 통과했으므로 feature pipeline은 유지하되, true same-character pair에서 다시 검증한다.
    - FaceID-like 방향은 실사 InsightFace를 그대로 믿지 말고 manhwa character metric model을 먼저 검증한다.
 
 4. 평가
@@ -129,6 +131,28 @@ SELECTED: `agentic_reference_control_loop` -> `train_stronger_encoder`
 | SigLIP2 base patch16 512 | 0.8932 | 0.8800 | 0.0132 | 0.5759 | `feature_not_sufficiently_separated` |
 
 결론은 `pooled_identity_feature_not_ready`다. pooled cosine 하나를 primary identity loss나 pass/fail gate로 쓰면 broad style 유사도에 속을 가능성이 크다. 다음 루프는 더 엄격한 same-character pair mining, token/layer feature probe, 또는 작은 metric head/calibrator 학습을 먼저 진행한다.
+
+## c038 Strict panel feature probe
+
+산출물:
+
+- `tools/build_strict_panel_pair_probe_manifest.py`
+- `tools/score_siglip_token_pair_probe.py`
+- `tools/token_pair_probe_metrics.py`
+- `tests/test_strict_identity_probe.py`
+- `eval/strict_identity_feature_probe_20260612_c038/report.md`
+
+positive는 같은 panel key의 v4/v5 duplicate crop이고, negative는 같은 `SG-*` 폴더 안의 다른 panel key다. 이 probe는 캐릭터 identity benchmark가 아니라 feature pipeline sanity control이다.
+
+| encoder/metric | margin | pairwise AUC | decision |
+| --- | ---: | ---: | --- |
+| Qwen3-VL pooled | +0.2061 | 1.0000 | pass |
+| SigLIP2 pooled | +0.1058 | 1.0000 | pass |
+| PE pooled | +0.1404 | 0.9998 | pass |
+| SigLIP2 `mean_max_token` | +0.3170 | 1.0000 | pass |
+| SigLIP2 layer `-6` pooled | +0.4739 | 0.9998 | pass |
+
+결론은 `strict_duplicate_feature_sanity_pass_identity_unsolved`다. feature pipeline은 near-duplicate crop을 분리할 수 있지만, 이것은 true character identity 제어가 아니다. 다음 루프는 duplicate crop을 제외한 true same-character positive와 같은 장면/스타일 hard negative를 만들고, SigLIP layer `-6` pooled 및 `mean_max_token` 후보를 다시 검증해야 한다.
 
 ## 실행 명령
 

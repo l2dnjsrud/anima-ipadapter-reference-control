@@ -100,3 +100,24 @@ c036에서 정한 `identity_positive_negative_feature_probe`를 실행했다.
 | SigLIP2 base patch16 512 | 0.0132 | 0.5759 | `feature_not_sufficiently_separated` |
 
 해석: pooled image feature만으로는 약한 SG positive/negative pair도 충분히 벌리지 못했다. 다음 loop는 pooled cosine 기반 장기 학습이 아니라 더 엄격한 same-character mining, token/layer feature probe, 또는 작은 metric head/calibrator 학습으로 간다.
+
+## 2026-06-12 c038 strict panel sanity probe 추가
+
+c037 실패가 feature pipeline 자체 문제인지 확인하기 위해 strict duplicate panel probe를 실행했다.
+
+- 도구: `tools/build_strict_panel_pair_probe_manifest.py`
+- token scorer: `tools/score_siglip_token_pair_probe.py`
+- 산출물: `eval/strict_identity_feature_probe_20260612_c038/report.md`
+- 결정: `strict_duplicate_feature_sanity_pass_identity_unsolved`
+
+결과:
+
+| encoder/metric | margin | pairwise AUC | decision |
+|---|---:|---:|---|
+| Qwen3-VL pooled | 0.2061 | 1.0000 | pass |
+| SigLIP2 pooled | 0.1058 | 1.0000 | pass |
+| PE pooled | 0.1404 | 0.9998 | pass |
+| SigLIP2 `mean_max_token` | 0.3170 | 1.0000 | pass |
+| SigLIP2 layer `-6` pooled | 0.4739 | 0.9998 | pass |
+
+해석: encoder feature는 near-duplicate panel crop을 분리할 수 있다. c037 실패는 same-SG proxy가 true identity label로 약한 문제와, pooled feature가 character identity를 자동 보장하지 않는 문제로 본다. 다음 loop는 duplicate crop을 제외한 true same-character positive와 같은 장면/스타일 hard negative manifest를 만들고, SigLIP layer `-6` pooled 및 `mean_max_token` 후보를 true identity 기준에서 다시 검증하는 것이다.

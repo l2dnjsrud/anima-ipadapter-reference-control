@@ -1,0 +1,1443 @@
+{
+  "manifest_path": "eval/strict_identity_feature_probe_20260612_c038/strict_panel_pair_probe_manifest.jsonl",
+  "data_root": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best",
+  "encoder": "google/siglip2-base-patch16-512",
+  "layer": -1,
+  "topk": 64,
+  "rows": [
+    {
+      "pair_id": "p0000",
+      "label": "positive",
+      "anchor_id": "001-100/SG-004/mrcolor_panel_style_v4_split_edge_strict_probe_00016_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00085_SG-004-15_page_1965x2841_s01",
+      "candidate_id": "001-100/SG-004/mrcolor_panel_style_v5_edge_trim_strict_00005_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00085_SG-004-15_page_1965x2841_s01",
+      "scores": {
+        "pooled": 1.0,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0000",
+      "label": "negative",
+      "anchor_id": "001-100/SG-004/mrcolor_panel_style_v4_split_edge_strict_probe_00016_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00085_SG-004-15_page_1965x2841_s01",
+      "candidate_id": "001-100/SG-004/mrcolor_panel_style_v4_split_edge_strict_probe_00013_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00070_SG-004-04_page_2074x2963_s04",
+      "scores": {
+        "pooled": 0.9102435111999512,
+        "mean_max_token": 0.6550612449645996,
+        "topk_token": 0.998017430305481
+      }
+    },
+    {
+      "pair_id": "p0001",
+      "label": "positive",
+      "anchor_id": "001-100/SG-007/mrcolor_panel_style_v4_split_edge_strict_probe_00037_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00188_SG-007-12_page_4410x3237_s01",
+      "candidate_id": "001-100/SG-007/mrcolor_panel_style_v5_edge_trim_strict_00008_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00188_SG-007-12_page_4410x3237_s01",
+      "scores": {
+        "pooled": 1.0000001192092896,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000028610229492
+      }
+    },
+    {
+      "pair_id": "n0001",
+      "label": "negative",
+      "anchor_id": "001-100/SG-007/mrcolor_panel_style_v4_split_edge_strict_probe_00037_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00188_SG-007-12_page_4410x3237_s01",
+      "candidate_id": "001-100/SG-007/mrcolor_panel_style_v4_split_edge_strict_probe_00034_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00160_SG-007-02_page_665x1561_s01",
+      "scores": {
+        "pooled": 0.8673868775367737,
+        "mean_max_token": 0.6056764125823975,
+        "topk_token": 0.9959312677383423
+      }
+    },
+    {
+      "pair_id": "p0002",
+      "label": "positive",
+      "anchor_id": "001-100/SG-008/mrcolor_panel_style_v4_split_edge_strict_probe_00040_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00197_SG-008-05_page_1965x1980_s01",
+      "candidate_id": "001-100/SG-008/mrcolor_panel_style_v5_edge_trim_strict_00009_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00197_SG-008-05_page_1965x1980_s01",
+      "scores": {
+        "pooled": 1.0000001192092896,
+        "mean_max_token": 1.000002145767212,
+        "topk_token": 1.0000033378601074
+      }
+    },
+    {
+      "pair_id": "n0002",
+      "label": "negative",
+      "anchor_id": "001-100/SG-008/mrcolor_panel_style_v4_split_edge_strict_probe_00040_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00197_SG-008-05_page_1965x1980_s01",
+      "candidate_id": "001-100/SG-008/mrcolor_panel_style_v4_split_edge_strict_probe_00039_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00192_SG-008-03_page_2120x2887_s01",
+      "scores": {
+        "pooled": 0.8780626654624939,
+        "mean_max_token": 0.7495025992393494,
+        "topk_token": 0.9987293481826782
+      }
+    },
+    {
+      "pair_id": "p0003",
+      "label": "positive",
+      "anchor_id": "001-100/SG-008/mrcolor_panel_style_v4_split_edge_strict_probe_00041_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00198_SG-008-05_page_1965x858_s01",
+      "candidate_id": "001-100/SG-008/mrcolor_panel_style_v5_edge_trim_strict_00010_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00198_SG-008-05_page_1965x858_s01",
+      "scores": {
+        "pooled": 1.0000001192092896,
+        "mean_max_token": 1.0000020265579224,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0003",
+      "label": "negative",
+      "anchor_id": "001-100/SG-008/mrcolor_panel_style_v4_split_edge_strict_probe_00041_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00198_SG-008-05_page_1965x858_s01",
+      "candidate_id": "001-100/SG-008/mrcolor_panel_style_v4_split_edge_strict_probe_00039_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00192_SG-008-03_page_2120x2887_s01",
+      "scores": {
+        "pooled": 0.9263279438018799,
+        "mean_max_token": 0.7437821626663208,
+        "topk_token": 0.9986979961395264
+      }
+    },
+    {
+      "pair_id": "p0004",
+      "label": "positive",
+      "anchor_id": "001-100/SG-009/mrcolor_panel_style_v4_split_edge_strict_probe_00047_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00234_SG-009-01_page_2026x2841_s01",
+      "candidate_id": "001-100/SG-009/mrcolor_panel_style_v5_edge_trim_strict_00012_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00234_SG-009-01_page_2026x2841_s01",
+      "scores": {
+        "pooled": 0.9999999403953552,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0004",
+      "label": "negative",
+      "anchor_id": "001-100/SG-009/mrcolor_panel_style_v4_split_edge_strict_probe_00047_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00234_SG-009-01_page_2026x2841_s01",
+      "candidate_id": "001-100/SG-009/mrcolor_panel_style_v5_edge_trim_strict_00013_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00238_SG-009-04_page_1985x970_s01",
+      "scores": {
+        "pooled": 0.8911725878715515,
+        "mean_max_token": 0.6743592023849487,
+        "topk_token": 0.9990464448928833
+      }
+    },
+    {
+      "pair_id": "p0005",
+      "label": "positive",
+      "anchor_id": "001-100/SG-009/mrcolor_panel_style_v4_split_edge_strict_probe_00051_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00256_SG-009-13_page_1965x2854_s03",
+      "candidate_id": "001-100/SG-009/mrcolor_panel_style_v5_edge_trim_strict_00014_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00256_SG-009-13_page_1965x2854_s03",
+      "scores": {
+        "pooled": 1.0,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0005",
+      "label": "negative",
+      "anchor_id": "001-100/SG-009/mrcolor_panel_style_v4_split_edge_strict_probe_00051_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00256_SG-009-13_page_1965x2854_s03",
+      "candidate_id": "001-100/SG-009/mrcolor_panel_style_v4_split_edge_strict_probe_00047_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00234_SG-009-01_page_2026x2841_s01",
+      "scores": {
+        "pooled": 0.8620652556419373,
+        "mean_max_token": 0.711536705493927,
+        "topk_token": 0.9976378083229065
+      }
+    },
+    {
+      "pair_id": "p0006",
+      "label": "positive",
+      "anchor_id": "001-100/SG-009/mrcolor_panel_style_v4_split_edge_strict_probe_00052_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00260_SG-009-13_page_1965x795_s01",
+      "candidate_id": "001-100/SG-009/mrcolor_panel_style_v5_edge_trim_strict_00015_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00260_SG-009-13_page_1965x795_s01",
+      "scores": {
+        "pooled": 1.0,
+        "mean_max_token": 1.0000020265579224,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0006",
+      "label": "negative",
+      "anchor_id": "001-100/SG-009/mrcolor_panel_style_v4_split_edge_strict_probe_00052_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00260_SG-009-13_page_1965x795_s01",
+      "candidate_id": "001-100/SG-009/mrcolor_panel_style_v4_split_edge_strict_probe_00047_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00234_SG-009-01_page_2026x2841_s01",
+      "scores": {
+        "pooled": 0.8552530407905579,
+        "mean_max_token": 0.7000015377998352,
+        "topk_token": 0.9970030188560486
+      }
+    },
+    {
+      "pair_id": "p0007",
+      "label": "positive",
+      "anchor_id": "001-100/SG-010/mrcolor_panel_style_v4_split_edge_strict_probe_00057_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00274_SG-010-04_page_1963x1031_s01",
+      "candidate_id": "001-100/SG-010/mrcolor_panel_style_v5_edge_trim_strict_00016_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00274_SG-010-04_page_1963x1031_s01",
+      "scores": {
+        "pooled": 0.9999999403953552,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0007",
+      "label": "negative",
+      "anchor_id": "001-100/SG-010/mrcolor_panel_style_v4_split_edge_strict_probe_00057_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00274_SG-010-04_page_1963x1031_s01",
+      "candidate_id": "001-100/SG-010/mrcolor_panel_style_v4_split_edge_strict_probe_00056_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00273_SG-010-04_page_1963x769_s01",
+      "scores": {
+        "pooled": 0.857187032699585,
+        "mean_max_token": 0.5882102251052856,
+        "topk_token": 0.9981308579444885
+      }
+    },
+    {
+      "pair_id": "p0008",
+      "label": "positive",
+      "anchor_id": "001-100/SG-012/mrcolor_panel_style_v4_split_edge_strict_probe_00064_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00323_SG-012-03_page_1965x2889_s01",
+      "candidate_id": "001-100/SG-012/mrcolor_panel_style_v5_edge_trim_strict_00020_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00323_SG-012-03_page_1965x2889_s01",
+      "scores": {
+        "pooled": 0.9999998807907104,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0008",
+      "label": "negative",
+      "anchor_id": "001-100/SG-012/mrcolor_panel_style_v4_split_edge_strict_probe_00064_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00323_SG-012-03_page_1965x2889_s01",
+      "candidate_id": "001-100/SG-012/mrcolor_panel_style_v4_split_edge_strict_probe_00063_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00313_SG-012-01_page_2041x2988_s01",
+      "scores": {
+        "pooled": 0.9161233305931091,
+        "mean_max_token": 0.7239841818809509,
+        "topk_token": 0.9972108602523804
+      }
+    },
+    {
+      "pair_id": "p0009",
+      "label": "positive",
+      "anchor_id": "001-100/SG-013/mrcolor_panel_style_v4_split_edge_strict_probe_00070_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00391_SG-013-10_page_2102x2892_s01",
+      "candidate_id": "001-100/SG-013/mrcolor_panel_style_v5_edge_trim_strict_00024_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00391_SG-013-10_page_2102x2892_s01",
+      "scores": {
+        "pooled": 1.0,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0009",
+      "label": "negative",
+      "anchor_id": "001-100/SG-013/mrcolor_panel_style_v4_split_edge_strict_probe_00070_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00391_SG-013-10_page_2102x2892_s01",
+      "candidate_id": "001-100/SG-013/mrcolor_panel_style_v4_split_edge_strict_probe_00071_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00396_SG-013-12_page_2039x1749_s02",
+      "scores": {
+        "pooled": 0.8621626496315002,
+        "mean_max_token": 0.6441084742546082,
+        "topk_token": 0.9986539483070374
+      }
+    },
+    {
+      "pair_id": "p0010",
+      "label": "positive",
+      "anchor_id": "001-100/SG-014/mrcolor_panel_style_v4_split_edge_strict_probe_00075_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00410_SG-014-02_page_1988x2879_s01",
+      "candidate_id": "001-100/SG-014/mrcolor_panel_style_v5_edge_trim_strict_00026_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00410_SG-014-02_page_1988x2879_s01",
+      "scores": {
+        "pooled": 0.9999997615814209,
+        "mean_max_token": 1.0000020265579224,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0010",
+      "label": "negative",
+      "anchor_id": "001-100/SG-014/mrcolor_panel_style_v4_split_edge_strict_probe_00075_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00410_SG-014-02_page_1988x2879_s01",
+      "candidate_id": "001-100/SG-014/mrcolor_panel_style_v4_split_edge_strict_probe_00074_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00409_SG-014-02_page_2077x2910_s01",
+      "scores": {
+        "pooled": 0.8278821706771851,
+        "mean_max_token": 0.6943109035491943,
+        "topk_token": 0.9984203577041626
+      }
+    },
+    {
+      "pair_id": "p0011",
+      "label": "positive",
+      "anchor_id": "001-100/SG-014/mrcolor_panel_style_v4_split_edge_strict_probe_00081_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00422_SG-014-09_page_2026x2904_s03",
+      "candidate_id": "001-100/SG-014/mrcolor_panel_style_v5_edge_trim_strict_00027_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00422_SG-014-09_page_2026x2904_s03",
+      "scores": {
+        "pooled": 0.9999998807907104,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000028610229492
+      }
+    },
+    {
+      "pair_id": "n0011",
+      "label": "negative",
+      "anchor_id": "001-100/SG-014/mrcolor_panel_style_v4_split_edge_strict_probe_00081_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00422_SG-014-09_page_2026x2904_s03",
+      "candidate_id": "001-100/SG-014/mrcolor_panel_style_v4_split_edge_strict_probe_00074_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00409_SG-014-02_page_2077x2910_s01",
+      "scores": {
+        "pooled": 0.8704572916030884,
+        "mean_max_token": 0.6987468600273132,
+        "topk_token": 0.9970999360084534
+      }
+    },
+    {
+      "pair_id": "p0012",
+      "label": "positive",
+      "anchor_id": "001-100/SG-016/mrcolor_panel_style_v4_split_edge_strict_probe_00091_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00476_SG-016-02_page_901x1594_s01",
+      "candidate_id": "001-100/SG-016/mrcolor_panel_style_v5_edge_trim_strict_00034_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00476_SG-016-02_page_901x1594_s01",
+      "scores": {
+        "pooled": 1.0,
+        "mean_max_token": 1.0000020265579224,
+        "topk_token": 1.0000030994415283
+      }
+    },
+    {
+      "pair_id": "n0012",
+      "label": "negative",
+      "anchor_id": "001-100/SG-016/mrcolor_panel_style_v4_split_edge_strict_probe_00091_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00476_SG-016-02_page_901x1594_s01",
+      "candidate_id": "001-100/SG-016/mrcolor_panel_style_v4_split_edge_strict_probe_00090_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00469_SG-016-01_page_1983x2907_s01",
+      "scores": {
+        "pooled": 0.8430858850479126,
+        "mean_max_token": 0.7102620005607605,
+        "topk_token": 0.9971421957015991
+      }
+    },
+    {
+      "pair_id": "p0013",
+      "label": "positive",
+      "anchor_id": "001-100/SG-016/mrcolor_panel_style_v4_split_edge_strict_probe_00095_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00502_SG-016-15_page_2011x2882_s01",
+      "candidate_id": "001-100/SG-016/mrcolor_panel_style_v5_edge_trim_strict_00036_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00502_SG-016-15_page_2011x2882_s01",
+      "scores": {
+        "pooled": 1.000000238418579,
+        "mean_max_token": 1.0000017881393433,
+        "topk_token": 1.0000028610229492
+      }
+    },
+    {
+      "pair_id": "n0013",
+      "label": "negative",
+      "anchor_id": "001-100/SG-016/mrcolor_panel_style_v4_split_edge_strict_probe_00095_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00502_SG-016-15_page_2011x2882_s01",
+      "candidate_id": "001-100/SG-016/mrcolor_panel_style_v4_split_edge_strict_probe_00090_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00469_SG-016-01_page_1983x2907_s01",
+      "scores": {
+        "pooled": 0.8496240377426147,
+        "mean_max_token": 0.596398651599884,
+        "topk_token": 0.9974945187568665
+      }
+    },
+    {
+      "pair_id": "p0014",
+      "label": "positive",
+      "anchor_id": "001-100/SG-017/mrcolor_panel_style_v4_split_edge_strict_probe_00102_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00521_SG-017-07_page_977x950_s01",
+      "candidate_id": "001-100/SG-017/mrcolor_panel_style_v5_edge_trim_strict_00038_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00521_SG-017-07_page_977x950_s01",
+      "scores": {
+        "pooled": 0.9999998807907104,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000028610229492
+      }
+    },
+    {
+      "pair_id": "n0014",
+      "label": "negative",
+      "anchor_id": "001-100/SG-017/mrcolor_panel_style_v4_split_edge_strict_probe_00102_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00521_SG-017-07_page_977x950_s01",
+      "candidate_id": "001-100/SG-017/mrcolor_panel_style_v5_edge_trim_strict_00037_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00506_SG-017-01_page_2064x1800_s03",
+      "scores": {
+        "pooled": 0.8823916912078857,
+        "mean_max_token": 0.6909658312797546,
+        "topk_token": 0.9976312518119812
+      }
+    },
+    {
+      "pair_id": "p0015",
+      "label": "positive",
+      "anchor_id": "001-100/SG-019/mrcolor_panel_style_v4_split_edge_strict_probe_00112_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00564_SG-019-02_page_2079x2879_s03",
+      "candidate_id": "001-100/SG-019/mrcolor_panel_style_v5_edge_trim_strict_00041_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00564_SG-019-02_page_2079x2879_s03",
+      "scores": {
+        "pooled": 1.0,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0015",
+      "label": "negative",
+      "anchor_id": "001-100/SG-019/mrcolor_panel_style_v4_split_edge_strict_probe_00112_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00564_SG-019-02_page_2079x2879_s03",
+      "candidate_id": "001-100/SG-019/mrcolor_panel_style_v4_split_edge_strict_probe_00114_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00575_SG-019-09_page_2059x2841_s04",
+      "scores": {
+        "pooled": 0.8789467811584473,
+        "mean_max_token": 0.7316247820854187,
+        "topk_token": 0.9984107613563538
+      }
+    },
+    {
+      "pair_id": "p0016",
+      "label": "positive",
+      "anchor_id": "001-100/SG-019/mrcolor_panel_style_v4_split_edge_strict_probe_00116_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00581_SG-019-12_page_2123x2841_s01",
+      "candidate_id": "001-100/SG-019/mrcolor_panel_style_v5_edge_trim_strict_00042_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00581_SG-019-12_page_2123x2841_s01",
+      "scores": {
+        "pooled": 1.0,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0016",
+      "label": "negative",
+      "anchor_id": "001-100/SG-019/mrcolor_panel_style_v4_split_edge_strict_probe_00116_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00581_SG-019-12_page_2123x2841_s01",
+      "candidate_id": "001-100/SG-019/mrcolor_panel_style_v4_split_edge_strict_probe_00112_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00564_SG-019-02_page_2079x2879_s03",
+      "scores": {
+        "pooled": 0.8309062719345093,
+        "mean_max_token": 0.5717908143997192,
+        "topk_token": 0.9950568079948425
+      }
+    },
+    {
+      "pair_id": "p0017",
+      "label": "positive",
+      "anchor_id": "001-100/SG-020/mrcolor_panel_style_v4_split_edge_strict_probe_00125_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00637_SG-020-14_page_2023x2894_s03",
+      "candidate_id": "001-100/SG-020/mrcolor_panel_style_v5_edge_trim_strict_00051_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00637_SG-020-14_page_2023x2894_s03",
+      "scores": {
+        "pooled": 0.9999998807907104,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0017",
+      "label": "negative",
+      "anchor_id": "001-100/SG-020/mrcolor_panel_style_v4_split_edge_strict_probe_00125_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00637_SG-020-14_page_2023x2894_s03",
+      "candidate_id": "001-100/SG-020/mrcolor_panel_style_v5_edge_trim_strict_00046_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00598_SG-020-01_page_1965x797_s01",
+      "scores": {
+        "pooled": 0.9006054401397705,
+        "mean_max_token": 0.6912832260131836,
+        "topk_token": 0.9981861710548401
+      }
+    },
+    {
+      "pair_id": "p0018",
+      "label": "positive",
+      "anchor_id": "001-100/SG-022/mrcolor_panel_style_v4_split_edge_strict_probe_00134_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00687_SG-022-06_page_1965x2841_s01",
+      "candidate_id": "001-100/SG-022/mrcolor_panel_style_v5_edge_trim_strict_00054_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00687_SG-022-06_page_1965x2841_s01",
+      "scores": {
+        "pooled": 1.000000238418579,
+        "mean_max_token": 1.0000020265579224,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0018",
+      "label": "negative",
+      "anchor_id": "001-100/SG-022/mrcolor_panel_style_v4_split_edge_strict_probe_00134_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00687_SG-022-06_page_1965x2841_s01",
+      "candidate_id": "001-100/SG-022/mrcolor_panel_style_v4_split_edge_strict_probe_00131_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00682_SG-022-04_page_2006x1947_s03",
+      "scores": {
+        "pooled": 0.8186790943145752,
+        "mean_max_token": 0.7486252784729004,
+        "topk_token": 0.9987519979476929
+      }
+    },
+    {
+      "pair_id": "p0019",
+      "label": "positive",
+      "anchor_id": "001-100/SG-024/mrcolor_panel_style_v4_split_edge_strict_probe_00150_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00741_SG-024-02_page_2003x2904_s01",
+      "candidate_id": "001-100/SG-024/mrcolor_panel_style_v5_edge_trim_strict_00059_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00741_SG-024-02_page_2003x2904_s01",
+      "scores": {
+        "pooled": 1.0000001192092896,
+        "mean_max_token": 1.0000020265579224,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0019",
+      "label": "negative",
+      "anchor_id": "001-100/SG-024/mrcolor_panel_style_v4_split_edge_strict_probe_00150_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00741_SG-024-02_page_2003x2904_s01",
+      "candidate_id": "001-100/SG-024/mrcolor_panel_style_v4_split_edge_strict_probe_00149_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00739_SG-024-01_page_2018x2915_s05",
+      "scores": {
+        "pooled": 0.8758803606033325,
+        "mean_max_token": 0.6504241228103638,
+        "topk_token": 0.9987313747406006
+      }
+    },
+    {
+      "pair_id": "p0020",
+      "label": "positive",
+      "anchor_id": "001-100/SG-024/mrcolor_panel_style_v4_split_edge_strict_probe_00153_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00748_SG-024-04_page_1965x2887_s01",
+      "candidate_id": "001-100/SG-024/mrcolor_panel_style_v5_edge_trim_strict_00060_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00748_SG-024-04_page_1965x2887_s01",
+      "scores": {
+        "pooled": 1.000000238418579,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000028610229492
+      }
+    },
+    {
+      "pair_id": "n0020",
+      "label": "negative",
+      "anchor_id": "001-100/SG-024/mrcolor_panel_style_v4_split_edge_strict_probe_00153_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00748_SG-024-04_page_1965x2887_s01",
+      "candidate_id": "001-100/SG-024/mrcolor_panel_style_v4_split_edge_strict_probe_00149_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00739_SG-024-01_page_2018x2915_s05",
+      "scores": {
+        "pooled": 0.8191069960594177,
+        "mean_max_token": 0.6110965609550476,
+        "topk_token": 0.9974842667579651
+      }
+    },
+    {
+      "pair_id": "p0021",
+      "label": "positive",
+      "anchor_id": "001-100/SG-024/mrcolor_panel_style_v4_split_edge_strict_probe_00154_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00750_SG-024-05_page_1198x604_s01",
+      "candidate_id": "001-100/SG-024/mrcolor_panel_style_v5_edge_trim_strict_00061_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00750_SG-024-05_page_1198x604_s01",
+      "scores": {
+        "pooled": 0.9999999403953552,
+        "mean_max_token": 1.0000020265579224,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0021",
+      "label": "negative",
+      "anchor_id": "001-100/SG-024/mrcolor_panel_style_v4_split_edge_strict_probe_00154_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00750_SG-024-05_page_1198x604_s01",
+      "candidate_id": "001-100/SG-024/mrcolor_panel_style_v4_split_edge_strict_probe_00149_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00739_SG-024-01_page_2018x2915_s05",
+      "scores": {
+        "pooled": 0.8693838715553284,
+        "mean_max_token": 0.7076023817062378,
+        "topk_token": 0.9989188313484192
+      }
+    },
+    {
+      "pair_id": "p0022",
+      "label": "positive",
+      "anchor_id": "001-100/SG-024/mrcolor_panel_style_v4_split_edge_strict_probe_00156_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00754_SG-024-06_page_1965x2907_s01",
+      "candidate_id": "001-100/SG-024/mrcolor_panel_style_v5_edge_trim_strict_00062_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00754_SG-024-06_page_1965x2907_s01",
+      "scores": {
+        "pooled": 0.9999997615814209,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000028610229492
+      }
+    },
+    {
+      "pair_id": "n0022",
+      "label": "negative",
+      "anchor_id": "001-100/SG-024/mrcolor_panel_style_v4_split_edge_strict_probe_00156_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00754_SG-024-06_page_1965x2907_s01",
+      "candidate_id": "001-100/SG-024/mrcolor_panel_style_v4_split_edge_strict_probe_00149_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00739_SG-024-01_page_2018x2915_s05",
+      "scores": {
+        "pooled": 0.8118535876274109,
+        "mean_max_token": 0.6154863238334656,
+        "topk_token": 0.997757613658905
+      }
+    },
+    {
+      "pair_id": "p0023",
+      "label": "positive",
+      "anchor_id": "001-100/SG-025/mrcolor_panel_style_v4_split_edge_strict_probe_00161_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00780_SG-025-02_page_1965x2887_s01",
+      "candidate_id": "001-100/SG-025/mrcolor_panel_style_v5_edge_trim_strict_00063_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00780_SG-025-02_page_1965x2887_s01",
+      "scores": {
+        "pooled": 0.9999998807907104,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000028610229492
+      }
+    },
+    {
+      "pair_id": "n0023",
+      "label": "negative",
+      "anchor_id": "001-100/SG-025/mrcolor_panel_style_v4_split_edge_strict_probe_00161_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00780_SG-025-02_page_1965x2887_s01",
+      "candidate_id": "001-100/SG-025/mrcolor_panel_style_v4_split_edge_strict_probe_00160_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00776_SG-025-01_page_2105x2948_s01",
+      "scores": {
+        "pooled": 0.8933241367340088,
+        "mean_max_token": 0.7081578969955444,
+        "topk_token": 0.998428463935852
+      }
+    },
+    {
+      "pair_id": "p0024",
+      "label": "positive",
+      "anchor_id": "001-100/SG-025/mrcolor_panel_style_v4_split_edge_strict_probe_00162_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00785_SG-025-05_page_1965x1163_s01",
+      "candidate_id": "001-100/SG-025/mrcolor_panel_style_v5_edge_trim_strict_00064_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00785_SG-025-05_page_1965x1163_s01",
+      "scores": {
+        "pooled": 1.0000001192092896,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0024",
+      "label": "negative",
+      "anchor_id": "001-100/SG-025/mrcolor_panel_style_v4_split_edge_strict_probe_00162_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00785_SG-025-05_page_1965x1163_s01",
+      "candidate_id": "001-100/SG-025/mrcolor_panel_style_v4_split_edge_strict_probe_00160_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00776_SG-025-01_page_2105x2948_s01",
+      "scores": {
+        "pooled": 0.8653432130813599,
+        "mean_max_token": 0.6749393939971924,
+        "topk_token": 0.9968175292015076
+      }
+    },
+    {
+      "pair_id": "p0025",
+      "label": "positive",
+      "anchor_id": "001-100/SG-027/mrcolor_panel_style_v4_split_edge_strict_probe_00170_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00839_SG-027-05_page_1965x2892_s01",
+      "candidate_id": "001-100/SG-027/mrcolor_panel_style_v5_edge_trim_strict_00067_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00839_SG-027-05_page_1965x2892_s01",
+      "scores": {
+        "pooled": 1.0,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000028610229492
+      }
+    },
+    {
+      "pair_id": "n0025",
+      "label": "negative",
+      "anchor_id": "001-100/SG-027/mrcolor_panel_style_v4_split_edge_strict_probe_00170_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00839_SG-027-05_page_1965x2892_s01",
+      "candidate_id": "001-100/SG-027/mrcolor_panel_style_v5_edge_trim_strict_00066_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00832_SG-027-03_page_2039x1478_s03",
+      "scores": {
+        "pooled": 0.899459183216095,
+        "mean_max_token": 0.6876900792121887,
+        "topk_token": 0.9988421201705933
+      }
+    },
+    {
+      "pair_id": "p0026",
+      "label": "positive",
+      "anchor_id": "001-100/SG-029/mrcolor_panel_style_v4_split_edge_strict_probe_00181_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00895_SG-029-05_page_2067x2902_s04",
+      "candidate_id": "001-100/SG-029/mrcolor_panel_style_v5_edge_trim_strict_00069_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00895_SG-029-05_page_2067x2902_s04",
+      "scores": {
+        "pooled": 1.000000238418579,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000028610229492
+      }
+    },
+    {
+      "pair_id": "n0026",
+      "label": "negative",
+      "anchor_id": "001-100/SG-029/mrcolor_panel_style_v4_split_edge_strict_probe_00181_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00895_SG-029-05_page_2067x2902_s04",
+      "candidate_id": "001-100/SG-029/mrcolor_panel_style_v5_edge_trim_strict_00070_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00899_SG-029-06_page_2067x1749_s01",
+      "scores": {
+        "pooled": 0.8662069439888,
+        "mean_max_token": 0.6354842185974121,
+        "topk_token": 0.9990320801734924
+      }
+    },
+    {
+      "pair_id": "p0027",
+      "label": "positive",
+      "anchor_id": "001-100/SG-029/mrcolor_panel_style_v4_split_edge_strict_probe_00186_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00904_SG-029-07_page_655x1376_s01",
+      "candidate_id": "001-100/SG-029/mrcolor_panel_style_v5_edge_trim_strict_00071_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00904_SG-029-07_page_655x1376_s01",
+      "scores": {
+        "pooled": 1.0,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0027",
+      "label": "negative",
+      "anchor_id": "001-100/SG-029/mrcolor_panel_style_v4_split_edge_strict_probe_00186_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00904_SG-029-07_page_655x1376_s01",
+      "candidate_id": "001-100/SG-029/mrcolor_panel_style_v4_split_edge_strict_probe_00181_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00895_SG-029-05_page_2067x2902_s04",
+      "scores": {
+        "pooled": 0.8572294116020203,
+        "mean_max_token": 0.6339589357376099,
+        "topk_token": 0.9981734156608582
+      }
+    },
+    {
+      "pair_id": "p0028",
+      "label": "positive",
+      "anchor_id": "001-100/SG-029/mrcolor_panel_style_v4_split_edge_strict_probe_00187_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00906_SG-029-07_page_619x1376_s01",
+      "candidate_id": "001-100/SG-029/mrcolor_panel_style_v5_edge_trim_strict_00072_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00906_SG-029-07_page_619x1376_s01",
+      "scores": {
+        "pooled": 1.0,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0028",
+      "label": "negative",
+      "anchor_id": "001-100/SG-029/mrcolor_panel_style_v4_split_edge_strict_probe_00187_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00906_SG-029-07_page_619x1376_s01",
+      "candidate_id": "001-100/SG-029/mrcolor_panel_style_v4_split_edge_strict_probe_00181_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00895_SG-029-05_page_2067x2902_s04",
+      "scores": {
+        "pooled": 0.9391900897026062,
+        "mean_max_token": 0.7560214996337891,
+        "topk_token": 0.99849534034729
+      }
+    },
+    {
+      "pair_id": "p0029",
+      "label": "positive",
+      "anchor_id": "001-100/SG-029/mrcolor_panel_style_v4_split_edge_strict_probe_00188_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00907_SG-029-07_page_1965x792_s01",
+      "candidate_id": "001-100/SG-029/mrcolor_panel_style_v5_edge_trim_strict_00073_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00907_SG-029-07_page_1965x792_s01",
+      "scores": {
+        "pooled": 0.9999998807907104,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000028610229492
+      }
+    },
+    {
+      "pair_id": "n0029",
+      "label": "negative",
+      "anchor_id": "001-100/SG-029/mrcolor_panel_style_v4_split_edge_strict_probe_00188_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00907_SG-029-07_page_1965x792_s01",
+      "candidate_id": "001-100/SG-029/mrcolor_panel_style_v4_split_edge_strict_probe_00181_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00895_SG-029-05_page_2067x2902_s04",
+      "scores": {
+        "pooled": 0.8057711720466614,
+        "mean_max_token": 0.5571479797363281,
+        "topk_token": 0.997646152973175
+      }
+    },
+    {
+      "pair_id": "p0030",
+      "label": "positive",
+      "anchor_id": "001-100/SG-029/mrcolor_panel_style_v4_split_edge_strict_probe_00190_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00909_SG-029-08_page_1965x1869_s01",
+      "candidate_id": "001-100/SG-029/mrcolor_panel_style_v5_edge_trim_strict_00074_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00909_SG-029-08_page_1965x1869_s01",
+      "scores": {
+        "pooled": 1.0,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000028610229492
+      }
+    },
+    {
+      "pair_id": "n0030",
+      "label": "negative",
+      "anchor_id": "001-100/SG-029/mrcolor_panel_style_v4_split_edge_strict_probe_00190_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00909_SG-029-08_page_1965x1869_s01",
+      "candidate_id": "001-100/SG-029/mrcolor_panel_style_v4_split_edge_strict_probe_00181_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00895_SG-029-05_page_2067x2902_s04",
+      "scores": {
+        "pooled": 0.8012470602989197,
+        "mean_max_token": 0.5606600046157837,
+        "topk_token": 0.9965331554412842
+      }
+    },
+    {
+      "pair_id": "p0031",
+      "label": "positive",
+      "anchor_id": "001-100/SG-030/mrcolor_panel_style_v4_split_edge_strict_probe_00196_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00928_SG-030-02_page_1247x1648_s03",
+      "candidate_id": "001-100/SG-030/mrcolor_panel_style_v5_edge_trim_strict_00076_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00928_SG-030-02_page_1247x1648_s03",
+      "scores": {
+        "pooled": 0.9928156733512878,
+        "mean_max_token": 0.8759697675704956,
+        "topk_token": 0.9981759786605835
+      }
+    },
+    {
+      "pair_id": "n0031",
+      "label": "negative",
+      "anchor_id": "001-100/SG-030/mrcolor_panel_style_v4_split_edge_strict_probe_00196_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00928_SG-030-02_page_1247x1648_s03",
+      "candidate_id": "001-100/SG-030/mrcolor_panel_style_v4_split_edge_strict_probe_00194_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00926_SG-030-01_page_2008x2968_s01",
+      "scores": {
+        "pooled": 0.872566819190979,
+        "mean_max_token": 0.6864412426948547,
+        "topk_token": 0.9973200559616089
+      }
+    },
+    {
+      "pair_id": "p0032",
+      "label": "positive",
+      "anchor_id": "001-100/SG-030/mrcolor_panel_style_v4_split_edge_strict_probe_00199_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00943_SG-030-09_page_1965x2067_s03",
+      "candidate_id": "001-100/SG-030/mrcolor_panel_style_v5_edge_trim_strict_00077_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00943_SG-030-09_page_1965x2067_s03",
+      "scores": {
+        "pooled": 1.0000001192092896,
+        "mean_max_token": 1.0000020265579224,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0032",
+      "label": "negative",
+      "anchor_id": "001-100/SG-030/mrcolor_panel_style_v4_split_edge_strict_probe_00199_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00943_SG-030-09_page_1965x2067_s03",
+      "candidate_id": "001-100/SG-030/mrcolor_panel_style_v4_split_edge_strict_probe_00194_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00926_SG-030-01_page_2008x2968_s01",
+      "scores": {
+        "pooled": 0.8381227254867554,
+        "mean_max_token": 0.7418108582496643,
+        "topk_token": 0.9984075427055359
+      }
+    },
+    {
+      "pair_id": "p0033",
+      "label": "positive",
+      "anchor_id": "001-100/SG-030/mrcolor_panel_style_v4_split_edge_strict_probe_00202_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00949_SG-030-12_page_2018x2902_s01",
+      "candidate_id": "001-100/SG-030/mrcolor_panel_style_v5_edge_trim_strict_00078_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00949_SG-030-12_page_2018x2902_s01",
+      "scores": {
+        "pooled": 1.0000001192092896,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0033",
+      "label": "negative",
+      "anchor_id": "001-100/SG-030/mrcolor_panel_style_v4_split_edge_strict_probe_00202_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00949_SG-030-12_page_2018x2902_s01",
+      "candidate_id": "001-100/SG-030/mrcolor_panel_style_v4_split_edge_strict_probe_00194_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00926_SG-030-01_page_2008x2968_s01",
+      "scores": {
+        "pooled": 0.9444493651390076,
+        "mean_max_token": 0.7020443677902222,
+        "topk_token": 0.9984105229377747
+      }
+    },
+    {
+      "pair_id": "p0034",
+      "label": "positive",
+      "anchor_id": "001-100/SG-031/mrcolor_panel_style_v4_split_edge_strict_probe_00204_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00965_SG-031-06_page_1965x2877_s01",
+      "candidate_id": "001-100/SG-031/mrcolor_panel_style_v5_edge_trim_strict_00081_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00965_SG-031-06_page_1965x2877_s01",
+      "scores": {
+        "pooled": 1.0000001192092896,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0034",
+      "label": "negative",
+      "anchor_id": "001-100/SG-031/mrcolor_panel_style_v4_split_edge_strict_probe_00204_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00965_SG-031-06_page_1965x2877_s01",
+      "candidate_id": "001-100/SG-031/mrcolor_panel_style_v5_edge_trim_strict_00080_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00964_SG-031-06_page_2090x2904_s01",
+      "scores": {
+        "pooled": 0.8908191919326782,
+        "mean_max_token": 0.7466476559638977,
+        "topk_token": 0.9986110329627991
+      }
+    },
+    {
+      "pair_id": "p0035",
+      "label": "positive",
+      "anchor_id": "001-100/SG-031/mrcolor_panel_style_v4_split_edge_strict_probe_00205_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00967_SG-031-08_page_2026x2841_s01",
+      "candidate_id": "001-100/SG-031/mrcolor_panel_style_v5_edge_trim_strict_00082_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00967_SG-031-08_page_2026x2841_s01",
+      "scores": {
+        "pooled": 1.0,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0035",
+      "label": "negative",
+      "anchor_id": "001-100/SG-031/mrcolor_panel_style_v4_split_edge_strict_probe_00205_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00967_SG-031-08_page_2026x2841_s01",
+      "candidate_id": "001-100/SG-031/mrcolor_panel_style_v5_edge_trim_strict_00080_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00964_SG-031-06_page_2090x2904_s01",
+      "scores": {
+        "pooled": 0.8690338134765625,
+        "mean_max_token": 0.6771693825721741,
+        "topk_token": 0.9980505704879761
+      }
+    },
+    {
+      "pair_id": "p0036",
+      "label": "positive",
+      "anchor_id": "001-100/SG-034/mrcolor_panel_style_v4_split_edge_strict_probe_00222_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01062_SG-034-13_page_2008x2072_s01",
+      "candidate_id": "001-100/SG-034/mrcolor_panel_style_v5_edge_trim_strict_00087_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_01062_SG-034-13_page_2008x2072_s01",
+      "scores": {
+        "pooled": 0.9999999403953552,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0036",
+      "label": "negative",
+      "anchor_id": "001-100/SG-034/mrcolor_panel_style_v4_split_edge_strict_probe_00222_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01062_SG-034-13_page_2008x2072_s01",
+      "candidate_id": "001-100/SG-034/mrcolor_panel_style_v4_split_edge_strict_probe_00215_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01045_SG-034-06_page_2023x2866_s04",
+      "scores": {
+        "pooled": 0.8805926442146301,
+        "mean_max_token": 0.6547065377235413,
+        "topk_token": 0.9992383718490601
+      }
+    },
+    {
+      "pair_id": "p0037",
+      "label": "positive",
+      "anchor_id": "001-100/SG-035/mrcolor_panel_style_v4_split_edge_strict_probe_00225_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01081_SG-035-02_page_1965x698_s01",
+      "candidate_id": "001-100/SG-035/mrcolor_panel_style_v5_edge_trim_strict_00088_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_01081_SG-035-02_page_1965x698_s01",
+      "scores": {
+        "pooled": 1.0000001192092896,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0037",
+      "label": "negative",
+      "anchor_id": "001-100/SG-035/mrcolor_panel_style_v4_split_edge_strict_probe_00225_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01081_SG-035-02_page_1965x698_s01",
+      "candidate_id": "001-100/SG-035/mrcolor_panel_style_v4_split_edge_strict_probe_00224_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01075_SG-035-01_page_2150x2932_s03",
+      "scores": {
+        "pooled": 0.8393285870552063,
+        "mean_max_token": 0.6025643348693848,
+        "topk_token": 0.9989140033721924
+      }
+    },
+    {
+      "pair_id": "p0038",
+      "label": "positive",
+      "anchor_id": "001-100/SG-035/mrcolor_panel_style_v4_split_edge_strict_probe_00231_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01100_SG-035-08_page_1965x693_s01",
+      "candidate_id": "001-100/SG-035/mrcolor_panel_style_v5_edge_trim_strict_00091_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_01100_SG-035-08_page_1965x693_s01",
+      "scores": {
+        "pooled": 1.0000001192092896,
+        "mean_max_token": 1.0000020265579224,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0038",
+      "label": "negative",
+      "anchor_id": "001-100/SG-035/mrcolor_panel_style_v4_split_edge_strict_probe_00231_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01100_SG-035-08_page_1965x693_s01",
+      "candidate_id": "001-100/SG-035/mrcolor_panel_style_v4_split_edge_strict_probe_00224_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01075_SG-035-01_page_2150x2932_s03",
+      "scores": {
+        "pooled": 0.8330929279327393,
+        "mean_max_token": 0.6592071652412415,
+        "topk_token": 0.9986089468002319
+      }
+    },
+    {
+      "pair_id": "p0039",
+      "label": "positive",
+      "anchor_id": "001-100/SG-036/mrcolor_panel_style_v4_split_edge_strict_probe_00244_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01153_SG-036-08_page_1965x1407_s01",
+      "candidate_id": "001-100/SG-036/mrcolor_panel_style_v5_edge_trim_strict_00094_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_01153_SG-036-08_page_1965x1407_s01",
+      "scores": {
+        "pooled": 1.0000001192092896,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0039",
+      "label": "negative",
+      "anchor_id": "001-100/SG-036/mrcolor_panel_style_v4_split_edge_strict_probe_00244_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01153_SG-036-08_page_1965x1407_s01",
+      "candidate_id": "001-100/SG-036/mrcolor_panel_style_v4_split_edge_strict_probe_00234_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01121_SG-036-01_page_2003x2882_s01",
+      "scores": {
+        "pooled": 0.9066017270088196,
+        "mean_max_token": 0.6401041746139526,
+        "topk_token": 0.9960166215896606
+      }
+    },
+    {
+      "pair_id": "p0040",
+      "label": "positive",
+      "anchor_id": "001-100/SG-037/mrcolor_panel_style_v4_split_edge_strict_probe_00252_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01189_SG-037-03_page_2021x2887_s01",
+      "candidate_id": "001-100/SG-037/mrcolor_panel_style_v5_edge_trim_strict_00095_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_01189_SG-037-03_page_2021x2887_s01",
+      "scores": {
+        "pooled": 1.0000001192092896,
+        "mean_max_token": 1.0000020265579224,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0040",
+      "label": "negative",
+      "anchor_id": "001-100/SG-037/mrcolor_panel_style_v4_split_edge_strict_probe_00252_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01189_SG-037-03_page_2021x2887_s01",
+      "candidate_id": "001-100/SG-037/mrcolor_panel_style_v4_split_edge_strict_probe_00250_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01187_SG-037-02_page_2084x1630_s01",
+      "scores": {
+        "pooled": 0.886647641658783,
+        "mean_max_token": 0.7482545375823975,
+        "topk_token": 0.9982858896255493
+      }
+    },
+    {
+      "pair_id": "p0041",
+      "label": "positive",
+      "anchor_id": "001-100/SG-037/mrcolor_panel_style_v4_split_edge_strict_probe_00256_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01191_SG-037-04_page_2023x2884_s03",
+      "candidate_id": "001-100/SG-037/mrcolor_panel_style_v5_edge_trim_strict_00096_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_01191_SG-037-04_page_2023x2884_s03",
+      "scores": {
+        "pooled": 1.0,
+        "mean_max_token": 1.0000020265579224,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0041",
+      "label": "negative",
+      "anchor_id": "001-100/SG-037/mrcolor_panel_style_v4_split_edge_strict_probe_00256_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01191_SG-037-04_page_2023x2884_s03",
+      "candidate_id": "001-100/SG-037/mrcolor_panel_style_v4_split_edge_strict_probe_00250_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01187_SG-037-02_page_2084x1630_s01",
+      "scores": {
+        "pooled": 0.8534956574440002,
+        "mean_max_token": 0.6945087909698486,
+        "topk_token": 0.9982054829597473
+      }
+    },
+    {
+      "pair_id": "p0042",
+      "label": "positive",
+      "anchor_id": "001-100/SG-037/mrcolor_panel_style_v4_split_edge_strict_probe_00257_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01199_SG-037-07_page_1092x2841_s02",
+      "candidate_id": "001-100/SG-037/mrcolor_panel_style_v5_edge_trim_strict_00098_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_01199_SG-037-07_page_1092x2841_s02",
+      "scores": {
+        "pooled": 0.9999999403953552,
+        "mean_max_token": 1.0000020265579224,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0042",
+      "label": "negative",
+      "anchor_id": "001-100/SG-037/mrcolor_panel_style_v4_split_edge_strict_probe_00257_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01199_SG-037-07_page_1092x2841_s02",
+      "candidate_id": "001-100/SG-037/mrcolor_panel_style_v4_split_edge_strict_probe_00250_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01187_SG-037-02_page_2084x1630_s01",
+      "scores": {
+        "pooled": 0.8924897909164429,
+        "mean_max_token": 0.767671525478363,
+        "topk_token": 0.9985553026199341
+      }
+    },
+    {
+      "pair_id": "p0043",
+      "label": "positive",
+      "anchor_id": "001-100/SG-041/mrcolor_panel_style_v4_split_edge_strict_probe_00272_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01320_SG-041-06_page_2001x2917_s01",
+      "candidate_id": "001-100/SG-041/mrcolor_panel_style_v5_edge_trim_strict_00101_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_01320_SG-041-06_page_2001x2917_s01",
+      "scores": {
+        "pooled": 0.9999999403953552,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0043",
+      "label": "negative",
+      "anchor_id": "001-100/SG-041/mrcolor_panel_style_v4_split_edge_strict_probe_00272_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01320_SG-041-06_page_2001x2917_s01",
+      "candidate_id": "001-100/SG-041/mrcolor_panel_style_v4_split_edge_strict_probe_00273_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01323_SG-041-06_page_617x983_s01",
+      "scores": {
+        "pooled": 0.7778640985488892,
+        "mean_max_token": 0.5592528581619263,
+        "topk_token": 0.9972185492515564
+      }
+    },
+    {
+      "pair_id": "p0044",
+      "label": "positive",
+      "anchor_id": "001-100/SG-041/mrcolor_panel_style_v4_split_edge_strict_probe_00273_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01323_SG-041-06_page_617x983_s01",
+      "candidate_id": "001-100/SG-041/mrcolor_panel_style_v5_edge_trim_strict_00102_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_01323_SG-041-06_page_617x983_s01",
+      "scores": {
+        "pooled": 1.0,
+        "mean_max_token": 1.0000020265579224,
+        "topk_token": 1.0000033378601074
+      }
+    },
+    {
+      "pair_id": "n0044",
+      "label": "negative",
+      "anchor_id": "001-100/SG-041/mrcolor_panel_style_v4_split_edge_strict_probe_00273_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01323_SG-041-06_page_617x983_s01",
+      "candidate_id": "001-100/SG-041/mrcolor_panel_style_v4_split_edge_strict_probe_00272_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01320_SG-041-06_page_2001x2917_s01",
+      "scores": {
+        "pooled": 0.7778640985488892,
+        "mean_max_token": 0.6528466939926147,
+        "topk_token": 0.9972185492515564
+      }
+    },
+    {
+      "pair_id": "p0045",
+      "label": "positive",
+      "anchor_id": "001-100/SG-041/mrcolor_panel_style_v4_split_edge_strict_probe_00278_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01336_SG-041-08_page_1965x719_s01",
+      "candidate_id": "001-100/SG-041/mrcolor_panel_style_v5_edge_trim_strict_00103_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_01336_SG-041-08_page_1965x719_s01",
+      "scores": {
+        "pooled": 0.9999999403953552,
+        "mean_max_token": 1.0000020265579224,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0045",
+      "label": "negative",
+      "anchor_id": "001-100/SG-041/mrcolor_panel_style_v4_split_edge_strict_probe_00278_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01336_SG-041-08_page_1965x719_s01",
+      "candidate_id": "001-100/SG-041/mrcolor_panel_style_v4_split_edge_strict_probe_00272_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01320_SG-041-06_page_2001x2917_s01",
+      "scores": {
+        "pooled": 0.8968756198883057,
+        "mean_max_token": 0.6927464008331299,
+        "topk_token": 0.997015118598938
+      }
+    },
+    {
+      "pair_id": "p0046",
+      "label": "positive",
+      "anchor_id": "001-100/SG-041/mrcolor_panel_style_v4_split_edge_strict_probe_00280_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01356_SG-041-13_page_1965x701_s01",
+      "candidate_id": "001-100/SG-041/mrcolor_panel_style_v5_edge_trim_strict_00104_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_01356_SG-041-13_page_1965x701_s01",
+      "scores": {
+        "pooled": 0.9999998807907104,
+        "mean_max_token": 1.000002145767212,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0046",
+      "label": "negative",
+      "anchor_id": "001-100/SG-041/mrcolor_panel_style_v4_split_edge_strict_probe_00280_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01356_SG-041-13_page_1965x701_s01",
+      "candidate_id": "001-100/SG-041/mrcolor_panel_style_v4_split_edge_strict_probe_00272_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01320_SG-041-06_page_2001x2917_s01",
+      "scores": {
+        "pooled": 0.7897956371307373,
+        "mean_max_token": 0.635394811630249,
+        "topk_token": 0.9980345368385315
+      }
+    },
+    {
+      "pair_id": "p0047",
+      "label": "positive",
+      "anchor_id": "001-100/SG-042/mrcolor_panel_style_v4_split_edge_strict_probe_00281_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01378_SG-042-10_page_823x1709_s01",
+      "candidate_id": "001-100/SG-042/mrcolor_panel_style_v5_edge_trim_strict_00105_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_01378_SG-042-10_page_823x1709_s01",
+      "scores": {
+        "pooled": 0.9999999403953552,
+        "mean_max_token": 1.0000020265579224,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0047",
+      "label": "negative",
+      "anchor_id": "001-100/SG-042/mrcolor_panel_style_v4_split_edge_strict_probe_00281_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01378_SG-042-10_page_823x1709_s01",
+      "candidate_id": "001-100/SG-042/mrcolor_panel_style_v4_split_edge_strict_probe_00282_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01379_SG-042-11_page_2018x2877_s03",
+      "scores": {
+        "pooled": 0.8837904334068298,
+        "mean_max_token": 0.7019160985946655,
+        "topk_token": 0.9976785778999329
+      }
+    },
+    {
+      "pair_id": "p0048",
+      "label": "positive",
+      "anchor_id": "001-100/SG-042/mrcolor_panel_style_v4_split_edge_strict_probe_00286_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01388_SG-042-14_page_1975x988_s02",
+      "candidate_id": "001-100/SG-042/mrcolor_panel_style_v5_edge_trim_strict_00106_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_01388_SG-042-14_page_1975x988_s02",
+      "scores": {
+        "pooled": 1.0,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0048",
+      "label": "negative",
+      "anchor_id": "001-100/SG-042/mrcolor_panel_style_v4_split_edge_strict_probe_00286_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01388_SG-042-14_page_1975x988_s02",
+      "candidate_id": "001-100/SG-042/mrcolor_panel_style_v4_split_edge_strict_probe_00281_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01378_SG-042-10_page_823x1709_s01",
+      "scores": {
+        "pooled": 0.8451008200645447,
+        "mean_max_token": 0.721092164516449,
+        "topk_token": 0.9984005689620972
+      }
+    },
+    {
+      "pair_id": "p0049",
+      "label": "positive",
+      "anchor_id": "001-100/SG-042/mrcolor_panel_style_v4_split_edge_strict_probe_00287_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01389_SG-042-14_page_1965x1866_s03",
+      "candidate_id": "001-100/SG-042/mrcolor_panel_style_v5_edge_trim_strict_00107_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_01389_SG-042-14_page_1965x1866_s03",
+      "scores": {
+        "pooled": 0.9999998807907104,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0049",
+      "label": "negative",
+      "anchor_id": "001-100/SG-042/mrcolor_panel_style_v4_split_edge_strict_probe_00287_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01389_SG-042-14_page_1965x1866_s03",
+      "candidate_id": "001-100/SG-042/mrcolor_panel_style_v4_split_edge_strict_probe_00281_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01378_SG-042-10_page_823x1709_s01",
+      "scores": {
+        "pooled": 0.9610639810562134,
+        "mean_max_token": 0.8123548626899719,
+        "topk_token": 0.9983323812484741
+      }
+    },
+    {
+      "pair_id": "p0050",
+      "label": "positive",
+      "anchor_id": "001-100/SG-045/mrcolor_panel_style_v4_split_edge_strict_probe_00305_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01464_SG-045-03_page_1965x886_s01",
+      "candidate_id": "001-100/SG-045/mrcolor_panel_style_v5_edge_trim_strict_00108_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_01464_SG-045-03_page_1965x886_s01",
+      "scores": {
+        "pooled": 1.0000001192092896,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0050",
+      "label": "negative",
+      "anchor_id": "001-100/SG-045/mrcolor_panel_style_v4_split_edge_strict_probe_00305_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01464_SG-045-03_page_1965x886_s01",
+      "candidate_id": "001-100/SG-045/mrcolor_panel_style_v4_split_edge_strict_probe_00304_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01454_SG-045-01_page_2046x2920_s01",
+      "scores": {
+        "pooled": 0.7795346975326538,
+        "mean_max_token": 0.5949879884719849,
+        "topk_token": 0.9970629811286926
+      }
+    },
+    {
+      "pair_id": "p0051",
+      "label": "positive",
+      "anchor_id": "001-100/SG-046/mrcolor_panel_style_v4_split_edge_strict_probe_00317_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01532_SG-046-12_page_1965x2937_s01",
+      "candidate_id": "001-100/SG-046/mrcolor_panel_style_v5_edge_trim_strict_00110_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_01532_SG-046-12_page_1965x2937_s01",
+      "scores": {
+        "pooled": 0.9999999403953552,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0051",
+      "label": "negative",
+      "anchor_id": "001-100/SG-046/mrcolor_panel_style_v4_split_edge_strict_probe_00317_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01532_SG-046-12_page_1965x2937_s01",
+      "candidate_id": "001-100/SG-046/mrcolor_panel_style_v4_split_edge_strict_probe_00313_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01500_SG-046-01_page_2100x2877_s01",
+      "scores": {
+        "pooled": 0.9003243446350098,
+        "mean_max_token": 0.6672557592391968,
+        "topk_token": 0.998458981513977
+      }
+    },
+    {
+      "pair_id": "p0052",
+      "label": "positive",
+      "anchor_id": "001-100/SG-047/mrcolor_panel_style_v4_split_edge_strict_probe_00321_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01573_SG-047-12_page_1965x734_s01",
+      "candidate_id": "001-100/SG-047/mrcolor_panel_style_v5_edge_trim_strict_00113_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_01573_SG-047-12_page_1965x734_s01",
+      "scores": {
+        "pooled": 1.0000001192092896,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0052",
+      "label": "negative",
+      "anchor_id": "001-100/SG-047/mrcolor_panel_style_v4_split_edge_strict_probe_00321_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01573_SG-047-12_page_1965x734_s01",
+      "candidate_id": "001-100/SG-047/mrcolor_panel_style_v5_edge_trim_strict_00112_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_01550_SG-047-06_page_1965x917_s01",
+      "scores": {
+        "pooled": 0.746522068977356,
+        "mean_max_token": 0.5373951196670532,
+        "topk_token": 0.9987338781356812
+      }
+    },
+    {
+      "pair_id": "p0053",
+      "label": "positive",
+      "anchor_id": "001-100/SG-048/mrcolor_panel_style_v4_split_edge_strict_probe_00332_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01606_SG-048-11_page_2049x2841_s01",
+      "candidate_id": "001-100/SG-048/mrcolor_panel_style_v5_edge_trim_strict_00115_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_01606_SG-048-11_page_2049x2841_s01",
+      "scores": {
+        "pooled": 0.9890434741973877,
+        "mean_max_token": 0.873193621635437,
+        "topk_token": 0.9994445443153381
+      }
+    },
+    {
+      "pair_id": "n0053",
+      "label": "negative",
+      "anchor_id": "001-100/SG-048/mrcolor_panel_style_v4_split_edge_strict_probe_00332_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01606_SG-048-11_page_2049x2841_s01",
+      "candidate_id": "001-100/SG-048/mrcolor_panel_style_v4_split_edge_strict_probe_00328_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01590_SG-048-02_page_1965x812_s01",
+      "scores": {
+        "pooled": 0.9131154417991638,
+        "mean_max_token": 0.6950204372406006,
+        "topk_token": 0.9989578723907471
+      }
+    },
+    {
+      "pair_id": "p0054",
+      "label": "positive",
+      "anchor_id": "001-100/SG-048/mrcolor_panel_style_v4_split_edge_strict_probe_00334_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01613_SG-048-13_page_1965x957_s05",
+      "candidate_id": "001-100/SG-048/mrcolor_panel_style_v5_edge_trim_strict_00116_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_01613_SG-048-13_page_1965x957_s05",
+      "scores": {
+        "pooled": 0.9826754331588745,
+        "mean_max_token": 0.8886193633079529,
+        "topk_token": 0.9993782043457031
+      }
+    },
+    {
+      "pair_id": "n0054",
+      "label": "negative",
+      "anchor_id": "001-100/SG-048/mrcolor_panel_style_v4_split_edge_strict_probe_00334_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01613_SG-048-13_page_1965x957_s05",
+      "candidate_id": "001-100/SG-048/mrcolor_panel_style_v4_split_edge_strict_probe_00328_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01590_SG-048-02_page_1965x812_s01",
+      "scores": {
+        "pooled": 0.8186309337615967,
+        "mean_max_token": 0.6774471998214722,
+        "topk_token": 0.9985229969024658
+      }
+    },
+    {
+      "pair_id": "p0055",
+      "label": "positive",
+      "anchor_id": "001-100/SG-051/mrcolor_panel_style_v4_split_edge_strict_probe_00341_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01705_SG-051-01_page_2011x2331_s03",
+      "candidate_id": "001-100/SG-051/mrcolor_panel_style_v5_edge_trim_strict_00120_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_01705_SG-051-01_page_2011x2331_s03",
+      "scores": {
+        "pooled": 0.9999998211860657,
+        "mean_max_token": 1.0000020265579224,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0055",
+      "label": "negative",
+      "anchor_id": "001-100/SG-051/mrcolor_panel_style_v4_split_edge_strict_probe_00341_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01705_SG-051-01_page_2011x2331_s03",
+      "candidate_id": "001-100/SG-051/mrcolor_panel_style_v4_split_edge_strict_probe_00342_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01707_SG-051-03_page_1996x2884_s02",
+      "scores": {
+        "pooled": 0.8942409157752991,
+        "mean_max_token": 0.7273500561714172,
+        "topk_token": 0.9988321661949158
+      }
+    },
+    {
+      "pair_id": "p0056",
+      "label": "positive",
+      "anchor_id": "001-100/SG-054/mrcolor_panel_style_v4_split_edge_strict_probe_00359_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01810_SG-054-09_page_2023x2892_s01",
+      "candidate_id": "001-100/SG-054/mrcolor_panel_style_v5_edge_trim_strict_00126_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_01810_SG-054-09_page_2023x2892_s01",
+      "scores": {
+        "pooled": 1.0,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0056",
+      "label": "negative",
+      "anchor_id": "001-100/SG-054/mrcolor_panel_style_v4_split_edge_strict_probe_00359_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01810_SG-054-09_page_2023x2892_s01",
+      "candidate_id": "001-100/SG-054/mrcolor_panel_style_v4_split_edge_strict_probe_00360_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01811_SG-054-11_page_2034x2841_s01",
+      "scores": {
+        "pooled": 0.9079495072364807,
+        "mean_max_token": 0.705351710319519,
+        "topk_token": 0.9978926181793213
+      }
+    },
+    {
+      "pair_id": "p0057",
+      "label": "positive",
+      "anchor_id": "001-100/SG-055/mrcolor_panel_style_v4_split_edge_strict_probe_00362_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01826_SG-055-09_page_2018x2851_s03",
+      "candidate_id": "001-100/SG-055/mrcolor_panel_style_v5_edge_trim_strict_00127_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_01826_SG-055-09_page_2018x2851_s03",
+      "scores": {
+        "pooled": 1.0000001192092896,
+        "mean_max_token": 1.0000020265579224,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0057",
+      "label": "negative",
+      "anchor_id": "001-100/SG-055/mrcolor_panel_style_v4_split_edge_strict_probe_00362_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01826_SG-055-09_page_2018x2851_s03",
+      "candidate_id": "001-100/SG-055/mrcolor_panel_style_v4_split_edge_strict_probe_00363_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01831_SG-055-12_page_2016x2894_s01",
+      "scores": {
+        "pooled": 0.8399264216423035,
+        "mean_max_token": 0.7289045453071594,
+        "topk_token": 0.9988699555397034
+      }
+    },
+    {
+      "pair_id": "p0058",
+      "label": "positive",
+      "anchor_id": "001-100/SG-057/mrcolor_panel_style_v4_split_edge_strict_probe_00368_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01878_SG-057-01_page_1965x1000_s01",
+      "candidate_id": "001-100/SG-057/mrcolor_panel_style_v5_edge_trim_strict_00130_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_01878_SG-057-01_page_1965x1000_s01",
+      "scores": {
+        "pooled": 1.0,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0058",
+      "label": "negative",
+      "anchor_id": "001-100/SG-057/mrcolor_panel_style_v4_split_edge_strict_probe_00368_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01878_SG-057-01_page_1965x1000_s01",
+      "candidate_id": "001-100/SG-057/mrcolor_panel_style_v4_split_edge_strict_probe_00369_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01879_SG-057-02_page_1965x2899_s01",
+      "scores": {
+        "pooled": 0.887625515460968,
+        "mean_max_token": 0.6925935745239258,
+        "topk_token": 0.997446596622467
+      }
+    },
+    {
+      "pair_id": "p0059",
+      "label": "positive",
+      "anchor_id": "001-100/SG-057/mrcolor_panel_style_v4_split_edge_strict_probe_00369_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01879_SG-057-02_page_1965x2899_s01",
+      "candidate_id": "001-100/SG-057/mrcolor_panel_style_v5_edge_trim_strict_00131_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_01879_SG-057-02_page_1965x2899_s01",
+      "scores": {
+        "pooled": 0.9999998807907104,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0059",
+      "label": "negative",
+      "anchor_id": "001-100/SG-057/mrcolor_panel_style_v4_split_edge_strict_probe_00369_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01879_SG-057-02_page_1965x2899_s01",
+      "candidate_id": "001-100/SG-057/mrcolor_panel_style_v4_split_edge_strict_probe_00368_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01878_SG-057-01_page_1965x1000_s01",
+      "scores": {
+        "pooled": 0.887625515460968,
+        "mean_max_token": 0.6999223828315735,
+        "topk_token": 0.997446596622467
+      }
+    },
+    {
+      "pair_id": "p0060",
+      "label": "positive",
+      "anchor_id": "001-100/SG-058/mrcolor_panel_style_v4_split_edge_strict_probe_00376_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01938_SG-058-08_page_795x1427_s01",
+      "candidate_id": "001-100/SG-058/mrcolor_panel_style_v5_edge_trim_strict_00134_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_01938_SG-058-08_page_795x1427_s01",
+      "scores": {
+        "pooled": 0.9999999403953552,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0060",
+      "label": "negative",
+      "anchor_id": "001-100/SG-058/mrcolor_panel_style_v4_split_edge_strict_probe_00376_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01938_SG-058-08_page_795x1427_s01",
+      "candidate_id": "001-100/SG-058/mrcolor_panel_style_v5_edge_trim_strict_00133_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_01927_SG-058-03_page_1965x1676_s02",
+      "scores": {
+        "pooled": 0.8520299196243286,
+        "mean_max_token": 0.6208083033561707,
+        "topk_token": 0.9979405999183655
+      }
+    },
+    {
+      "pair_id": "p0061",
+      "label": "positive",
+      "anchor_id": "001-100/SG-059/mrcolor_panel_style_v4_split_edge_strict_probe_00381_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01962_SG-059-01_page_2059x2866_s01",
+      "candidate_id": "001-100/SG-059/mrcolor_panel_style_v5_edge_trim_strict_00136_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_01962_SG-059-01_page_2059x2866_s01",
+      "scores": {
+        "pooled": 1.0000001192092896,
+        "mean_max_token": 1.0000019073486328,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0061",
+      "label": "negative",
+      "anchor_id": "001-100/SG-059/mrcolor_panel_style_v4_split_edge_strict_probe_00381_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01962_SG-059-01_page_2059x2866_s01",
+      "candidate_id": "001-100/SG-059/mrcolor_panel_style_v4_split_edge_strict_probe_00382_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01962_SG-059-01_page_2059x2866_s02",
+      "scores": {
+        "pooled": 0.9158498048782349,
+        "mean_max_token": 0.7283058166503906,
+        "topk_token": 0.998531699180603
+      }
+    },
+    {
+      "pair_id": "p0062",
+      "label": "positive",
+      "anchor_id": "001-100/SG-059/mrcolor_panel_style_v4_split_edge_strict_probe_00388_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01978_SG-059-07_page_1033x693_s01",
+      "candidate_id": "001-100/SG-059/mrcolor_panel_style_v5_edge_trim_strict_00138_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_01978_SG-059-07_page_1033x693_s01",
+      "scores": {
+        "pooled": 1.0,
+        "mean_max_token": 1.0000020265579224,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0062",
+      "label": "negative",
+      "anchor_id": "001-100/SG-059/mrcolor_panel_style_v4_split_edge_strict_probe_00388_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01978_SG-059-07_page_1033x693_s01",
+      "candidate_id": "001-100/SG-059/mrcolor_panel_style_v4_split_edge_strict_probe_00381_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01962_SG-059-01_page_2059x2866_s01",
+      "scores": {
+        "pooled": 0.8408008217811584,
+        "mean_max_token": 0.7005059719085693,
+        "topk_token": 0.9988093376159668
+      }
+    },
+    {
+      "pair_id": "p0063",
+      "label": "positive",
+      "anchor_id": "001-100/SG-059/mrcolor_panel_style_v4_split_edge_strict_probe_00390_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01981_SG-059-09_page_2054x2950_s01",
+      "candidate_id": "001-100/SG-059/mrcolor_panel_style_v5_edge_trim_strict_00139_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_01981_SG-059-09_page_2054x2950_s01",
+      "scores": {
+        "pooled": 1.0,
+        "mean_max_token": 1.0000020265579224,
+        "topk_token": 1.0000029802322388
+      }
+    },
+    {
+      "pair_id": "n0063",
+      "label": "negative",
+      "anchor_id": "001-100/SG-059/mrcolor_panel_style_v4_split_edge_strict_probe_00390_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01981_SG-059-09_page_2054x2950_s01",
+      "candidate_id": "001-100/SG-059/mrcolor_panel_style_v4_split_edge_strict_probe_00381_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01962_SG-059-01_page_2059x2866_s01",
+      "scores": {
+        "pooled": 0.9469195008277893,
+        "mean_max_token": 0.7498232126235962,
+        "topk_token": 0.9985201358795166
+      }
+    }
+  ],
+  "summaries": {
+    "pooled": {
+      "positive_mean": 0.9994458612054586,
+      "negative_mean": 0.8656757902354002,
+      "separation_margin": 0.13377007097005844,
+      "pairwise_auc": 1.0,
+      "midpoint_accuracy": 0.96875,
+      "decision": "token_feature_separates_pairs"
+    },
+    "mean_max_token": {
+      "positive_mean": 0.9943422144278884,
+      "negative_mean": 0.6773641724139452,
+      "separation_margin": 0.3169780420139432,
+      "pairwise_auc": 1.0,
+      "midpoint_accuracy": 1.0,
+      "decision": "token_feature_separates_pairs"
+    },
+    "topk_token": {
+      "positive_mean": 0.9999559381976724,
+      "negative_mean": 0.9980103494599462,
+      "separation_margin": 0.0019455887377262115,
+      "pairwise_auc": 0.99169921875,
+      "midpoint_accuracy": 0.96875,
+      "decision": "token_feature_not_sufficiently_separated"
+    }
+  }
+}

@@ -612,6 +612,41 @@ should mine or label true same-character positives, add hard negatives within
 the same style/scene bucket, and test token-level or learned metric features
 before another adapter run.
 
+## 2026-06-12 c038 strict panel sanity probe
+
+c037 was followed by a stricter feature-pipeline sanity control. Positive pairs
+were v4/v5 duplicate crops with the same panel key; negatives were different
+panel keys from the same `SG-*` folder. This does not prove character identity
+generalization, but it checks whether the encoders can separate true near
+duplicates from same-style hard negatives.
+
+Evidence:
+
+- `tools/build_strict_panel_pair_probe_manifest.py`
+- `tools/score_siglip_token_pair_probe.py`
+- `tools/token_pair_probe_metrics.py`
+- `tests/test_strict_identity_probe.py`
+- `eval/strict_identity_feature_probe_20260612_c038/report.md`
+
+Result:
+
+| encoder/metric | margin | pairwise AUC | decision |
+| --- | ---: | ---: | --- |
+| `Qwen/Qwen3-VL-Embedding-2B` pooled | +0.2061 | 1.0000 | pass |
+| `google/siglip2-base-patch16-512` pooled | +0.1058 | 1.0000 | pass |
+| `pe` pooled | +0.1404 | 0.9998 | pass |
+| SigLIP2 `mean_max_token` | +0.3170 | 1.0000 | pass |
+| SigLIP2 layer `-6` pooled | +0.4739 | 0.9998 | pass |
+
+Decision: `strict_duplicate_feature_sanity_pass_identity_unsolved`
+
+The feature pipeline is not broken: pooled and token features can detect
+near-duplicate panel crops. The identity problem remains unsolved because
+duplicate detection is easier than same-character reference control across
+pose, expression, costume, and scene. The next branch should exclude duplicate
+crops, build true same-character positives with same-scene hard negatives, and
+re-test SigLIP layer `-6` pooled plus `mean_max_token` on that stricter manifest.
+
 ## 2026-06-11 Qwen3-VL embedding probe
 
 The next encoder candidate was checked before writing another adapter training
