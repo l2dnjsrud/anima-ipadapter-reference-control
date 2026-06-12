@@ -1596,7 +1596,19 @@ label 분포는 다음과 같다.
 
 c068 decision은 `direct_green_reviewed_seed_insufficient_new_annotation_required`다. 다음 루프는 checkpoint 학습이 아니라, color dataset 전체에서 captioning 또는 수동 review를 통해 direct-green/non-human character positive를 새로 확보하는 단계여야 한다. 최소 목표는 direct-green target positive를 4개 이상 확보하고, background/object green false positive를 별도 negative guard로 유지하는 것이다.
 
-## 20. 근거 파일 색인
+## 20. c069 Direct Green Captioning/Data Acquisition
+
+c069는 c068의 결론을 그대로 받아서, 학습을 멈추고 먼저 데이터 확보 가능성을 검증한 루프다. 목적은 local color dataset 전체에서 heldout 누수 없이 direct-green/non-human character positive를 4개 이상 찾을 수 있는지 확인하는 것이었다.
+
+사용 데이터는 `training/manifests/local_color_self_reconstruct_20260611.jsonl` 전체 color manifest와 `training/manifests/local_color_single_character_clean32_heldout8_20260611.jsonl` heldout manifest다. 실제 이미지 루트는 `/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best`이며, heldout 8장은 후보 스캔에서도 제외했다.
+
+새로 만든 도구는 `tools/c069_direct_green_acquisition.py`와 `tools/c069_review_sheet.py`다. 1563장의 train-side color image를 green/red pixel 기준으로 스캔하고, `target_score`, `background_score`, `strong_green`, `red_green_mix` 4개 bucket에서 상위 12개씩 총 48 rows를 뽑았다. 산출물은 `eval/c069_direct_green_captioning_acquisition_20260612/candidate_manifest.jsonl`, `reviewed_candidate_labels.jsonl`, `annotated_review_sheet.jpg`, `summary.json`, `report.md`다.
+
+검증 결과는 `heldout_rows_used=0`, `missing_paths=0`, `scanned_beyond_c067_topk=true`, `candidate_count=48`, `reviewed_rows=48`이다. 라벨은 `false_positive_background_object=46`, `useful_proxy_non_human=2`, `direct_green_target_positive_count=0`이었다. 즉, color dataset 전체를 더 넓게 훑어도 확정 direct-green/non-human target positive는 아직 확보되지 않았다.
+
+c069 decision은 `new_dataset_captioning_required`다. 일부 proxy 후보는 있지만 target positive가 아니므로 encoder-side 학습으로 넘기지 않는다. 다음 루프는 새 데이터/수동 라벨링/QwenVL caption search를 통해 direct-green/non-human target positive 4개 이상을 확보하는 방향이어야 한다.
+
+## 21. 근거 파일 색인
 
 핵심 문서:
 
@@ -1654,6 +1666,9 @@ c068 decision은 `direct_green_reviewed_seed_insufficient_new_annotation_require
 - `eval/c067_attribute_teacher_reranker_seed_20260612/visual_audit.md`
 - `eval/c068_reviewed_attribute_label_seed_20260612/report.md`
 - `eval/c068_reviewed_attribute_label_seed_20260612/summary.json`
+- `docs/c069_direct_green_captioning_acquisition_plan_ko.md`
+- `eval/c069_direct_green_captioning_acquisition_20260612/report.md`
+- `eval/c069_direct_green_captioning_acquisition_20260612/summary.json`
 
 PE baseline:
 
@@ -1743,6 +1758,9 @@ QwenVL 주요 평가:
 - `eval/c067_attribute_teacher_reranker_seed_20260612/attribute_review_sheet.jpg`
 - `eval/c068_reviewed_attribute_label_seed_20260612/reviewed_attribute_labels.jsonl`
 - `eval/c068_reviewed_attribute_label_seed_20260612/annotated_review_sheet.jpg`
+- `eval/c069_direct_green_captioning_acquisition_20260612/candidate_manifest.jsonl`
+- `eval/c069_direct_green_captioning_acquisition_20260612/reviewed_candidate_labels.jsonl`
+- `eval/c069_direct_green_captioning_acquisition_20260612/annotated_review_sheet.jpg`
 
 생성/학습 manifest:
 
@@ -1769,6 +1787,9 @@ QwenVL 주요 평가:
 - `tools/c067_attribute_teacher_core.py`
 - `tools/c068_reviewed_attribute_labels.py`
 - `tests/test_c068_reviewed_attribute_labels.py`
+- `tools/c069_direct_green_acquisition.py`
+- `tools/c069_review_sheet.py`
+- `tests/test_c069_direct_green_acquisition.py`
 - `tools/siglip_auto_caption_eval.py`
 - `tools/score_siglip_auto_caption_metrics.py`
 - `workflows/anima_ipadapter_siglip_native_reference.json`

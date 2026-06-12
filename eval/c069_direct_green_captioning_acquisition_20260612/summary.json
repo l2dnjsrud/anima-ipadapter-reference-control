@@ -1,0 +1,27 @@
+{
+  "source": "local_color_self_reconstruct_full_scan",
+  "scanned_image_count": 1563,
+  "heldout_ids_count": 8,
+  "heldout_rows_used": 0,
+  "missing_paths": 0,
+  "c067_topk_ids_count": 33,
+  "candidate_count": 48,
+  "unique_candidate_count": 33,
+  "reviewed_rows": 48,
+  "scanned_beyond_c067_topk": true,
+  "candidate_bucket_counts": {
+    "target_score": 12,
+    "background_score": 12,
+    "strong_green": 12,
+    "red_green_mix": 12
+  },
+  "label_counts": {
+    "false_positive_background_object": 46,
+    "useful_proxy_non_human": 2
+  },
+  "direct_green_target_positive_count": 0,
+  "false_positive_background_object_count": 46,
+  "useful_proxy_non_human_count": 2,
+  "minimum_target_positive_required": 4,
+  "decision": "new_dataset_captioning_required"
+}
