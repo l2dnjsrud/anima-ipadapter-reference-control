@@ -141,3 +141,13 @@ Qwen3-VL image-text retrieval로 candidate pair 양쪽이 캐릭터 중심인지
 - 결정: `character_filter_reduces_noise_not_identity_labels`
 
 결과: threshold `0.15` 기준 24개 후보 중 14개가 남았다. 배경/소품 후보는 일부 줄었지만, 다른 인물과 몸통 crop이 남아 true same-character label을 자동 확정하기에는 부족하다. 다음 loop는 kept sheet를 reviewed manifest로 바꾸고 `same_character`, `different_character`, `unclear` 라벨을 명시하는 것이다.
+
+## 2026-06-12 c041 reviewed seed 추가
+
+c040 kept 후보 14개를 reviewed identity manifest로 변환했다.
+
+- 도구: `tools/build_reviewed_identity_manifest.py`
+- 산출물: `eval/reviewed_identity_candidates_20260612_c041/report.md`
+- 결정: `reviewed_seed_too_small_for_training_gate`
+
+결과: same-character 6개, different-character 3개, unclear 5개, 학습/검증 positive로 안전하게 쓸 수 있는 pair는 4개뿐이다. 다음 loop는 이 작은 seed로 feature separation sanity probe를 돌리되, adapter 학습은 더 큰 reviewed identity manifest가 만들어질 때까지 보류한다.

@@ -690,6 +690,31 @@ ambiguous torso-only crops. Keep this as an auxiliary candidate filter, not an
 automatic true-identity labeler. The next branch needs an explicit reviewed
 manifest with `same_character`, `different_character`, and `unclear` labels.
 
+## 2026-06-12 c041 reviewed identity candidates
+
+The c040 kept candidates were converted into a manually reviewed identity seed
+manifest.
+
+Evidence:
+
+- `tools/build_reviewed_identity_manifest.py`
+- `tests/test_reviewed_identity_manifest.py`
+- `eval/reviewed_identity_candidates_20260612_c041/manual_visual_labels.jsonl`
+- `eval/reviewed_identity_candidates_20260612_c041/reviewed_candidate_pairs.jsonl`
+- `eval/reviewed_identity_candidates_20260612_c041/usable_positive_pairs.jsonl`
+- `eval/reviewed_identity_candidates_20260612_c041/different_character_pairs.jsonl`
+- `eval/reviewed_identity_candidates_20260612_c041/reviewed_candidate_sheet.jpg`
+- `eval/reviewed_identity_candidates_20260612_c041/report.md`
+
+Decision: `reviewed_seed_too_small_for_training_gate`
+
+The reviewed set contains 14 rows: 6 same-character, 3 different-character, 5
+unclear, and only 4 positive-usable pairs. This is useful as a tiny feature
+sanity probe seed, but it is not enough to launch adapter or metric-head
+training. The next branch should score this seed with SigLIP layer `-6`,
+SigLIP `mean_max_token`, QwenVL pooled, and PE pooled, while expanding mining
+to collect many more face/upper-body positives.
+
 ## 2026-06-11 Qwen3-VL embedding probe
 
 The next encoder candidate was checked before writing another adapter training

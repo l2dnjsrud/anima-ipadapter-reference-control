@@ -41,6 +41,7 @@ SELECTED: `agentic_reference_control_loop` -> `train_stronger_encoder`
 | Strict panel c038 | duplicate panel sanity control에서 feature pipeline 확인 | QwenVL/SigLIP2/PE pooled와 SigLIP `mean_max_token` 모두 duplicate panel을 분리 | sanity pass, identity unsolved |
 | Candidate review c039 | duplicate 제외 same-page 후보가 true same-character 후보로 충분한지 확인 | 후보 sheet는 생성 가능하지만 다른 인물/배경/소품 노이즈가 많음 | needs character filtering |
 | Character filter c040 | QwenVL image-text score로 character-centered 후보만 남기는지 확인 | 24개 중 14개 유지, 노이즈 감소. 그러나 다른 인물/몸통 crop이 남음 | needs reviewed labels |
+| Reviewed identity c041 | c040 후보에 수동 시각 라벨을 붙여 true identity seed가 충분한지 확인 | 14개 중 same 6, different 3, unclear 5, usable positive 4 | seed only, not training gate |
 | QwenVL adapter-only | QwenVL embedding을 adapter에 직접 연결 | 출력 변화는 있으나 generic wuxia/interior collapse | 현재 방식 보류 |
 | line-art colorization | IP-Adapter 단독 선화 채색 | 색/스타일 압력은 있으나 구조 보존 실패. EasyControl 결합 필요 | 별도 spatial-control track |
 | InterleaveThinker | agentic interleaved generation 연구 | planner/critic loop가 출력 편차를 찾고 지시를 수정한다 | reference-control audit loop 참고 |
@@ -184,6 +185,23 @@ positive는 같은 panel key의 v4/v5 duplicate crop이고, negative는 같은 `
 Qwen3-VL image-text retrieval로 character-centered score를 계산했다. 양쪽 crop의 score가 모두 `>= 0.15`인 pair만 유지했을 때 24개 중 14개가 남았다.
 
 결론은 `character_filter_reduces_noise_not_identity_labels`다. 배경/소품 노이즈를 줄이는 데는 도움이 되지만, 남은 후보도 다른 인물이나 몸통 crop이 섞여 true same-character positive로 자동 승격할 수 없다. 다음 loop는 kept sheet에 `same_character`, `different_character`, `unclear` 라벨을 붙이는 reviewed manifest를 만드는 것이다.
+
+## c041 Reviewed identity candidates
+
+산출물:
+
+- `tools/build_reviewed_identity_manifest.py`
+- `tests/test_reviewed_identity_manifest.py`
+- `eval/reviewed_identity_candidates_20260612_c041/manual_visual_labels.jsonl`
+- `eval/reviewed_identity_candidates_20260612_c041/reviewed_candidate_pairs.jsonl`
+- `eval/reviewed_identity_candidates_20260612_c041/usable_positive_pairs.jsonl`
+- `eval/reviewed_identity_candidates_20260612_c041/different_character_pairs.jsonl`
+- `eval/reviewed_identity_candidates_20260612_c041/reviewed_candidate_sheet.jpg`
+- `eval/reviewed_identity_candidates_20260612_c041/report.md`
+
+c040 kept 14개를 보수적으로 라벨링했다. 결과는 `same_character=6`, `different_character=3`, `unclear=5`, `positive_usable=4`다.
+
+결론은 `reviewed_seed_too_small_for_training_gate`다. 이 seed는 feature sanity probe에는 쓸 수 있지만 학습을 시작하기에는 너무 작다. 다음 loop는 c041 seed로 SigLIP/QwenVL/PE feature separation을 확인하면서, 더 넓은 face/upper-body mining으로 usable positive를 늘리는 것이다.
 
 ## 실행 명령
 

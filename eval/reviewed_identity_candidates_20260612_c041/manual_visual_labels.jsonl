@@ -1,0 +1,14 @@
+{"pair_id":"cand0000","review_label":"same_character","positive_usable":false,"review_notes":"same stocky scarred man appears in both crops, but anchor is multi-character and target dominance is noisy"}
+{"pair_id":"cand0001","review_label":"unclear","positive_usable":false,"review_notes":"long-haired character may appear small in anchor, but anchor is dominated by a different foreground man"}
+{"pair_id":"cand0002","review_label":"unclear","positive_usable":false,"review_notes":"candidate side is torso-only without face; not usable as identity positive"}
+{"pair_id":"cand0003","review_label":"different_character","positive_usable":false,"review_notes":"stocky scarred man versus long-haired young man"}
+{"pair_id":"cand0004","review_label":"unclear","positive_usable":false,"review_notes":"candidate side is torso-only and anchor is multi-character"}
+{"pair_id":"cand0005","review_label":"unclear","positive_usable":false,"review_notes":"same outfit region may belong to the long-haired man, but candidate side has no face"}
+{"pair_id":"cand0006","review_label":"same_character","positive_usable":true,"review_notes":"same stocky scarred man with clear face or upper body on both sides"}
+{"pair_id":"cand0009","review_label":"same_character","positive_usable":true,"review_notes":"same long-haired young man, face close-up versus action crop"}
+{"pair_id":"cand0012","review_label":"same_character","positive_usable":false,"review_notes":"same masked character likely appears, but candidate side is a group scene"}
+{"pair_id":"cand0015","review_label":"same_character","positive_usable":true,"review_notes":"same long-haired young man with clear upper body on both sides"}
+{"pair_id":"cand0016","review_label":"same_character","positive_usable":true,"review_notes":"same older bearded man with clear face or upper body on both sides"}
+{"pair_id":"cand0018","review_label":"different_character","positive_usable":false,"review_notes":"older bearded man versus long-haired young man"}
+{"pair_id":"cand0020","review_label":"unclear","positive_usable":false,"review_notes":"anchor side is lower face and neck crop, candidate is an older angry face"}
+{"pair_id":"cand0023","review_label":"different_character","positive_usable":false,"review_notes":"long-haired young man versus older blue-robed man"}
