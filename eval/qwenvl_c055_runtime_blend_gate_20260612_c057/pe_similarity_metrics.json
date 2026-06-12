@@ -1,0 +1,440 @@
+{
+  "summary_path": "eval/qwenvl_c055_runtime_blend_gate_20260612_c057/summary.json",
+  "data_root": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best",
+  "rows": [
+    {
+      "sample": "train00",
+      "variant": "prev_w14",
+      "cosine": 0.902219295501709,
+      "no_ip_cosine": 0.8921704888343811,
+      "uplift": 0.01004880666732788,
+      "pixel_std": 84.96575927734375
+    },
+    {
+      "sample": "train00",
+      "variant": "c055_w06",
+      "cosine": 0.9090557098388672,
+      "no_ip_cosine": 0.8921704888343811,
+      "uplift": 0.016885221004486084,
+      "pixel_std": 85.26422882080078
+    },
+    {
+      "sample": "train00",
+      "variant": "c055_w08",
+      "cosine": 0.8513322472572327,
+      "no_ip_cosine": 0.8921704888343811,
+      "uplift": -0.04083824157714844,
+      "pixel_std": 83.58124542236328
+    },
+    {
+      "sample": "train00",
+      "variant": "c055_w12",
+      "cosine": 0.8764789700508118,
+      "no_ip_cosine": 0.8921704888343811,
+      "uplift": -0.015691518783569336,
+      "pixel_std": 82.46039581298828
+    },
+    {
+      "sample": "train00",
+      "variant": "blend_prev10_c05506",
+      "cosine": 0.9424434304237366,
+      "no_ip_cosine": 0.8921704888343811,
+      "uplift": 0.05027294158935547,
+      "pixel_std": 85.88961791992188
+    },
+    {
+      "sample": "train00",
+      "variant": "blend_prev14_c05504",
+      "cosine": 0.9141222238540649,
+      "no_ip_cosine": 0.8921704888343811,
+      "uplift": 0.021951735019683838,
+      "pixel_std": 86.69453430175781
+    },
+    {
+      "sample": "train07",
+      "variant": "prev_w14",
+      "cosine": 0.829938530921936,
+      "no_ip_cosine": 0.7183694243431091,
+      "uplift": 0.1115691065788269,
+      "pixel_std": 36.598052978515625
+    },
+    {
+      "sample": "train07",
+      "variant": "c055_w06",
+      "cosine": 0.7918742299079895,
+      "no_ip_cosine": 0.7183694243431091,
+      "uplift": 0.07350480556488037,
+      "pixel_std": 44.74214172363281
+    },
+    {
+      "sample": "train07",
+      "variant": "c055_w08",
+      "cosine": 0.766484260559082,
+      "no_ip_cosine": 0.7183694243431091,
+      "uplift": 0.0481148362159729,
+      "pixel_std": 41.646671295166016
+    },
+    {
+      "sample": "train07",
+      "variant": "c055_w12",
+      "cosine": 0.8646561503410339,
+      "no_ip_cosine": 0.7183694243431091,
+      "uplift": 0.1462867259979248,
+      "pixel_std": 40.68360137939453
+    },
+    {
+      "sample": "train07",
+      "variant": "blend_prev10_c05506",
+      "cosine": 0.8247425556182861,
+      "no_ip_cosine": 0.7183694243431091,
+      "uplift": 0.106373131275177,
+      "pixel_std": 48.45000457763672
+    },
+    {
+      "sample": "train07",
+      "variant": "blend_prev14_c05504",
+      "cosine": 0.8481536507606506,
+      "no_ip_cosine": 0.7183694243431091,
+      "uplift": 0.1297842264175415,
+      "pixel_std": 56.69466018676758
+    },
+    {
+      "sample": "train14",
+      "variant": "prev_w14",
+      "cosine": 0.7392341494560242,
+      "no_ip_cosine": 0.7229628562927246,
+      "uplift": 0.01627129316329956,
+      "pixel_std": 91.61263275146484
+    },
+    {
+      "sample": "train14",
+      "variant": "c055_w06",
+      "cosine": 0.8293219208717346,
+      "no_ip_cosine": 0.7229628562927246,
+      "uplift": 0.10635906457901001,
+      "pixel_std": 95.87248229980469
+    },
+    {
+      "sample": "train14",
+      "variant": "c055_w08",
+      "cosine": 0.7552358508110046,
+      "no_ip_cosine": 0.7229628562927246,
+      "uplift": 0.03227299451828003,
+      "pixel_std": 95.29598236083984
+    },
+    {
+      "sample": "train14",
+      "variant": "c055_w12",
+      "cosine": 0.7613120079040527,
+      "no_ip_cosine": 0.7229628562927246,
+      "uplift": 0.038349151611328125,
+      "pixel_std": 93.01463317871094
+    },
+    {
+      "sample": "train14",
+      "variant": "blend_prev10_c05506",
+      "cosine": 0.6466154456138611,
+      "no_ip_cosine": 0.7229628562927246,
+      "uplift": -0.07634741067886353,
+      "pixel_std": 93.80204772949219
+    },
+    {
+      "sample": "train14",
+      "variant": "blend_prev14_c05504",
+      "cosine": 0.6553559303283691,
+      "no_ip_cosine": 0.7229628562927246,
+      "uplift": -0.06760692596435547,
+      "pixel_std": 92.7198486328125
+    },
+    {
+      "sample": "train23",
+      "variant": "prev_w14",
+      "cosine": 0.8904259204864502,
+      "no_ip_cosine": 0.6355655193328857,
+      "uplift": 0.25486040115356445,
+      "pixel_std": 65.55096435546875
+    },
+    {
+      "sample": "train23",
+      "variant": "c055_w06",
+      "cosine": 0.820945680141449,
+      "no_ip_cosine": 0.6355655193328857,
+      "uplift": 0.18538016080856323,
+      "pixel_std": 74.88482666015625
+    },
+    {
+      "sample": "train23",
+      "variant": "c055_w08",
+      "cosine": 0.8127631545066833,
+      "no_ip_cosine": 0.6355655193328857,
+      "uplift": 0.1771976351737976,
+      "pixel_std": 80.27120971679688
+    },
+    {
+      "sample": "train23",
+      "variant": "c055_w12",
+      "cosine": 0.8050206899642944,
+      "no_ip_cosine": 0.6355655193328857,
+      "uplift": 0.1694551706314087,
+      "pixel_std": 78.81013488769531
+    },
+    {
+      "sample": "train23",
+      "variant": "blend_prev10_c05506",
+      "cosine": 0.7559137344360352,
+      "no_ip_cosine": 0.6355655193328857,
+      "uplift": 0.12034821510314941,
+      "pixel_std": 68.49346160888672
+    },
+    {
+      "sample": "train23",
+      "variant": "blend_prev14_c05504",
+      "cosine": 0.8175116181373596,
+      "no_ip_cosine": 0.6355655193328857,
+      "uplift": 0.18194609880447388,
+      "pixel_std": 64.1036148071289
+    },
+    {
+      "sample": "heldout00",
+      "variant": "prev_w14",
+      "cosine": 0.9293291568756104,
+      "no_ip_cosine": 0.7715967893600464,
+      "uplift": 0.15773236751556396,
+      "pixel_std": 42.527015686035156
+    },
+    {
+      "sample": "heldout00",
+      "variant": "c055_w06",
+      "cosine": 0.8433498740196228,
+      "no_ip_cosine": 0.7715967893600464,
+      "uplift": 0.07175308465957642,
+      "pixel_std": 39.87809753417969
+    },
+    {
+      "sample": "heldout00",
+      "variant": "c055_w08",
+      "cosine": 0.8197571635246277,
+      "no_ip_cosine": 0.7715967893600464,
+      "uplift": 0.0481603741645813,
+      "pixel_std": 41.09908676147461
+    },
+    {
+      "sample": "heldout00",
+      "variant": "c055_w12",
+      "cosine": 0.8601635098457336,
+      "no_ip_cosine": 0.7715967893600464,
+      "uplift": 0.08856672048568726,
+      "pixel_std": 39.893272399902344
+    },
+    {
+      "sample": "heldout00",
+      "variant": "blend_prev10_c05506",
+      "cosine": 0.9342747926712036,
+      "no_ip_cosine": 0.7715967893600464,
+      "uplift": 0.16267800331115723,
+      "pixel_std": 42.62189865112305
+    },
+    {
+      "sample": "heldout00",
+      "variant": "blend_prev14_c05504",
+      "cosine": 0.9024172425270081,
+      "no_ip_cosine": 0.7715967893600464,
+      "uplift": 0.13082045316696167,
+      "pixel_std": 42.47874450683594
+    },
+    {
+      "sample": "heldout02",
+      "variant": "prev_w14",
+      "cosine": 0.8854552507400513,
+      "no_ip_cosine": 0.7367998361587524,
+      "uplift": 0.14865541458129883,
+      "pixel_std": 83.86746215820312
+    },
+    {
+      "sample": "heldout02",
+      "variant": "c055_w06",
+      "cosine": 0.780013918876648,
+      "no_ip_cosine": 0.7367998361587524,
+      "uplift": 0.04321408271789551,
+      "pixel_std": 79.24144744873047
+    },
+    {
+      "sample": "heldout02",
+      "variant": "c055_w08",
+      "cosine": 0.8034070134162903,
+      "no_ip_cosine": 0.7367998361587524,
+      "uplift": 0.06660717725753784,
+      "pixel_std": 79.7406234741211
+    },
+    {
+      "sample": "heldout02",
+      "variant": "c055_w12",
+      "cosine": 0.8630130290985107,
+      "no_ip_cosine": 0.7367998361587524,
+      "uplift": 0.1262131929397583,
+      "pixel_std": 82.99544525146484
+    },
+    {
+      "sample": "heldout02",
+      "variant": "blend_prev10_c05506",
+      "cosine": 0.8742454648017883,
+      "no_ip_cosine": 0.7367998361587524,
+      "uplift": 0.1374456286430359,
+      "pixel_std": 85.33602142333984
+    },
+    {
+      "sample": "heldout02",
+      "variant": "blend_prev14_c05504",
+      "cosine": 0.8949154019355774,
+      "no_ip_cosine": 0.7367998361587524,
+      "uplift": 0.15811556577682495,
+      "pixel_std": 84.11172485351562
+    },
+    {
+      "sample": "heldout05",
+      "variant": "prev_w14",
+      "cosine": 0.6797906160354614,
+      "no_ip_cosine": 0.7804048657417297,
+      "uplift": -0.10061424970626831,
+      "pixel_std": 66.30554962158203
+    },
+    {
+      "sample": "heldout05",
+      "variant": "c055_w06",
+      "cosine": 0.7053281664848328,
+      "no_ip_cosine": 0.7804048657417297,
+      "uplift": -0.07507669925689697,
+      "pixel_std": 91.75440979003906
+    },
+    {
+      "sample": "heldout05",
+      "variant": "c055_w08",
+      "cosine": 0.7652336359024048,
+      "no_ip_cosine": 0.7804048657417297,
+      "uplift": -0.015171229839324951,
+      "pixel_std": 90.5230712890625
+    },
+    {
+      "sample": "heldout05",
+      "variant": "c055_w12",
+      "cosine": 0.8259067535400391,
+      "no_ip_cosine": 0.7804048657417297,
+      "uplift": 0.045501887798309326,
+      "pixel_std": 75.7519302368164
+    },
+    {
+      "sample": "heldout05",
+      "variant": "blend_prev10_c05506",
+      "cosine": 0.7476953864097595,
+      "no_ip_cosine": 0.7804048657417297,
+      "uplift": -0.032709479331970215,
+      "pixel_std": 64.37653350830078
+    },
+    {
+      "sample": "heldout05",
+      "variant": "blend_prev14_c05504",
+      "cosine": 0.9247791171073914,
+      "no_ip_cosine": 0.7804048657417297,
+      "uplift": 0.14437425136566162,
+      "pixel_std": 65.39302062988281
+    },
+    {
+      "sample": "heldout07",
+      "variant": "prev_w14",
+      "cosine": 0.758894681930542,
+      "no_ip_cosine": 0.5707826614379883,
+      "uplift": 0.1881120204925537,
+      "pixel_std": 78.05947875976562
+    },
+    {
+      "sample": "heldout07",
+      "variant": "c055_w06",
+      "cosine": 0.5833537578582764,
+      "no_ip_cosine": 0.5707826614379883,
+      "uplift": 0.012571096420288086,
+      "pixel_std": 82.30764770507812
+    },
+    {
+      "sample": "heldout07",
+      "variant": "c055_w08",
+      "cosine": 0.48013830184936523,
+      "no_ip_cosine": 0.5707826614379883,
+      "uplift": -0.09064435958862305,
+      "pixel_std": 82.04916381835938
+    },
+    {
+      "sample": "heldout07",
+      "variant": "c055_w12",
+      "cosine": 0.43886518478393555,
+      "no_ip_cosine": 0.5707826614379883,
+      "uplift": -0.13191747665405273,
+      "pixel_std": 76.34136199951172
+    },
+    {
+      "sample": "heldout07",
+      "variant": "blend_prev10_c05506",
+      "cosine": 0.717423677444458,
+      "no_ip_cosine": 0.5707826614379883,
+      "uplift": 0.14664101600646973,
+      "pixel_std": 80.98754119873047
+    },
+    {
+      "sample": "heldout07",
+      "variant": "blend_prev14_c05504",
+      "cosine": 0.7227710485458374,
+      "no_ip_cosine": 0.5707826614379883,
+      "uplift": 0.15198838710784912,
+      "pixel_std": 80.92498779296875
+    }
+  ],
+  "variant_summaries": [
+    {
+      "variant": "blend_prev10_c05506",
+      "cases": 8,
+      "mean_cosine": 0.805419310927391,
+      "mean_no_ip_cosine": 0.7285815551877022,
+      "mean_uplift": 0.07683775573968887,
+      "improved_rate": 0.75
+    },
+    {
+      "variant": "blend_prev14_c05504",
+      "cases": 8,
+      "mean_cosine": 0.8350032791495323,
+      "mean_no_ip_cosine": 0.7285815551877022,
+      "mean_uplift": 0.10642172396183014,
+      "improved_rate": 0.875
+    },
+    {
+      "variant": "c055_w06",
+      "cases": 8,
+      "mean_cosine": 0.7829054072499275,
+      "mean_no_ip_cosine": 0.7285815551877022,
+      "mean_uplift": 0.05432385206222534,
+      "improved_rate": 0.875
+    },
+    {
+      "variant": "c055_w08",
+      "cases": 8,
+      "mean_cosine": 0.7567939534783363,
+      "mean_no_ip_cosine": 0.7285815551877022,
+      "mean_uplift": 0.028212398290634155,
+      "improved_rate": 0.625
+    },
+    {
+      "variant": "c055_w12",
+      "cases": 8,
+      "mean_cosine": 0.7869270369410515,
+      "mean_no_ip_cosine": 0.7285815551877022,
+      "mean_uplift": 0.058345481753349304,
+      "improved_rate": 0.75
+    },
+    {
+      "variant": "prev_w14",
+      "cases": 8,
+      "mean_cosine": 0.826910950243473,
+      "mean_no_ip_cosine": 0.7285815551877022,
+      "mean_uplift": 0.09832939505577087,
+      "improved_rate": 0.875
+    }
+  ]
+}

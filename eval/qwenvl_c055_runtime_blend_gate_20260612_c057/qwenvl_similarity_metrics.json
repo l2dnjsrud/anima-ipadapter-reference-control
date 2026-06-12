@@ -1,0 +1,393 @@
+{
+  "summary_path": "eval/qwenvl_c055_runtime_blend_gate_20260612_c057/summary.json",
+  "data_root": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best",
+  "encoder": "Qwen/Qwen3-VL-Embedding-2B",
+  "rows": [
+    {
+      "sample": "train00",
+      "variant": "prev_w14",
+      "cosine": 0.8564553260803223,
+      "no_ip_cosine": 0.8492218852043152,
+      "uplift": 0.00723344087600708
+    },
+    {
+      "sample": "train00",
+      "variant": "c055_w06",
+      "cosine": 0.8415376543998718,
+      "no_ip_cosine": 0.8492218852043152,
+      "uplift": -0.007684230804443359
+    },
+    {
+      "sample": "train00",
+      "variant": "c055_w08",
+      "cosine": 0.8417235612869263,
+      "no_ip_cosine": 0.8492218852043152,
+      "uplift": -0.007498323917388916
+    },
+    {
+      "sample": "train00",
+      "variant": "c055_w12",
+      "cosine": 0.8410539031028748,
+      "no_ip_cosine": 0.8492218852043152,
+      "uplift": -0.00816798210144043
+    },
+    {
+      "sample": "train00",
+      "variant": "blend_prev10_c05506",
+      "cosine": 0.8643725514411926,
+      "no_ip_cosine": 0.8492218852043152,
+      "uplift": 0.015150666236877441
+    },
+    {
+      "sample": "train00",
+      "variant": "blend_prev14_c05504",
+      "cosine": 0.8612092733383179,
+      "no_ip_cosine": 0.8492218852043152,
+      "uplift": 0.011987388134002686
+    },
+    {
+      "sample": "train07",
+      "variant": "prev_w14",
+      "cosine": 0.91070556640625,
+      "no_ip_cosine": 0.8537299633026123,
+      "uplift": 0.056975603103637695
+    },
+    {
+      "sample": "train07",
+      "variant": "c055_w06",
+      "cosine": 0.8844376802444458,
+      "no_ip_cosine": 0.8537299633026123,
+      "uplift": 0.030707716941833496
+    },
+    {
+      "sample": "train07",
+      "variant": "c055_w08",
+      "cosine": 0.8935055732727051,
+      "no_ip_cosine": 0.8537299633026123,
+      "uplift": 0.03977560997009277
+    },
+    {
+      "sample": "train07",
+      "variant": "c055_w12",
+      "cosine": 0.8960590362548828,
+      "no_ip_cosine": 0.8537299633026123,
+      "uplift": 0.04232907295227051
+    },
+    {
+      "sample": "train07",
+      "variant": "blend_prev10_c05506",
+      "cosine": 0.9105267524719238,
+      "no_ip_cosine": 0.8537299633026123,
+      "uplift": 0.05679678916931152
+    },
+    {
+      "sample": "train07",
+      "variant": "blend_prev14_c05504",
+      "cosine": 0.9108268022537231,
+      "no_ip_cosine": 0.8537299633026123,
+      "uplift": 0.05709683895111084
+    },
+    {
+      "sample": "train14",
+      "variant": "prev_w14",
+      "cosine": 0.839290976524353,
+      "no_ip_cosine": 0.8652646541595459,
+      "uplift": -0.02597367763519287
+    },
+    {
+      "sample": "train14",
+      "variant": "c055_w06",
+      "cosine": 0.869338870048523,
+      "no_ip_cosine": 0.8652646541595459,
+      "uplift": 0.004074215888977051
+    },
+    {
+      "sample": "train14",
+      "variant": "c055_w08",
+      "cosine": 0.8722091913223267,
+      "no_ip_cosine": 0.8652646541595459,
+      "uplift": 0.006944537162780762
+    },
+    {
+      "sample": "train14",
+      "variant": "c055_w12",
+      "cosine": 0.8457629680633545,
+      "no_ip_cosine": 0.8652646541595459,
+      "uplift": -0.019501686096191406
+    },
+    {
+      "sample": "train14",
+      "variant": "blend_prev10_c05506",
+      "cosine": 0.8608148694038391,
+      "no_ip_cosine": 0.8652646541595459,
+      "uplift": -0.004449784755706787
+    },
+    {
+      "sample": "train14",
+      "variant": "blend_prev14_c05504",
+      "cosine": 0.8272077441215515,
+      "no_ip_cosine": 0.8652646541595459,
+      "uplift": -0.038056910037994385
+    },
+    {
+      "sample": "train23",
+      "variant": "prev_w14",
+      "cosine": 0.8896043300628662,
+      "no_ip_cosine": 0.8215306997299194,
+      "uplift": 0.06807363033294678
+    },
+    {
+      "sample": "train23",
+      "variant": "c055_w06",
+      "cosine": 0.8656587600708008,
+      "no_ip_cosine": 0.8215306997299194,
+      "uplift": 0.04412806034088135
+    },
+    {
+      "sample": "train23",
+      "variant": "c055_w08",
+      "cosine": 0.8363562822341919,
+      "no_ip_cosine": 0.8215306997299194,
+      "uplift": 0.014825582504272461
+    },
+    {
+      "sample": "train23",
+      "variant": "c055_w12",
+      "cosine": 0.8976303339004517,
+      "no_ip_cosine": 0.8215306997299194,
+      "uplift": 0.07609963417053223
+    },
+    {
+      "sample": "train23",
+      "variant": "blend_prev10_c05506",
+      "cosine": 0.8623862266540527,
+      "no_ip_cosine": 0.8215306997299194,
+      "uplift": 0.0408555269241333
+    },
+    {
+      "sample": "train23",
+      "variant": "blend_prev14_c05504",
+      "cosine": 0.8801066279411316,
+      "no_ip_cosine": 0.8215306997299194,
+      "uplift": 0.05857592821121216
+    },
+    {
+      "sample": "heldout00",
+      "variant": "prev_w14",
+      "cosine": 0.8826059699058533,
+      "no_ip_cosine": 0.8738215565681458,
+      "uplift": 0.00878441333770752
+    },
+    {
+      "sample": "heldout00",
+      "variant": "c055_w06",
+      "cosine": 0.8218628168106079,
+      "no_ip_cosine": 0.8738215565681458,
+      "uplift": -0.05195873975753784
+    },
+    {
+      "sample": "heldout00",
+      "variant": "c055_w08",
+      "cosine": 0.8277930021286011,
+      "no_ip_cosine": 0.8738215565681458,
+      "uplift": -0.04602855443954468
+    },
+    {
+      "sample": "heldout00",
+      "variant": "c055_w12",
+      "cosine": 0.9058179259300232,
+      "no_ip_cosine": 0.8738215565681458,
+      "uplift": 0.03199636936187744
+    },
+    {
+      "sample": "heldout00",
+      "variant": "blend_prev10_c05506",
+      "cosine": 0.8745891451835632,
+      "no_ip_cosine": 0.8738215565681458,
+      "uplift": 0.0007675886154174805
+    },
+    {
+      "sample": "heldout00",
+      "variant": "blend_prev14_c05504",
+      "cosine": 0.8880933523178101,
+      "no_ip_cosine": 0.8738215565681458,
+      "uplift": 0.014271795749664307
+    },
+    {
+      "sample": "heldout02",
+      "variant": "prev_w14",
+      "cosine": 0.8930221796035767,
+      "no_ip_cosine": 0.8597177863121033,
+      "uplift": 0.03330439329147339
+    },
+    {
+      "sample": "heldout02",
+      "variant": "c055_w06",
+      "cosine": 0.8506017923355103,
+      "no_ip_cosine": 0.8597177863121033,
+      "uplift": -0.009115993976593018
+    },
+    {
+      "sample": "heldout02",
+      "variant": "c055_w08",
+      "cosine": 0.8668314218521118,
+      "no_ip_cosine": 0.8597177863121033,
+      "uplift": 0.007113635540008545
+    },
+    {
+      "sample": "heldout02",
+      "variant": "c055_w12",
+      "cosine": 0.8816049098968506,
+      "no_ip_cosine": 0.8597177863121033,
+      "uplift": 0.021887123584747314
+    },
+    {
+      "sample": "heldout02",
+      "variant": "blend_prev10_c05506",
+      "cosine": 0.8922995924949646,
+      "no_ip_cosine": 0.8597177863121033,
+      "uplift": 0.03258180618286133
+    },
+    {
+      "sample": "heldout02",
+      "variant": "blend_prev14_c05504",
+      "cosine": 0.9051792621612549,
+      "no_ip_cosine": 0.8597177863121033,
+      "uplift": 0.04546147584915161
+    },
+    {
+      "sample": "heldout05",
+      "variant": "prev_w14",
+      "cosine": 0.8730921149253845,
+      "no_ip_cosine": 0.771913468837738,
+      "uplift": 0.10117864608764648
+    },
+    {
+      "sample": "heldout05",
+      "variant": "c055_w06",
+      "cosine": 0.8571298122406006,
+      "no_ip_cosine": 0.771913468837738,
+      "uplift": 0.08521634340286255
+    },
+    {
+      "sample": "heldout05",
+      "variant": "c055_w08",
+      "cosine": 0.8179193735122681,
+      "no_ip_cosine": 0.771913468837738,
+      "uplift": 0.04600590467453003
+    },
+    {
+      "sample": "heldout05",
+      "variant": "c055_w12",
+      "cosine": 0.8581024408340454,
+      "no_ip_cosine": 0.771913468837738,
+      "uplift": 0.08618897199630737
+    },
+    {
+      "sample": "heldout05",
+      "variant": "blend_prev10_c05506",
+      "cosine": 0.8482933044433594,
+      "no_ip_cosine": 0.771913468837738,
+      "uplift": 0.07637983560562134
+    },
+    {
+      "sample": "heldout05",
+      "variant": "blend_prev14_c05504",
+      "cosine": 0.8518533706665039,
+      "no_ip_cosine": 0.771913468837738,
+      "uplift": 0.07993990182876587
+    },
+    {
+      "sample": "heldout07",
+      "variant": "prev_w14",
+      "cosine": 0.8656663298606873,
+      "no_ip_cosine": 0.8136996626853943,
+      "uplift": 0.05196666717529297
+    },
+    {
+      "sample": "heldout07",
+      "variant": "c055_w06",
+      "cosine": 0.7950441837310791,
+      "no_ip_cosine": 0.8136996626853943,
+      "uplift": -0.018655478954315186
+    },
+    {
+      "sample": "heldout07",
+      "variant": "c055_w08",
+      "cosine": 0.8612879514694214,
+      "no_ip_cosine": 0.8136996626853943,
+      "uplift": 0.0475882887840271
+    },
+    {
+      "sample": "heldout07",
+      "variant": "c055_w12",
+      "cosine": 0.8140091896057129,
+      "no_ip_cosine": 0.8136996626853943,
+      "uplift": 0.0003095269203186035
+    },
+    {
+      "sample": "heldout07",
+      "variant": "blend_prev10_c05506",
+      "cosine": 0.8810375332832336,
+      "no_ip_cosine": 0.8136996626853943,
+      "uplift": 0.06733787059783936
+    },
+    {
+      "sample": "heldout07",
+      "variant": "blend_prev14_c05504",
+      "cosine": 0.8845170140266418,
+      "no_ip_cosine": 0.8136996626853943,
+      "uplift": 0.07081735134124756
+    }
+  ],
+  "variant_summaries": [
+    {
+      "variant": "blend_prev10_c05506",
+      "cases": 8,
+      "mean_cosine": 0.8742899969220161,
+      "mean_no_ip_cosine": 0.8386124595999718,
+      "mean_uplift": 0.03567753732204437,
+      "improved_rate": 0.875
+    },
+    {
+      "variant": "blend_prev14_c05504",
+      "cases": 8,
+      "mean_cosine": 0.8761241808533669,
+      "mean_no_ip_cosine": 0.8386124595999718,
+      "mean_uplift": 0.03751172125339508,
+      "improved_rate": 0.875
+    },
+    {
+      "variant": "c055_w06",
+      "cases": 8,
+      "mean_cosine": 0.8482014462351799,
+      "mean_no_ip_cosine": 0.8386124595999718,
+      "mean_uplift": 0.00958898663520813,
+      "improved_rate": 0.5
+    },
+    {
+      "variant": "c055_w08",
+      "cases": 8,
+      "mean_cosine": 0.852203294634819,
+      "mean_no_ip_cosine": 0.8386124595999718,
+      "mean_uplift": 0.01359083503484726,
+      "improved_rate": 0.75
+    },
+    {
+      "variant": "c055_w12",
+      "cases": 8,
+      "mean_cosine": 0.8675050884485245,
+      "mean_no_ip_cosine": 0.8386124595999718,
+      "mean_uplift": 0.028892628848552704,
+      "improved_rate": 0.75
+    },
+    {
+      "variant": "prev_w14",
+      "cases": 8,
+      "mean_cosine": 0.8763053491711617,
+      "mean_no_ip_cosine": 0.8386124595999718,
+      "mean_uplift": 0.03769288957118988,
+      "improved_rate": 0.875
+    }
+  ]
+}
