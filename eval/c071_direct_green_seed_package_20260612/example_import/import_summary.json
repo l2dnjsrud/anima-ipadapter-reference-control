@@ -1,0 +1,12 @@
+{
+  "source": "c071_manual_label_import",
+  "imported_rows": 84,
+  "unique_target_positive_count": 0,
+  "label_counts": {
+    "useful_proxy_non_human": 29,
+    "guard_false_positive_background_object": 40,
+    "guard_false_positive_human": 15
+  },
+  "minimum_target_positive_required": 4,
+  "decision": "external_manual_data_required"
+}

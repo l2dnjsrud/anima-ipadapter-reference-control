@@ -1622,7 +1622,21 @@ c070은 c069 이후 바로 학습하지 않고, semantic/caption search로 direc
 
 c070 decision은 `external_manual_data_required`다. c067/c068의 QwenVL attribute rerank와 c069/c070의 pixel/caption search가 모두 direct-green positive를 만들지 못했기 때문에, 이제 local dataset만으로 checkpoint 학습을 강행하면 false-positive를 학습할 위험이 높다. 다음 루프는 외부/추가 데이터셋, 수동 라벨링, 또는 실제 caption generator/VLM 질의 모델로 semantic annotation을 생성하는 방향이어야 한다.
 
-## 22. 근거 파일 색인
+## 22. c071 Direct-Green Manual / External Seed Package
+
+c071은 c070의 `external_manual_data_required` 결론을 받은 뒤 이어진 data gate 루프다. 목표는 또 다른 checkpoint를 학습하는 것이 아니라, c068/c069/c070에서 확인한 proxy/guard 후보를 사람이 라벨링할 수 있는 패키지로 만들고, 그 라벨을 엄격하게 검증해 다음 학습으로 넘기는 것이다.
+
+새 도구는 `tools/c071_seed_package.py`와 `tools/c071_import_manual_labels.py`다. 테스트는 `tests/test_c071_manual_seed_package.py`에 만들었다. 패키지 생성기는 c068 reviewed attributes, c069 reviewed candidates, c070 reviewed candidates를 읽고 clean32 heldout 8장을 제외한 뒤 unique image 기준으로 dedupe한다. 산출물은 `eval/c071_direct_green_seed_package_20260612/annotation_candidates.jsonl`, `annotation_template.csv`, `annotated_review_sheet.jpg`, `summary.json`이다.
+
+수동 라벨 스키마는 `target_positive`, `useful_proxy_non_human`, `guard_false_positive_human`, `guard_false_positive_background_object`, `reject_unclear` 5개다. 중요한 점은 자동 suggested label이 절대 `target_positive`를 확정하지 않는다는 것이다. c068의 red-eye target이나 c069/c070의 useful proxy도 direct-green/non-human target positive로 자동 승격하지 않는다.
+
+실제 결과는 source rows c068 `48`, c069 `48`, c070 `36`, raw candidate rows `132`, unique candidates `84`, heldout rows used `0`, missing paths `0`이다. suggested label은 `useful_proxy_non_human=29`, `guard_false_positive_background_object=40`, `guard_false_positive_human=15`로 나뉘었다.
+
+example import는 자동 suggested label을 그대로 넣은 안전 예시다. 결과는 imported rows `84`, unique target positives `0`, decision `external_manual_data_required`다. importer는 unknown label, heldout row, duplicate `target_positive` image id를 거부한다. 따라서 다음 학습은 사람이 최소 4개의 unique `target_positive`를 실제로 확인한 뒤 importer가 `ready_for_encoder_training`을 반환할 때만 진행한다.
+
+c071 decision은 `external_manual_data_required`다. 이제 남은 실질 작업은 외부/수동 라벨을 넣는 것이고, 라벨이 채워지면 같은 importer로 gate를 다시 열어 encoder-side training manifest를 만들 수 있다.
+
+## 23. 근거 파일 색인
 
 핵심 문서:
 
@@ -1686,6 +1700,9 @@ c070 decision은 `external_manual_data_required`다. c067/c068의 QwenVL attribu
 - `docs/c070_qwenvl_direct_green_caption_search_plan_ko.md`
 - `eval/c070_qwenvl_direct_green_caption_search_20260612/report.md`
 - `eval/c070_qwenvl_direct_green_caption_search_20260612/summary.json`
+- `docs/c071_direct_green_seed_package_plan_ko.md`
+- `eval/c071_direct_green_seed_package_20260612/report.md`
+- `eval/c071_direct_green_seed_package_20260612/summary.json`
 
 PE baseline:
 
@@ -1781,6 +1798,12 @@ QwenVL 주요 평가:
 - `eval/c070_qwenvl_direct_green_caption_search_20260612/candidate_manifest.jsonl`
 - `eval/c070_qwenvl_direct_green_caption_search_20260612/reviewed_candidate_labels.jsonl`
 - `eval/c070_qwenvl_direct_green_caption_search_20260612/annotated_review_sheet.jpg`
+- `eval/c071_direct_green_seed_package_20260612/annotation_candidates.jsonl`
+- `eval/c071_direct_green_seed_package_20260612/annotation_template.csv`
+- `eval/c071_direct_green_seed_package_20260612/annotated_review_sheet.jpg`
+- `eval/c071_direct_green_seed_package_20260612/manual_labels_example.csv`
+- `eval/c071_direct_green_seed_package_20260612/example_import/import_summary.json`
+- `eval/c071_direct_green_seed_package_20260612/example_import/imported_confirmed_positives.jsonl`
 
 생성/학습 manifest:
 
@@ -1813,6 +1836,9 @@ QwenVL 주요 평가:
 - `tools/c070_qwenvl_caption_search.py`
 - `tools/c070_color_metrics.py`
 - `tests/test_c070_qwenvl_caption_search.py`
+- `tools/c071_seed_package.py`
+- `tools/c071_import_manual_labels.py`
+- `tests/test_c071_manual_seed_package.py`
 - `tools/siglip_auto_caption_eval.py`
 - `tools/score_siglip_auto_caption_metrics.py`
 - `workflows/anima_ipadapter_siglip_native_reference.json`

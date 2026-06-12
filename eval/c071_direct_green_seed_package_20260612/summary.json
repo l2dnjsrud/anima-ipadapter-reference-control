@@ -1,0 +1,27 @@
+{
+  "source": "c071_direct_green_manual_external_seed_package",
+  "source_row_counts": {
+    "c068": 48,
+    "c069": 48,
+    "c070": 36
+  },
+  "raw_candidate_rows": 132,
+  "unique_candidate_count": 84,
+  "heldout_ids_count": 8,
+  "heldout_rows_used": 0,
+  "missing_paths": 0,
+  "label_schema": [
+    "target_positive",
+    "useful_proxy_non_human",
+    "guard_false_positive_human",
+    "guard_false_positive_background_object",
+    "reject_unclear"
+  ],
+  "suggested_label_counts": {
+    "useful_proxy_non_human": 29,
+    "guard_false_positive_background_object": 40,
+    "guard_false_positive_human": 15
+  },
+  "minimum_target_positive_required": 4,
+  "decision": "manual_or_external_labels_required"
+}
