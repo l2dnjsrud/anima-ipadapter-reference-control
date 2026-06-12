@@ -1555,7 +1555,48 @@ c067 decision은 `attribute_review_queue_manual_annotation_required`다.
 
 따라서 c067 산출물은 다음 encoder-side objective의 자동 positive manifest가 아니라, attribute review queue로만 사용한다. 특히 direct green/non-human은 수동 label 또는 더 강한 captioning teacher가 먼저 필요하다. 다음 루프는 c067 top-k를 사람이 확인해 positive/negative label manifest로 만드는 단계이거나, QwenVL captioning으로 character skin/species와 background/object color를 분리하는 annotation stage여야 한다.
 
-## 19. 근거 파일 색인
+## 19. c068 Reviewed Attribute Label Seed
+
+c068은 c067의 top-k 결과를 바로 학습에 넣지 않고, 먼저 auditable label seed로 바꾸는 루프다. 목표는 checkpoint 학습이 아니다. c067에서 `direct_green_non_human_face` top-k가 실제 non-human green face인지 불명확했기 때문에, 같은 후보들을 명시적 label로 재분류해서 “지금 학습해도 되는가”를 결정했다.
+
+사용 입력은 다음으로 제한했다.
+
+- c067 top-k: `eval/c067_attribute_teacher_reranker_seed_20260612/attribute_topk.json`
+- heldout exclusion: `training/manifests/local_color_single_character_clean32_heldout8_20260611.jsonl`
+- source commit: `9b53041`
+
+새 도구는 `tools/c068_reviewed_attribute_labels.py`다. 이 도구는 c067 top-k row만 읽고, clean32 heldout row를 제외한 뒤, query/rank별로 사람이 검토한 label을 붙인다. 산출물은 다음이다.
+
+- reviewed label manifest: `eval/c068_reviewed_attribute_label_seed_20260612/reviewed_attribute_labels.jsonl`
+- summary: `eval/c068_reviewed_attribute_label_seed_20260612/summary.json`
+- annotated review sheet: `eval/c068_reviewed_attribute_label_seed_20260612/annotated_review_sheet.jpg`
+- report: `eval/c068_reviewed_attribute_label_seed_20260612/report.md`
+
+summary는 다음을 기록한다.
+
+- reviewed_rows: `48`
+- query_count: `6`
+- heldout_rows_used: `0`
+- direct_green_target_positive_count: `0`
+- decision: `direct_green_reviewed_seed_insufficient_new_annotation_required`
+
+label 분포는 다음과 같다.
+
+- `false_positive_background_object`: `11`
+- `false_positive_human_face`: `9`
+- `false_positive_human_old_face`: `4`
+- `false_positive_red_eye_human`: `1`
+- `negative_anchor`: `8`
+- `target_positive`: `1`
+- `useful_proxy_positive`: `14`
+
+가장 중요한 결과는 direct-green/non-human query의 target positive가 `0`개라는 점이다. 해당 top-k 8개는 노인/관모/그림자 얼굴, red-eye human proxy, 초록 배경/소품으로 분류되었다. 따라서 이 seed를 encoder-side supervised positive로 사용하면 모델이 “green skin/species”가 아니라 “노인 얼굴, 붉은 눈 인간, 초록 물체/배경”을 배우게 될 위험이 크다.
+
+반대로 `red_glowing_eye`는 target positive가 `1`개 있었고, `side_profile_silhouette` 및 `beard_headwear_crop`은 `useful_proxy_positive`로 쓸 수 있는 후보가 있다. 하지만 이것은 실패 속성 분석/negative guard에 유용한 보조 큐이지, direct-green/non-human 학습 양성으로는 충분하지 않다.
+
+c068 decision은 `direct_green_reviewed_seed_insufficient_new_annotation_required`다. 다음 루프는 checkpoint 학습이 아니라, color dataset 전체에서 captioning 또는 수동 review를 통해 direct-green/non-human character positive를 새로 확보하는 단계여야 한다. 최소 목표는 direct-green target positive를 4개 이상 확보하고, background/object green false positive를 별도 negative guard로 유지하는 것이다.
+
+## 20. 근거 파일 색인
 
 핵심 문서:
 
@@ -1611,6 +1652,8 @@ c067 decision은 `attribute_review_queue_manual_annotation_required`다.
 - `eval/c067_attribute_teacher_reranker_seed_20260612/report.md`
 - `eval/c067_attribute_teacher_reranker_seed_20260612/summary.json`
 - `eval/c067_attribute_teacher_reranker_seed_20260612/visual_audit.md`
+- `eval/c068_reviewed_attribute_label_seed_20260612/report.md`
+- `eval/c068_reviewed_attribute_label_seed_20260612/summary.json`
 
 PE baseline:
 
@@ -1698,6 +1741,8 @@ QwenVL 주요 평가:
 - `eval/c067_attribute_teacher_reranker_seed_20260612/attribute_scores.jsonl`
 - `eval/c067_attribute_teacher_reranker_seed_20260612/attribute_topk.json`
 - `eval/c067_attribute_teacher_reranker_seed_20260612/attribute_review_sheet.jpg`
+- `eval/c068_reviewed_attribute_label_seed_20260612/reviewed_attribute_labels.jsonl`
+- `eval/c068_reviewed_attribute_label_seed_20260612/annotated_review_sheet.jpg`
 
 생성/학습 manifest:
 
@@ -1716,11 +1761,14 @@ QwenVL 주요 평가:
 - `training/manifests/c066_direct_green_non_human_candidates_20260612.summary.json`
 - `training/manifests/c066_direct_green_non_human_pairs_20260612.jsonl`
 - `eval/c067_attribute_teacher_reranker_seed_20260612/attribute_query_manifest.jsonl`
+- `eval/c068_reviewed_attribute_label_seed_20260612/reviewed_attribute_labels.jsonl`
 
 현재 가장 중요한 실행 레시피 근거:
 
 - `tools/build_reference_prompt_manifest.py`
 - `tools/c067_attribute_teacher_core.py`
+- `tools/c068_reviewed_attribute_labels.py`
+- `tests/test_c068_reviewed_attribute_labels.py`
 - `tools/siglip_auto_caption_eval.py`
 - `tools/score_siglip_auto_caption_metrics.py`
 - `workflows/anima_ipadapter_siglip_native_reference.json`
