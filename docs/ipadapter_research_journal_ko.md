@@ -910,6 +910,7 @@ c058 기준 `blend_prev14_c05504`는 현재까지 가장 강한 QwenVL runtime r
 - c056 기준 c055는 c052 대비 시각/metric 모두 개선됐지만 이전 retrieval checkpoint를 aggregate로 넘지 못했다. quality pass가 아니라 c057 weight/blend runtime gate로 이어간다.
 - c057 기준 `blend_prev14_c05504`는 현재 최고 runtime recipe다. PE metric은 이전 retrieval을 넘고 QwenVL metric은 거의 동률이지만, pose/prop/detail 안정성이 아직 부족하므로 최종 quality pass로 보지 않는다.
 - c058 기준 `blend_prev14_c05504`는 40-sample larger gate에서 평균 metric best가 되었지만, heldout visual audit에서 pose/crop, speech bubble, prop, non-human silhouette 실패가 남아 final quality pass는 아니다. 다음은 distillation 또는 failure-focused continuation이다.
+- c059 기준 단순 parameter-space checkpoint merge는 실행 가능하지만 final quality pass는 아니다. `merge_a040_w14`는 QwenVL metric에서 runtime blend와 동률급이나 PE metric과 시각 감사에서 runtime blend를 대체하지 못했다.
 - 선화 채색은 IP-Adapter 단독 목표가 아니다. line-control/colorize control과 결합해야 한다.
 - InterleaveThinker와 i1도 현 단계에서는 완성 IP-Adapter 모델이 아니다. 각각 agentic loop와 T2I recipe 참고 자료로만 사용한다.
 
@@ -921,13 +922,74 @@ SigLIP 계열은 한 장 overfit이 성공했고, PE-style patch/PE-space/retrie
 
 1. 현재 SigLIP recipe를 실험용으로 문서화하되, c035 decision은 `not_ready`로 유지한다.
 2. 다음 방향은 `agentic_reference_control_loop`를 먼저 만들고, 그 결과로 `train_stronger_encoder`를 실행할지 결정하는 것이다.
-3. frozen SigLIP2 adapter-only 반복이 아니라 anime/manhwa 특화 encoder, QwenVL feature calibrator, image-encoder adaptation, 또는 i1식 data/recaption recipe를 검증한다. 단, c037 기준 pooled PE/QwenVL/SigLIP2 feature는 모두 weak identity proxy를 통과하지 못했고 c038은 duplicate sanity만 통과했으며 c039/c040 후보 mining은 아직 true same-character label을 자동 확정하지 못했다. c041/c042 reviewed seed도 너무 작고 raw feature gate를 통과하지 못했다. c043-c052 결과 QwenVL pooled가 reviewed identity ranking/gating metric으로 가장 유효하고 diverse seed에서도 안정적이므로, c053에서 bounded QwenVL continuation을 실행했다. c054 생성 gate에서는 일부 특수 trait 개선은 확인했지만 metric regression이 있었다. c055는 clean32와 c052 positives를 섞은 metric-preserving mixed continuation이고, c056에서는 c052보다 개선됐지만 이전 retrieval을 넘지 못했다. c057에서는 previous retrieval + c055 runtime blend가 현재 최고 후보가 되었고, c058 larger gate에서는 평균 metric best까지 확인했다. 다만 시각적으로 final pass가 아니므로 다음은 blend distillation 또는 failure-focused continuation이다.
+3. frozen SigLIP2 adapter-only 반복이 아니라 anime/manhwa 특화 encoder, QwenVL feature calibrator, image-encoder adaptation, 또는 i1식 data/recaption recipe를 검증한다. 단, c037 기준 pooled PE/QwenVL/SigLIP2 feature는 모두 weak identity proxy를 통과하지 못했고 c038은 duplicate sanity만 통과했으며 c039/c040 후보 mining은 아직 true same-character label을 자동 확정하지 못했다. c041/c042 reviewed seed도 너무 작고 raw feature gate를 통과하지 못했다. c043-c052 결과 QwenVL pooled가 reviewed identity ranking/gating metric으로 가장 유효하고 diverse seed에서도 안정적이므로, c053에서 bounded QwenVL continuation을 실행했다. c054 생성 gate에서는 일부 특수 trait 개선은 확인했지만 metric regression이 있었다. c055는 clean32와 c052 positives를 섞은 metric-preserving mixed continuation이고, c056에서는 c052보다 개선됐지만 이전 retrieval을 넘지 못했다. c057에서는 previous retrieval + c055 runtime blend가 현재 최고 후보가 되었고, c058 larger gate에서는 평균 metric best까지 확인했다. c059 단순 checkpoint merge는 QwenVL metric 동률에도 PE/visual에서 pass하지 못했으므로, 다음은 단순 merge가 아니라 failure-focused continuation 또는 stronger encoder/feature adaptation이다.
 4. 자동 attribute prompt vocabulary는 유지하되, 이것만으로 identity 문제를 해결했다고 보지 않는다.
 5. single-character suite를 더 큰 held-out set으로 확장하고, metric과 visual audit gate를 계속 같이 사용한다.
 6. FaceID-like 목표는 별도 단계로 분리한다. same-character group mining과 애니/만화 identity encoder가 먼저 필요하다.
 7. 선화 채색은 reference-control과 분리해서 EasyControl/ControlNet류 spatial colorize checkpoint를 별도 학습한 뒤 결합한다.
 
-## 10. 근거 파일 색인
+## 10. 2026-06-12 c059 QwenVL checkpoint merge gate
+
+### 목적
+
+c058에서 가장 좋은 runtime recipe는 `blend_prev14_c05504`, 즉 이전 retrieval checkpoint를 weight `1.4`로 적용한 뒤 c055 mixed checkpoint를 weight `0.4`로 약하게 추가 적용하는 방식이었다. 이 방식은 평균 metric은 좋지만 ComfyUI workflow에서 두 adapter apply node가 필요하다. c059는 이 runtime blend를 하나의 단일 QwenVL adapter checkpoint로 근사할 수 있는지 확인하기 위해 시작했다.
+
+### 개발한 것
+
+- `tools/merge_qwenvl_checkpoints.py`
+  - 같은 key/shape를 가진 QwenVL adapter checkpoint 두 개를 parameter interpolation으로 병합한다.
+  - floating tensor는 `(1 - alpha) * base + alpha * update`로 병합한다.
+  - non-floating tensor는 값이 같을 때만 보존하고, 다르면 실패시킨다.
+- `tests/test_qwenvl_checkpoint_merge.py`
+  - alpha 범위, key mismatch, shape mismatch, non-floating tensor guard, 파일 출력 summary를 검증한다.
+- 생성한 checkpoint:
+  - `checkpoints/anima_qwenvl_ip_adapter_c059_merge_prev_c055_a0250.safetensors`
+  - `checkpoints/anima_qwenvl_ip_adapter_c059_merge_prev_c055_a0400.safetensors`
+
+### 데이터셋과 평가 방식
+
+- c058과 같은 `local_color_single_character_clean32_20260611.jsonl` train 32개와 `local_color_single_character_clean32_heldout8_20260611.jsonl` heldout 8개를 사용했다.
+- 비교 열:
+  - `no_ip`
+  - `prev_w14`
+  - `blend_prev14_c05504`
+  - `merge_a025_w14`
+  - `merge_a040_w14`
+- ComfyUI API 생성 결과는 총 40샘플 × 5variant = 200 PNG다.
+- 검증 관점:
+  - ComfyUI loader model selection에 c059 checkpoint가 보이는지
+  - 생성 PNG가 모두 nonblank인지
+  - PE/QwenVL similarity metric에서 no-IP 대비 uplift가 있는지
+  - contact sheet에서 heldout failure class가 해결되는지
+
+### 결과
+
+- 생성: 200 PNG, blank 0.
+- contact sheets:
+  - `eval/qwenvl_c059_checkpoint_merge_gate_20260612/contact_sheet_train.jpg`
+  - `eval/qwenvl_c059_checkpoint_merge_gate_20260612/contact_sheet_heldout.jpg`
+- PE metric:
+  - `blend_prev14_c05504`: mean uplift `+0.049596`, improved rate `0.725`
+  - `prev_w14`: mean uplift `+0.029240`, improved rate `0.750`
+  - `merge_a025_w14`: mean uplift `+0.025643`, improved rate `0.600`
+  - `merge_a040_w14`: mean uplift `+0.025837`, improved rate `0.475`
+- QwenVL metric:
+  - `merge_a040_w14`: mean uplift `+0.041614`, improved rate `0.800`
+  - `blend_prev14_c05504`: mean uplift `+0.041589`, improved rate `0.800`
+  - `merge_a025_w14`: mean uplift `+0.038867`, improved rate `0.800`
+  - `prev_w14`: mean uplift `+0.036187`, improved rate `0.725`
+
+### 판단
+
+`merge_a040_w14`는 QwenVL metric만 보면 runtime blend와 거의 동률이다. 하지만 PE metric은 runtime blend보다 크게 낮고, contact sheet에서도 c058의 핵심 실패 클래스가 해결되지 않았다. 특히 `heldout06`은 관모/수염 cue는 잡지만 표정과 crop이 악역 템플릿으로 밀리고, `heldout07`은 초록 괴물 측면 close-up이 dark demon/assassin 전신 이미지로 무너진다.
+
+따라서 c059 decision은 `single_checkpoint_merge_not_quality_pass_runtime_blend_remains_best`다.
+
+### 다음 결정
+
+단순 parameter-space checkpoint merge는 더 파지 않는다. 다음 루프는 failure-focused continuation 또는 stronger encoder/feature adaptation으로 넘어가야 한다. 학습/평가에서 직접 압박해야 할 실패 클래스는 pose/crop, speech bubble, hand/fan prop, non-human silhouette이다.
+
+## 11. 근거 파일 색인
 
 핵심 문서:
 
@@ -960,6 +1022,7 @@ SigLIP 계열은 한 장 overfit이 성공했고, PE-style patch/PE-space/retrie
 - `eval/qwenvl_c055_generation_gate_20260612_c056/report.md`
 - `eval/qwenvl_c055_runtime_blend_gate_20260612_c057/report.md`
 - `eval/qwenvl_c055_larger_blend_gate_20260612_c058/report.md`
+- `eval/qwenvl_c059_checkpoint_merge_gate_20260612/report.md`
 
 PE baseline:
 
@@ -1009,6 +1072,11 @@ QwenVL 주요 평가:
 - `eval/qwenvl_c055_larger_blend_gate_20260612_c058/visual_audit.md`
 - `eval/qwenvl_c055_larger_blend_gate_20260612_c058/pe_similarity_metrics.json`
 - `eval/qwenvl_c055_larger_blend_gate_20260612_c058/qwenvl_similarity_metrics.json`
+- `eval/qwenvl_c059_checkpoint_merge_gate_20260612/report.md`
+- `eval/qwenvl_c059_checkpoint_merge_gate_20260612/visual_audit.md`
+- `eval/qwenvl_c059_checkpoint_merge_gate_20260612/merge_summary.json`
+- `eval/qwenvl_c059_checkpoint_merge_gate_20260612/pe_similarity_metrics.json`
+- `eval/qwenvl_c059_checkpoint_merge_gate_20260612/qwenvl_similarity_metrics.json`
 
 생성/학습 manifest:
 
