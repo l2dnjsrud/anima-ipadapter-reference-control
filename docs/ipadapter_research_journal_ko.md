@@ -576,6 +576,45 @@ c044 reviewed seed와 c047 top20 reviewed seed를 pair_id 기준으로 결합하
 
 QwenVL pooled가 c045보다 큰 reviewed seed에서도 안정적으로 통과했다. 이제 QwenVL pooled는 후보 ranking/gating metric으로 승격한다. 다만 이것은 여전히 feature gate이며, 생성 품질 통과는 아니다.
 
+### 7.25 2026-06-12 QwenVL rank21-40 reviewed identity c049
+
+c046 QwenVL rank 21-40을 수동 라벨링했다.
+
+- 입력 후보: `eval/qwenvl_rank21_40_reviewed_identity_20260612_c049/rank21_40_review_candidates.jsonl`
+- 라벨: `eval/qwenvl_rank21_40_reviewed_identity_20260612_c049/manual_visual_labels.jsonl`
+- reviewed manifest: `eval/qwenvl_rank21_40_reviewed_identity_20260612_c049/reviewed_candidate_pairs.jsonl`
+- 보고서: `eval/qwenvl_rank21_40_reviewed_identity_20260612_c049/report.md`
+
+결과는 `same_character=9`, `different_character=9`, `unclear=2`, `positive_usable=3`이다.
+
+결정: `qwenvl_rank21_40_precision_drops_adds_hard_negatives`
+
+rank 21-40은 top20보다 노이즈가 뚜렷하게 늘었다. clean positive 확장보다는 hard negative와 noisy same-character 사례를 추가하는 데 더 유용하다.
+
+### 7.26 2026-06-12 Combined rank40 QwenVL gate c050
+
+c048 combined seed에 c049 reviewed rows를 결합해 QwenVL pooled gate를 다시 확인했다.
+
+- combined reviewed seed: `eval/qwenvl_combined_rank40_feature_probe_20260612_c050/combined_reviewed_candidate_pairs.jsonl`
+- pair probe manifest: `eval/qwenvl_combined_rank40_feature_probe_20260612_c050/pair_probe_manifest.jsonl`
+- QwenVL pooled score: `eval/qwenvl_combined_rank40_feature_probe_20260612_c050/qwenvl_pooled_scores.json`
+- QwenVL pooled report: `eval/qwenvl_combined_rank40_feature_probe_20260612_c050/qwenvl_pooled_report.md`
+- 보고서: `eval/qwenvl_combined_rank40_feature_probe_20260612_c050/report.md`
+
+결과:
+
+- combined reviewed rows: `52`
+- feature-probe rows: `36`
+- positive pairs: `19`
+- negative pairs: `17`
+- QwenVL pooled margin: `0.081599`
+- QwenVL pooled AUC: `0.900929`
+- midpoint accuracy: `0.861111`
+
+결정: `qwenvl_pooled_identity_gate_stable_on_rank40_combined_seed`
+
+rank21-40의 노이즈를 넣어도 QwenVL pooled gate는 안정적으로 통과했다. 이제 더 큰 reviewed set을 만들 때 QwenVL pooled를 primary ranking/gating metric으로 사용하는 판단을 유지한다.
+
 ## 8. 현재 판단
 
 ### 바로 믿고 쓸 수 있는 것
@@ -598,6 +637,7 @@ QwenVL pooled가 c045보다 큰 reviewed seed에서도 안정적으로 통과했
 - c044/c045 기준 QwenVL pooled는 작은 reviewed identity proxy gate를 통과했다. 그러나 seed가 작고 편중되어 있어 adapter 학습이 아니라 더 큰 후보 ranking/라벨링에 먼저 사용한다.
 - c046 기준 QwenVL ranking은 top20의 same-character 후보 밀도를 높인다. 하지만 top40 전체를 자동 positive로 승격할 정도는 아니다.
 - c047/c048 기준 QwenVL pooled identity gate는 combined seed에서도 안정적으로 통과했다. 다음 단계는 이 metric을 사용해 더 큰 reviewed identity set을 만들고, 그 다음 adapter/metric-head 학습 여부를 결정하는 것이다.
+- c049/c050 기준 top40 하위권은 노이즈가 크지만 QwenVL pooled gate 자체는 rank40 combined seed에서도 안정적이다.
 - 선화 채색은 IP-Adapter 단독 목표가 아니다. line-control/colorize control과 결합해야 한다.
 - InterleaveThinker와 i1도 현 단계에서는 완성 IP-Adapter 모델이 아니다. 각각 agentic loop와 T2I recipe 참고 자료로만 사용한다.
 
@@ -609,7 +649,7 @@ SigLIP 계열은 한 장 overfit이 성공했고, PE-style patch/PE-space/retrie
 
 1. 현재 SigLIP recipe를 실험용으로 문서화하되, c035 decision은 `not_ready`로 유지한다.
 2. 다음 방향은 `agentic_reference_control_loop`를 먼저 만들고, 그 결과로 `train_stronger_encoder`를 실행할지 결정하는 것이다.
-3. frozen SigLIP2 adapter-only 반복이 아니라 anime/manhwa 특화 encoder, QwenVL feature calibrator, image-encoder adaptation, 또는 i1식 data/recaption recipe를 검증한다. 단, c037 기준 pooled PE/QwenVL/SigLIP2 feature는 모두 weak identity proxy를 통과하지 못했고 c038은 duplicate sanity만 통과했으며 c039/c040 후보 mining은 아직 true same-character label을 자동 확정하지 못했다. c041/c042 reviewed seed도 너무 작고 raw feature gate를 통과하지 못했다. c043-c048 결과 QwenVL pooled가 reviewed identity ranking/gating metric으로 가장 유효하므로, 다음 단계는 QwenVL 기반 larger reviewed identity set 구축이다.
+3. frozen SigLIP2 adapter-only 반복이 아니라 anime/manhwa 특화 encoder, QwenVL feature calibrator, image-encoder adaptation, 또는 i1식 data/recaption recipe를 검증한다. 단, c037 기준 pooled PE/QwenVL/SigLIP2 feature는 모두 weak identity proxy를 통과하지 못했고 c038은 duplicate sanity만 통과했으며 c039/c040 후보 mining은 아직 true same-character label을 자동 확정하지 못했다. c041/c042 reviewed seed도 너무 작고 raw feature gate를 통과하지 못했다. c043-c050 결과 QwenVL pooled가 reviewed identity ranking/gating metric으로 가장 유효하므로, 다음 단계는 중복 protagonist 편중을 줄이고 새 SG page를 더 많이 포함한 larger reviewed identity set 구축이다.
 4. 자동 attribute prompt vocabulary는 유지하되, 이것만으로 identity 문제를 해결했다고 보지 않는다.
 5. single-character suite를 더 큰 held-out set으로 확장하고, metric과 visual audit gate를 계속 같이 사용한다.
 6. FaceID-like 목표는 별도 단계로 분리한다. same-character group mining과 애니/만화 identity encoder가 먼저 필요하다.
@@ -638,6 +678,8 @@ SigLIP 계열은 한 장 overfit이 성공했고, PE-style patch/PE-space/retrie
 - `eval/qwenvl_ranked_identity_candidates_20260612_c046/report.md`
 - `eval/qwenvl_top20_reviewed_identity_20260612_c047/report.md`
 - `eval/qwenvl_combined_seed_feature_probe_20260612_c048/report.md`
+- `eval/qwenvl_rank21_40_reviewed_identity_20260612_c049/report.md`
+- `eval/qwenvl_combined_rank40_feature_probe_20260612_c050/report.md`
 
 PE baseline:
 

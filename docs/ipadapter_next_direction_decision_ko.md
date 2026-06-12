@@ -49,6 +49,8 @@ SELECTED: `agentic_reference_control_loop` -> `train_stronger_encoder`
 | QwenVL-ranked candidates c046 | 전체 same-page 후보 372쌍을 face-filter 후 QwenVL pooled로 ranking | face-filtered 65쌍, top40은 27개 SG page 분산, top20까지 precision 좋음 | label top20 next |
 | QwenVL top20 review c047 | c046 top20 수동 라벨링 | same 18, unclear 2, usable positive 14 | high positive yield |
 | Combined seed gate c048 | c044 hard negatives + c047 positives로 QwenVL gate 반복 | 18 positive / 15 negative, margin 0.088, AUC 0.907 | QwenVL gate stable |
+| QwenVL rank21-40 c049 | c046 rank21-40 수동 라벨링 | same 9, different 9, unclear 2, usable positive 3 | precision drops |
+| Combined rank40 gate c050 | c048 + c049로 QwenVL gate 반복 | 19 positive / 17 negative, margin 0.082, AUC 0.901 | QwenVL gate still stable |
 | QwenVL adapter-only | QwenVL embedding을 adapter에 직접 연결 | 출력 변화는 있으나 generic wuxia/interior collapse | 현재 방식 보류 |
 | line-art colorization | IP-Adapter 단독 선화 채색 | 색/스타일 압력은 있으나 구조 보존 실패. EasyControl 결합 필요 | 별도 spatial-control track |
 | InterleaveThinker | agentic interleaved generation 연구 | planner/critic loop가 출력 편차를 찾고 지시를 수정한다 | reference-control audit loop 참고 |
@@ -280,6 +282,20 @@ c047에서 c046 top20을 라벨링했다. 결과는 `same_character=18`, `differ
 c048에서 c044 hard negatives와 c047 positives를 결합했다. combined seed는 reviewed rows `44`, positive pairs `18`, negative pairs `15`다. QwenVL pooled는 margin `0.087629`, AUC `0.907407`, midpoint accuracy `0.818182`로 통과했다.
 
 결론은 `qwenvl_pooled_identity_gate_stable_on_combined_seed`다. 이제 QwenVL pooled는 reviewed identity 후보 ranking/gating metric으로 채택한다. 아직 generation 품질 통과가 아니라 데이터/metric gate 통과이므로, 다음 단계는 더 큰 reviewed identity set 구축이다.
+
+## c049-c050 Rank21-40 review and stability check
+
+산출물:
+
+- `eval/qwenvl_rank21_40_reviewed_identity_20260612_c049/report.md`
+- `eval/qwenvl_combined_rank40_feature_probe_20260612_c050/report.md`
+- `eval/qwenvl_combined_rank40_feature_probe_20260612_c050/qwenvl_pooled_report.md`
+
+c049에서 c046 rank 21-40을 라벨링했다. 결과는 `same_character=9`, `different_character=9`, `unclear=2`, `positive_usable=3`이다. top20보다 clean positive 비율이 크게 낮아졌으므로, rank21-40은 positive mining보다 hard negative/noisy-same 추가에 더 유용하다.
+
+c050에서 c048 seed와 c049 rows를 결합했다. combined seed는 reviewed rows `52`, positive pairs `19`, negative pairs `17`다. QwenVL pooled는 margin `0.081599`, AUC `0.900929`, midpoint accuracy `0.861111`로 계속 통과했다.
+
+결론은 `qwenvl_pooled_identity_gate_stable_on_rank40_combined_seed`다. 다음 loop는 단순히 rank를 더 내리는 것이 아니라, 중복 protagonist 편중을 줄이고 새 SG page/새 캐릭터를 더 넣는 broader mining으로 가야 한다.
 
 ## 실행 명령
 

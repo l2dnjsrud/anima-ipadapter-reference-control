@@ -1406,10 +1406,15 @@ tested whether the current feature spaces can provide a stronger identity gate:
   same-character density than the unranked pool.
 - c047-c048: QwenVL top20 review yielded 14 usable positives, and the combined
   reviewed seed passed QwenVL pooled with margin `0.087629` and AUC `0.907407`.
+- c049-c050: rank21-40 precision dropped to 3 usable positives out of 20, but
+  QwenVL pooled still passed on the rank40 combined seed with margin `0.081599`
+  and AUC `0.900929`; detailed report:
+  `eval/qwenvl_combined_rank40_feature_probe_20260612_c050/qwenvl_pooled_report.md`.
 
 Current decision: do not start long SigLIP adapter training yet. First convert
-c048 into a larger, more diverse reviewed identity manifest using QwenVL pooled
-as the primary ranking/gating metric. If QwenVL remains stable on the larger
-set, use it as a metric for downstream adapter or metric-head training. If raw
-features fail on the larger reviewed set, train a small metric head/calibrator
-before any IP-Adapter K/V training.
+c050 into a larger, more diverse reviewed identity manifest using QwenVL pooled
+as the primary ranking/gating metric. Avoid simply lowering the rank threshold;
+prioritize new SG pages and non-duplicate characters. If QwenVL remains stable
+on the larger set, use it as a metric for downstream adapter or metric-head
+training. If raw features fail on the larger reviewed set, train a small metric
+head/calibrator before any IP-Adapter K/V training.

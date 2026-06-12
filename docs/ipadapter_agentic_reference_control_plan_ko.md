@@ -207,3 +207,16 @@ c046 top20을 수동 라벨링하고 c044 hard negatives와 결합해 QwenVL poo
 c047 결과는 `20`개 중 `positive_usable=14`다. c048 combined seed는 `18 positive / 15 negative`이고, QwenVL pooled는 margin `0.087629`, AUC `0.907407`로 통과했다.
 
 다음 loop는 QwenVL pooled를 primary ranking/gating metric으로 채택하고, 더 다양한 캐릭터가 포함된 larger reviewed identity set을 만든다. 이 단계가 끝나기 전에는 IP-Adapter K/V 학습을 시작하지 않는다.
+
+## 2026-06-12 c049-c050 rank40 stability check
+
+c046 rank 21-40을 수동 라벨링하고 c048 seed와 결합해 QwenVL pooled gate를 다시 확인했다.
+
+- rank21-40 review: `eval/qwenvl_rank21_40_reviewed_identity_20260612_c049/report.md`
+- combined rank40 gate: `eval/qwenvl_combined_rank40_feature_probe_20260612_c050/report.md`
+- combined rank40 QwenVL detail: `eval/qwenvl_combined_rank40_feature_probe_20260612_c050/qwenvl_pooled_report.md`
+- 결정: `qwenvl_pooled_identity_gate_stable_on_rank40_combined_seed`
+
+c049는 `20`개 중 `positive_usable=3`, `different_character=9`, `unclear=2`로 top20 대비 precision이 크게 낮다. c050 combined seed는 `19 positive / 17 negative`이고 QwenVL pooled는 margin `0.081599`, AUC `0.900929`로 통과했다.
+
+해석: QwenVL pooled metric은 안정적이지만, 단순히 rank를 아래로 더 내려 보는 방식은 positive 효율이 떨어진다. 다음 loop는 새 SG page/새 캐릭터 다양성을 늘리는 broader mining으로 바꾼다.
