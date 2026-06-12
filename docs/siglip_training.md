@@ -580,6 +580,38 @@ stronger-encoder loop must first build identity-positive/negative pairs and
 measure feature separation before using QwenVL pooled embeddings as a primary
 training signal or pass/fail gate.
 
+## 2026-06-12 c037 identity feature probe
+
+The c036 prerequisite was executed with a 128-pair weak identity proxy manifest
+from the local color dataset. Same `SG-*` folder pairs were treated as positive
+proxy pairs, and next `SG-*` folder pairs were treated as negative proxy pairs.
+This is not a verified same-character benchmark, but it is a useful early gate:
+if pooled features fail here, they should not become the primary identity loss.
+
+Evidence:
+
+- `tools/build_identity_pair_probe_manifest.py`
+- `tools/image_feature_embedders.py`
+- `tools/score_identity_pair_probe.py`
+- `tests/test_identity_feature_probe.py`
+- `eval/identity_feature_probe_20260612_c037/report.md`
+
+Result:
+
+| encoder | margin | pairwise AUC | decision |
+| --- | ---: | ---: | --- |
+| `Qwen/Qwen3-VL-Embedding-2B` | +0.0326 | 0.5913 | fail |
+| `google/siglip2-base-patch16-512` | +0.0132 | 0.5759 | fail |
+| `pe` | +0.0156 | 0.5806 | fail |
+
+Decision: `pooled_identity_feature_not_ready`
+
+Do not launch a long adapter training run that relies mainly on QwenVL,
+SigLIP2, or PE pooled-image cosine for identity supervision. The next branch
+should mine or label true same-character positives, add hard negatives within
+the same style/scene bucket, and test token-level or learned metric features
+before another adapter run.
+
 ## 2026-06-11 Qwen3-VL embedding probe
 
 The next encoder candidate was checked before writing another adapter training

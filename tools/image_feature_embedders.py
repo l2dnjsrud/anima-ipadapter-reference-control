@@ -66,7 +66,7 @@ class SigLIPImageEmbedder:
 
 @dataclass(frozen=True, slots=True)
 class PEImageEmbedderConfig:
-    device: str = "cuda"
+    device: str = "auto"
 
 
 class PEImageEmbedder:
@@ -74,7 +74,7 @@ class PEImageEmbedder:
         import torch
         from library.vision.encoder import load_pe_encoder
 
-        self._device = torch.device(config.device)
+        self._device = torch.device(_resolve_device(config.device))
         self._bundle = load_pe_encoder(self._device, name="pe", dtype=torch.bfloat16)
 
     def encode_image(self, image_path: Path) -> torch.Tensor:
