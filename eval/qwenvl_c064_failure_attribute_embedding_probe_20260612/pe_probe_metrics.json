@@ -1,0 +1,122 @@
+{
+  "manifest_path": "eval/qwenvl_c064_failure_attribute_embedding_probe_20260612/probe_manifest.jsonl",
+  "encoder": "pe",
+  "rows": [
+    {
+      "sample": "heldout01",
+      "failure_attribute": "old-face/speech-bubble-context-side-profile",
+      "variant": "blend_species_face",
+      "cosine": 0.8729920387268066,
+      "no_ip_cosine": 0.8289942741394043,
+      "uplift": 0.043997764587402344,
+      "rank": 1
+    },
+    {
+      "sample": "heldout01",
+      "failure_attribute": "old-face/speech-bubble-context-side-profile",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.8520408868789673,
+      "no_ip_cosine": 0.8289942741394043,
+      "uplift": 0.02304661273956299,
+      "rank": 2
+    },
+    {
+      "sample": "heldout01",
+      "failure_attribute": "old-face/speech-bubble-context-side-profile",
+      "variant": "no_ip",
+      "cosine": 0.8289942741394043,
+      "no_ip_cosine": 0.8289942741394043,
+      "uplift": 0.0,
+      "rank": 3
+    },
+    {
+      "sample": "heldout05",
+      "failure_attribute": "old-bearded-official-black-hat-upper-body-crop",
+      "variant": "blend_species_face",
+      "cosine": 0.7794915437698364,
+      "no_ip_cosine": 0.6860760450363159,
+      "uplift": 0.09341549873352051,
+      "rank": 1
+    },
+    {
+      "sample": "heldout05",
+      "failure_attribute": "old-bearded-official-black-hat-upper-body-crop",
+      "variant": "no_ip",
+      "cosine": 0.6860760450363159,
+      "no_ip_cosine": 0.6860760450363159,
+      "uplift": 0.0,
+      "rank": 2
+    },
+    {
+      "sample": "heldout05",
+      "failure_attribute": "old-bearded-official-black-hat-upper-body-crop",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.6694658994674683,
+      "no_ip_cosine": 0.6860760450363159,
+      "uplift": -0.016610145568847656,
+      "rank": 3
+    },
+    {
+      "sample": "heldout07",
+      "failure_attribute": "non-human-green-monster-side-profile-red-eye",
+      "variant": "no_ip",
+      "cosine": 0.6873522996902466,
+      "no_ip_cosine": 0.6873522996902466,
+      "uplift": 0.0,
+      "rank": 1
+    },
+    {
+      "sample": "heldout07",
+      "failure_attribute": "non-human-green-monster-side-profile-red-eye",
+      "variant": "blend_species_face",
+      "cosine": 0.591762900352478,
+      "no_ip_cosine": 0.6873522996902466,
+      "uplift": -0.09558939933776855,
+      "rank": 2
+    },
+    {
+      "sample": "heldout07",
+      "failure_attribute": "non-human-green-monster-side-profile-red-eye",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.5778734683990479,
+      "no_ip_cosine": 0.6873522996902466,
+      "uplift": -0.10947883129119873,
+      "rank": 3
+    }
+  ],
+  "case_decisions": [
+    {
+      "sample": "heldout01",
+      "failure_attribute": "old-face/speech-bubble-context-side-profile",
+      "best_variant": "blend_species_face",
+      "best_uplift": 0.043997764587402344,
+      "top_margin": 0.020951151847839355,
+      "c063_vs_blend_delta": -0.020951151847839355,
+      "decision": "encoder_space_not_enough"
+    },
+    {
+      "sample": "heldout05",
+      "failure_attribute": "old-bearded-official-black-hat-upper-body-crop",
+      "best_variant": "blend_species_face",
+      "best_uplift": 0.09341549873352051,
+      "top_margin": 0.09341549873352051,
+      "c063_vs_blend_delta": -0.11002564430236816,
+      "decision": "encoder_space_supports_supervised_signal"
+    },
+    {
+      "sample": "heldout07",
+      "failure_attribute": "non-human-green-monster-side-profile-red-eye",
+      "best_variant": "no_ip",
+      "best_uplift": 0.0,
+      "top_margin": 0.09558939933776855,
+      "c063_vs_blend_delta": -0.013889431953430176,
+      "decision": "encoder_space_not_enough"
+    }
+  ],
+  "summary": {
+    "cases": 3,
+    "supported_cases": 1,
+    "support_rate": 0.3333333333333333,
+    "decision": "encoder_space_has_partial_supervised_signal"
+  }
+}

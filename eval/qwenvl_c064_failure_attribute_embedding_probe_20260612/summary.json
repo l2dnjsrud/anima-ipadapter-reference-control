@@ -1,0 +1,378 @@
+{
+  "experiment": "c064_failure_attribute_embedding_probe",
+  "decision": "encoder_side_checkpoint_required_for_hard_failures",
+  "rationale": [
+    "QwenVL supports only heldout01; PE supports only heldout05; SigLIP2 supports 0/3.",
+    "heldout07 non-human green side-profile has no positive uplift for any encoder; no_ip ranks first in all three spaces.",
+    "Existing off-the-shelf embedding spaces are inconsistent as shallow adapter/calibrator teachers for all hard failures."
+  ],
+  "encoders": {
+    "qwenvl": {
+      "manifest_path": "eval/qwenvl_c064_failure_attribute_embedding_probe_20260612/probe_manifest.jsonl",
+      "encoder": "Qwen/Qwen3-VL-Embedding-2B",
+      "rows": [
+        {
+          "sample": "heldout01",
+          "failure_attribute": "old-face/speech-bubble-context-side-profile",
+          "variant": "c063_calibrator_only_w14",
+          "cosine": 0.8263322114944458,
+          "no_ip_cosine": 0.7300467491149902,
+          "uplift": 0.09628546237945557,
+          "rank": 1
+        },
+        {
+          "sample": "heldout01",
+          "failure_attribute": "old-face/speech-bubble-context-side-profile",
+          "variant": "blend_species_face",
+          "cosine": 0.8042338490486145,
+          "no_ip_cosine": 0.7300467491149902,
+          "uplift": 0.07418709993362427,
+          "rank": 2
+        },
+        {
+          "sample": "heldout01",
+          "failure_attribute": "old-face/speech-bubble-context-side-profile",
+          "variant": "no_ip",
+          "cosine": 0.7300467491149902,
+          "no_ip_cosine": 0.7300467491149902,
+          "uplift": 0.0,
+          "rank": 3
+        },
+        {
+          "sample": "heldout05",
+          "failure_attribute": "old-bearded-official-black-hat-upper-body-crop",
+          "variant": "blend_species_face",
+          "cosine": 0.8601299524307251,
+          "no_ip_cosine": 0.8431400060653687,
+          "uplift": 0.016989946365356445,
+          "rank": 1
+        },
+        {
+          "sample": "heldout05",
+          "failure_attribute": "old-bearded-official-black-hat-upper-body-crop",
+          "variant": "c063_calibrator_only_w14",
+          "cosine": 0.8435527682304382,
+          "no_ip_cosine": 0.8431400060653687,
+          "uplift": 0.0004127621650695801,
+          "rank": 2
+        },
+        {
+          "sample": "heldout05",
+          "failure_attribute": "old-bearded-official-black-hat-upper-body-crop",
+          "variant": "no_ip",
+          "cosine": 0.8431400060653687,
+          "no_ip_cosine": 0.8431400060653687,
+          "uplift": 0.0,
+          "rank": 3
+        },
+        {
+          "sample": "heldout07",
+          "failure_attribute": "non-human-green-monster-side-profile-red-eye",
+          "variant": "no_ip",
+          "cosine": 0.8010774850845337,
+          "no_ip_cosine": 0.8010774850845337,
+          "uplift": 0.0,
+          "rank": 1
+        },
+        {
+          "sample": "heldout07",
+          "failure_attribute": "non-human-green-monster-side-profile-red-eye",
+          "variant": "blend_species_face",
+          "cosine": 0.749078094959259,
+          "no_ip_cosine": 0.8010774850845337,
+          "uplift": -0.05199939012527466,
+          "rank": 2
+        },
+        {
+          "sample": "heldout07",
+          "failure_attribute": "non-human-green-monster-side-profile-red-eye",
+          "variant": "c063_calibrator_only_w14",
+          "cosine": 0.7473983764648438,
+          "no_ip_cosine": 0.8010774850845337,
+          "uplift": -0.05367910861968994,
+          "rank": 3
+        }
+      ],
+      "case_decisions": [
+        {
+          "sample": "heldout01",
+          "failure_attribute": "old-face/speech-bubble-context-side-profile",
+          "best_variant": "c063_calibrator_only_w14",
+          "best_uplift": 0.09628546237945557,
+          "top_margin": 0.0220983624458313,
+          "c063_vs_blend_delta": 0.0220983624458313,
+          "decision": "encoder_space_supports_supervised_signal"
+        },
+        {
+          "sample": "heldout05",
+          "failure_attribute": "old-bearded-official-black-hat-upper-body-crop",
+          "best_variant": "blend_species_face",
+          "best_uplift": 0.016989946365356445,
+          "top_margin": 0.016577184200286865,
+          "c063_vs_blend_delta": -0.016577184200286865,
+          "decision": "encoder_space_not_enough"
+        },
+        {
+          "sample": "heldout07",
+          "failure_attribute": "non-human-green-monster-side-profile-red-eye",
+          "best_variant": "no_ip",
+          "best_uplift": 0.0,
+          "top_margin": 0.05199939012527466,
+          "c063_vs_blend_delta": -0.0016797184944152832,
+          "decision": "encoder_space_not_enough"
+        }
+      ],
+      "summary": {
+        "cases": 3,
+        "supported_cases": 1,
+        "support_rate": 0.3333333333333333,
+        "decision": "encoder_space_has_partial_supervised_signal"
+      }
+    },
+    "siglip": {
+      "manifest_path": "eval/qwenvl_c064_failure_attribute_embedding_probe_20260612/probe_manifest.jsonl",
+      "encoder": "google/siglip2-base-patch16-512",
+      "rows": [
+        {
+          "sample": "heldout01",
+          "failure_attribute": "old-face/speech-bubble-context-side-profile",
+          "variant": "no_ip",
+          "cosine": 0.8604751825332642,
+          "no_ip_cosine": 0.8604751825332642,
+          "uplift": 0.0,
+          "rank": 1
+        },
+        {
+          "sample": "heldout01",
+          "failure_attribute": "old-face/speech-bubble-context-side-profile",
+          "variant": "c063_calibrator_only_w14",
+          "cosine": 0.8324583768844604,
+          "no_ip_cosine": 0.8604751825332642,
+          "uplift": -0.02801680564880371,
+          "rank": 2
+        },
+        {
+          "sample": "heldout01",
+          "failure_attribute": "old-face/speech-bubble-context-side-profile",
+          "variant": "blend_species_face",
+          "cosine": 0.8146291375160217,
+          "no_ip_cosine": 0.8604751825332642,
+          "uplift": -0.04584604501724243,
+          "rank": 3
+        },
+        {
+          "sample": "heldout05",
+          "failure_attribute": "old-bearded-official-black-hat-upper-body-crop",
+          "variant": "no_ip",
+          "cosine": 0.9032996296882629,
+          "no_ip_cosine": 0.9032996296882629,
+          "uplift": 0.0,
+          "rank": 1
+        },
+        {
+          "sample": "heldout05",
+          "failure_attribute": "old-bearded-official-black-hat-upper-body-crop",
+          "variant": "blend_species_face",
+          "cosine": 0.8925623893737793,
+          "no_ip_cosine": 0.9032996296882629,
+          "uplift": -0.010737240314483643,
+          "rank": 2
+        },
+        {
+          "sample": "heldout05",
+          "failure_attribute": "old-bearded-official-black-hat-upper-body-crop",
+          "variant": "c063_calibrator_only_w14",
+          "cosine": 0.8862670660018921,
+          "no_ip_cosine": 0.9032996296882629,
+          "uplift": -0.01703256368637085,
+          "rank": 3
+        },
+        {
+          "sample": "heldout07",
+          "failure_attribute": "non-human-green-monster-side-profile-red-eye",
+          "variant": "no_ip",
+          "cosine": 0.8352038264274597,
+          "no_ip_cosine": 0.8352038264274597,
+          "uplift": 0.0,
+          "rank": 1
+        },
+        {
+          "sample": "heldout07",
+          "failure_attribute": "non-human-green-monster-side-profile-red-eye",
+          "variant": "blend_species_face",
+          "cosine": 0.8210219144821167,
+          "no_ip_cosine": 0.8352038264274597,
+          "uplift": -0.014181911945343018,
+          "rank": 2
+        },
+        {
+          "sample": "heldout07",
+          "failure_attribute": "non-human-green-monster-side-profile-red-eye",
+          "variant": "c063_calibrator_only_w14",
+          "cosine": 0.7979201674461365,
+          "no_ip_cosine": 0.8352038264274597,
+          "uplift": -0.03728365898132324,
+          "rank": 3
+        }
+      ],
+      "case_decisions": [
+        {
+          "sample": "heldout01",
+          "failure_attribute": "old-face/speech-bubble-context-side-profile",
+          "best_variant": "no_ip",
+          "best_uplift": 0.0,
+          "top_margin": 0.02801680564880371,
+          "c063_vs_blend_delta": 0.01782923936843872,
+          "decision": "encoder_space_not_enough"
+        },
+        {
+          "sample": "heldout05",
+          "failure_attribute": "old-bearded-official-black-hat-upper-body-crop",
+          "best_variant": "no_ip",
+          "best_uplift": 0.0,
+          "top_margin": 0.010737240314483643,
+          "c063_vs_blend_delta": -0.006295323371887207,
+          "decision": "encoder_space_not_enough"
+        },
+        {
+          "sample": "heldout07",
+          "failure_attribute": "non-human-green-monster-side-profile-red-eye",
+          "best_variant": "no_ip",
+          "best_uplift": 0.0,
+          "top_margin": 0.014181911945343018,
+          "c063_vs_blend_delta": -0.023101747035980225,
+          "decision": "encoder_space_not_enough"
+        }
+      ],
+      "summary": {
+        "cases": 3,
+        "supported_cases": 0,
+        "support_rate": 0.0,
+        "decision": "encoder_side_checkpoint_required"
+      }
+    },
+    "pe": {
+      "manifest_path": "eval/qwenvl_c064_failure_attribute_embedding_probe_20260612/probe_manifest.jsonl",
+      "encoder": "pe",
+      "rows": [
+        {
+          "sample": "heldout01",
+          "failure_attribute": "old-face/speech-bubble-context-side-profile",
+          "variant": "blend_species_face",
+          "cosine": 0.8729920387268066,
+          "no_ip_cosine": 0.8289942741394043,
+          "uplift": 0.043997764587402344,
+          "rank": 1
+        },
+        {
+          "sample": "heldout01",
+          "failure_attribute": "old-face/speech-bubble-context-side-profile",
+          "variant": "c063_calibrator_only_w14",
+          "cosine": 0.8520408868789673,
+          "no_ip_cosine": 0.8289942741394043,
+          "uplift": 0.02304661273956299,
+          "rank": 2
+        },
+        {
+          "sample": "heldout01",
+          "failure_attribute": "old-face/speech-bubble-context-side-profile",
+          "variant": "no_ip",
+          "cosine": 0.8289942741394043,
+          "no_ip_cosine": 0.8289942741394043,
+          "uplift": 0.0,
+          "rank": 3
+        },
+        {
+          "sample": "heldout05",
+          "failure_attribute": "old-bearded-official-black-hat-upper-body-crop",
+          "variant": "blend_species_face",
+          "cosine": 0.7794915437698364,
+          "no_ip_cosine": 0.6860760450363159,
+          "uplift": 0.09341549873352051,
+          "rank": 1
+        },
+        {
+          "sample": "heldout05",
+          "failure_attribute": "old-bearded-official-black-hat-upper-body-crop",
+          "variant": "no_ip",
+          "cosine": 0.6860760450363159,
+          "no_ip_cosine": 0.6860760450363159,
+          "uplift": 0.0,
+          "rank": 2
+        },
+        {
+          "sample": "heldout05",
+          "failure_attribute": "old-bearded-official-black-hat-upper-body-crop",
+          "variant": "c063_calibrator_only_w14",
+          "cosine": 0.6694658994674683,
+          "no_ip_cosine": 0.6860760450363159,
+          "uplift": -0.016610145568847656,
+          "rank": 3
+        },
+        {
+          "sample": "heldout07",
+          "failure_attribute": "non-human-green-monster-side-profile-red-eye",
+          "variant": "no_ip",
+          "cosine": 0.6873522996902466,
+          "no_ip_cosine": 0.6873522996902466,
+          "uplift": 0.0,
+          "rank": 1
+        },
+        {
+          "sample": "heldout07",
+          "failure_attribute": "non-human-green-monster-side-profile-red-eye",
+          "variant": "blend_species_face",
+          "cosine": 0.591762900352478,
+          "no_ip_cosine": 0.6873522996902466,
+          "uplift": -0.09558939933776855,
+          "rank": 2
+        },
+        {
+          "sample": "heldout07",
+          "failure_attribute": "non-human-green-monster-side-profile-red-eye",
+          "variant": "c063_calibrator_only_w14",
+          "cosine": 0.5778734683990479,
+          "no_ip_cosine": 0.6873522996902466,
+          "uplift": -0.10947883129119873,
+          "rank": 3
+        }
+      ],
+      "case_decisions": [
+        {
+          "sample": "heldout01",
+          "failure_attribute": "old-face/speech-bubble-context-side-profile",
+          "best_variant": "blend_species_face",
+          "best_uplift": 0.043997764587402344,
+          "top_margin": 0.020951151847839355,
+          "c063_vs_blend_delta": -0.020951151847839355,
+          "decision": "encoder_space_not_enough"
+        },
+        {
+          "sample": "heldout05",
+          "failure_attribute": "old-bearded-official-black-hat-upper-body-crop",
+          "best_variant": "blend_species_face",
+          "best_uplift": 0.09341549873352051,
+          "top_margin": 0.09341549873352051,
+          "c063_vs_blend_delta": -0.11002564430236816,
+          "decision": "encoder_space_supports_supervised_signal"
+        },
+        {
+          "sample": "heldout07",
+          "failure_attribute": "non-human-green-monster-side-profile-red-eye",
+          "best_variant": "no_ip",
+          "best_uplift": 0.0,
+          "top_margin": 0.09558939933776855,
+          "c063_vs_blend_delta": -0.013889431953430176,
+          "decision": "encoder_space_not_enough"
+        }
+      ],
+      "summary": {
+        "cases": 3,
+        "supported_cases": 1,
+        "support_rate": 0.3333333333333333,
+        "decision": "encoder_space_has_partial_supervised_signal"
+      }
+    }
+  },
+  "next_branch": "c065_encoder_side_failure_attribute_checkpoint_or_attribute_teacher"
+}

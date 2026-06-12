@@ -1300,7 +1300,58 @@ c063 decision은 `not_promoted`다.
 
 중요한 성과는 “진짜 calibrator-only 학습 경로”가 구현되고, ComfyUI native loader에서 checkpoint가 실제로 선택/생성되는 것을 확인했다는 점이다. 하지만 원하는 고퀄 reference-control에는 부족하다. 얕은 `feature_calibrator`만 학습하는 방식은 reference identity 실패를 해결하지 못한다. 다음 루프는 adapter continuation이나 calibrator-only 반복이 아니라, QwenVL/SigLIP encoder-side adaptation, failure-attribute supervised embedding, 또는 별도 teacher/distillation objective로 넘어가야 한다.
 
-## 15. 근거 파일 색인
+## 15. c064 Failure-Attribute Embedding Probe
+
+c064는 c063 `not_promoted` 이후 바로 학습을 반복하지 않고, 기존 embedding space가 hard failure를 분리할 수 있는지 확인하기 위해 진행했다. 목적은 “QwenVL/SigLIP2/PE 중 하나를 teacher로 삼아 얕은 supervised calibrator나 adapter objective를 더 밀어도 되는가”를 먼저 판단하는 것이었다.
+
+### 입력과 boundary
+
+새 이미지는 생성하지 않았다. c063 gate의 heldout hard case 3개만 사용했다.
+
+- `heldout01`: old-face/speech-bubble/crop/side-profile context
+- `heldout05`: old bearded official, black hat, upper-body crop
+- `heldout07`: non-human green monster side-profile, red glowing eye
+
+입력 manifest는 `eval/qwenvl_c064_failure_attribute_embedding_probe_20260612/probe_manifest.jsonl`이다. 각 row는 color dataset 원본 reference와 c063 gate의 `no_ip`, `blend_species_face`, `c063_calibrator_only_w14` 이미지를 가리킨다. 이 manifest는 오프라인 probe용이며 heldout을 학습에 사용하지 않는다.
+
+### 개발한 것
+
+`tools/probe_failure_attribute_embeddings.py`를 추가했다. 이 도구는 manifest를 읽고 QwenVL/SigLIP2/PE embedder로 reference와 후보 이미지 간 cosine을 계산한다. sample별로 다음 값을 기록한다.
+
+- candidate cosine
+- no-IP 대비 uplift
+- candidate rank
+- c063 vs blend delta
+- hard failure별 binary decision
+
+`tests/test_failure_attribute_embedding_probe.py`는 fake embedder로 rank/uplift/summary decision이 맞게 계산되는지 검증한다.
+
+### 실행 결과
+
+세 encoder를 같은 manifest에 대해 순차 실행했다.
+
+- QwenVL metrics: `eval/qwenvl_c064_failure_attribute_embedding_probe_20260612/qwenvl_probe_metrics.json`
+- SigLIP2 metrics: `eval/qwenvl_c064_failure_attribute_embedding_probe_20260612/siglip_probe_metrics.json`
+- PE metrics: `eval/qwenvl_c064_failure_attribute_embedding_probe_20260612/pe_probe_metrics.json`
+- 종합 summary/report: `eval/qwenvl_c064_failure_attribute_embedding_probe_20260612/summary.json`, `report.md`
+
+요약:
+
+| encoder | supported cases | 핵심 실패 |
+| --- | ---: | --- |
+| QwenVL | `1/3` | heldout01만 support. heldout05는 uplift가 약하고 heldout07은 no-IP가 1위 |
+| SigLIP2 | `0/3` | 세 hard case 모두 no-IP가 1위 |
+| PE | `1/3` | heldout05만 support. heldout07은 no-IP가 1위 |
+
+### 판단
+
+c064 decision은 `encoder_side_checkpoint_required_for_hard_failures`다.
+
+가장 중요한 근거는 `heldout07`이다. non-human green side-profile은 세 encoder 모두에서 `no_ip`가 1위였고, `blend_species_face`와 `c063_calibrator_only_w14`는 모두 negative uplift였다. 즉 현재 off-the-shelf QwenVL/SigLIP2/PE pooled feature는 이 실패 속성을 안정적으로 reference-control teacher로 제공하지 못한다.
+
+따라서 다음 루프는 adapter continuation, checkpoint merge, instruction-only, calibrator-only 반복이 아니다. c065는 color single-character crop 기반으로 failure-attribute encoder-side checkpoint 또는 attribute teacher/reranker를 설계해야 한다. 우선순위는 encoder 자체가 non-human species, side-profile silhouette, beard/headwear, crop context를 generic human template보다 잘 분리하도록 만드는 쪽이다.
+
+## 16. 근거 파일 색인
 
 핵심 문서:
 
@@ -1344,6 +1395,9 @@ c063 decision은 `not_promoted`다.
 - `eval/qwenvl_c063_calibrator_only_training_20260612/report.md`
 - `eval/qwenvl_c063_calibrator_only_gate_20260612/report.md`
 - `eval/qwenvl_c063_calibrator_only_gate_20260612/visual_audit.md`
+- `docs/c064_failure_attribute_embedding_probe_plan_ko.md`
+- `eval/qwenvl_c064_failure_attribute_embedding_probe_20260612/report.md`
+- `eval/qwenvl_c064_failure_attribute_embedding_probe_20260612/summary.json`
 
 PE baseline:
 
@@ -1417,6 +1471,11 @@ QwenVL 주요 평가:
 - `eval/qwenvl_c063_calibrator_only_gate_20260612/visual_audit.md`
 - `eval/qwenvl_c063_calibrator_only_gate_20260612/pe_similarity_metrics.json`
 - `eval/qwenvl_c063_calibrator_only_gate_20260612/qwenvl_similarity_metrics.json`
+- `eval/qwenvl_c064_failure_attribute_embedding_probe_20260612/report.md`
+- `eval/qwenvl_c064_failure_attribute_embedding_probe_20260612/summary.json`
+- `eval/qwenvl_c064_failure_attribute_embedding_probe_20260612/qwenvl_probe_metrics.json`
+- `eval/qwenvl_c064_failure_attribute_embedding_probe_20260612/siglip_probe_metrics.json`
+- `eval/qwenvl_c064_failure_attribute_embedding_probe_20260612/pe_probe_metrics.json`
 
 생성/학습 manifest:
 
