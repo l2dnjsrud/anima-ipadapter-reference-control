@@ -65,6 +65,7 @@ def train(
     retrieval_weight: Annotated[float, typer.Option()] = 0.0,
     retrieval_margin: Annotated[float, typer.Option()] = 0.2,
     calibrator_bottleneck_dim: Annotated[int | None, typer.Option()] = None,
+    train_calibrator_only: Annotated[bool, typer.Option()] = False,
     qwenvl_model_id: Annotated[str, typer.Option()] = DEFAULT_QWENVL,
     instruction: Annotated[str, typer.Option()] = DEFAULT_INSTRUCTION,
 ) -> None:
@@ -92,6 +93,7 @@ def train(
         retrieval_weight=retrieval_weight,
         retrieval_margin=retrieval_margin,
         calibrator_bottleneck_dim=calibrator_bottleneck_dim,
+        train_calibrator_only=train_calibrator_only,
         instruction=instruction,
     )
     console.print_json(json.dumps(asdict(summary), indent=2))

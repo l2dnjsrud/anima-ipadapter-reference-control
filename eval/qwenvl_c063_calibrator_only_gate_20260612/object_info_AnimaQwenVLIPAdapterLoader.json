@@ -1,0 +1,75 @@
+{
+  "input": {
+    "required": {
+      "ipadapter_name": [
+        [
+          "anima_ip_adapter_quality_20260610.safetensors",
+          "anima_qwenvl_ip_adapter_c052_identity_retrieval_0064_20260612.safetensors",
+          "anima_qwenvl_ip_adapter_c055_mixed_retrieval_0064_20260612.safetensors",
+          "anima_qwenvl_ip_adapter_c059_merge_prev_c055_a0250.safetensors",
+          "anima_qwenvl_ip_adapter_c059_merge_prev_c055_a0400.safetensors",
+          "anima_qwenvl_ip_adapter_c060_failure_focused_retrieval_0096_20260612.safetensors",
+          "anima_qwenvl_ip_adapter_c062_calibrator_distill_b128_0096_20260612.safetensors",
+          "anima_qwenvl_ip_adapter_c063_calibrator_only_b128_0128_20260612.safetensors",
+          "anima_qwenvl_ip_adapter_identity128_0064_20260611.safetensors",
+          "anima_qwenvl_ip_adapter_identity128_calibrated_contrastive_0064_20260611.safetensors",
+          "anima_qwenvl_ip_adapter_identity128_contrastive_0064_20260611.safetensors",
+          "anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors",
+          "anima_qwenvl_ip_adapter_single_character_retrieval_smoke_0002_20260611.safetensors",
+          "anima_qwenvl_ip_adapter_smoke_0002_20260611.safetensors",
+          "anima_siglip_ip_adapter_color64_continue_20260611.safetensors",
+          "anima_siglip_ip_adapter_identity128_1024_20260611.safetensors",
+          "anima_siglip_ip_adapter_identity128_2048_20260611.safetensors",
+          "anima_siglip_ip_adapter_identity128_calibrated_contrastive_0064_20260611.safetensors",
+          "anima_siglip_ip_adapter_identity128_calibrated_contrastive_0576_20260611.safetensors",
+          "anima_siglip_ip_adapter_identity128_calibrated_seed_20260611.safetensors",
+          "anima_siglip_ip_adapter_identity128_contrastive_0064_20260611.safetensors",
+          "anima_siglip_ip_adapter_identity128_contrastive_0512_20260611.safetensors",
+          "anima_siglip_ip_adapter_identity128_fp32_3072_20260611.safetensors",
+          "anima_siglip_ip_adapter_identity128_pe_query_patch_0064_20260611.safetensors",
+          "anima_siglip_ip_adapter_identity128_pe_teacher_0064_20260611.safetensors",
+          "anima_siglip_ip_adapter_identity8_1024_20260611.safetensors",
+          "anima_siglip_ip_adapter_pilot_20260610.safetensors",
+          "anima_siglip_ip_adapter_ref03_overfit1024_20260611.safetensors",
+          "anima_siglip_ip_adapter_self512_continue_20260611.safetensors",
+          "anima_siglip_ip_adapter_self64_continue_20260611.safetensors",
+          "anima_siglip_ip_adapter_single_character_clean32_pe_query_patch_0512_20260611.safetensors",
+          "anima_siglip_ip_adapter_single_character_clean32_pe_retrieval_0128_20260611.safetensors",
+          "anima_siglip_ip_adapter_single_character_clean32_pe_space_init_0512_20260611.safetensors",
+          "anima_siglip_ip_adapter_single_character_clean32_pe_token_anchor_0256_20260611.safetensors",
+          "anima_siglip_ip_adapter_single_character_clean32_token_sep_0256_20260611.safetensors",
+          "anima_siglip_ip_adapter_single_character_identity4_pe_query_patch_0256_20260611.safetensors",
+          "anima_siglip_ip_adapter_single_character_pe_retrieval_smoke_0002_20260611.safetensors",
+          "anima_siglip_ip_adapter_smoke_20260610.safetensors",
+          "anima_siglip_ip_adapter_teacher_smoke_0002_20260611.safetensors",
+          "ip-adapter-faceid-plusv2_sdxl.bin",
+          "ip-adapter-plus_sd15.safetensors",
+          "ip-adapter-plus_sdxl_vit-h.safetensors"
+        ]
+      ]
+    }
+  },
+  "input_order": {
+    "required": [
+      "ipadapter_name"
+    ]
+  },
+  "is_input_list": false,
+  "output": [
+    "ANIMA_QWENVL_IPADAPTER"
+  ],
+  "output_is_list": [
+    false
+  ],
+  "output_name": [
+    "ipadapter"
+  ],
+  "name": "AnimaQwenVLIPAdapterLoader",
+  "display_name": "Anima QwenVL IP-Adapter Loader",
+  "description": "",
+  "python_module": "custom_nodes.anima-ipadapter-reference-control",
+  "category": "anima/ip-adapter",
+  "output_node": false,
+  "has_intermediate_output": false,
+  "search_aliases": []
+}

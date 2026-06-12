@@ -1,0 +1,33 @@
+{
+  "steps": 128,
+  "rows_loaded": 154,
+  "first_loss": 0.33138132095336914,
+  "final_loss": 0.1937534660100937,
+  "mean_loss": 0.23729280498810112,
+  "mean_base_loss": 0.18053316185250878,
+  "mean_contrastive_loss": 0.05005351372528821,
+  "mean_retrieval_loss": 0.1962045612744987,
+  "finite_loss": true,
+  "trainable_parameters": 528384,
+  "frozen_base_parameters": 4947838963,
+  "checkpoint": {
+    "output_path": "checkpoints/anima_qwenvl_ip_adapter_c063_calibrator_only_b128_0128_20260612.safetensors",
+    "loadable": true,
+    "pe_checkpoint_rejected": true
+  },
+  "init_checkpoint_path": "checkpoints/anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors",
+  "contrastive_weight": 0.35,
+  "contrastive_margin": 0.05,
+  "retrieval_weight": 0.2,
+  "retrieval_margin": 0.2,
+  "calibrator_bottleneck_dim": 128,
+  "train_calibrator_only": true,
+  "dataset": {
+    "manifest_path": "training/manifests/c060_qwenvl_failure_focused_clean32_c052_20260612.jsonl",
+    "manifest_summary_path": "training/manifests/c060_qwenvl_failure_focused_clean32_c052_20260612.summary.json",
+    "heldout_rows_used": 0
+  },
+  "command_surface": "training/qwenvl_contrastive_cli.py with train_calibrator_only=true, calibrator_bottleneck_dim=128, and c061 species_face instruction",
+  "decision": "not_promoted_after_generation_gate",
+  "generation_gate": "eval/qwenvl_c063_calibrator_only_gate_20260612/report.md"
+}

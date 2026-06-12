@@ -56,6 +56,7 @@ class QwenVLContrastiveSummary:
     retrieval_weight: float
     retrieval_margin: float
     calibrator_bottleneck_dim: int | None
+    train_calibrator_only: bool
 
 
 def run_qwenvl_contrastive_smoke(
@@ -66,6 +67,7 @@ def run_qwenvl_contrastive_smoke(
     retrieval_weight: float = 0.0,
     retrieval_margin: float = 0.2,
     calibrator_bottleneck_dim: int | None = None,
+    train_calibrator_only: bool = False,
     instruction: str = DEFAULT_INSTRUCTION,
 ) -> QwenVLContrastiveSummary:
     validate_config(config)
@@ -105,8 +107,14 @@ def run_qwenvl_contrastive_smoke(
         config,
         device,
         calibrator_bottleneck_dim=calibrator_bottleneck_dim,
+        train_calibrator_only=train_calibrator_only,
     )
-    optimizer = torch.optim.AdamW(adapter.parameters(), lr=config.lr)
+    trainable_parameters = [
+        parameter for parameter in adapter.parameters() if parameter.requires_grad
+    ]
+    if not trainable_parameters:
+        raise SmokeInputError("QwenVL training has no trainable parameters")
+    optimizer = torch.optim.AdamW(trainable_parameters, lr=config.lr)
     scheduler = FlowMatchEulerDiscreteScheduler(num_train_timesteps=1000, shift=1.0)
     cache = prepare_qwenvl_cache(
         rows,
@@ -207,4 +215,5 @@ def run_qwenvl_contrastive_smoke(
         retrieval_weight=retrieval_weight,
         retrieval_margin=retrieval_margin,
         calibrator_bottleneck_dim=calibrator_bottleneck_dim,
+        train_calibrator_only=train_calibrator_only,
     )

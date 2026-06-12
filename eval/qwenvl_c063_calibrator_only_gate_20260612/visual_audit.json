@@ -1,0 +1,185 @@
+{
+  "decision": "not_promoted",
+  "reason": "c063 calibrator-only checkpoint is active but does not beat blend_species_face on PE metrics or visual heldout identity; QwenVL is close but not a quality pass.",
+  "metrics": {
+    "pe": {
+      "all": {
+        "blend_species_face": {
+          "variant": "blend_species_face",
+          "cases": 40,
+          "mean_cosine": 0.8150266468524933,
+          "mean_no_ip_cosine": 0.7541334316134453,
+          "mean_uplift": 0.060893215239048004,
+          "improved_rate": 0.825
+        },
+        "c063_calibrator_only_w14": {
+          "variant": "c063_calibrator_only_w14",
+          "cases": 40,
+          "mean_cosine": 0.7835986718535424,
+          "mean_no_ip_cosine": 0.7541334316134453,
+          "mean_uplift": 0.029465240240097047,
+          "improved_rate": 0.7
+        }
+      },
+      "by_split": {
+        "train": {
+          "blend_species_face": {
+            "cases": 32,
+            "mean_uplift": 0.06273302435874939,
+            "improved_rate": 0.8125
+          },
+          "c063_calibrator_only_w14": {
+            "cases": 32,
+            "mean_uplift": 0.0355512835085392,
+            "improved_rate": 0.71875
+          }
+        },
+        "heldout": {
+          "blend_species_face": {
+            "cases": 8,
+            "mean_uplift": 0.05353397876024246,
+            "improved_rate": 0.875
+          },
+          "c063_calibrator_only_w14": {
+            "cases": 8,
+            "mean_uplift": 0.00512106716632843,
+            "improved_rate": 0.625
+          }
+        }
+      },
+      "heldout_focus": {
+        "heldout01": {
+          "blend_species_face": {
+            "cosine": 0.8729920387268066,
+            "uplift": 0.043997764587402344
+          },
+          "c063_calibrator_only_w14": {
+            "cosine": 0.8520408868789673,
+            "uplift": 0.02304661273956299
+          }
+        },
+        "heldout05": {
+          "blend_species_face": {
+            "cosine": 0.7794915437698364,
+            "uplift": 0.09341549873352051
+          },
+          "c063_calibrator_only_w14": {
+            "cosine": 0.6694658994674683,
+            "uplift": -0.016610145568847656
+          }
+        },
+        "heldout07": {
+          "blend_species_face": {
+            "cosine": 0.591762900352478,
+            "uplift": -0.09558939933776855
+          },
+          "c063_calibrator_only_w14": {
+            "cosine": 0.5778734683990479,
+            "uplift": -0.10947883129119873
+          }
+        }
+      }
+    },
+    "qwenvl": {
+      "all": {
+        "blend_species_face": {
+          "variant": "blend_species_face",
+          "cases": 40,
+          "mean_cosine": 0.8232675865292549,
+          "mean_no_ip_cosine": 0.781077329814434,
+          "mean_uplift": 0.042190256714820865,
+          "improved_rate": 0.8
+        },
+        "c063_calibrator_only_w14": {
+          "variant": "c063_calibrator_only_w14",
+          "cases": 40,
+          "mean_cosine": 0.8182552918791771,
+          "mean_no_ip_cosine": 0.781077329814434,
+          "mean_uplift": 0.03717796206474304,
+          "improved_rate": 0.775
+        }
+      },
+      "by_split": {
+        "train": {
+          "blend_species_face": {
+            "cases": 32,
+            "mean_uplift": 0.04612010158598423,
+            "improved_rate": 0.8125
+          },
+          "c063_calibrator_only_w14": {
+            "cases": 32,
+            "mean_uplift": 0.04037972539663315,
+            "improved_rate": 0.78125
+          }
+        },
+        "heldout": {
+          "blend_species_face": {
+            "cases": 8,
+            "mean_uplift": 0.02647087723016739,
+            "improved_rate": 0.75
+          },
+          "c063_calibrator_only_w14": {
+            "cases": 8,
+            "mean_uplift": 0.024370908737182617,
+            "improved_rate": 0.75
+          }
+        }
+      },
+      "heldout_focus": {
+        "heldout01": {
+          "blend_species_face": {
+            "cosine": 0.8042338490486145,
+            "uplift": 0.07418709993362427
+          },
+          "c063_calibrator_only_w14": {
+            "cosine": 0.8263322114944458,
+            "uplift": 0.09628546237945557
+          }
+        },
+        "heldout05": {
+          "blend_species_face": {
+            "cosine": 0.8601299524307251,
+            "uplift": 0.016989946365356445
+          },
+          "c063_calibrator_only_w14": {
+            "cosine": 0.8435527682304382,
+            "uplift": 0.0004127621650695801
+          }
+        },
+        "heldout07": {
+          "blend_species_face": {
+            "cosine": 0.749078094959259,
+            "uplift": -0.05199939012527466
+          },
+          "c063_calibrator_only_w14": {
+            "cosine": 0.7473983764648438,
+            "uplift": -0.05367910861968994
+          }
+        }
+      }
+    }
+  },
+  "runtime_guard": {
+    "samples": 40,
+    "variants": 3,
+    "results": 120,
+    "png_count": 120,
+    "blank_count": 0,
+    "min_pixel_std": 35.8830680847168,
+    "contact_sheet_train_size": [
+      1068,
+      12040
+    ],
+    "contact_sheet_heldout_size": [
+      1068,
+      3304
+    ],
+    "comfyui_port_8116_after_shutdown": "refused"
+  },
+  "heldout_observations": {
+    "heldout01": "QwenVL uplift improves for c063, but visual result remains a young shouting warrior and still misses old-face wrinkles, speech-bubble/crop context, and the reference face structure.",
+    "heldout05": "c063 adds an official black hat/robe cue, but PE and visual identity are worse than blend_species_face; beard/crop/speech-bubble context are not reliably recovered.",
+    "heldout07": "critical failure remains: green non-human side-profile monster head collapses into a human dark-villain body template for both baseline and c063, with c063 slightly worse on both PE and QwenVL uplift."
+  },
+  "conclusion": "Calibrator-only is useful as a bug-fix/probe but not enough for the desired high-quality reference-control checkpoint. Next loop should use deeper encoder-side adaptation or an explicit failure-attribute objective rather than another shallow calibrator-only run."
+}

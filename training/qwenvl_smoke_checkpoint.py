@@ -16,6 +16,7 @@ def load_trainable_qwenvl_adapter(
     device: torch.device,
     *,
     calibrator_bottleneck_dim: int | None = None,
+    train_calibrator_only: bool = False,
 ) -> IPAdapterQwenVL:
     adapter = (
         IPAdapterQwenVL()
@@ -32,9 +33,28 @@ def load_trainable_qwenvl_adapter(
         )
     adapter.to(device=device, dtype=torch.float32)
     adapter.train()
-    for parameter in adapter.parameters():
-        parameter.requires_grad_(True)
+    _set_qwenvl_trainable_parameters(
+        adapter,
+        train_calibrator_only=train_calibrator_only,
+    )
     return adapter
+
+
+def _set_qwenvl_trainable_parameters(
+    adapter: IPAdapterQwenVL,
+    *,
+    train_calibrator_only: bool,
+) -> None:
+    if not train_calibrator_only:
+        for parameter in adapter.parameters():
+            parameter.requires_grad_(True)
+        return
+    if not hasattr(adapter, "feature_calibrator"):
+        raise ValueError("train_calibrator_only requires a calibrated QwenVL adapter")
+    for parameter in adapter.parameters():
+        parameter.requires_grad_(False)
+    for parameter in adapter.feature_calibrator.parameters():
+        parameter.requires_grad_(True)
 
 
 def save_qwenvl_adapter_checkpoint(

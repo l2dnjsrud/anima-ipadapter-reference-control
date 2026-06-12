@@ -75,6 +75,42 @@ def test_trainable_loader_can_add_qwenvl_calibrator(tmp_path: Path) -> None:
     assert all(parameter.requires_grad for parameter in adapter.parameters())
 
 
+def test_trainable_loader_can_freeze_qwenvl_except_calibrator(tmp_path: Path) -> None:
+    checkpoint = tmp_path / "base.safetensors"
+    save_qwenvl_adapter_checkpoint(_tiny_qwenvl_adapter(), checkpoint)
+
+    adapter = load_trainable_qwenvl_adapter(
+        _smoke_config(tmp_path, init_checkpoint_path=checkpoint),
+        torch.device("cpu"),
+        calibrator_bottleneck_dim=4,
+        train_calibrator_only=True,
+    )
+
+    trainable_names = {
+        name for name, parameter in adapter.named_parameters() if parameter.requires_grad
+    }
+    assert trainable_names == {
+        "feature_calibrator.norm.weight",
+        "feature_calibrator.norm.bias",
+        "feature_calibrator.down.weight",
+        "feature_calibrator.up.weight",
+    }
+
+
+def test_trainable_loader_rejects_calibrator_only_without_calibrator(
+    tmp_path: Path,
+) -> None:
+    checkpoint = tmp_path / "base.safetensors"
+    save_qwenvl_adapter_checkpoint(_tiny_qwenvl_adapter(), checkpoint)
+
+    with pytest.raises(ValueError, match="requires a calibrated QwenVL adapter"):
+        load_trainable_qwenvl_adapter(
+            _smoke_config(tmp_path, init_checkpoint_path=checkpoint),
+            torch.device("cpu"),
+            train_calibrator_only=True,
+        )
+
+
 def _tiny_qwenvl_adapter() -> IPAdapterQwenVL:
     return IPAdapterQwenVL(
         embedding_dim=12,

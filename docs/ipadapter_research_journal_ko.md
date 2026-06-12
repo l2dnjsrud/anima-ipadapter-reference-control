@@ -1219,7 +1219,88 @@ c062 decision은 `not_promoted`다.
 
 이 실험은 QwenVL native node, checkpoint loading, model selection, API generation, contact sheet generation이 실제로 작동한다는 것은 다시 확인했다. 하지만 고퀄 reference-control checkpoint로 바로 믿고 쓸 수준은 아니다. 같은 계열 checkpoint를 조금 더 이어 학습하는 방향은 효율이 낮아 보이며, 다음 루프는 encoder-side/feature adaptation 또는 failure attribute를 직접 맞히는 더 강한 objective로 넘어가야 한다.
 
-## 14. 근거 파일 색인
+## 14. c063 QwenVL calibrator-only gate
+
+c063은 c062의 중요한 반성에서 시작했다. c062는 이름상 calibrator/distillation이었지만 실제 구현에서는 adapter 전체가 `requires_grad=True`로 열려 있었다. 그래서 `calibrator_bottleneck_dim=128`을 붙였더라도 `trainable_parameters=308,176,540`인 broad adapter continuation이었다. c063의 목적은 같은 방향을 반복하지 않고, 정말로 `feature_calibrator.*`만 학습하는 작은 feature-adaptation이 효과가 있는지 확인하는 것이었다.
+
+### 구현 수정
+
+`training/qwenvl_smoke_checkpoint.py`에 `train_calibrator_only` 경로를 추가했다. 이 옵션이 켜지면 모든 QwenVL adapter parameter를 freeze하고 `feature_calibrator.norm`, `feature_calibrator.down`, `feature_calibrator.up`만 trainable로 둔다. `training/qwenvl_contrastive_smoke.py`는 optimizer가 `requires_grad=True` parameter만 받도록 바꾸었고, trainable parameter가 0개면 fail-loud 하게 했다. `training/qwenvl_contrastive_cli.py`에는 `--train-calibrator-only` 옵션을 추가했다.
+
+이 수정은 `tests/test_qwenvl_feature_calibration.py`에서 검증했다. calibrated checkpoint에서 calibrator-only trainable name이 정확히 네 개로 제한되는지, calibrator가 없는 checkpoint에 `train_calibrator_only`를 걸면 거부되는지를 테스트했다.
+
+### 학습 구성
+
+학습 데이터는 c060/c062와 같은 `training/manifests/c060_qwenvl_failure_focused_clean32_c052_20260612.jsonl`을 사용했다. 총 `154` rows이고 heldout row는 학습에 쓰지 않았다. 초기 checkpoint는 `checkpoints/anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors`였고, 출력 checkpoint는 `checkpoints/anima_qwenvl_ip_adapter_c063_calibrator_only_b128_0128_20260612.safetensors`다.
+
+주요 설정은 `128` steps, `lr=8e-5`, `contrastive_weight=0.35`, `retrieval_weight=0.20`, `calibrator_bottleneck_dim=128`, `--train-calibrator-only`, c061 `species_face` instruction이다.
+
+학습 결과:
+
+| metric | value |
+| --- | ---: |
+| rows_loaded | `154` |
+| first_loss | `0.331381` |
+| final_loss | `0.193753` |
+| mean_loss | `0.237293` |
+| finite_loss | `true` |
+| trainable_parameters | `528,384` |
+| frozen_base_parameters | `4,947,838,963` |
+| checkpoint.loadable | `true` |
+| checkpoint.pe_checkpoint_rejected | `true` |
+
+즉 c063은 c062와 달리 실제 calibrator-only 학습으로 닫혔다.
+
+### ComfyUI gate
+
+검증은 isolated ComfyUI API에서 진행했다. `/object_info`에서 `AnimaQwenVLIPAdapterLoader`, `AnimaQwenVLEncodeImage`, `AnimaQwenVLIPAdapterApply`가 모두 확인되었고, c063 checkpoint가 모델 선택 목록에 나타났다.
+
+비교 column은 다음과 같다.
+
+- `no_ip`
+- `blend_species_face`: 현재 최상 runtime preset, previous retrieval `1.4` + c055 `0.4`
+- `c063_calibrator_only_w14`: c063 checkpoint `1.4`
+
+평가 샘플은 clean32 train `32`장과 heldout `8`장, 총 `40`개였다. 총 `120` PNG가 생성되었고, blank image는 `0`개, 최소 pixel std는 `35.883`이었다. 실험 후 ComfyUI server는 종료했고 port `8116`도 닫힌 것을 확인했다.
+
+### metric 결과
+
+| metric | blend_species_face | c063_calibrator_only_w14 |
+| --- | ---: | ---: |
+| PE mean uplift | `0.060893` | `0.029465` |
+| PE train uplift | `0.062733` | `0.035551` |
+| PE heldout uplift | `0.053534` | `0.005121` |
+| QwenVL mean uplift | `0.042190` | `0.037178` |
+| QwenVL train uplift | `0.046120` | `0.040380` |
+| QwenVL heldout uplift | `0.026471` | `0.024371` |
+
+QwenVL metric만 보면 c063은 baseline에 꽤 가까워졌다. 하지만 PE metric에서는 여전히 baseline보다 크게 낮고, 특히 heldout PE uplift가 `0.005121`로 거의 이득이 없다. reference-control 모델로 승격하려면 시각적으로도 heldout identity를 회복해야 하는데, 이 조건을 통과하지 못했다.
+
+heldout focus:
+
+| sample | PE blend | PE c063 | QwenVL blend | QwenVL c063 |
+| --- | ---: | ---: | ---: | ---: |
+| `heldout01` | `0.043998` | `0.023047` | `0.074187` | `0.096285` |
+| `heldout05` | `0.093415` | `-0.016610` | `0.016990` | `0.000413` |
+| `heldout07` | `-0.095589` | `-0.109479` | `-0.051999` | `-0.053679` |
+
+### 시각 감사
+
+c063은 active checkpoint다. pose, robe tone, black/red costume balance, hand shape, purple lighting을 실제로 바꾼다. 하지만 이 변화가 reference identity 향상으로 이어지지는 않았다.
+
+대표 실패:
+
+- `heldout01`: QwenVL uplift만 보면 c063이 더 높지만, 실제 이미지는 여전히 젊은 shouting warrior 쪽으로 가며 노인 얼굴 구조, 주름, 말풍선/crop context, reference face structure가 약하다.
+- `heldout05`: c063은 official black hat/robe cue를 조금 더 넣지만, beard/crop/speech-bubble context와 정확한 얼굴은 회복하지 못했다. PE와 시각 판단 모두 기존 blend 쪽이 낫다.
+- `heldout07`: 가장 중요한 실패가 유지된다. 초록색 비인간 side-profile monster reference가 여전히 human dark-villain body template으로 붕괴한다. c063은 PE/QwenVL 둘 다 baseline보다 약간 더 낮다.
+
+### 판단
+
+c063 decision은 `not_promoted`다.
+
+중요한 성과는 “진짜 calibrator-only 학습 경로”가 구현되고, ComfyUI native loader에서 checkpoint가 실제로 선택/생성되는 것을 확인했다는 점이다. 하지만 원하는 고퀄 reference-control에는 부족하다. 얕은 `feature_calibrator`만 학습하는 방식은 reference identity 실패를 해결하지 못한다. 다음 루프는 adapter continuation이나 calibrator-only 반복이 아니라, QwenVL/SigLIP encoder-side adaptation, failure-attribute supervised embedding, 또는 별도 teacher/distillation objective로 넘어가야 한다.
+
+## 15. 근거 파일 색인
 
 핵심 문서:
 
@@ -1259,6 +1340,10 @@ c062 decision은 `not_promoted`다.
 - `eval/qwenvl_c062_calibrator_distillation_training_20260612/report.md`
 - `eval/qwenvl_c062_calibrator_distillation_gate_20260612/report.md`
 - `eval/qwenvl_c062_calibrator_distillation_gate_20260612/visual_audit.md`
+- `docs/c063_qwenvl_calibrator_only_plan_ko.md`
+- `eval/qwenvl_c063_calibrator_only_training_20260612/report.md`
+- `eval/qwenvl_c063_calibrator_only_gate_20260612/report.md`
+- `eval/qwenvl_c063_calibrator_only_gate_20260612/visual_audit.md`
 
 PE baseline:
 
@@ -1327,6 +1412,11 @@ QwenVL 주요 평가:
 - `eval/qwenvl_c062_calibrator_distillation_gate_20260612/visual_audit.md`
 - `eval/qwenvl_c062_calibrator_distillation_gate_20260612/pe_similarity_metrics.json`
 - `eval/qwenvl_c062_calibrator_distillation_gate_20260612/qwenvl_similarity_metrics.json`
+- `eval/qwenvl_c063_calibrator_only_training_20260612/report.md`
+- `eval/qwenvl_c063_calibrator_only_gate_20260612/report.md`
+- `eval/qwenvl_c063_calibrator_only_gate_20260612/visual_audit.md`
+- `eval/qwenvl_c063_calibrator_only_gate_20260612/pe_similarity_metrics.json`
+- `eval/qwenvl_c063_calibrator_only_gate_20260612/qwenvl_similarity_metrics.json`
 
 생성/학습 manifest:
 
