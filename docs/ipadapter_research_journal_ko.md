@@ -1670,7 +1670,23 @@ c074는 c073의 `external_manual_data_required` 이후 진행한 tag-backed sour
 
 다음 루프는 c075다. c075는 c074 target positives 10장을 기존 c071/c073 guard negatives와 섞어 작은 training manifest를 만들고, bounded encoder-feature training을 수행한 뒤 c035-style single-character gate 또는 direct-green heldout/proxy gate로 검증해야 한다.
 
-## 26. 근거 파일 색인
+## 26. c075 Tag-Positive QwenVL Calibrator Training And Gate
+
+c075는 c074에서 확인한 direct-green/non-human target positive 10장을 실제 학습에 넣어 본 첫 루프다. 목적은 단순히 green prompt를 강화하는 것이 아니라, QwenVL IP-Adapter embedding이 non-human species, green skin, tail, monster silhouette 같은 reference trait를 더 잘 전달하는지 확인하는 것이었다.
+
+새 도구는 `tools/c075_tag_positive_manifest.py`, `tools/c075_manifest_files.py`, `tools/c075_tag_positive_manifest_types.py`이고 테스트는 `tests/test_c075_tag_positive_manifest.py`다. manifest는 `training/manifests/c075_tag_positive_direct_green_20260612.jsonl`에 만들었다. 구성은 c074 target positive 10장을 4회 반복한 `40` rows와 c060 source rows `80`개, 총 `120` rows다. heldout rows used는 `0`, missing paths는 `0`, committed external raw image는 `0`이다. 외부 raw 이미지는 `.tmp/c075_tag_positive_direct_green_root/` 아래 symlink/caption 형태로만 두었다.
+
+학습은 previous retrieval checkpoint `checkpoints/anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors`에서 시작했고, c063에서 만든 `--train-calibrator-only` 경로를 사용했다. 출력 checkpoint는 `checkpoints/anima_qwenvl_ip_adapter_c075_tag_positive_calibrator_b128_0064_20260612.safetensors`다. 첫 실행은 root filesystem 여유 공간 부족으로 checkpoint 저장 중 실패했고, 깨진 partial checkpoint를 삭제한 뒤 재생성 가능한 ignored ComfyUI/eval raw PNG cache를 정리하고 같은 명령을 재실행했다. 최종 학습 summary는 finite_loss `true`, rows_loaded `120`, trainable_parameters `528384`, checkpoint.loadable `true`, pe_checkpoint_rejected `true`를 기록했다.
+
+ComfyUI gate는 isolated `127.0.0.1:8116`에서 진행했다. 비교 column은 `no_ip`, 현재 최상 runtime preset인 `blend_species_face`, 신규 `c075_tag_positive_w14`다. clean32+heldout8 `40` samples에서 `120` PNG를 만들고, c074 direct-green target positive `10` samples에서 `30` PNG를 추가로 만들었다. 총 generated PNG는 `150`, blank image는 `0`, 최소 pixel std는 `35.8830680847168`이다. `contact_sheet_train.jpg`, `contact_sheet_heldout.jpg`, `contact_sheet_direct_green.jpg`를 생성했다.
+
+metric 결과는 c075가 current best를 넘지 못했다. clean32+heldout8 PE mean uplift는 blend `0.0608932152`, c075 `0.0262199253`이고, QwenVL mean uplift는 blend `0.0421902567`, c075 `0.0349742755`다. direct-green focus에서는 더 약하다. PE mean uplift는 blend `0.0379917264`, c075 `-0.0206880599`이고, QwenVL mean uplift는 blend `-0.0121086836`, c075 `-0.0143850207`이다.
+
+시각적으로도 c075는 green skin/tail 같은 큰 trait는 일부 유지하지만, reference의 뿔/머리 실루엣, 네온/귀여운 채색 스타일, 얼굴 identity를 안정적으로 가져오지 못하고 무협풍 성인 humanoid로 수렴했다. heldout07의 괴물 side-profile reference도 여전히 사람형 dark villain으로 바뀐다.
+
+c075 decision은 `not_promoted_c075_tag_positive_calibrator_weaker_than_blend_species_face`다. runtime은 pass지만 품질은 pass가 아니다. 다음 루프는 같은 calibrator-only target-positive 반복이 아니라, 더 강한 encoder-side/reference feature objective 또는 실제 paired direct-green 데이터 구축으로 가야 한다.
+
+## 27. 근거 파일 색인
 
 핵심 문서:
 
@@ -1856,6 +1872,14 @@ QwenVL 주요 평가:
 - `eval/c074_tag_backed_direct_green_source_acquisition_20260612/external_candidates.jsonl`
 - `eval/c074_tag_backed_direct_green_source_acquisition_20260612/reviewed_external_labels.jsonl`
 - `eval/c074_tag_backed_direct_green_source_acquisition_20260612/summary.json`
+- `eval/qwenvl_c075_tag_positive_training_20260612/report.md`
+- `eval/qwenvl_c075_tag_positive_training_20260612/summary.json`
+- `eval/qwenvl_c075_tag_positive_gate_20260612/report.md`
+- `eval/qwenvl_c075_tag_positive_gate_20260612/visual_audit.md`
+- `eval/qwenvl_c075_tag_positive_gate_20260612/pe_similarity_metrics.json`
+- `eval/qwenvl_c075_tag_positive_gate_20260612/qwenvl_similarity_metrics.json`
+- `eval/qwenvl_c075_tag_positive_gate_20260612/direct_green_pe_similarity_metrics.json`
+- `eval/qwenvl_c075_tag_positive_gate_20260612/direct_green_qwenvl_similarity_metrics.json`
 
 생성/학습 manifest:
 
@@ -1873,6 +1897,8 @@ QwenVL 주요 평가:
 - `training/manifests/c066_direct_green_non_human_candidates_20260612.jsonl`
 - `training/manifests/c066_direct_green_non_human_candidates_20260612.summary.json`
 - `training/manifests/c066_direct_green_non_human_pairs_20260612.jsonl`
+- `training/manifests/c075_tag_positive_direct_green_20260612.jsonl`
+- `training/manifests/c075_tag_positive_direct_green_20260612.summary.json`
 - `eval/c067_attribute_teacher_reranker_seed_20260612/attribute_query_manifest.jsonl`
 - `eval/c068_reviewed_attribute_label_seed_20260612/reviewed_attribute_labels.jsonl`
 
@@ -1898,6 +1924,10 @@ QwenVL 주요 평가:
 - `tests/test_c073_external_candidate_visual_review.py`
 - `tools/c074_tag_backed_source_acquisition.py`
 - `tests/test_c074_tag_backed_source_acquisition.py`
+- `tools/c075_tag_positive_manifest.py`
+- `tools/c075_manifest_files.py`
+- `tools/c075_tag_positive_manifest_types.py`
+- `tests/test_c075_tag_positive_manifest.py`
 - `tools/siglip_auto_caption_eval.py`
 - `tools/score_siglip_auto_caption_metrics.py`
 - `workflows/anima_ipadapter_siglip_native_reference.json`
