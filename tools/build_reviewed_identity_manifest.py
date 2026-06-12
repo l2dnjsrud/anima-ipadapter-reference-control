@@ -143,12 +143,8 @@ def _read_candidates(path: Path) -> tuple[CandidateRow, ...]:
                 "anchor_id": _require_str(raw, "anchor_id", line_number),
                 "candidate_id": _require_str(raw, "candidate_id", line_number),
                 "sg_page": _require_str(raw, "sg_page", line_number),
-                "anchor_character_score": _require_float(
-                    raw, "anchor_character_score", line_number
-                ),
-                "candidate_character_score": _require_float(
-                    raw, "candidate_character_score", line_number
-                ),
+                "anchor_character_score": _require_score(raw, "anchor", line_number),
+                "candidate_character_score": _require_score(raw, "candidate", line_number),
             }
         )
     if not rows:
@@ -210,6 +206,14 @@ def _require_float(raw: Mapping[str, JsonPrimitive], key: str, line_number: int)
     if not isinstance(value, int | float):
         raise ReviewInputError(f"row {line_number} field {key} must be numeric")
     return float(value)
+
+
+def _require_score(raw: Mapping[str, JsonPrimitive], side: str, line_number: int) -> float:
+    character_key = f"{side}_character_score"
+    face_key = f"{side}_face_upper_score"
+    if character_key in raw:
+        return _require_float(raw, character_key, line_number)
+    return _require_float(raw, face_key, line_number)
 
 
 def _require_bool(raw: Mapping[str, JsonPrimitive], key: str, line_number: int) -> bool:

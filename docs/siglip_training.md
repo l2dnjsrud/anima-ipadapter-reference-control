@@ -1398,8 +1398,12 @@ tested whether the current feature spaces can provide a stronger identity gate:
   `mean_max_token` is the most promising underpowered signal.
 - c043: broad QwenVL face/upper-body filtering expanded the review pool to 30
   candidate pairs across 22 SG pages.
+- c044-c045: conservative labels produced 8 usable positives and 15 negatives;
+  QwenVL pooled passed the small reviewed identity proxy with margin `0.066209`
+  and AUC `0.791667`.
 
 Current decision: do not start long SigLIP adapter training yet. First convert
-c043 into a larger reviewed identity manifest, then rerun the feature gate. If
-raw features still fail on the larger reviewed set, train a small metric
-head/calibrator before any IP-Adapter K/V training.
+c045 into a QwenVL-ranked broader mining loop and build a larger reviewed
+identity manifest. If QwenVL remains stable on the larger set, use it as a
+ranking/gating metric. If raw features fail on the larger reviewed set, train a
+small metric head/calibrator before any IP-Adapter K/V training.

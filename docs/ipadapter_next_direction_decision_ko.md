@@ -44,6 +44,8 @@ SELECTED: `agentic_reference_control_loop` -> `train_stronger_encoder`
 | Reviewed identity c041 | c040 후보에 수동 시각 라벨을 붙여 true identity seed가 충분한지 확인 | 14개 중 same 6, different 3, unclear 5, usable positive 4 | seed only, not training gate |
 | Reviewed seed feature c042 | c041 seed에서 feature가 same/different character를 분리하는지 확인 | QwenVL pooled margin 0.024/AUC 0.667, SigLIP -6 mean_max margin 0.043/AUC 0.917 | gate not passed |
 | Broad face filter c043 | same-page 후보를 160개로 넓히고 QwenVL face/upper-body filter로 리뷰 후보 확장 | threshold 0.08 기준 30개 유지, 22개 SG page 분산. identity label 자동 확정은 아님 | needs manual labels |
+| Reviewed face seed c044 | c043 후보 30쌍을 수동 identity 라벨링 | same 12, different 15, unclear 3, usable positive 8 | seed expanded but small |
+| Reviewed face feature c045 | c044 seed에서 feature separation 재검증 | QwenVL pooled margin 0.066/AUC 0.792로 pass, 다른 feature는 fail | use QwenVL for ranking |
 | QwenVL adapter-only | QwenVL embedding을 adapter에 직접 연결 | 출력 변화는 있으나 generic wuxia/interior collapse | 현재 방식 보류 |
 | line-art colorization | IP-Adapter 단독 선화 채색 | 색/스타일 압력은 있으나 구조 보존 실패. EasyControl 결합 필요 | 별도 spatial-control track |
 | InterleaveThinker | agentic interleaved generation 연구 | planner/critic loop가 출력 편차를 찾고 지시를 수정한다 | reference-control audit loop 참고 |
@@ -237,6 +239,19 @@ c040 kept 14개를 보수적으로 라벨링했다. 결과는 `same_character=6`
 결론은 `face_upper_body_filter_expands_review_pool_not_identity_labels`다. raw same-page 후보 `160`개 중 QwenVL face/upper-body score threshold `0.08`로 `30`개를 남겼고, kept set은 `22`개 SG page에 분산됐다.
 
 이 단계는 c041의 4개 usable positive seed를 바로 학습에 쓰지 않기 위한 데이터 확장이다. contact sheet 기준 얼굴/상반신 crop 비율은 좋아졌지만 동일 인물/다른 인물 라벨은 아직 자동 확정할 수 없다. 다음 loop는 이 30쌍을 reviewed manifest로 바꾸고, 그 뒤 c042 feature probe를 더 큰 seed에서 반복하는 것이다.
+
+## c044-c045 Reviewed face seed and feature gate
+
+산출물:
+
+- `eval/reviewed_face_identity_candidates_20260612_c044/report.md`
+- `eval/reviewed_face_seed_feature_probe_20260612_c045/report.md`
+
+c044에서 c043 kept 30쌍을 보수적으로 라벨링했다. 결과는 `same_character=12`, `different_character=15`, `unclear=3`, `positive_usable=8`이다.
+
+c045에서 c042 feature probe를 반복했다. QwenVL pooled가 margin `0.066209`, AUC `0.791667`로 처음 reviewed identity proxy gate를 통과했다. SigLIP pooled, PE pooled, SigLIP layer -6 token metric은 통과하지 못했다.
+
+결론은 `qwenvl_pooled_passes_small_reviewed_identity_proxy`다. 이 결과는 QwenVL pooled를 더 큰 후보 ranking metric으로 쓸 수 있다는 뜻이지, IP-Adapter 생성 품질이 해결됐다는 뜻은 아니다. 다음 loop는 QwenVL pooled로 broader candidate pool을 rank하고, 더 큰 reviewed identity manifest를 만든다.
 
 ## 실행 명령
 

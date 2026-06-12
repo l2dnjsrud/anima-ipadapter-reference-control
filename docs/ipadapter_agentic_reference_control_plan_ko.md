@@ -171,3 +171,15 @@ c042가 underpowered였기 때문에 같은 `SG-page` non-duplicate 후보를 `1
 - 결정: `face_upper_body_filter_expands_review_pool_not_identity_labels`
 
 결과: threshold `0.08` 기준 `30/160`개를 남겼고, kept set은 `22`개 SG page에 분산됐다. contact sheet 기준 얼굴/상반신 crop 비율은 좋아졌지만, 동일 인물 라벨은 여전히 자동 확정할 수 없다. 다음 loop는 30쌍을 `same_character`, `different_character`, `unclear`로 수동 라벨링하고, SigLIP layer `-6` `mean_max_token`과 QwenVL pooled를 더 큰 reviewed seed에서 다시 검증하는 것이다.
+
+## 2026-06-12 c044-c045 reviewed face seed feature gate
+
+c043 kept 30쌍을 보수적으로 라벨링하고 feature gate를 반복했다.
+
+- reviewed seed: `eval/reviewed_face_identity_candidates_20260612_c044/report.md`
+- feature probe: `eval/reviewed_face_seed_feature_probe_20260612_c045/report.md`
+- 결정: `qwenvl_pooled_passes_small_reviewed_identity_proxy`
+
+c044 결과는 `same_character=12`, `different_character=15`, `unclear=3`, `positive_usable=8`이다. c045에서 QwenVL pooled는 margin `0.066209`, AUC `0.791667`로 gate를 통과했다. SigLIP pooled, PE pooled, SigLIP layer `-6` token metric은 fail이다.
+
+해석: QwenVL pooled를 후보 ranking metric으로 쓰는 것은 정당화됐다. 하지만 seed가 작고 일부 캐릭터에 편중되어 있으므로 adapter 학습을 시작하지 않는다. 다음 loop는 QwenVL pooled로 broader same-page/near-page 후보를 rank하고 더 큰 reviewed identity manifest를 만드는 것이다.

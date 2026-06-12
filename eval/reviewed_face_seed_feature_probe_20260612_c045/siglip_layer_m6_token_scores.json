@@ -1,0 +1,288 @@
+{
+  "manifest_path": "eval/reviewed_face_seed_feature_probe_20260612_c045/pair_probe_manifest.jsonl",
+  "data_root": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best",
+  "encoder": "google/siglip2-base-patch16-512",
+  "layer": -6,
+  "topk": 64,
+  "rows": [
+    {
+      "pair_id": "cand0024",
+      "label": "positive",
+      "anchor_id": "001-100/SG-018/mrcolor_panel_style_v4_split_edge_strict_probe_00109_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00540_SG-018-03_page_2105x2864_s02",
+      "candidate_id": "001-100/SG-018/mrcolor_panel_style_v4_split_edge_strict_probe_00110_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00540_SG-018-03_page_2105x2864_s05",
+      "scores": {
+        "pooled": 0.807658851146698,
+        "mean_max_token": 0.8117004036903381,
+        "topk_token": 0.9957285523414612
+      }
+    },
+    {
+      "pair_id": "cand0034",
+      "label": "negative",
+      "anchor_id": "001-100/SG-023/mrcolor_panel_style_v5_edge_trim_strict_00057_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00735_SG-023-13_page_2023x1137_s02",
+      "candidate_id": "001-100/SG-023/mrcolor_panel_style_v4_split_edge_strict_probe_00147_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00736_SG-023-13_page_2034x2874_s01",
+      "scores": {
+        "pooled": 0.7485654950141907,
+        "mean_max_token": 0.7407355308532715,
+        "topk_token": 0.996664822101593
+      }
+    },
+    {
+      "pair_id": "cand0036",
+      "label": "negative",
+      "anchor_id": "001-100/SG-023/mrcolor_panel_style_v4_split_edge_strict_probe_00147_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00736_SG-023-13_page_2034x2874_s01",
+      "candidate_id": "001-100/SG-023/mrcolor_panel_style_v5_edge_trim_strict_00058_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00737_SG-023-13_page_2049x1709_s02",
+      "scores": {
+        "pooled": 0.3063108026981354,
+        "mean_max_token": 0.7855440378189087,
+        "topk_token": 0.9964326620101929
+      }
+    },
+    {
+      "pair_id": "cand0038",
+      "label": "negative",
+      "anchor_id": "001-100/SG-025/mrcolor_panel_style_v5_edge_trim_strict_00065_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00797_SG-025-10_page_1965x1247_s01",
+      "candidate_id": "001-100/SG-025/mrcolor_panel_style_v4_split_edge_strict_probe_00163_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00801_SG-025-10_page_932x901_s01",
+      "scores": {
+        "pooled": 0.8533475995063782,
+        "mean_max_token": 0.732257604598999,
+        "topk_token": 0.9926396608352661
+      }
+    },
+    {
+      "pair_id": "cand0040",
+      "label": "positive",
+      "anchor_id": "001-100/SG-029/mrcolor_panel_style_v4_split_edge_strict_probe_00184_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00900_SG-029-07_page_1965x1145_s01",
+      "candidate_id": "001-100/SG-029/mrcolor_panel_style_v4_split_edge_strict_probe_00185_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00902_SG-029-07_page_998x1412_s01",
+      "scores": {
+        "pooled": 0.7083759307861328,
+        "mean_max_token": 0.7117525935173035,
+        "topk_token": 0.9887443780899048
+      }
+    },
+    {
+      "pair_id": "cand0064",
+      "label": "negative",
+      "anchor_id": "001-100/SG-037/mrcolor_panel_style_v4_split_edge_strict_probe_00254_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01191_SG-037-04_page_2023x2884_s01",
+      "candidate_id": "001-100/SG-037/mrcolor_panel_style_v4_split_edge_strict_probe_00256_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01191_SG-037-04_page_2023x2884_s03",
+      "scores": {
+        "pooled": 0.7817240953445435,
+        "mean_max_token": 0.6442248821258545,
+        "topk_token": 0.9963363409042358
+      }
+    },
+    {
+      "pair_id": "cand0072",
+      "label": "positive",
+      "anchor_id": "001-100/SG-041/mrcolor_panel_style_v4_split_edge_strict_probe_00276_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01328_SG-041-08_page_828x1287_s01",
+      "candidate_id": "001-100/SG-041/mrcolor_panel_style_v4_split_edge_strict_probe_00277_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01329_SG-041-08_page_1109x1287_s01",
+      "scores": {
+        "pooled": 0.23382852971553802,
+        "mean_max_token": 0.7256590127944946,
+        "topk_token": 0.9935877323150635
+      }
+    },
+    {
+      "pair_id": "cand0076",
+      "label": "negative",
+      "anchor_id": "001-100/SG-042/mrcolor_panel_style_v4_split_edge_strict_probe_00286_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01388_SG-042-14_page_1975x988_s02",
+      "candidate_id": "001-100/SG-042/mrcolor_panel_style_v4_split_edge_strict_probe_00287_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01389_SG-042-14_page_1965x1866_s03",
+      "scores": {
+        "pooled": 0.46460673213005066,
+        "mean_max_token": 0.74592125415802,
+        "topk_token": 0.9956157803535461
+      }
+    },
+    {
+      "pair_id": "cand0088",
+      "label": "positive",
+      "anchor_id": "001-100/SG-053/mrcolor_panel_style_v4_split_edge_strict_probe_00356_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01788_SG-053-10_page_2128x1148_s01",
+      "candidate_id": "001-100/SG-053/mrcolor_panel_style_v5_edge_trim_strict_00124_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_01789_SG-053-10_page_2026x2871_s04",
+      "scores": {
+        "pooled": 0.7124319076538086,
+        "mean_max_token": 0.8007123470306396,
+        "topk_token": 0.9894102215766907
+      }
+    },
+    {
+      "pair_id": "cand0099",
+      "label": "negative",
+      "anchor_id": "001-100/SG-059/mrcolor_panel_style_v5_edge_trim_strict_00137_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_01976_SG-059-07_page_1033x886_s01",
+      "candidate_id": "001-100/SG-059/mrcolor_panel_style_v4_split_edge_strict_probe_00388_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01978_SG-059-07_page_1033x693_s01",
+      "scores": {
+        "pooled": 0.9350676536560059,
+        "mean_max_token": 0.7454509735107422,
+        "topk_token": 0.9974408149719238
+      }
+    },
+    {
+      "pair_id": "cand0102",
+      "label": "positive",
+      "anchor_id": "001-100/SG-061/mrcolor_panel_style_v4_split_edge_strict_probe_00405_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02055_SG-061-15_page_2186x2887_s02",
+      "candidate_id": "001-100/SG-061/mrcolor_panel_style_v5_edge_trim_strict_00142_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_02056_SG-061-15_page_1965x1221_s01",
+      "scores": {
+        "pooled": 0.06778855621814728,
+        "mean_max_token": 0.7701267004013062,
+        "topk_token": 0.9971431493759155
+      }
+    },
+    {
+      "pair_id": "cand0121",
+      "label": "negative",
+      "anchor_id": "001-100/SG-080/mrcolor_panel_style_v4_split_edge_strict_probe_00476_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02601_SG-080-15_page_2092x2894_s01",
+      "candidate_id": "001-100/SG-080/mrcolor_panel_style_v4_split_edge_strict_probe_00478_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02602_SG-080-15_page_1965x2871_s01",
+      "scores": {
+        "pooled": 0.8721064329147339,
+        "mean_max_token": 0.7499568462371826,
+        "topk_token": 0.9969218373298645
+      }
+    },
+    {
+      "pair_id": "cand0123",
+      "label": "positive",
+      "anchor_id": "001-100/SG-081/mrcolor_panel_style_v5_edge_trim_strict_00177_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_02627_SG-081-07_page_1965x2128_s02",
+      "candidate_id": "001-100/SG-081/mrcolor_panel_style_v4_split_edge_strict_probe_00482_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02628_SG-081-07_page_2049x2841_s02",
+      "scores": {
+        "pooled": 0.8831465840339661,
+        "mean_max_token": 0.7744482755661011,
+        "topk_token": 0.995668351650238
+      }
+    },
+    {
+      "pair_id": "cand0127",
+      "label": "negative",
+      "anchor_id": "001-100/SG-084/mrcolor_panel_style_v4_split_edge_strict_probe_00501_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02751_SG-084-06_page_2036x2879_s01",
+      "candidate_id": "001-100/SG-084/mrcolor_panel_style_v5_edge_trim_strict_00185_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_02752_SG-084-06_page_1998x1947_s03",
+      "scores": {
+        "pooled": -0.11673077195882797,
+        "mean_max_token": 0.6938385367393494,
+        "topk_token": 0.9966436624526978
+      }
+    },
+    {
+      "pair_id": "cand0128",
+      "label": "negative",
+      "anchor_id": "001-100/SG-084/mrcolor_panel_style_v4_split_edge_strict_probe_00501_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02751_SG-084-06_page_2036x2879_s01",
+      "candidate_id": "001-100/SG-084/mrcolor_panel_style_v5_edge_trim_strict_00186_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_02753_SG-084-06_page_1965x863_s01",
+      "scores": {
+        "pooled": 0.7309010028839111,
+        "mean_max_token": 0.7053196430206299,
+        "topk_token": 0.9975048303604126
+      }
+    },
+    {
+      "pair_id": "cand0131",
+      "label": "negative",
+      "anchor_id": "001-100/SG-084/mrcolor_panel_style_v5_edge_trim_strict_00189_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_02782_SG-084-13_page_1965x884_s01",
+      "candidate_id": "001-100/SG-084/mrcolor_panel_style_v4_split_edge_strict_probe_00504_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02783_SG-084-13_page_719x703_s01",
+      "scores": {
+        "pooled": 0.6986611485481262,
+        "mean_max_token": 0.7602298259735107,
+        "topk_token": 0.9968796372413635
+      }
+    },
+    {
+      "pair_id": "cand0134",
+      "label": "positive",
+      "anchor_id": "001-100/SG-089/mrcolor_panel_style_v4_split_edge_strict_probe_00543_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03009_SG-089-11_page_2079x2907_s01",
+      "candidate_id": "001-100/SG-089/mrcolor_panel_style_v4_split_edge_strict_probe_00544_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03010_SG-089-11_page_2097x2861_s01",
+      "scores": {
+        "pooled": 0.8223338723182678,
+        "mean_max_token": 0.742216944694519,
+        "topk_token": 0.9973912239074707
+      }
+    },
+    {
+      "pair_id": "cand0137",
+      "label": "negative",
+      "anchor_id": "001-100/SG-095/mrcolor_panel_style_v4_split_edge_strict_probe_00572_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03296_SG-095-08_page_1998x1897_s01",
+      "candidate_id": "001-100/SG-095/mrcolor_panel_style_v4_split_edge_strict_probe_00573_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03296_SG-095-08_page_1998x1897_s02",
+      "scores": {
+        "pooled": 0.9086493253707886,
+        "mean_max_token": 0.7884494662284851,
+        "topk_token": 0.9980539083480835
+      }
+    },
+    {
+      "pair_id": "cand0138",
+      "label": "negative",
+      "anchor_id": "001-100/SG-095/mrcolor_panel_style_v5_edge_trim_strict_00217_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_03319_SG-095-15_page_2072x1655_s04",
+      "candidate_id": "001-100/SG-095/mrcolor_panel_style_v5_edge_trim_strict_00218_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_03320_SG-095-15_page_1965x1181_s01",
+      "scores": {
+        "pooled": 0.5954223871231079,
+        "mean_max_token": 0.7482731342315674,
+        "topk_token": 0.9934718608856201
+      }
+    },
+    {
+      "pair_id": "cand0139",
+      "label": "negative",
+      "anchor_id": "001-100/SG-095/mrcolor_panel_style_v5_edge_trim_strict_00217_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_03319_SG-095-15_page_2072x1655_s04",
+      "candidate_id": "001-100/SG-095/mrcolor_panel_style_v5_edge_trim_strict_00219_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_03321_SG-095-15_page_1965x749_s01",
+      "scores": {
+        "pooled": 0.16865088045597076,
+        "mean_max_token": 0.7189671993255615,
+        "topk_token": 0.9943462610244751
+      }
+    },
+    {
+      "pair_id": "cand0140",
+      "label": "positive",
+      "anchor_id": "001-100/SG-095/mrcolor_panel_style_v5_edge_trim_strict_00218_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_03320_SG-095-15_page_1965x1181_s01",
+      "candidate_id": "001-100/SG-095/mrcolor_panel_style_v5_edge_trim_strict_00219_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_03321_SG-095-15_page_1965x749_s01",
+      "scores": {
+        "pooled": 0.8263753056526184,
+        "mean_max_token": 0.7887539863586426,
+        "topk_token": 0.9947088956832886
+      }
+    },
+    {
+      "pair_id": "cand0142",
+      "label": "negative",
+      "anchor_id": "001-100/SG-097/mrcolor_panel_style_v4_split_edge_strict_probe_00584_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03372_SG-097-08_page_2168x2948_s01",
+      "candidate_id": "001-100/SG-097/mrcolor_panel_style_v4_split_edge_strict_probe_00585_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03372_SG-097-08_page_2168x2948_s02",
+      "scores": {
+        "pooled": 0.9630824327468872,
+        "mean_max_token": 0.7704489827156067,
+        "topk_token": 0.9978263974189758
+      }
+    },
+    {
+      "pair_id": "cand0149",
+      "label": "negative",
+      "anchor_id": "101-200/SG-106/mrcolor_panel_style_v5_edge_trim_strict_00230_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_03661_SG-106-08_page_1988x1848_s01",
+      "candidate_id": "101-200/SG-106/mrcolor_panel_style_v5_edge_trim_strict_00231_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_03661_SG-106-08_page_1988x1848_s04",
+      "scores": {
+        "pooled": 0.46357566118240356,
+        "mean_max_token": 0.7245379090309143,
+        "topk_token": 0.9963234663009644
+      }
+    }
+  ],
+  "summaries": {
+    "pooled": {
+      "positive_mean": 0.6327424421906471,
+      "negative_mean": 0.6249293918410938,
+      "separation_margin": 0.007813050349553374,
+      "pairwise_auc": 0.49166666666666664,
+      "midpoint_accuracy": 0.5217391304347826,
+      "decision": "token_feature_not_sufficiently_separated"
+    },
+    "mean_max_token": {
+      "positive_mean": 0.7656712830066681,
+      "negative_mean": 0.7369437217712402,
+      "separation_margin": 0.028727561235427856,
+      "pairwise_auc": 0.7083333333333334,
+      "midpoint_accuracy": 0.6956521739130435,
+      "decision": "token_feature_not_sufficiently_separated"
+    },
+    "topk_token": {
+      "positive_mean": 0.9940478131175041,
+      "negative_mean": 0.996206796169281,
+      "separation_margin": -0.0021589830517768638,
+      "pairwise_auc": 0.2916666666666667,
+      "midpoint_accuracy": 0.30434782608695654,
+      "decision": "token_feature_not_sufficiently_separated"
+    }
+  }
+}

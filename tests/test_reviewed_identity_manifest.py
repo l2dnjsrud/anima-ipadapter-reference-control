@@ -29,6 +29,23 @@ def _write_candidate(path: Path, pair_id: str = "cand0000") -> None:
     )
 
 
+def _write_face_candidate(path: Path) -> None:
+    path.write_text(
+        json.dumps(
+            {
+                "pair_id": "cand0000",
+                "anchor_id": "root/a",
+                "candidate_id": "root/b",
+                "sg_page": "SG-001-01",
+                "anchor_face_upper_score": 0.21,
+                "candidate_face_upper_score": 0.18,
+            }
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+
 def _write_label(path: Path, *, pair_id: str = "cand0000", label: str = "same_character") -> None:
     path.write_text(
         json.dumps(
@@ -57,6 +74,18 @@ def test_build_reviewed_rows_merges_manual_labels(tmp_path: Path) -> None:
     assert rows[0].positive_usable is True
     assert summary.same_character == 1
     assert summary.positive_usable == 1
+
+
+def test_build_reviewed_rows_accepts_face_upper_body_scores(tmp_path: Path) -> None:
+    candidate_path = tmp_path / "candidates.jsonl"
+    label_path = tmp_path / "labels.jsonl"
+    _write_face_candidate(candidate_path)
+    _write_label(label_path)
+
+    rows = build_reviewed_rows(candidate_path, label_path)
+
+    assert rows[0].anchor_character_score == 0.21
+    assert rows[0].candidate_character_score == 0.18
 
 
 def test_build_reviewed_rows_rejects_missing_label(tmp_path: Path) -> None:
