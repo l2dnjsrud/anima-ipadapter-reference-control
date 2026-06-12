@@ -647,6 +647,27 @@ pose, expression, costume, and scene. The next branch should exclude duplicate
 crops, build true same-character positives with same-scene hard negatives, and
 re-test SigLIP layer `-6` pooled plus `mean_max_token` on that stricter manifest.
 
+## 2026-06-12 c039 true identity candidate review
+
+The next loop mined same-page, non-duplicate panel candidates and rendered a
+small review sheet.
+
+Evidence:
+
+- `tools/build_true_identity_candidate_review.py`
+- `tests/test_true_identity_candidate_review.py`
+- `eval/true_identity_candidate_review_20260612_c039/candidate_pairs.jsonl`
+- `eval/true_identity_candidate_review_20260612_c039/candidate_sheet.jpg`
+- `eval/true_identity_candidate_review_20260612_c039/report.md`
+
+Decision: `same_page_candidates_need_character_filtering`
+
+Same-page candidates are useful for review-sheet generation, but visual review
+showed many different-character, background, prop, and multi-character crops.
+They should not be promoted directly into a true same-character training
+manifest. The next branch should filter for character-centered crops before
+same-character labeling or metric-head training.
+
 ## 2026-06-11 Qwen3-VL embedding probe
 
 The next encoder candidate was checked before writing another adapter training

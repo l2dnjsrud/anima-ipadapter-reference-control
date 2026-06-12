@@ -39,6 +39,7 @@ SELECTED: `agentic_reference_control_loop` -> `train_stronger_encoder`
 | QwenVL c036 metric probe | Qwen3-VL pooled image embedding이 c035 판단과 맞는지 확인 | `siglip_ref_retrieval_w14` uplift `+0.0446`, improved rate `0.90625`, 그러나 identity-fail row uplift가 identity-pass보다 높음 | auxiliary metric only |
 | Identity feature c037 | PE/QwenVL/SigLIP2 pooled feature가 약한 identity-positive/negative pair를 분리하는지 확인 | 세 encoder 모두 AUC `< 0.60`, margin `< 0.05` | pooled identity feature not ready |
 | Strict panel c038 | duplicate panel sanity control에서 feature pipeline 확인 | QwenVL/SigLIP2/PE pooled와 SigLIP `mean_max_token` 모두 duplicate panel을 분리 | sanity pass, identity unsolved |
+| Candidate review c039 | duplicate 제외 same-page 후보가 true same-character 후보로 충분한지 확인 | 후보 sheet는 생성 가능하지만 다른 인물/배경/소품 노이즈가 많음 | needs character filtering |
 | QwenVL adapter-only | QwenVL embedding을 adapter에 직접 연결 | 출력 변화는 있으나 generic wuxia/interior collapse | 현재 방식 보류 |
 | line-art colorization | IP-Adapter 단독 선화 채색 | 색/스타일 압력은 있으나 구조 보존 실패. EasyControl 결합 필요 | 별도 spatial-control track |
 | InterleaveThinker | agentic interleaved generation 연구 | planner/critic loop가 출력 편차를 찾고 지시를 수정한다 | reference-control audit loop 참고 |
@@ -153,6 +154,20 @@ positive는 같은 panel key의 v4/v5 duplicate crop이고, negative는 같은 `
 | SigLIP2 layer `-6` pooled | +0.4739 | 0.9998 | pass |
 
 결론은 `strict_duplicate_feature_sanity_pass_identity_unsolved`다. feature pipeline은 near-duplicate crop을 분리할 수 있지만, 이것은 true character identity 제어가 아니다. 다음 루프는 duplicate crop을 제외한 true same-character positive와 같은 장면/스타일 hard negative를 만들고, SigLIP layer `-6` pooled 및 `mean_max_token` 후보를 다시 검증해야 한다.
+
+## c039 True identity candidate review
+
+산출물:
+
+- `tools/build_true_identity_candidate_review.py`
+- `tests/test_true_identity_candidate_review.py`
+- `eval/true_identity_candidate_review_20260612_c039/candidate_pairs.jsonl`
+- `eval/true_identity_candidate_review_20260612_c039/candidate_sheet.jpg`
+- `eval/true_identity_candidate_review_20260612_c039/report.md`
+
+같은 `SG-page` 안의 non-duplicate panel pair 24개를 뽑아 sheet로 확인했다. 같은 장면 후보를 빠르게 모으는 데는 유용하지만, 다른 인물, 배경, 소품, 다인물 panel이 많이 섞여 true same-character positive로 자동 확정하기 어렵다.
+
+결론은 `same_page_candidates_need_character_filtering`이다. 다음 루프는 후보 양쪽이 모두 캐릭터 중심인지 먼저 거르고, 그 뒤 same-character 여부를 라벨링 가능한 sheet로 유지하는 것이다.
 
 ## 실행 명령
 

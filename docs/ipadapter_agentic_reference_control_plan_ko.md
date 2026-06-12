@@ -121,3 +121,13 @@ c037 실패가 feature pipeline 자체 문제인지 확인하기 위해 strict d
 | SigLIP2 layer `-6` pooled | 0.4739 | 0.9998 | pass |
 
 해석: encoder feature는 near-duplicate panel crop을 분리할 수 있다. c037 실패는 same-SG proxy가 true identity label로 약한 문제와, pooled feature가 character identity를 자동 보장하지 않는 문제로 본다. 다음 loop는 duplicate crop을 제외한 true same-character positive와 같은 장면/스타일 hard negative manifest를 만들고, SigLIP layer `-6` pooled 및 `mean_max_token` 후보를 true identity 기준에서 다시 검증하는 것이다.
+
+## 2026-06-12 c039 true identity candidate review 추가
+
+duplicate panel을 제외한 same-page candidate sheet를 만들고 시각 리뷰했다.
+
+- 도구: `tools/build_true_identity_candidate_review.py`
+- 산출물: `eval/true_identity_candidate_review_20260612_c039/report.md`
+- 결정: `same_page_candidates_need_character_filtering`
+
+해석: 같은 `SG-page` 안의 후보는 scene continuity가 있지만, 다른 인물/배경/소품 crop이 많이 섞인다. 자동 same-page mining을 학습용 true same-character positive로 바로 쓰면 identity metric이 오염될 수 있다. 다음 loop는 QwenVL caption 또는 visual classifier로 양쪽 crop이 모두 캐릭터 중심인지 먼저 필터링하는 `character_filtered_identity_candidate_mining`이다.
