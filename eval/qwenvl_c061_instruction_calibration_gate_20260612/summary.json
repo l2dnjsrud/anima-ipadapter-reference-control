@@ -1,0 +1,2193 @@
+{
+  "base_url": "http://127.0.0.1:8116",
+  "checkpoints": {
+    "previous_retrieval": "anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors",
+    "c055_mixed": "anima_qwenvl_ip_adapter_c055_mixed_retrieval_0064_20260612.safetensors"
+  },
+  "comparison": "reference / no_ip / blend_default / blend_identity_exact / blend_species_face",
+  "prompt_manifests": {
+    "train": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train_auto_reference_prompts.jsonl",
+    "heldout": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/heldout_auto_reference_prompts.jsonl"
+  },
+  "samples": [
+    {
+      "label": "train00",
+      "split": "train",
+      "ref_id": "001-100/SG-005/mrcolor_panel_style_v4_split_edge_strict_probe_00027_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00117_SG-005-13_page_2062x2105_s02",
+      "seed": 20260680,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, angry martial artist close-up, angry tense expression, androgynous elegant warrior, arm thrust forward action pose, raised hand martial arts gesture, long flowing black hair, young clean-shaven warrior, dark armored robe, folding fan in hand, sharp fangs visible, outdoor martial arts courtyard, purple villain aura lighting, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "angry martial artist close-up",
+        "angry tense expression",
+        "androgynous elegant warrior",
+        "arm thrust forward action pose",
+        "raised hand martial arts gesture",
+        "long flowing black hair",
+        "young clean-shaven warrior",
+        "dark armored robe",
+        "folding fan in hand",
+        "sharp fangs visible",
+        "outdoor martial arts courtyard",
+        "purple villain aura lighting"
+      ]
+    },
+    {
+      "label": "train01",
+      "split": "train",
+      "ref_id": "001-100/SG-011/mrcolor_panel_style_v4_split_edge_strict_probe_00061_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00309_SG-011-13_page_2067x2907_s02",
+      "seed": 20260681,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, long black-haired wuxia swordsman, angry tense expression, androgynous elegant warrior, long flowing black hair, side profile portrait, young clean-shaven warrior, drawn sword action pose, black martial robe with red trim, sharp fangs visible, metal shoulder armor, night palace rooftop, cool blue gray palace lighting, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "long black-haired wuxia swordsman",
+        "angry tense expression",
+        "androgynous elegant warrior",
+        "long flowing black hair",
+        "side profile portrait",
+        "young clean-shaven warrior",
+        "drawn sword action pose",
+        "black martial robe with red trim",
+        "sharp fangs visible",
+        "metal shoulder armor",
+        "night palace rooftop",
+        "cool blue gray palace lighting"
+      ]
+    },
+    {
+      "label": "train02",
+      "split": "train",
+      "ref_id": "001-100/SG-017/mrcolor_panel_style_v5_edge_trim_strict_00037_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00506_SG-017-01_page_2064x1800_s03",
+      "seed": 20260682,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, old bearded martial arts master, middle-aged court official with black hat, stern serious expression, elder male master, blue gray scholar robe and official hat, round scholar glasses, hair tied in topknot, upper body close-up portrait, pale purple-skinned villain, raised hand martial arts gesture, purple villain aura lighting, outdoor martial arts courtyard, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "old bearded martial arts master",
+        "middle-aged court official with black hat",
+        "stern serious expression",
+        "elder male master",
+        "blue gray scholar robe and official hat",
+        "round scholar glasses",
+        "hair tied in topknot",
+        "upper body close-up portrait",
+        "pale purple-skinned villain",
+        "raised hand martial arts gesture",
+        "purple villain aura lighting",
+        "outdoor martial arts courtyard"
+      ]
+    },
+    {
+      "label": "train03",
+      "split": "train",
+      "ref_id": "001-100/SG-020/mrcolor_panel_style_v5_edge_trim_strict_00048_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00604_SG-020-03_page_1993x1630_s03",
+      "seed": 20260683,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, old bearded martial arts master, angry martial artist close-up, stern serious expression, elder male master, side profile portrait, sharp fangs visible, tan traditional robe, long flowing black hair, metal shoulder armor, raised hand martial arts gesture, outdoor martial arts courtyard, purple villain aura lighting, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "old bearded martial arts master",
+        "angry martial artist close-up",
+        "stern serious expression",
+        "elder male master",
+        "side profile portrait",
+        "sharp fangs visible",
+        "tan traditional robe",
+        "long flowing black hair",
+        "metal shoulder armor",
+        "raised hand martial arts gesture",
+        "outdoor martial arts courtyard",
+        "purple villain aura lighting"
+      ]
+    },
+    {
+      "label": "train04",
+      "split": "train",
+      "ref_id": "001-100/SG-022/mrcolor_panel_style_v4_split_edge_strict_probe_00134_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00687_SG-022-06_page_1965x2841_s01",
+      "seed": 20260684,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, androgynous elegant warrior, angry martial artist close-up, long flowing black hair, sharp eyebrows and stern eyes, side profile portrait, young clean-shaven warrior, black martial robe with red trim, sharp fangs visible, drawn sword action pose, metal shoulder armor, purple villain aura lighting, outdoor martial arts courtyard, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "androgynous elegant warrior",
+        "angry martial artist close-up",
+        "long flowing black hair",
+        "sharp eyebrows and stern eyes",
+        "side profile portrait",
+        "young clean-shaven warrior",
+        "black martial robe with red trim",
+        "sharp fangs visible",
+        "drawn sword action pose",
+        "metal shoulder armor",
+        "purple villain aura lighting",
+        "outdoor martial arts courtyard"
+      ]
+    },
+    {
+      "label": "train05",
+      "split": "train",
+      "ref_id": "001-100/SG-029/mrcolor_panel_style_v4_split_edge_strict_probe_00185_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00902_SG-029-07_page_998x1412_s01",
+      "seed": 20260685,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, angry tense expression, angry martial artist close-up, androgynous elegant warrior, long flowing black hair, upper body close-up portrait, young clean-shaven warrior, black martial robe with red trim, drawn sword action pose, folding fan in hand, red glowing demonic eye, outdoor martial arts courtyard, dark night palace background, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "angry tense expression",
+        "angry martial artist close-up",
+        "androgynous elegant warrior",
+        "long flowing black hair",
+        "upper body close-up portrait",
+        "young clean-shaven warrior",
+        "black martial robe with red trim",
+        "drawn sword action pose",
+        "folding fan in hand",
+        "red glowing demonic eye",
+        "outdoor martial arts courtyard",
+        "dark night palace background"
+      ]
+    },
+    {
+      "label": "train06",
+      "split": "train",
+      "ref_id": "001-100/SG-037/mrcolor_panel_style_v4_split_edge_strict_probe_00257_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01199_SG-037-07_page_1092x2841_s02",
+      "seed": 20260686,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, side profile portrait, angry martial artist close-up, angry tense expression, androgynous elegant warrior, long flowing black hair, young clean-shaven warrior, black martial robe with red trim, drawn sword action pose, red glowing demonic eye, metal shoulder armor, outdoor martial arts courtyard, purple villain aura lighting, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "side profile portrait",
+        "angry martial artist close-up",
+        "angry tense expression",
+        "androgynous elegant warrior",
+        "long flowing black hair",
+        "young clean-shaven warrior",
+        "black martial robe with red trim",
+        "drawn sword action pose",
+        "red glowing demonic eye",
+        "metal shoulder armor",
+        "outdoor martial arts courtyard",
+        "purple villain aura lighting"
+      ]
+    },
+    {
+      "label": "train07",
+      "split": "train",
+      "ref_id": "001-100/SG-047/mrcolor_panel_style_v4_split_edge_strict_probe_00320_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01571_SG-047-12_page_1965x2897_s03",
+      "seed": 20260687,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, angry martial artist close-up, angry tense expression, old bearded martial arts master, androgynous elegant warrior, long flowing black hair, side profile portrait, black martial robe with red trim, raised hand martial arts gesture, outdoor martial arts courtyard, sharp fangs visible, dark night palace background, sword hilt visible, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "angry martial artist close-up",
+        "angry tense expression",
+        "old bearded martial arts master",
+        "androgynous elegant warrior",
+        "long flowing black hair",
+        "side profile portrait",
+        "black martial robe with red trim",
+        "raised hand martial arts gesture",
+        "outdoor martial arts courtyard",
+        "sharp fangs visible",
+        "dark night palace background",
+        "sword hilt visible"
+      ]
+    },
+    {
+      "label": "train08",
+      "split": "train",
+      "ref_id": "001-100/SG-056/mrcolor_panel_style_v4_split_edge_strict_probe_00366_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01869_SG-056-14_page_998x1815_s01",
+      "seed": 20260688,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, angry martial artist close-up, androgynous elegant warrior, angry tense expression, upper body close-up portrait, young clean-shaven warrior, long flowing black hair, drawn sword action pose, black martial robe with red trim, sharp fangs visible, metal shoulder armor, outdoor martial arts courtyard, purple villain aura lighting, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "angry martial artist close-up",
+        "androgynous elegant warrior",
+        "angry tense expression",
+        "upper body close-up portrait",
+        "young clean-shaven warrior",
+        "long flowing black hair",
+        "drawn sword action pose",
+        "black martial robe with red trim",
+        "sharp fangs visible",
+        "metal shoulder armor",
+        "outdoor martial arts courtyard",
+        "purple villain aura lighting"
+      ]
+    },
+    {
+      "label": "train09",
+      "split": "train",
+      "ref_id": "001-100/SG-060/mrcolor_panel_style_v4_split_edge_strict_probe_00394_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02023_SG-060-13_page_960x1757_s01",
+      "seed": 20260689,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, angry tense expression, side profile portrait, angry martial artist close-up, long flowing black hair, female noble court character, red glowing demonic eye, black mustache and official face, drawn sword action pose, folding fan in hand, night palace rooftop, black martial robe with red trim, misty blue moonlight, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "angry tense expression",
+        "side profile portrait",
+        "angry martial artist close-up",
+        "long flowing black hair",
+        "female noble court character",
+        "red glowing demonic eye",
+        "black mustache and official face",
+        "drawn sword action pose",
+        "folding fan in hand",
+        "night palace rooftop",
+        "black martial robe with red trim",
+        "misty blue moonlight"
+      ]
+    },
+    {
+      "label": "train10",
+      "split": "train",
+      "ref_id": "001-100/SG-068/mrcolor_panel_style_v4_split_edge_strict_probe_00427_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02213_SG-068-06_page_1003x1412_s01",
+      "seed": 20260690,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, calm seated expression, androgynous elegant warrior, angry martial artist close-up, seated full-body indoor panel, young clean-shaven warrior, long flowing black hair, drawn sword action pose, black martial robe with red trim, outdoor martial arts courtyard, folding fan in hand, pale purple-skinned villain, purple villain aura lighting, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "calm seated expression",
+        "androgynous elegant warrior",
+        "angry martial artist close-up",
+        "seated full-body indoor panel",
+        "young clean-shaven warrior",
+        "long flowing black hair",
+        "drawn sword action pose",
+        "black martial robe with red trim",
+        "outdoor martial arts courtyard",
+        "folding fan in hand",
+        "pale purple-skinned villain",
+        "purple villain aura lighting"
+      ]
+    },
+    {
+      "label": "train11",
+      "split": "train",
+      "ref_id": "001-100/SG-074/mrcolor_panel_style_v4_split_edge_strict_probe_00454_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02404_SG-074-01_page_1965x1462_s02",
+      "seed": 20260691,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, angry martial artist close-up, angry tense expression, bald old monk with long white gray beard, upper body close-up portrait, human martial arts character, sharp fangs visible, hair tied in topknot, metal shoulder armor, raised hand martial arts gesture, purple villain aura lighting, purple villain robe, night palace rooftop, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "angry martial artist close-up",
+        "angry tense expression",
+        "bald old monk with long white gray beard",
+        "upper body close-up portrait",
+        "human martial arts character",
+        "sharp fangs visible",
+        "hair tied in topknot",
+        "metal shoulder armor",
+        "raised hand martial arts gesture",
+        "purple villain aura lighting",
+        "purple villain robe",
+        "night palace rooftop"
+      ]
+    },
+    {
+      "label": "train12",
+      "split": "train",
+      "ref_id": "001-100/SG-077/mrcolor_panel_style_v4_split_edge_strict_probe_00468_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02524_SG-077-13_page_2084x2871_s02",
+      "seed": 20260692,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, angry martial artist close-up, red glowing demonic eye, angry tense expression, old bearded martial arts master, red prayer beads necklace, androgynous elegant warrior, long flowing black hair, upper body close-up portrait, tan traditional robe, purple villain aura lighting, raised hand martial arts gesture, outdoor martial arts courtyard, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "angry martial artist close-up",
+        "red glowing demonic eye",
+        "angry tense expression",
+        "old bearded martial arts master",
+        "red prayer beads necklace",
+        "androgynous elegant warrior",
+        "long flowing black hair",
+        "upper body close-up portrait",
+        "tan traditional robe",
+        "purple villain aura lighting",
+        "raised hand martial arts gesture",
+        "outdoor martial arts courtyard"
+      ]
+    },
+    {
+      "label": "train13",
+      "split": "train",
+      "ref_id": "001-100/SG-081/mrcolor_panel_style_v4_split_edge_strict_probe_00486_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02635_SG-081-10_page_2148x2902_s01",
+      "seed": 20260693,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, stern serious expression, angry martial artist close-up, androgynous elegant warrior, side profile portrait, long flowing black hair, young clean-shaven warrior, black martial robe with red trim, sharp fangs visible, drawn sword action pose, sword hilt visible, outdoor martial arts courtyard, cool blue gray palace lighting, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "stern serious expression",
+        "angry martial artist close-up",
+        "androgynous elegant warrior",
+        "side profile portrait",
+        "long flowing black hair",
+        "young clean-shaven warrior",
+        "black martial robe with red trim",
+        "sharp fangs visible",
+        "drawn sword action pose",
+        "sword hilt visible",
+        "outdoor martial arts courtyard",
+        "cool blue gray palace lighting"
+      ]
+    },
+    {
+      "label": "train14",
+      "split": "train",
+      "ref_id": "001-100/SG-083/mrcolor_panel_style_v4_split_edge_strict_probe_00494_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02718_SG-083-10_page_719x957_s01",
+      "seed": 20260694,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, old bearded martial arts master, stern serious expression, tan traditional robe, angry martial artist close-up, long flowing black hair, elder male master, upper body close-up portrait, flowing robe in motion, fur collar cloak, pale purple-skinned villain, wooden temple interior, bright daylight courtyard, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "old bearded martial arts master",
+        "stern serious expression",
+        "tan traditional robe",
+        "angry martial artist close-up",
+        "long flowing black hair",
+        "elder male master",
+        "upper body close-up portrait",
+        "flowing robe in motion",
+        "fur collar cloak",
+        "pale purple-skinned villain",
+        "wooden temple interior",
+        "bright daylight courtyard"
+      ]
+    },
+    {
+      "label": "train15",
+      "split": "train",
+      "ref_id": "001-100/SG-087/mrcolor_panel_style_v4_split_edge_strict_probe_00522_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02913_SG-087-15_page_878x1036_s01",
+      "seed": 20260695,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, bald old monk with prayer beads, bald old monk with long white gray beard, stern serious expression, elder male master, upper body close-up portrait, green scholar robe, red glowing demonic eye, red prayer beads necklace, raised hand martial arts gesture, hair tied in topknot, outdoor martial arts courtyard, purple villain aura lighting, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "bald old monk with prayer beads",
+        "bald old monk with long white gray beard",
+        "stern serious expression",
+        "elder male master",
+        "upper body close-up portrait",
+        "green scholar robe",
+        "red glowing demonic eye",
+        "red prayer beads necklace",
+        "raised hand martial arts gesture",
+        "hair tied in topknot",
+        "outdoor martial arts courtyard",
+        "purple villain aura lighting"
+      ]
+    },
+    {
+      "label": "train16",
+      "split": "train",
+      "ref_id": "001-100/SG-090/mrcolor_panel_style_v4_split_edge_strict_probe_00550_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03067_SG-090-12_page_2143x2915_s02",
+      "seed": 20260696,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, angry martial artist close-up, angry tense expression, androgynous elegant warrior, hair tied in topknot, young clean-shaven warrior, upper body close-up portrait, black martial robe with red trim, raised hand martial arts gesture, sharp fangs visible, sword hilt visible, purple villain aura lighting, outdoor martial arts courtyard, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "angry martial artist close-up",
+        "angry tense expression",
+        "androgynous elegant warrior",
+        "hair tied in topknot",
+        "young clean-shaven warrior",
+        "upper body close-up portrait",
+        "black martial robe with red trim",
+        "raised hand martial arts gesture",
+        "sharp fangs visible",
+        "sword hilt visible",
+        "purple villain aura lighting",
+        "outdoor martial arts courtyard"
+      ]
+    },
+    {
+      "label": "train17",
+      "split": "train",
+      "ref_id": "001-100/SG-097/mrcolor_panel_style_v4_split_edge_strict_probe_00581_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03363_SG-097-05_page_1084x2841_s02",
+      "seed": 20260697,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, middle-aged court official with black hat, old bearded martial arts master, angry tense expression, androgynous elegant warrior, blue gray scholar robe and official hat, raised hand martial arts gesture, arm thrust forward action pose, outdoor martial arts courtyard, black official hat, hair tied in topknot, pale purple-skinned villain, purple villain aura lighting, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "middle-aged court official with black hat",
+        "old bearded martial arts master",
+        "angry tense expression",
+        "androgynous elegant warrior",
+        "blue gray scholar robe and official hat",
+        "raised hand martial arts gesture",
+        "arm thrust forward action pose",
+        "outdoor martial arts courtyard",
+        "black official hat",
+        "hair tied in topknot",
+        "pale purple-skinned villain",
+        "purple villain aura lighting"
+      ]
+    },
+    {
+      "label": "train18",
+      "split": "train",
+      "ref_id": "101-200/SG-110/mrcolor_panel_style_v4_split_edge_strict_probe_00645_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03808_SG-110-13_page_901x1038_s01",
+      "seed": 20260698,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, upper body close-up portrait, female noble court character, angry tense expression, red glowing demonic eye, angry martial artist close-up, night palace rooftop, metal shoulder armor, red hair and pale makeup, purple villain aura lighting, raised hand martial arts gesture, dark armored robe, young clean-shaven warrior, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "upper body close-up portrait",
+        "female noble court character",
+        "angry tense expression",
+        "red glowing demonic eye",
+        "angry martial artist close-up",
+        "night palace rooftop",
+        "metal shoulder armor",
+        "red hair and pale makeup",
+        "purple villain aura lighting",
+        "raised hand martial arts gesture",
+        "dark armored robe",
+        "young clean-shaven warrior"
+      ]
+    },
+    {
+      "label": "train19",
+      "split": "train",
+      "ref_id": "101-200/SG-119/mrcolor_panel_style_v4_split_edge_strict_probe_00691_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04037_SG-119-15_page_2059x2874_s02",
+      "seed": 20260699,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, stern serious expression, middle-aged court official with black hat, blue gray scholar robe and official hat, androgynous elegant warrior, red glowing demonic eye, side profile portrait, old bearded martial arts master, round scholar glasses, dark hair with ornate hairpin, raised hand martial arts gesture, cool blue gray palace lighting, night palace rooftop, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "stern serious expression",
+        "middle-aged court official with black hat",
+        "blue gray scholar robe and official hat",
+        "androgynous elegant warrior",
+        "red glowing demonic eye",
+        "side profile portrait",
+        "old bearded martial arts master",
+        "round scholar glasses",
+        "dark hair with ornate hairpin",
+        "raised hand martial arts gesture",
+        "cool blue gray palace lighting",
+        "night palace rooftop"
+      ]
+    },
+    {
+      "label": "train20",
+      "split": "train",
+      "ref_id": "101-200/SG-129/mrcolor_panel_style_v4_split_edge_strict_probe_00803_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04403_SG-129-05_page_2054x2904_s03",
+      "seed": 20260700,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, gold embroidered court robe, middle-aged court official with black hat, indoor throne hall background, old bearded martial arts master, seated full-body indoor panel, androgynous elegant warrior, angry tense expression, red gold indoor palace colors, long flowing black hair, flowing robe in motion, pale purple-skinned villain, black official hat, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "gold embroidered court robe",
+        "middle-aged court official with black hat",
+        "indoor throne hall background",
+        "old bearded martial arts master",
+        "seated full-body indoor panel",
+        "androgynous elegant warrior",
+        "angry tense expression",
+        "red gold indoor palace colors",
+        "long flowing black hair",
+        "flowing robe in motion",
+        "pale purple-skinned villain",
+        "black official hat"
+      ]
+    },
+    {
+      "label": "train21",
+      "split": "train",
+      "ref_id": "101-200/SG-132/mrcolor_panel_style_v4_split_edge_strict_probe_00825_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04508_SG-132-07_page_2140x2892_s02",
+      "seed": 20260701,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, androgynous elegant warrior, side profile portrait, stern serious expression, long black-haired wuxia swordsman, long flowing black hair, young clean-shaven warrior, sharp fangs visible, raised hand martial arts gesture, white flowing martial robe, metal shoulder armor, cool blue gray palace lighting, outdoor martial arts courtyard, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "androgynous elegant warrior",
+        "side profile portrait",
+        "stern serious expression",
+        "long black-haired wuxia swordsman",
+        "long flowing black hair",
+        "young clean-shaven warrior",
+        "sharp fangs visible",
+        "raised hand martial arts gesture",
+        "white flowing martial robe",
+        "metal shoulder armor",
+        "cool blue gray palace lighting",
+        "outdoor martial arts courtyard"
+      ]
+    },
+    {
+      "label": "train22",
+      "split": "train",
+      "ref_id": "101-200/SG-137/mrcolor_panel_style_v5_edge_trim_strict_00317_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_04679_SG-137-02_page_2105x2899_s04",
+      "seed": 20260702,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, old bearded martial arts master, bald old monk with prayer beads, elder male master, stern serious expression, tan traditional robe, red prayer beads necklace, side profile portrait, pale purple-skinned villain, raised hand martial arts gesture, outdoor martial arts courtyard, long loose white hair, purple villain aura lighting, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "old bearded martial arts master",
+        "bald old monk with prayer beads",
+        "elder male master",
+        "stern serious expression",
+        "tan traditional robe",
+        "red prayer beads necklace",
+        "side profile portrait",
+        "pale purple-skinned villain",
+        "raised hand martial arts gesture",
+        "outdoor martial arts courtyard",
+        "long loose white hair",
+        "purple villain aura lighting"
+      ]
+    },
+    {
+      "label": "train23",
+      "split": "train",
+      "ref_id": "101-200/SG-145/mrcolor_panel_style_v4_split_edge_strict_probe_00907_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04994_SG-145-03_page_2150x2955_s01",
+      "seed": 20260703,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, middle-aged court official with black hat, blue gray scholar robe and official hat, black official hat, stern serious expression, long flowing black hair, human martial arts character, black mustache and official face, side profile portrait, raised hand martial arts gesture, red glowing demonic eye, outdoor martial arts courtyard, purple villain aura lighting, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "middle-aged court official with black hat",
+        "blue gray scholar robe and official hat",
+        "black official hat",
+        "stern serious expression",
+        "long flowing black hair",
+        "human martial arts character",
+        "black mustache and official face",
+        "side profile portrait",
+        "raised hand martial arts gesture",
+        "red glowing demonic eye",
+        "outdoor martial arts courtyard",
+        "purple villain aura lighting"
+      ]
+    },
+    {
+      "label": "train24",
+      "split": "train",
+      "ref_id": "101-200/SG-147/mrcolor_panel_style_v4_split_edge_strict_probe_00923_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05101_SG-147-15_page_2186x2889_s02",
+      "seed": 20260704,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, old bearded martial arts master, middle-aged court official with black hat, elder male master, stern serious expression, blue gray scholar robe and official hat, large speech bubble comic panel, black official hat, raised hand martial arts gesture, long loose white hair, pale purple-skinned villain, outdoor martial arts courtyard, cool blue gray palace lighting, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "old bearded martial arts master",
+        "middle-aged court official with black hat",
+        "elder male master",
+        "stern serious expression",
+        "blue gray scholar robe and official hat",
+        "large speech bubble comic panel",
+        "black official hat",
+        "raised hand martial arts gesture",
+        "long loose white hair",
+        "pale purple-skinned villain",
+        "outdoor martial arts courtyard",
+        "cool blue gray palace lighting"
+      ]
+    },
+    {
+      "label": "train25",
+      "split": "train",
+      "ref_id": "101-200/SG-167/mrcolor_panel_style_v4_split_edge_strict_probe_00989_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05659_SG-167-15_page_2016x2902_s03",
+      "seed": 20260705,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, androgynous elegant warrior, long black-haired wuxia swordsman, long flowing black hair, stern serious expression, upper body close-up portrait, white flowing martial robe, young clean-shaven warrior, flowing robe in motion, folding fan in hand, pale purple-skinned villain, night palace rooftop, dark night palace background, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "androgynous elegant warrior",
+        "long black-haired wuxia swordsman",
+        "long flowing black hair",
+        "stern serious expression",
+        "upper body close-up portrait",
+        "white flowing martial robe",
+        "young clean-shaven warrior",
+        "flowing robe in motion",
+        "folding fan in hand",
+        "pale purple-skinned villain",
+        "night palace rooftop",
+        "dark night palace background"
+      ]
+    },
+    {
+      "label": "train26",
+      "split": "train",
+      "ref_id": "101-200/SG-173/mrcolor_panel_style_v4_split_edge_strict_probe_01010_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05850_SG-173-13_page_652x1043_s01",
+      "seed": 20260706,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, angry martial artist close-up, sharp eyebrows and stern eyes, upper body close-up portrait, androgynous elegant warrior, young clean-shaven warrior, sharp fangs visible, messy black hair, metal shoulder armor, raised hand martial arts gesture, dark armored robe, outdoor martial arts courtyard, purple villain aura lighting, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "angry martial artist close-up",
+        "sharp eyebrows and stern eyes",
+        "upper body close-up portrait",
+        "androgynous elegant warrior",
+        "young clean-shaven warrior",
+        "sharp fangs visible",
+        "messy black hair",
+        "metal shoulder armor",
+        "raised hand martial arts gesture",
+        "dark armored robe",
+        "outdoor martial arts courtyard",
+        "purple villain aura lighting"
+      ]
+    },
+    {
+      "label": "train27",
+      "split": "train",
+      "ref_id": "101-200/SG-185/mrcolor_panel_style_v4_split_edge_strict_probe_01066_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_06197_SG-185-13_page_2036x2841_s03",
+      "seed": 20260707,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, sharp eyebrows and stern eyes, angry martial artist close-up, androgynous elegant warrior, upper body close-up portrait, long flowing black hair, young clean-shaven warrior, black martial robe with red trim, raised hand martial arts gesture, folding fan in hand, red glowing demonic eye, outdoor martial arts courtyard, purple villain aura lighting, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "sharp eyebrows and stern eyes",
+        "angry martial artist close-up",
+        "androgynous elegant warrior",
+        "upper body close-up portrait",
+        "long flowing black hair",
+        "young clean-shaven warrior",
+        "black martial robe with red trim",
+        "raised hand martial arts gesture",
+        "folding fan in hand",
+        "red glowing demonic eye",
+        "outdoor martial arts courtyard",
+        "purple villain aura lighting"
+      ]
+    },
+    {
+      "label": "train28",
+      "split": "train",
+      "ref_id": "101-200/SG-188/mrcolor_panel_style_v5_edge_trim_strict_00406_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_06328_SG-188-15_page_2023x1813_s05",
+      "seed": 20260708,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, raised hand martial arts gesture, human martial arts character, arm thrust forward action pose, angry martial artist close-up, young clean-shaven warrior, sword hilt visible, angry tense expression, white flowing martial robe, outdoor martial arts courtyard, hair tied in topknot, pale purple-skinned villain, bright daylight courtyard, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "raised hand martial arts gesture",
+        "human martial arts character",
+        "arm thrust forward action pose",
+        "angry martial artist close-up",
+        "young clean-shaven warrior",
+        "sword hilt visible",
+        "angry tense expression",
+        "white flowing martial robe",
+        "outdoor martial arts courtyard",
+        "hair tied in topknot",
+        "pale purple-skinned villain",
+        "bright daylight courtyard"
+      ]
+    },
+    {
+      "label": "train29",
+      "split": "train",
+      "ref_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-205/mrcolor_panel_style_v5_edge_trim_strict_00430_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_06875_SG-205-12_page_2110x2892_s02",
+      "seed": 20260709,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, angry martial artist close-up, angry tense expression, androgynous elegant warrior, side profile portrait, blue gray scholar robe and official hat, black mustache and official face, red glowing demonic eye, long flowing black hair, black official hat, raised hand martial arts gesture, night palace rooftop, purple villain aura lighting, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "angry martial artist close-up",
+        "angry tense expression",
+        "androgynous elegant warrior",
+        "side profile portrait",
+        "blue gray scholar robe and official hat",
+        "black mustache and official face",
+        "red glowing demonic eye",
+        "long flowing black hair",
+        "black official hat",
+        "raised hand martial arts gesture",
+        "night palace rooftop",
+        "purple villain aura lighting"
+      ]
+    },
+    {
+      "label": "train30",
+      "split": "train",
+      "ref_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-210/mrcolor_panel_style_v4_split_edge_strict_probe_01178_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_07048_SG-210-06_page_1965x2841_s02",
+      "seed": 20260710,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, androgynous elegant warrior, long black-haired wuxia swordsman, long flowing black hair, black martial robe with red trim, stern serious expression, full-body standing pose, young clean-shaven warrior, outdoor martial arts courtyard, flowing robe in motion, pale purple-skinned villain, sword hilt visible, bright daylight courtyard, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "androgynous elegant warrior",
+        "long black-haired wuxia swordsman",
+        "long flowing black hair",
+        "black martial robe with red trim",
+        "stern serious expression",
+        "full-body standing pose",
+        "young clean-shaven warrior",
+        "outdoor martial arts courtyard",
+        "flowing robe in motion",
+        "pale purple-skinned villain",
+        "sword hilt visible",
+        "bright daylight courtyard"
+      ]
+    },
+    {
+      "label": "train31",
+      "split": "train",
+      "ref_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-226/mrcolor_panel_style_v4_split_edge_strict_probe_01276_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_07596_SG-226-13_page_998x1668_s01",
+      "seed": 20260711,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, old bearded martial arts master, angry martial artist close-up, sharp eyebrows and stern eyes, dark armored robe, human martial arts character, raised hand martial arts gesture, dark hair with ornate hairpin, large speech bubble comic panel, fur collar cloak, pale purple-skinned villain, outdoor martial arts courtyard, purple villain aura lighting, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "old bearded martial arts master",
+        "angry martial artist close-up",
+        "sharp eyebrows and stern eyes",
+        "dark armored robe",
+        "human martial arts character",
+        "raised hand martial arts gesture",
+        "dark hair with ornate hairpin",
+        "large speech bubble comic panel",
+        "fur collar cloak",
+        "pale purple-skinned villain",
+        "outdoor martial arts courtyard",
+        "purple villain aura lighting"
+      ]
+    },
+    {
+      "label": "heldout00",
+      "split": "heldout",
+      "ref_id": "001-100/SG-015/mrcolor_panel_style_v5_edge_trim_strict_00031_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00464_SG-015-14_page_985x1775_s01",
+      "seed": 20260712,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, long black-haired wuxia swordsman, long flowing black hair, androgynous elegant warrior, stern serious expression, side profile portrait, black martial robe with red trim, night palace rooftop, dark night palace background, young clean-shaven warrior, pale purple-skinned villain, flowing robe in motion, folding fan in hand, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "long black-haired wuxia swordsman",
+        "long flowing black hair",
+        "androgynous elegant warrior",
+        "stern serious expression",
+        "side profile portrait",
+        "black martial robe with red trim",
+        "night palace rooftop",
+        "dark night palace background",
+        "young clean-shaven warrior",
+        "pale purple-skinned villain",
+        "flowing robe in motion",
+        "folding fan in hand"
+      ]
+    },
+    {
+      "label": "heldout01",
+      "split": "heldout",
+      "ref_id": "001-100/SG-026/mrcolor_panel_style_v4_split_edge_strict_probe_00166_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00817_SG-026-07_page_2011x2902_s01",
+      "seed": 20260713,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, angry martial artist close-up, angry tense expression, young clean-shaven warrior, side profile portrait, androgynous elegant warrior, messy black hair, sharp fangs visible, drawn sword action pose, metal shoulder armor, tan traditional robe, outdoor martial arts courtyard, purple villain aura lighting, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "angry martial artist close-up",
+        "angry tense expression",
+        "young clean-shaven warrior",
+        "side profile portrait",
+        "androgynous elegant warrior",
+        "messy black hair",
+        "sharp fangs visible",
+        "drawn sword action pose",
+        "metal shoulder armor",
+        "tan traditional robe",
+        "outdoor martial arts courtyard",
+        "purple villain aura lighting"
+      ]
+    },
+    {
+      "label": "heldout02",
+      "split": "heldout",
+      "ref_id": "001-100/SG-071/mrcolor_panel_style_v4_split_edge_strict_probe_00444_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02306_SG-071-05_page_1115x1356_s01",
+      "seed": 20260714,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, old bearded martial arts master, bald old monk with prayer beads, elder male master, stern serious expression, red glowing demonic eye, side profile portrait, tan traditional robe, raised hand martial arts gesture, long flowing black hair, metal shoulder armor, outdoor martial arts courtyard, purple villain aura lighting, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "old bearded martial arts master",
+        "bald old monk with prayer beads",
+        "elder male master",
+        "stern serious expression",
+        "red glowing demonic eye",
+        "side profile portrait",
+        "tan traditional robe",
+        "raised hand martial arts gesture",
+        "long flowing black hair",
+        "metal shoulder armor",
+        "outdoor martial arts courtyard",
+        "purple villain aura lighting"
+      ]
+    },
+    {
+      "label": "heldout03",
+      "split": "heldout",
+      "ref_id": "101-200/SG-121/mrcolor_panel_style_v5_edge_trim_strict_00253_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_04078_SG-121-05_page_1965x2851_s01",
+      "seed": 20260715,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, red-haired noble woman in ornate dress, ornate red and gold palace dress, female noble court character, red gold indoor palace colors, calm seated expression, seated full-body indoor panel, flowing robe in motion, red hair and pale makeup, indoor throne hall background, red glowing demonic eye, folding fan in hand, old bearded martial arts master, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "red-haired noble woman in ornate dress",
+        "ornate red and gold palace dress",
+        "female noble court character",
+        "red gold indoor palace colors",
+        "calm seated expression",
+        "seated full-body indoor panel",
+        "flowing robe in motion",
+        "red hair and pale makeup",
+        "indoor throne hall background",
+        "red glowing demonic eye",
+        "folding fan in hand",
+        "old bearded martial arts master"
+      ]
+    },
+    {
+      "label": "heldout04",
+      "split": "heldout",
+      "ref_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-221/mrcolor_panel_style_v4_split_edge_strict_probe_01236_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_07442_SG-221-10_page_2087x2877_s03",
+      "seed": 20260716,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, angry martial artist close-up, angry tense expression, side profile portrait, androgynous elegant warrior, young clean-shaven warrior, long flowing black hair, black martial robe with red trim, red glowing demonic eye, raised hand martial arts gesture, outdoor martial arts courtyard, sword hilt visible, bright daylight courtyard, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "angry martial artist close-up",
+        "angry tense expression",
+        "side profile portrait",
+        "androgynous elegant warrior",
+        "young clean-shaven warrior",
+        "long flowing black hair",
+        "black martial robe with red trim",
+        "red glowing demonic eye",
+        "raised hand martial arts gesture",
+        "outdoor martial arts courtyard",
+        "sword hilt visible",
+        "bright daylight courtyard"
+      ]
+    },
+    {
+      "label": "heldout05",
+      "split": "heldout",
+      "ref_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-244/mrcolor_panel_style_v4_split_edge_strict_probe_01334_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_08090_SG-244-08_page_2130x1528_s01",
+      "seed": 20260717,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, angry martial artist close-up, angry tense expression, old bearded martial arts master, male wuxia swordsman, upper body close-up portrait, black official hat, sharp fangs visible, messy black hair, black official hat and formal robe, raised hand martial arts gesture, purple villain aura lighting, outdoor martial arts courtyard, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "angry martial artist close-up",
+        "angry tense expression",
+        "old bearded martial arts master",
+        "male wuxia swordsman",
+        "upper body close-up portrait",
+        "black official hat",
+        "sharp fangs visible",
+        "messy black hair",
+        "black official hat and formal robe",
+        "raised hand martial arts gesture",
+        "purple villain aura lighting",
+        "outdoor martial arts courtyard"
+      ]
+    },
+    {
+      "label": "heldout06",
+      "split": "heldout",
+      "ref_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-263/mrcolor_panel_style_v4_split_edge_strict_probe_01412_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_08482_SG-263-09_page_559x1112_s01",
+      "seed": 20260718,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, middle-aged court official with black hat, stern serious expression, blue gray scholar robe and official hat, black official hat, black mustache and official face, upper body close-up portrait, androgynous elegant warrior, hair tied in topknot, pale purple-skinned villain, raised hand martial arts gesture, purple villain aura lighting, night palace rooftop, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "middle-aged court official with black hat",
+        "stern serious expression",
+        "blue gray scholar robe and official hat",
+        "black official hat",
+        "black mustache and official face",
+        "upper body close-up portrait",
+        "androgynous elegant warrior",
+        "hair tied in topknot",
+        "pale purple-skinned villain",
+        "raised hand martial arts gesture",
+        "purple villain aura lighting",
+        "night palace rooftop"
+      ]
+    },
+    {
+      "label": "heldout07",
+      "split": "heldout",
+      "ref_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-274/mrcolor_panel_style_v4_split_edge_strict_probe_01452_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_08754_SG-274-04_page_1407x1264_s03",
+      "seed": 20260719,
+      "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, green monster face with red glowing eye, angry tense expression, angry martial artist close-up, side profile portrait, green eerie cave lighting, androgynous elegant warrior, metal shoulder armor, old bearded martial arts master, dark armored robe, clenched fist foreground, messy black hair, night palace rooftop, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+      "selected_attributes": [
+        "green monster face with red glowing eye",
+        "angry tense expression",
+        "angry martial artist close-up",
+        "side profile portrait",
+        "green eerie cave lighting",
+        "androgynous elegant warrior",
+        "metal shoulder armor",
+        "old bearded martial arts master",
+        "dark armored robe",
+        "clenched fist foreground",
+        "messy black hair",
+        "night palace rooftop"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "label": "no_ip",
+      "steps": [],
+      "instruction": "Represent this manhwa/anime reference image for visual style, color palette, composition, character identity, and panel layout.",
+      "instruction_used": false
+    },
+    {
+      "label": "blend_default",
+      "steps": [
+        {
+          "checkpoint": "anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors",
+          "weight": 1.4
+        },
+        {
+          "checkpoint": "anima_qwenvl_ip_adapter_c055_mixed_retrieval_0064_20260612.safetensors",
+          "weight": 0.4
+        }
+      ],
+      "instruction": "Represent this manhwa/anime reference image for visual style, color palette, composition, character identity, and panel layout.",
+      "instruction_used": true
+    },
+    {
+      "label": "blend_identity_exact",
+      "steps": [
+        {
+          "checkpoint": "anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors",
+          "weight": 1.4
+        },
+        {
+          "checkpoint": "anima_qwenvl_ip_adapter_c055_mixed_retrieval_0064_20260612.safetensors",
+          "weight": 0.4
+        }
+      ],
+      "instruction": "Represent the exact same manhwa/anime character identity for image reference control. Emphasize face shape, facial silhouette, age, species or non-human traits, skin color, eye color, hair, beard, hat, costume, palette, expression, camera angle, pose crop, props, speech bubbles, and drawing style. Preserve distinctive traits over generic beauty.",
+      "instruction_used": true
+    },
+    {
+      "label": "blend_species_face",
+      "steps": [
+        {
+          "checkpoint": "anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors",
+          "weight": 1.4
+        },
+        {
+          "checkpoint": "anima_qwenvl_ip_adapter_c055_mixed_retrieval_0064_20260612.safetensors",
+          "weight": 0.4
+        }
+      ],
+      "instruction": "Represent this reference for strict visual identity retrieval in a manhwa panel. Prioritize non-human species, monster or demon traits, facial structure, profile silhouette, beard and headwear, skin tone, glowing eyes, hand props, fan or weapon cues, speech bubble context, pose crop, costume palette, and line/color style.",
+      "instruction_used": true
+    }
+  ],
+  "results": {
+    "train00_no_ip": {
+      "prompt_id": "ee2d246c-d500-41af-975b-a5ce6e1fc9d1",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train00_no_ip.png",
+      "image_info": {
+        "filename": "train00_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train00_blend_default": {
+      "prompt_id": "913c9ceb-6234-435e-baf5-eba487e39009",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train00_blend_default.png",
+      "image_info": {
+        "filename": "train00_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train00_blend_identity_exact": {
+      "prompt_id": "63773204-2143-4758-8a4c-0c1a1685ec50",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train00_blend_identity_exact.png",
+      "image_info": {
+        "filename": "train00_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train00_blend_species_face": {
+      "prompt_id": "51295b2e-bc6c-4b71-b8d7-d6e64c87ed8b",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train00_blend_species_face.png",
+      "image_info": {
+        "filename": "train00_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train01_no_ip": {
+      "prompt_id": "8608e953-56c3-499c-b2fb-200be1587744",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train01_no_ip.png",
+      "image_info": {
+        "filename": "train01_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train01_blend_default": {
+      "prompt_id": "69d81c65-9f8b-45cd-a049-2c5b7953bcbe",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train01_blend_default.png",
+      "image_info": {
+        "filename": "train01_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train01_blend_identity_exact": {
+      "prompt_id": "ef3291c9-a990-48e7-bbf6-34ca8e175f89",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train01_blend_identity_exact.png",
+      "image_info": {
+        "filename": "train01_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train01_blend_species_face": {
+      "prompt_id": "626098a4-11ec-4334-a94c-36a04eb90ba6",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train01_blend_species_face.png",
+      "image_info": {
+        "filename": "train01_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train02_no_ip": {
+      "prompt_id": "9de74196-934f-4c3d-9aae-648c106defcc",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train02_no_ip.png",
+      "image_info": {
+        "filename": "train02_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train02_blend_default": {
+      "prompt_id": "a7b7d3ff-3887-40bc-b319-a7ede90e233c",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train02_blend_default.png",
+      "image_info": {
+        "filename": "train02_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train02_blend_identity_exact": {
+      "prompt_id": "3dc13743-d3ac-4474-be9f-e5d42c6987f5",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train02_blend_identity_exact.png",
+      "image_info": {
+        "filename": "train02_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train02_blend_species_face": {
+      "prompt_id": "96f28b5a-4a3a-4108-baa0-ba702f3be07d",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train02_blend_species_face.png",
+      "image_info": {
+        "filename": "train02_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train03_no_ip": {
+      "prompt_id": "6563a9f2-ec5d-4fe2-af81-0db205f5e04b",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train03_no_ip.png",
+      "image_info": {
+        "filename": "train03_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train03_blend_default": {
+      "prompt_id": "63a2f179-4a0f-4331-bf89-9420507682dc",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train03_blend_default.png",
+      "image_info": {
+        "filename": "train03_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train03_blend_identity_exact": {
+      "prompt_id": "34e8c614-95ea-42ea-a8cf-58b979c34602",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train03_blend_identity_exact.png",
+      "image_info": {
+        "filename": "train03_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train03_blend_species_face": {
+      "prompt_id": "1d6d7aea-d283-4e98-aa81-ce0c1a9aef11",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train03_blend_species_face.png",
+      "image_info": {
+        "filename": "train03_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train04_no_ip": {
+      "prompt_id": "eadf69c2-db84-47ba-8880-70cfe072b46f",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train04_no_ip.png",
+      "image_info": {
+        "filename": "train04_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train04_blend_default": {
+      "prompt_id": "afe25dd8-822d-440f-961e-66e5555aae80",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train04_blend_default.png",
+      "image_info": {
+        "filename": "train04_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train04_blend_identity_exact": {
+      "prompt_id": "137a1372-0e43-4908-a1b4-0a4d8c63bb0a",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train04_blend_identity_exact.png",
+      "image_info": {
+        "filename": "train04_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train04_blend_species_face": {
+      "prompt_id": "d59e7e1d-6f56-4388-95c0-362b8aa426f6",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train04_blend_species_face.png",
+      "image_info": {
+        "filename": "train04_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train05_no_ip": {
+      "prompt_id": "8734a92f-920f-43ea-8cd1-c86ed5498ea3",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train05_no_ip.png",
+      "image_info": {
+        "filename": "train05_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train05_blend_default": {
+      "prompt_id": "0b199f22-15ee-4232-b676-92be9c091369",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train05_blend_default.png",
+      "image_info": {
+        "filename": "train05_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train05_blend_identity_exact": {
+      "prompt_id": "12683390-badb-45e0-a46e-240e679ca0ed",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train05_blend_identity_exact.png",
+      "image_info": {
+        "filename": "train05_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train05_blend_species_face": {
+      "prompt_id": "216cdb9a-842d-4d69-b005-af43b6f01e04",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train05_blend_species_face.png",
+      "image_info": {
+        "filename": "train05_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train06_no_ip": {
+      "prompt_id": "3562886a-d48a-455e-b8a3-1f6a8aa91210",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train06_no_ip.png",
+      "image_info": {
+        "filename": "train06_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train06_blend_default": {
+      "prompt_id": "1079387b-f35c-404a-ab0a-3929db354f0b",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train06_blend_default.png",
+      "image_info": {
+        "filename": "train06_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train06_blend_identity_exact": {
+      "prompt_id": "8d3cc2dd-6c86-4832-a29e-9e6f31ef11a4",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train06_blend_identity_exact.png",
+      "image_info": {
+        "filename": "train06_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train06_blend_species_face": {
+      "prompt_id": "3800bbd8-f9ab-407f-a69e-f9a56b80fc06",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train06_blend_species_face.png",
+      "image_info": {
+        "filename": "train06_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train07_no_ip": {
+      "prompt_id": "7b2790f6-bfc4-4a19-afa3-8a1359de6208",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train07_no_ip.png",
+      "image_info": {
+        "filename": "train07_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train07_blend_default": {
+      "prompt_id": "9a92bdbc-f111-4f19-b2ce-012a8656e6c1",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train07_blend_default.png",
+      "image_info": {
+        "filename": "train07_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train07_blend_identity_exact": {
+      "prompt_id": "0cb11b07-d38e-464a-aca0-d29e46eb4c17",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train07_blend_identity_exact.png",
+      "image_info": {
+        "filename": "train07_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train07_blend_species_face": {
+      "prompt_id": "12f2a155-6316-4e38-8a2e-6e27d9840a81",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train07_blend_species_face.png",
+      "image_info": {
+        "filename": "train07_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train08_no_ip": {
+      "prompt_id": "33f405b9-6046-4cf6-aad6-e8ce0a9273d3",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train08_no_ip.png",
+      "image_info": {
+        "filename": "train08_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train08_blend_default": {
+      "prompt_id": "645d5817-ab87-40a9-8fa2-bd6ea2442b01",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train08_blend_default.png",
+      "image_info": {
+        "filename": "train08_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train08_blend_identity_exact": {
+      "prompt_id": "74cfafa1-c72b-4a1b-89c8-a779206a57d0",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train08_blend_identity_exact.png",
+      "image_info": {
+        "filename": "train08_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train08_blend_species_face": {
+      "prompt_id": "5dc928f8-7cbe-4d3e-8865-602c12954cb7",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train08_blend_species_face.png",
+      "image_info": {
+        "filename": "train08_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train09_no_ip": {
+      "prompt_id": "2077e3be-2a32-46ca-9f12-33dfee7f2d97",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train09_no_ip.png",
+      "image_info": {
+        "filename": "train09_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train09_blend_default": {
+      "prompt_id": "7baadee8-b82b-40b1-968e-9b1f297164da",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train09_blend_default.png",
+      "image_info": {
+        "filename": "train09_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train09_blend_identity_exact": {
+      "prompt_id": "e2f87e4d-0e29-4ac2-8ad6-01e770d740b1",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train09_blend_identity_exact.png",
+      "image_info": {
+        "filename": "train09_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train09_blend_species_face": {
+      "prompt_id": "9da7da6f-8c79-4310-902d-425c30e93fd4",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train09_blend_species_face.png",
+      "image_info": {
+        "filename": "train09_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train10_no_ip": {
+      "prompt_id": "26f7fbbd-05db-4047-a575-7f9c89847005",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train10_no_ip.png",
+      "image_info": {
+        "filename": "train10_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train10_blend_default": {
+      "prompt_id": "9e29dc64-41f1-4121-b337-51fcac8d2c78",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train10_blend_default.png",
+      "image_info": {
+        "filename": "train10_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train10_blend_identity_exact": {
+      "prompt_id": "d5afcf37-8dac-4765-905f-1129b0086f4e",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train10_blend_identity_exact.png",
+      "image_info": {
+        "filename": "train10_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train10_blend_species_face": {
+      "prompt_id": "47a3ebb7-ea91-4efc-88c5-68013c5f93da",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train10_blend_species_face.png",
+      "image_info": {
+        "filename": "train10_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train11_no_ip": {
+      "prompt_id": "b69a6e02-09b8-44e0-b4ac-b5620aeace25",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train11_no_ip.png",
+      "image_info": {
+        "filename": "train11_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train11_blend_default": {
+      "prompt_id": "874cdf9c-7b6f-4aeb-8962-9cc198d74172",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train11_blend_default.png",
+      "image_info": {
+        "filename": "train11_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train11_blend_identity_exact": {
+      "prompt_id": "38fbe98c-7d6f-46ba-b69b-dadd00fb265a",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train11_blend_identity_exact.png",
+      "image_info": {
+        "filename": "train11_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train11_blend_species_face": {
+      "prompt_id": "27a17f67-121d-4dee-94bd-54e7f28e72e4",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train11_blend_species_face.png",
+      "image_info": {
+        "filename": "train11_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train12_no_ip": {
+      "prompt_id": "3307113e-593d-407d-b305-155ecbccf80f",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train12_no_ip.png",
+      "image_info": {
+        "filename": "train12_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train12_blend_default": {
+      "prompt_id": "e7264fb8-74d7-493c-bc0e-b526739fcf5a",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train12_blend_default.png",
+      "image_info": {
+        "filename": "train12_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train12_blend_identity_exact": {
+      "prompt_id": "fb13d1c5-d551-4f03-81ff-f23001433b1c",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train12_blend_identity_exact.png",
+      "image_info": {
+        "filename": "train12_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train12_blend_species_face": {
+      "prompt_id": "42fbd761-0cf5-4817-9e5a-6d662b342103",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train12_blend_species_face.png",
+      "image_info": {
+        "filename": "train12_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train13_no_ip": {
+      "prompt_id": "bc4fa591-fa4c-4127-a7cc-847ebd6808d0",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train13_no_ip.png",
+      "image_info": {
+        "filename": "train13_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train13_blend_default": {
+      "prompt_id": "816f4a7e-dd8d-410c-b8cc-c7c6b76a3cca",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train13_blend_default.png",
+      "image_info": {
+        "filename": "train13_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train13_blend_identity_exact": {
+      "prompt_id": "ac76d3ea-06a4-4df7-b5f0-4dea74895f3e",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train13_blend_identity_exact.png",
+      "image_info": {
+        "filename": "train13_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train13_blend_species_face": {
+      "prompt_id": "1f5b486e-0acd-40a3-b6bd-9446458be845",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train13_blend_species_face.png",
+      "image_info": {
+        "filename": "train13_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train14_no_ip": {
+      "prompt_id": "037c1466-5d44-48f1-8870-c991c85fd81a",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train14_no_ip.png",
+      "image_info": {
+        "filename": "train14_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train14_blend_default": {
+      "prompt_id": "095600d1-c167-4fb5-a4b5-7005087effa6",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train14_blend_default.png",
+      "image_info": {
+        "filename": "train14_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train14_blend_identity_exact": {
+      "prompt_id": "4913752b-e213-4afa-a0fc-a63a6f327804",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train14_blend_identity_exact.png",
+      "image_info": {
+        "filename": "train14_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train14_blend_species_face": {
+      "prompt_id": "9b14fb49-9f12-40d5-8bd7-a0c8bb2c7be8",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train14_blend_species_face.png",
+      "image_info": {
+        "filename": "train14_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train15_no_ip": {
+      "prompt_id": "2f6d7ace-0ef0-4363-bc1e-83164e0477b4",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train15_no_ip.png",
+      "image_info": {
+        "filename": "train15_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train15_blend_default": {
+      "prompt_id": "4b9cf45f-e21f-4065-b336-2ff84fbecf61",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train15_blend_default.png",
+      "image_info": {
+        "filename": "train15_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train15_blend_identity_exact": {
+      "prompt_id": "cc023e24-8bcb-4f59-93b6-c4ffeae4e511",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train15_blend_identity_exact.png",
+      "image_info": {
+        "filename": "train15_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train15_blend_species_face": {
+      "prompt_id": "895e039e-2032-4e4d-b9e8-9c958812c417",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train15_blend_species_face.png",
+      "image_info": {
+        "filename": "train15_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train16_no_ip": {
+      "prompt_id": "9120187a-c9b8-4493-83fa-766ddf0399e7",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train16_no_ip.png",
+      "image_info": {
+        "filename": "train16_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train16_blend_default": {
+      "prompt_id": "e40802a0-1fa0-43b2-9552-ea78fdd606dc",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train16_blend_default.png",
+      "image_info": {
+        "filename": "train16_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train16_blend_identity_exact": {
+      "prompt_id": "149480da-5454-45e7-a076-52c83a06d55c",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train16_blend_identity_exact.png",
+      "image_info": {
+        "filename": "train16_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train16_blend_species_face": {
+      "prompt_id": "44574cc7-4c05-4e4c-8fae-2fd095d7cb46",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train16_blend_species_face.png",
+      "image_info": {
+        "filename": "train16_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train17_no_ip": {
+      "prompt_id": "749f86fd-dcaa-4d42-aa35-4208ebc6a0ec",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train17_no_ip.png",
+      "image_info": {
+        "filename": "train17_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train17_blend_default": {
+      "prompt_id": "161840d8-bf75-44e0-a253-9df9028f1146",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train17_blend_default.png",
+      "image_info": {
+        "filename": "train17_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train17_blend_identity_exact": {
+      "prompt_id": "81f47160-c55c-43b9-8731-07539faaef03",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train17_blend_identity_exact.png",
+      "image_info": {
+        "filename": "train17_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train17_blend_species_face": {
+      "prompt_id": "fec0cd20-2d9c-44dc-8ccc-5d5cb244ef4d",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train17_blend_species_face.png",
+      "image_info": {
+        "filename": "train17_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train18_no_ip": {
+      "prompt_id": "0b244abc-6581-49e4-a38d-64c1c51e3f92",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train18_no_ip.png",
+      "image_info": {
+        "filename": "train18_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train18_blend_default": {
+      "prompt_id": "72658a53-1de0-42ed-b17a-92ff9a07f779",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train18_blend_default.png",
+      "image_info": {
+        "filename": "train18_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train18_blend_identity_exact": {
+      "prompt_id": "c8ddf967-8eb2-4067-bb95-b20341265757",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train18_blend_identity_exact.png",
+      "image_info": {
+        "filename": "train18_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train18_blend_species_face": {
+      "prompt_id": "26754496-043e-4295-8ca9-9a9ad000948f",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train18_blend_species_face.png",
+      "image_info": {
+        "filename": "train18_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train19_no_ip": {
+      "prompt_id": "9cbce7a0-0320-40f7-b059-1a038b8e2eb5",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train19_no_ip.png",
+      "image_info": {
+        "filename": "train19_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train19_blend_default": {
+      "prompt_id": "5790e44b-f3e2-407f-b2d8-b2868aaa07e2",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train19_blend_default.png",
+      "image_info": {
+        "filename": "train19_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train19_blend_identity_exact": {
+      "prompt_id": "151dec63-215d-4c03-9732-488ba20ddf1f",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train19_blend_identity_exact.png",
+      "image_info": {
+        "filename": "train19_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train19_blend_species_face": {
+      "prompt_id": "5a230042-7e65-48f0-84bd-e081aa1842f4",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train19_blend_species_face.png",
+      "image_info": {
+        "filename": "train19_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train20_no_ip": {
+      "prompt_id": "694456e3-87f6-44a7-a67a-e8d68d41edc4",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train20_no_ip.png",
+      "image_info": {
+        "filename": "train20_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train20_blend_default": {
+      "prompt_id": "25887f27-b8a7-4c2b-9762-e30f0025493c",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train20_blend_default.png",
+      "image_info": {
+        "filename": "train20_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train20_blend_identity_exact": {
+      "prompt_id": "b3f3faad-4c7a-4f5c-aaa9-163a9a062ffa",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train20_blend_identity_exact.png",
+      "image_info": {
+        "filename": "train20_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train20_blend_species_face": {
+      "prompt_id": "48bd8337-4ce2-4ed7-a510-6b2a80c810d2",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train20_blend_species_face.png",
+      "image_info": {
+        "filename": "train20_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train21_no_ip": {
+      "prompt_id": "60f2ec21-f4ba-4cc6-988c-49b54010cfde",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train21_no_ip.png",
+      "image_info": {
+        "filename": "train21_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train21_blend_default": {
+      "prompt_id": "c87c4963-0fff-401c-b5d2-cc8d7fd64f72",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train21_blend_default.png",
+      "image_info": {
+        "filename": "train21_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train21_blend_identity_exact": {
+      "prompt_id": "54e83b7e-dcfb-4576-bacf-8a99626f408a",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train21_blend_identity_exact.png",
+      "image_info": {
+        "filename": "train21_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train21_blend_species_face": {
+      "prompt_id": "c8a1f4e5-1abb-4179-94e2-9c7262152485",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train21_blend_species_face.png",
+      "image_info": {
+        "filename": "train21_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train22_no_ip": {
+      "prompt_id": "2e7a4500-84af-488f-a61a-d6c935e62a4b",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train22_no_ip.png",
+      "image_info": {
+        "filename": "train22_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train22_blend_default": {
+      "prompt_id": "6fd7ded8-26db-45ba-a58b-a792b414cf51",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train22_blend_default.png",
+      "image_info": {
+        "filename": "train22_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train22_blend_identity_exact": {
+      "prompt_id": "0ceeb904-95f9-41d8-a0b4-3e7c1fc2f895",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train22_blend_identity_exact.png",
+      "image_info": {
+        "filename": "train22_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train22_blend_species_face": {
+      "prompt_id": "333fca58-bafa-4f96-9115-7ddf0b52c593",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train22_blend_species_face.png",
+      "image_info": {
+        "filename": "train22_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train23_no_ip": {
+      "prompt_id": "a7607447-f359-4f1e-92a1-f5f551570dee",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train23_no_ip.png",
+      "image_info": {
+        "filename": "train23_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train23_blend_default": {
+      "prompt_id": "e2d87124-79be-4f36-8d32-be14fb05f14c",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train23_blend_default.png",
+      "image_info": {
+        "filename": "train23_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train23_blend_identity_exact": {
+      "prompt_id": "9ffe7ba1-fc37-4611-aa01-798bf4d2d954",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train23_blend_identity_exact.png",
+      "image_info": {
+        "filename": "train23_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train23_blend_species_face": {
+      "prompt_id": "9110a95a-3763-4632-a08b-dc776d3bf297",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train23_blend_species_face.png",
+      "image_info": {
+        "filename": "train23_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train24_no_ip": {
+      "prompt_id": "1b65da5b-7899-4821-8fb7-832811a159e4",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train24_no_ip.png",
+      "image_info": {
+        "filename": "train24_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train24_blend_default": {
+      "prompt_id": "cefdcecc-5c9c-454d-bf51-44e34dfb8dca",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train24_blend_default.png",
+      "image_info": {
+        "filename": "train24_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train24_blend_identity_exact": {
+      "prompt_id": "185b33f3-8d57-441f-ab54-db80f504738e",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train24_blend_identity_exact.png",
+      "image_info": {
+        "filename": "train24_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train24_blend_species_face": {
+      "prompt_id": "8cc75933-e829-4b6a-97f8-c87ca1062c49",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train24_blend_species_face.png",
+      "image_info": {
+        "filename": "train24_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train25_no_ip": {
+      "prompt_id": "63d06924-50cc-460b-a416-827587fa74d7",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train25_no_ip.png",
+      "image_info": {
+        "filename": "train25_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train25_blend_default": {
+      "prompt_id": "0c5618ac-e82d-4898-8f1c-574889a0778a",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train25_blend_default.png",
+      "image_info": {
+        "filename": "train25_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train25_blend_identity_exact": {
+      "prompt_id": "2be342f2-dabe-4b9c-a310-2e04496fa539",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train25_blend_identity_exact.png",
+      "image_info": {
+        "filename": "train25_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train25_blend_species_face": {
+      "prompt_id": "c3983bcf-9c4d-46b2-bd75-eda67598eb0c",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train25_blend_species_face.png",
+      "image_info": {
+        "filename": "train25_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train26_no_ip": {
+      "prompt_id": "6bfd592f-26bb-45f5-8e50-c1cb9f13de97",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train26_no_ip.png",
+      "image_info": {
+        "filename": "train26_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train26_blend_default": {
+      "prompt_id": "9b7858f0-373d-4e38-be58-13df74147ae3",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train26_blend_default.png",
+      "image_info": {
+        "filename": "train26_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train26_blend_identity_exact": {
+      "prompt_id": "017e6102-067d-4a89-a61a-86b99517995a",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train26_blend_identity_exact.png",
+      "image_info": {
+        "filename": "train26_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train26_blend_species_face": {
+      "prompt_id": "2a1e01f0-3b17-4785-beb2-2333c6c30d34",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train26_blend_species_face.png",
+      "image_info": {
+        "filename": "train26_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train27_no_ip": {
+      "prompt_id": "426db1a6-5fe2-4dbe-b81a-494859a238bd",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train27_no_ip.png",
+      "image_info": {
+        "filename": "train27_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train27_blend_default": {
+      "prompt_id": "0e61a792-17c4-4098-bc26-a5f83a078e54",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train27_blend_default.png",
+      "image_info": {
+        "filename": "train27_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train27_blend_identity_exact": {
+      "prompt_id": "6ea570e3-fe16-4827-9389-f3da4724ff31",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train27_blend_identity_exact.png",
+      "image_info": {
+        "filename": "train27_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train27_blend_species_face": {
+      "prompt_id": "277bd554-b989-4553-8015-1b8ef6f62bbd",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train27_blend_species_face.png",
+      "image_info": {
+        "filename": "train27_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train28_no_ip": {
+      "prompt_id": "e07480e4-2e23-4bc0-b071-1ca2e9b6f027",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train28_no_ip.png",
+      "image_info": {
+        "filename": "train28_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train28_blend_default": {
+      "prompt_id": "7ebb59c4-96ab-495e-ac69-4f8691ab3514",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train28_blend_default.png",
+      "image_info": {
+        "filename": "train28_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train28_blend_identity_exact": {
+      "prompt_id": "9ac9455f-2b13-4944-99be-6a5b79b286e9",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train28_blend_identity_exact.png",
+      "image_info": {
+        "filename": "train28_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train28_blend_species_face": {
+      "prompt_id": "4026cf2b-9ccd-45d1-9c8a-18c19aa87de6",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train28_blend_species_face.png",
+      "image_info": {
+        "filename": "train28_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train29_no_ip": {
+      "prompt_id": "b6e3f711-b852-4ab7-a22d-ecebaaa7cd19",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train29_no_ip.png",
+      "image_info": {
+        "filename": "train29_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train29_blend_default": {
+      "prompt_id": "b0581045-fdd8-42ff-a1fb-ee9264d51082",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train29_blend_default.png",
+      "image_info": {
+        "filename": "train29_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train29_blend_identity_exact": {
+      "prompt_id": "7b1ce211-ef93-4f76-bcf8-3b7a8cbc02c9",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train29_blend_identity_exact.png",
+      "image_info": {
+        "filename": "train29_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train29_blend_species_face": {
+      "prompt_id": "394b7988-6b55-49a3-a04d-3624dfba711f",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train29_blend_species_face.png",
+      "image_info": {
+        "filename": "train29_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train30_no_ip": {
+      "prompt_id": "12d90b4b-97c8-4960-a720-44350c899671",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train30_no_ip.png",
+      "image_info": {
+        "filename": "train30_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train30_blend_default": {
+      "prompt_id": "5cb18c24-1bd3-40f6-8456-b906e61f9224",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train30_blend_default.png",
+      "image_info": {
+        "filename": "train30_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train30_blend_identity_exact": {
+      "prompt_id": "f2e4c321-b1f3-4025-b5a7-a4bdae5e08ea",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train30_blend_identity_exact.png",
+      "image_info": {
+        "filename": "train30_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train30_blend_species_face": {
+      "prompt_id": "c0fd4969-988c-48cf-9dcf-31647f25e4a4",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train30_blend_species_face.png",
+      "image_info": {
+        "filename": "train30_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train31_no_ip": {
+      "prompt_id": "4283b77b-81f4-41ce-84a7-4bbc6f5499ea",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train31_no_ip.png",
+      "image_info": {
+        "filename": "train31_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train31_blend_default": {
+      "prompt_id": "fc02f712-2e3f-4ddf-8d23-fd7a7352d726",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train31_blend_default.png",
+      "image_info": {
+        "filename": "train31_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train31_blend_identity_exact": {
+      "prompt_id": "75f559d7-4978-4852-9788-0de2636a3d96",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train31_blend_identity_exact.png",
+      "image_info": {
+        "filename": "train31_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "train31_blend_species_face": {
+      "prompt_id": "dbda786d-10c6-4ca3-a1af-debccc25e467",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/train31_blend_species_face.png",
+      "image_info": {
+        "filename": "train31_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "heldout00_no_ip": {
+      "prompt_id": "930ae327-753e-4110-be53-377d543a13d7",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/heldout00_no_ip.png",
+      "image_info": {
+        "filename": "heldout00_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "heldout00_blend_default": {
+      "prompt_id": "ee0f3ea3-c954-41ac-b654-0a6f01700062",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/heldout00_blend_default.png",
+      "image_info": {
+        "filename": "heldout00_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "heldout00_blend_identity_exact": {
+      "prompt_id": "5881ce79-523c-4f3d-9a75-4ad2a5fb7f19",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/heldout00_blend_identity_exact.png",
+      "image_info": {
+        "filename": "heldout00_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "heldout00_blend_species_face": {
+      "prompt_id": "c60b8f4f-c610-4580-a3c3-49f04bcfeb50",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/heldout00_blend_species_face.png",
+      "image_info": {
+        "filename": "heldout00_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "heldout01_no_ip": {
+      "prompt_id": "350dda39-7760-4e02-84a8-11cc5d12f474",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/heldout01_no_ip.png",
+      "image_info": {
+        "filename": "heldout01_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "heldout01_blend_default": {
+      "prompt_id": "421eb22b-3508-4f93-af7c-d02c7bdc680f",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/heldout01_blend_default.png",
+      "image_info": {
+        "filename": "heldout01_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "heldout01_blend_identity_exact": {
+      "prompt_id": "0a8967a7-8f3d-4576-8cc0-ff300e1f06eb",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/heldout01_blend_identity_exact.png",
+      "image_info": {
+        "filename": "heldout01_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "heldout01_blend_species_face": {
+      "prompt_id": "06186862-51cb-4482-9eaa-cebd541923d3",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/heldout01_blend_species_face.png",
+      "image_info": {
+        "filename": "heldout01_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "heldout02_no_ip": {
+      "prompt_id": "60b69913-d7ce-440b-a799-d1e66885dd43",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/heldout02_no_ip.png",
+      "image_info": {
+        "filename": "heldout02_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "heldout02_blend_default": {
+      "prompt_id": "0715e4df-2765-4658-b20a-c7d0a86690bf",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/heldout02_blend_default.png",
+      "image_info": {
+        "filename": "heldout02_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "heldout02_blend_identity_exact": {
+      "prompt_id": "ce8abc0f-917a-4472-81c1-581222bfe02e",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/heldout02_blend_identity_exact.png",
+      "image_info": {
+        "filename": "heldout02_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "heldout02_blend_species_face": {
+      "prompt_id": "b34e4f6c-6ac9-4afe-91f4-171c3c3ea847",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/heldout02_blend_species_face.png",
+      "image_info": {
+        "filename": "heldout02_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "heldout03_no_ip": {
+      "prompt_id": "fe663452-1fc4-4721-8d6e-28ee3c23dc0f",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/heldout03_no_ip.png",
+      "image_info": {
+        "filename": "heldout03_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "heldout03_blend_default": {
+      "prompt_id": "607d91ca-a781-40c2-a064-8a05c50f2a9b",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/heldout03_blend_default.png",
+      "image_info": {
+        "filename": "heldout03_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "heldout03_blend_identity_exact": {
+      "prompt_id": "b2a5bff3-b0b5-4fb4-b9a3-8f52554ac3f3",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/heldout03_blend_identity_exact.png",
+      "image_info": {
+        "filename": "heldout03_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "heldout03_blend_species_face": {
+      "prompt_id": "80185d43-2342-4942-a903-76e27bbdf198",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/heldout03_blend_species_face.png",
+      "image_info": {
+        "filename": "heldout03_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "heldout04_no_ip": {
+      "prompt_id": "9c02d154-9a30-48f0-bfc6-64a0c2f5411c",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/heldout04_no_ip.png",
+      "image_info": {
+        "filename": "heldout04_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "heldout04_blend_default": {
+      "prompt_id": "0746f463-ec4e-47c6-9bc4-587f310aa1c8",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/heldout04_blend_default.png",
+      "image_info": {
+        "filename": "heldout04_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "heldout04_blend_identity_exact": {
+      "prompt_id": "2b746cdd-5f36-4963-a299-e90b5d7319af",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/heldout04_blend_identity_exact.png",
+      "image_info": {
+        "filename": "heldout04_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "heldout04_blend_species_face": {
+      "prompt_id": "a37e65fb-1b1d-47f2-b308-811e72e74525",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/heldout04_blend_species_face.png",
+      "image_info": {
+        "filename": "heldout04_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "heldout05_no_ip": {
+      "prompt_id": "6739ab79-af73-4cbb-8cec-2f73ccdf5ce0",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/heldout05_no_ip.png",
+      "image_info": {
+        "filename": "heldout05_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "heldout05_blend_default": {
+      "prompt_id": "19e2e699-ccf5-450c-9002-56693c526c3f",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/heldout05_blend_default.png",
+      "image_info": {
+        "filename": "heldout05_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "heldout05_blend_identity_exact": {
+      "prompt_id": "3e7ff6e7-ef62-4195-bdb7-bb8450986f15",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/heldout05_blend_identity_exact.png",
+      "image_info": {
+        "filename": "heldout05_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "heldout05_blend_species_face": {
+      "prompt_id": "1e170d1c-4174-4442-a1c0-f7c6be64431c",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/heldout05_blend_species_face.png",
+      "image_info": {
+        "filename": "heldout05_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "heldout06_no_ip": {
+      "prompt_id": "dcf8b9d6-b296-4a2b-8548-4cf7fac51d5e",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/heldout06_no_ip.png",
+      "image_info": {
+        "filename": "heldout06_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "heldout06_blend_default": {
+      "prompt_id": "82708656-4dd7-41ee-ae51-6ee599937c4a",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/heldout06_blend_default.png",
+      "image_info": {
+        "filename": "heldout06_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "heldout06_blend_identity_exact": {
+      "prompt_id": "6830f282-fdce-48d8-bf73-41ef7652c97e",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/heldout06_blend_identity_exact.png",
+      "image_info": {
+        "filename": "heldout06_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "heldout06_blend_species_face": {
+      "prompt_id": "3a3dc288-05c9-4551-9524-436ab2260a0b",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/heldout06_blend_species_face.png",
+      "image_info": {
+        "filename": "heldout06_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "heldout07_no_ip": {
+      "prompt_id": "6562d765-67b7-499a-b89e-7111d69d770d",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/heldout07_no_ip.png",
+      "image_info": {
+        "filename": "heldout07_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "heldout07_blend_default": {
+      "prompt_id": "492429c3-41ee-417b-8b42-772d0d85d3e8",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/heldout07_blend_default.png",
+      "image_info": {
+        "filename": "heldout07_blend_default_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "heldout07_blend_identity_exact": {
+      "prompt_id": "87eecf62-ffd6-40a8-869a-ca46deec814e",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/heldout07_blend_identity_exact.png",
+      "image_info": {
+        "filename": "heldout07_blend_identity_exact_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    },
+    "heldout07_blend_species_face": {
+      "prompt_id": "1086fa13-df46-4758-8142-1988feec8541",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/heldout07_blend_species_face.png",
+      "image_info": {
+        "filename": "heldout07_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c061_instruction_calibration_gate_20260612"
+      }
+    }
+  },
+  "contact_sheets": {
+    "train": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/contact_sheet_train.jpg",
+    "heldout": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c061_instruction_calibration_gate_20260612/contact_sheet_heldout.jpg"
+  }
+}

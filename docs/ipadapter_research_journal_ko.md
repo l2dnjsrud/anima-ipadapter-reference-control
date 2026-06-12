@@ -1094,7 +1094,89 @@ c060 decision은 `c060_failure_focused_not_quality_pass_runtime_blend_remains_be
 
 이 실험은 failure-focused continuation이 reference-active한 방향이라는 점은 확인했지만, adapter-only continuation만으로는 현재 best runtime blend를 넘지 못했다. 다음 루프는 단순 continuation 반복이 아니라 encoder/feature calibration, stronger image encoder, runtime blend distillation objective, 또는 실패류를 직접 구분하는 teacher objective로 넘어가야 한다.
 
-## 12. 근거 파일 색인
+## 12. 2026-06-12 c061 QwenVL instruction calibration gate
+
+### 왜 시작했나
+
+c060은 adapter-only continuation을 더 했지만 best runtime blend를 넘지 못했다. 그래서 c061은 새 학습 없이 QwenVL image embedding instruction만 바꿔도 reference embedding이 더 유용해지는지 확인했다.
+
+핵심 질문은 다음이었다.
+
+1. 같은 checkpoint와 같은 weight에서 instruction만 바꾸면 결과가 달라지는가?
+2. `species`, `face structure`, `non-human trait`, `speech bubble`, `pose crop`, `prop`을 직접 강조하면 c058/c060의 실패류가 줄어드는가?
+3. 개선이 있다면 workflow preset으로 쓸 수 있는가, 아니면 prompt-only calibration의 한계로 보고 다음 학습 루프로 넘어가야 하는가?
+
+### 실험 구성
+
+- output: `eval/qwenvl_c061_instruction_calibration_gate_20260612/`
+- train contact sheet: `eval/qwenvl_c061_instruction_calibration_gate_20260612/contact_sheet_train.jpg`
+- heldout contact sheet: `eval/qwenvl_c061_instruction_calibration_gate_20260612/contact_sheet_heldout.jpg`
+- report: `eval/qwenvl_c061_instruction_calibration_gate_20260612/report.md`
+- visual audit: `eval/qwenvl_c061_instruction_calibration_gate_20260612/visual_audit.md`
+- PE metric: `eval/qwenvl_c061_instruction_calibration_gate_20260612/pe_similarity_metrics.json`
+- QwenVL metric: `eval/qwenvl_c061_instruction_calibration_gate_20260612/qwenvl_similarity_metrics.json`
+
+variants:
+
+- `no_ip`
+- `blend_default`: 기존 기본 instruction + `prev_w14 1.4 + c055 0.4`
+- `blend_identity_exact`: exact identity, face shape, age, species/non-human traits, costume, palette, pose crop, props, speech bubbles 강조
+- `blend_species_face`: strict visual identity retrieval, non-human species, monster/demon traits, profile silhouette, beard/headwear, skin tone, glowing eyes, props, costume palette 강조
+
+검증 guard:
+
+- samples: clean32 train `32` + heldout8 `8` = `40`
+- generated PNGs: `160`
+- blank PNGs: `0`
+- min pixel std: `35.883`
+- API prompt guard: 같은 sample 안에서 seed, positive/negative prompt, checkpoint sequence, weights `1.4 + 0.4`, start/end range가 모두 같고 `AnimaQwenVLEncodeImage.instruction`만 달라짐
+- cleanup: isolated ComfyUI server stopped, port `8116` closed
+
+### metric 결과
+
+PE mean uplift:
+
+- `blend_species_face`: `+0.060893`
+- `blend_identity_exact`: `+0.054909`
+- `blend_default`: `+0.049596`
+
+QwenVL mean uplift:
+
+- `blend_species_face`: `+0.042190`
+- `blend_default`: `+0.041589`
+- `blend_identity_exact`: `+0.039557`
+
+heldout PE mean uplift:
+
+- `blend_species_face`: `+0.053534`
+- `blend_default`: `+0.039142`
+- `blend_identity_exact`: `+0.035494`
+
+heldout QwenVL mean uplift:
+
+- `blend_species_face`: `+0.026471`
+- `blend_default`: `+0.022779`
+- `blend_identity_exact`: `+0.016944`
+
+### 시각 감사
+
+`blend_species_face`는 c061 안에서 가장 낫다. 수염, 관모, 붉은 눈, 어두운 palette, costume cue가 default보다 조금 더 안정적인 경우가 있다. 따라서 현재 workflow preset으로는 default instruction보다 `species_face` instruction을 쓰는 편이 낫다.
+
+하지만 고퀄 reference-control gate는 통과하지 못했다. 세 adapter column이 대부분 거의 같은 구도/인물로 수렴했고, instruction만으로는 모델이 reference의 구조적 identity를 새로 잡지 못한다.
+
+대표 실패:
+
+- `heldout01`: 노인 남성의 각진 얼굴과 말풍선 구성이 젊은 shouting martial artist로 밀린다.
+- `heldout07`: 초록 괴물 측면 reference가 여전히 human dark-villain body template으로 붕괴한다. `species_face`는 red eye/dark palette를 조금 강화하지만 monster head/profile identity는 유지하지 못한다.
+- train에서도 비슷하게 palette/costume cue는 가져오지만 정확한 face structure와 특수 silhouette은 불안정하다.
+
+### 판단
+
+c061 decision은 `instruction_calibration_species_face_best_preset_not_quality_pass`다.
+
+즉 QwenVL instruction은 완전히 무의미하지 않다. 같은 checkpoint/weight/seed에서 instruction만 바꿔도 metric과 일부 visual cue가 개선된다. 그러나 prompt-only feature calibration만으로는 원하는 고퀄 reference-control 수준에 도달하지 못한다. 다음 루프는 실제 encoder/feature adaptation 또는 runtime blend distillation objective로 넘어가야 한다.
+
+## 13. 근거 파일 색인
 
 핵심 문서:
 
@@ -1130,6 +1212,7 @@ c060 decision은 `c060_failure_focused_not_quality_pass_runtime_blend_remains_be
 - `eval/qwenvl_c059_checkpoint_merge_gate_20260612/report.md`
 - `eval/qwenvl_c060_failure_focused_training_20260612/report.md`
 - `eval/qwenvl_c060_failure_focused_gate_20260612/report.md`
+- `eval/qwenvl_c061_instruction_calibration_gate_20260612/report.md`
 
 PE baseline:
 
@@ -1189,6 +1272,10 @@ QwenVL 주요 평가:
 - `eval/qwenvl_c060_failure_focused_gate_20260612/visual_audit.md`
 - `eval/qwenvl_c060_failure_focused_gate_20260612/pe_similarity_metrics.json`
 - `eval/qwenvl_c060_failure_focused_gate_20260612/qwenvl_similarity_metrics.json`
+- `eval/qwenvl_c061_instruction_calibration_gate_20260612/report.md`
+- `eval/qwenvl_c061_instruction_calibration_gate_20260612/visual_audit.md`
+- `eval/qwenvl_c061_instruction_calibration_gate_20260612/pe_similarity_metrics.json`
+- `eval/qwenvl_c061_instruction_calibration_gate_20260612/qwenvl_similarity_metrics.json`
 
 생성/학습 manifest:
 

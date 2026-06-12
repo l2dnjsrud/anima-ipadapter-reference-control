@@ -1,0 +1,51 @@
+{
+  "decision": "instruction_calibration_species_face_best_preset_not_quality_pass",
+  "gate": "c061_qwenvl_instruction_calibration",
+  "samples": 40,
+  "variants": [
+    "no_ip",
+    "blend_default",
+    "blend_identity_exact",
+    "blend_species_face"
+  ],
+  "metrics": {
+    "pe_mean_uplift": {
+      "blend_default": 0.04959603399038315,
+      "blend_identity_exact": 0.05490925759077072,
+      "blend_species_face": 0.06089283600449562
+    },
+    "qwenvl_mean_uplift": {
+      "blend_default": 0.04158879667520523,
+      "blend_identity_exact": 0.03955742120742798,
+      "blend_species_face": 0.04219041019678116
+    },
+    "heldout_pe_mean_uplift": {
+      "blend_default": 0.03914159536361694,
+      "blend_identity_exact": 0.03549392521381378,
+      "blend_species_face": 0.05353423207998276
+    },
+    "heldout_qwenvl_mean_uplift": {
+      "blend_default": 0.022778578102588654,
+      "blend_identity_exact": 0.016943663358688354,
+      "blend_species_face": 0.026471316814422607
+    }
+  },
+  "runtime_guard": {
+    "generated_pngs": 160,
+    "blank_pngs": 0,
+    "min_pixel_std": 35.883,
+    "prompt_only_instruction_changed": true,
+    "comfyui_port_8116_closed": true
+  },
+  "visual_result": {
+    "reference_active": true,
+    "quality_pass": false,
+    "best_c061_preset": "blend_species_face",
+    "main_failures": [
+      "non-human side-profile identity still collapses to human dark-villain template",
+      "old/square face structure is not stable enough",
+      "instruction-only calibration mostly changes local cues rather than the adapter control behavior"
+    ],
+    "next_branch": "real encoder adaptation or runtime-blend distillation objective"
+  }
+}
