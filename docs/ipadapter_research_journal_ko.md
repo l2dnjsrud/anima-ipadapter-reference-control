@@ -451,6 +451,30 @@ c041 reviewed seed를 pair probe manifest로 변환해 SigLIP/QwenVL/PE feature 
 
 기준 margin `>= 0.05`, AUC `>= 0.70`을 동시에 만족한 feature는 없다. 다만 SigLIP layer -6 `mean_max_token`은 AUC가 높고 margin이 기준에 가까워, 더 큰 reviewed identity set에서 우선 재검증할 후보로 유지한다.
 
+### 7.19 2026-06-12 Broad face/upper-body identity candidate mining c043
+
+c041/c042 seed가 너무 작았기 때문에 같은 `SG-page` 안의 non-duplicate 후보를 `160`개까지 넓히고, Qwen3-VL image-text retrieval로 양쪽 이미지가 모두 얼굴/상반신 캐릭터 crop인지 필터링했다.
+
+- 도구: `tools/filter_face_upper_body_candidates.py`
+- 테스트: `tests/test_face_upper_body_candidate_filter.py`
+- raw 후보: `eval/broad_identity_candidate_mining_20260612_c043/raw_candidate_pairs.jsonl`
+- QwenVL score: `eval/broad_identity_candidate_mining_20260612_c043/scored_face_candidates.jsonl`
+- kept 후보: `eval/broad_identity_candidate_mining_20260612_c043/kept_face_candidates.jsonl`
+- 리뷰 sheet: `eval/broad_identity_candidate_mining_20260612_c043/kept_face_candidate_sheet.jpg`
+- 보고서: `eval/broad_identity_candidate_mining_20260612_c043/report.md`
+
+결과:
+
+- `threshold=0.0`: `152/160`개 keep, 너무 느슨함
+- `threshold=0.05`: `91/160`개 keep, 리뷰 후보로는 많음
+- `threshold=0.08`: `30/160`개 keep, 최종 선택
+- kept set은 `22`개 SG page에 분산
+- kept min side-score range: `0.080176` to `0.114322`
+
+결정: `face_upper_body_filter_expands_review_pool_not_identity_labels`
+
+시각 확인상 얼굴/상반신 후보를 늘리는 데는 성공했다. 하지만 남은 30쌍에도 다른 인물, partial crop, ambiguous pair가 섞여 있다. 따라서 c043은 학습용 정답 manifest가 아니라 c044 수동 라벨링 후보 풀이다.
+
 ## 8. 현재 판단
 
 ### 바로 믿고 쓸 수 있는 것
@@ -469,6 +493,7 @@ c041 reviewed seed를 pair probe manifest로 변환해 SigLIP/QwenVL/PE feature 
 - c040 기준 QwenVL character-centered filter는 후보 노이즈를 줄이지만, same-character label을 자동 확정할 정도는 아니다.
 - c041 기준 reviewed seed는 4 usable positive뿐이라 feature sanity probe에는 쓸 수 있지만 학습 gate로는 부족하다.
 - c042 기준 c041 seed에서는 어떤 raw feature도 identity feature gate를 통과하지 못했다. SigLIP layer -6 `mean_max_token`만 더 큰 라벨셋에서 재검증할 후보로 남긴다.
+- c043 기준 QwenVL face/upper-body filter는 후보를 30쌍으로 확장했지만, same-character label을 자동 확정하지는 못한다.
 - 선화 채색은 IP-Adapter 단독 목표가 아니다. line-control/colorize control과 결합해야 한다.
 - InterleaveThinker와 i1도 현 단계에서는 완성 IP-Adapter 모델이 아니다. 각각 agentic loop와 T2I recipe 참고 자료로만 사용한다.
 
@@ -480,7 +505,7 @@ SigLIP 계열은 한 장 overfit이 성공했고, PE-style patch/PE-space/retrie
 
 1. 현재 SigLIP recipe를 실험용으로 문서화하되, c035 decision은 `not_ready`로 유지한다.
 2. 다음 방향은 `agentic_reference_control_loop`를 먼저 만들고, 그 결과로 `train_stronger_encoder`를 실행할지 결정하는 것이다.
-3. frozen SigLIP2 adapter-only 반복이 아니라 anime/manhwa 특화 encoder, QwenVL feature calibrator, image-encoder adaptation, 또는 i1식 data/recaption recipe를 검증한다. 단, c037 기준 pooled PE/QwenVL/SigLIP2 feature는 모두 weak identity proxy를 통과하지 못했고 c038은 duplicate sanity만 통과했으며 c039/c040 후보 mining은 아직 true same-character label을 자동 확정하지 못했다. c041/c042 reviewed seed도 너무 작고 raw feature gate를 통과하지 못하므로, 대규모 reviewed true same-character manifest 전까지 주 지표가 아니라 보조 관찰값으로만 둔다.
+3. frozen SigLIP2 adapter-only 반복이 아니라 anime/manhwa 특화 encoder, QwenVL feature calibrator, image-encoder adaptation, 또는 i1식 data/recaption recipe를 검증한다. 단, c037 기준 pooled PE/QwenVL/SigLIP2 feature는 모두 weak identity proxy를 통과하지 못했고 c038은 duplicate sanity만 통과했으며 c039/c040 후보 mining은 아직 true same-character label을 자동 확정하지 못했다. c041/c042 reviewed seed도 너무 작고 raw feature gate를 통과하지 못했다. c043은 reviewed 후보를 30쌍으로 늘렸으나 아직 수동 라벨 전 단계이므로, 대규모 reviewed true same-character manifest 전까지 주 지표가 아니라 보조 관찰값으로만 둔다.
 4. 자동 attribute prompt vocabulary는 유지하되, 이것만으로 identity 문제를 해결했다고 보지 않는다.
 5. single-character suite를 더 큰 held-out set으로 확장하고, metric과 visual audit gate를 계속 같이 사용한다.
 6. FaceID-like 목표는 별도 단계로 분리한다. same-character group mining과 애니/만화 identity encoder가 먼저 필요하다.
@@ -503,6 +528,7 @@ SigLIP 계열은 한 장 overfit이 성공했고, PE-style patch/PE-space/retrie
 - `eval/character_filtered_identity_candidates_20260612_c040/report.md`
 - `eval/reviewed_identity_candidates_20260612_c041/report.md`
 - `eval/reviewed_seed_feature_probe_20260612_c042/report.md`
+- `eval/broad_identity_candidate_mining_20260612_c043/report.md`
 
 PE baseline:
 

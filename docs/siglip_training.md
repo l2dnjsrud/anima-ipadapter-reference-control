@@ -1378,3 +1378,28 @@ with mean uplift `+0.1103` over no-IP and improves 7/8 cases.
 uplift `+0.1452` and also improves 7/8 cases. The monster row is visually
 closer with SigLIP but lower under PE pooled-cosine, so the metric is a useful
 auxiliary signal, not the only pass/fail criterion.
+
+## 2026-06-12 c035-c043 stronger-encoder prerequisite loop
+
+c035 expanded the native SigLIP runtime gate to a 32-case single-character
+suite. The best recipe, `siglip_ref_retrieval_w14`, reached mean uplift
+`+0.0577` and improved rate `0.65625`; visual identity/distinctive-trait
+coverage was `16/32`. Decision: `not_ready`.
+
+The follow-up c036-c043 loop did not launch another adapter training run. It
+tested whether the current feature spaces can provide a stronger identity gate:
+
+- c036: QwenVL pooled metric is auxiliary only.
+- c037: PE/QwenVL/SigLIP pooled features do not separate weak identity proxies.
+- c038: the same feature pipeline passes duplicate-panel sanity checks.
+- c039-c041: same-page mining plus character filtering produced only a tiny
+  reviewed seed, with 4 usable positives.
+- c042: reviewed seed feature probe did not pass; SigLIP layer `-6`
+  `mean_max_token` is the most promising underpowered signal.
+- c043: broad QwenVL face/upper-body filtering expanded the review pool to 30
+  candidate pairs across 22 SG pages.
+
+Current decision: do not start long SigLIP adapter training yet. First convert
+c043 into a larger reviewed identity manifest, then rerun the feature gate. If
+raw features still fail on the larger reviewed set, train a small metric
+head/calibrator before any IP-Adapter K/V training.

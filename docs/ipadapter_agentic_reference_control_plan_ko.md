@@ -161,3 +161,13 @@ c041 seed를 positive/negative pair probe로 변환해 SigLIP/QwenVL/PE feature 
 - 결정: `reviewed_seed_feature_gate_not_passed`
 
 결과: QwenVL pooled는 margin `0.024015`, AUC `0.666667`로 fail이다. SigLIP layer `-6` `mean_max_token`은 AUC `0.916667`로 흥미롭지만 margin `0.043225`라 기준 `0.05` 미달이고 seed가 너무 작다. 다음 loop는 face/upper-body 중심 후보를 더 넓게 mining해 reviewed positive를 늘린다.
+
+## 2026-06-12 c043 broad face/upper-body candidate mining
+
+c042가 underpowered였기 때문에 같은 `SG-page` non-duplicate 후보를 `160`개까지 넓히고 Qwen3-VL image-text retrieval로 양쪽 crop이 모두 얼굴/상반신 후보인지 필터링했다.
+
+- 도구: `tools/filter_face_upper_body_candidates.py`
+- 산출물: `eval/broad_identity_candidate_mining_20260612_c043/report.md`
+- 결정: `face_upper_body_filter_expands_review_pool_not_identity_labels`
+
+결과: threshold `0.08` 기준 `30/160`개를 남겼고, kept set은 `22`개 SG page에 분산됐다. contact sheet 기준 얼굴/상반신 crop 비율은 좋아졌지만, 동일 인물 라벨은 여전히 자동 확정할 수 없다. 다음 loop는 30쌍을 `same_character`, `different_character`, `unclear`로 수동 라벨링하고, SigLIP layer `-6` `mean_max_token`과 QwenVL pooled를 더 큰 reviewed seed에서 다시 검증하는 것이다.

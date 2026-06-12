@@ -43,6 +43,7 @@ SELECTED: `agentic_reference_control_loop` -> `train_stronger_encoder`
 | Character filter c040 | QwenVL image-text score로 character-centered 후보만 남기는지 확인 | 24개 중 14개 유지, 노이즈 감소. 그러나 다른 인물/몸통 crop이 남음 | needs reviewed labels |
 | Reviewed identity c041 | c040 후보에 수동 시각 라벨을 붙여 true identity seed가 충분한지 확인 | 14개 중 same 6, different 3, unclear 5, usable positive 4 | seed only, not training gate |
 | Reviewed seed feature c042 | c041 seed에서 feature가 same/different character를 분리하는지 확인 | QwenVL pooled margin 0.024/AUC 0.667, SigLIP -6 mean_max margin 0.043/AUC 0.917 | gate not passed |
+| Broad face filter c043 | same-page 후보를 160개로 넓히고 QwenVL face/upper-body filter로 리뷰 후보 확장 | threshold 0.08 기준 30개 유지, 22개 SG page 분산. identity label 자동 확정은 아님 | needs manual labels |
 | QwenVL adapter-only | QwenVL embedding을 adapter에 직접 연결 | 출력 변화는 있으나 generic wuxia/interior collapse | 현재 방식 보류 |
 | line-art colorization | IP-Adapter 단독 선화 채색 | 색/스타일 압력은 있으나 구조 보존 실패. EasyControl 결합 필요 | 별도 spatial-control track |
 | InterleaveThinker | agentic interleaved generation 연구 | planner/critic loop가 출력 편차를 찾고 지시를 수정한다 | reference-control audit loop 참고 |
@@ -220,6 +221,22 @@ c040 kept 14개를 보수적으로 라벨링했다. 결과는 `same_character=6`
 결론은 `reviewed_seed_feature_gate_not_passed`다. c041의 4 positive / 3 negative seed에서 기존 pass 기준 margin `>= 0.05`, AUC `>= 0.70`을 동시에 만족한 feature는 없다.
 
 가장 볼 만한 후보는 SigLIP layer `-6` `mean_max_token`이다. AUC `0.916667`이지만 margin `0.043225`로 기준 미달이고 seed가 너무 작으므로 통과로 보지 않는다. 다음 loop는 reviewed positive를 수십 개로 늘린 뒤 같은 metric을 다시 확인하는 것이다.
+
+## c043 Broad face/upper-body identity candidate mining
+
+산출물:
+
+- `tools/filter_face_upper_body_candidates.py`
+- `tests/test_face_upper_body_candidate_filter.py`
+- `eval/broad_identity_candidate_mining_20260612_c043/raw_candidate_pairs.jsonl`
+- `eval/broad_identity_candidate_mining_20260612_c043/scored_face_candidates.jsonl`
+- `eval/broad_identity_candidate_mining_20260612_c043/kept_face_candidates.jsonl`
+- `eval/broad_identity_candidate_mining_20260612_c043/kept_face_candidate_sheet.jpg`
+- `eval/broad_identity_candidate_mining_20260612_c043/report.md`
+
+결론은 `face_upper_body_filter_expands_review_pool_not_identity_labels`다. raw same-page 후보 `160`개 중 QwenVL face/upper-body score threshold `0.08`로 `30`개를 남겼고, kept set은 `22`개 SG page에 분산됐다.
+
+이 단계는 c041의 4개 usable positive seed를 바로 학습에 쓰지 않기 위한 데이터 확장이다. contact sheet 기준 얼굴/상반신 crop 비율은 좋아졌지만 동일 인물/다른 인물 라벨은 아직 자동 확정할 수 없다. 다음 loop는 이 30쌍을 reviewed manifest로 바꾸고, 그 뒤 c042 feature probe를 더 큰 seed에서 반복하는 것이다.
 
 ## 실행 명령
 
