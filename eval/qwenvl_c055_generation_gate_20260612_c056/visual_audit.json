@@ -1,0 +1,88 @@
+{
+  "decision": "qwen_c055_improves_c052_not_quality_pass_prev_retrieval_still_best",
+  "generated_images": 40,
+  "blank_images": 0,
+  "c055_best_or_competitive_visual_cases": 6,
+  "c055_clear_weak_or_loss_cases": 2,
+  "metric_summary": {
+    "pe": {
+      "qwen_prev_retrieval_w14": {
+        "mean_uplift": 0.0983,
+        "improved_rate": 0.875
+      },
+      "qwen_c052_w14": {
+        "mean_uplift": 0.0394,
+        "improved_rate": 0.625
+      },
+      "qwen_c055_w1": {
+        "mean_uplift": 0.0502,
+        "improved_rate": 0.75
+      },
+      "qwen_c055_w14": {
+        "mean_uplift": 0.046,
+        "improved_rate": 0.75
+      }
+    },
+    "qwenvl": {
+      "qwen_prev_retrieval_w14": {
+        "mean_uplift": 0.0377,
+        "improved_rate": 0.875
+      },
+      "qwen_c052_w14": {
+        "mean_uplift": 0.0231,
+        "improved_rate": 0.625
+      },
+      "qwen_c055_w1": {
+        "mean_uplift": 0.0257,
+        "improved_rate": 0.75
+      },
+      "qwen_c055_w14": {
+        "mean_uplift": 0.0339,
+        "improved_rate": 0.875
+      }
+    }
+  },
+  "case_notes": [
+    {
+      "sample": "train00",
+      "judgment": "weak",
+      "note": "c055 keeps black-red costume and long hair but misses reference arm/action pose."
+    },
+    {
+      "sample": "train07",
+      "judgment": "weak",
+      "note": "c055 is clean but remains a generic angry close-up without page-specific framing."
+    },
+    {
+      "sample": "train14",
+      "judgment": "better",
+      "note": "c055 w1 restores exaggerated old bearded expression better than c052 and previous retrieval."
+    },
+    {
+      "sample": "train23",
+      "judgment": "competitive",
+      "note": "c055 keeps hat, glasses, and scholar silhouette but still misses the fan."
+    },
+    {
+      "sample": "heldout00",
+      "judgment": "better",
+      "note": "c055 preserves pale purple skin, side-facing dark-armored villain, and long black hair."
+    },
+    {
+      "sample": "heldout02",
+      "judgment": "competitive",
+      "note": "c055 preserves bald head, white beard, red beads, and monk palette, but c052 and previous retrieval remain close."
+    },
+    {
+      "sample": "heldout05",
+      "judgment": "better",
+      "note": "c055 improves shouting side profile and dark hair versus c052, but the face is still not exact."
+    },
+    {
+      "sample": "heldout07",
+      "judgment": "competitive",
+      "note": "c055 preserves green demon skin and red eye, but silhouette remains imperfect and previous retrieval still wins metrics."
+    }
+  ],
+  "next_branch": "c057_runtime_weight_or_blend_gate_before_more_training"
+}
