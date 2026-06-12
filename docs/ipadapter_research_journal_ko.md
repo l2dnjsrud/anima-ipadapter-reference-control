@@ -989,7 +989,112 @@ c058에서 가장 좋은 runtime recipe는 `blend_prev14_c05504`, 즉 이전 ret
 
 단순 parameter-space checkpoint merge는 더 파지 않는다. 다음 루프는 failure-focused continuation 또는 stronger encoder/feature adaptation으로 넘어가야 한다. 학습/평가에서 직접 압박해야 할 실패 클래스는 pose/crop, speech bubble, hand/fan prop, non-human silhouette이다.
 
-## 11. 근거 파일 색인
+## 11. 2026-06-12 c060 QwenVL failure-focused continuation
+
+### 왜 시작했나
+
+c058에서 가장 강한 후보는 `prev_w14 + c055_w04` runtime blend였고, c059 단일 checkpoint merge는 그 runtime blend를 대체하지 못했다. 그래서 c060은 단순 merge 대신 c058/c059에서 반복적으로 무너진 실패류를 학습 데이터 쪽에서 더 압박하는 실험으로 진행했다.
+
+목표는 다음과 같았다.
+
+1. heldout을 학습에 쓰지 않고 clean32 train과 c052 reviewed positive만 사용한다.
+2. pose/crop, speech bubble, hand/fan prop, non-human/special silhouette 같은 실패류를 prompt attribute로 찾아 train rows를 반복 노출한다.
+3. 이전 QwenVL single-character retrieval checkpoint에서 bounded continuation을 진행한다.
+4. ComfyUI API에서 `no_ip`, `prev_w14`, 기존 best runtime blend `blend_prev14_c05504`, 새 `c060_w14`를 같은 seed/prompt/reference로 비교한다.
+
+### 데이터셋과 manifest
+
+- clean train source: `training/manifests/local_color_single_character_clean32_20260611.jsonl`
+- positive source: `training/manifests/c052_positive_identity_pairs_20260612.jsonl`
+- failure source: `eval/qwenvl_c055_larger_blend_gate_20260612_c058/summary.json`
+- output manifest: `training/manifests/c060_qwenvl_failure_focused_clean32_c052_20260612.jsonl`
+- output summary: `training/manifests/c060_qwenvl_failure_focused_clean32_c052_20260612.summary.json`
+
+manifest summary:
+
+- clean32 rows: `32`
+- c052 positive rows: `58`
+- failure repeated rows: `64`
+- total rows: `154`
+- heldout rows used: `0`
+- repeat per failure row: `2`
+
+실제로는 clean32 32개가 모두 하나 이상의 failure keyword에 걸려서 clean32가 3회 노출되고 c052 positive가 1회 추가되는 형태가 되었다. 완전히 좁은 failure-only 데이터는 아니지만 heldout 누수 없이 실패류를 더 강하게 반복하는 bounded continuation으로는 유효하다.
+
+### 학습
+
+- init checkpoint: `checkpoints/anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors`
+- output checkpoint: `checkpoints/anima_qwenvl_ip_adapter_c060_failure_focused_retrieval_0096_20260612.safetensors`
+- train report: `eval/qwenvl_c060_failure_focused_training_20260612/report.md`
+- train summary: `eval/qwenvl_c060_failure_focused_training_20260612/summary.json`
+- train stdout: `eval/qwenvl_c060_failure_focused_training_20260612/train_stdout.txt`
+
+학습 설정:
+
+- steps: `96`
+- rows loaded: `154`
+- resolution: `256`
+- lr: `2e-6`
+- contrastive weight: `0.40`
+- retrieval weight: `0.25`
+- seed: `20260660`
+
+학습 결과:
+
+- final loss: `0.2131887674`
+- mean loss: `0.2391075663`
+- finite loss: `true`
+- checkpoint loadable: `true`
+- PE checkpoint rejected: `true`
+
+### ComfyUI generation gate
+
+- output: `eval/qwenvl_c060_failure_focused_gate_20260612/`
+- train contact sheet: `eval/qwenvl_c060_failure_focused_gate_20260612/contact_sheet_train.jpg`
+- heldout contact sheet: `eval/qwenvl_c060_failure_focused_gate_20260612/contact_sheet_heldout.jpg`
+- report: `eval/qwenvl_c060_failure_focused_gate_20260612/report.md`
+- visual audit: `eval/qwenvl_c060_failure_focused_gate_20260612/visual_audit.md`
+- PE metric: `eval/qwenvl_c060_failure_focused_gate_20260612/pe_similarity_metrics.json`
+- QwenVL metric: `eval/qwenvl_c060_failure_focused_gate_20260612/qwenvl_similarity_metrics.json`
+
+gate 구성:
+
+- samples: clean32 train `32` + heldout8 `8` = `40`
+- variants: `no_ip`, `prev_w14`, `blend_prev14_c05504`, `c060_w14`
+- generated PNGs: `160`
+- cleanup: isolated ComfyUI server stopped, port `8116` closed
+
+metric 결과:
+
+PE mean uplift:
+
+- `blend_prev14_c05504`: `+0.049596`
+- `prev_w14`: `+0.029240`
+- `c060_w14`: `+0.021860`
+
+QwenVL mean uplift:
+
+- `blend_prev14_c05504`: `+0.041589`
+- `prev_w14`: `+0.036187`
+- `c060_w14`: `+0.031796`
+
+### 시각 감사
+
+c060은 작동한다. `no_ip` 대비 palette, costume, 악역 aura, 수염/관모 같은 일부 cue를 분명히 가져온다. 하지만 reference-control gate는 통과하지 못했다.
+
+대표 실패:
+
+- `heldout01`: 노인 남성의 각진 얼굴과 말풍선 구성 대신 젊은 shouting character로 밀린다.
+- `heldout07`: 초록 괴물 측면 reference가 human dark-villain template으로 붕괴한다.
+- 일부 수염/관모/검은 의상 cue는 개선되지만, 구체적인 얼굴 구조와 특수 종족 형태가 안정적이지 않다.
+
+### 판단
+
+c060 decision은 `c060_failure_focused_not_quality_pass_runtime_blend_remains_best`다.
+
+이 실험은 failure-focused continuation이 reference-active한 방향이라는 점은 확인했지만, adapter-only continuation만으로는 현재 best runtime blend를 넘지 못했다. 다음 루프는 단순 continuation 반복이 아니라 encoder/feature calibration, stronger image encoder, runtime blend distillation objective, 또는 실패류를 직접 구분하는 teacher objective로 넘어가야 한다.
+
+## 12. 근거 파일 색인
 
 핵심 문서:
 
@@ -1023,6 +1128,8 @@ c058에서 가장 좋은 runtime recipe는 `blend_prev14_c05504`, 즉 이전 ret
 - `eval/qwenvl_c055_runtime_blend_gate_20260612_c057/report.md`
 - `eval/qwenvl_c055_larger_blend_gate_20260612_c058/report.md`
 - `eval/qwenvl_c059_checkpoint_merge_gate_20260612/report.md`
+- `eval/qwenvl_c060_failure_focused_training_20260612/report.md`
+- `eval/qwenvl_c060_failure_focused_gate_20260612/report.md`
 
 PE baseline:
 
@@ -1077,6 +1184,11 @@ QwenVL 주요 평가:
 - `eval/qwenvl_c059_checkpoint_merge_gate_20260612/merge_summary.json`
 - `eval/qwenvl_c059_checkpoint_merge_gate_20260612/pe_similarity_metrics.json`
 - `eval/qwenvl_c059_checkpoint_merge_gate_20260612/qwenvl_similarity_metrics.json`
+- `eval/qwenvl_c060_failure_focused_training_20260612/report.md`
+- `eval/qwenvl_c060_failure_focused_gate_20260612/report.md`
+- `eval/qwenvl_c060_failure_focused_gate_20260612/visual_audit.md`
+- `eval/qwenvl_c060_failure_focused_gate_20260612/pe_similarity_metrics.json`
+- `eval/qwenvl_c060_failure_focused_gate_20260612/qwenvl_similarity_metrics.json`
 
 생성/학습 manifest:
 
@@ -1088,6 +1200,7 @@ QwenVL 주요 평가:
 - `training/manifests/local_color_single_character_clean32_heldout8_20260611.jsonl`
 - `training/manifests/c052_positive_identity_pairs_20260612.jsonl`
 - `training/manifests/c055_qwenvl_mixed_clean32_c052_positive_20260612.jsonl`
+- `training/manifests/c060_qwenvl_failure_focused_clean32_c052_20260612.jsonl`
 
 현재 가장 중요한 실행 레시피 근거:
 

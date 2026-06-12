@@ -1,0 +1,25 @@
+{
+  "clean_manifest_path": "training/manifests/local_color_single_character_clean32_20260611.jsonl",
+  "positive_manifest_path": "training/manifests/c052_positive_identity_pairs_20260612.jsonl",
+  "gate_summary_path": "eval/qwenvl_c055_larger_blend_gate_20260612_c058/summary.json",
+  "output_manifest_path": "training/manifests/c060_qwenvl_failure_focused_clean32_c052_20260612.jsonl",
+  "output_summary_path": "training/manifests/c060_qwenvl_failure_focused_clean32_c052_20260612.summary.json",
+  "clean32_rows": 32,
+  "c052_positive_rows": 58,
+  "failure_source_rows": 32,
+  "failure_repeated_rows": 64,
+  "total_rows": 154,
+  "heldout_rows_used": 0,
+  "repeat_per_failure_row": 2,
+  "failure_keyword_counts": {
+    "side profile portrait": 12,
+    "upper body close-up portrait": 12,
+    "raised hand martial arts gesture": 20,
+    "arm thrust forward action pose": 3,
+    "folding fan in hand": 6,
+    "sharp fangs visible": 11,
+    "pale purple-skinned villain": 11,
+    "red glowing demonic eye": 10,
+    "demon": 10
+  }
+}
