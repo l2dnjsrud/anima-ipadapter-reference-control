@@ -181,8 +181,8 @@ def _render_report(result: JsonObject) -> str:
             f"- Midpoint accuracy: `{summary['midpoint_accuracy']}`",
             f"- Decision: `{summary['decision']}`",
             "",
-            "Positive pairs are a weak same-SG proxy, not verified same-character labels.",
-            "This gate only decides whether an encoder deserves a stricter identity-pair run.",
+            "Positive and negative labels are read from the manifest.",
+            "This gate checks feature separation only; it does not prove generation quality.",
             "",
         ]
     )

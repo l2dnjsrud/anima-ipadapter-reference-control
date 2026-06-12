@@ -715,6 +715,31 @@ training. The next branch should score this seed with SigLIP layer `-6`,
 SigLIP `mean_max_token`, QwenVL pooled, and PE pooled, while expanding mining
 to collect many more face/upper-body positives.
 
+## 2026-06-12 c042 reviewed seed feature probe
+
+The c041 reviewed seed was converted into a positive/negative pair probe and
+scored with the current feature candidates.
+
+Evidence:
+
+- `tools/build_reviewed_pair_probe_manifest.py`
+- `tests/test_reviewed_pair_probe_manifest.py`
+- `eval/reviewed_seed_feature_probe_20260612_c042/pair_probe_manifest.jsonl`
+- `eval/reviewed_seed_feature_probe_20260612_c042/siglip_pooled_report.md`
+- `eval/reviewed_seed_feature_probe_20260612_c042/siglip_layer_m6_token_report.md`
+- `eval/reviewed_seed_feature_probe_20260612_c042/qwenvl_pooled_report.md`
+- `eval/reviewed_seed_feature_probe_20260612_c042/pe_pooled_report.md`
+- `eval/reviewed_seed_feature_probe_20260612_c042/report.md`
+
+Decision: `reviewed_seed_feature_gate_not_passed`
+
+No raw feature passed the current identity gate of margin `>= 0.05` and AUC
+`>= 0.70`. QwenVL pooled was the best pooled feature but only reached margin
+`0.024015` and AUC `0.666667`. SigLIP layer `-6` `mean_max_token` is the most
+interesting next candidate with margin `0.043225` and AUC `0.916667`, but the
+seed has only 4 positive and 3 negative rows, so this is not enough to train or
+ship. Expand reviewed face/upper-body positives before the next training run.
+
 ## 2026-06-11 Qwen3-VL embedding probe
 
 The next encoder candidate was checked before writing another adapter training

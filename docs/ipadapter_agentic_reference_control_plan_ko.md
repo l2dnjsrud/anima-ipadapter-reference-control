@@ -151,3 +151,13 @@ c040 kept 후보 14개를 reviewed identity manifest로 변환했다.
 - 결정: `reviewed_seed_too_small_for_training_gate`
 
 결과: same-character 6개, different-character 3개, unclear 5개, 학습/검증 positive로 안전하게 쓸 수 있는 pair는 4개뿐이다. 다음 loop는 이 작은 seed로 feature separation sanity probe를 돌리되, adapter 학습은 더 큰 reviewed identity manifest가 만들어질 때까지 보류한다.
+
+## 2026-06-12 c042 reviewed seed feature probe
+
+c041 seed를 positive/negative pair probe로 변환해 SigLIP/QwenVL/PE feature separation을 확인했다.
+
+- 도구: `tools/build_reviewed_pair_probe_manifest.py`
+- 산출물: `eval/reviewed_seed_feature_probe_20260612_c042/report.md`
+- 결정: `reviewed_seed_feature_gate_not_passed`
+
+결과: QwenVL pooled는 margin `0.024015`, AUC `0.666667`로 fail이다. SigLIP layer `-6` `mean_max_token`은 AUC `0.916667`로 흥미롭지만 margin `0.043225`라 기준 `0.05` 미달이고 seed가 너무 작다. 다음 loop는 face/upper-body 중심 후보를 더 넓게 mining해 reviewed positive를 늘린다.
