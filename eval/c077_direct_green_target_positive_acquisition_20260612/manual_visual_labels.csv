@@ -1,0 +1,37 @@
+candidate_id,manual_label,manual_note
+c077_cyberharem_green_heart_azurlane_0_clu0_sample0,guard_false_positive_human,green hair/outfit human-like character; not direct-green skin non-human target
+c077_cyberharem_green_heart_azurlane_0_clu0_sample1,guard_false_positive_human,green hair/outfit human-like character; not direct-green skin non-human target
+c077_cyberharem_green_heart_azurlane_0_clu0_sample2,guard_false_positive_human,green hair/outfit human-like character; not direct-green skin non-human target
+c077_cyberharem_green_heart_azurlane_0_clu0_sample3,guard_false_positive_human,green hair/outfit human-like character; not direct-green skin non-human target
+c077_cyberharem_green_heart_azurlane_0_clu0_sample4,guard_false_positive_human,green hair/outfit human-like character; not direct-green skin non-human target
+c077_cyberharem_green_heart_azurlane_1_clu1_sample0,guard_false_positive_human,green hair/outfit human-like character; not direct-green skin non-human target
+c077_cyberharem_green_heart_azurlane_1_clu1_sample1,guard_false_positive_human,green hair/outfit human-like character; not direct-green skin non-human target
+c077_cyberharem_green_heart_azurlane_1_clu1_sample2,guard_false_positive_human,green hair/outfit human-like character; not direct-green skin non-human target
+c077_cyberharem_poppy_leagueoflegends_0_clu0_sample0,useful_proxy_non_human,small non-human/yordle proxy but not direct-green skin target
+c077_cyberharem_poppy_leagueoflegends_0_clu0_sample1,useful_proxy_non_human,small non-human/yordle proxy but not direct-green skin target
+c077_cyberharem_poppy_leagueoflegends_0_clu0_sample2,useful_proxy_non_human,small non-human/yordle proxy but not direct-green skin target
+c077_cyberharem_poppy_leagueoflegends_0_clu0_sample3,useful_proxy_non_human,small non-human/yordle proxy but not direct-green skin target
+c077_cyberharem_poppy_leagueoflegends_0_clu0_sample4,useful_proxy_non_human,small non-human/yordle proxy but not direct-green skin target
+c077_cyberharem_tristana_leagueoflegends_0_clu0_sample0,useful_proxy_non_human,small non-human/yordle proxy but not direct-green skin target
+c077_cyberharem_tristana_leagueoflegends_0_clu0_sample1,useful_proxy_non_human,small non-human/yordle proxy but not direct-green skin target
+c077_cyberharem_tristana_leagueoflegends_0_clu0_sample2,useful_proxy_non_human,small non-human/yordle proxy but not direct-green skin target
+c077_cyberharem_tristana_leagueoflegends_0_clu0_sample3,useful_proxy_non_human,small non-human/yordle proxy but not direct-green skin target
+c077_cyberharem_tristana_leagueoflegends_0_clu0_sample4,useful_proxy_non_human,small non-human/yordle proxy but not direct-green skin target
+c077_cyberharem_lulu_leagueoflegends_0_clu0_sample0,useful_proxy_non_human,small non-human/yordle proxy with stylized color but not direct-green skin target
+c077_cyberharem_lulu_leagueoflegends_0_clu0_sample1,useful_proxy_non_human,small non-human/yordle proxy with stylized color but not direct-green skin target
+c077_cyberharem_lulu_leagueoflegends_0_clu0_sample2,useful_proxy_non_human,small non-human/yordle proxy with stylized color but not direct-green skin target
+c077_cyberharem_lulu_leagueoflegends_0_clu0_sample3,useful_proxy_non_human,small non-human/yordle proxy with stylized color but not direct-green skin target
+c077_cyberharem_lulu_leagueoflegends_0_clu0_sample4,useful_proxy_non_human,small non-human/yordle proxy with stylized color but not direct-green skin target
+c077_cyberharem_lulu_leagueoflegends_1_clu1_sample0,useful_proxy_non_human,small non-human/yordle proxy with stylized color but not direct-green skin target
+c077_cyberharem_lulu_leagueoflegends_1_clu1_sample1,useful_proxy_non_human,small non-human/yordle proxy with stylized color but not direct-green skin target
+c077_cyberharem_lulu_leagueoflegends_1_clu1_sample2,useful_proxy_non_human,small non-human/yordle proxy with stylized color but not direct-green skin target
+c077_cyberharem_soraka_leagueoflegends_0_clu0_sample0,useful_proxy_non_human,horned non-human proxy but skin/color does not meet direct-green target-positive bar
+c077_cyberharem_soraka_leagueoflegends_0_clu0_sample1,useful_proxy_non_human,horned non-human proxy but skin/color does not meet direct-green target-positive bar
+c077_cyberharem_soraka_leagueoflegends_0_clu0_sample2,useful_proxy_non_human,horned non-human proxy but skin/color does not meet direct-green target-positive bar
+c077_cyberharem_soraka_leagueoflegends_0_clu0_sample3,useful_proxy_non_human,horned non-human proxy but skin/color does not meet direct-green target-positive bar
+c077_cyberharem_soraka_leagueoflegends_0_clu0_sample4,useful_proxy_non_human,horned non-human proxy but skin/color does not meet direct-green target-positive bar
+c077_cyberharem_soraka_leagueoflegends_1_clu1_sample0,useful_proxy_non_human,horned non-human proxy but skin/color does not meet direct-green target-positive bar
+c077_cyberharem_soraka_leagueoflegends_1_clu1_sample1,useful_proxy_non_human,horned non-human proxy but skin/color does not meet direct-green target-positive bar
+c077_cyberharem_soraka_leagueoflegends_1_clu1_sample2,useful_proxy_non_human,horned non-human proxy but skin/color does not meet direct-green target-positive bar
+c077_cyberharem_nami_leagueoflegends_0_clu0_sample0,useful_proxy_non_human,mermaid/non-human proxy but blue/teal rather than direct-green target-positive
+c077_cyberharem_nami_leagueoflegends_0_clu0_sample1,useful_proxy_non_human,mermaid/non-human proxy but blue/teal rather than direct-green target-positive
