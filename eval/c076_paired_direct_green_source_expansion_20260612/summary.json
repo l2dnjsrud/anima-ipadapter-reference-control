@@ -1,0 +1,30 @@
+{
+  "source": "c076_paired_direct_green_source_expansion",
+  "inspected_source_count": 6,
+  "candidate_count": 13,
+  "downloaded_count": 13,
+  "network_downloaded_count": 3,
+  "reviewed_rows": 13,
+  "target_positive_confirmed_count": 10,
+  "new_target_positive_confirmed_count": 0,
+  "unique_target_positive_count": 10,
+  "minimum_target_positive_required": 24,
+  "minimum_new_target_positive_required": 12,
+  "label_schema": [
+    "target_positive",
+    "useful_proxy_non_human",
+    "guard_false_positive_human",
+    "guard_false_positive_background_object",
+    "reject_unclear"
+  ],
+  "heldout_rows_used": 0,
+  "large_downloads_performed": false,
+  "committed_external_image_count": 0,
+  "contact_sheet_path": ".tmp/c076_paired_direct_green_source_expansion/contact_sheet.jpg",
+  "contact_sheet_written": true,
+  "feature_boundary_status": "skipped_no_new_reviewed_target_positives",
+  "source_probe_decision": "source_probe_ready_for_review",
+  "candidate_review_decision": "more_data_required",
+  "decision": "more_data_required",
+  "next_training_or_data_action": "continue data acquisition/manual labeling before another checkpoint training run"
+}

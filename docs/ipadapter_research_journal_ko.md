@@ -1686,7 +1686,19 @@ metric 결과는 c075가 current best를 넘지 못했다. clean32+heldout8 PE m
 
 c075 decision은 `not_promoted_c075_tag_positive_calibrator_weaker_than_blend_species_face`다. runtime은 pass지만 품질은 pass가 아니다. 다음 루프는 같은 calibrator-only target-positive 반복이 아니라, 더 강한 encoder-side/reference feature objective 또는 실제 paired direct-green 데이터 구축으로 가야 한다.
 
-## 27. 근거 파일 색인
+## 27. c076 Paired Direct-Green Source Expansion
+
+c076은 c075 실패 이후 바로 더 큰 checkpoint 학습으로 넘어가지 않고, paired/direct-green/non-human target-positive 데이터가 충분히 확장 가능한지 확인한 데이터 전제 검증 루프다. 핵심 질문은 "c074의 10장만 반복하면 c075와 같은 실패를 반복하는가, 아니면 새롭게 학습 가능한 target-positive가 충분히 늘어났는가"였다.
+
+새 도구는 `tools/c076_paired_source_expansion.py`, `tools/c076_source_expansion_io.py`, `tools/c076_source_expansion_report.py`이고 테스트는 `tests/test_c076_paired_source_expansion.py`다. 계획 문서는 `docs/c076_paired_direct_green_source_expansion_plan_ko.md`에 작성했다. 프로브 대상은 c074 prior seed, `Wenaka/anima-ip-adapter-dataset`, `mrzjy/AniGamePersonaCaps`, `mrzjy/AnimeMangaCharacters-247K`, `alfredplpl/anime-with-caption-cc0`, `CaptionEmporium/furry-e621-safe-llama3.2-11b`다. 외부 원본 이미지는 `.tmp/c076_paired_direct_green_source_expansion/` 아래에만 두고 commit하지 않았다.
+
+실행 결과는 inspected sources `6`, candidate count `13`, downloaded/materialized `13`, network downloaded `3`, reviewed rows `13`이다. 기존 c074 seed 10장은 계속 `target_positive`지만 새 metadata 후보 3개는 contact sheet 검수 후 target-positive로 승격하지 않았다. `c076_meta_002`는 인간형/머리색 false positive, `c076_meta_000`은 3D glove/object 계열 false positive, `c076_meta_001`은 off-domain non-human proxy다. 따라서 `new_target_positive_confirmed_count`는 `0`이다.
+
+feature boundary는 새 reviewed target-positive가 없으므로 pair probe를 새로 돌리지 않고 c075 direct-green 결과를 기준으로 보류했다. c075 direct-green PE uplift는 blend `0.0379917264`, c075 `-0.0206880599`였고, QwenVL uplift는 blend `-0.0121086836`, c075 `-0.0143850207`였다. 이 수치 때문에 c074 seed만으로 다음 학습을 반복하는 것은 금지한다.
+
+c076 decision은 `more_data_required`다. `ready_for_c077_training` 조건은 전체 unique target-positive 24장 이상, 그중 c074가 아닌 신규 target-positive 12장 이상인데, 현재는 unique target-positive 10장, 신규 0장이다. 다음 단계는 checkpoint 학습이 아니라 새 데이터 소스 확보 또는 사람이 직접 승인한 direct-green/non-human positive 라벨링이다.
+
+## 28. 근거 파일 색인
 
 핵심 문서:
 
@@ -1880,6 +1892,16 @@ QwenVL 주요 평가:
 - `eval/qwenvl_c075_tag_positive_gate_20260612/qwenvl_similarity_metrics.json`
 - `eval/qwenvl_c075_tag_positive_gate_20260612/direct_green_pe_similarity_metrics.json`
 - `eval/qwenvl_c075_tag_positive_gate_20260612/direct_green_qwenvl_similarity_metrics.json`
+- `docs/c076_paired_direct_green_source_expansion_plan_ko.md`
+- `eval/c076_paired_direct_green_source_expansion_20260612/report.md`
+- `eval/c076_paired_direct_green_source_expansion_20260612/summary.json`
+- `eval/c076_paired_direct_green_source_expansion_20260612/source_manifest.jsonl`
+- `eval/c076_paired_direct_green_source_expansion_20260612/external_candidates.jsonl`
+- `eval/c076_paired_direct_green_source_expansion_20260612/download_manifest.jsonl`
+- `eval/c076_paired_direct_green_source_expansion_20260612/reviewed_external_labels.jsonl`
+- `eval/c076_paired_direct_green_source_expansion_20260612/manual_visual_labels.csv`
+- `eval/c076_paired_direct_green_source_expansion_20260612/visual_audit.md`
+- `eval/c076_paired_direct_green_source_expansion_20260612/feature_boundary_metrics.json`
 
 생성/학습 manifest:
 
@@ -1928,6 +1950,10 @@ QwenVL 주요 평가:
 - `tools/c075_manifest_files.py`
 - `tools/c075_tag_positive_manifest_types.py`
 - `tests/test_c075_tag_positive_manifest.py`
+- `tools/c076_paired_source_expansion.py`
+- `tools/c076_source_expansion_io.py`
+- `tools/c076_source_expansion_report.py`
+- `tests/test_c076_paired_source_expansion.py`
 - `tools/siglip_auto_caption_eval.py`
 - `tools/score_siglip_auto_caption_metrics.py`
 - `workflows/anima_ipadapter_siglip_native_reference.json`

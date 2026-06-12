@@ -1,0 +1,8 @@
+{
+  "status": "skipped_no_new_reviewed_target_positives",
+  "c075_direct_green_pe_blend_uplift": 0.03799172639846802,
+  "c075_direct_green_pe_candidate_uplift": -0.02068805992603302,
+  "c075_direct_green_qwenvl_blend_uplift": -0.012108683586120605,
+  "c075_direct_green_qwenvl_candidate_uplift": -0.014385020732879639,
+  "interpretation": "prior c074 positives alone already failed c075; train only after new visually confirmed positives expand the target set"
+}
