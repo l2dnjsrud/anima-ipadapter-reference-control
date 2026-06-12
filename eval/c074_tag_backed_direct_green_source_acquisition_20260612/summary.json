@@ -1,0 +1,40 @@
+{
+  "source": "c074_tag_backed_direct_green_source_acquisition",
+  "source_c073_commit": "778e8e8",
+  "inspected_source_count": 4,
+  "row_probe_count": 4,
+  "source_candidate_counts": {
+    "CyberHarem/neeko_leagueoflegends": 10,
+    "OneIG-Bench/OneIG-Bench": 0,
+    "CaptionEmporium/anime-caption-danbooru-2021-sfw-5m-hq": 0,
+    "mrzjy/splash-art-gacha-collection-10k": 0
+  },
+  "image_url_availability": {
+    "CyberHarem/neeko_leagueoflegends": "direct_sample_assets",
+    "OneIG-Bench/OneIG-Bench": "prompt_only_no_image_rows",
+    "CaptionEmporium/anime-caption-danbooru-2021-sfw-5m-hq": "caption_tags_no_image_rows",
+    "mrzjy/splash-art-gacha-collection-10k": "image_caption_search_timeout"
+  },
+  "candidate_count": 10,
+  "downloaded_count": 10,
+  "reviewed_rows": 10,
+  "label_counts": {
+    "target_positive": 10
+  },
+  "target_positive_confirmed_count": 10,
+  "minimum_target_positive_required": 4,
+  "label_schema": [
+    "target_positive",
+    "useful_proxy_non_human",
+    "guard_false_positive_human",
+    "guard_false_positive_background_object",
+    "reject_unclear"
+  ],
+  "heldout_rows_used": 0,
+  "large_downloads_performed": false,
+  "committed_external_image_count": 0,
+  "contact_sheet_path": ".tmp/c074_tag_backed_direct_green_source_acquisition/contact_sheet.jpg",
+  "license_caution": "CyberHarem/neeko declares MIT but is not-for-all-audiences and source images are crawled from multiple sites; review rights before redistribution.",
+  "decision": "ready_for_encoder_training",
+  "next_training_or_data_action": "build a bounded c075 training manifest from visually confirmed c074 positives plus existing guards"
+}
