@@ -80,3 +80,23 @@ audit v1 이후 QwenVL pooled embedding이 stronger-encoder 학습의 주 지표
 - 결정: `qwenvl_pooled_metric_auxiliary_only`
 
 QwenVL pooled metric은 c035에서 `siglip_ref_retrieval_w14`를 improved rate `0.90625`로 높게 평가했지만, identity-fail row의 평균 uplift가 identity-pass row보다 높았다. 따라서 agentic loop의 다음 route는 장기 학습이 아니라 `identity_positive_negative_feature_probe`다. 같은 캐릭터/다른 캐릭터 pair를 만들고 QwenVL, SigLIP, PE feature가 실제 identity를 분리하는지 먼저 확인한다.
+
+## 2026-06-12 c037 identity feature probe 추가
+
+c036에서 정한 `identity_positive_negative_feature_probe`를 실행했다.
+
+- 도구: `tools/build_identity_pair_probe_manifest.py`
+- feature wrapper: `tools/image_feature_embedders.py`
+- scoring: `tools/score_identity_pair_probe.py`
+- 산출물: `eval/identity_feature_probe_20260612_c037/report.md`
+- 결정: `pooled_identity_feature_not_ready`
+
+결과:
+
+| encoder | margin | pairwise AUC | decision |
+|---|---:|---:|---|
+| PE | 0.0156 | 0.5806 | `feature_not_sufficiently_separated` |
+| Qwen/Qwen3-VL-Embedding-2B | 0.0326 | 0.5913 | `feature_not_sufficiently_separated` |
+| SigLIP2 base patch16 512 | 0.0132 | 0.5759 | `feature_not_sufficiently_separated` |
+
+해석: pooled image feature만으로는 약한 SG positive/negative pair도 충분히 벌리지 못했다. 다음 loop는 pooled cosine 기반 장기 학습이 아니라 더 엄격한 same-character mining, token/layer feature probe, 또는 작은 metric head/calibrator 학습으로 간다.

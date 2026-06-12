@@ -37,6 +37,7 @@ SELECTED: `agentic_reference_control_loop` -> `train_stronger_encoder`
 | SigLIP c034 | 8-case 자동 속성 프롬프트 검증 | `siglip_ref_retrieval_w14` uplift `+0.1452`, 7/8 개선. PE metric caveat 있음 | 가능성 확인용 |
 | SigLIP c035 | 32-case single-character suite 검증 | best uplift `+0.0577`, improved rate `0.65625`, identity gate `16/32` | not ready |
 | QwenVL c036 metric probe | Qwen3-VL pooled image embedding이 c035 판단과 맞는지 확인 | `siglip_ref_retrieval_w14` uplift `+0.0446`, improved rate `0.90625`, 그러나 identity-fail row uplift가 identity-pass보다 높음 | auxiliary metric only |
+| Identity feature c037 | PE/QwenVL/SigLIP2 pooled feature가 약한 identity-positive/negative pair를 분리하는지 확인 | 세 encoder 모두 AUC `< 0.60`, margin `< 0.05` | pooled identity feature not ready |
 | QwenVL adapter-only | QwenVL embedding을 adapter에 직접 연결 | 출력 변화는 있으나 generic wuxia/interior collapse | 현재 방식 보류 |
 | line-art colorization | IP-Adapter 단독 선화 채색 | 색/스타일 압력은 있으나 구조 보존 실패. EasyControl 결합 필요 | 별도 spatial-control track |
 | InterleaveThinker | agentic interleaved generation 연구 | planner/critic loop가 출력 편차를 찾고 지시를 수정한다 | reference-control audit loop 참고 |
@@ -108,6 +109,26 @@ SELECTED: `agentic_reference_control_loop` -> `train_stronger_encoder`
 | `siglip_ref_retrieval_w14` | +0.0446 | 0.90625 |
 
 결론은 `qwenvl_pooled_metric_auxiliary_only`다. QwenVL pooled embedding은 broad style/palette/composition similarity에는 더 낙관적으로 반응하지만, c035 visual audit의 identity/distinctive-trait pass/fail과는 맞지 않았다. 다음 stronger-encoder 실험은 identity-positive/negative pair를 먼저 만들고, QwenVL/SigLIP/PE feature가 같은 캐릭터와 다른 캐릭터를 실제로 분리하는지 확인한 뒤 진행한다.
+
+## c037 Identity feature probe
+
+산출물:
+
+- `tools/build_identity_pair_probe_manifest.py`
+- `tools/image_feature_embedders.py`
+- `tools/score_identity_pair_probe.py`
+- `tests/test_identity_feature_probe.py`
+- `eval/identity_feature_probe_20260612_c037/report.md`
+
+현재 color dataset에서 같은 SG 폴더를 positive proxy, 다음 SG 폴더를 negative proxy로 삼아 64/64 pair를 만들고 PE, Qwen3-VL, SigLIP2 pooled image feature를 비교했다.
+
+| encoder | positive mean | negative mean | margin | pairwise AUC | decision |
+| --- | ---: | ---: | ---: | ---: | --- |
+| PE | 0.8560 | 0.8404 | 0.0156 | 0.5806 | `feature_not_sufficiently_separated` |
+| Qwen/Qwen3-VL-Embedding-2B | 0.7893 | 0.7567 | 0.0326 | 0.5913 | `feature_not_sufficiently_separated` |
+| SigLIP2 base patch16 512 | 0.8932 | 0.8800 | 0.0132 | 0.5759 | `feature_not_sufficiently_separated` |
+
+결론은 `pooled_identity_feature_not_ready`다. pooled cosine 하나를 primary identity loss나 pass/fail gate로 쓰면 broad style 유사도에 속을 가능성이 크다. 다음 루프는 더 엄격한 same-character pair mining, token/layer feature probe, 또는 작은 metric head/calibrator 학습을 먼저 진행한다.
 
 ## 실행 명령
 
