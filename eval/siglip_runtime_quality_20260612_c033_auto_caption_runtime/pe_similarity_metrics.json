@@ -1,0 +1,152 @@
+{
+  "summary_path": "eval/siglip_runtime_quality_20260612_c033_auto_caption_runtime/summary.json",
+  "data_root": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best",
+  "rows": [
+    {
+      "sample": "auto00",
+      "variant": "siglip_pe_space_w14",
+      "cosine": 0.790690541267395,
+      "no_ip_cosine": 0.7710118293762207,
+      "uplift": 0.019678711891174316,
+      "pixel_std": 61.82441329956055
+    },
+    {
+      "sample": "auto00",
+      "variant": "siglip_pe_retrieval_w14",
+      "cosine": 0.7672604918479919,
+      "no_ip_cosine": 0.7710118293762207,
+      "uplift": -0.0037513375282287598,
+      "pixel_std": 68.06185150146484
+    },
+    {
+      "sample": "auto01",
+      "variant": "siglip_pe_space_w14",
+      "cosine": 0.8278554677963257,
+      "no_ip_cosine": 0.8491163849830627,
+      "uplift": -0.02126091718673706,
+      "pixel_std": 84.66339874267578
+    },
+    {
+      "sample": "auto01",
+      "variant": "siglip_pe_retrieval_w14",
+      "cosine": 0.8823646903038025,
+      "no_ip_cosine": 0.8491163849830627,
+      "uplift": 0.033248305320739746,
+      "pixel_std": 85.78936004638672
+    },
+    {
+      "sample": "auto02",
+      "variant": "siglip_pe_space_w14",
+      "cosine": 0.7617694735527039,
+      "no_ip_cosine": 0.7724109292030334,
+      "uplift": -0.01064145565032959,
+      "pixel_std": 81.11759948730469
+    },
+    {
+      "sample": "auto02",
+      "variant": "siglip_pe_retrieval_w14",
+      "cosine": 0.7927910089492798,
+      "no_ip_cosine": 0.7724109292030334,
+      "uplift": 0.020380079746246338,
+      "pixel_std": 78.55118560791016
+    },
+    {
+      "sample": "auto03",
+      "variant": "siglip_pe_space_w14",
+      "cosine": 0.7220168709754944,
+      "no_ip_cosine": 0.576208233833313,
+      "uplift": 0.1458086371421814,
+      "pixel_std": 73.30664825439453
+    },
+    {
+      "sample": "auto03",
+      "variant": "siglip_pe_retrieval_w14",
+      "cosine": 0.6108150482177734,
+      "no_ip_cosine": 0.576208233833313,
+      "uplift": 0.03460681438446045,
+      "pixel_std": 75.40585327148438
+    },
+    {
+      "sample": "auto04",
+      "variant": "siglip_pe_space_w14",
+      "cosine": 0.8172288537025452,
+      "no_ip_cosine": 0.7510625123977661,
+      "uplift": 0.06616634130477905,
+      "pixel_std": 57.082767486572266
+    },
+    {
+      "sample": "auto04",
+      "variant": "siglip_pe_retrieval_w14",
+      "cosine": 0.904617428779602,
+      "no_ip_cosine": 0.7510625123977661,
+      "uplift": 0.15355491638183594,
+      "pixel_std": 69.15062713623047
+    },
+    {
+      "sample": "auto05",
+      "variant": "siglip_pe_space_w14",
+      "cosine": 0.7695152163505554,
+      "no_ip_cosine": 0.2886399030685425,
+      "uplift": 0.48087531328201294,
+      "pixel_std": 62.47951126098633
+    },
+    {
+      "sample": "auto05",
+      "variant": "siglip_pe_retrieval_w14",
+      "cosine": 0.8401522636413574,
+      "no_ip_cosine": 0.2886399030685425,
+      "uplift": 0.5515123605728149,
+      "pixel_std": 73.89298248291016
+    },
+    {
+      "sample": "auto06",
+      "variant": "siglip_pe_space_w14",
+      "cosine": 0.5846825242042542,
+      "no_ip_cosine": 0.6596811413764954,
+      "uplift": -0.07499861717224121,
+      "pixel_std": 76.46109008789062
+    },
+    {
+      "sample": "auto06",
+      "variant": "siglip_pe_retrieval_w14",
+      "cosine": 0.677354097366333,
+      "no_ip_cosine": 0.6596811413764954,
+      "uplift": 0.017672955989837646,
+      "pixel_std": 77.4181900024414
+    },
+    {
+      "sample": "auto07",
+      "variant": "siglip_pe_space_w14",
+      "cosine": 0.8417704105377197,
+      "no_ip_cosine": 0.6772387027740479,
+      "uplift": 0.16453170776367188,
+      "pixel_std": 79.6759033203125
+    },
+    {
+      "sample": "auto07",
+      "variant": "siglip_pe_retrieval_w14",
+      "cosine": 0.837380051612854,
+      "no_ip_cosine": 0.6772387027740479,
+      "uplift": 0.16014134883880615,
+      "pixel_std": 75.07379913330078
+    }
+  ],
+  "variant_summaries": [
+    {
+      "variant": "siglip_pe_retrieval_w14",
+      "cases": 8,
+      "mean_cosine": 0.7890918850898743,
+      "mean_no_ip_cosine": 0.6681712046265602,
+      "mean_uplift": 0.12092068046331406,
+      "improved_rate": 0.875
+    },
+    {
+      "variant": "siglip_pe_space_w14",
+      "cases": 8,
+      "mean_cosine": 0.7644411697983742,
+      "mean_no_ip_cosine": 0.6681712046265602,
+      "mean_uplift": 0.09626996517181396,
+      "improved_rate": 0.625
+    }
+  ]
+}

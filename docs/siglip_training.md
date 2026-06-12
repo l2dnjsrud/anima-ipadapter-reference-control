@@ -1094,10 +1094,14 @@ SigLIP evidence:
 Decision: `siglip_attribute_prompt_reference_control_pass`
 
 The native SigLIP path now produces visually high-quality, reference-controlled
-ComfyUI outputs when the prompt carries the reference's visible attributes. PE
-similarity confirms the visual result: `pe_space_w14` improves over no-IP on
-8/8 cases with mean uplift `0.0603`, and `pe_retrieval_w14` improves on 7/8
-cases with mean uplift `0.0670`.
+ComfyUI outputs when the prompt carries the reference's visible attributes.
+The runtime node path is `AnimaSigLIP*`; the `siglip_pe_space_*` and
+`siglip_pe_retrieval_*` names refer to SigLIP checkpoints trained with PE-space
+initialization/retrieval anchors, not to the old PE-Core ComfyUI nodes. PE
+pooled-cosine is still used as an auxiliary reference-similarity metric.
+`siglip_pe_space_w14` improves over no-IP on 8/8 cases with mean uplift
+`0.0603`, and `siglip_pe_retrieval_w14` improves on 7/8 cases with mean uplift
+`0.0670`.
 
 This is not a claim that generic-prompt reference-only generation is solved.
 The practical recipe is prompt/caption + adapter: good attribute prompts give
@@ -1106,3 +1110,36 @@ costume, palette, face framing, expression, and visual style toward the
 reference. The next improvement should automate those attributes by generating
 caption/attribute manifests for train/eval and by exposing the same recipe in
 the ComfyUI workflow docs.
+
+## 2026-06-12 automatic single-character attribute prompts
+
+The next step automated the manual attribute prompt recipe for the color
+single-character dataset. `tools/build_reference_prompt_manifest.py` scores a
+bounded attribute vocabulary against each reference image with
+`Qwen/Qwen3-VL-Embedding-2B`, writes an auto prompt manifest, and
+`tools/siglip_auto_caption_eval.py` runs the native SigLIP ComfyUI API workflow
+against no-IP plus two SigLIP checkpoints:
+
+- `siglip_pe_space_w14`:
+  `anima_siglip_ip_adapter_single_character_clean32_pe_space_init_0512_20260611.safetensors`
+- `siglip_pe_retrieval_w14`:
+  `anima_siglip_ip_adapter_single_character_clean32_pe_retrieval_0128_20260611.safetensors`
+
+Evidence:
+
+- `eval/siglip_runtime_quality_20260612_c033_auto_caption_runtime/report.md`
+- `eval/siglip_runtime_quality_20260612_c033_auto_caption_runtime/contact_sheet.jpg`
+- `eval/siglip_runtime_quality_20260612_c034_auto_caption_vocab2_runtime/report.md`
+- `eval/siglip_runtime_quality_20260612_c034_auto_caption_vocab2_runtime/contact_sheet.jpg`
+- `eval/siglip_runtime_quality_20260612_c034_auto_caption_vocab2_runtime/pe_similarity_metrics.json`
+
+Decision: `siglip_auto_caption_single_character_visual_pass_pe_metric_caveat`
+
+The c033 vocabulary was useful but under-described the red-haired female and
+green monster references. The c034 expanded vocabulary fixes those visible
+failures. On c034, `siglip_pe_space_w14` reaches mean PE pooled-cosine
+`0.7878` with mean uplift `+0.1103` over no-IP and improves 7/8 cases.
+`siglip_pe_retrieval_w14` reaches mean PE pooled-cosine `0.8227` with mean
+uplift `+0.1452` and also improves 7/8 cases. The monster row is visually
+closer with SigLIP but lower under PE pooled-cosine, so the metric is a useful
+auxiliary signal, not the only pass/fail criterion.

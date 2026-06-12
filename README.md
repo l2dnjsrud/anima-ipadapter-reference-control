@@ -110,6 +110,11 @@ For that workflow, the loader selector must list:
 anima_siglip_ip_adapter_pilot_20260610.safetensors
 ```
 
+Newer single-character SigLIP checkpoints are also available. Their names
+include `pe_space` or `pe_retrieval` because they were initialized or anchored
+with the stronger PE reference model during training; they are still loaded
+through the `AnimaSigLIP*` nodes, not the `AnimaPE*` nodes.
+
 As of the 2026-06-11 recovery run, the SigLIP apply node patches the live Anima
 DiT through a PE-style sampling wrapper instead of relying on the old
 `attn2_patch`-only path. The zero-effect bug is fixed: `weight=0` matches no-IP

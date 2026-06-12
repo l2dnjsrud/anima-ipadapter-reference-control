@@ -25,3 +25,8 @@ eval/qwenvl_runtime_quality_20260611_c*/*.api_prompt.json
 eval/qwenvl_runtime_quality_20260611_c*/*.history.json
 eval/qwenvl_runtime_quality_20260611_c*/*.response.json
 eval/qwenvl_runtime_quality_20260611_c*/*.png
+eval/siglip_runtime_quality_20260612_*/*.api_prompt.json
+eval/siglip_runtime_quality_20260612_*/*.history.json
+eval/siglip_runtime_quality_20260612_*/*.response.json
+eval/siglip_runtime_quality_20260612_*/auto??_*.png
+eval/auto_reference_prompts_20260612_smoke/
