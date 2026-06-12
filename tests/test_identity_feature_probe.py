@@ -84,3 +84,6 @@ def test_score_pair_probe_manifest_reports_margin_and_auc(tmp_path: Path) -> Non
     assert result["summary"]["negative_mean"] == 0.0
     assert result["summary"]["separation_margin"] == 1.0
     assert result["summary"]["pairwise_auc"] == 1.0
+    assert result["group_summaries"]["root"]["positive_mean"] == 1.0
+    assert result["group_summaries"]["root"]["negative_mean"] == 0.0
+    assert result["group_summaries"]["root"]["pairwise_auc"] == 1.0

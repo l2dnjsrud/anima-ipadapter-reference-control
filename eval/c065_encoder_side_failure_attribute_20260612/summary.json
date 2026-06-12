@@ -1,0 +1,193 @@
+{
+  "experiment": "c065_encoder_side_failure_attribute",
+  "date": "2026-06-12",
+  "manifest_summary": {
+    "heldout_rows_used": 0,
+    "total_pairs": 126,
+    "positive_pairs": 63,
+    "negative_pairs": 63,
+    "per_bucket_counts": {
+      "non_human_red_pale_profile_proxy": {
+        "source_rows": 21,
+        "positive_pairs": 21,
+        "negative_pairs": 21
+      },
+      "beard_headwear_crop": {
+        "source_rows": 22,
+        "positive_pairs": 22,
+        "negative_pairs": 22
+      },
+      "old_face_crop": {
+        "source_rows": 20,
+        "positive_pairs": 20,
+        "negative_pairs": 20
+      }
+    },
+    "direct_green_monster_positive_count": 0,
+    "path_verification_counts": {
+      "train_rows": 32,
+      "train_existing_images": 32,
+      "train_missing_images": 0,
+      "heldout_rows": 8,
+      "heldout_existing_images": 8,
+      "heldout_missing_images": 0,
+      "pair_rows_with_existing_paths": 126,
+      "pair_rows_with_missing_paths": 0
+    }
+  },
+  "threshold": {
+    "separation_margin": 0.05,
+    "pairwise_auc": 0.70
+  },
+  "encoder_results": {
+    "qwenvl": {
+      "encoder": "Qwen/Qwen3-VL-Embedding-2B",
+      "summary": {
+        "pairs": 126,
+        "positive_pairs": 63,
+        "negative_pairs": 63,
+        "positive_mean": 0.7481812390070113,
+        "negative_mean": 0.7534571223788791,
+        "separation_margin": -0.0052758833718677955,
+        "pairwise_auc": 0.46056941295036535,
+        "midpoint_accuracy": 0.4126984126984127,
+        "decision": "feature_not_sufficiently_separated"
+      },
+      "group_summaries": {
+        "beard_headwear_crop": {
+          "pairs": 44,
+          "positive_pairs": 22,
+          "negative_pairs": 22,
+          "positive_mean": 0.7520805190909993,
+          "negative_mean": 0.7486226043917916,
+          "separation_margin": 0.0034579146992076426,
+          "pairwise_auc": 0.4772727272727273,
+          "midpoint_accuracy": 0.4318181818181818,
+          "decision": "feature_not_sufficiently_separated"
+        },
+        "non_human_red_pale_profile_proxy": {
+          "pairs": 42,
+          "positive_pairs": 21,
+          "negative_pairs": 21,
+          "positive_mean": 0.7358976063274202,
+          "negative_mean": 0.7573974444752648,
+          "separation_margin": -0.02149983814784462,
+          "pairwise_auc": 0.41496598639455784,
+          "midpoint_accuracy": 0.40476190476190477,
+          "decision": "feature_not_sufficiently_separated"
+        },
+        "old_face_crop": {
+          "pairs": 40,
+          "positive_pairs": 20,
+          "negative_pairs": 20,
+          "positive_mean": 0.7567898452281951,
+          "negative_mean": 0.7546377539634704,
+          "separation_margin": 0.0021520912647247092,
+          "pairwise_auc": 0.51,
+          "midpoint_accuracy": 0.5,
+          "decision": "feature_not_sufficiently_separated"
+        }
+      }
+    },
+    "siglip": {
+      "encoder": "google/siglip2-base-patch16-512",
+      "summary": {
+        "pairs": 126,
+        "positive_pairs": 63,
+        "negative_pairs": 63,
+        "positive_mean": 0.8891768247362167,
+        "negative_mean": 0.8792919762550838,
+        "separation_margin": 0.009884848481132913,
+        "pairwise_auc": 0.5782312925170068,
+        "midpoint_accuracy": 0.5952380952380952,
+        "decision": "feature_not_sufficiently_separated"
+      },
+      "group_summaries": {
+        "beard_headwear_crop": {
+          "pairs": 44,
+          "positive_pairs": 22,
+          "negative_pairs": 22,
+          "positive_mean": 0.8937719653953206,
+          "negative_mean": 0.8789924383163452,
+          "separation_margin": 0.01477952707897534,
+          "pairwise_auc": 0.5888429752066116,
+          "midpoint_accuracy": 0.5909090909090909,
+          "decision": "feature_not_sufficiently_separated"
+        },
+        "non_human_red_pale_profile_proxy": {
+          "pairs": 42,
+          "positive_pairs": 21,
+          "negative_pairs": 21,
+          "positive_mean": 0.8791367184548151,
+          "negative_mean": 0.8803147276242574,
+          "separation_margin": -0.001178009169442329,
+          "pairwise_auc": 0.5034013605442177,
+          "midpoint_accuracy": 0.5,
+          "decision": "feature_not_sufficiently_separated"
+        },
+        "old_face_crop": {
+          "pairs": 40,
+          "positive_pairs": 20,
+          "negative_pairs": 20,
+          "positive_mean": 0.8946642816066742,
+          "negative_mean": 0.8785475790500641,
+          "separation_margin": 0.01611670255661013,
+          "pairwise_auc": 0.6225,
+          "midpoint_accuracy": 0.6,
+          "decision": "feature_not_sufficiently_separated"
+        }
+      }
+    },
+    "pe": {
+      "encoder": "pe",
+      "summary": {
+        "pairs": 126,
+        "positive_pairs": 63,
+        "negative_pairs": 63,
+        "positive_mean": 0.8252357395868453,
+        "negative_mean": 0.8516979510821994,
+        "separation_margin": -0.026462211495354104,
+        "pairwise_auc": 0.41219450743260266,
+        "midpoint_accuracy": 0.42857142857142855,
+        "decision": "feature_not_sufficiently_separated"
+      },
+      "group_summaries": {
+        "beard_headwear_crop": {
+          "pairs": 44,
+          "positive_pairs": 22,
+          "negative_pairs": 22,
+          "positive_mean": 0.824760840697722,
+          "negative_mean": 0.8710685480724681,
+          "separation_margin": -0.0463077073747461,
+          "pairwise_auc": 0.3615702479338843,
+          "midpoint_accuracy": 0.4090909090909091,
+          "decision": "feature_not_sufficiently_separated"
+        },
+        "non_human_red_pale_profile_proxy": {
+          "pairs": 42,
+          "positive_pairs": 21,
+          "negative_pairs": 21,
+          "positive_mean": 0.8271742008981251,
+          "negative_mean": 0.82859529483886,
+          "separation_margin": -0.0014210939407348633,
+          "pairwise_auc": 0.4897959183673469,
+          "midpoint_accuracy": 0.47619047619047616,
+          "decision": "feature_not_sufficiently_separated"
+        },
+        "old_face_crop": {
+          "pairs": 40,
+          "positive_pairs": 20,
+          "negative_pairs": 20,
+          "positive_mean": 0.8237227439880371,
+          "negative_mean": 0.85464808344841,
+          "separation_margin": -0.030925339460372903,
+          "pairwise_auc": 0.385,
+          "midpoint_accuracy": 0.4,
+          "decision": "feature_not_sufficiently_separated"
+        }
+      }
+    }
+  },
+  "decision": "existing_encoder_feature_separation_not_viable_for_c065_checkpoint",
+  "next_decision": "mine_direct_green_non_human_color_positives_or_train_attribute_teacher_before_encoder_checkpoint"
+}

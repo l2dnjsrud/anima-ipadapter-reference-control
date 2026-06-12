@@ -1351,7 +1351,82 @@ c064 decision은 `encoder_side_checkpoint_required_for_hard_failures`다.
 
 따라서 다음 루프는 adapter continuation, checkpoint merge, instruction-only, calibrator-only 반복이 아니다. c065는 color single-character crop 기반으로 failure-attribute encoder-side checkpoint 또는 attribute teacher/reranker를 설계해야 한다. 우선순위는 encoder 자체가 non-human species, side-profile silhouette, beard/headwear, crop context를 generic human template보다 잘 분리하도록 만드는 쪽이다.
 
-## 16. 근거 파일 색인
+## 16. c065 Encoder-Side Failure Attribute Probe
+
+c065는 c064의 결론을 바로 학습으로 옮기기 전에, 실제로 train split 안에서 실패 속성을 분리할 수 있는지 확인하기 위해 진행했다. 목적은 “기존 QwenVL/SigLIP2/PE embedding을 teacher로 삼아 encoder-side checkpoint나 attribute calibrator를 학습해도 되는가”를 train-only pair probe로 검증하는 것이었다.
+
+### 계획과 데이터
+
+계획 문서는 `docs/c065_encoder_side_failure_attribute_plan_ko.md`다. 사용 데이터는 다음과 같다.
+
+- Train manifest: `training/manifests/local_color_single_character_clean32_20260611.jsonl`
+- Heldout manifest: `training/manifests/local_color_single_character_clean32_heldout8_20260611.jsonl`
+- Attribute source: `eval/qwenvl_c061_instruction_calibration_gate_20260612/summary.json`
+- Image root: `/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best`
+
+새 도구 `tools/build_c065_failure_attribute_pairs.py`를 추가해 `training/manifests/c065_failure_attribute_pairs_20260612.jsonl`와 summary를 만들었다. 이 manifest는 기존 `tools/score_identity_pair_probe.py`와 호환되도록 `pair_id`, `label`, `anchor_id`, `candidate_id`, `anchor_group`, `candidate_group`를 포함하고, c065 판단을 위해 `attribute_bucket`, `anchor_attributes`, `candidate_attributes`, `matched_keywords`, `negative_reason`, `source_split`도 함께 기록한다.
+
+검증용 bucket은 세 개다.
+
+| bucket | 목적 |
+| --- | --- |
+| `non_human_red_pale_profile_proxy` | heldout07 green monster 붕괴를 직접 다루기 위한 proxy. 단, clean32 train에는 direct green monster positive가 없으므로 red eye/pale villain 기준만 사용 |
+| `beard_headwear_crop` | heldout05의 old bearded official, black hat, upper-body crop 계열 |
+| `old_face_crop` | heldout01/05의 old face, beard, crop 계열 |
+
+Manifest summary:
+
+| 항목 | 값 |
+| --- | ---: |
+| total pairs | 126 |
+| positive pairs | 63 |
+| negative pairs | 63 |
+| heldout rows used | 0 |
+| direct green monster positive count | 0 |
+| missing pair paths | 0 |
+
+중요한 점은 `direct_green_monster_positive_count=0`이다. 즉 c065는 heldout07을 해결하기 위한 direct green/non-human 학습 데이터가 아직 없음을 확인한 실험이기도 하다.
+
+### score tool 개선
+
+`tools/score_identity_pair_probe.py`에는 `anchor_group`별 `group_summaries`를 추가했다. 기존 전체 margin/AUC만으로는 어떤 실패 속성이 분리되는지 알 수 없었기 때문이다. 테스트 `tests/test_identity_feature_probe.py`도 group summary를 검증하도록 갱신했다.
+
+### 실행 결과
+
+세 encoder를 같은 c065 pair manifest에 대해 실행했다.
+
+- QwenVL: `eval/c065_encoder_side_failure_attribute_20260612/qwenvl_pair_probe.json`
+- SigLIP2: `eval/c065_encoder_side_failure_attribute_20260612/siglip_pair_probe.json`
+- PE: `eval/c065_encoder_side_failure_attribute_20260612/pe_pair_probe.json`
+- 종합: `eval/c065_encoder_side_failure_attribute_20260612/summary.json`, `report.md`
+
+전체 결과:
+
+| encoder | margin | AUC | midpoint acc | 판단 |
+| --- | ---: | ---: | ---: | --- |
+| QwenVL | -0.005276 | 0.460569 | 0.412698 | fail |
+| SigLIP2 | 0.009885 | 0.578231 | 0.595238 | fail |
+| PE | -0.026462 | 0.412195 | 0.428571 | fail |
+
+non-human proxy 결과:
+
+| encoder | margin | AUC |
+| --- | ---: | ---: |
+| QwenVL | -0.021500 | 0.414966 |
+| SigLIP2 | -0.001178 | 0.503401 |
+| PE | -0.001421 | 0.489796 |
+
+threshold는 margin `>= 0.05`, AUC `>= 0.70`이었다. 어떤 encoder도 통과하지 못했다.
+
+### 판단
+
+c065 decision은 `existing_encoder_feature_separation_not_viable_for_c065_checkpoint`다.
+
+이 결과는 “QwenVL이나 SigLIP2를 쓰면 바로 해결된다”가 아니라는 쪽의 증거다. 현재 clean32 train split과 off-the-shelf feature space만으로는 red/pale non-human proxy조차 분리되지 않는다. 특히 direct green monster positive가 0이므로, 이 상태에서 encoder-side checkpoint를 바로 학습하면 heldout07의 핵심 실패를 학습할 재료가 부족하다.
+
+다음 루프 우선순위는 `direct_green_non_human_mining`이다. color dataset 전체에서 green monster, non-human demon, red eye, side-profile direct positives를 먼저 채굴하고, 같은 pair-separation gate를 다시 통과시켜야 한다. 그 다음에야 encoder-side checkpoint나 attribute teacher/reranker 학습으로 넘어가는 것이 맞다.
+
+## 17. 근거 파일 색인
 
 핵심 문서:
 
@@ -1398,6 +1473,9 @@ c064 decision은 `encoder_side_checkpoint_required_for_hard_failures`다.
 - `docs/c064_failure_attribute_embedding_probe_plan_ko.md`
 - `eval/qwenvl_c064_failure_attribute_embedding_probe_20260612/report.md`
 - `eval/qwenvl_c064_failure_attribute_embedding_probe_20260612/summary.json`
+- `docs/c065_encoder_side_failure_attribute_plan_ko.md`
+- `eval/c065_encoder_side_failure_attribute_20260612/report.md`
+- `eval/c065_encoder_side_failure_attribute_20260612/summary.json`
 
 PE baseline:
 
@@ -1476,6 +1554,9 @@ QwenVL 주요 평가:
 - `eval/qwenvl_c064_failure_attribute_embedding_probe_20260612/qwenvl_probe_metrics.json`
 - `eval/qwenvl_c064_failure_attribute_embedding_probe_20260612/siglip_probe_metrics.json`
 - `eval/qwenvl_c064_failure_attribute_embedding_probe_20260612/pe_probe_metrics.json`
+- `eval/c065_encoder_side_failure_attribute_20260612/qwenvl_pair_probe.json`
+- `eval/c065_encoder_side_failure_attribute_20260612/siglip_pair_probe.json`
+- `eval/c065_encoder_side_failure_attribute_20260612/pe_pair_probe.json`
 
 생성/학습 manifest:
 
@@ -1488,6 +1569,8 @@ QwenVL 주요 평가:
 - `training/manifests/c052_positive_identity_pairs_20260612.jsonl`
 - `training/manifests/c055_qwenvl_mixed_clean32_c052_positive_20260612.jsonl`
 - `training/manifests/c060_qwenvl_failure_focused_clean32_c052_20260612.jsonl`
+- `training/manifests/c065_failure_attribute_pairs_20260612.jsonl`
+- `training/manifests/c065_failure_attribute_pairs_20260612.summary.json`
 
 현재 가장 중요한 실행 레시피 근거:
 

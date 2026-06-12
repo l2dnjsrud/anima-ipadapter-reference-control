@@ -82,6 +82,7 @@ def score_pair_probe_manifest(
         "encoder": encoder_name,
         "rows": [asdict(row) for row in rows],
         "summary": asdict(summary),
+        "group_summaries": _summarize_by_anchor_group(rows),
     }
 
 
@@ -146,6 +147,22 @@ def _summarize(rows: list[PairProbeRow]) -> PairProbeSummary:
     )
 
 
+def _summarize_by_anchor_group(rows: list[PairProbeRow]) -> dict[str, JsonObject]:
+    groups: dict[str, list[PairProbeRow]] = {}
+    for row in rows:
+        groups.setdefault(row.anchor_group, []).append(row)
+    summaries: dict[str, JsonObject] = {}
+    for group, group_rows in sorted(groups.items()):
+        if _has_positive_and_negative(group_rows):
+            summaries[group] = asdict(_summarize(group_rows))
+    return summaries
+
+
+def _has_positive_and_negative(rows: list[PairProbeRow]) -> bool:
+    labels = {row.label for row in rows}
+    return "positive" in labels and "negative" in labels
+
+
 def _pairwise_auc(positives: list[float], negatives: list[float]) -> float:
     wins = 0.0
     for positive in positives:
@@ -167,25 +184,50 @@ def _render_report(result: JsonObject) -> str:
     summary = result["summary"]
     if not isinstance(summary, dict):
         raise PairProbeInputError("result summary must be an object")
-    return "\n".join(
+    lines = [
+        "# Identity Feature Probe",
+        "",
+        f"- Encoder: `{result['encoder']}`",
+        f"- Manifest: `{result['manifest_path']}`",
+        f"- Pairs: `{summary['pairs']}`",
+        f"- Positive mean: `{summary['positive_mean']}`",
+        f"- Negative mean: `{summary['negative_mean']}`",
+        f"- Separation margin: `{summary['separation_margin']}`",
+        f"- Pairwise AUC: `{summary['pairwise_auc']}`",
+        f"- Midpoint accuracy: `{summary['midpoint_accuracy']}`",
+        f"- Decision: `{summary['decision']}`",
+        "",
+    ]
+    group_summaries = result.get("group_summaries")
+    if isinstance(group_summaries, dict) and group_summaries:
+        lines.extend(
+            [
+                "## Anchor Group Summaries",
+                "",
+                "| group | positive mean | negative mean | margin | AUC | decision |",
+                "| --- | ---: | ---: | ---: | ---: | --- |",
+            ]
+        )
+        for group, group_summary in sorted(group_summaries.items()):
+            if not isinstance(group_summary, dict):
+                continue
+            lines.append(
+                "| "
+                f"{group} | {group_summary['positive_mean']} | "
+                f"{group_summary['negative_mean']} | "
+                f"{group_summary['separation_margin']} | "
+                f"{group_summary['pairwise_auc']} | "
+                f"{group_summary['decision']} |"
+            )
+        lines.append("")
+    lines.extend(
         [
-            "# Identity Feature Probe",
-            "",
-            f"- Encoder: `{result['encoder']}`",
-            f"- Manifest: `{result['manifest_path']}`",
-            f"- Pairs: `{summary['pairs']}`",
-            f"- Positive mean: `{summary['positive_mean']}`",
-            f"- Negative mean: `{summary['negative_mean']}`",
-            f"- Separation margin: `{summary['separation_margin']}`",
-            f"- Pairwise AUC: `{summary['pairwise_auc']}`",
-            f"- Midpoint accuracy: `{summary['midpoint_accuracy']}`",
-            f"- Decision: `{summary['decision']}`",
-            "",
             "Positive and negative labels are read from the manifest.",
             "This gate checks feature separation only; it does not prove generation quality.",
             "",
         ]
     )
+    return "\n".join(lines)
 
 
 app = typer.Typer(add_completion=False)
