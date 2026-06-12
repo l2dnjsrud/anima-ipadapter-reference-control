@@ -1,20 +1,25 @@
 from __future__ import annotations
 
 import json
+import os
 import shutil
 from dataclasses import asdict
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
 
+from tools.comfy_api_client import upload_image, view_image_bytes
 from tools.siglip_auto_caption_types import EvalConfig, JsonValue, Sample, Variant
 
 
 def copy_reference(sample: Sample, config: EvalConfig) -> str:
     image_name = f"{config.out_dir.name}_{sample.label}.jpg"
-    config.comfy_input.mkdir(parents=True, exist_ok=True)
-    shutil.copy2(config.data_root / f"{sample.ref_id}.jpg", config.comfy_input / image_name)
-    return image_name
+    source = config.data_root / f"{sample.ref_id}.jpg"
+    if _can_prepare_writable_directory(config.comfy_input):
+        config.comfy_input.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source, config.comfy_input / image_name)
+        return image_name
+    return upload_image(config.base_url, source, image_name)
 
 
 def copy_output_image(
@@ -22,10 +27,44 @@ def copy_output_image(
     name: str,
     config: EvalConfig,
 ) -> Path:
-    src = config.comfy_output / str(image_info["subfolder"]) / str(image_info["filename"])
+    filename = _image_info_text(image_info, "filename", "")
+    subfolder = _image_info_text(image_info, "subfolder", "")
+    image_type = _image_info_text(image_info, "type", "output")
+    src = config.comfy_output / subfolder / filename
     dst = config.out_dir / f"{name}.png"
-    shutil.copy2(src, dst)
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    if src.is_file():
+        shutil.copy2(src, dst)
+    else:
+        dst.write_bytes(
+            view_image_bytes(
+                config.base_url,
+                filename=filename,
+                subfolder=subfolder,
+                image_type=image_type,
+            )
+        )
     return dst
+
+
+def _can_prepare_writable_directory(directory: Path) -> bool:
+    probe = directory
+    while not probe.exists():
+        if probe.parent == probe:
+            return False
+        probe = probe.parent
+    return probe.is_dir() and os.access(probe, os.W_OK)
+
+
+def _image_info_text(
+    image_info: dict[str, JsonValue],
+    key: str,
+    default: str,
+) -> str:
+    value = image_info.get(key, default)
+    if isinstance(value, str):
+        return value
+    return default
 
 
 def write_contact_sheet(

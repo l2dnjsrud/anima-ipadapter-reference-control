@@ -9,6 +9,7 @@ from PIL import Image
 
 from tools.reference_prompt_manifest import (
     MissingReferenceImageError,
+    OutputAlreadyExistsError,
     build_reference_prompt_rows,
     load_reference_source_rows,
     validate_reference_source_images,
@@ -87,7 +88,11 @@ def main(
     limit: Annotated[int | None, typer.Option(min=1)] = None,
     max_per_category: Annotated[int, typer.Option(min=1)] = 1,
     model_id: Annotated[str, typer.Option()] = DEFAULT_QWENVL_MODEL_ID,
+    force: Annotated[bool, typer.Option("--force")] = False,
 ) -> None:
+    if output_path.exists() and not force:
+        typer.echo(f"error: {OutputAlreadyExistsError(output_path)}", err=True)
+        raise typer.Exit(1)
     rows = _limit_rows(load_reference_source_rows(manifest_path), limit)
     try:
         validate_reference_source_images(rows, dataset_root)
@@ -102,7 +107,11 @@ def main(
         candidates=default_attribute_candidates(),
         max_per_category=max_per_category,
     )
-    write_reference_prompt_rows(prompt_rows, output_path)
+    try:
+        write_reference_prompt_rows(prompt_rows, output_path, overwrite=force)
+    except OutputAlreadyExistsError as exc:
+        typer.echo(f"error: {exc}", err=True)
+        raise typer.Exit(1)
     typer.echo(f"wrote {len(prompt_rows)} prompt rows to {output_path}")
 
 

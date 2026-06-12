@@ -2,8 +2,9 @@ from __future__ import annotations
 
 import json
 import uuid
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Annotated
+from typing import Annotated, Final
 
 import typer
 
@@ -22,8 +23,10 @@ from tools.siglip_auto_caption_types import (
     DEFAULT_DATA_ROOT,
     DEFAULT_OUT_DIR,
     NEGATIVE,
-    SIGLIP_PE_RETRIEVAL_CHECKPOINT,
-    SIGLIP_PE_SPACE_CHECKPOINT,
+    SIGLIP_KV_INIT_CHECKPOINT,
+    SIGLIP_KV_INIT_LABEL,
+    SIGLIP_REF_RETRIEVAL_CHECKPOINT,
+    SIGLIP_REF_RETRIEVAL_LABEL,
     AutoPromptRow,
     EvalConfig,
     JsonObject,
@@ -31,6 +34,29 @@ from tools.siglip_auto_caption_types import (
     Sample,
     Variant,
 )
+
+
+EVAL_OUTPUT_PATTERNS: Final = (
+    "contact_sheet.jpg",
+    "summary.json",
+    "report.md",
+    "*.png",
+    "*.api_prompt.json",
+    "*.response.json",
+    "*.history.json",
+)
+
+
+@dataclass(frozen=True, slots=True)
+class EvalOutputAlreadyExistsError(Exception):
+    out_dir: Path
+    conflicts: tuple[Path, ...]
+
+    def __str__(self) -> str:
+        conflict_list = ", ".join(path.name for path in self.conflicts[:5])
+        if len(self.conflicts) > 5:
+            conflict_list = f"{conflict_list}, ..."
+        return f"eval output directory already has runtime artifacts: {self.out_dir} ({conflict_list})"
 
 
 def load_auto_prompt_rows(path: Path) -> tuple[Sample, ...]:
@@ -54,6 +80,31 @@ def load_auto_prompt_rows(path: Path) -> tuple[Sample, ...]:
                 )
             )
     return tuple(rows)
+
+
+def default_siglip_variants() -> tuple[Variant, ...]:
+    return (
+        Variant("no_ip", None, 0.0),
+        Variant(SIGLIP_KV_INIT_LABEL, SIGLIP_KV_INIT_CHECKPOINT, 1.4),
+        Variant(SIGLIP_REF_RETRIEVAL_LABEL, SIGLIP_REF_RETRIEVAL_CHECKPOINT, 1.4),
+    )
+
+
+def ensure_eval_output_writable(out_dir: Path) -> None:
+    if not out_dir.exists():
+        return
+    conflicts = tuple(
+        sorted(
+            {
+                path
+                for pattern in EVAL_OUTPUT_PATTERNS
+                for path in out_dir.glob(pattern)
+                if path.is_file()
+            }
+        )
+    )
+    if conflicts:
+        raise EvalOutputAlreadyExistsError(out_dir=out_dir, conflicts=conflicts)
 
 
 def no_ip_prompt(sample: Sample, variant: Variant, *, output_prefix: str) -> JsonObject:
@@ -139,13 +190,10 @@ def scheduler_node(model_node: str) -> JsonObject:
 
 
 def run_eval(manifest_path: Path, config: EvalConfig) -> None:
+    ensure_eval_output_writable(config.out_dir)
     config.out_dir.mkdir(parents=True, exist_ok=True)
     samples = load_auto_prompt_rows(manifest_path)
-    variants = (
-        Variant("no_ip", None, 0.0),
-        Variant("siglip_pe_space_w14", SIGLIP_PE_SPACE_CHECKPOINT, 1.4),
-        Variant("siglip_pe_retrieval_w14", SIGLIP_PE_RETRIEVAL_CHECKPOINT, 1.4),
-    )
+    variants = default_siglip_variants()
     results: dict[str, JsonValue] = {}
     for sample in samples:
         image_name = copy_reference(sample, config)
@@ -201,16 +249,20 @@ def main(
     comfy_input: Annotated[Path, typer.Option()] = DEFAULT_COMFY_INPUT,
     comfy_output: Annotated[Path, typer.Option()] = DEFAULT_COMFY_OUTPUT,
 ) -> None:
-    run_eval(
-        manifest_path,
-        EvalConfig(
-            data_root=data_root,
-            base_url=base_url,
-            out_dir=out_dir,
-            comfy_input=comfy_input,
-            comfy_output=comfy_output,
-        ),
-    )
+    try:
+        run_eval(
+            manifest_path,
+            EvalConfig(
+                data_root=data_root,
+                base_url=base_url,
+                out_dir=out_dir,
+                comfy_input=comfy_input,
+                comfy_output=comfy_output,
+            ),
+        )
+    except EvalOutputAlreadyExistsError as exc:
+        typer.echo(f"error: {exc}", err=True)
+        raise typer.Exit(1)
     typer.echo(f"wrote {out_dir / 'contact_sheet.jpg'}")
 
 

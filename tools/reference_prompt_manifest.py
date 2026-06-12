@@ -22,6 +22,15 @@ class MissingReferenceImageError(Exception):
         return f"reference image does not exist: {self.image_path}"
 
 
+class OutputAlreadyExistsError(Exception):
+    def __init__(self, output_path: Path) -> None:
+        self.output_path = output_path
+        super().__init__(str(self))
+
+    def __str__(self) -> str:
+        return f"output prompt manifest already exists: {self.output_path}"
+
+
 @dataclass(frozen=True, slots=True)
 class ReferencePromptSourceRow:
     ref_id: str
@@ -103,7 +112,11 @@ def load_reference_source_rows(path: Path) -> tuple[ReferencePromptSourceRow, ..
 def write_reference_prompt_rows(
     rows: tuple[ManifestPromptRow, ...],
     output_path: Path,
+    *,
+    overwrite: bool = False,
 ) -> None:
+    if output_path.exists() and not overwrite:
+        raise OutputAlreadyExistsError(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with output_path.open("w", encoding="utf-8") as handle:
         for row in rows:

@@ -506,6 +506,51 @@ The next credible path is a stronger anime/VL image encoder or a trainable
 image-encoder adaptation stage, most likely Qwen-VL style features or an
 anime-domain SigLIP/PE-like encoder, before another broad training run.
 
+## 2026-06-12 c035 single-character suite result
+
+The c034 auto-attribute prompt run was expanded into a 32-case single-character
+suite:
+
+```text
+eval/siglip_reference_suite_v1_20260612/reference_suite_v1.jsonl
+eval/siglip_runtime_quality_20260612_c035_suite_v1/
+```
+
+Runtime path:
+
+- ComfyUI API: `http://127.0.0.1:8116`
+- node family: `AnimaSigLIPIPAdapterLoader`,
+  `AnimaSigLIPEncodeImage`, `AnimaSigLIPIPAdapterApply`
+- variants: no-IP, `siglip_kv_init_w14`, `siglip_ref_retrieval_w14`
+- weight: `1.4`
+
+Metric result:
+
+| variant | mean uplift | improved rate | decision |
+| --- | ---: | ---: | --- |
+| `siglip_kv_init_w14` | +0.0292 | 0.65625 | fail |
+| `siglip_ref_retrieval_w14` | +0.0577 | 0.65625 | fail |
+
+Visual audit:
+
+- palette/costume/expression/framing acceptable: `31/32`
+- identity/distinctive trait acceptable: `16/32`
+- non-human/special trait acceptable: `0/1`
+- blank outputs: `0`
+- decision: `not_ready`
+
+Interpretation: `siglip_ref_retrieval_w14` remains the best current SigLIP
+variant, and the generated images are often attractive. It is still not a
+trustworthy high-quality reference-control checkpoint. The failure mode is a
+repeated collapse toward black long-haired wuxia characters, purple/night palace
+lighting, red-eye villain traits, and generic official/elder templates.
+
+The selected next direction is `train_stronger_encoder`, documented in:
+
+```text
+docs/ipadapter_next_direction_decision_ko.md
+```
+
 ## 2026-06-11 Qwen3-VL embedding probe
 
 The next encoder candidate was checked before writing another adapter training
@@ -1095,13 +1140,14 @@ Decision: `siglip_attribute_prompt_reference_control_pass`
 
 The native SigLIP path now produces visually high-quality, reference-controlled
 ComfyUI outputs when the prompt carries the reference's visible attributes.
-The runtime node path is `AnimaSigLIP*`; the `siglip_pe_space_*` and
-`siglip_pe_retrieval_*` names refer to SigLIP checkpoints trained with PE-space
-initialization/retrieval anchors, not to the old PE-Core ComfyUI nodes. PE
-pooled-cosine is still used as an auxiliary reference-similarity metric.
-`siglip_pe_space_w14` improves over no-IP on 8/8 cases with mean uplift
-`0.0603`, and `siglip_pe_retrieval_w14` improves on 7/8 cases with mean uplift
-`0.0670`.
+The runtime node path is `AnimaSigLIP*`. User-facing reports should now call the
+two practical variants `siglip_kv_init_w14` and `siglip_ref_retrieval_w14`.
+Older logs used `siglip_pe_space_*` and `siglip_pe_retrieval_*` because these
+SigLIP checkpoints were trained with PE-space initialization/retrieval anchors;
+they are not PE-Core ComfyUI nodes. PE pooled-cosine is still used as an
+auxiliary reference-similarity metric. `siglip_kv_init_w14` improves over no-IP
+on 8/8 cases with mean uplift `0.0603`, and `siglip_ref_retrieval_w14` improves
+on 7/8 cases with mean uplift `0.0670`.
 
 This is not a claim that generic-prompt reference-only generation is solved.
 The practical recipe is prompt/caption + adapter: good attribute prompts give
@@ -1120,9 +1166,9 @@ bounded attribute vocabulary against each reference image with
 `tools/siglip_auto_caption_eval.py` runs the native SigLIP ComfyUI API workflow
 against no-IP plus two SigLIP checkpoints:
 
-- `siglip_pe_space_w14`:
+- `siglip_kv_init_w14`:
   `anima_siglip_ip_adapter_single_character_clean32_pe_space_init_0512_20260611.safetensors`
-- `siglip_pe_retrieval_w14`:
+- `siglip_ref_retrieval_w14`:
   `anima_siglip_ip_adapter_single_character_clean32_pe_retrieval_0128_20260611.safetensors`
 
 Evidence:
@@ -1137,9 +1183,9 @@ Decision: `siglip_auto_caption_single_character_visual_pass_pe_metric_caveat`
 
 The c033 vocabulary was useful but under-described the red-haired female and
 green monster references. The c034 expanded vocabulary fixes those visible
-failures. On c034, `siglip_pe_space_w14` reaches mean PE pooled-cosine
-`0.7878` with mean uplift `+0.1103` over no-IP and improves 7/8 cases.
-`siglip_pe_retrieval_w14` reaches mean PE pooled-cosine `0.8227` with mean
+failures. On c034, `siglip_kv_init_w14` reaches mean PE pooled-cosine `0.7878`
+with mean uplift `+0.1103` over no-IP and improves 7/8 cases.
+`siglip_ref_retrieval_w14` reaches mean PE pooled-cosine `0.8227` with mean
 uplift `+0.1452` and also improves 7/8 cases. The monster row is visually
 closer with SigLIP but lower under PE pooled-cosine, so the metric is a useful
 auxiliary signal, not the only pass/fail criterion.

@@ -21,10 +21,12 @@ NEGATIVE: Final = (
     "low quality, blurry, bad anatomy, deformed face, text, watermark, extra limbs, "
     "abstract, washed out, noise, nude, explicit, gore, multiple people"
 )
-SIGLIP_PE_SPACE_CHECKPOINT: Final = (
+SIGLIP_KV_INIT_LABEL: Final = "siglip_kv_init_w14"
+SIGLIP_REF_RETRIEVAL_LABEL: Final = "siglip_ref_retrieval_w14"
+SIGLIP_KV_INIT_CHECKPOINT: Final = (
     "anima_siglip_ip_adapter_single_character_clean32_pe_space_init_0512_20260611.safetensors"
 )
-SIGLIP_PE_RETRIEVAL_CHECKPOINT: Final = (
+SIGLIP_REF_RETRIEVAL_CHECKPOINT: Final = (
     "anima_siglip_ip_adapter_single_character_clean32_pe_retrieval_0128_20260611.safetensors"
 )
 

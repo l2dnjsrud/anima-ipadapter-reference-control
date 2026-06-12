@@ -1,0 +1,281 @@
+{
+  "audit_date": "2026-06-12",
+  "decision": "not_ready",
+  "best_siglip_variant": "siglip_ref_retrieval_w14",
+  "contact_sheet": "eval/siglip_runtime_quality_20260612_c035_suite_v1/contact_sheet.jpg",
+  "visual_chunks": [
+    "eval/siglip_runtime_quality_20260612_c035_suite_v1/visual_chunks/chunk_1.jpg",
+    "eval/siglip_runtime_quality_20260612_c035_suite_v1/visual_chunks/chunk_2.jpg",
+    "eval/siglip_runtime_quality_20260612_c035_suite_v1/visual_chunks/chunk_3.jpg",
+    "eval/siglip_runtime_quality_20260612_c035_suite_v1/visual_chunks/chunk_4.jpg"
+  ],
+  "columns": [
+    "reference",
+    "no_ip",
+    "siglip_kv_init_w14",
+    "siglip_ref_retrieval_w14"
+  ],
+  "criteria": {
+    "palette_costume_expression_framing_gate": ">= 24 / 32",
+    "identity_distinctive_trait_gate": ">= 18 / 32",
+    "metric_gate": "best mean uplift >= +0.10 and improved rate >= 0.75",
+    "blank_gate": "0 generated images with pixel std < 5.0"
+  },
+  "summary": {
+    "rows": 32,
+    "palette_costume_expression_framing_acceptable": 31,
+    "identity_distinctive_trait_acceptable": 16,
+    "non_human_or_special_trait_rows": 1,
+    "non_human_or_special_trait_acceptable": 0,
+    "template_collapse_rows": 18,
+    "metric_caveat": true,
+    "visual_gate_passed": false,
+    "reason": "The run produces usable manhwa images and often improves broad style, but fails the stricter identity/distinctive-trait gate. Many samples collapse toward a black long-haired wuxia warrior with purple/night palace lighting."
+  },
+  "metric_summary": [
+    {
+      "variant": "siglip_kv_init_w14",
+      "cases": 32,
+      "mean_cosine": 0.7728161495178938,
+      "mean_no_ip_cosine": 0.7435856675729156,
+      "mean_uplift": 0.029230481944978237,
+      "improved_rate": 0.65625,
+      "metric_gate_passed": false
+    },
+    {
+      "variant": "siglip_ref_retrieval_w14",
+      "cases": 32,
+      "mean_cosine": 0.8012845274060965,
+      "mean_no_ip_cosine": 0.7435856675729156,
+      "mean_uplift": 0.057698859833180904,
+      "improved_rate": 0.65625,
+      "metric_gate_passed": false
+    }
+  ],
+  "rows": [
+    {
+      "sample": "auto00",
+      "best_variant": "siglip_ref_retrieval_w14",
+      "palette_costume_expression_framing_acceptable": true,
+      "identity_distinctive_trait_acceptable": true,
+      "notes": "Side profile, black robe, long hair, and dark palette are reasonably preserved."
+    },
+    {
+      "sample": "auto01",
+      "best_variant": "siglip_ref_retrieval_w14",
+      "palette_costume_expression_framing_acceptable": true,
+      "identity_distinctive_trait_acceptable": false,
+      "notes": "Angry close-up works, but the older brown-haired face becomes a young black-haired martial artist."
+    },
+    {
+      "sample": "auto02",
+      "best_variant": "siglip_ref_retrieval_w14",
+      "palette_costume_expression_framing_acceptable": true,
+      "identity_distinctive_trait_acceptable": false,
+      "notes": "Old bald/bearded cue is partially present, but the output adds long black hair, armor, and red-eye villain traits."
+    },
+    {
+      "sample": "auto03",
+      "best_variant": "siglip_ref_retrieval_w14",
+      "palette_costume_expression_framing_acceptable": true,
+      "identity_distinctive_trait_acceptable": true,
+      "notes": "Red hair, palace dress, seated pose, and warm red/gold palette transfer well."
+    },
+    {
+      "sample": "auto04",
+      "best_variant": "siglip_ref_retrieval_w14",
+      "palette_costume_expression_framing_acceptable": true,
+      "identity_distinctive_trait_acceptable": true,
+      "notes": "Side profile, hand gesture, black robe, and stern expression are close enough for this gate."
+    },
+    {
+      "sample": "auto05",
+      "best_variant": "siglip_ref_retrieval_w14",
+      "palette_costume_expression_framing_acceptable": true,
+      "identity_distinctive_trait_acceptable": true,
+      "notes": "Shouting official/bearded face and black hat are preserved clearly."
+    },
+    {
+      "sample": "auto06",
+      "best_variant": "siglip_ref_retrieval_w14",
+      "palette_costume_expression_framing_acceptable": true,
+      "identity_distinctive_trait_acceptable": false,
+      "notes": "Official robe and hat survive, but glasses and the specific face drift heavily."
+    },
+    {
+      "sample": "auto07",
+      "best_variant": "siglip_ref_retrieval_w14",
+      "palette_costume_expression_framing_acceptable": true,
+      "identity_distinctive_trait_acceptable": false,
+      "notes": "Green lighting appears, but the green non-human face becomes a human martial artist. Special-trait failure."
+    },
+    {
+      "sample": "auto08",
+      "best_variant": "siglip_ref_retrieval_w14",
+      "palette_costume_expression_framing_acceptable": true,
+      "identity_distinctive_trait_acceptable": true,
+      "notes": "Action pose, long hair, dark outfit, and expression are good."
+    },
+    {
+      "sample": "auto09",
+      "best_variant": "siglip_kv_init_w14",
+      "palette_costume_expression_framing_acceptable": true,
+      "identity_distinctive_trait_acceptable": false,
+      "notes": "Wuxia style and long hair are present, but the calm upward-looking face becomes a shouting action profile."
+    },
+    {
+      "sample": "auto10",
+      "best_variant": "siglip_ref_retrieval_w14",
+      "palette_costume_expression_framing_acceptable": true,
+      "identity_distinctive_trait_acceptable": true,
+      "notes": "Official hat, glasses, beard, and stern pose are recognizable."
+    },
+    {
+      "sample": "auto11",
+      "best_variant": "siglip_ref_retrieval_w14",
+      "palette_costume_expression_framing_acceptable": true,
+      "identity_distinctive_trait_acceptable": true,
+      "notes": "Bearded elder profile and raised-finger expression transfer reasonably, with some extra armor/purple bias."
+    },
+    {
+      "sample": "auto12",
+      "best_variant": "siglip_ref_retrieval_w14",
+      "palette_costume_expression_framing_acceptable": true,
+      "identity_distinctive_trait_acceptable": false,
+      "notes": "Black hair and face angle are present, but the smiling elegant face becomes an angry armored template."
+    },
+    {
+      "sample": "auto13",
+      "best_variant": "siglip_ref_retrieval_w14",
+      "palette_costume_expression_framing_acceptable": true,
+      "identity_distinctive_trait_acceptable": false,
+      "notes": "Clean black robe and close-up remain, but red-eye/dark template overtakes the reference."
+    },
+    {
+      "sample": "auto14",
+      "best_variant": "siglip_ref_retrieval_w14",
+      "palette_costume_expression_framing_acceptable": true,
+      "identity_distinctive_trait_acceptable": true,
+      "notes": "Side profile, long hair, dark outfit, and posture are close enough."
+    },
+    {
+      "sample": "auto15",
+      "best_variant": "siglip_ref_retrieval_w14",
+      "palette_costume_expression_framing_acceptable": true,
+      "identity_distinctive_trait_acceptable": false,
+      "notes": "Expression and robe are plausible, but the foreground/background composition and face identity drift."
+    },
+    {
+      "sample": "auto16",
+      "best_variant": "siglip_ref_retrieval_w14",
+      "palette_costume_expression_framing_acceptable": true,
+      "identity_distinctive_trait_acceptable": false,
+      "notes": "Angry young warrior template matches broad prompt but not the reference-specific face."
+    },
+    {
+      "sample": "auto17",
+      "best_variant": "siglip_kv_init_w14",
+      "palette_costume_expression_framing_acceptable": false,
+      "identity_distinctive_trait_acceptable": false,
+      "notes": "Soft female face and pale makeup collapse into a red-eye night-warrior template."
+    },
+    {
+      "sample": "auto18",
+      "best_variant": "siglip_ref_retrieval_w14",
+      "palette_costume_expression_framing_acceptable": true,
+      "identity_distinctive_trait_acceptable": true,
+      "notes": "Seated dark-robed martial character and indoor framing are preserved well."
+    },
+    {
+      "sample": "auto19",
+      "best_variant": "siglip_ref_retrieval_w14",
+      "palette_costume_expression_framing_acceptable": true,
+      "identity_distinctive_trait_acceptable": true,
+      "notes": "Bald elder, beard, expression, and close-up framing work well."
+    },
+    {
+      "sample": "auto20",
+      "best_variant": "siglip_ref_retrieval_w14",
+      "palette_costume_expression_framing_acceptable": true,
+      "identity_distinctive_trait_acceptable": true,
+      "notes": "Prayer beads, beard, tan robe, and angry elder face are recognizable despite red-eye bias."
+    },
+    {
+      "sample": "auto21",
+      "best_variant": "siglip_ref_retrieval_w14",
+      "palette_costume_expression_framing_acceptable": true,
+      "identity_distinctive_trait_acceptable": false,
+      "notes": "Broad wuxia profile survives, but it is mostly the repeated black-haired warrior template."
+    },
+    {
+      "sample": "auto22",
+      "best_variant": "siglip_ref_retrieval_w14",
+      "palette_costume_expression_framing_acceptable": true,
+      "identity_distinctive_trait_acceptable": false,
+      "notes": "Elder/beard and robe cues appear, but the face becomes a purple villain variant."
+    },
+    {
+      "sample": "auto23",
+      "best_variant": "siglip_ref_retrieval_w14",
+      "palette_costume_expression_framing_acceptable": true,
+      "identity_distinctive_trait_acceptable": true,
+      "notes": "Bald monk, beads, beard, and hand gesture are preserved strongly."
+    },
+    {
+      "sample": "auto24",
+      "best_variant": "siglip_ref_retrieval_w14",
+      "palette_costume_expression_framing_acceptable": true,
+      "identity_distinctive_trait_acceptable": false,
+      "notes": "Gesture/expression transfer, but blue hair and specific pale face are not preserved."
+    },
+    {
+      "sample": "auto25",
+      "best_variant": "siglip_ref_retrieval_w14",
+      "palette_costume_expression_framing_acceptable": true,
+      "identity_distinctive_trait_acceptable": true,
+      "notes": "Official robe, hat, gesture, and formal bearing are usable."
+    },
+    {
+      "sample": "auto26",
+      "best_variant": "siglip_ref_retrieval_w14",
+      "palette_costume_expression_framing_acceptable": true,
+      "identity_distinctive_trait_acceptable": true,
+      "notes": "Red hair, pale skin/makeup, feminine presentation, and red-eye villain styling are preserved."
+    },
+    {
+      "sample": "auto27",
+      "best_variant": "siglip_kv_init_w14",
+      "palette_costume_expression_framing_acceptable": true,
+      "identity_distinctive_trait_acceptable": false,
+      "notes": "Official hat and glasses appear in one variant, but face and costume drift too much for identity pass."
+    },
+    {
+      "sample": "auto28",
+      "best_variant": "siglip_ref_retrieval_w14",
+      "palette_costume_expression_framing_acceptable": true,
+      "identity_distinctive_trait_acceptable": true,
+      "notes": "Seated court character, gold robe, hat, and throne framing are usable."
+    },
+    {
+      "sample": "auto29",
+      "best_variant": "siglip_ref_retrieval_w14",
+      "palette_costume_expression_framing_acceptable": true,
+      "identity_distinctive_trait_acceptable": false,
+      "notes": "Side profile and white robe appear, but identity and expression are genericized."
+    },
+    {
+      "sample": "auto30",
+      "best_variant": "siglip_ref_retrieval_w14",
+      "palette_costume_expression_framing_acceptable": true,
+      "identity_distinctive_trait_acceptable": true,
+      "notes": "Bald monk, beads, side profile, and elder expression are strong."
+    },
+    {
+      "sample": "auto31",
+      "best_variant": "siglip_ref_retrieval_w14",
+      "palette_costume_expression_framing_acceptable": true,
+      "identity_distinctive_trait_acceptable": false,
+      "notes": "Official hat/mustache are present, but fan, glasses, and original face are not preserved."
+    }
+  ]
+}

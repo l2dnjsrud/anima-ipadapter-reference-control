@@ -11,6 +11,7 @@ from tools.single_character_manifest import (
     write_candidate_sheet,
     write_pair_rows,
 )
+from tools.validate_reference_suite import validate_reference_suite
 
 
 def _write_image_pair(
@@ -101,3 +102,25 @@ def test_write_rows_and_candidate_sheet(tmp_path: Path) -> None:
         },
     ]
     assert sheet_path.exists()
+
+
+def test_validate_reference_suite_reports_row_and_missing_counts(tmp_path: Path) -> None:
+    dataset_root = tmp_path / "dataset"
+    _write_image_pair(dataset_root, "SG-001/portrait", size=(720, 960))
+    manifest_path = tmp_path / "suite.jsonl"
+    manifest_path.write_text(
+        json.dumps(
+            {
+                "ref_id": "SG-001/portrait",
+                "tgt_id": "SG-001/portrait",
+                "prompt": "mrcolor_panel_style, character panel",
+            }
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    result = validate_reference_suite(manifest_path, dataset_root)
+
+    assert result.rows == 1
+    assert result.missing_images == ()

@@ -4,10 +4,13 @@ import json
 from pathlib import Path
 
 from PIL import Image
+from typer.testing import CliRunner
 
+from tools import build_reference_prompt_manifest
 from tools.reference_prompt_manifest import (
     ManifestPromptRow,
     MissingReferenceImageError,
+    OutputAlreadyExistsError,
     ReferencePromptSourceRow,
     build_reference_prompt_rows,
     validate_reference_source_images,
@@ -17,8 +20,12 @@ from tools.reference_prompting import (
     AttributeCandidate,
     CandidateScoreMismatchError,
     build_reference_prompt,
+    default_attribute_candidates,
     select_top_attributes,
 )
+
+
+RUNNER = CliRunner()
 
 
 class FakeScorer:
@@ -59,6 +66,24 @@ def test_select_top_attributes_rejects_score_count_mismatch() -> None:
         assert exc.scores == 1
     else:
         raise AssertionError("candidate and score count mismatch should fail")
+
+
+def test_default_attribute_candidates_cover_v3_reference_categories() -> None:
+    candidates = default_attribute_candidates()
+    categories = {candidate.category for candidate in candidates}
+
+    assert len(categories) >= 10
+    assert len(candidates) >= 80
+    assert {
+        "age_facial_hair",
+        "hair_color_style",
+        "expression",
+        "framing",
+        "outfit_color",
+        "accessory_prop",
+        "non_human_trait",
+        "lighting_palette",
+    } <= categories
 
 
 def test_build_reference_prompt_uses_retrieved_attributes_without_generic_noise() -> None:
@@ -139,6 +164,95 @@ def test_build_reference_prompt_rows_scores_images_and_writes_jsonl(tmp_path: Pa
         "young scholar with glasses",
         "warm orange firelit background",
     ]
+
+
+def test_write_reference_prompt_rows_refuses_existing_output_by_default(
+    tmp_path: Path,
+) -> None:
+    output_path = tmp_path / "reference_prompts.jsonl"
+    output_path.write_text("existing\n", encoding="utf-8")
+    rows = (
+        ManifestPromptRow(
+            ref_id="SG-001/portrait",
+            tgt_id="SG-001/portrait",
+            source_prompt="source",
+            prompt="prompt",
+            selected_attributes=("old bearded martial arts master",),
+        ),
+    )
+
+    try:
+        write_reference_prompt_rows(rows, output_path)
+    except OutputAlreadyExistsError as exc:
+        assert exc.output_path == output_path
+    else:
+        raise AssertionError("existing prompt manifest should not be overwritten")
+
+    assert output_path.read_text(encoding="utf-8") == "existing\n"
+
+
+def test_prompt_manifest_cli_refuses_existing_output_before_loading_scorer(
+    tmp_path: Path,
+    monkeypatch,
+) -> None:
+    dataset_root = tmp_path / "dataset"
+    image_path = dataset_root / "SG-001" / "portrait.jpg"
+    image_path.parent.mkdir(parents=True)
+    Image.new("RGB", (720, 960), (120, 80, 40)).save(image_path)
+    manifest_path = tmp_path / "source.jsonl"
+    manifest_path.write_text(
+        json.dumps(
+            {
+                "ref_id": "SG-001/portrait",
+                "tgt_id": "SG-001/portrait",
+                "prompt": "mrcolor_panel_style, character panel",
+            }
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    output_path = tmp_path / "reference_prompts.jsonl"
+    output_path.write_text("existing\n", encoding="utf-8")
+
+    def fail_if_loaded(config: build_reference_prompt_manifest.Qwen3VLScorerConfig):
+        raise AssertionError(f"scorer should not load for existing output: {config.model_id}")
+
+    monkeypatch.setattr(
+        build_reference_prompt_manifest,
+        "Qwen3VLReferenceTextScorer",
+        fail_if_loaded,
+    )
+
+    result = RUNNER.invoke(
+        build_reference_prompt_manifest.app,
+        [str(manifest_path), str(dataset_root), str(output_path)],
+    )
+
+    assert result.exit_code == 1
+    assert "already exists" in result.stderr
+    assert output_path.read_text(encoding="utf-8") == "existing\n"
+
+
+def test_write_reference_prompt_rows_can_force_overwrite(tmp_path: Path) -> None:
+    output_path = tmp_path / "reference_prompts.jsonl"
+    output_path.write_text("existing\n", encoding="utf-8")
+    rows = (
+        ManifestPromptRow(
+            ref_id="SG-001/portrait",
+            tgt_id="SG-001/portrait",
+            source_prompt="source",
+            prompt="prompt",
+            selected_attributes=("old bearded martial arts master",),
+        ),
+    )
+
+    write_reference_prompt_rows(rows, output_path, overwrite=True)
+
+    loaded = [
+        json.loads(line)
+        for line in output_path.read_text(encoding="utf-8").splitlines()
+    ]
+    assert loaded[0]["prompt"] == "prompt"
 
 
 def test_build_reference_prompt_rows_rejects_missing_reference_image(tmp_path: Path) -> None:

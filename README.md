@@ -67,6 +67,7 @@ Import one of these JSON workflows in ComfyUI:
 
 ```text
 workflows/anima_ipadapter_pe_native_reference.json
+workflows/anima_ipadapter_siglip_attribute_reference.json
 workflows/anima_ipadapter_siglip_native_reference.json
 workflows/anima_ipadapter_reference_generate.json
 workflows/anima_ipadapter_contactsheet_ref03_ersde.json
@@ -110,10 +111,25 @@ For that workflow, the loader selector must list:
 anima_siglip_ip_adapter_pilot_20260610.safetensors
 ```
 
-Newer single-character SigLIP checkpoints are also available. Their names
-include `pe_space` or `pe_retrieval` because they were initialized or anchored
-with the stronger PE reference model during training; they are still loaded
-through the `AnimaSigLIP*` nodes, not the `AnimaPE*` nodes.
+Newer single-character SigLIP checkpoints are also available. In user-facing
+reports they should be referred to as `siglip_kv_init_w14` and
+`siglip_ref_retrieval_w14`. The underlying checkpoint filenames still mention
+`pe_space` or `pe_retrieval` because those were training-time PE teacher/anchor
+signals; they are still loaded through the `AnimaSigLIP*` nodes, not the
+`AnimaPE*` nodes.
+
+For the current best SigLIP recipe, use:
+
+```text
+workflows/anima_ipadapter_siglip_attribute_reference.json
+```
+
+Its default user-facing variant is `siglip_ref_retrieval_w14` at weight `1.4`.
+The fallback variant name is `siglip_kv_init_w14`. See:
+
+```text
+docs/siglip_attribute_reference_recipe_ko.md
+```
 
 As of the 2026-06-11 recovery run, the SigLIP apply node patches the live Anima
 DiT through a PE-style sampling wrapper instead of relying on the old
