@@ -551,6 +551,35 @@ The selected next direction is `train_stronger_encoder`, documented in:
 docs/ipadapter_next_direction_decision_ko.md
 ```
 
+## 2026-06-12 c036 QwenVL pooled metric probe
+
+Before starting another longer training run, c035 was rescored with
+`Qwen/Qwen3-VL-Embedding-2B` image embeddings to test whether QwenVL pooled
+similarity is a better quality gate than PE pooled-cosine.
+
+Evidence:
+
+- `tools/score_auto_caption_qwenvl_metrics.py`
+- `tests/test_score_auto_caption_qwenvl_metrics.py`
+- `eval/qwenvl_metric_probe_20260612_c036_c035/qwenvl_similarity_metrics.json`
+- `eval/qwenvl_metric_probe_20260612_c036_c035/report.md`
+
+Metric result:
+
+| variant | mean uplift | improved rate |
+| --- | ---: | ---: |
+| `siglip_kv_init_w14` | +0.0422 | 0.84375 |
+| `siglip_ref_retrieval_w14` | +0.0446 | 0.90625 |
+
+Decision: `qwenvl_pooled_metric_auxiliary_only`
+
+QwenVL pooled similarity is useful as an auxiliary broad-similarity metric, but
+it is not aligned enough with the c035 identity/distinctive-trait visual audit.
+Identity-fail rows scored higher mean uplift than identity-pass rows. The next
+stronger-encoder loop must first build identity-positive/negative pairs and
+measure feature separation before using QwenVL pooled embeddings as a primary
+training signal or pass/fail gate.
+
 ## 2026-06-11 Qwen3-VL embedding probe
 
 The next encoder candidate was checked before writing another adapter training

@@ -36,6 +36,7 @@ SELECTED: `agentic_reference_control_loop` -> `train_stronger_encoder`
 | PE-Core baseline | 작동 가능한 reference-control baseline 확보 | ComfyUI contact-sheet에서 best scale `1.0`, mean uplift `+0.0937`, improved rate `87.5%` | baseline으로 유지 |
 | SigLIP c034 | 8-case 자동 속성 프롬프트 검증 | `siglip_ref_retrieval_w14` uplift `+0.1452`, 7/8 개선. PE metric caveat 있음 | 가능성 확인용 |
 | SigLIP c035 | 32-case single-character suite 검증 | best uplift `+0.0577`, improved rate `0.65625`, identity gate `16/32` | not ready |
+| QwenVL c036 metric probe | Qwen3-VL pooled image embedding이 c035 판단과 맞는지 확인 | `siglip_ref_retrieval_w14` uplift `+0.0446`, improved rate `0.90625`, 그러나 identity-fail row uplift가 identity-pass보다 높음 | auxiliary metric only |
 | QwenVL adapter-only | QwenVL embedding을 adapter에 직접 연결 | 출력 변화는 있으나 generic wuxia/interior collapse | 현재 방식 보류 |
 | line-art colorization | IP-Adapter 단독 선화 채색 | 색/스타일 압력은 있으나 구조 보존 실패. EasyControl 결합 필요 | 별도 spatial-control track |
 | InterleaveThinker | agentic interleaved generation 연구 | planner/critic loop가 출력 편차를 찾고 지시를 수정한다 | reference-control audit loop 참고 |
@@ -82,12 +83,31 @@ SELECTED: `agentic_reference_control_loop` -> `train_stronger_encoder`
 3. 모델
    - frozen SigLIP2 adapter-only를 반복하지 않는다.
    - 후보는 anime/manhwa 특화 SigLIP/PE-like encoder, QwenVL feature calibrator, 또는 image encoder LoRA/adaptation이다.
+   - c036 기준 QwenVL pooled embedding은 identity gate와 충분히 맞지 않으므로, pooled cosine 하나를 주 loss나 pass/fail gate로 쓰지 않는다.
    - FaceID-like 방향은 실사 InsightFace를 그대로 믿지 말고 manhwa character metric model을 먼저 검증한다.
 
 4. 평가
    - c035와 같은 32-case 이상 single-character suite를 기본 gate로 둔다.
    - gate는 metric과 visual audit를 같이 본다.
    - 통과 기준은 최소 best uplift `>= +0.10`, improved rate `>= 0.75`, identity/distinctive trait `>= 18/32`이다.
+
+## c036 QwenVL metric probe
+
+산출물:
+
+- `tools/score_auto_caption_qwenvl_metrics.py`
+- `tests/test_score_auto_caption_qwenvl_metrics.py`
+- `eval/qwenvl_metric_probe_20260612_c036_c035/qwenvl_similarity_metrics.json`
+- `eval/qwenvl_metric_probe_20260612_c036_c035/report.md`
+
+수치:
+
+| variant | mean uplift | improved rate |
+| --- | ---: | ---: |
+| `siglip_kv_init_w14` | +0.0422 | 0.84375 |
+| `siglip_ref_retrieval_w14` | +0.0446 | 0.90625 |
+
+결론은 `qwenvl_pooled_metric_auxiliary_only`다. QwenVL pooled embedding은 broad style/palette/composition similarity에는 더 낙관적으로 반응하지만, c035 visual audit의 identity/distinctive-trait pass/fail과는 맞지 않았다. 다음 stronger-encoder 실험은 identity-positive/negative pair를 먼저 만들고, QwenVL/SigLIP/PE feature가 같은 캐릭터와 다른 캐릭터를 실제로 분리하는지 확인한 뒤 진행한다.
 
 ## 실행 명령
 
