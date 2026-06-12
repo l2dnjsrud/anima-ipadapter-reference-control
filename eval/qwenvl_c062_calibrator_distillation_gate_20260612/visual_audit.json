@@ -1,0 +1,52 @@
+{
+  "gate": "c062_qwenvl_calibrator_distillation",
+  "decision": "not_promoted",
+  "quality_pass": false,
+  "compared_columns": [
+    "reference",
+    "no_ip",
+    "blend_species_face",
+    "c062_w14"
+  ],
+  "runtime": {
+    "samples": 40,
+    "variants": 3,
+    "generated_pngs": 120,
+    "blank_pngs": 0,
+    "min_pixel_std": 35.883,
+    "comfyui_port_after_cleanup": "closed"
+  },
+  "metrics": {
+    "pe_mean_uplift": {
+      "blend_species_face": 0.060893,
+      "c062_w14": 0.013234
+    },
+    "pe_train_uplift": {
+      "blend_species_face": 0.062733,
+      "c062_w14": 0.017362
+    },
+    "pe_heldout_uplift": {
+      "blend_species_face": 0.053534,
+      "c062_w14": -0.003277
+    },
+    "qwenvl_mean_uplift": {
+      "blend_species_face": 0.04219,
+      "c062_w14": 0.026588
+    },
+    "qwenvl_train_uplift": {
+      "blend_species_face": 0.04612,
+      "c062_w14": 0.032966
+    },
+    "qwenvl_heldout_uplift": {
+      "blend_species_face": 0.026471,
+      "c062_w14": 0.001077
+    }
+  },
+  "visual_findings": [
+    "c062_w14 changes palette, pose, and hand/robe rendering in several rows, but does not consistently improve reference identity.",
+    "heldout07 remains the critical failure: the green non-human side-profile reference still collapses into a human dark-villain body template.",
+    "heldout01 and heldout05 still lose face age/shape and speech-bubble context; c062 often increases generic dramatic aura rather than exact identity.",
+    "blend_species_face remains the stronger runtime preset for this generation surface."
+  ],
+  "next_decision": "Do not continue c062 as the main branch. Move the next loop toward a stronger feature adapter objective or encoder adaptation that directly targets heldout non-human profile, old-face, beard/headwear, and crop/context failures."
+}

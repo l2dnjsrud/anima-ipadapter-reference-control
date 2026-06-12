@@ -1176,7 +1176,50 @@ c061 decision은 `instruction_calibration_species_face_best_preset_not_quality_p
 
 즉 QwenVL instruction은 완전히 무의미하지 않다. 같은 checkpoint/weight/seed에서 instruction만 바꿔도 metric과 일부 visual cue가 개선된다. 그러나 prompt-only feature calibration만으로는 원하는 고퀄 reference-control 수준에 도달하지 못한다. 다음 루프는 실제 encoder/feature adaptation 또는 runtime blend distillation objective로 넘어가야 한다.
 
-## 13. 근거 파일 색인
+## 13. c062 QwenVL calibrator/distillation continuation gate
+
+c062는 c061에서 확인한 `species_face` instruction과 기존 최상 runtime preset인 `blend_species_face`를 단일 checkpoint 쪽으로 흡수할 수 있는지 확인하기 위한 실험이었다. 목적은 단순히 loss를 낮추는 것이 아니라, ComfyUI native QwenVL IP-Adapter 경로에서 바로 쓸 수 있고, heldout reference에서도 기존 blend보다 더 강한 identity control을 보이는 checkpoint를 만드는 것이었다.
+
+### 학습 구성
+
+학습 데이터는 `training/manifests/c060_qwenvl_failure_focused_clean32_c052_20260612.jsonl`을 사용했다. 총 `154` rows이며 heldout row는 학습에 사용하지 않았다. 이 manifest는 clean32 기준 샘플, c052 positive identity pair, c060 failure-focused repeat를 묶어서 구성했다. c060/c061에서 반복적으로 실패한 비인간 profile, 노인 얼굴 구조, 수염/관모, 손 prop, fan/weapon cue, speech-bubble context를 더 강하게 보게 하려는 선택이었다.
+
+초기 checkpoint는 `checkpoints/anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors`를 사용했다. 출력 checkpoint는 `checkpoints/anima_qwenvl_ip_adapter_c062_calibrator_distill_b128_0096_20260612.safetensors`다. 명령 surface는 `training/qwenvl_contrastive_cli.py`였고, 주요 설정은 `96` steps, `lr=3e-6`, `contrastive_weight=0.35`, `retrieval_weight=0.20`, `calibrator_bottleneck_dim=128`, c061 `species_face` instruction이다.
+
+학습 결과는 finite였고 `first_loss=0.2402564585`, `final_loss=0.1878893971`이었다. checkpoint load 검증은 통과했고, PE checkpoint를 잘못 넣었을 때 reject되는 guard도 통과했다. 다만 `trainable_parameters=308,176,540`으로 기록되었기 때문에 이 실험은 엄밀한 의미의 작은 calibrator-only 학습이라기보다, calibrator bottleneck을 포함한 broad adapter continuation으로 판단해야 한다.
+
+### ComfyUI gate
+
+검증은 isolated ComfyUI API에서 진행했다. `/object_info` 기준으로 `AnimaQwenVLIPAdapterLoader`, `AnimaQwenVLEncodeImage`, `AnimaQwenVLIPAdapterApply`가 노출되었고, c062 checkpoint도 모델 선택 목록에 나타났다. 비교 column은 `no_ip`, 현재 최상 preset인 `blend_species_face`, 신규 `c062_w14`였다.
+
+평가 샘플은 clean32 train `32`장과 heldout `8`장, 총 `40`개였다. 각 샘플마다 `3` variants를 생성해서 총 `120` PNG가 생성되었다. blank image는 `0`개였고, 최소 pixel std는 `35.883`이었다. 실험 후 ComfyUI server는 종료했고 port `8116`도 닫힌 것을 확인했다.
+
+### metric 결과
+
+| metric | blend_species_face | c062_w14 |
+| --- | ---: | ---: |
+| PE mean uplift | `0.060893` | `0.013234` |
+| PE train uplift | `0.062733` | `0.017362` |
+| PE heldout uplift | `0.053534` | `-0.003277` |
+| QwenVL mean uplift | `0.042190` | `0.026588` |
+| QwenVL train uplift | `0.046120` | `0.032966` |
+| QwenVL heldout uplift | `0.026471` | `0.001077` |
+
+metric 기준으로 c062는 기존 `blend_species_face` preset을 넘지 못했다. 특히 heldout에서 PE uplift가 음수로 떨어졌고, QwenVL heldout uplift도 거의 0에 가까웠다.
+
+### 시각 감사
+
+c062는 active checkpoint로서 생성 결과에 영향을 준다. palette, robe lighting, hand shape, pose crop이 바뀌는 경우가 있고, 일부 train row에서는 극적인 어두운 costume cue가 강해졌다. 하지만 reference identity를 더 정확하게 가져오지는 못했다.
+
+대표 실패는 `heldout07`이다. 초록색 비인간 side-profile reference가 여전히 human dark-villain body template으로 붕괴했고, monster head/profile identity를 회복하지 못했다. `heldout01`과 `heldout05`에서도 노인 얼굴 구조, 나이감, crop/speech-bubble context가 유지되지 않았다.
+
+### 판단
+
+c062 decision은 `not_promoted`다.
+
+이 실험은 QwenVL native node, checkpoint loading, model selection, API generation, contact sheet generation이 실제로 작동한다는 것은 다시 확인했다. 하지만 고퀄 reference-control checkpoint로 바로 믿고 쓸 수준은 아니다. 같은 계열 checkpoint를 조금 더 이어 학습하는 방향은 효율이 낮아 보이며, 다음 루프는 encoder-side/feature adaptation 또는 failure attribute를 직접 맞히는 더 강한 objective로 넘어가야 한다.
+
+## 14. 근거 파일 색인
 
 핵심 문서:
 
@@ -1213,6 +1256,9 @@ c061 decision은 `instruction_calibration_species_face_best_preset_not_quality_p
 - `eval/qwenvl_c060_failure_focused_training_20260612/report.md`
 - `eval/qwenvl_c060_failure_focused_gate_20260612/report.md`
 - `eval/qwenvl_c061_instruction_calibration_gate_20260612/report.md`
+- `eval/qwenvl_c062_calibrator_distillation_training_20260612/report.md`
+- `eval/qwenvl_c062_calibrator_distillation_gate_20260612/report.md`
+- `eval/qwenvl_c062_calibrator_distillation_gate_20260612/visual_audit.md`
 
 PE baseline:
 
@@ -1276,6 +1322,11 @@ QwenVL 주요 평가:
 - `eval/qwenvl_c061_instruction_calibration_gate_20260612/visual_audit.md`
 - `eval/qwenvl_c061_instruction_calibration_gate_20260612/pe_similarity_metrics.json`
 - `eval/qwenvl_c061_instruction_calibration_gate_20260612/qwenvl_similarity_metrics.json`
+- `eval/qwenvl_c062_calibrator_distillation_training_20260612/report.md`
+- `eval/qwenvl_c062_calibrator_distillation_gate_20260612/report.md`
+- `eval/qwenvl_c062_calibrator_distillation_gate_20260612/visual_audit.md`
+- `eval/qwenvl_c062_calibrator_distillation_gate_20260612/pe_similarity_metrics.json`
+- `eval/qwenvl_c062_calibrator_distillation_gate_20260612/qwenvl_similarity_metrics.json`
 
 생성/학습 manifest:
 
