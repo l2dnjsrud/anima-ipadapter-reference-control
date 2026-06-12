@@ -390,6 +390,24 @@ c038 다음으로 duplicate panel을 제외한 true same-character 후보를 만
 
 따라서 같은 `SG-page` 후보 mining은 label sheet 생성용으로는 유용하지만, 학습 manifest로 바로 승격하면 identity metric이 장면/구도/소품 유사도에 오염될 수 있다. 다음 루프는 후보 양쪽이 모두 캐릭터 중심인지 먼저 거르는 `character_filtered_identity_candidate_mining`이다.
 
+### 7.16 2026-06-12 Character-filtered identity candidates c040
+
+c039 후보에 Qwen3-VL image-text retrieval 기반 character-centered filter를 적용했다.
+
+- 도구: `tools/filter_character_candidate_pairs.py`
+- 테스트: `tests/test_character_candidate_filter.py`
+- 입력: `eval/true_identity_candidate_review_20260612_c039/candidate_pairs.jsonl`
+- scored 후보: `eval/character_filtered_identity_candidates_20260612_c040/scored_candidate_pairs.jsonl`
+- kept 후보: `eval/character_filtered_identity_candidates_20260612_c040/kept_candidate_pairs.jsonl`
+- kept sheet: `eval/character_filtered_identity_candidates_20260612_c040/kept_candidate_sheet.jpg`
+- 보고서: `eval/character_filtered_identity_candidates_20260612_c040/report.md`
+
+설정은 `max(character text score) - max(non-character text score)`가 양쪽 모두 `>= 0.15`일 때 keep으로 두었다. 24개 후보 중 14개가 남았다.
+
+결정: `character_filter_reduces_noise_not_identity_labels`
+
+필터는 배경/건물/소품 노이즈를 줄이는 보조 필터로는 쓸 수 있다. 그러나 남은 14개에도 다른 인물, 몸통 crop, 애매한 pair가 있어 true same-character label을 자동 생성하는 단계로 승격하지 않는다. 다음 루프는 kept 후보에 `same_character`, `different_character`, `unclear` 라벨을 붙일 수 있는 label sheet를 만드는 것이다.
+
 ## 8. 현재 판단
 
 ### 바로 믿고 쓸 수 있는 것
@@ -405,6 +423,7 @@ c038 다음으로 duplicate panel을 제외한 true same-character 후보를 만
 - c037 기준 PE/QwenVL/SigLIP2 pooled feature 모두 약한 identity-positive/negative pair도 충분히 분리하지 못했다.
 - c038 기준 PE/QwenVL/SigLIP2 pooled feature와 SigLIP token feature는 duplicate crop sanity check는 통과했지만, 이것은 true character identity 해결이 아니다.
 - c039 기준 same-page non-duplicate 후보만으로는 true same-character positive를 자동 확정하기 어렵다.
+- c040 기준 QwenVL character-centered filter는 후보 노이즈를 줄이지만, same-character label을 자동 확정할 정도는 아니다.
 - 선화 채색은 IP-Adapter 단독 목표가 아니다. line-control/colorize control과 결합해야 한다.
 - InterleaveThinker와 i1도 현 단계에서는 완성 IP-Adapter 모델이 아니다. 각각 agentic loop와 T2I recipe 참고 자료로만 사용한다.
 
@@ -416,7 +435,7 @@ SigLIP 계열은 한 장 overfit이 성공했고, PE-style patch/PE-space/retrie
 
 1. 현재 SigLIP recipe를 실험용으로 문서화하되, c035 decision은 `not_ready`로 유지한다.
 2. 다음 방향은 `agentic_reference_control_loop`를 먼저 만들고, 그 결과로 `train_stronger_encoder`를 실행할지 결정하는 것이다.
-3. frozen SigLIP2 adapter-only 반복이 아니라 anime/manhwa 특화 encoder, QwenVL feature calibrator, image-encoder adaptation, 또는 i1식 data/recaption recipe를 검증한다. 단, c037 기준 pooled PE/QwenVL/SigLIP2 feature는 모두 weak identity proxy를 통과하지 못했고 c038은 duplicate sanity만 통과했으며 c039 same-page 후보는 노이즈가 많으므로, character-filtered true same-character manifest 전까지 주 지표가 아니라 보조 관찰값으로만 둔다.
+3. frozen SigLIP2 adapter-only 반복이 아니라 anime/manhwa 특화 encoder, QwenVL feature calibrator, image-encoder adaptation, 또는 i1식 data/recaption recipe를 검증한다. 단, c037 기준 pooled PE/QwenVL/SigLIP2 feature는 모두 weak identity proxy를 통과하지 못했고 c038은 duplicate sanity만 통과했으며 c039/c040 후보 mining은 아직 true same-character label을 자동 확정하지 못하므로, reviewed true same-character manifest 전까지 주 지표가 아니라 보조 관찰값으로만 둔다.
 4. 자동 attribute prompt vocabulary는 유지하되, 이것만으로 identity 문제를 해결했다고 보지 않는다.
 5. single-character suite를 더 큰 held-out set으로 확장하고, metric과 visual audit gate를 계속 같이 사용한다.
 6. FaceID-like 목표는 별도 단계로 분리한다. same-character group mining과 애니/만화 identity encoder가 먼저 필요하다.
@@ -436,6 +455,7 @@ SigLIP 계열은 한 장 overfit이 성공했고, PE-style patch/PE-space/retrie
 - `eval/identity_feature_probe_20260612_c037/report.md`
 - `eval/strict_identity_feature_probe_20260612_c038/report.md`
 - `eval/true_identity_candidate_review_20260612_c039/report.md`
+- `eval/character_filtered_identity_candidates_20260612_c040/report.md`
 
 PE baseline:
 

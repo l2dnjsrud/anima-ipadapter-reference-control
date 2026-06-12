@@ -668,6 +668,28 @@ They should not be promoted directly into a true same-character training
 manifest. The next branch should filter for character-centered crops before
 same-character labeling or metric-head training.
 
+## 2026-06-12 c040 character-filtered candidates
+
+Qwen3-VL image-text retrieval was used as a first-pass character-centered crop
+filter on the c039 candidates.
+
+Evidence:
+
+- `tools/filter_character_candidate_pairs.py`
+- `tests/test_character_candidate_filter.py`
+- `eval/character_filtered_identity_candidates_20260612_c040/scored_candidate_pairs.jsonl`
+- `eval/character_filtered_identity_candidates_20260612_c040/kept_candidate_pairs.jsonl`
+- `eval/character_filtered_identity_candidates_20260612_c040/kept_candidate_sheet.jpg`
+- `eval/character_filtered_identity_candidates_20260612_c040/report.md`
+
+Decision: `character_filter_reduces_noise_not_identity_labels`
+
+At threshold `0.15`, 14 of 24 candidates remained. The filter removes some
+background/object noise, but visual review still shows different-character and
+ambiguous torso-only crops. Keep this as an auxiliary candidate filter, not an
+automatic true-identity labeler. The next branch needs an explicit reviewed
+manifest with `same_character`, `different_character`, and `unclear` labels.
+
 ## 2026-06-11 Qwen3-VL embedding probe
 
 The next encoder candidate was checked before writing another adapter training
