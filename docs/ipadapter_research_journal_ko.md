@@ -1766,7 +1766,19 @@ ComfyUI02 API `http://127.0.0.1:8102`에서 `anima-base-v1.0.safetensors`, `qwen
 
 따라서 manual label은 24장 모두 `useful_proxy_non_human`으로 남겼고 `target_positive`로 승격하지 않았다. final summary는 `approved_group_count=0`, `approved_pair_rows=0`, `direct_self_pair_rows=0`, decision `more_identity_pairs_required`다. c081은 학습 데이터 확보 실패지만, 중요한 원인을 찾았다. 다음 루프는 prompt에서 `character design sheet`, `turnaround`, `multiple poses`, `reference sheet`를 강하게 금지하고, `exactly one character, one pose, single image, no sheet`를 넣어 c082 single-image identity pair acquisition을 진행해야 한다.
 
-## 33. 근거 파일 색인
+## 33. c082 Single-Image Identity Pair Acquisition
+
+c082는 c081의 직접 후속 acquisition gate다. c081에서 발견한 핵심 실패 원인이 “한 이미지 안에 여러 포즈/turnaround/reference sheet가 들어가는 것”이었기 때문에, c082는 같은 6개 identity group과 4개 view 구조를 유지하되 프롬프트와 negative prompt를 단일 이미지 조건으로 강하게 조정했다. 목표는 학습을 시작하지 않고, 먼저 실제로 `ref_id != tgt_id` pair로 쓸 수 있는 target-positive single-image view가 충분히 생기는지 확인하는 것이었다.
+
+새 도구는 `tools/c082_single_image_pair_acquisition.py`, `tools/c082_comfy_generation.py`이고 테스트는 `tests/test_c082_single_image_pair_acquisition.py`다. prompt package는 `eval/c082_single_image_pair_acquisition_20260613/prompt_manifest.jsonl`에 만들었다. 모든 prompt는 `exactly one character`, `one pose`, `one single illustration`, `no extra figure`, `simple background`를 포함하고, `character sheet`, `reference sheet`, `turnaround`, `model sheet`, `lineup`, `multiple poses`, `multiple views`, `split view`, `collage`, `duplicate character`, `extra character`를 금지하도록 했다. prompt manifest는 `24` rows, `6` groups이며 heldout rows used는 `0`, training started는 `false`다.
+
+ComfyUI02 API `http://127.0.0.1:8102`에서 `anima-base-v1.0.safetensors`, `qwen_3_06b_base.safetensors`, `qwen/qwen_image_vae.safetensors`를 사용해 24장을 생성했다. 생성 결과는 `generated_count=24`, `blank_count=0`, min pixel std 약 `76.02`이고 raw PNG는 `.tmp/c082_single_image_pair_acquisition/generated/` 아래에만 두었다. 검수용 contact sheet는 `eval/c082_single_image_pair_acquisition_20260613/contact_sheet.jpg`에 복사했다.
+
+시각 검수 결과, c082는 프롬프트 표면을 엄격하게 만들었지만 generator behavior는 여전히 sheet layout으로 수렴했다. 대부분의 출력이 반복 full-body, front/back turnaround, pose grid, sprite sheet 같은 형태다. 단일 target-positive에 가깝게 볼 수 있는 것은 `c082_jade_lizard_monk_action` 하나뿐이었다. 그러나 같은 group의 다른 view가 모두 multi-view sheet라서 group 단위 pair를 만들 수 없었다.
+
+manual label은 `c082_jade_lizard_monk_action`만 `target_positive`로 두고 나머지 23장은 `useful_proxy_non_human`으로 남겼다. final summary는 `approved_group_count=0`, `approved_pair_rows=0`, `direct_self_pair_rows=0`, decision `more_identity_pairs_required`다. c082는 prompt-only negative constraint 반복으로는 충분한 paired dataset을 확보하기 어렵다는 강한 증거다. 다음 루프는 같은 프롬프트를 더 세게 쓰는 것이 아니라, 생성된 sheet에서 단일 figure crop을 자동 추출하거나 image-to-image/crop 기반으로 단일 target을 만드는 acquisition surface로 바꿔야 한다.
+
+## 34. 근거 파일 색인
 
 핵심 문서:
 
@@ -2010,6 +2022,11 @@ QwenVL 주요 평가:
 - `eval/c081_identity_preserving_pair_acquisition_20260613/generation_summary.json`
 - `eval/c081_identity_preserving_pair_acquisition_20260613/contact_sheet.jpg`
 - `eval/c081_identity_preserving_pair_acquisition_20260613/visual_audit.md`
+- `eval/c082_single_image_pair_acquisition_20260613/report.md`
+- `eval/c082_single_image_pair_acquisition_20260613/summary.json`
+- `eval/c082_single_image_pair_acquisition_20260613/generation_summary.json`
+- `eval/c082_single_image_pair_acquisition_20260613/contact_sheet.jpg`
+- `eval/c082_single_image_pair_acquisition_20260613/visual_audit.md`
 
 생성/학습 manifest:
 
@@ -2040,6 +2057,11 @@ QwenVL 주요 평가:
 - `eval/c081_identity_preserving_pair_acquisition_20260613/reviewed_pair_labels.jsonl`
 - `eval/c081_identity_preserving_pair_acquisition_20260613/approved_pair_manifest.jsonl`
 - `eval/c081_identity_preserving_pair_acquisition_20260613/manual_visual_labels.csv`
+- `eval/c082_single_image_pair_acquisition_20260613/prompt_manifest.jsonl`
+- `eval/c082_single_image_pair_acquisition_20260613/generation_manifest.jsonl`
+- `eval/c082_single_image_pair_acquisition_20260613/reviewed_pair_labels.jsonl`
+- `eval/c082_single_image_pair_acquisition_20260613/approved_pair_manifest.jsonl`
+- `eval/c082_single_image_pair_acquisition_20260613/manual_visual_labels.csv`
 
 현재 가장 중요한 실행 레시피 근거:
 
@@ -2087,6 +2109,9 @@ QwenVL 주요 평가:
 - `tools/c081_identity_pair_acquisition.py`
 - `tools/c081_comfy_generation.py`
 - `tests/test_c081_identity_pair_acquisition.py`
+- `tools/c082_single_image_pair_acquisition.py`
+- `tools/c082_comfy_generation.py`
+- `tests/test_c082_single_image_pair_acquisition.py`
 - `tools/siglip_auto_caption_eval.py`
 - `tools/score_siglip_auto_caption_metrics.py`
 - `workflows/anima_ipadapter_siglip_native_reference.json`
