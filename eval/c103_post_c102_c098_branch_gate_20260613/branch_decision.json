@@ -1,0 +1,85 @@
+{
+  "gate": "c103_post_c102_c098_branch_gate",
+  "date": "2026-06-13",
+  "selected_branch": "c104_expanded_qwen_target_siglip_distillation_gate",
+  "c104_ready": true,
+  "decision_summary": "Proceed to a bounded C104 gate that extends the C092 Qwen-target SigLIP distillation idea onto the larger C097/C087 hard-shape data, with explicit negatives and a stricter pre-generation decision. Do not train on C100-C102 local-real candidates until manual or external annotation yields at least 8 confirmed local positives.",
+  "required_dataset": {
+    "primary": "training/manifests/c097_siglip_hard_shape_expanded_pairs_20260613.jsonl",
+    "primary_summary": "training/manifests/c097_siglip_hard_shape_expanded_pairs_20260613.summary.json",
+    "supporting_teacher_source": "eval/qwenvl_c087_expanded_crop_positive_gate_20260613/summary.json",
+    "source_image_root": ".tmp/c097_siglip_hard_shape_expanded_root",
+    "rows": 56,
+    "explicit_negative_rows": 56,
+    "heldout_rows_used": 0,
+    "groups": [
+      "c082_frog_yokai_guard",
+      "c082_goblin_mage",
+      "c082_green_oni_scout",
+      "c082_jade_lizard_monk"
+    ]
+  },
+  "base_checkpoint_or_encoder": {
+    "siglip_adapter_checkpoint": "checkpoints/anima_siglip_ip_adapter_c094_shape_supervised_0064_20260613.safetensors",
+    "siglip_encoder_lora_reference": "checkpoints/anima_siglip_encoder_lora_c098_rank8_layer4_0224_20260613.safetensors",
+    "qwen_teacher_baseline_checkpoint": "checkpoints/anima_qwenvl_ip_adapter_c087_expanded_crop_positive_b128_0128_20260613.safetensors",
+    "model_family": "SigLIP2 native ComfyUI patch path with Qwen hard-shape teacher targets"
+  },
+  "train_or_probe_command_surface": {
+    "first_step": "Build a C104 manifest that materializes C097 refs/targets/negatives and attaches Qwen teacher target evidence from the C087 hard-shape baseline where available.",
+    "probe_before_training": "Score whether Qwen teacher target images create separable SigLIP feature margins over C097 positives versus explicit negatives; block if margin is not better than C098's finished LoRA signal.",
+    "training_if_probe_passes": "Run bounded SigLIP adapter/encoder adaptation only after the C104 manifest/probe passes: no heldout rows, explicit negatives preserved, compare against C092/C094/C096/C098 and Qwen baseline.",
+    "candidate_commands": [
+      "PYTHONPATH=. /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python tools/c104_expanded_qwen_target_manifest.py",
+      "PYTHONPATH=. /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python tools/c104_expanded_qwen_target_probe.py"
+    ]
+  },
+  "eval_gate": {
+    "pre_generation_gate": "C104 manifest/probe must prove rows>=48, explicit_negative_rows==rows, heldout_rows_used==0, missing_path_count==0, and selected feature margin is stronger than the C098 post-training margin.",
+    "generation_gate_if_training_runs": "Reuse the C098 hard-shape contact-sheet gate with variants no_ip, c087_qwen_baseline, c092_qwen_target_w14, c094_shape_supervised_w14, c096_lora_c094_w14, c098_lora_c094_w14, and the C104 candidate.",
+    "visual_focus": [
+      "frog/chibi/mascot body proportion",
+      "non-human jaw and eye silhouette",
+      "side-profile heldout07",
+      "avoid green adult humanoid face/bust collapse"
+    ]
+  },
+  "pass_threshold": {
+    "minimum_probe_margin": "greater_than_c098_finished_lora_margin_or_documented_blocker",
+    "minimum_generation_uplift_if_training_runs": {
+      "mean_uplift": 0.1,
+      "heldout07_uplift": 0.025,
+      "c104_blank_like_rows": 0
+    },
+    "promotion_requires_visual_pass": true
+  },
+  "stop_conditions": [
+    "Any heldout row appears in the C104 training manifest.",
+    "Required C097/C087/C098/C102 artifacts are missing.",
+    "The C104 probe shows no stronger separable SigLIP signal than C098.",
+    "Training loss is non-finite or checkpoint loadability fails.",
+    "Generation produces blank-like C104 outputs or keeps the same green humanoid collapse on contact-sheet review."
+  ],
+  "no_heldout_leakage_policy": "C104 may use C097 train rows and C087/C098 train crop-pair references only. Heldout07 and clean32 heldout8 remain evaluation-only.",
+  "rejected_branches": [
+    {
+      "branch": "local_real_direct_green_training_from_c100_c102",
+      "decision": "rejected_until_manual_or_external_annotation",
+      "evidence": "C102 confirmed_local_positive_count=0, min_confirmed_positive=8."
+    },
+    {
+      "branch": "repeat_c098_deeper_siglip_encoder_lora",
+      "decision": "rejected_as_redundant",
+      "evidence": "C098 best mean uplift 0.0865313863 is below C096 0.0880849553, C094 0.0878832954, and Qwen baseline 0.1089544056."
+    },
+    {
+      "branch": "external_neeko_only_training",
+      "decision": "rejected_as_primary_branch",
+      "evidence": "C074 has 10 target positives but license/NFA caveat and narrow character-domain risk make it a supporting teacher/source, not the only primary branch."
+    }
+  ],
+  "next_goal_recommendation": {
+    "title": "C104 expanded Qwen-target SigLIP hard-shape distillation probe",
+    "objective": "Build and run the C104 manifest/probe over C097/C087 hard-shape data before any long training; if probe passes, run bounded training and a C098-style generation gate, then document, commit, push, and continue."
+  }
+}

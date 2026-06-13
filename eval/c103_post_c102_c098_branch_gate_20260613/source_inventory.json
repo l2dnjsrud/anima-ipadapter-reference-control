@@ -1,0 +1,137 @@
+{
+  "gate": "c103_post_c102_c098_branch_gate",
+  "date": "2026-06-13",
+  "purpose": "Choose the next non-redundant experiment after C102 found zero local-real positives and C098 SigLIP encoder-LoRA was not promoted.",
+  "required_artifact_missing_path_count": 0,
+  "required_artifacts": [
+    "eval/c102_stronger_vlm_qa_teacher_gate_20260613/c102_teacher_summary.json",
+    "eval/c098_siglip_encoder_lora_training_20260613/summary.json",
+    "eval/c098_siglip_encoder_lora_generation_gate_20260613/report.md",
+    "eval/c098_siglip_encoder_lora_generation_gate_20260613/visual_audit.json",
+    "eval/c098_siglip_encoder_lora_generation_gate_20260613/shape_metrics.json",
+    "training/manifests/c097_siglip_hard_shape_expanded_pairs_20260613.summary.json",
+    "training/manifests/c087_expanded_crop_pairs_20260613.summary.json",
+    "training/manifests/c080_paired_direct_green_identity_20260613.summary.json",
+    "training/manifests/c079_synthetic_positive_direct_green_20260612.summary.json",
+    "eval/c074_tag_backed_direct_green_source_acquisition_20260612/summary.json",
+    "docs/ipadapter_research_journal_ko.md"
+  ],
+  "local_real_positive_track": {
+    "source_gate": "C102",
+    "candidate_rows": 64,
+    "covered_rows": 64,
+    "confirmed_local_positive_count": 0,
+    "qa_positive_candidate_count": 0,
+    "teacher_only_positive_count": 0,
+    "heldout_leakage_count": 0,
+    "missing_path_count": 0,
+    "min_confirmed_positive": 8,
+    "qa_label_counts": {
+      "human_character": 50,
+      "green_background_or_object": 12,
+      "proxy_only": 2,
+      "direct_green_non_human": 0
+    },
+    "decision": "c103_blocked_needs_manual_annotation_or_external_teacher",
+    "interpretation": "The current local-real candidate pool is not a safe training-positive source without manual annotation or a new external teacher."
+  },
+  "external_and_synthetic_positive_track": {
+    "c074_external_real_direct_green": {
+      "target_positive_confirmed_count": 10,
+      "heldout_rows_used": 0,
+      "committed_external_image_count": 0,
+      "decision": "ready_for_encoder_training",
+      "license_caution": "CyberHarem/neeko declares MIT but is not-for-all-audiences and source images are crawled from multiple sites; review rights before redistribution."
+    },
+    "c079_synthetic_positive_direct_green": {
+      "c074_real_positive_count": 10,
+      "c078_synthetic_target_positive_count": 23,
+      "total_target_positive_count": 33,
+      "target_positive_training_rows": 132,
+      "guard_proxy_training_rows": 36,
+      "source_training_rows": 80,
+      "total_rows": 248,
+      "heldout_rows_used": 0,
+      "decision": "ready_for_c079_bounded_qwenvl_training"
+    },
+    "c080_paired_direct_green_identity": {
+      "c074_pair_source_count": 10,
+      "c074_paired_training_rows": 80,
+      "guard_proxy_training_rows": 36,
+      "source_training_rows": 80,
+      "total_rows": 196,
+      "heldout_rows_used": 0,
+      "decision": "ready_for_c080_bounded_paired_qwenvl_training"
+    },
+    "c087_expanded_crop_pairs": {
+      "selected_rows": 224,
+      "approved_groups": 4,
+      "target_positive_candidates": 74,
+      "heldout_rows_used": 0,
+      "decision": "ready_for_c084_bounded_qwenvl_training"
+    },
+    "c097_siglip_hard_shape_expanded_pairs": {
+      "source_rows": 224,
+      "selected_rows": 56,
+      "explicit_negative_rows": 56,
+      "materialized_image_count": 168,
+      "heldout_rows_used": 0,
+      "selected_group_counts": {
+        "c082_frog_yokai_guard": 16,
+        "c082_goblin_mage": 16,
+        "c082_green_oni_scout": 16,
+        "c082_jade_lizard_monk": 8
+      },
+      "decision": "data_gate_pass_for_deeper_siglip_encoder_training"
+    }
+  },
+  "siglip_experiment_evidence": {
+    "c092_qwen_target": {
+      "decision": "c092_improves_c089_but_not_qwen_baseline",
+      "best_variant": "c092_qwen_target_w14",
+      "best_mean_uplift": 0.08526816531384505,
+      "qwen_baseline_mean_uplift": 0.10895440559772807,
+      "interpretation": "Qwen-generated target supervision was the strongest SigLIP direction before later shape/LoRA variants, but it still collapsed toward green human faces on hard non-human shapes."
+    },
+    "c096_encoder_lora": {
+      "decision": "c096_encoder_lora_not_promoted_requires_data_expansion_or_deeper_encoder_training",
+      "best_variant": "c096_lora_c094_w14",
+      "best_mean_uplift": 0.08808495528618471,
+      "heldout07_uplift": 0.005656986085992688
+    },
+    "c098_deeper_encoder_lora": {
+      "training_rows_loaded": 56,
+      "explicit_negative_rows": 56,
+      "finite_loss": true,
+      "checkpoint_loadable": true,
+      "best_variant": "c098_lora_c094_w14",
+      "best_mean_uplift": 0.08653138633881173,
+      "best_improved_rate": 0.9090909090909091,
+      "qwen_baseline_variant": "c087_expanded_crop_positive_w14",
+      "qwen_baseline_mean_uplift": 0.10895440559772807,
+      "heldout07_best_c098_uplift": 0.007146254842123723,
+      "c098_blank_like_rows": [],
+      "decision": "c098_encoder_lora_not_promoted_requires_stronger_encoder_or_better_data",
+      "visual_findings": [
+        "C098 weight sweeps mostly change strength and contrast, not reference identity fidelity.",
+        "Frog, chibi, mascot, and yokai references still collapse toward a green adult humanoid face or bust.",
+        "Heldout07 remains a failure: non-human side-profile and jaw/eye silhouette are not preserved."
+      ]
+    }
+  },
+  "blocked_or_rejected_next_options": [
+    {
+      "branch": "train_on_local_real_c100_c102_candidates",
+      "reason": "C102 confirmed_local_positive_count is 0; minimum safe positive count is 8."
+    },
+    {
+      "branch": "repeat_same_c098_siglip_encoder_lora",
+      "reason": "C098 trained successfully but did not improve over C096/C094 and remains below the Qwen hard-shape baseline."
+    },
+    {
+      "branch": "use_external_images_as_local_real_evidence",
+      "reason": "C074/C079/C080 are useful as an external/synthetic teacher track, but they are not local-real dataset positives."
+    }
+  ],
+  "inventory_decision": "ready_for_c103_branch_decision"
+}
