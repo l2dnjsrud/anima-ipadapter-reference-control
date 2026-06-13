@@ -1754,7 +1754,19 @@ metric 결과는 c080이 목표에 실패했음을 보여준다. clean32+heldout
 
 c080 decision은 `not_promoted_c080_paired_direct_green_weaker_than_c079_and_blend`다. runtime은 pass지만 품질은 pass가 아니다. c074 10장 규모의 작은 paired supervision만으로는 QwenVL calibrator가 참조별 identity를 분리해 전달하지 못했다. 다음 루프는 c074 pair 반복이 아니라, 실제 paired source-target color/reference 데이터 확보, identity-preserving synthetic pair generation, 또는 QwenVL/SigLIP encoder-side reference feature objective 강화로 이동해야 한다.
 
-## 32. 근거 파일 색인
+## 32. c081 Identity-Preserving Synthetic Pair Acquisition
+
+c081은 c080의 `not_promoted` 결론 이후 바로 다음 checkpoint 학습으로 가지 않고, 실제로 학습 가능한 same-identity direct-green/non-human pair를 합성으로 확보할 수 있는지 확인한 acquisition gate다. c080에서 c074 10장만으로 만든 pair는 작고 편향되어 있었기 때문에, c081의 목표는 6개 identity group마다 4개 view를 생성해 `ref_id != tgt_id` paired rows를 만들 수 있는지 검증하는 것이었다.
+
+새 도구는 `tools/c081_identity_pair_acquisition.py`, `tools/c081_comfy_generation.py`이고 테스트는 `tests/test_c081_identity_pair_acquisition.py`다. prompt package는 `eval/c081_identity_preserving_pair_acquisition_20260613/prompt_manifest.jsonl`에 만들었고, identity group은 green oni scout, jade lizard monk, goblin mage, frog yokai guard, plant dryad, serpent dancer 총 `6`개다. 각 group은 front, three-quarter, profile, action `4` view로 구성되어 총 `24` prompts다. heldout rows used는 `0`, training started는 `false`다.
+
+ComfyUI02 API `http://127.0.0.1:8102`에서 `anima-base-v1.0.safetensors`, `qwen_3_06b_base.safetensors`, `qwen/qwen_image_vae.safetensors`를 사용해 24장을 생성했다. 생성 결과는 `generated_count=24`, `blank_count=0`이고 raw PNG는 `.tmp/c081_identity_preserving_pair_acquisition/generated/` 아래에만 두었다. 검수용 contact sheet는 `eval/c081_identity_preserving_pair_acquisition_20260613/contact_sheet.jpg`에 복사했다.
+
+시각 검수 결과, c081은 identity와 palette를 어느 정도 고정하는 데는 성공했지만 대부분 한 이미지 안에 여러 포즈/turnaround가 들어간 character sheet 형태로 나왔다. `c081_green_oni_scout`, `c081_jade_lizard_monk`, `c081_goblin_mage`, `c081_plant_dryad`는 같은 group identity가 비교적 잘 유지되지만, target image로 쓰기에는 multi-pose sheet layout이 너무 강하다. `c081_serpent_dancer`는 view별 스타일과 identity가 흔들리고 일부는 인간형 일러스트로 바뀐다.
+
+따라서 manual label은 24장 모두 `useful_proxy_non_human`으로 남겼고 `target_positive`로 승격하지 않았다. final summary는 `approved_group_count=0`, `approved_pair_rows=0`, `direct_self_pair_rows=0`, decision `more_identity_pairs_required`다. c081은 학습 데이터 확보 실패지만, 중요한 원인을 찾았다. 다음 루프는 prompt에서 `character design sheet`, `turnaround`, `multiple poses`, `reference sheet`를 강하게 금지하고, `exactly one character, one pose, single image, no sheet`를 넣어 c082 single-image identity pair acquisition을 진행해야 한다.
+
+## 33. 근거 파일 색인
 
 핵심 문서:
 
@@ -1993,6 +2005,11 @@ QwenVL 주요 평가:
 - `eval/qwenvl_c080_paired_direct_green_gate_20260613/qwenvl_similarity_metrics.json`
 - `eval/qwenvl_c080_paired_direct_green_gate_20260613/direct_green_pe_similarity_metrics.json`
 - `eval/qwenvl_c080_paired_direct_green_gate_20260613/direct_green_qwenvl_similarity_metrics.json`
+- `eval/c081_identity_preserving_pair_acquisition_20260613/report.md`
+- `eval/c081_identity_preserving_pair_acquisition_20260613/summary.json`
+- `eval/c081_identity_preserving_pair_acquisition_20260613/generation_summary.json`
+- `eval/c081_identity_preserving_pair_acquisition_20260613/contact_sheet.jpg`
+- `eval/c081_identity_preserving_pair_acquisition_20260613/visual_audit.md`
 
 생성/학습 manifest:
 
@@ -2018,6 +2035,11 @@ QwenVL 주요 평가:
 - `training/manifests/c080_paired_direct_green_identity_20260613.summary.json`
 - `eval/c067_attribute_teacher_reranker_seed_20260612/attribute_query_manifest.jsonl`
 - `eval/c068_reviewed_attribute_label_seed_20260612/reviewed_attribute_labels.jsonl`
+- `eval/c081_identity_preserving_pair_acquisition_20260613/prompt_manifest.jsonl`
+- `eval/c081_identity_preserving_pair_acquisition_20260613/generation_manifest.jsonl`
+- `eval/c081_identity_preserving_pair_acquisition_20260613/reviewed_pair_labels.jsonl`
+- `eval/c081_identity_preserving_pair_acquisition_20260613/approved_pair_manifest.jsonl`
+- `eval/c081_identity_preserving_pair_acquisition_20260613/manual_visual_labels.csv`
 
 현재 가장 중요한 실행 레시피 근거:
 
@@ -2062,6 +2084,9 @@ QwenVL 주요 평가:
 - `tests/test_c079_synthetic_positive_manifest.py`
 - `tools/c080_paired_direct_green_manifest.py`
 - `tests/test_c080_paired_direct_green_manifest.py`
+- `tools/c081_identity_pair_acquisition.py`
+- `tools/c081_comfy_generation.py`
+- `tests/test_c081_identity_pair_acquisition.py`
 - `tools/siglip_auto_caption_eval.py`
 - `tools/score_siglip_auto_caption_metrics.py`
 - `workflows/anima_ipadapter_siglip_native_reference.json`
