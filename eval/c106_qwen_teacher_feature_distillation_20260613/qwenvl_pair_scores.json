@@ -1,0 +1,1072 @@
+{
+  "manifest_path": "eval/c106_qwen_teacher_feature_distillation_20260613/probe_manifest.jsonl",
+  "data_root": ".tmp/c097_siglip_hard_shape_expanded_root",
+  "encoder": "Qwen/Qwen3-VL-Embedding-2B",
+  "rows": [
+    {
+      "pair_id": "pair_000",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_000_ref",
+      "candidate_id": "c097_hard_shape/pair_000_target",
+      "anchor_group": "c082_frog_yokai_guard",
+      "candidate_group": "c082_frog_yokai_guard",
+      "cosine": 0.9045650362968445
+    },
+    {
+      "pair_id": "pair_000",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_000_ref",
+      "candidate_id": "c097_hard_shape/pair_000_negative",
+      "anchor_group": "c082_frog_yokai_guard",
+      "candidate_group": "c082_goblin_mage",
+      "cosine": 0.6766121983528137
+    },
+    {
+      "pair_id": "pair_001",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_001_ref",
+      "candidate_id": "c097_hard_shape/pair_001_target",
+      "anchor_group": "c082_frog_yokai_guard",
+      "candidate_group": "c082_frog_yokai_guard",
+      "cosine": 0.903774082660675
+    },
+    {
+      "pair_id": "pair_001",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_001_ref",
+      "candidate_id": "c097_hard_shape/pair_001_negative",
+      "anchor_group": "c082_frog_yokai_guard",
+      "candidate_group": "c082_goblin_mage",
+      "cosine": 0.6871698498725891
+    },
+    {
+      "pair_id": "pair_002",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_002_ref",
+      "candidate_id": "c097_hard_shape/pair_002_target",
+      "anchor_group": "c082_frog_yokai_guard",
+      "candidate_group": "c082_frog_yokai_guard",
+      "cosine": 0.8964821696281433
+    },
+    {
+      "pair_id": "pair_002",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_002_ref",
+      "candidate_id": "c097_hard_shape/pair_002_negative",
+      "anchor_group": "c082_frog_yokai_guard",
+      "candidate_group": "c082_goblin_mage",
+      "cosine": 0.682453453540802
+    },
+    {
+      "pair_id": "pair_003",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_003_ref",
+      "candidate_id": "c097_hard_shape/pair_003_target",
+      "anchor_group": "c082_frog_yokai_guard",
+      "candidate_group": "c082_frog_yokai_guard",
+      "cosine": 0.9041887521743774
+    },
+    {
+      "pair_id": "pair_003",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_003_ref",
+      "candidate_id": "c097_hard_shape/pair_003_negative",
+      "anchor_group": "c082_frog_yokai_guard",
+      "candidate_group": "c082_goblin_mage",
+      "cosine": 0.6863290071487427
+    },
+    {
+      "pair_id": "pair_004",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_004_ref",
+      "candidate_id": "c097_hard_shape/pair_004_target",
+      "anchor_group": "c082_frog_yokai_guard",
+      "candidate_group": "c082_frog_yokai_guard",
+      "cosine": 0.8988208770751953
+    },
+    {
+      "pair_id": "pair_004",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_004_ref",
+      "candidate_id": "c097_hard_shape/pair_004_negative",
+      "anchor_group": "c082_frog_yokai_guard",
+      "candidate_group": "c082_goblin_mage",
+      "cosine": 0.691741406917572
+    },
+    {
+      "pair_id": "pair_005",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_005_ref",
+      "candidate_id": "c097_hard_shape/pair_005_target",
+      "anchor_group": "c082_frog_yokai_guard",
+      "candidate_group": "c082_frog_yokai_guard",
+      "cosine": 0.8907711505889893
+    },
+    {
+      "pair_id": "pair_005",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_005_ref",
+      "candidate_id": "c097_hard_shape/pair_005_negative",
+      "anchor_group": "c082_frog_yokai_guard",
+      "candidate_group": "c082_goblin_mage",
+      "cosine": 0.6741521954536438
+    },
+    {
+      "pair_id": "pair_006",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_006_ref",
+      "candidate_id": "c097_hard_shape/pair_006_target",
+      "anchor_group": "c082_frog_yokai_guard",
+      "candidate_group": "c082_frog_yokai_guard",
+      "cosine": 0.8503322601318359
+    },
+    {
+      "pair_id": "pair_006",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_006_ref",
+      "candidate_id": "c097_hard_shape/pair_006_negative",
+      "anchor_group": "c082_frog_yokai_guard",
+      "candidate_group": "c082_goblin_mage",
+      "cosine": 0.6862225532531738
+    },
+    {
+      "pair_id": "pair_007",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_007_ref",
+      "candidate_id": "c097_hard_shape/pair_007_target",
+      "anchor_group": "c082_frog_yokai_guard",
+      "candidate_group": "c082_frog_yokai_guard",
+      "cosine": 0.8514765501022339
+    },
+    {
+      "pair_id": "pair_007",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_007_ref",
+      "candidate_id": "c097_hard_shape/pair_007_negative",
+      "anchor_group": "c082_frog_yokai_guard",
+      "candidate_group": "c082_goblin_mage",
+      "cosine": 0.698103129863739
+    },
+    {
+      "pair_id": "pair_008",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_008_ref",
+      "candidate_id": "c097_hard_shape/pair_008_target",
+      "anchor_group": "c082_frog_yokai_guard",
+      "candidate_group": "c082_frog_yokai_guard",
+      "cosine": 0.9049525260925293
+    },
+    {
+      "pair_id": "pair_008",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_008_ref",
+      "candidate_id": "c097_hard_shape/pair_008_negative",
+      "anchor_group": "c082_frog_yokai_guard",
+      "candidate_group": "c082_goblin_mage",
+      "cosine": 0.7029117941856384
+    },
+    {
+      "pair_id": "pair_009",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_009_ref",
+      "candidate_id": "c097_hard_shape/pair_009_target",
+      "anchor_group": "c082_frog_yokai_guard",
+      "candidate_group": "c082_frog_yokai_guard",
+      "cosine": 0.9014973640441895
+    },
+    {
+      "pair_id": "pair_009",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_009_ref",
+      "candidate_id": "c097_hard_shape/pair_009_negative",
+      "anchor_group": "c082_frog_yokai_guard",
+      "candidate_group": "c082_goblin_mage",
+      "cosine": 0.6903039216995239
+    },
+    {
+      "pair_id": "pair_010",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_010_ref",
+      "candidate_id": "c097_hard_shape/pair_010_target",
+      "anchor_group": "c082_frog_yokai_guard",
+      "candidate_group": "c082_frog_yokai_guard",
+      "cosine": 0.8949261903762817
+    },
+    {
+      "pair_id": "pair_010",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_010_ref",
+      "candidate_id": "c097_hard_shape/pair_010_negative",
+      "anchor_group": "c082_frog_yokai_guard",
+      "candidate_group": "c082_goblin_mage",
+      "cosine": 0.6935169100761414
+    },
+    {
+      "pair_id": "pair_011",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_011_ref",
+      "candidate_id": "c097_hard_shape/pair_011_target",
+      "anchor_group": "c082_frog_yokai_guard",
+      "candidate_group": "c082_frog_yokai_guard",
+      "cosine": 0.9081735610961914
+    },
+    {
+      "pair_id": "pair_011",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_011_ref",
+      "candidate_id": "c097_hard_shape/pair_011_negative",
+      "anchor_group": "c082_frog_yokai_guard",
+      "candidate_group": "c082_goblin_mage",
+      "cosine": 0.6578693389892578
+    },
+    {
+      "pair_id": "pair_012",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_012_ref",
+      "candidate_id": "c097_hard_shape/pair_012_target",
+      "anchor_group": "c082_frog_yokai_guard",
+      "candidate_group": "c082_frog_yokai_guard",
+      "cosine": 0.9060090780258179
+    },
+    {
+      "pair_id": "pair_012",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_012_ref",
+      "candidate_id": "c097_hard_shape/pair_012_negative",
+      "anchor_group": "c082_frog_yokai_guard",
+      "candidate_group": "c082_goblin_mage",
+      "cosine": 0.6540439128875732
+    },
+    {
+      "pair_id": "pair_013",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_013_ref",
+      "candidate_id": "c097_hard_shape/pair_013_target",
+      "anchor_group": "c082_frog_yokai_guard",
+      "candidate_group": "c082_frog_yokai_guard",
+      "cosine": 0.915576696395874
+    },
+    {
+      "pair_id": "pair_013",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_013_ref",
+      "candidate_id": "c097_hard_shape/pair_013_negative",
+      "anchor_group": "c082_frog_yokai_guard",
+      "candidate_group": "c082_goblin_mage",
+      "cosine": 0.6614457368850708
+    },
+    {
+      "pair_id": "pair_014",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_014_ref",
+      "candidate_id": "c097_hard_shape/pair_014_target",
+      "anchor_group": "c082_frog_yokai_guard",
+      "candidate_group": "c082_frog_yokai_guard",
+      "cosine": 0.8961774110794067
+    },
+    {
+      "pair_id": "pair_014",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_014_ref",
+      "candidate_id": "c097_hard_shape/pair_014_negative",
+      "anchor_group": "c082_frog_yokai_guard",
+      "candidate_group": "c082_goblin_mage",
+      "cosine": 0.7056055068969727
+    },
+    {
+      "pair_id": "pair_015",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_015_ref",
+      "candidate_id": "c097_hard_shape/pair_015_target",
+      "anchor_group": "c082_frog_yokai_guard",
+      "candidate_group": "c082_frog_yokai_guard",
+      "cosine": 0.8925198316574097
+    },
+    {
+      "pair_id": "pair_015",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_015_ref",
+      "candidate_id": "c097_hard_shape/pair_015_negative",
+      "anchor_group": "c082_frog_yokai_guard",
+      "candidate_group": "c082_goblin_mage",
+      "cosine": 0.6917816996574402
+    },
+    {
+      "pair_id": "pair_016",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_016_ref",
+      "candidate_id": "c097_hard_shape/pair_016_target",
+      "anchor_group": "c082_goblin_mage",
+      "candidate_group": "c082_goblin_mage",
+      "cosine": 0.8944318294525146
+    },
+    {
+      "pair_id": "pair_016",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_016_ref",
+      "candidate_id": "c097_hard_shape/pair_016_negative",
+      "anchor_group": "c082_goblin_mage",
+      "candidate_group": "c082_green_oni_scout",
+      "cosine": 0.6705780029296875
+    },
+    {
+      "pair_id": "pair_017",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_017_ref",
+      "candidate_id": "c097_hard_shape/pair_017_target",
+      "anchor_group": "c082_goblin_mage",
+      "candidate_group": "c082_goblin_mage",
+      "cosine": 0.8956235647201538
+    },
+    {
+      "pair_id": "pair_017",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_017_ref",
+      "candidate_id": "c097_hard_shape/pair_017_negative",
+      "anchor_group": "c082_goblin_mage",
+      "candidate_group": "c082_green_oni_scout",
+      "cosine": 0.6666675806045532
+    },
+    {
+      "pair_id": "pair_018",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_018_ref",
+      "candidate_id": "c097_hard_shape/pair_018_target",
+      "anchor_group": "c082_goblin_mage",
+      "candidate_group": "c082_goblin_mage",
+      "cosine": 0.9138087034225464
+    },
+    {
+      "pair_id": "pair_018",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_018_ref",
+      "candidate_id": "c097_hard_shape/pair_018_negative",
+      "anchor_group": "c082_goblin_mage",
+      "candidate_group": "c082_green_oni_scout",
+      "cosine": 0.6694321036338806
+    },
+    {
+      "pair_id": "pair_019",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_019_ref",
+      "candidate_id": "c097_hard_shape/pair_019_target",
+      "anchor_group": "c082_goblin_mage",
+      "candidate_group": "c082_goblin_mage",
+      "cosine": 0.8947767019271851
+    },
+    {
+      "pair_id": "pair_019",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_019_ref",
+      "candidate_id": "c097_hard_shape/pair_019_negative",
+      "anchor_group": "c082_goblin_mage",
+      "candidate_group": "c082_green_oni_scout",
+      "cosine": 0.6705780029296875
+    },
+    {
+      "pair_id": "pair_020",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_020_ref",
+      "candidate_id": "c097_hard_shape/pair_020_target",
+      "anchor_group": "c082_goblin_mage",
+      "candidate_group": "c082_goblin_mage",
+      "cosine": 0.8905206918716431
+    },
+    {
+      "pair_id": "pair_020",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_020_ref",
+      "candidate_id": "c097_hard_shape/pair_020_negative",
+      "anchor_group": "c082_goblin_mage",
+      "candidate_group": "c082_green_oni_scout",
+      "cosine": 0.6666675806045532
+    },
+    {
+      "pair_id": "pair_021",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_021_ref",
+      "candidate_id": "c097_hard_shape/pair_021_target",
+      "anchor_group": "c082_goblin_mage",
+      "candidate_group": "c082_goblin_mage",
+      "cosine": 0.8972115516662598
+    },
+    {
+      "pair_id": "pair_021",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_021_ref",
+      "candidate_id": "c097_hard_shape/pair_021_negative",
+      "anchor_group": "c082_goblin_mage",
+      "candidate_group": "c082_green_oni_scout",
+      "cosine": 0.6694321036338806
+    },
+    {
+      "pair_id": "pair_022",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_022_ref",
+      "candidate_id": "c097_hard_shape/pair_022_target",
+      "anchor_group": "c082_goblin_mage",
+      "candidate_group": "c082_goblin_mage",
+      "cosine": 0.9074721336364746
+    },
+    {
+      "pair_id": "pair_022",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_022_ref",
+      "candidate_id": "c097_hard_shape/pair_022_negative",
+      "anchor_group": "c082_goblin_mage",
+      "candidate_group": "c082_green_oni_scout",
+      "cosine": 0.6705780029296875
+    },
+    {
+      "pair_id": "pair_023",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_023_ref",
+      "candidate_id": "c097_hard_shape/pair_023_target",
+      "anchor_group": "c082_goblin_mage",
+      "candidate_group": "c082_goblin_mage",
+      "cosine": 0.9109032154083252
+    },
+    {
+      "pair_id": "pair_023",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_023_ref",
+      "candidate_id": "c097_hard_shape/pair_023_negative",
+      "anchor_group": "c082_goblin_mage",
+      "candidate_group": "c082_green_oni_scout",
+      "cosine": 0.6666675806045532
+    },
+    {
+      "pair_id": "pair_024",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_024_ref",
+      "candidate_id": "c097_hard_shape/pair_024_target",
+      "anchor_group": "c082_goblin_mage",
+      "candidate_group": "c082_goblin_mage",
+      "cosine": 0.9193083047866821
+    },
+    {
+      "pair_id": "pair_024",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_024_ref",
+      "candidate_id": "c097_hard_shape/pair_024_negative",
+      "anchor_group": "c082_goblin_mage",
+      "candidate_group": "c082_green_oni_scout",
+      "cosine": 0.6755586862564087
+    },
+    {
+      "pair_id": "pair_025",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_025_ref",
+      "candidate_id": "c097_hard_shape/pair_025_target",
+      "anchor_group": "c082_goblin_mage",
+      "candidate_group": "c082_goblin_mage",
+      "cosine": 0.9304566383361816
+    },
+    {
+      "pair_id": "pair_025",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_025_ref",
+      "candidate_id": "c097_hard_shape/pair_025_negative",
+      "anchor_group": "c082_goblin_mage",
+      "candidate_group": "c082_green_oni_scout",
+      "cosine": 0.6457025408744812
+    },
+    {
+      "pair_id": "pair_026",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_026_ref",
+      "candidate_id": "c097_hard_shape/pair_026_target",
+      "anchor_group": "c082_goblin_mage",
+      "candidate_group": "c082_goblin_mage",
+      "cosine": 0.9257955551147461
+    },
+    {
+      "pair_id": "pair_026",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_026_ref",
+      "candidate_id": "c097_hard_shape/pair_026_negative",
+      "anchor_group": "c082_goblin_mage",
+      "candidate_group": "c082_green_oni_scout",
+      "cosine": 0.671795666217804
+    },
+    {
+      "pair_id": "pair_027",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_027_ref",
+      "candidate_id": "c097_hard_shape/pair_027_target",
+      "anchor_group": "c082_goblin_mage",
+      "candidate_group": "c082_goblin_mage",
+      "cosine": 0.8997883796691895
+    },
+    {
+      "pair_id": "pair_027",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_027_ref",
+      "candidate_id": "c097_hard_shape/pair_027_negative",
+      "anchor_group": "c082_goblin_mage",
+      "candidate_group": "c082_green_oni_scout",
+      "cosine": 0.6755586862564087
+    },
+    {
+      "pair_id": "pair_028",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_028_ref",
+      "candidate_id": "c097_hard_shape/pair_028_target",
+      "anchor_group": "c082_goblin_mage",
+      "candidate_group": "c082_goblin_mage",
+      "cosine": 0.8391965627670288
+    },
+    {
+      "pair_id": "pair_028",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_028_ref",
+      "candidate_id": "c097_hard_shape/pair_028_negative",
+      "anchor_group": "c082_goblin_mage",
+      "candidate_group": "c082_green_oni_scout",
+      "cosine": 0.6457025408744812
+    },
+    {
+      "pair_id": "pair_029",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_029_ref",
+      "candidate_id": "c097_hard_shape/pair_029_target",
+      "anchor_group": "c082_goblin_mage",
+      "candidate_group": "c082_goblin_mage",
+      "cosine": 0.9330507516860962
+    },
+    {
+      "pair_id": "pair_029",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_029_ref",
+      "candidate_id": "c097_hard_shape/pair_029_negative",
+      "anchor_group": "c082_goblin_mage",
+      "candidate_group": "c082_green_oni_scout",
+      "cosine": 0.671795666217804
+    },
+    {
+      "pair_id": "pair_030",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_030_ref",
+      "candidate_id": "c097_hard_shape/pair_030_target",
+      "anchor_group": "c082_goblin_mage",
+      "candidate_group": "c082_goblin_mage",
+      "cosine": 0.9391326904296875
+    },
+    {
+      "pair_id": "pair_030",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_030_ref",
+      "candidate_id": "c097_hard_shape/pair_030_negative",
+      "anchor_group": "c082_goblin_mage",
+      "candidate_group": "c082_green_oni_scout",
+      "cosine": 0.6843379735946655
+    },
+    {
+      "pair_id": "pair_031",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_031_ref",
+      "candidate_id": "c097_hard_shape/pair_031_target",
+      "anchor_group": "c082_goblin_mage",
+      "candidate_group": "c082_goblin_mage",
+      "cosine": 0.95060133934021
+    },
+    {
+      "pair_id": "pair_031",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_031_ref",
+      "candidate_id": "c097_hard_shape/pair_031_negative",
+      "anchor_group": "c082_goblin_mage",
+      "candidate_group": "c082_green_oni_scout",
+      "cosine": 0.657618522644043
+    },
+    {
+      "pair_id": "pair_032",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_032_ref",
+      "candidate_id": "c097_hard_shape/pair_032_target",
+      "anchor_group": "c082_green_oni_scout",
+      "candidate_group": "c082_green_oni_scout",
+      "cosine": 0.8532949686050415
+    },
+    {
+      "pair_id": "pair_032",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_032_ref",
+      "candidate_id": "c097_hard_shape/pair_032_negative",
+      "anchor_group": "c082_green_oni_scout",
+      "candidate_group": "c082_jade_lizard_monk",
+      "cosine": 0.6655327081680298
+    },
+    {
+      "pair_id": "pair_033",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_033_ref",
+      "candidate_id": "c097_hard_shape/pair_033_target",
+      "anchor_group": "c082_green_oni_scout",
+      "candidate_group": "c082_green_oni_scout",
+      "cosine": 0.8652146458625793
+    },
+    {
+      "pair_id": "pair_033",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_033_ref",
+      "candidate_id": "c097_hard_shape/pair_033_negative",
+      "anchor_group": "c082_green_oni_scout",
+      "candidate_group": "c082_jade_lizard_monk",
+      "cosine": 0.7193704843521118
+    },
+    {
+      "pair_id": "pair_034",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_034_ref",
+      "candidate_id": "c097_hard_shape/pair_034_target",
+      "anchor_group": "c082_green_oni_scout",
+      "candidate_group": "c082_green_oni_scout",
+      "cosine": 0.8620800375938416
+    },
+    {
+      "pair_id": "pair_034",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_034_ref",
+      "candidate_id": "c097_hard_shape/pair_034_negative",
+      "anchor_group": "c082_green_oni_scout",
+      "candidate_group": "c082_jade_lizard_monk",
+      "cosine": 0.6785278916358948
+    },
+    {
+      "pair_id": "pair_035",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_035_ref",
+      "candidate_id": "c097_hard_shape/pair_035_target",
+      "anchor_group": "c082_green_oni_scout",
+      "candidate_group": "c082_green_oni_scout",
+      "cosine": 0.867242157459259
+    },
+    {
+      "pair_id": "pair_035",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_035_ref",
+      "candidate_id": "c097_hard_shape/pair_035_negative",
+      "anchor_group": "c082_green_oni_scout",
+      "candidate_group": "c082_jade_lizard_monk",
+      "cosine": 0.6715454459190369
+    },
+    {
+      "pair_id": "pair_036",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_036_ref",
+      "candidate_id": "c097_hard_shape/pair_036_target",
+      "anchor_group": "c082_green_oni_scout",
+      "candidate_group": "c082_green_oni_scout",
+      "cosine": 0.8800021409988403
+    },
+    {
+      "pair_id": "pair_036",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_036_ref",
+      "candidate_id": "c097_hard_shape/pair_036_negative",
+      "anchor_group": "c082_green_oni_scout",
+      "candidate_group": "c082_jade_lizard_monk",
+      "cosine": 0.6608855724334717
+    },
+    {
+      "pair_id": "pair_037",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_037_ref",
+      "candidate_id": "c097_hard_shape/pair_037_target",
+      "anchor_group": "c082_green_oni_scout",
+      "candidate_group": "c082_green_oni_scout",
+      "cosine": 0.8758226037025452
+    },
+    {
+      "pair_id": "pair_037",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_037_ref",
+      "candidate_id": "c097_hard_shape/pair_037_negative",
+      "anchor_group": "c082_green_oni_scout",
+      "candidate_group": "c082_jade_lizard_monk",
+      "cosine": 0.712821900844574
+    },
+    {
+      "pair_id": "pair_038",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_038_ref",
+      "candidate_id": "c097_hard_shape/pair_038_target",
+      "anchor_group": "c082_green_oni_scout",
+      "candidate_group": "c082_green_oni_scout",
+      "cosine": 0.8853700160980225
+    },
+    {
+      "pair_id": "pair_038",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_038_ref",
+      "candidate_id": "c097_hard_shape/pair_038_negative",
+      "anchor_group": "c082_green_oni_scout",
+      "candidate_group": "c082_jade_lizard_monk",
+      "cosine": 0.6988646388053894
+    },
+    {
+      "pair_id": "pair_039",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_039_ref",
+      "candidate_id": "c097_hard_shape/pair_039_target",
+      "anchor_group": "c082_green_oni_scout",
+      "candidate_group": "c082_green_oni_scout",
+      "cosine": 0.9029653668403625
+    },
+    {
+      "pair_id": "pair_039",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_039_ref",
+      "candidate_id": "c097_hard_shape/pair_039_negative",
+      "anchor_group": "c082_green_oni_scout",
+      "candidate_group": "c082_jade_lizard_monk",
+      "cosine": 0.6955764293670654
+    },
+    {
+      "pair_id": "pair_040",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_040_ref",
+      "candidate_id": "c097_hard_shape/pair_040_target",
+      "anchor_group": "c082_green_oni_scout",
+      "candidate_group": "c082_green_oni_scout",
+      "cosine": 0.9045406579971313
+    },
+    {
+      "pair_id": "pair_040",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_040_ref",
+      "candidate_id": "c097_hard_shape/pair_040_negative",
+      "anchor_group": "c082_green_oni_scout",
+      "candidate_group": "c082_frog_yokai_guard",
+      "cosine": 0.6966598033905029
+    },
+    {
+      "pair_id": "pair_041",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_041_ref",
+      "candidate_id": "c097_hard_shape/pair_041_target",
+      "anchor_group": "c082_green_oni_scout",
+      "candidate_group": "c082_green_oni_scout",
+      "cosine": 0.8701728582382202
+    },
+    {
+      "pair_id": "pair_041",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_041_ref",
+      "candidate_id": "c097_hard_shape/pair_041_negative",
+      "anchor_group": "c082_green_oni_scout",
+      "candidate_group": "c082_frog_yokai_guard",
+      "cosine": 0.6863096356391907
+    },
+    {
+      "pair_id": "pair_042",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_042_ref",
+      "candidate_id": "c097_hard_shape/pair_042_target",
+      "anchor_group": "c082_green_oni_scout",
+      "candidate_group": "c082_green_oni_scout",
+      "cosine": 0.8841350674629211
+    },
+    {
+      "pair_id": "pair_042",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_042_ref",
+      "candidate_id": "c097_hard_shape/pair_042_negative",
+      "anchor_group": "c082_green_oni_scout",
+      "candidate_group": "c082_frog_yokai_guard",
+      "cosine": 0.6816962957382202
+    },
+    {
+      "pair_id": "pair_043",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_043_ref",
+      "candidate_id": "c097_hard_shape/pair_043_target",
+      "anchor_group": "c082_green_oni_scout",
+      "candidate_group": "c082_green_oni_scout",
+      "cosine": 0.9168527126312256
+    },
+    {
+      "pair_id": "pair_043",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_043_ref",
+      "candidate_id": "c097_hard_shape/pair_043_negative",
+      "anchor_group": "c082_green_oni_scout",
+      "candidate_group": "c082_frog_yokai_guard",
+      "cosine": 0.6888861656188965
+    },
+    {
+      "pair_id": "pair_044",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_044_ref",
+      "candidate_id": "c097_hard_shape/pair_044_target",
+      "anchor_group": "c082_green_oni_scout",
+      "candidate_group": "c082_green_oni_scout",
+      "cosine": 0.8865543603897095
+    },
+    {
+      "pair_id": "pair_044",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_044_ref",
+      "candidate_id": "c097_hard_shape/pair_044_negative",
+      "anchor_group": "c082_green_oni_scout",
+      "candidate_group": "c082_frog_yokai_guard",
+      "cosine": 0.7044200897216797
+    },
+    {
+      "pair_id": "pair_045",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_045_ref",
+      "candidate_id": "c097_hard_shape/pair_045_target",
+      "anchor_group": "c082_green_oni_scout",
+      "candidate_group": "c082_green_oni_scout",
+      "cosine": 0.8989781141281128
+    },
+    {
+      "pair_id": "pair_045",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_045_ref",
+      "candidate_id": "c097_hard_shape/pair_045_negative",
+      "anchor_group": "c082_green_oni_scout",
+      "candidate_group": "c082_frog_yokai_guard",
+      "cosine": 0.6787152290344238
+    },
+    {
+      "pair_id": "pair_046",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_046_ref",
+      "candidate_id": "c097_hard_shape/pair_046_target",
+      "anchor_group": "c082_green_oni_scout",
+      "candidate_group": "c082_green_oni_scout",
+      "cosine": 0.9167454838752747
+    },
+    {
+      "pair_id": "pair_046",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_046_ref",
+      "candidate_id": "c097_hard_shape/pair_046_negative",
+      "anchor_group": "c082_green_oni_scout",
+      "candidate_group": "c082_frog_yokai_guard",
+      "cosine": 0.675713837146759
+    },
+    {
+      "pair_id": "pair_047",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_047_ref",
+      "candidate_id": "c097_hard_shape/pair_047_target",
+      "anchor_group": "c082_green_oni_scout",
+      "candidate_group": "c082_green_oni_scout",
+      "cosine": 0.9012756943702698
+    },
+    {
+      "pair_id": "pair_047",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_047_ref",
+      "candidate_id": "c097_hard_shape/pair_047_negative",
+      "anchor_group": "c082_green_oni_scout",
+      "candidate_group": "c082_frog_yokai_guard",
+      "cosine": 0.6670612096786499
+    },
+    {
+      "pair_id": "pair_048",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_048_ref",
+      "candidate_id": "c097_hard_shape/pair_048_target",
+      "anchor_group": "c082_jade_lizard_monk",
+      "candidate_group": "c082_jade_lizard_monk",
+      "cosine": 0.8735671639442444
+    },
+    {
+      "pair_id": "pair_048",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_048_ref",
+      "candidate_id": "c097_hard_shape/pair_048_negative",
+      "anchor_group": "c082_jade_lizard_monk",
+      "candidate_group": "c082_frog_yokai_guard",
+      "cosine": 0.6598609089851379
+    },
+    {
+      "pair_id": "pair_049",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_049_ref",
+      "candidate_id": "c097_hard_shape/pair_049_target",
+      "anchor_group": "c082_jade_lizard_monk",
+      "candidate_group": "c082_jade_lizard_monk",
+      "cosine": 0.8983045816421509
+    },
+    {
+      "pair_id": "pair_049",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_049_ref",
+      "candidate_id": "c097_hard_shape/pair_049_negative",
+      "anchor_group": "c082_jade_lizard_monk",
+      "candidate_group": "c082_frog_yokai_guard",
+      "cosine": 0.6542492508888245
+    },
+    {
+      "pair_id": "pair_050",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_050_ref",
+      "candidate_id": "c097_hard_shape/pair_050_target",
+      "anchor_group": "c082_jade_lizard_monk",
+      "candidate_group": "c082_jade_lizard_monk",
+      "cosine": 0.8804113864898682
+    },
+    {
+      "pair_id": "pair_050",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_050_ref",
+      "candidate_id": "c097_hard_shape/pair_050_negative",
+      "anchor_group": "c082_jade_lizard_monk",
+      "candidate_group": "c082_frog_yokai_guard",
+      "cosine": 0.6561967730522156
+    },
+    {
+      "pair_id": "pair_051",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_051_ref",
+      "candidate_id": "c097_hard_shape/pair_051_target",
+      "anchor_group": "c082_jade_lizard_monk",
+      "candidate_group": "c082_jade_lizard_monk",
+      "cosine": 0.8671807050704956
+    },
+    {
+      "pair_id": "pair_051",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_051_ref",
+      "candidate_id": "c097_hard_shape/pair_051_negative",
+      "anchor_group": "c082_jade_lizard_monk",
+      "candidate_group": "c082_frog_yokai_guard",
+      "cosine": 0.6625041961669922
+    },
+    {
+      "pair_id": "pair_052",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_052_ref",
+      "candidate_id": "c097_hard_shape/pair_052_target",
+      "anchor_group": "c082_jade_lizard_monk",
+      "candidate_group": "c082_jade_lizard_monk",
+      "cosine": 0.8641474843025208
+    },
+    {
+      "pair_id": "pair_052",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_052_ref",
+      "candidate_id": "c097_hard_shape/pair_052_negative",
+      "anchor_group": "c082_jade_lizard_monk",
+      "candidate_group": "c082_frog_yokai_guard",
+      "cosine": 0.6633234620094299
+    },
+    {
+      "pair_id": "pair_053",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_053_ref",
+      "candidate_id": "c097_hard_shape/pair_053_target",
+      "anchor_group": "c082_jade_lizard_monk",
+      "candidate_group": "c082_jade_lizard_monk",
+      "cosine": 0.8979147672653198
+    },
+    {
+      "pair_id": "pair_053",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_053_ref",
+      "candidate_id": "c097_hard_shape/pair_053_negative",
+      "anchor_group": "c082_jade_lizard_monk",
+      "candidate_group": "c082_frog_yokai_guard",
+      "cosine": 0.6527813673019409
+    },
+    {
+      "pair_id": "pair_054",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_054_ref",
+      "candidate_id": "c097_hard_shape/pair_054_target",
+      "anchor_group": "c082_jade_lizard_monk",
+      "candidate_group": "c082_jade_lizard_monk",
+      "cosine": 0.8718460202217102
+    },
+    {
+      "pair_id": "pair_054",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_054_ref",
+      "candidate_id": "c097_hard_shape/pair_054_negative",
+      "anchor_group": "c082_jade_lizard_monk",
+      "candidate_group": "c082_frog_yokai_guard",
+      "cosine": 0.6561774015426636
+    },
+    {
+      "pair_id": "pair_055",
+      "label": "positive",
+      "anchor_id": "c097_hard_shape/pair_055_ref",
+      "candidate_id": "c097_hard_shape/pair_055_target",
+      "anchor_group": "c082_jade_lizard_monk",
+      "candidate_group": "c082_jade_lizard_monk",
+      "cosine": 0.8634368181228638
+    },
+    {
+      "pair_id": "pair_055",
+      "label": "negative",
+      "anchor_id": "c097_hard_shape/pair_055_ref",
+      "candidate_id": "c097_hard_shape/pair_055_negative",
+      "anchor_group": "c082_jade_lizard_monk",
+      "candidate_group": "c082_frog_yokai_guard",
+      "cosine": 0.6509644985198975
+    }
+  ],
+  "summary": {
+    "pairs": 112,
+    "positive_pairs": 56,
+    "negative_pairs": 56,
+    "positive_mean": 0.8937567493745259,
+    "negative_mean": 0.6760281973651477,
+    "separation_margin": 0.21772855200937813,
+    "pairwise_auc": 1.0,
+    "midpoint_accuracy": 1.0,
+    "decision": "feature_separates_proxy_pairs"
+  },
+  "group_summaries": {
+    "c082_frog_yokai_guard": {
+      "pairs": 32,
+      "positive_pairs": 16,
+      "negative_pairs": 16,
+      "positive_mean": 0.8950152210891247,
+      "negative_mean": 0.6837664134800434,
+      "separation_margin": 0.21124880760908127,
+      "pairwise_auc": 1.0,
+      "midpoint_accuracy": 1.0,
+      "decision": "feature_separates_proxy_pairs"
+    },
+    "c082_goblin_mage": {
+      "pairs": 32,
+      "positive_pairs": 16,
+      "negative_pairs": 16,
+      "positive_mean": 0.9088799133896828,
+      "negative_mean": 0.6674169525504112,
+      "separation_margin": 0.24146296083927155,
+      "pairwise_auc": 1.0,
+      "midpoint_accuracy": 1.0,
+      "decision": "feature_separates_proxy_pairs"
+    },
+    "c082_green_oni_scout": {
+      "pairs": 32,
+      "positive_pairs": 16,
+      "negative_pairs": 16,
+      "positive_mean": 0.8857029303908348,
+      "negative_mean": 0.6864117085933685,
+      "separation_margin": 0.19929122179746628,
+      "pairwise_auc": 1.0,
+      "midpoint_accuracy": 1.0,
+      "decision": "feature_separates_proxy_pairs"
+    },
+    "c082_jade_lizard_monk": {
+      "pairs": 16,
+      "positive_pairs": 8,
+      "negative_pairs": 8,
+      "positive_mean": 0.8771011158823967,
+      "negative_mean": 0.6570072323083878,
+      "separation_margin": 0.22009388357400894,
+      "pairwise_auc": 1.0,
+      "midpoint_accuracy": 1.0,
+      "decision": "feature_separates_proxy_pairs"
+    }
+  }
+}

@@ -5057,3 +5057,113 @@ C106은 `qwen_teacher_distillation` branch로 시작한다. 첫 산출물은
 `docs/c106_qwen_teacher_feature_distillation_plan_ko.md`와
 `eval/c106_qwen_teacher_feature_distillation_20260613/manifest_summary.json` /
 `probe_summary.json`이다.
+
+## 2026-06-13 C106 Qwen teacher feature distillation manifest/probe
+
+### 왜 시작했나
+
+C105에서 선택한 route는 `qwen_teacher_distillation`이었다. 이유는 C104에서 SigLIP2 token feature가
+C097 hard-shape positive/explicit-negative 쌍을 충분히 분리하지 못했고, C087 계열 QwenVL baseline은
+여전히 hard-shape reference-control에서 가장 강한 근거를 보였기 때문이다.
+
+C106은 바로 장시간 학습으로 들어가지 않고, QwenVL teacher feature가 C097 positive/negative 구조를
+학습 target으로 쓸 만큼 강하게 분리하는지 먼저 확인하는 pre-training gate로 설계했다.
+
+### 사용 데이터와 기준
+
+- source manifest: `training/manifests/c097_siglip_hard_shape_expanded_pairs_20260613.jsonl`
+- image root: `.tmp/c097_siglip_hard_shape_expanded_root`
+- output: `eval/c106_qwen_teacher_feature_distillation_20260613/`
+- selected rows: `56`
+- positive rows: `56`
+- explicit negative rows: `56`
+- pair-probe rows: `112`
+- heldout rows used: `0`
+- missing path count: `0`
+- C105 selected route: `qwen_teacher_distillation`
+
+pre-training pass gate:
+
+- teacher margin >= `0.05`
+- teacher AUC >= `0.85`
+- C104 SigLIP best margin `0.01997534079211105` 초과
+- positive/explicit negative count 일치
+- heldout leakage 없음
+
+### 개발한 것
+
+C106 전용 manifest/probe summary 도구와 테스트를 추가했다.
+
+- `tools/c106_qwen_teacher_feature_distillation.py`
+- `tests/test_c106_qwen_teacher_feature_distillation.py`
+- `docs/c106_qwen_teacher_feature_distillation_plan_ko.md`
+
+도구의 역할:
+
+1. C097의 `ref_id/tgt_id/neg_id` row를 QwenVL pair-probe용 positive/negative row로 확장한다.
+2. `tools/score_identity_pair_probe.py`가 생성한 QwenVL score JSON을 읽어 teacher margin/AUC를 C106 gate와 비교한다.
+3. score 파일이 없거나 pair count가 맞지 않으면 `c106_probe_not_enough_signal_or_blocked`로 기록해 false greenlight를 막는다.
+
+### 실행 명령
+
+manifest/plan 생성:
+
+```bash
+PYTHONPATH=. /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python \
+  tools/c106_qwen_teacher_feature_distillation.py build
+```
+
+QwenVL pair feature scoring:
+
+```bash
+PYTHONPATH=. /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python \
+  tools/score_identity_pair_probe.py \
+  eval/c106_qwen_teacher_feature_distillation_20260613/probe_manifest.jsonl \
+  eval/c106_qwen_teacher_feature_distillation_20260613/qwenvl_pair_scores.json \
+  --data-root .tmp/c097_siglip_hard_shape_expanded_root \
+  --encoder qwenvl \
+  --report-path eval/c106_qwen_teacher_feature_distillation_20260613/qwenvl_pair_scores_report.md
+```
+
+summary/report 생성:
+
+```bash
+PYTHONPATH=. /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python \
+  tools/c106_qwen_teacher_feature_distillation.py summarize
+```
+
+### 결과
+
+생성된 핵심 파일:
+
+- `eval/c106_qwen_teacher_feature_distillation_20260613/probe_manifest.jsonl`
+- `eval/c106_qwen_teacher_feature_distillation_20260613/manifest_summary.json`
+- `eval/c106_qwen_teacher_feature_distillation_20260613/qwenvl_pair_scores.json`
+- `eval/c106_qwen_teacher_feature_distillation_20260613/qwenvl_pair_scores_report.md`
+- `eval/c106_qwen_teacher_feature_distillation_20260613/probe_summary.json`
+- `eval/c106_qwen_teacher_feature_distillation_20260613/report.md`
+
+QwenVL pair feature 결과:
+
+| metric | value |
+|---|---:|
+| positive mean | `0.8937567493745259` |
+| negative mean | `0.6760281973651477` |
+| teacher margin | `0.21772855200937813` |
+| pairwise AUC | `1.0` |
+| midpoint accuracy | `1.0` |
+
+C106 summary decision은 `c106_probe_pass_prepare_training`이다.
+`next_branch`는 `c107_bounded_qwen_teacher_distillation_training`으로 기록했다.
+
+### 판단
+
+C106은 C104와 정반대의 결과를 보였다. SigLIP2 token probe는 best margin `0.01997534079211105`,
+AUC `0.7228954081632653`에 그쳤지만, QwenVL teacher feature는 같은 C097 positive/explicit-negative
+구조에서 margin `0.21772855200937813`, AUC `1.0`을 기록했다.
+
+따라서 현재 결론은 “SigLIP-only feature 공간은 이 hard-shape branch의 teacher로 부족하지만, QwenVL
+teacher feature는 distillation target으로 쓸 수 있을 만큼 강하다”이다. 단, C106은 generation 품질을
+증명한 것이 아니라 pre-training gate를 통과한 것이다. 다음 루프 C107은 이 teacher 신호를 실제
+adapter/student 학습 objective로 옮기고, 이후 ComfyUI generation gate에서 contact sheet와 PE/QwenVL
+metrics 및 visual audit로 승격 여부를 판단해야 한다.
