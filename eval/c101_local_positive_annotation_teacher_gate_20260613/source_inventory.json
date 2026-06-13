@@ -1,0 +1,43 @@
+{
+  "source_paths": {
+    "c100_manifest": "/home/wktwin/anima-ipadapter-reference-control/eval/c100_local_real_color_positive_acquisition_20260613/c100_candidate_manifest.jsonl",
+    "c100_summary": "/home/wktwin/anima-ipadapter-reference-control/eval/c100_local_real_color_positive_acquisition_20260613/c100_candidate_summary.json",
+    "c100_review_sheet": "/home/wktwin/anima-ipadapter-reference-control/eval/c100_local_real_color_positive_acquisition_20260613/c100_candidate_review_sheet.jpg",
+    "heldout_manifest": "/home/wktwin/anima-ipadapter-reference-control/training/manifests/local_color_single_character_clean32_heldout8_20260611.jsonl",
+    "prior_label_paths": [
+      "/home/wktwin/anima-ipadapter-reference-control/eval/c068_reviewed_attribute_label_seed_20260612/reviewed_attribute_labels.jsonl",
+      "/home/wktwin/anima-ipadapter-reference-control/eval/c069_direct_green_captioning_acquisition_20260612/reviewed_candidate_labels.jsonl",
+      "/home/wktwin/anima-ipadapter-reference-control/eval/c070_qwenvl_direct_green_caption_search_20260612/reviewed_candidate_labels.jsonl"
+    ]
+  },
+  "heldout_ids": [
+    "001-100/SG-015/mrcolor_panel_style_v5_edge_trim_strict_00031_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00464_SG-015-14_page_985x1775_s01",
+    "001-100/SG-026/mrcolor_panel_style_v4_split_edge_strict_probe_00166_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00817_SG-026-07_page_2011x2902_s01",
+    "001-100/SG-071/mrcolor_panel_style_v4_split_edge_strict_probe_00444_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02306_SG-071-05_page_1115x1356_s01",
+    "101-200/SG-121/mrcolor_panel_style_v5_edge_trim_strict_00253_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_04078_SG-121-05_page_1965x2851_s01",
+    "201-292 (완결)/SG-221/mrcolor_panel_style_v4_split_edge_strict_probe_01236_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_07442_SG-221-10_page_2087x2877_s03",
+    "201-292 (완결)/SG-244/mrcolor_panel_style_v4_split_edge_strict_probe_01334_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_08090_SG-244-08_page_2130x1528_s01",
+    "201-292 (완결)/SG-263/mrcolor_panel_style_v4_split_edge_strict_probe_01412_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_08482_SG-263-09_page_559x1112_s01",
+    "201-292 (완결)/SG-274/mrcolor_panel_style_v4_split_edge_strict_probe_01452_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_08754_SG-274-04_page_1407x1264_s03"
+  ],
+  "label_schema": [
+    "local_positive",
+    "local_negative",
+    "unclear"
+  ],
+  "greenlight_criteria": {
+    "min_reviewed_positive": 8,
+    "reviewed_rows_equal_input_rows": true,
+    "review_required_count": 0,
+    "teacher_only_positive_count": 0,
+    "heldout_leakage_count": 0,
+    "missing_path_count": 0
+  },
+  "key_metrics": {
+    "c100_decision": "c101_blocked_needs_manual_annotation_or_teacher",
+    "c100_candidate_rows": 64,
+    "c100_review_sheet_size": "880x4384",
+    "heldout_count": 8,
+    "min_reviewed_positive": 8
+  }
+}

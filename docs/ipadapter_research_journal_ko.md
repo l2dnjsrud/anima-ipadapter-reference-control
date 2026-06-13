@@ -4495,3 +4495,153 @@ greenlight한다.
 - `eval/c100_local_real_color_positive_acquisition_20260613/c100_candidate_review_sheet.jpg`
 - `eval/c100_local_real_color_positive_acquisition_20260613/c100_candidate_summary.json`
 - `eval/c100_local_real_color_positive_acquisition_20260613/c100_decision_report.md`
+
+## 2026-06-13 C101 local positive annotation / teacher rerank gate
+
+### 왜 시작했나
+
+C100은 local-real 후보 `64`개를 확보했지만, 실제 reviewed local positive는 `0`개였다. C100 review
+sheet를 보면 direct-green pixel 후보 상당수가 녹색 배경, 컵, 잎, 말풍선, 소품, 조명에서 나온 false
+positive였다. 따라서 C101의 목적은 학습을 시작하는 것이 아니라, C100 후보 전체를 기존 visual-review
+근거와 conservative teacher proposal로 다시 라벨링해서 C102 학습을 greenlight할 수 있는지 확인하는
+것이었다.
+
+### 실행 경계
+
+C101에서는 다음을 하지 않았다.
+
+- adapter 학습 없음
+- ComfyUI 생성 없음
+- checkpoint 생성 없음
+- external/synthetic 후보를 local-real greenlight 증거로 사용하지 않음
+- teacher proposal을 자동 positive로 직접 세지 않음
+
+C102 greenlight 조건은 C100보다 더 엄격하게 두었다.
+
+- `reviewed_rows == input_candidate_rows`
+- `review_required_count == 0`
+- `teacher_only_positive_count == 0`
+- `heldout_leakage_count == 0`
+- `missing_path_count == 0`
+- `reviewed_local_positive_count >= 8`
+
+### 데이터와 라벨 정책
+
+입력은 C100 candidate manifest와 기존 c068/c069/c070 visual-review 결과다.
+
+- C100 candidate manifest:
+  `eval/c100_local_real_color_positive_acquisition_20260613/c100_candidate_manifest.jsonl`
+- C100 review sheet:
+  `eval/c100_local_real_color_positive_acquisition_20260613/c100_candidate_review_sheet.jpg`
+- prior visual-review sources:
+  - `eval/c068_reviewed_attribute_label_seed_20260612/reviewed_attribute_labels.jsonl`
+  - `eval/c069_direct_green_captioning_acquisition_20260612/reviewed_candidate_labels.jsonl`
+  - `eval/c070_qwenvl_direct_green_caption_search_20260612/reviewed_candidate_labels.jsonl`
+
+라벨은 세 개만 허용했다.
+
+- `local_positive`: direct-green/non-human target으로 prior visual review가 확정한 경우만 허용
+- `local_negative`: human, old/headwear human, green background/object/cup/leaf/speech-bubble false positive
+- `unclear`: fang/profile/red-eye/pale 등 proxy이거나 prior review가 없거나 crop이 애매한 후보
+
+중요한 점은 `target_positive`라도 query가 `red_glowing_eye`, `side_profile_silhouette`,
+`beard_headwear_crop`이면 direct-green/non-human positive가 아니라 proxy로 보고 `unclear`로 둔 것이다.
+
+### 개발한 것
+
+- `tools/c101_label_policy.py`
+  - C100 candidate와 prior visual-review row를 받아 `local_positive`, `local_negative`, `unclear`를
+    보수적으로 결정한다.
+  - `negative_anchor + human_negative` 같은 prior는 명시 negative로 처리한다.
+- `tools/c101_local_positive_gate.py`
+  - C100 후보 전체를 읽고 heldout/missing/schema/teacher-only 조건을 검사한다.
+  - `reviewed_local_labels.jsonl`, `c101_teacher_proposals.jsonl`,
+    `c101_reviewed_candidate_manifest.jsonl`, summary/report/source inventory를 만든다.
+- `tools/c101_review_sheet.py`
+  - 라벨별 색 테두리가 있는 labeled review sheet를 만든다.
+- `tools/c101_annotation_text.py`
+  - C101 plan/report markdown을 생성한다.
+- `tests/test_c101_local_positive_gate.py`
+  - direct-green prior positive만 `local_positive`로 승격되는지 검증한다.
+  - proxy-only/unknown 후보는 blocked 상태로 남는지 검증한다.
+  - `human_negative` anchor가 `local_negative`가 되는지 검증한다.
+  - heldout row가 manifest에 섞이면 greenlight가 막히는지 검증한다.
+
+실행 명령:
+
+```bash
+PYTHONPATH=. /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python \
+  tools/c101_local_positive_gate.py
+```
+
+### 결과
+
+생성된 summary는 다음과 같다.
+
+| 항목 | 값 |
+|---|---:|
+| input_candidate_rows | `64` |
+| reviewed_rows | `64` |
+| review_required_count | `0` |
+| heldout_leakage_count | `0` |
+| missing_path_count | `0` |
+| teacher_only_positive_count | `0` |
+| reviewed_local_positive_count | `0` |
+| local_negative_count | `25` |
+| unclear_count | `39` |
+
+source bucket 분포는 C100과 같다.
+
+| bucket | rows |
+|---|---:|
+| `direct_green_pixel_candidate` | `40` |
+| `pale_non_human_proxy` | `11` |
+| `fang_profile_proxy` | `13` |
+
+review source 분포:
+
+- `prior_visual_review`: `36`
+- `conservative_auto`: `28`
+
+label count:
+
+- `local_negative`: `25`
+- `unclear`: `39`
+- `local_positive`: `0`
+
+labeled review sheet는
+`eval/c101_local_positive_annotation_teacher_gate_20260613/c101_review_sheet_labeled.jpg`에 만들었다.
+크기는 `960x4704`다.
+
+decision은 `c102_blocked_needs_manual_annotation_or_teacher`이다.
+
+### 판단
+
+C101은 C100 후보 전체를 빠짐없이 라벨링했다는 점에서는 성공했다. 하지만 local-positive는 여전히 `0`개다.
+즉 현재 local color dataset의 C100 후보만으로는 direct-green/non-human reference-control 학습을 시작할
+근거가 없다. 이 결론은 “IPAdapter가 불가능하다”가 아니라, “이 local-real 후보 풀은 학습 positive가
+아직 없다”는 의미다.
+
+따라서 C102 학습은 진행하지 않는다. 다음 루프는 다음 중 하나여야 한다.
+
+1. 사람이 C101 labeled sheet를 보고 최소 `8`개 이상의 `local_positive`를 직접 확정한다.
+2. QwenVL embedding scorer가 아니라 실제 VLM caption/question-answer teacher로 64개 후보를 다시
+   질의하고, 그 결과를 사람이 검수 가능한 evidence로 남긴다.
+3. local-real direct-green/non-human이 충분히 없다고 판단되면, 외부/합성 데이터를 local-real과 분리한
+   teacher track으로 운영한다.
+
+### c101 관련 파일
+
+- `docs/c101_local_positive_annotation_teacher_plan_ko.md`
+- `tools/c101_label_policy.py`
+- `tools/c101_local_positive_gate.py`
+- `tools/c101_review_sheet.py`
+- `tools/c101_annotation_text.py`
+- `tests/test_c101_local_positive_gate.py`
+- `eval/c101_local_positive_annotation_teacher_gate_20260613/source_inventory.json`
+- `eval/c101_local_positive_annotation_teacher_gate_20260613/reviewed_local_labels.jsonl`
+- `eval/c101_local_positive_annotation_teacher_gate_20260613/c101_teacher_proposals.jsonl`
+- `eval/c101_local_positive_annotation_teacher_gate_20260613/c101_reviewed_candidate_manifest.jsonl`
+- `eval/c101_local_positive_annotation_teacher_gate_20260613/c101_review_sheet_labeled.jpg`
+- `eval/c101_local_positive_annotation_teacher_gate_20260613/c101_candidate_summary.json`
+- `eval/c101_local_positive_annotation_teacher_gate_20260613/c101_decision_report.md`
