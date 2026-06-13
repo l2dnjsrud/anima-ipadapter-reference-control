@@ -69,10 +69,38 @@ def test_adapter_prompt_patches_model_path_to_cfg_and_scheduler() -> None:
 
     assert prompt["2"]["inputs"]["ipadapter_name"] == "adapter.safetensors"
     assert prompt["3"]["class_type"] == "AnimaSigLIPEncodeImage"
+    assert prompt["3"]["inputs"]["encoder_lora_name"] == "none"
     assert prompt["4"]["class_type"] == "AnimaSigLIPIPAdapterApply"
     assert prompt["10"]["inputs"]["model"] == ["4", 0]
     assert prompt["12"]["inputs"]["model"] == ["4", 0]
     assert prompt["7"]["inputs"]["clip_l"] == "auto prompt"
+
+
+def test_adapter_prompt_can_select_siglip_encoder_lora() -> None:
+    sample = Sample(
+        label="auto00",
+        ref_id="SG-001/portrait",
+        seed=20260650,
+        prompt_row=AutoPromptRow(
+            ref_id="SG-001/portrait",
+            tgt_id="SG-001/portrait",
+            source_prompt="source",
+            prompt="auto prompt",
+            selected_attributes=(),
+        ),
+    )
+    variant = Variant(
+        "c096_encoder_lora_w14",
+        "adapter.safetensors",
+        1.4,
+        "anima_siglip_encoder_lora_c096_rank8_0096_20260613.safetensors",
+    )
+
+    prompt = adapter_prompt(sample, "reference.jpg", variant, output_prefix="eval/test")
+
+    assert prompt["3"]["inputs"]["encoder_lora_name"] == (
+        "anima_siglip_encoder_lora_c096_rank8_0096_20260613.safetensors"
+    )
 
 
 def test_default_siglip_variants_use_siglip_facing_aliases() -> None:

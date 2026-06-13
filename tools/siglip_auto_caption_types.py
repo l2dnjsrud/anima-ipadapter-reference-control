@@ -53,6 +53,7 @@ class Variant:
     label: str
     checkpoint: str | None
     weight: float
+    encoder_lora: str | None = None
 
 
 @dataclass(frozen=True, slots=True)

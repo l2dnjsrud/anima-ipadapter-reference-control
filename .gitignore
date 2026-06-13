@@ -14,6 +14,7 @@ checkpoints/*contrastive*.safetensors
 checkpoints/*teacher*.safetensors
 checkpoints/*feature_calibrator*.safetensors
 checkpoints/*feature_bridge*.safetensors
+checkpoints/*encoder_lora*.safetensors
 checkpoints/*qwen_target*.safetensors
 checkpoints/*shape_supervised*.safetensors
 checkpoints/*qwenvl*.safetensors
@@ -39,3 +40,6 @@ eval/siglip_runtime_quality_20260612_*/*.history.json
 eval/siglip_runtime_quality_20260612_*/*.response.json
 eval/siglip_runtime_quality_20260612_*/auto??_*.png
 eval/auto_reference_prompts_20260612_smoke/
+eval/**/comfy_server*.log
+eval/**/comfy_server.pid
+eval/**/*_failure/

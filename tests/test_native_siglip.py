@@ -9,6 +9,7 @@ import torch
 from native_siglip import (
     AnimaSigLIPIPAdapterApply,
     AnimaSigLIPIPAdapterLoader,
+    AnimaSigLIPEncodeImage,
     SIGLIP_NODE_CLASS_MAPPINGS,
     SigLIPFeatures,
 )
@@ -123,6 +124,13 @@ def test_siglip_loader_uses_ipadapter_model_selector() -> None:
 
     assert "ipadapter_name" in inputs
     assert "ipadapter_path" not in inputs
+
+
+def test_siglip_encode_image_uses_optional_encoder_lora_selector() -> None:
+    inputs = AnimaSigLIPEncodeImage.INPUT_TYPES()["required"]
+
+    assert "encoder_lora_name" in inputs
+    assert inputs["encoder_lora_name"][0][0] == "none"
 
 
 def test_siglip_loader_prefers_c089_shape_checkpoint() -> None:

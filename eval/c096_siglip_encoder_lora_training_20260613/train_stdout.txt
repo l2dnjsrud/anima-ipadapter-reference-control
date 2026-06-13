@@ -1,0 +1,38 @@
+{
+  "steps": 96,
+  "rows_loaded": 10,
+  "explicit_negative_rows": 10,
+  "first_loss": 0.018323052674531937,
+  "final_loss": 0.007415413856506348,
+  "mean_loss": 0.04577439694063893,
+  "mean_positive_similarity": 0.8003282845020294,
+  "mean_negative_similarity": 0.7492882957061132,
+  "finite_loss": true,
+  "trainable_parameter_names": [
+    "vision_model.encoder.layers.10.self_attn.v_proj.lora_down.weight",
+    "vision_model.encoder.layers.10.self_attn.v_proj.lora_up.weight",
+    "vision_model.encoder.layers.10.self_attn.q_proj.lora_down.weight",
+    "vision_model.encoder.layers.10.self_attn.q_proj.lora_up.weight",
+    "vision_model.encoder.layers.10.self_attn.out_proj.lora_down.weight",
+    "vision_model.encoder.layers.10.self_attn.out_proj.lora_up.weight",
+    "vision_model.encoder.layers.11.self_attn.v_proj.lora_down.weight",
+    "vision_model.encoder.layers.11.self_attn.v_proj.lora_up.weight",
+    "vision_model.encoder.layers.11.self_attn.q_proj.lora_down.weight",
+    "vision_model.encoder.layers.11.self_attn.q_proj.lora_up.weight",
+    "vision_model.encoder.layers.11.self_attn.out_proj.lora_down.weight",
+    "vision_model.encoder.layers.11.self_attn.out_proj.lora_up.weight"
+  ],
+  "checkpoint_path": "checkpoints/anima_siglip_encoder_lora_c096_rank8_0096_20260613.safetensors",
+  "checkpoint_loadable": true,
+  "heldout_rows": [],
+  "module_names": [
+    "vision_model.encoder.layers.10.self_attn.q_proj",
+    "vision_model.encoder.layers.10.self_attn.v_proj",
+    "vision_model.encoder.layers.10.self_attn.out_proj",
+    "vision_model.encoder.layers.11.self_attn.q_proj",
+    "vision_model.encoder.layers.11.self_attn.v_proj",
+    "vision_model.encoder.layers.11.self_attn.out_proj"
+  ],
+  "rank": 8,
+  "alpha": 8.0
+}

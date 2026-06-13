@@ -1,0 +1,1010 @@
+{
+  "base_url": "http://127.0.0.1:8122",
+  "probe_manifest": "eval/c088_shape_silhouette_feature_probe_20260613/probe_manifest.jsonl",
+  "prompt_manifest": "eval/c096_siglip_encoder_lora_generation_gate_20260613/auto_reference_prompts.jsonl",
+  "contact_sheet": "eval/c096_siglip_encoder_lora_generation_gate_20260613/contact_sheet_hard_shape.jpg",
+  "variants": [
+    {
+      "label": "no_ip",
+      "checkpoint": null,
+      "weight": 0.0,
+      "encoder_lora": null
+    },
+    {
+      "label": "c094_shape_supervised_w14",
+      "checkpoint": "anima_siglip_ip_adapter_c094_shape_supervised_0064_20260613.safetensors",
+      "weight": 1.4,
+      "encoder_lora": null
+    },
+    {
+      "label": "c095_feature_bridge_w14",
+      "checkpoint": "anima_siglip_ip_adapter_c095_feature_bridge_b128_0096_20260613.safetensors",
+      "weight": 1.4,
+      "encoder_lora": null
+    },
+    {
+      "label": "c096_lora_c094_w08",
+      "checkpoint": "anima_siglip_ip_adapter_c094_shape_supervised_0064_20260613.safetensors",
+      "weight": 0.8,
+      "encoder_lora": "anima_siglip_encoder_lora_c096_rank8_0096_20260613.safetensors"
+    },
+    {
+      "label": "c096_lora_c094_w10",
+      "checkpoint": "anima_siglip_ip_adapter_c094_shape_supervised_0064_20260613.safetensors",
+      "weight": 1.0,
+      "encoder_lora": "anima_siglip_encoder_lora_c096_rank8_0096_20260613.safetensors"
+    },
+    {
+      "label": "c096_lora_c094_w12",
+      "checkpoint": "anima_siglip_ip_adapter_c094_shape_supervised_0064_20260613.safetensors",
+      "weight": 1.2,
+      "encoder_lora": "anima_siglip_encoder_lora_c096_rank8_0096_20260613.safetensors"
+    },
+    {
+      "label": "c096_lora_c094_w14",
+      "checkpoint": "anima_siglip_ip_adapter_c094_shape_supervised_0064_20260613.safetensors",
+      "weight": 1.4,
+      "encoder_lora": "anima_siglip_encoder_lora_c096_rank8_0096_20260613.safetensors"
+    }
+  ],
+  "samples": [
+    {
+      "label": "crop_pair00",
+      "ref_id": "c090_refs/crop_pair00",
+      "seed": 20260900,
+      "reference_path": ".tmp/c095_siglip_hard_shape_root/c090_refs/crop_pair00.jpg",
+      "prompt_row": {
+        "ref_id": "c090_refs/crop_pair00",
+        "tgt_id": "crop_pair00",
+        "source_prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "selected_attributes": [
+          "c087_crop_pair_focus",
+          "direct_green",
+          "non_human",
+          "expanded_target_positive"
+        ]
+      }
+    },
+    {
+      "label": "crop_pair01",
+      "ref_id": "c090_refs/crop_pair01",
+      "seed": 20260901,
+      "reference_path": ".tmp/c095_siglip_hard_shape_root/c090_refs/crop_pair01.jpg",
+      "prompt_row": {
+        "ref_id": "c090_refs/crop_pair01",
+        "tgt_id": "crop_pair01",
+        "source_prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "selected_attributes": [
+          "c087_crop_pair_focus",
+          "direct_green",
+          "non_human",
+          "expanded_target_positive"
+        ]
+      }
+    },
+    {
+      "label": "crop_pair02",
+      "ref_id": "c090_refs/crop_pair02",
+      "seed": 20260902,
+      "reference_path": ".tmp/c095_siglip_hard_shape_root/c090_refs/crop_pair02.jpg",
+      "prompt_row": {
+        "ref_id": "c090_refs/crop_pair02",
+        "tgt_id": "crop_pair02",
+        "source_prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "selected_attributes": [
+          "c087_crop_pair_focus",
+          "direct_green",
+          "non_human",
+          "expanded_target_positive"
+        ]
+      }
+    },
+    {
+      "label": "crop_pair03",
+      "ref_id": "c090_refs/crop_pair03",
+      "seed": 20260903,
+      "reference_path": ".tmp/c095_siglip_hard_shape_root/c090_refs/crop_pair03.jpg",
+      "prompt_row": {
+        "ref_id": "c090_refs/crop_pair03",
+        "tgt_id": "crop_pair03",
+        "source_prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "selected_attributes": [
+          "c087_crop_pair_focus",
+          "direct_green",
+          "non_human",
+          "expanded_target_positive"
+        ]
+      }
+    },
+    {
+      "label": "crop_pair04",
+      "ref_id": "c090_refs/crop_pair04",
+      "seed": 20260904,
+      "reference_path": ".tmp/c095_siglip_hard_shape_root/c090_refs/crop_pair04.jpg",
+      "prompt_row": {
+        "ref_id": "c090_refs/crop_pair04",
+        "tgt_id": "crop_pair04",
+        "source_prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "selected_attributes": [
+          "c087_crop_pair_focus",
+          "direct_green",
+          "non_human",
+          "expanded_target_positive"
+        ]
+      }
+    },
+    {
+      "label": "crop_pair05",
+      "ref_id": "c090_refs/crop_pair05",
+      "seed": 20260905,
+      "reference_path": ".tmp/c095_siglip_hard_shape_root/c090_refs/crop_pair05.jpg",
+      "prompt_row": {
+        "ref_id": "c090_refs/crop_pair05",
+        "tgt_id": "crop_pair05",
+        "source_prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "selected_attributes": [
+          "c087_crop_pair_focus",
+          "direct_green",
+          "non_human",
+          "expanded_target_positive"
+        ]
+      }
+    },
+    {
+      "label": "crop_pair06",
+      "ref_id": "c090_refs/crop_pair06",
+      "seed": 20260906,
+      "reference_path": ".tmp/c095_siglip_hard_shape_root/c090_refs/crop_pair06.jpg",
+      "prompt_row": {
+        "ref_id": "c090_refs/crop_pair06",
+        "tgt_id": "crop_pair06",
+        "source_prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "selected_attributes": [
+          "c087_crop_pair_focus",
+          "direct_green",
+          "non_human",
+          "expanded_target_positive"
+        ]
+      }
+    },
+    {
+      "label": "crop_pair07",
+      "ref_id": "c090_refs/crop_pair07",
+      "seed": 20260907,
+      "reference_path": ".tmp/c095_siglip_hard_shape_root/c090_refs/crop_pair07.jpg",
+      "prompt_row": {
+        "ref_id": "c090_refs/crop_pair07",
+        "tgt_id": "crop_pair07",
+        "source_prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "selected_attributes": [
+          "c087_crop_pair_focus",
+          "direct_green",
+          "non_human",
+          "expanded_target_positive"
+        ]
+      }
+    },
+    {
+      "label": "crop_pair08",
+      "ref_id": "c090_refs/crop_pair08",
+      "seed": 20260908,
+      "reference_path": ".tmp/c095_siglip_hard_shape_root/c090_refs/crop_pair08.jpg",
+      "prompt_row": {
+        "ref_id": "c090_refs/crop_pair08",
+        "tgt_id": "crop_pair08",
+        "source_prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "selected_attributes": [
+          "c087_crop_pair_focus",
+          "direct_green",
+          "non_human",
+          "expanded_target_positive"
+        ]
+      }
+    },
+    {
+      "label": "crop_pair09",
+      "ref_id": "c090_refs/crop_pair09",
+      "seed": 20260909,
+      "reference_path": ".tmp/c095_siglip_hard_shape_root/c090_refs/crop_pair09.jpg",
+      "prompt_row": {
+        "ref_id": "c090_refs/crop_pair09",
+        "tgt_id": "crop_pair09",
+        "source_prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "selected_attributes": [
+          "c087_crop_pair_focus",
+          "direct_green",
+          "non_human",
+          "expanded_target_positive"
+        ]
+      }
+    },
+    {
+      "label": "heldout07",
+      "ref_id": "c090_refs/heldout07",
+      "seed": 20260910,
+      "reference_path": ".tmp/c095_siglip_hard_shape_root/c090_refs/heldout07.jpg",
+      "prompt_row": {
+        "ref_id": "c090_refs/heldout07",
+        "tgt_id": "heldout07",
+        "source_prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, green monster face with red glowing eye, angry tense expression, angry martial artist close-up, side profile portrait, green eerie cave lighting, androgynous elegant warrior, metal shoulder armor, old bearded martial arts master, dark armored robe, clenched fist foreground, messy black hair, night palace rooftop, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+        "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, green monster face with red glowing eye, angry tense expression, angry martial artist close-up, side profile portrait, green eerie cave lighting, androgynous elegant warrior, metal shoulder armor, old bearded martial arts master, dark armored robe, clenched fist foreground, messy black hair, night palace rooftop, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+        "selected_attributes": [
+          "green monster face with red glowing eye",
+          "angry tense expression",
+          "angry martial artist close-up",
+          "side profile portrait",
+          "green eerie cave lighting",
+          "androgynous elegant warrior",
+          "metal shoulder armor",
+          "old bearded martial arts master",
+          "dark armored robe",
+          "clenched fist foreground",
+          "messy black hair",
+          "night palace rooftop"
+        ]
+      }
+    }
+  ],
+  "results": {
+    "crop_pair00_no_ip": {
+      "prompt_id": "b94962ac-a9b6-4f15-b0b2-51d5b4b5d79d",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair00_no_ip.png",
+      "image_info": {
+        "filename": "crop_pair00_no_ip_00002_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair00_c094_shape_supervised_w14": {
+      "prompt_id": "9c3f6c0b-93ae-4676-bdd2-fd55cbf4091d",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair00_c094_shape_supervised_w14.png",
+      "image_info": {
+        "filename": "crop_pair00_c094_shape_supervised_w14_00002_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair00_c095_feature_bridge_w14": {
+      "prompt_id": "42030400-9922-42d5-8e80-8d805e148840",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair00_c095_feature_bridge_w14.png",
+      "image_info": {
+        "filename": "crop_pair00_c095_feature_bridge_w14_00002_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair00_c096_lora_c094_w08": {
+      "prompt_id": "4faf28c3-917d-4aa7-ba1c-0ee701942a53",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair00_c096_lora_c094_w08.png",
+      "image_info": {
+        "filename": "crop_pair00_c096_lora_c094_w08_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair00_c096_lora_c094_w10": {
+      "prompt_id": "129a7123-148b-49cf-927d-bb7cacd22827",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair00_c096_lora_c094_w10.png",
+      "image_info": {
+        "filename": "crop_pair00_c096_lora_c094_w10_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair00_c096_lora_c094_w12": {
+      "prompt_id": "e3d462b6-f56e-4fa0-ba12-746c53d76d19",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair00_c096_lora_c094_w12.png",
+      "image_info": {
+        "filename": "crop_pair00_c096_lora_c094_w12_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair00_c096_lora_c094_w14": {
+      "prompt_id": "129bd5bc-eb0a-41d6-8d23-82603b63d799",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair00_c096_lora_c094_w14.png",
+      "image_info": {
+        "filename": "crop_pair00_c096_lora_c094_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair01_no_ip": {
+      "prompt_id": "8f309ca6-5442-4f5a-b934-704233880c35",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair01_no_ip.png",
+      "image_info": {
+        "filename": "crop_pair01_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair01_c094_shape_supervised_w14": {
+      "prompt_id": "5d88e7b1-d35e-4f10-b11d-c7a905ec6906",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair01_c094_shape_supervised_w14.png",
+      "image_info": {
+        "filename": "crop_pair01_c094_shape_supervised_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair01_c095_feature_bridge_w14": {
+      "prompt_id": "93798b4c-de94-495e-8b7a-810bfbf66e35",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair01_c095_feature_bridge_w14.png",
+      "image_info": {
+        "filename": "crop_pair01_c095_feature_bridge_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair01_c096_lora_c094_w08": {
+      "prompt_id": "bbf92c6d-4998-4a6f-ab9d-3180a817ede2",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair01_c096_lora_c094_w08.png",
+      "image_info": {
+        "filename": "crop_pair01_c096_lora_c094_w08_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair01_c096_lora_c094_w10": {
+      "prompt_id": "ac0a788e-8174-482e-b52a-64ba35f5b2b7",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair01_c096_lora_c094_w10.png",
+      "image_info": {
+        "filename": "crop_pair01_c096_lora_c094_w10_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair01_c096_lora_c094_w12": {
+      "prompt_id": "e654a598-36d4-48ef-b936-1caeff4d509c",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair01_c096_lora_c094_w12.png",
+      "image_info": {
+        "filename": "crop_pair01_c096_lora_c094_w12_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair01_c096_lora_c094_w14": {
+      "prompt_id": "a6f8323d-186d-4200-b5ca-7bbc82d88bfb",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair01_c096_lora_c094_w14.png",
+      "image_info": {
+        "filename": "crop_pair01_c096_lora_c094_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair02_no_ip": {
+      "prompt_id": "0d00a348-6e92-499e-848f-c3c88d2c321b",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair02_no_ip.png",
+      "image_info": {
+        "filename": "crop_pair02_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair02_c094_shape_supervised_w14": {
+      "prompt_id": "cc229b11-e0f0-4591-9102-627e99eb3d15",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair02_c094_shape_supervised_w14.png",
+      "image_info": {
+        "filename": "crop_pair02_c094_shape_supervised_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair02_c095_feature_bridge_w14": {
+      "prompt_id": "6e39be7e-fc4f-4471-9f1b-20a4d1f560e3",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair02_c095_feature_bridge_w14.png",
+      "image_info": {
+        "filename": "crop_pair02_c095_feature_bridge_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair02_c096_lora_c094_w08": {
+      "prompt_id": "3d6c5fc8-d91f-4acb-9321-4fba27a50cf7",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair02_c096_lora_c094_w08.png",
+      "image_info": {
+        "filename": "crop_pair02_c096_lora_c094_w08_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair02_c096_lora_c094_w10": {
+      "prompt_id": "8b515824-2044-49ba-8717-4013d2d68337",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair02_c096_lora_c094_w10.png",
+      "image_info": {
+        "filename": "crop_pair02_c096_lora_c094_w10_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair02_c096_lora_c094_w12": {
+      "prompt_id": "980fc4bd-9c96-471c-9fd2-a4904674cf18",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair02_c096_lora_c094_w12.png",
+      "image_info": {
+        "filename": "crop_pair02_c096_lora_c094_w12_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair02_c096_lora_c094_w14": {
+      "prompt_id": "5d66ace3-280c-40f1-8232-ff8fefedd09b",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair02_c096_lora_c094_w14.png",
+      "image_info": {
+        "filename": "crop_pair02_c096_lora_c094_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair03_no_ip": {
+      "prompt_id": "3a08a6f3-d755-404d-bc0b-56b84857eecb",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair03_no_ip.png",
+      "image_info": {
+        "filename": "crop_pair03_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair03_c094_shape_supervised_w14": {
+      "prompt_id": "267f547c-05ef-47cf-8e0c-52e8f869f905",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair03_c094_shape_supervised_w14.png",
+      "image_info": {
+        "filename": "crop_pair03_c094_shape_supervised_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair03_c095_feature_bridge_w14": {
+      "prompt_id": "0ded2290-90f2-46b1-ac2b-5038d80de765",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair03_c095_feature_bridge_w14.png",
+      "image_info": {
+        "filename": "crop_pair03_c095_feature_bridge_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair03_c096_lora_c094_w08": {
+      "prompt_id": "dce99b51-9e57-446a-999e-bcd751fef697",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair03_c096_lora_c094_w08.png",
+      "image_info": {
+        "filename": "crop_pair03_c096_lora_c094_w08_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair03_c096_lora_c094_w10": {
+      "prompt_id": "f3e61a5f-7308-45bf-ae1e-3ff7d5f17a4a",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair03_c096_lora_c094_w10.png",
+      "image_info": {
+        "filename": "crop_pair03_c096_lora_c094_w10_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair03_c096_lora_c094_w12": {
+      "prompt_id": "e338c046-dea3-4729-9334-dc817ab6e45c",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair03_c096_lora_c094_w12.png",
+      "image_info": {
+        "filename": "crop_pair03_c096_lora_c094_w12_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair03_c096_lora_c094_w14": {
+      "prompt_id": "4b36ffc6-e5d0-4227-a0e0-af720722aad7",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair03_c096_lora_c094_w14.png",
+      "image_info": {
+        "filename": "crop_pair03_c096_lora_c094_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair04_no_ip": {
+      "prompt_id": "c6434302-f6d8-451f-b5fa-8f7c0832f5a2",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair04_no_ip.png",
+      "image_info": {
+        "filename": "crop_pair04_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair04_c094_shape_supervised_w14": {
+      "prompt_id": "6b7f020e-3963-45dc-be91-2805505ba76d",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair04_c094_shape_supervised_w14.png",
+      "image_info": {
+        "filename": "crop_pair04_c094_shape_supervised_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair04_c095_feature_bridge_w14": {
+      "prompt_id": "220b47c2-39bc-4845-8ebc-cba3c6276b69",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair04_c095_feature_bridge_w14.png",
+      "image_info": {
+        "filename": "crop_pair04_c095_feature_bridge_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair04_c096_lora_c094_w08": {
+      "prompt_id": "ea641d20-deb6-459c-8816-7d60a1c70e4e",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair04_c096_lora_c094_w08.png",
+      "image_info": {
+        "filename": "crop_pair04_c096_lora_c094_w08_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair04_c096_lora_c094_w10": {
+      "prompt_id": "8c437056-aced-474b-9e0a-e44c8d5fade1",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair04_c096_lora_c094_w10.png",
+      "image_info": {
+        "filename": "crop_pair04_c096_lora_c094_w10_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair04_c096_lora_c094_w12": {
+      "prompt_id": "abbd476f-c2a4-41a3-8754-0b480c66528e",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair04_c096_lora_c094_w12.png",
+      "image_info": {
+        "filename": "crop_pair04_c096_lora_c094_w12_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair04_c096_lora_c094_w14": {
+      "prompt_id": "1f6e65c9-5eee-4946-94cf-faaa2dbcb6e3",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair04_c096_lora_c094_w14.png",
+      "image_info": {
+        "filename": "crop_pair04_c096_lora_c094_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair05_no_ip": {
+      "prompt_id": "1ab8ff86-3cb6-4f2d-9524-8017c62296a3",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair05_no_ip.png",
+      "image_info": {
+        "filename": "crop_pair05_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair05_c094_shape_supervised_w14": {
+      "prompt_id": "7945c064-0c9c-422e-ac23-b2f9724a155c",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair05_c094_shape_supervised_w14.png",
+      "image_info": {
+        "filename": "crop_pair05_c094_shape_supervised_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair05_c095_feature_bridge_w14": {
+      "prompt_id": "c1b74aba-6cc8-4d9f-b457-cc729121f30c",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair05_c095_feature_bridge_w14.png",
+      "image_info": {
+        "filename": "crop_pair05_c095_feature_bridge_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair05_c096_lora_c094_w08": {
+      "prompt_id": "c4e2dd41-4c06-4770-acc1-53912a3f7d80",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair05_c096_lora_c094_w08.png",
+      "image_info": {
+        "filename": "crop_pair05_c096_lora_c094_w08_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair05_c096_lora_c094_w10": {
+      "prompt_id": "da8b05e1-0f42-4f54-80cc-c53dc81e16f1",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair05_c096_lora_c094_w10.png",
+      "image_info": {
+        "filename": "crop_pair05_c096_lora_c094_w10_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair05_c096_lora_c094_w12": {
+      "prompt_id": "0b8c62c5-39e8-40a9-9b75-5b5b07021d47",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair05_c096_lora_c094_w12.png",
+      "image_info": {
+        "filename": "crop_pair05_c096_lora_c094_w12_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair05_c096_lora_c094_w14": {
+      "prompt_id": "87a0152c-07d8-4b54-b6ef-1e822e0fa8ce",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair05_c096_lora_c094_w14.png",
+      "image_info": {
+        "filename": "crop_pair05_c096_lora_c094_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair06_no_ip": {
+      "prompt_id": "8b3dfe47-8af2-4c64-af76-e6cb5eca730a",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair06_no_ip.png",
+      "image_info": {
+        "filename": "crop_pair06_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair06_c094_shape_supervised_w14": {
+      "prompt_id": "0023730e-7c1e-4dbe-bb9b-51f4817ce177",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair06_c094_shape_supervised_w14.png",
+      "image_info": {
+        "filename": "crop_pair06_c094_shape_supervised_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair06_c095_feature_bridge_w14": {
+      "prompt_id": "5ab83bf3-8a4b-41d0-bf3b-4be87ecdc7eb",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair06_c095_feature_bridge_w14.png",
+      "image_info": {
+        "filename": "crop_pair06_c095_feature_bridge_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair06_c096_lora_c094_w08": {
+      "prompt_id": "cc5617af-2ed2-4801-9f9e-5cc379867623",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair06_c096_lora_c094_w08.png",
+      "image_info": {
+        "filename": "crop_pair06_c096_lora_c094_w08_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair06_c096_lora_c094_w10": {
+      "prompt_id": "0027536b-5f34-408b-a090-d8a2514ef242",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair06_c096_lora_c094_w10.png",
+      "image_info": {
+        "filename": "crop_pair06_c096_lora_c094_w10_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair06_c096_lora_c094_w12": {
+      "prompt_id": "a12fcbbf-c175-4763-9cb3-57dd4e89aa61",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair06_c096_lora_c094_w12.png",
+      "image_info": {
+        "filename": "crop_pair06_c096_lora_c094_w12_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair06_c096_lora_c094_w14": {
+      "prompt_id": "3fd1e71c-7849-4efc-8c1a-f7687379d755",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair06_c096_lora_c094_w14.png",
+      "image_info": {
+        "filename": "crop_pair06_c096_lora_c094_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair07_no_ip": {
+      "prompt_id": "f1d5e000-1765-4427-a14f-c5760749208f",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair07_no_ip.png",
+      "image_info": {
+        "filename": "crop_pair07_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair07_c094_shape_supervised_w14": {
+      "prompt_id": "2c485d5d-c3b6-490a-b323-d31906d62feb",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair07_c094_shape_supervised_w14.png",
+      "image_info": {
+        "filename": "crop_pair07_c094_shape_supervised_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair07_c095_feature_bridge_w14": {
+      "prompt_id": "e3678831-175b-4ad9-ba98-40e59b21d552",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair07_c095_feature_bridge_w14.png",
+      "image_info": {
+        "filename": "crop_pair07_c095_feature_bridge_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair07_c096_lora_c094_w08": {
+      "prompt_id": "5aa9228a-057a-4c5a-82a7-a53636e49211",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair07_c096_lora_c094_w08.png",
+      "image_info": {
+        "filename": "crop_pair07_c096_lora_c094_w08_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair07_c096_lora_c094_w10": {
+      "prompt_id": "b5d05ca4-3af1-49ee-b369-833ef84298ae",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair07_c096_lora_c094_w10.png",
+      "image_info": {
+        "filename": "crop_pair07_c096_lora_c094_w10_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair07_c096_lora_c094_w12": {
+      "prompt_id": "ef01d7a1-d3a7-48d7-8e39-defb487c1952",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair07_c096_lora_c094_w12.png",
+      "image_info": {
+        "filename": "crop_pair07_c096_lora_c094_w12_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair07_c096_lora_c094_w14": {
+      "prompt_id": "35ad3834-826d-4a2e-b1d7-241ce7dd8c37",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair07_c096_lora_c094_w14.png",
+      "image_info": {
+        "filename": "crop_pair07_c096_lora_c094_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair08_no_ip": {
+      "prompt_id": "85a16b0f-eaf3-4a6e-b985-835be8916a2b",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair08_no_ip.png",
+      "image_info": {
+        "filename": "crop_pair08_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair08_c094_shape_supervised_w14": {
+      "prompt_id": "00bc0117-980b-404f-8bbf-5ceab64ef2c6",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair08_c094_shape_supervised_w14.png",
+      "image_info": {
+        "filename": "crop_pair08_c094_shape_supervised_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair08_c095_feature_bridge_w14": {
+      "prompt_id": "a68000ad-7ca2-4d86-9a75-fc129fce0971",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair08_c095_feature_bridge_w14.png",
+      "image_info": {
+        "filename": "crop_pair08_c095_feature_bridge_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair08_c096_lora_c094_w08": {
+      "prompt_id": "965acc7a-7c53-449d-89d4-fa2786c47f64",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair08_c096_lora_c094_w08.png",
+      "image_info": {
+        "filename": "crop_pair08_c096_lora_c094_w08_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair08_c096_lora_c094_w10": {
+      "prompt_id": "bdde91e0-8313-47bb-948a-16be37db9f30",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair08_c096_lora_c094_w10.png",
+      "image_info": {
+        "filename": "crop_pair08_c096_lora_c094_w10_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair08_c096_lora_c094_w12": {
+      "prompt_id": "cdb8d5ca-929f-4ff4-833c-3a0676cc8932",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair08_c096_lora_c094_w12.png",
+      "image_info": {
+        "filename": "crop_pair08_c096_lora_c094_w12_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair08_c096_lora_c094_w14": {
+      "prompt_id": "3c7614b9-b773-4621-ad33-811546a4d3f1",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair08_c096_lora_c094_w14.png",
+      "image_info": {
+        "filename": "crop_pair08_c096_lora_c094_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair09_no_ip": {
+      "prompt_id": "d3331ee8-753c-457d-a538-b5cc733bf757",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair09_no_ip.png",
+      "image_info": {
+        "filename": "crop_pair09_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair09_c094_shape_supervised_w14": {
+      "prompt_id": "d748ec55-f785-4330-aab3-5a5ba568811d",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair09_c094_shape_supervised_w14.png",
+      "image_info": {
+        "filename": "crop_pair09_c094_shape_supervised_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair09_c095_feature_bridge_w14": {
+      "prompt_id": "a48e4e10-22d0-46ec-93a3-a2975bc46fb1",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair09_c095_feature_bridge_w14.png",
+      "image_info": {
+        "filename": "crop_pair09_c095_feature_bridge_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair09_c096_lora_c094_w08": {
+      "prompt_id": "1c27e654-38c1-4502-9999-4568544ce53e",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair09_c096_lora_c094_w08.png",
+      "image_info": {
+        "filename": "crop_pair09_c096_lora_c094_w08_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair09_c096_lora_c094_w10": {
+      "prompt_id": "747da54e-d3c8-42da-ba07-da216e004e5b",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair09_c096_lora_c094_w10.png",
+      "image_info": {
+        "filename": "crop_pair09_c096_lora_c094_w10_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair09_c096_lora_c094_w12": {
+      "prompt_id": "7fa46259-8159-427c-afc7-6c7150c6ca84",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair09_c096_lora_c094_w12.png",
+      "image_info": {
+        "filename": "crop_pair09_c096_lora_c094_w12_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair09_c096_lora_c094_w14": {
+      "prompt_id": "02c7e54a-259c-46d1-9323-0b69431d90bb",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/crop_pair09_c096_lora_c094_w14.png",
+      "image_info": {
+        "filename": "crop_pair09_c096_lora_c094_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "heldout07_no_ip": {
+      "prompt_id": "11e4ebaa-defa-4a33-abb0-adb7bd1804fe",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/heldout07_no_ip.png",
+      "image_info": {
+        "filename": "heldout07_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "heldout07_c094_shape_supervised_w14": {
+      "prompt_id": "62e8e990-fd91-499c-9ef9-8f55a94f1319",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/heldout07_c094_shape_supervised_w14.png",
+      "image_info": {
+        "filename": "heldout07_c094_shape_supervised_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "heldout07_c095_feature_bridge_w14": {
+      "prompt_id": "3cfa7a91-7f9a-48a7-8be1-bde6b06e7443",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/heldout07_c095_feature_bridge_w14.png",
+      "image_info": {
+        "filename": "heldout07_c095_feature_bridge_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "heldout07_c096_lora_c094_w08": {
+      "prompt_id": "6b58c357-0703-4c52-ae9e-751c83a35589",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/heldout07_c096_lora_c094_w08.png",
+      "image_info": {
+        "filename": "heldout07_c096_lora_c094_w08_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "heldout07_c096_lora_c094_w10": {
+      "prompt_id": "b457477c-2781-4145-a802-98f751575449",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/heldout07_c096_lora_c094_w10.png",
+      "image_info": {
+        "filename": "heldout07_c096_lora_c094_w10_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "heldout07_c096_lora_c094_w12": {
+      "prompt_id": "b9b97730-ca3a-4927-b304-8a0909d4d05c",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/heldout07_c096_lora_c094_w12.png",
+      "image_info": {
+        "filename": "heldout07_c096_lora_c094_w12_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "heldout07_c096_lora_c094_w14": {
+      "prompt_id": "cfe60ceb-5271-4d6a-9826-4f4e8d3b08b9",
+      "image": "eval/c096_siglip_encoder_lora_generation_gate_20260613/heldout07_c096_lora_c094_w14.png",
+      "image_info": {
+        "filename": "heldout07_c096_lora_c094_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c096_siglip_encoder_lora_generation_gate_20260613",
+        "type": "output"
+      }
+    }
+  },
+  "baseline_candidates": {
+    "crop_pair00": {
+      "blend_species_face": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair00_blend_species_face.png",
+      "c086_hard_negative_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair00_c086_hard_negative_w14.png",
+      "c087_expanded_crop_positive_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair00_c087_expanded_crop_positive_w14.png"
+    },
+    "crop_pair01": {
+      "blend_species_face": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair01_blend_species_face.png",
+      "c086_hard_negative_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair01_c086_hard_negative_w14.png",
+      "c087_expanded_crop_positive_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair01_c087_expanded_crop_positive_w14.png"
+    },
+    "crop_pair02": {
+      "blend_species_face": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair02_blend_species_face.png",
+      "c086_hard_negative_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair02_c086_hard_negative_w14.png",
+      "c087_expanded_crop_positive_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair02_c087_expanded_crop_positive_w14.png"
+    },
+    "crop_pair03": {
+      "blend_species_face": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair03_blend_species_face.png",
+      "c086_hard_negative_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair03_c086_hard_negative_w14.png",
+      "c087_expanded_crop_positive_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair03_c087_expanded_crop_positive_w14.png"
+    },
+    "crop_pair04": {
+      "blend_species_face": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair04_blend_species_face.png",
+      "c086_hard_negative_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair04_c086_hard_negative_w14.png",
+      "c087_expanded_crop_positive_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair04_c087_expanded_crop_positive_w14.png"
+    },
+    "crop_pair05": {
+      "blend_species_face": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair05_blend_species_face.png",
+      "c086_hard_negative_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair05_c086_hard_negative_w14.png",
+      "c087_expanded_crop_positive_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair05_c087_expanded_crop_positive_w14.png"
+    },
+    "crop_pair06": {
+      "blend_species_face": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair06_blend_species_face.png",
+      "c086_hard_negative_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair06_c086_hard_negative_w14.png",
+      "c087_expanded_crop_positive_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair06_c087_expanded_crop_positive_w14.png"
+    },
+    "crop_pair07": {
+      "blend_species_face": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair07_blend_species_face.png",
+      "c086_hard_negative_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair07_c086_hard_negative_w14.png",
+      "c087_expanded_crop_positive_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair07_c087_expanded_crop_positive_w14.png"
+    },
+    "crop_pair08": {
+      "blend_species_face": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair08_blend_species_face.png",
+      "c086_hard_negative_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair08_c086_hard_negative_w14.png",
+      "c087_expanded_crop_positive_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair08_c087_expanded_crop_positive_w14.png"
+    },
+    "crop_pair09": {
+      "blend_species_face": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair09_blend_species_face.png",
+      "c086_hard_negative_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair09_c086_hard_negative_w14.png",
+      "c087_expanded_crop_positive_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair09_c087_expanded_crop_positive_w14.png"
+    },
+    "heldout07": {
+      "blend_species_face": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/heldout07_blend_species_face.png",
+      "c086_hard_negative_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/heldout07_c086_hard_negative_w14.png",
+      "c087_expanded_crop_positive_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/heldout07_c087_expanded_crop_positive_w14.png"
+    }
+  }
+}

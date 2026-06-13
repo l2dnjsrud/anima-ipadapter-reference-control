@@ -129,6 +129,7 @@ def adapter_prompt(
         "inputs": {
             "image": ["1", 0],
             "siglip_model_id": "google/siglip2-base-patch16-512",
+            "encoder_lora_name": variant.encoder_lora or "none",
             "include_shallow": True,
         },
     }

@@ -3773,3 +3773,177 @@ gate를 통과할 만큼 충분한가"에는 no이다. 다음 루프는 adapter-
 - `eval/c095_siglip_feature_bridge_generation_gate_20260613/visual_audit.json`
 - `eval/c095_siglip_feature_bridge_generation_gate_20260613/report.md`
 - `eval/c095_siglip_feature_bridge_generation_gate_20260613/cleanup_port_8121.txt`
+
+## 2026-06-13 C096 SigLIP encoder-LoRA adaptation loop
+
+### 왜 시작했나
+
+C095 feature bridge는 실제 ComfyUI native SigLIP 경로에서 작동했고 heldout07에서는 C094보다
+조금 나아졌지만, 전체 mean uplift는 C094보다 낮았다. 따라서 C096은 adapter 뒤쪽 bridge를
+반복하지 않고 SigLIP vision encoder 자체의 마지막 attention projection에 작은 LoRA를 붙여
+reference feature 공간을 움직일 수 있는지 확인했다.
+
+핵심 질문은 다음이었다.
+
+1. frozen SigLIP2 feature가 frog/chibi/mascot/non-human silhouette를 잃고 있다면, encoder-side
+   LoRA가 이 병목을 완화할 수 있는가?
+2. C094 checkpoint를 그대로 쓰되 `AnimaSigLIPEncodeImage`에서 encoder LoRA를 선택했을 때
+   C094/C095보다 실제 생성 reference-control이 좋아지는가?
+3. heldout07을 학습에서 제외한 상태로, non-human side-profile cue가 더 살아나는가?
+
+### 데이터셋과 학습 설정
+
+- train manifest: `training/manifests/c093_siglip_qwen_target_anti_collapse_20260613.jsonl`
+- image root: `.tmp/c093_anti_collapse_root`
+- train rows: `crop_pair00` - `crop_pair09`, 총 `10`
+- explicit negative rows: `10`
+- heldout rows used: `[]`
+- output checkpoint: `checkpoints/anima_siglip_encoder_lora_c096_rank8_0096_20260613.safetensors`
+
+checkpoint는 promotion되지 않은 encoder-LoRA 실험 artifact라 `.gitignore`에서
+`checkpoints/*encoder_lora*.safetensors`로 local-only 처리했다.
+
+학습 설정:
+
+- steps: `96`
+- rank: `8`
+- alpha: `8.0`
+- lr: `1e-4`
+- margin: `0.08`
+- target layers: 마지막 `2`개 SigLIP vision layer의 `q_proj`, `v_proj`, `out_proj`
+
+학습 결과:
+
+- first loss: `0.0183230527`
+- final loss: `0.0074154139`
+- mean loss: `0.0457743969`
+- mean positive similarity: `0.8003282845`
+- mean negative similarity: `0.7492882957`
+- finite loss: `true`
+- checkpoint loadable: `true`
+
+### 개발한 것
+
+- `siglip_encoder_lora.py`
+  - `LoRALinear`, encoder LoRA 적용/저장/로드/검증 로직을 추가했다.
+  - 저장된 LoRA key가 `vision_model.encoder...`이고 runtime 모델이 `encoder...` 구조여도 로드되도록
+    module name 정규화를 추가했다.
+- `native_siglip.py`
+  - `AnimaSigLIPEncodeImage`에 `encoder_lora_name` selector를 추가했다.
+  - ComfyUI `siglip_lora` model folder를 등록하고 기본값은 `none`으로 유지했다.
+- `training/siglip_encoder_lora_contrastive.py`
+  - frozen SigLIP base + LoRA parameter만 학습하는 contrastive trainer를 추가했다.
+- `tools/c096_siglip_encoder_lora_eval.py`
+  - C094/C095와 C096 encoder-LoRA variants를 같은 hard-shape generation gate에서 비교한다.
+- tests
+  - `tests/test_siglip_encoder_lora.py`
+  - `tests/test_native_siglip.py`
+  - `tests/test_siglip_auto_caption_eval.py`
+  - `tests/test_c096_siglip_encoder_lora_eval.py`
+
+### 런타임에서 고친 버그
+
+첫 학습 실행은 `SiglipVisionModel`을 CUDA로 옮긴 뒤 LoRA wrapper를 삽입하면서 새 LoRA parameter가
+CPU/float32에 남아 실패했다. 그래서 `LoRALinear`가 base linear의 `device`와 `dtype`을 그대로
+따르도록 수정했고, 회귀 테스트를 추가했다.
+
+ComfyUI generation gate에서는 저장 key와 runtime 모델 구조 차이도 발견했다. 학습 쪽은
+`vision_model.encoder...` 경로로 저장했지만, ComfyUI는 `SiglipVisionModel`을 직접 로드해서
+`encoder...` 경로를 가진다. `apply_saved_siglip_lora`에서 저장 key는 그대로 쓰고 실제 적용
+module name만 현재 모델 구조에 맞춰 prefix를 제거/추가하도록 고쳤다.
+
+### 생성 gate
+
+isolated ComfyUI 서버는 port `8122`에서 실행했다. 처음에는 background shell 종료로 서버가 같이
+내려가 connection refused가 났고, 이후 `setsid` 방식으로 재기동했다. 그 다음 위의 module-name
+버그를 수정하고 서버를 재시작한 뒤 77개 이미지를 모두 생성했다.
+
+비교 variant:
+
+- `no_ip`
+- `c094_shape_supervised_w14`
+- `c095_feature_bridge_w14`
+- `c096_lora_c094_w08`
+- `c096_lora_c094_w10`
+- `c096_lora_c094_w12`
+- `c096_lora_c094_w14`
+
+산출물:
+
+- output: `eval/c096_siglip_encoder_lora_generation_gate_20260613/`
+- contact sheet: `eval/c096_siglip_encoder_lora_generation_gate_20260613/contact_sheet_hard_shape.jpg`
+- metric rollup: `eval/c096_siglip_encoder_lora_generation_gate_20260613/metric_rollup.json`
+- pixel audit: `eval/c096_siglip_encoder_lora_generation_gate_20260613/pixel_nonblank_audit.json`
+- visual audit: `eval/c096_siglip_encoder_lora_generation_gate_20260613/visual_audit.md`
+- report: `eval/c096_siglip_encoder_lora_generation_gate_20260613/report.md`
+- cleanup receipt: `eval/c096_siglip_encoder_lora_generation_gate_20260613/cleanup_port_8122.txt`
+
+검증:
+
+- samples: `11`
+- variants: `7`
+- generated PNG: `77`
+- C096 blank-like rows: `[]`
+- contact sheet size: `2334x3504`
+- port `8122` cleanup: `port_8122_closed_or_refused`
+
+수치:
+
+| variant | mean uplift | improved rate | cases |
+|---|---:|---:|---:|
+| `c094_shape_supervised_w14` | `0.0878832954` | `0.9090909091` | `11` |
+| `c095_feature_bridge_w14` | `0.0865223347` | `0.9090909091` | `11` |
+| `c096_lora_c094_w08` | `0.0576397215` | `0.7272727273` | `11` |
+| `c096_lora_c094_w10` | `0.0786039762` | `0.8181818182` | `11` |
+| `c096_lora_c094_w12` | `0.0830830928` | `0.9090909091` | `11` |
+| `c096_lora_c094_w14` | `0.0880849553` | `0.9090909091` | `11` |
+| `c087_expanded_crop_positive_w14` | `0.1089544056` | `0.9090909091` | `11` |
+
+heldout07:
+
+- best C096 uplift: `0.0056569861`
+- C094 w14 uplift: `0.0085623513`
+- C095 w14 uplift: `0.0115417034`
+
+### 판단
+
+decision은 `c096_encoder_lora_not_promoted_requires_data_expansion_or_deeper_encoder_training`이다.
+
+C096은 기능적으로는 성공했다. encoder-LoRA checkpoint가 ComfyUI selector에 보였고, native SigLIP
+encoding 경로에서 실제로 적용되어 77개 이미지를 끝까지 생성했다. blank-like C096 row도 없다.
+
+하지만 품질은 승격할 수 없다. C096 w14 mean uplift는 C094/C095와 거의 동률이고 Qwen baseline과
+격차가 여전히 크다. 가장 중요한 heldout07에서는 오히려 C094/C095보다 낮다. Contact sheet에서도
+frog/chibi/mascot/non-human reference가 작은 몸, 큰 눈, frog head, monster jaw 같은 구조를 보존하지
+못하고 green adult humanoid face/bust template으로 수렴한다.
+
+따라서 다음 루프는 같은 10-row shallow encoder LoRA를 반복하지 않는다. 더 큰 reviewed hard-shape
+pair를 만들거나, SigLIP encoder를 더 깊게 조정하는 stronger encoder/feature adaptation으로 넘어간다.
+
+### c096 관련 파일
+
+- `docs/c096_siglip_encoder_lora_plan_ko.md`
+- `siglip_encoder_lora.py`
+- `native_siglip.py`
+- `training/siglip_encoder_lora_contrastive.py`
+- `tools/c096_siglip_encoder_lora_eval.py`
+- `tools/siglip_auto_caption_types.py`
+- `tools/siglip_auto_caption_eval.py`
+- `tools/c092_siglip_qwen_target_eval.py`
+- `tests/test_siglip_encoder_lora.py`
+- `tests/test_native_siglip.py`
+- `tests/test_siglip_auto_caption_eval.py`
+- `tests/test_c096_siglip_encoder_lora_eval.py`
+- `eval/c096_siglip_encoder_lora_training_20260613/train_stdout.txt`
+- `eval/c096_siglip_encoder_lora_training_20260613/training_summary.json`
+- `eval/c096_siglip_encoder_lora_training_20260613/summary.json`
+- `eval/c096_siglip_encoder_lora_training_20260613/report.md`
+- `eval/c096_siglip_encoder_lora_generation_gate_20260613/summary.json`
+- `eval/c096_siglip_encoder_lora_generation_gate_20260613/contact_sheet_hard_shape.jpg`
+- `eval/c096_siglip_encoder_lora_generation_gate_20260613/shape_metrics.json`
+- `eval/c096_siglip_encoder_lora_generation_gate_20260613/metric_rollup.json`
+- `eval/c096_siglip_encoder_lora_generation_gate_20260613/pixel_nonblank_audit.json`
+- `eval/c096_siglip_encoder_lora_generation_gate_20260613/visual_audit.md`
+- `eval/c096_siglip_encoder_lora_generation_gate_20260613/visual_audit.json`
+- `eval/c096_siglip_encoder_lora_generation_gate_20260613/report.md`
+- `eval/c096_siglip_encoder_lora_generation_gate_20260613/cleanup_port_8122.txt`

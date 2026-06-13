@@ -10,10 +10,12 @@ from PIL import Image
 
 try:
     from .native_siglip_runtime import ModelPatcherLike, apply_siglip_adapter
+    from .siglip_encoder_lora import apply_saved_siglip_lora
     from .siglip_checkpoint import SigLIPCheckpointError, load_siglip_adapter
     from .siglip_model import IPAdapterSigLIP, SigLIPFeatures
 except ImportError:
     from native_siglip_runtime import ModelPatcherLike, apply_siglip_adapter
+    from siglip_encoder_lora import apply_saved_siglip_lora
     from siglip_checkpoint import SigLIPCheckpointError, load_siglip_adapter
     from siglip_model import IPAdapterSigLIP, SigLIPFeatures
 
@@ -25,6 +27,7 @@ DEFAULT_COMFY_MODELS_ROOT: Final[Path] = Path(
 DEFAULT_SIGLIP_ADAPTER_NAME: Final[str] = (
     "anima_siglip_ip_adapter_c089_shape_pe_teacher_0032_20260613.safetensors"
 )
+NO_SIGLIP_LORA_NAME: Final[str] = "none"
 
 try:
     import folder_paths
@@ -40,9 +43,17 @@ def _ensure_model_folders() -> None:
             [str(Path(folder_paths.models_dir) / "ipadapter")],
             folder_paths.supported_pt_extensions,
         )
+    if "siglip_lora" not in folder_paths.folder_names_and_paths:
+        folder_paths.folder_names_and_paths["siglip_lora"] = (
+            [str(Path(folder_paths.models_dir) / "siglip_lora")],
+            folder_paths.supported_pt_extensions,
+        )
     folder = DEFAULT_COMFY_MODELS_ROOT / "ipadapter"
     if folder.exists():
         folder_paths.add_model_folder_path("ipadapter", str(folder), is_default=True)
+    lora_folder = DEFAULT_COMFY_MODELS_ROOT / "siglip_lora"
+    if lora_folder.exists():
+        folder_paths.add_model_folder_path("siglip_lora", str(lora_folder), is_default=True)
 
 
 def _model_names(folder_name: str, preferred_name: str) -> list[str]:
@@ -53,6 +64,11 @@ def _model_names(folder_name: str, preferred_name: str) -> list[str]:
     if preferred_name in names:
         return [preferred_name, *[name for name in names if name != preferred_name]]
     return names or [preferred_name]
+
+
+def _optional_model_names(folder_name: str) -> list[str]:
+    names = _model_names(folder_name, NO_SIGLIP_LORA_NAME)
+    return [NO_SIGLIP_LORA_NAME, *[name for name in names if name != NO_SIGLIP_LORA_NAME]]
 
 
 def _model_path(folder_name: str, model_name: str) -> Path:
@@ -92,6 +108,7 @@ class AnimaSigLIPEncodeImage:
             "required": {
                 "image": ("IMAGE",),
                 "siglip_model_id": ("STRING", {"default": DEFAULT_SIGLIP_MODEL_ID}),
+                "encoder_lora_name": (_optional_model_names("siglip_lora"),),
                 "include_shallow": ("BOOLEAN", {"default": True}),
             }
         }
@@ -102,9 +119,13 @@ class AnimaSigLIPEncodeImage:
     CATEGORY = "anima/ip-adapter"
 
     def encode(
-        self, image: torch.Tensor, siglip_model_id: str, include_shallow: bool
+        self,
+        image: torch.Tensor,
+        siglip_model_id: str,
+        encoder_lora_name: str,
+        include_shallow: bool,
     ) -> tuple[SigLIPFeatures]:
-        model, processor, device, dtype = self._vision_stack(siglip_model_id)
+        model, processor, device, dtype = self._vision_stack(siglip_model_id, encoder_lora_name)
         pil_images = [_pad_to_square(img) for img in _comfy_images_to_pil(image)]
         inputs = processor(images=pil_images, return_tensors="pt", do_resize=False)
         inputs = {
@@ -129,8 +150,9 @@ class AnimaSigLIPEncodeImage:
             )
         return (SigLIPFeatures(deep=deep, shallow=shallow),)
 
-    def _vision_stack(self, model_id: str):
-        cache_key = "_siglip_" + model_id.replace("/", "_")
+    def _vision_stack(self, model_id: str, encoder_lora_name: str):
+        lora_key = encoder_lora_name.replace("/", "_").replace(".", "_")
+        cache_key = "_siglip_" + model_id.replace("/", "_") + "_" + lora_key
         if not hasattr(self, cache_key):
             from transformers import AutoImageProcessor, SiglipVisionModel
 
@@ -139,6 +161,8 @@ class AnimaSigLIPEncodeImage:
             model = SiglipVisionModel.from_pretrained(
                 model_id, torch_dtype=dtype, trust_remote_code=True
             ).to(device)
+            if encoder_lora_name != NO_SIGLIP_LORA_NAME:
+                apply_saved_siglip_lora(model, _model_path("siglip_lora", encoder_lora_name))
             model.eval()
             processor = AutoImageProcessor.from_pretrained(model_id)
             setattr(self, cache_key, (model, processor, device, dtype))

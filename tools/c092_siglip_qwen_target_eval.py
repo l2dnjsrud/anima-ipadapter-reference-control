@@ -161,7 +161,15 @@ def _write_summary(
         "probe_manifest": str(probe_manifest_path),
         "prompt_manifest": str(config.out_dir / "auto_reference_prompts.jsonl"),
         "contact_sheet": str(config.out_dir / "contact_sheet_hard_shape.jpg"),
-        "variants": [{"label": item.label, "checkpoint": item.checkpoint, "weight": item.weight} for item in variants],
+        "variants": [
+            {
+                "label": item.label,
+                "checkpoint": item.checkpoint,
+                "weight": item.weight,
+                "encoder_lora": item.encoder_lora,
+            }
+            for item in variants
+        ],
         "samples": [_sample_json(sample, config.data_root) for sample in samples],
         "results": results,
         "baseline_candidates": {sample: dict(paths) for sample, paths in sorted(baselines.items())},
