@@ -125,6 +125,15 @@ def test_siglip_loader_uses_ipadapter_model_selector() -> None:
     assert "ipadapter_path" not in inputs
 
 
+def test_siglip_loader_prefers_c089_shape_checkpoint() -> None:
+    inputs = AnimaSigLIPIPAdapterLoader.INPUT_TYPES()["required"]
+    names = inputs["ipadapter_name"][0]
+
+    assert names[0] == (
+        "anima_siglip_ip_adapter_c089_shape_pe_teacher_0032_20260613.safetensors"
+    )
+
+
 def test_siglip_loader_rejects_pe_core_selected_model(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:

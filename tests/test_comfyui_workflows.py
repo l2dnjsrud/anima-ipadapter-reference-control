@@ -165,7 +165,7 @@ def test_siglip_native_workflow_uses_selector_name_not_raw_path() -> None:
     values_text = "\n".join(str(value) for value in loader["widgets_values"])
 
     assert loader["widgets_values"] == [
-        "anima_siglip_ip_adapter_pilot_20260610.safetensors"
+        "anima_siglip_ip_adapter_c089_shape_pe_teacher_0032_20260613.safetensors"
     ]
     assert "/home/wktwin/" not in values_text
     assert "/data/ai/" not in values_text

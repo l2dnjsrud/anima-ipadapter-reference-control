@@ -22,7 +22,9 @@ DEFAULT_SIGLIP_MODEL_ID = "google/siglip2-base-patch16-512"
 DEFAULT_COMFY_MODELS_ROOT: Final[Path] = Path(
     os.environ.get("ANIMA_COMFY_MODELS_ROOT", "/data/ai/models")
 )
-DEFAULT_SIGLIP_ADAPTER_NAME: Final[str] = "anima_siglip_ip_adapter.safetensors"
+DEFAULT_SIGLIP_ADAPTER_NAME: Final[str] = (
+    "anima_siglip_ip_adapter_c089_shape_pe_teacher_0032_20260613.safetensors"
+)
 
 try:
     import folder_paths

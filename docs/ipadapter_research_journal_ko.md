@@ -2771,3 +2771,132 @@ report artifacts:
 c089 decision은 `proceed_to_siglip_generation_gate`이다. 이는 최종 품질 통과가 아니다. 다만 PE teacher와 PE token retrieval 신호가 finite loss로 작동했고, loadable SigLIP checkpoint가 만들어졌으므로 다음 루프에서 ComfyUI hard-shape generation gate를 돌릴 자격은 생겼다.
 
 다음 단계는 c089 checkpoint를 ComfyUI 모델 선택지에 노출하고, c087/c088 hard-shape references와 기존 best baseline을 비교하는 contact-sheet generation gate다. 여기서 frog/yokai/chibi silhouette과 non-human profile이 실제 이미지 결과에 반영되는지 봐야 한다.
+
+## 23. c090 SigLIP Hard-Shape Generation Gate
+
+c089는 loadable SigLIP checkpoint를 만들었지만, 그 자체로 생성 품질이 검증된 것은 아니었다. c090의 목적은 c089 checkpoint를 native SigLIP ComfyUI node에 실제 모델 selector로 노출하고, c087/c088 hard-shape reference set에서 생성 결과가 prior SigLIP보다 좋아졌는지 보는 것이었다.
+
+### 검증 목표
+
+- c089 checkpoint를 raw path 입력이 아니라 ComfyUI `ipadapter_name` selector로 선택 가능하게 만든다.
+- `/data/ai/models/ipadapter`가 root-owned라 직접 복사하지 않고, `tools/comfyui_extra_model_paths.yaml`로 repo-local `checkpoints/`를 노출한다.
+- isolated ComfyUI API port `8116`에서 실제 native SigLIP workflow를 실행한다.
+- c088 hard-shape probe set으로 `no_ip`, prior SigLIP pilot, c089 weight 1.0/1.4를 생성하고, 기존 QwenVL hard-shape baseline 이미지를 contact sheet에 붙여 비교한다.
+- 생성 결과가 low-variance/collapse를 만들면 숨기지 않고 품질 실패 신호로 기록한다.
+
+### 사용 데이터와 모델
+
+- probe manifest: `eval/c088_shape_silhouette_feature_probe_20260613/probe_manifest.jsonl`
+- sample count: `11`
+  - c087 crop-pair hard-shape rows: `10`
+  - heldout07 non-human side-profile hard case: `1`
+- heldout training rows used: `0`
+- c089 checkpoint: `checkpoints/anima_siglip_ip_adapter_c089_shape_pe_teacher_0032_20260613.safetensors`
+- prior SigLIP checkpoint: `anima_siglip_ip_adapter_pilot_20260610.safetensors`
+- ComfyUI exposure: `tools/comfyui_extra_model_paths.yaml`의 `repo_ipadapter: checkpoints`
+- `/data/ai/models/ipadapter` direct copy: 하지 않음
+
+### 개발한 도구와 변경
+
+- `native_siglip.py`: 기본 SigLIP adapter selector를 c089 checkpoint로 변경
+- `workflows/anima_ipadapter_siglip_native_reference.json`: UI workflow loader widget을 c089 selector name으로 변경
+- `tools/c090_siglip_hard_shape_data.py`: c088 probe manifest에서 c090 prompt/reference manifest와 baseline candidate mapping 생성
+- `tools/c090_siglip_hard_shape_eval.py`: isolated ComfyUI API runner, summary/contact sheet/shape metrics/pixel audit/report 생성
+- `tools/c090_siglip_hard_shape_report.py`: baseline 포함 contact sheet와 edge/projection/silhouette rollup 작성
+- `tests/test_c090_siglip_hard_shape_gate.py`
+- `tests/test_c090_siglip_hard_shape_eval.py`
+- plan doc: `docs/c090_siglip_hard_shape_generation_gate_plan_ko.md`
+
+### 실행한 명령 표면
+
+ComfyUI readiness:
+
+```sh
+/data/ai/comfyui02/.venv/bin/python3 /data/ai/comfyui02/main.py \
+  --listen 127.0.0.1 \
+  --port 8116 \
+  --base-directory /home/wktwin/anima-ipadapter-reference-control/.tmp/comfy_siglip_base \
+  --extra-model-paths-config /home/wktwin/anima-ipadapter-reference-control/tools/comfyui_extra_model_paths.yaml \
+  --input-directory /home/wktwin/anima-ipadapter-reference-control/.tmp/comfy_siglip_base/input \
+  --output-directory /home/wktwin/anima-ipadapter-reference-control/.tmp/comfy_siglip_base/output \
+  --temp-directory /home/wktwin/anima-ipadapter-reference-control/.tmp/comfy_siglip_base/temp \
+  --user-directory /home/wktwin/anima-ipadapter-reference-control/.tmp/comfy_siglip_base/user \
+  --disable-auto-launch \
+  --disable-manager-ui \
+  --log-stdout
+```
+
+generation gate:
+
+```sh
+PYTHONPATH=. /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python \
+  tools/c090_siglip_hard_shape_eval.py \
+  eval/c088_shape_silhouette_feature_probe_20260613/probe_manifest.jsonl \
+  --out-dir eval/c090_siglip_hard_shape_generation_gate_20260613 \
+  --data-root .tmp/c090_siglip_hard_shape_root \
+  --comfy-input .tmp/comfy_siglip_base/input \
+  --comfy-output .tmp/comfy_siglip_base/output \
+  --base-url http://127.0.0.1:8116
+```
+
+cleanup:
+
+```sh
+curl http://127.0.0.1:8116/object_info
+ss -ltnp 'sport = :8116'
+```
+
+cleanup receipt는 `eval/c090_siglip_hard_shape_generation_gate_20260613/cleanup_port_8116.txt`에 `port_8116_closed_or_refused`로 남겼다.
+
+### 결과
+
+- readiness: `object_info_model_selector_visible = true`
+- object_info first choice: `anima_siglip_ip_adapter_c089_shape_pe_teacher_0032_20260613.safetensors`
+- generated PNG: `44`
+- contact sheet: `eval/c090_siglip_hard_shape_generation_gate_20260613/contact_sheet_hard_shape.jpg`
+- summary: `eval/c090_siglip_hard_shape_generation_gate_20260613/summary.json`
+- pixel audit: `eval/c090_siglip_hard_shape_generation_gate_20260613/pixel_nonblank_audit.json`
+- visual audit: `eval/c090_siglip_hard_shape_generation_gate_20260613/visual_audit.md`
+- report: `eval/c090_siglip_hard_shape_generation_gate_20260613/report.md`
+
+pixel audit는 `low_variance_count = 2`를 기록했다. 이는 infrastructure blank가 아니라, `crop_pair00_no_ip`와 `crop_pair00_c089_shape_w10`이 거의 단색에 가까운 collapsed output으로 나온 품질 실패 신호다.
+
+shape metric rollup:
+
+| variant | mean uplift | improved rate |
+|---|---:|---:|
+| `siglip_pilot_w14` | `-0.0662400384` | `0.1818181818` |
+| `c089_shape_w10` | `0.0027134620` | `0.5454545455` |
+| `c089_shape_w14` | `0.0249214356` | `0.7272727273` |
+| `c086_hard_negative_w14` | `0.0501749091` | `0.7272727273` |
+| `c087_expanded_crop_positive_w14` | `0.1089544056` | `0.9090909091` |
+
+metric decision은 `c089_improves_prior_siglip_but_not_qwen_baseline`이다. visual audit decision은 `c089_partial_siglip_improvement_not_promoted_escalate_encoder_side`이다.
+
+### 판단
+
+c089는 prior SigLIP pilot보다 분명 나아졌다. 특히 `c089_shape_w14`는 여러 frog/yokai row에서 완전한 prompt drift 대신 green character silhouette를 만들고, prior SigLIP의 과도한 근접 얼굴/흐림보다 안정적이다.
+
+하지만 promotion하기에는 부족하다. c089는 reference의 chibi/non-human body, frog mascot 비율, side-profile monster identity를 안정적으로 보존하지 못하고, QwenVL hard-shape baseline인 `c087_expanded_crop_positive_w14`에 shape metric과 visual audit 모두에서 밀린다. heldout07에서도 side-profile monster가 아니라 다른 dark fantasy character로 바뀐다.
+
+따라서 frozen SigLIP adapter tuning만 더 반복하는 것은 우선순위가 낮다. 다음 루프는 stronger encoder-side checkpoint 또는 feature adaptation으로 가야 한다. 구체적으로는 SigLIP/QwenVL 앞단 feature가 hard-shape/비인간 실루엣을 잃지 않도록 supervised shape objective를 붙이거나, PE/edge/projection/silhouette 신호를 encoder-side에 distill하는 방향이 필요하다.
+
+### c090 관련 파일
+
+- `docs/c090_siglip_hard_shape_generation_gate_plan_ko.md`
+- `native_siglip.py`
+- `workflows/anima_ipadapter_siglip_native_reference.json`
+- `tools/c090_siglip_hard_shape_data.py`
+- `tools/c090_siglip_hard_shape_eval.py`
+- `tools/c090_siglip_hard_shape_report.py`
+- `tests/test_c090_siglip_hard_shape_gate.py`
+- `tests/test_c090_siglip_hard_shape_eval.py`
+- `eval/c090_siglip_hard_shape_generation_gate_20260613/readiness.json`
+- `eval/c090_siglip_hard_shape_generation_gate_20260613/summary.json`
+- `eval/c090_siglip_hard_shape_generation_gate_20260613/contact_sheet_hard_shape.jpg`
+- `eval/c090_siglip_hard_shape_generation_gate_20260613/shape_metrics.json`
+- `eval/c090_siglip_hard_shape_generation_gate_20260613/metric_rollup.json`
+- `eval/c090_siglip_hard_shape_generation_gate_20260613/pixel_nonblank_audit.json`
+- `eval/c090_siglip_hard_shape_generation_gate_20260613/visual_audit.md`
+- `eval/c090_siglip_hard_shape_generation_gate_20260613/visual_audit.json`
+- `eval/c090_siglip_hard_shape_generation_gate_20260613/report.md`

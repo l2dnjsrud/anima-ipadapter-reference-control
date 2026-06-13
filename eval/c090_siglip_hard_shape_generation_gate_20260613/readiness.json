@@ -1,0 +1,21 @@
+{
+  "experiment": "c090_siglip_hard_shape_generation_gate",
+  "c089_checkpoint": "anima_siglip_ip_adapter_c089_shape_pe_teacher_0032_20260613.safetensors",
+  "source_checkpoint": "checkpoints/anima_siglip_ip_adapter_c089_shape_pe_teacher_0032_20260613.safetensors",
+  "source_exists": true,
+  "source_not_moved": true,
+  "destination_checkpoint": "/data/ai/models/ipadapter/anima_siglip_ip_adapter_c089_shape_pe_teacher_0032_20260613.safetensors",
+  "destination_exists": false,
+  "destination_writable": false,
+  "exposure_method": "tools/comfyui_extra_model_paths.yaml maps repo checkpoints as ipadapter",
+  "object_info_model_selector_visible": true,
+  "object_info_first_choice": "anima_siglip_ip_adapter_c089_shape_pe_teacher_0032_20260613.safetensors",
+  "object_info_paths": {
+    "loader": "eval/c090_siglip_hard_shape_generation_gate_20260613/object_info_AnimaSigLIPIPAdapterLoader.json",
+    "encode": "eval/c090_siglip_hard_shape_generation_gate_20260613/object_info_AnimaSigLIPEncodeImage.json",
+    "apply": "eval/c090_siglip_hard_shape_generation_gate_20260613/object_info_AnimaSigLIPIPAdapterApply.json",
+    "qwenvl_loader": "eval/c090_siglip_hard_shape_generation_gate_20260613/object_info_AnimaQwenVLIPAdapterLoader.json"
+  },
+  "plan_path": "docs/c090_siglip_hard_shape_generation_gate_plan_ko.md",
+  "server": "http://127.0.0.1:8116"
+}

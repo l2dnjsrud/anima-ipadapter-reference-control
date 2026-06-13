@@ -69,7 +69,7 @@
         "Node name for S&R": "AnimaSigLIPIPAdapterLoader"
       },
       "widgets_values": [
-        "anima_siglip_ip_adapter_pilot_20260610.safetensors"
+        "anima_siglip_ip_adapter_c089_shape_pe_teacher_0032_20260613.safetensors"
       ]
     },
     {
