@@ -1,0 +1,22 @@
+{
+  "decision": "c094_shape_supervision_exhausted_requires_encoder_training",
+  "promoted": false,
+  "contact_sheet": "eval/c094_siglip_shape_supervised_anti_collapse_generation_gate_20260613/contact_sheet_hard_shape.jpg",
+  "generated_png_count": 121,
+  "samples": 11,
+  "variants": 11,
+  "best_c094_variant": "c094_shape_supervised_w14",
+  "best_c094_mean_uplift": 0.08788329540499396,
+  "c093_w14_mean_uplift": 0.08637357797831002,
+  "c094_over_c093": 0.0015097174266839386,
+  "qwen_target_baseline_mean_uplift": 0.10895440559772807,
+  "heldout07_best_c094_uplift": 0.008562351254518985,
+  "c094_blank_like_rows": [],
+  "visual_failure_modes": [
+    "frog/chibi/mascot references collapse into green human head or bust",
+    "non-human body proportions and simplified silhouettes are not preserved",
+    "heldout monster side-profile loses jaw, red-eye, and species-specific shape",
+    "diversity does not improve over c093 despite a small metric gain"
+  ],
+  "next_decision": "move_to_encoder_or_feature_bridge_adaptation_before_more_adapter_only_tuning"
+}
