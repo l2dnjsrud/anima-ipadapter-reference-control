@@ -1,0 +1,18 @@
+{
+  "source": "C097 hard-shape expanded pairs + C106 QwenVL teacher scores",
+  "source_manifest": "training/manifests/c097_siglip_hard_shape_expanded_pairs_20260613.jsonl",
+  "score_path": "eval/c106_qwen_teacher_feature_distillation_20260613/qwenvl_pair_scores.json",
+  "image_root": ".tmp/c097_siglip_hard_shape_expanded_root",
+  "output_manifest": "training/manifests/c107_qwen_teacher_distillation_20260613.jsonl",
+  "rows_written": 56,
+  "explicit_negative_rows": 56,
+  "heldout_rows_used": 0,
+  "heldout_rows_rejected": 0,
+  "missing_path_count": 0,
+  "teacher_source": "C106",
+  "c106_teacher_margin": 0.21772855200937813,
+  "teacher_margin_mean": 0.21772855200937816,
+  "teacher_margin_min": 0.14584416151046753,
+  "teacher_margin_max": 0.292982816696167,
+  "decision": "c107_manifest_ready_for_bounded_training"
+}

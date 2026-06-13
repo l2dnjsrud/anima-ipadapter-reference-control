@@ -1,0 +1,157 @@
+{
+  "summary": {
+    "sample_count": 40,
+    "variant_count": 3,
+    "result_count": 120,
+    "png_count": 120,
+    "blank_threshold_pixel_std": 2.0,
+    "blank_count": 0,
+    "min_pixel_std": 35.32143623157872,
+    "max_pixel_std": 105.8038465260646,
+    "variant_labels": [
+      "no_ip",
+      "blend_species_face",
+      "c107_qwen_teacher_w14"
+    ]
+  },
+  "pe": {
+    "rollup": {
+      "blend_species_face": {
+        "train": {
+          "cases": 32,
+          "mean_cosine": 0.8177628647536039,
+          "mean_no_ip_cosine": 0.7550298403948545,
+          "mean_uplift": 0.06273302435874939,
+          "improved_rate": 0.8125
+        },
+        "heldout": {
+          "cases": 8,
+          "mean_cosine": 0.8040817752480507,
+          "mean_no_ip_cosine": 0.7505477964878082,
+          "mean_uplift": 0.05353397876024246,
+          "improved_rate": 0.875
+        },
+        "all": {
+          "cases": 40,
+          "mean_cosine": 0.8150266468524933,
+          "mean_no_ip_cosine": 0.7541334316134453,
+          "mean_uplift": 0.060893215239048004,
+          "improved_rate": 0.825
+        }
+      },
+      "c107_qwen_teacher_w14": {
+        "train": {
+          "cases": 32,
+          "mean_cosine": 0.7838887963443995,
+          "mean_no_ip_cosine": 0.7550298403948545,
+          "mean_uplift": 0.028858955949544907,
+          "improved_rate": 0.71875
+        },
+        "heldout": {
+          "cases": 8,
+          "mean_cosine": 0.7569948360323906,
+          "mean_no_ip_cosine": 0.7505477964878082,
+          "mean_uplift": 0.006447039544582367,
+          "improved_rate": 0.625
+        },
+        "all": {
+          "cases": 40,
+          "mean_cosine": 0.7785100042819977,
+          "mean_no_ip_cosine": 0.7541334316134453,
+          "mean_uplift": 0.0243765726685524,
+          "improved_rate": 0.7
+        }
+      }
+    },
+    "c107_vs_blend": {
+      "train": {
+        "cases": 32,
+        "left_wins": 9,
+        "ties": 0,
+        "mean_left_minus_right": -0.03387406840920448
+      },
+      "heldout": {
+        "cases": 8,
+        "left_wins": 2,
+        "ties": 0,
+        "mean_left_minus_right": -0.047086939215660095
+      },
+      "all": {
+        "cases": 40,
+        "left_wins": 11,
+        "ties": 0,
+        "mean_left_minus_right": -0.036516642570495604
+      }
+    }
+  },
+  "qwenvl": {
+    "rollup": {
+      "blend_species_face": {
+        "train": {
+          "cases": 32,
+          "mean_cosine": 0.8204112350940704,
+          "mean_no_ip_cosine": 0.7742911335080862,
+          "mean_uplift": 0.04612010158598423,
+          "improved_rate": 0.8125
+        },
+        "heldout": {
+          "cases": 8,
+          "mean_cosine": 0.8346929922699928,
+          "mean_no_ip_cosine": 0.8082221150398254,
+          "mean_uplift": 0.02647087723016739,
+          "improved_rate": 0.75
+        },
+        "all": {
+          "cases": 40,
+          "mean_cosine": 0.8232675865292549,
+          "mean_no_ip_cosine": 0.781077329814434,
+          "mean_uplift": 0.042190256714820865,
+          "improved_rate": 0.8
+        }
+      },
+      "c107_qwen_teacher_w14": {
+        "train": {
+          "cases": 32,
+          "mean_cosine": 0.8110024221241474,
+          "mean_no_ip_cosine": 0.7742911335080862,
+          "mean_uplift": 0.03671128861606121,
+          "improved_rate": 0.75
+        },
+        "heldout": {
+          "cases": 8,
+          "mean_cosine": 0.8370825424790382,
+          "mean_no_ip_cosine": 0.8082221150398254,
+          "mean_uplift": 0.0288604274392128,
+          "improved_rate": 0.75
+        },
+        "all": {
+          "cases": 40,
+          "mean_cosine": 0.8162184461951256,
+          "mean_no_ip_cosine": 0.781077329814434,
+          "mean_uplift": 0.03514111638069153,
+          "improved_rate": 0.75
+        }
+      }
+    },
+    "c107_vs_blend": {
+      "train": {
+        "cases": 32,
+        "left_wins": 10,
+        "ties": 0,
+        "mean_left_minus_right": -0.00940881296992302
+      },
+      "heldout": {
+        "cases": 8,
+        "left_wins": 4,
+        "ties": 0,
+        "mean_left_minus_right": 0.00238955020904541
+      },
+      "all": {
+        "cases": 40,
+        "left_wins": 14,
+        "ties": 0,
+        "mean_left_minus_right": -0.007049140334129333
+      }
+    }
+  }
+}

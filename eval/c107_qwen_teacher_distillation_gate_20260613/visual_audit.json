@@ -1,0 +1,28 @@
+{
+  "experiment": "c107_qwen_teacher_distillation_gate_20260613",
+  "audited_at": "2026-06-14 KST",
+  "audited_artifacts": [
+    "contact_sheet_train.jpg",
+    "contact_sheet_heldout.jpg"
+  ],
+  "variants": [
+    "no_ip",
+    "blend_species_face",
+    "c107_qwen_teacher_w14"
+  ],
+  "summary": {
+    "sample_count": 40,
+    "train_count": 32,
+    "heldout_count": 8,
+    "generated_png_count": 120,
+    "blank_count": 0
+  },
+  "visual_findings": [
+    "C107 is visibly active versus no_ip: hair length, dark robe palette, purple aura, red eye, and broad portrait pose often move toward the reference.",
+    "C107 does not clearly beat blend_species_face. In most rows it resembles a slightly shifted version of the blend output rather than a stronger identity lock.",
+    "Heldout rows show useful transfer for broad attributes, but fine identity traits such as age, exact face shape, baldness, beard density, speech-bubble context, and prop fidelity are not consistently stronger than blend_species_face.",
+    "The current best blend remains visually more stable on PE-style identity similarity and overall reference-control reliability."
+  ],
+  "decision": "c107_generation_gate_not_promoted",
+  "next_action": "Keep C107 as evidence that Qwen teacher signal can train a finite/loadable calibrator, but continue with a stronger teacher-target objective or blended/checkpoint-composition route instead of promoting this standalone checkpoint."
+}

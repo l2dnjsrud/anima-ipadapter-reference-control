@@ -35,6 +35,11 @@ eval/qwenvl_*/*.history.json
 eval/qwenvl_*/*.response.json
 eval/qwenvl_*/*.prompt_id
 eval/qwenvl_*/*.png
+eval/c*/*.api_prompt.json
+eval/c*/*.history.json
+eval/c*/*.response.json
+eval/c*/*.prompt_id
+eval/c*/*.png
 eval/siglip_runtime_quality_20260612_*/*.api_prompt.json
 eval/siglip_runtime_quality_20260612_*/*.history.json
 eval/siglip_runtime_quality_20260612_*/*.response.json
