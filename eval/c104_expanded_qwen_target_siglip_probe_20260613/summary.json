@@ -1,0 +1,42 @@
+{
+  "token_score_path": "eval/c104_expanded_qwen_target_siglip_probe_20260613/token_scores.json",
+  "manifest_summary_path": "eval/c104_expanded_qwen_target_siglip_probe_20260613/manifest_summary.json",
+  "rows_evaluated": 56,
+  "explicit_negative_rows": 56,
+  "finite_metrics": true,
+  "c098_best_mean_uplift": 0.0865313863,
+  "qwen_baseline_mean_uplift": 0.1089544056,
+  "pass_threshold": 0.1089544056,
+  "min_pass_auc": 0.85,
+  "best_siglip_metric": "mean_max_token",
+  "best_siglip_margin_or_uplift": 0.01997534079211105,
+  "best_pairwise_auc": 0.7228954081632653,
+  "metric_summaries": {
+    "pooled": {
+      "positive_mean": 0.8272018028157098,
+      "negative_mean": 0.8165916012866157,
+      "separation_margin": 0.010610201529094088,
+      "pairwise_auc": 0.5057397959183674,
+      "midpoint_accuracy": 0.5357142857142857,
+      "decision": "token_feature_not_sufficiently_separated"
+    },
+    "mean_max_token": {
+      "positive_mean": 0.8044263507638659,
+      "negative_mean": 0.7844510099717549,
+      "separation_margin": 0.01997534079211105,
+      "pairwise_auc": 0.7228954081632653,
+      "midpoint_accuracy": 0.6607142857142857,
+      "decision": "token_feature_not_sufficiently_separated"
+    },
+    "topk_token": {
+      "positive_mean": 0.9990838436143739,
+      "negative_mean": 0.9990845939942768,
+      "separation_margin": -7.503799029917602e-07,
+      "pairwise_auc": 0.4768813775510204,
+      "midpoint_accuracy": 0.5089285714285714,
+      "decision": "token_feature_not_sufficiently_separated"
+    }
+  },
+  "decision": "c104_probe_not_enough_signal",
+  "next_branch": "stronger_encoder_checkpoint_or_manual_external_annotation"
+}
