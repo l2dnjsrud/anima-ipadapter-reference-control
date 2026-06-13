@@ -1,0 +1,41 @@
+{
+  "date": "2026-06-13",
+  "decision": "c098_encoder_lora_not_promoted_requires_stronger_encoder_or_better_data",
+  "promoted": false,
+  "contact_sheet": "contact_sheet_hard_shape.jpg",
+  "contact_sheet_size": [
+    2544,
+    3504
+  ],
+  "samples": 11,
+  "variants": 8,
+  "generated_images": 88,
+  "best_c098_variant": "c098_lora_c094_w14",
+  "best_c098_mean_uplift": 0.08653138633881173,
+  "c096_w14_mean_uplift": 0.08808495528618471,
+  "c094_w14_mean_uplift": 0.08788329540499396,
+  "c095_w14_mean_uplift": 0.08652233470140815,
+  "qwen_baseline_mean_uplift": 0.10895440559772807,
+  "heldout07": {
+    "best_c098_uplift": 0.007146254842123723,
+    "c096_w14_uplift": 0.005656986085992688,
+    "c094_w14_uplift": 0.008562351254518985,
+    "c095_w14_uplift": 0.01154170337811311
+  },
+  "blank_like_rows": [
+    "crop_pair00_no_ip"
+  ],
+  "c098_blank_like_rows": [],
+  "known_baseline_blank_like_rows": [
+    "crop_pair00_no_ip"
+  ],
+  "visual_findings": [
+    "The native SigLIP encoder LoRA path works and generates nonblank C098 candidate images.",
+    "C098 weight sweeps mostly change strength and contrast, not reference identity fidelity.",
+    "Frog, chibi, mascot, and yokai references still collapse toward a green adult humanoid face or bust.",
+    "C098 w1.4 is visually close to C094/C095/C096 and does not add a decisive new reference-control signal.",
+    "Heldout07 remains a failure: non-human side-profile and jaw/eye silhouette are not preserved.",
+    "The only blank-like row is the known crop_pair00_no_ip baseline row, not a C098 output."
+  ],
+  "next_decision": "Do not promote C098; move to stronger hard-shape/color reference data or a stronger encoder/objective that directly supervises non-human silhouette, body proportion, and distinctive reference attributes."
+}

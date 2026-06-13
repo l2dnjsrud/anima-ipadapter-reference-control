@@ -4093,3 +4093,188 @@ pass가 아니므로 고퀄 reference-control 목표는 계속 열린다.
 - `training/manifests/c097_siglip_hard_shape_expanded_pairs_20260613.summary.json`
 - `eval/c097_hard_shape_data_expansion_20260613/pair_review_sheet.jpg`
 - `eval/c097_hard_shape_data_expansion_20260613/report.md`
+
+## 2026-06-13 C098 deeper SigLIP encoder-LoRA gate
+
+### 왜 시작했나
+
+C097은 C096의 10-row 병목을 풀기 위해 hard-shape/non-human/mascot/chibi pair를 `56`개로
+확장했고, 각 positive pair마다 다른 shape group negative를 붙였다. C098의 목적은 이 C097 데이터를
+사용해서 C096보다 더 깊은 SigLIP encoder-side LoRA가 실제 reference-control 품질을 올리는지 확인하는
+것이었다.
+
+핵심 질문은 다음이었다.
+
+1. C097 explicit-negative 전체 row를 사용하면 C096보다 강한 encoder-side signal을 만들 수 있는가?
+2. C094 adapter checkpoint에 C098 encoder LoRA를 결합했을 때 C094/C095/C096보다 좋아지는가?
+3. C087 Qwen hard-shape baseline에 가까워질 만큼 non-human silhouette/body proportion 보존이 좋아지는가?
+
+### 데이터와 학습 방식
+
+입력:
+
+- train manifest: `training/manifests/c097_siglip_hard_shape_expanded_pairs_20260613.jsonl`
+- image root: `.tmp/c097_siglip_hard_shape_expanded_root`
+- output checkpoint: `checkpoints/anima_siglip_encoder_lora_c098_rank8_layer4_0224_20260613.safetensors`
+
+학습은 `training/siglip_encoder_lora_contrastive.py`로 진행했다.
+
+```bash
+PYTHONPATH=. /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python \
+  training/siglip_encoder_lora_contrastive.py \
+  --manifest-path training/manifests/c097_siglip_hard_shape_expanded_pairs_20260613.jsonl \
+  --image-root .tmp/c097_siglip_hard_shape_expanded_root \
+  --output-path checkpoints/anima_siglip_encoder_lora_c098_rank8_layer4_0224_20260613.safetensors \
+  --steps 224 \
+  --max-rows 56 \
+  --device cuda:0 \
+  --lr 1e-4 \
+  --seed 20260698 \
+  --rank 8 \
+  --alpha 8.0 \
+  --margin 0.08 \
+  --layer-count 4
+```
+
+결과:
+
+- steps: `224`
+- rows loaded: `56`
+- explicit negative rows: `56`
+- heldout rows: `[]`
+- rank/alpha: `8` / `8.0`
+- layer count: `4`
+- trainable LoRA parameter names: `24`
+- module names: `12`
+- first loss: `0.0304573774`
+- final loss: `0.0023478984`
+- finite loss: `true`
+- checkpoint loadable: `true`
+- checkpoint size: `593808` bytes
+- checkpoint는 local-only 실험 artifact로 git-ignore 상태다.
+
+### 개발한 것
+
+- `tools/c098_siglip_encoder_lora_eval.py`
+  - C096 runner를 확장해서 C098 encoder-LoRA weight sweep을 C094/C095/C096/C087 baseline과 같은
+    contact sheet에서 비교한다.
+  - 비교 variant는 `no_ip`, `c094_shape_supervised_w14`, `c095_feature_bridge_w14`,
+    `c096_lora_c094_w14`, `c098_lora_c094_w08/w10/w12/w14`다.
+  - baseline metric에는 `blend_species_face`, `c086_hard_negative_w14`,
+    `c087_expanded_crop_positive_w14`도 포함한다.
+- `tests/test_c098_siglip_encoder_lora_eval.py`
+  - C098 승격 조건과 blank-output rejection 조건을 검증한다.
+
+### ComfyUI API 생성 gate
+
+isolated ComfyUI 서버는 port `8123`에서 실행했다. `/data/ai/models/siglip_lora`는 권한 문제로 직접
+쓸 수 없었기 때문에, repo-local `.tmp/c098_comfy_models/siglip_lora`를 만들고
+`ANIMA_COMFY_MODELS_ROOT`로 노출했다. custom node는 isolated base의 `custom_nodes`에 repo symlink를
+추가해서 로드했다.
+
+`/object_info`에서 다음을 확인했다.
+
+- `AnimaSigLIPIPAdapterLoader`
+- `AnimaSigLIPEncodeImage`
+- `AnimaSigLIPIPAdapterApply`
+- `encoder_lora_name` choices:
+  - `none`
+  - `anima_siglip_encoder_lora_c096_rank8_0096_20260613.safetensors`
+  - `anima_siglip_encoder_lora_c098_rank8_layer4_0224_20260613.safetensors`
+
+생성 명령:
+
+```bash
+PYTHONPATH=. /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python \
+  tools/c098_siglip_encoder_lora_eval.py \
+  eval/c088_shape_silhouette_feature_probe_20260613/probe_manifest.jsonl \
+  --out-dir eval/c098_siglip_encoder_lora_generation_gate_20260613 \
+  --data-root .tmp/c098_siglip_hard_shape_root \
+  --comfy-input .tmp/comfy_siglip_c098_base/input \
+  --comfy-output .tmp/comfy_siglip_c098_base/output \
+  --base-url http://127.0.0.1:8123
+```
+
+산출물:
+
+- training report: `eval/c098_siglip_encoder_lora_training_20260613/report.md`
+- generation summary: `eval/c098_siglip_encoder_lora_generation_gate_20260613/summary.json`
+- contact sheet: `eval/c098_siglip_encoder_lora_generation_gate_20260613/contact_sheet_hard_shape.jpg`
+- shape metrics: `eval/c098_siglip_encoder_lora_generation_gate_20260613/shape_metrics.json`
+- metric rollup: `eval/c098_siglip_encoder_lora_generation_gate_20260613/metric_rollup.json`
+- pixel audit: `eval/c098_siglip_encoder_lora_generation_gate_20260613/pixel_nonblank_audit.json`
+- visual audit: `eval/c098_siglip_encoder_lora_generation_gate_20260613/visual_audit.md`
+- report: `eval/c098_siglip_encoder_lora_generation_gate_20260613/report.md`
+- cleanup receipt: `eval/c098_siglip_encoder_lora_generation_gate_20260613/cleanup_port_8123.txt`
+
+검증:
+
+- samples: `11`
+- variants: `8`
+- generated PNG: `88`
+- API/history/response JSON: 각 `88`
+- contact sheet size: `2544x3504`
+- C098 blank-like rows: `[]`
+- low-variance / blank-like total count: `1`
+- blank-like row: `crop_pair00_no_ip`
+- port `8123`: cleanup 후 closed/refused
+
+수치:
+
+| variant | mean uplift | improved rate | cases |
+|---|---:|---:|---:|
+| `c087_expanded_crop_positive_w14` | `0.1089544056` | `0.9090909091` | `11` |
+| `c094_shape_supervised_w14` | `0.0878832954` | `0.9090909091` | `11` |
+| `c095_feature_bridge_w14` | `0.0865223347` | `0.9090909091` | `11` |
+| `c096_lora_c094_w14` | `0.0880849553` | `0.9090909091` | `11` |
+| `c098_lora_c094_w08` | `0.0579495762` | `0.7272727273` | `11` |
+| `c098_lora_c094_w10` | `0.0792133194` | `0.8181818182` | `11` |
+| `c098_lora_c094_w12` | `0.0831068631` | `0.9090909091` | `11` |
+| `c098_lora_c094_w14` | `0.0865313863` | `0.9090909091` | `11` |
+
+heldout07:
+
+- best C098 uplift: `0.0071462548`
+- C096 w14 uplift: `0.0056569861`
+- C094 w14 uplift: `0.0085623513`
+- C095 w14 uplift: `0.0115417034`
+
+### 판단
+
+decision은 `c098_encoder_lora_not_promoted_requires_stronger_encoder_or_better_data`이다.
+
+C098은 기능적으로는 성공했다. deeper SigLIP encoder-LoRA checkpoint가 native ComfyUI selector에
+표시되었고, 실제 생성에도 적용되었으며, C098 후보 row에서 blank collapse는 없다. C097 데이터와
+explicit negative 학습도 정상적으로 loss를 낮췄고 checkpoint는 loadable하다.
+
+하지만 품질은 승격할 수 없다. 가장 좋은 `c098_lora_c094_w14` mean uplift는 `0.0865313863`으로
+C096 `0.0880849553`, C094 `0.0878832954`보다 낮고 Qwen hard-shape baseline `0.1089544056`과의
+격차가 크다. heldout07도 C096보다는 조금 높지만 C094/C095보다 낮다.
+
+contact sheet 시각검사에서도 C098은 frog/chibi/mascot/non-human reference의 작은 몸, 큰 눈,
+단순화된 silhouette, side-profile jaw/eye shape를 충분히 보존하지 못한다. w08은 약하고,
+w10-w14는 C094/C095/C096과 거의 같은 green humanoid face/bust 계열로 수렴한다. 즉 C098은
+"encoder LoRA route가 작동하는가"에는 yes지만, "C097 데이터 + layer_count=4만으로 고퀄
+reference-control이 되는가"에는 no다.
+
+다음 루프는 같은 작은 SigLIP encoder-LoRA recipe만 더 반복하지 않는다. 더 강한 hard-shape/color
+reference data를 만들거나, non-human silhouette/body proportion/reference attribute를 직접 겨냥하는
+stronger encoder/objective로 넘어간다.
+
+### c098 관련 파일
+
+- `tools/c098_siglip_encoder_lora_eval.py`
+- `tests/test_c098_siglip_encoder_lora_eval.py`
+- `eval/c098_siglip_encoder_lora_training_20260613/train_stdout.txt`
+- `eval/c098_siglip_encoder_lora_training_20260613/training_summary.json`
+- `eval/c098_siglip_encoder_lora_training_20260613/summary.json`
+- `eval/c098_siglip_encoder_lora_training_20260613/report.md`
+- `eval/c098_siglip_encoder_lora_generation_gate_20260613/summary.json`
+- `eval/c098_siglip_encoder_lora_generation_gate_20260613/contact_sheet_hard_shape.jpg`
+- `eval/c098_siglip_encoder_lora_generation_gate_20260613/shape_metrics.json`
+- `eval/c098_siglip_encoder_lora_generation_gate_20260613/metric_rollup.json`
+- `eval/c098_siglip_encoder_lora_generation_gate_20260613/pixel_nonblank_audit.json`
+- `eval/c098_siglip_encoder_lora_generation_gate_20260613/visual_audit.md`
+- `eval/c098_siglip_encoder_lora_generation_gate_20260613/visual_audit.json`
+- `eval/c098_siglip_encoder_lora_generation_gate_20260613/report.md`
+- `eval/c098_siglip_encoder_lora_generation_gate_20260613/cleanup_port_8123.txt`

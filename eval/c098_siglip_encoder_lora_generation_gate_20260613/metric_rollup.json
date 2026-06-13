@@ -1,0 +1,72 @@
+{
+  "variant_summaries": {
+    "blend_species_face": {
+      "cases": 11,
+      "mean_uplift": -0.04365191457847577,
+      "improved_rate": 0.36363636363636365
+    },
+    "c086_hard_negative_w14": {
+      "cases": 11,
+      "mean_uplift": 0.050174909082205704,
+      "improved_rate": 0.7272727272727273
+    },
+    "c087_expanded_crop_positive_w14": {
+      "cases": 11,
+      "mean_uplift": 0.10895440559772807,
+      "improved_rate": 0.9090909090909091
+    },
+    "c094_shape_supervised_w14": {
+      "cases": 11,
+      "mean_uplift": 0.08788329540499396,
+      "improved_rate": 0.9090909090909091
+    },
+    "c095_feature_bridge_w14": {
+      "cases": 11,
+      "mean_uplift": 0.08652233470140815,
+      "improved_rate": 0.9090909090909091
+    },
+    "c096_lora_c094_w14": {
+      "cases": 11,
+      "mean_uplift": 0.08808495528618471,
+      "improved_rate": 0.9090909090909091
+    },
+    "c098_lora_c094_w08": {
+      "cases": 11,
+      "mean_uplift": 0.05794957620537104,
+      "improved_rate": 0.7272727272727273
+    },
+    "c098_lora_c094_w10": {
+      "cases": 11,
+      "mean_uplift": 0.0792133193630886,
+      "improved_rate": 0.8181818181818182
+    },
+    "c098_lora_c094_w12": {
+      "cases": 11,
+      "mean_uplift": 0.08310686312635324,
+      "improved_rate": 0.9090909090909091
+    },
+    "c098_lora_c094_w14": {
+      "cases": 11,
+      "mean_uplift": 0.08653138633881173,
+      "improved_rate": 0.9090909090909091
+    },
+    "no_ip": {
+      "cases": 11,
+      "mean_uplift": 0.0,
+      "improved_rate": 0.0
+    }
+  },
+  "best_c098_variant": "c098_lora_c094_w14",
+  "best_c096_variant": "c096_lora_c094_w14",
+  "best_c094_variant": "c094_shape_supervised_w14",
+  "best_c095_variant": "c095_feature_bridge_w14",
+  "best_qwen_baseline_variant": "c087_expanded_crop_positive_w14",
+  "heldout07": {
+    "best_c098_uplift": 0.007146254842123723,
+    "c096_w14_uplift": 0.005656986085992688,
+    "c094_w14_uplift": 0.008562351254518985,
+    "c095_w14_uplift": 0.01154170337811311
+  },
+  "c098_blank_like_rows": [],
+  "decision": "c098_encoder_lora_not_promoted_requires_stronger_encoder_or_better_data"
+}
