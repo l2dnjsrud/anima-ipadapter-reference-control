@@ -4278,3 +4278,102 @@ stronger encoder/objective로 넘어간다.
 - `eval/c098_siglip_encoder_lora_generation_gate_20260613/visual_audit.json`
 - `eval/c098_siglip_encoder_lora_generation_gate_20260613/report.md`
 - `eval/c098_siglip_encoder_lora_generation_gate_20260613/cleanup_port_8123.txt`
+
+## 2026-06-13 C099 real-color reference data gate
+
+### 왜 시작했나
+
+C098은 deeper SigLIP encoder-LoRA가 기술적으로 작동한다는 것은 확인했지만, 품질 gate를 통과하지
+못했다. 특히 C097 synthetic hard-shape 데이터를 더 깊은 encoder-LoRA에 넣어도 frog/chibi/mascot
+같은 non-human silhouette와 body proportion이 안정적으로 넘어오지 않았다.
+
+따라서 C099의 목적은 또 다른 C097/C098식 blind training을 반복하는 것이 아니라, 실제 color
+dataset 안에 다음 학습에 쓸 수 있는 real local-color direct-green/non-human positive가 충분한지
+먼저 분리해서 확인하는 것이었다. 이 루프에서는 학습을 실행하지 않았고, ComfyUI 생성도 실행하지
+않았다.
+
+### 데이터와 경계
+
+C099가 본 source는 다음과 같다.
+
+- local clean32 train/heldout: `training/manifests/local_color_single_character_clean32_20260611.jsonl`,
+  `training/manifests/local_color_single_character_clean32_heldout8_20260611.jsonl`
+- local reviewed identity pair: `training/manifests/c052_positive_identity_pairs_20260612.jsonl`
+- local direct-green/non-human mining: `training/manifests/c066_direct_green_non_human_candidates_20260612.jsonl`
+- external reviewed direct-green positive: `eval/c074_tag_backed_direct_green_source_acquisition_20260612/reviewed_external_labels.jsonl`
+- synthetic hard-shape fallback: `training/manifests/c097_siglip_hard_shape_expanded_pairs_20260613.jsonl`
+
+source type은 `real_local_color`, `external_real_direct_green`, `synthetic_hard_shape`로 분리했다.
+heldout8에 포함된 `ref_id`, `tgt_id`, `image_id`는 후보 manifest에서 제외했다. 외부 direct-green과
+synthetic hard-shape는 fallback/teacher 후보로만 세고, local real-color sufficiency의 증거로 세지
+않았다.
+
+### 개발한 것
+
+- `tools/c099_real_color_data_gate.py`
+  - C099 candidate manifest, inventory, summary, decision report를 생성한다.
+  - C097/C098 반복 금지, 학습 실행 없음, ComfyUI 실행 없음, heldout 제외 경계를 문서화한다.
+- `tests/test_c099_real_color_data_gate.py`
+  - heldout row 제외와 blocked decision을 검증한다.
+  - local real direct-green positive가 있을 때만 `c100_training_greenlit`으로 바뀌는지 검증한다.
+
+실행 명령:
+
+```bash
+PYTHONPATH=. /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python \
+  tools/c099_real_color_data_gate.py
+```
+
+### 결과
+
+생성된 summary는 다음과 같다.
+
+| 항목 | 값 |
+|---|---:|
+| candidate_rows | `276` |
+| heldout_leakage_count | `0` |
+| missing_path_count | `0` |
+| real_local_rows | `210` |
+| real_local_direct_green_confirmed_rows | `0` |
+| external_direct_green_positive_rows | `10` |
+| synthetic_hard_shape_rows | `56` |
+
+source family 분포:
+
+- `clean32_train`: `32`
+- `c052_positive_identity`: `58`
+- `c066_real_color_mining`: `120`
+- `c074_reviewed_external`: `10`
+- `c097_synthetic_hard_shape`: `56`
+
+decision은 `c100_blocked_needs_annotation_or_teacher`이다.
+
+### 판단
+
+C099는 local color dataset에 identity/self/pair 후보가 있다는 점은 확인했다. 하지만 현재 c066
+mining 결과에서 local real-color direct-green/non-human confirmed positive는 `0`개다. c074 external
+direct-green target positive `10`개와 c097 synthetic hard-shape `56`개는 존재하지만, 이것만으로
+local color dataset이 다음 학습에 준비됐다고 볼 수 없다.
+
+따라서 다음 C100은 바로 학습이 아니라 real local-color direct-green/non-human positive를 확보하는
+루프여야 한다. 선택지는 두 가지다.
+
+1. local color dataset에서 direct-green/non-human 후보를 더 강한 attribute teacher/reranker로 다시
+   mining하고 사람이 확인 가능한 review sheet를 만든다.
+2. 충분한 local positive를 찾지 못하면 외부/합성 데이터를 teacher track으로 분리하고, local-real
+   generalization gate는 별도로 유지한다.
+
+즉 C099의 결론은 “SigLIP 학습이 불가능하다”가 아니라, “현재 real local-color positive annotation이
+부족해서 C100 학습을 바로 시작하면 C097/C098 반복이 된다”이다.
+
+### c099 관련 파일
+
+- `docs/c099_real_color_reference_data_gate_plan_ko.md`
+- `tools/c099_real_color_data_gate.py`
+- `tests/test_c099_real_color_data_gate.py`
+- `eval/c099_real_color_reference_data_gate_20260613/inventory.json`
+- `eval/c099_real_color_reference_data_gate_20260613/c099_candidate_manifest.jsonl`
+- `eval/c099_real_color_reference_data_gate_20260613/c099_candidate_summary.json`
+- `eval/c099_real_color_reference_data_gate_20260613/c099_decision_report.md`
+- `.omo/evidence/C001-c099-inventory-check.json`
+- `.omo/evidence/C002-c099-summary-check.json`

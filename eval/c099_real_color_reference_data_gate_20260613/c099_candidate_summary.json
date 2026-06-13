@@ -1,0 +1,41 @@
+{
+  "candidate_rows": 276,
+  "heldout_leakage_count": 0,
+  "omitted_heldout_rows": 0,
+  "missing_path_count": 0,
+  "real_local_rows": 210,
+  "real_local_identity_rows": 210,
+  "real_local_direct_green_confirmed_rows": 0,
+  "external_direct_green_positive_rows": 10,
+  "synthetic_hard_shape_rows": 56,
+  "source_type_counts": {
+    "real_local_color": 210,
+    "external_real_direct_green": 10,
+    "synthetic_hard_shape": 56
+  },
+  "source_family_counts": {
+    "clean32_train": 32,
+    "c052_positive_identity": 58,
+    "c066_real_color_mining": 120,
+    "c074_reviewed_external": 10,
+    "c097_synthetic_hard_shape": 56
+  },
+  "source_bucket_counts": {
+    "identity_self": 32,
+    "identity_positive_pair": 58,
+    "direct_green_pixel_candidate": 40,
+    "fang_profile_proxy": 17,
+    "human_negative": 20,
+    "old_headwear_negative": 22,
+    "pale_non_human_proxy": 11,
+    "red_eye_proxy": 10,
+    "target_positive": 10,
+    "c082_frog_yokai_guard": 16,
+    "c082_goblin_mage": 16,
+    "c082_green_oni_scout": 16,
+    "c082_jade_lizard_monk": 8
+  },
+  "decision": "c100_blocked_needs_annotation_or_teacher",
+  "blocker_reason": "real local-color direct-green/non-human character positive is still missing; use annotation or a stronger attribute teacher before C100 training.",
+  "next_c100_command_surface": ""
+}

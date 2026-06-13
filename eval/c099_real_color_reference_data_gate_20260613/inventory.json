@@ -1,0 +1,81 @@
+{
+  "no_heldout_boundary": "C099 candidate rows skip any ref_id/tgt_id/image_id present in clean32 heldout8.",
+  "dataset_root": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best",
+  "heldout_ids": [
+    "001-100/SG-015/mrcolor_panel_style_v5_edge_trim_strict_00031_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00464_SG-015-14_page_985x1775_s01",
+    "001-100/SG-026/mrcolor_panel_style_v4_split_edge_strict_probe_00166_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00817_SG-026-07_page_2011x2902_s01",
+    "001-100/SG-071/mrcolor_panel_style_v4_split_edge_strict_probe_00444_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02306_SG-071-05_page_1115x1356_s01",
+    "101-200/SG-121/mrcolor_panel_style_v5_edge_trim_strict_00253_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_04078_SG-121-05_page_1965x2851_s01",
+    "201-292 (완결)/SG-221/mrcolor_panel_style_v4_split_edge_strict_probe_01236_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_07442_SG-221-10_page_2087x2877_s03",
+    "201-292 (완결)/SG-244/mrcolor_panel_style_v4_split_edge_strict_probe_01334_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_08090_SG-244-08_page_2130x1528_s01",
+    "201-292 (완결)/SG-263/mrcolor_panel_style_v4_split_edge_strict_probe_01412_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_08482_SG-263-09_page_559x1112_s01",
+    "201-292 (완결)/SG-274/mrcolor_panel_style_v4_split_edge_strict_probe_01452_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_08754_SG-274-04_page_1407x1264_s03"
+  ],
+  "key_metrics": {
+    "clean32_train_rows": 32,
+    "clean32_heldout_rows": 8,
+    "c052_positive_pairs": 29,
+    "c066_heldout_rows_used": 0,
+    "c066_direct_green_positive_count": 0,
+    "c097_selected_rows": 56
+  },
+  "source_checks": [
+    {
+      "path": "/home/wktwin/anima-ipadapter-reference-control/training/manifests/local_color_single_character_clean32_20260611.jsonl",
+      "exists": true,
+      "rows": 32
+    },
+    {
+      "path": "/home/wktwin/anima-ipadapter-reference-control/training/manifests/local_color_single_character_clean32_heldout8_20260611.jsonl",
+      "exists": true,
+      "rows": 8
+    },
+    {
+      "path": "/home/wktwin/anima-ipadapter-reference-control/training/manifests/c052_positive_identity_pairs_20260612.jsonl",
+      "exists": true,
+      "rows": 58
+    },
+    {
+      "path": "/home/wktwin/anima-ipadapter-reference-control/training/manifests/c066_direct_green_non_human_candidates_20260612.jsonl",
+      "exists": true,
+      "rows": 120
+    },
+    {
+      "path": "/home/wktwin/anima-ipadapter-reference-control/eval/c074_tag_backed_direct_green_source_acquisition_20260612/reviewed_external_labels.jsonl",
+      "exists": true,
+      "rows": 10
+    },
+    {
+      "path": "/home/wktwin/anima-ipadapter-reference-control/training/manifests/c097_siglip_hard_shape_expanded_pairs_20260613.jsonl",
+      "exists": true,
+      "rows": 56
+    },
+    {
+      "path": "/home/wktwin/anima-ipadapter-reference-control/training/manifests/c075_tag_positive_direct_green_20260612.summary.json",
+      "exists": true,
+      "rows": 0
+    },
+    {
+      "path": "/home/wktwin/anima-ipadapter-reference-control/training/manifests/c080_paired_direct_green_identity_20260613.summary.json",
+      "exists": true,
+      "rows": 0
+    },
+    {
+      "path": "/home/wktwin/anima-ipadapter-reference-control/training/manifests/c084_balanced_crop_pairs_20260613.summary.json",
+      "exists": true,
+      "rows": 0
+    },
+    {
+      "path": "/home/wktwin/anima-ipadapter-reference-control/training/manifests/c087_expanded_crop_pairs_20260613.summary.json",
+      "exists": true,
+      "rows": 0
+    },
+    {
+      "path": "/home/wktwin/anima-ipadapter-reference-control/training/manifests/c097_siglip_hard_shape_expanded_pairs_20260613.summary.json",
+      "exists": true,
+      "rows": 0
+    }
+  ],
+  "candidate_manifest_rows": 276,
+  "not_repeating_c097_c098_reason": "C098 proved synthetic hard-shape SigLIP encoder-LoRA is active but not promoted; C099 first separates real local-color sufficiency from external/synthetic fallback data."
+}
