@@ -1,0 +1,47 @@
+{
+  "source_paths": {
+    "c066_manifest": "/home/wktwin/anima-ipadapter-reference-control/training/manifests/c066_direct_green_non_human_candidates_20260612.jsonl",
+    "c066_summary": "/home/wktwin/anima-ipadapter-reference-control/training/manifests/c066_direct_green_non_human_candidates_20260612.summary.json",
+    "c099_summary": "/home/wktwin/anima-ipadapter-reference-control/eval/c099_real_color_reference_data_gate_20260613/c099_candidate_summary.json",
+    "c099_inventory": "/home/wktwin/anima-ipadapter-reference-control/eval/c099_real_color_reference_data_gate_20260613/inventory.json",
+    "heldout_manifest": "/home/wktwin/anima-ipadapter-reference-control/training/manifests/local_color_single_character_clean32_heldout8_20260611.jsonl",
+    "review_labels": "/home/wktwin/anima-ipadapter-reference-control/eval/c100_local_real_color_positive_acquisition_20260613/reviewed_local_labels.jsonl"
+  },
+  "heldout_ids": [
+    "001-100/SG-015/mrcolor_panel_style_v5_edge_trim_strict_00031_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00464_SG-015-14_page_985x1775_s01",
+    "001-100/SG-026/mrcolor_panel_style_v4_split_edge_strict_probe_00166_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00817_SG-026-07_page_2011x2902_s01",
+    "001-100/SG-071/mrcolor_panel_style_v4_split_edge_strict_probe_00444_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02306_SG-071-05_page_1115x1356_s01",
+    "101-200/SG-121/mrcolor_panel_style_v5_edge_trim_strict_00253_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_04078_SG-121-05_page_1965x2851_s01",
+    "201-292 (완결)/SG-221/mrcolor_panel_style_v4_split_edge_strict_probe_01236_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_07442_SG-221-10_page_2087x2877_s03",
+    "201-292 (완결)/SG-244/mrcolor_panel_style_v4_split_edge_strict_probe_01334_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_08090_SG-244-08_page_2130x1528_s01",
+    "201-292 (완결)/SG-263/mrcolor_panel_style_v4_split_edge_strict_probe_01412_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_08482_SG-263-09_page_559x1112_s01",
+    "201-292 (완결)/SG-274/mrcolor_panel_style_v4_split_edge_strict_probe_01452_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_08754_SG-274-04_page_1407x1264_s03"
+  ],
+  "candidate_buckets": [
+    "direct_green_pixel_candidate",
+    "pale_non_human_proxy",
+    "fang_profile_proxy",
+    "red_eye_proxy",
+    "sidecar_attribute_candidate"
+  ],
+  "greenlight_criteria": {
+    "min_reviewed_positive": 8,
+    "heldout_leakage_count": 0,
+    "missing_path_count": 0
+  },
+  "key_metrics": {
+    "c099_decision": "c100_blocked_needs_annotation_or_teacher",
+    "c066_direct_green_positive_count": 0,
+    "c066_total_candidates": 120,
+    "c066_source_buckets": {
+      "direct_green_pixel_candidate": 40,
+      "fang_profile_proxy": 17,
+      "human_negative": 20,
+      "old_headwear_negative": 22,
+      "pale_non_human_proxy": 11,
+      "red_eye_proxy": 10
+    },
+    "heldout_count": 8,
+    "min_reviewed_positive": 8
+  }
+}

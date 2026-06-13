@@ -1,0 +1,17 @@
+{
+  "candidate_rows": 64,
+  "local_real_candidate_rows": 64,
+  "heldout_leakage_count": 0,
+  "missing_path_count": 0,
+  "reviewed_local_positive_count": 0,
+  "review_required_count": 64,
+  "min_reviewed_positive": 8,
+  "source_bucket_counts": {
+    "direct_green_pixel_candidate": 40,
+    "pale_non_human_proxy": 11,
+    "fang_profile_proxy": 13
+  },
+  "decision": "c101_blocked_needs_manual_annotation_or_teacher",
+  "blocker_reason": "candidate sheet is ready, but local real-color positives still need manual review or a stronger attribute teacher before C101 training.",
+  "next_c101_command_surface": ""
+}

@@ -4377,3 +4377,121 @@ local color dataset이 다음 학습에 준비됐다고 볼 수 없다.
 - `eval/c099_real_color_reference_data_gate_20260613/c099_decision_report.md`
 - `.omo/evidence/C001-c099-inventory-check.json`
 - `.omo/evidence/C002-c099-summary-check.json`
+
+## 2026-06-13 C100 local real-color direct-green positive acquisition gate
+
+### 왜 시작했나
+
+C099에서 local real-color direct-green/non-human confirmed positive가 `0`개로 확인되었다. 이 상태에서
+바로 C101 학습을 시작하면 C097/C098처럼 약한 proxy와 synthetic fallback에 끌려가는 blind training이
+될 가능성이 높았다. 따라서 C100은 학습이 아니라, 실제 local color dataset 안에서 C101 학습에 쓸 수
+있는 후보를 사람이 검수 가능한 형태로 확보하고 gate decision을 내리는 단계로 잡았다.
+
+### 실행 경계
+
+C100에서는 다음을 하지 않았다.
+
+- 학습 실행 없음
+- ComfyUI 생성 없음
+- checkpoint 생성 없음
+- clean32 heldout row 제외
+- c074 external positive와 c097 synthetic hard-shape는 local-real greenlight 증거로 세지 않음
+
+즉 C100의 목적은 “새 모델을 만든다”가 아니라 “새 모델을 학습해도 되는 데이터 조건인지 확인한다”였다.
+
+### 데이터와 후보 구성
+
+입력은 C066 local direct-green/non-human mining 결과와 C099 inventory/summary다.
+
+- C066 total candidates: `120`
+- C066 direct-green confirmed positives: `0`
+- C066 source buckets:
+  - `direct_green_pixel_candidate`: `40`
+  - `fang_profile_proxy`: `17`
+  - `human_negative`: `20`
+  - `old_headwear_negative`: `22`
+  - `pale_non_human_proxy`: `11`
+  - `red_eye_proxy`: `10`
+- clean32 heldout count: `8`
+
+C100 후보 sheet에는 heldout을 제외하고 local-real 후보 `64`개를 넣었다.
+
+| bucket | rows |
+|---|---:|
+| `direct_green_pixel_candidate` | `40` |
+| `pale_non_human_proxy` | `11` |
+| `fang_profile_proxy` | `13` |
+
+### 개발한 것
+
+- `tools/c100_local_positive_gate.py`
+  - C066/C099/heldout source를 읽고 C100 candidate manifest, source inventory, summary, decision report,
+    review sheet를 생성한다.
+  - `--out-dir` 사용 시 review label 파일도 같은 output directory를 보도록 CLI config를 분리했다.
+- `tools/c100_local_positive_text.py`
+  - C100 plan/report markdown 문구를 생성한다.
+- `tools/c100_review_sheet.py`
+  - 4열 review contact sheet를 만든다.
+- `tests/test_c100_local_positive_gate.py`
+  - heldout 제외와 blocked decision을 검증한다.
+  - reviewed local positive가 기준 이상일 때만 `c101_training_greenlit`으로 바뀌는지 검증한다.
+  - CLI custom out-dir가 review labels 경로까지 함께 바꾸는지 검증한다.
+
+실행 명령:
+
+```bash
+PYTHONPATH=. /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python \
+  tools/c100_local_positive_gate.py
+```
+
+### 결과
+
+생성된 summary는 다음과 같다.
+
+| 항목 | 값 |
+|---|---:|
+| candidate_rows | `64` |
+| local_real_candidate_rows | `64` |
+| heldout_leakage_count | `0` |
+| missing_path_count | `0` |
+| reviewed_local_positive_count | `0` |
+| review_required_count | `64` |
+| min_reviewed_positive | `8` |
+
+review sheet는
+`eval/c100_local_real_color_positive_acquisition_20260613/c100_candidate_review_sheet.jpg`에 만들었다.
+크기는 `880x4384`다.
+
+시각 확인 결과, `direct_green_pixel_candidate`의 상당수는 녹색 피부/비인간 캐릭터라기보다 녹색 배경,
+소품, 컵, 잎, 말풍선 주변 픽셀 등이 잡힌 false positive였다. `pale_non_human_proxy`와
+`fang_profile_proxy`에도 후보성은 있지만 자동으로 local positive로 승격할 만큼 확정적이지 않았다.
+
+decision은 `c101_blocked_needs_manual_annotation_or_teacher`이다.
+
+### 판단
+
+C100 결과는 “SigLIP/IPAdapter route가 불가능하다”는 뜻이 아니다. 대신 현재 local color dataset에서
+pixel/proxy 기반 자동 mining만으로는 C101 학습에 필요한 direct-green/non-human positive label을 만들
+수 없다는 뜻이다. minimum reviewed positive 기준은 `8`개인데, 현재 reviewed local positive는 `0`개다.
+
+따라서 C101에서 바로 학습하지 않는다. 다음 루프는 두 가지 중 하나를 먼저 통과해야 한다.
+
+1. C100 review sheet를 기준으로 보수적인 수동 라벨 `reviewed_local_labels.jsonl`을 작성한다.
+2. 더 강한 attribute teacher/reranker를 붙여 `local_positive`, `local_negative`, `unclear`를 자동 제안하고
+   사람이 확인 가능한 evidence를 남긴다.
+
+그 결과 reviewed local positive가 `8`개 이상이고 heldout/missing 문제가 `0`일 때만 C101 학습을
+greenlight한다.
+
+### c100 관련 파일
+
+- `docs/c100_local_real_color_positive_acquisition_plan_ko.md`
+- `tools/c100_local_positive_gate.py`
+- `tools/c100_local_positive_text.py`
+- `tools/c100_review_sheet.py`
+- `tests/test_c100_local_positive_gate.py`
+- `eval/c100_local_real_color_positive_acquisition_20260613/source_inventory.json`
+- `eval/c100_local_real_color_positive_acquisition_20260613/c100_candidate_manifest.jsonl`
+- `eval/c100_local_real_color_positive_acquisition_20260613/c100_candidate_review_sheet.jpg`
+- `eval/c100_local_real_color_positive_acquisition_20260613/c100_candidate_summary.json`
+- `eval/c100_local_real_color_positive_acquisition_20260613/c100_decision_report.md`
