@@ -2681,3 +2681,93 @@ c088은 “IP-Adapter 자체가 무조건 불가능하다”는 결론은 아니
 - `eval/c088_shape_silhouette_feature_probe_20260613/metric_rollup.json`
 - `eval/c088_shape_silhouette_feature_probe_20260613/report.md`
 - `eval/c088_shape_silhouette_feature_probe_20260613/contact_sheet.jpg`
+
+## 22. c089 Shape/Silhouette Distillation Pilot
+
+c088 결과는 hard-shape reference-control 실패가 단순 adapter row 부족이 아니라 encoder/objective 병목일 가능성을 보여줬다. edge/projection/silhouette과 PE에는 신호가 있었지만 QwenVL/SigLIP2 embedding 자체는 충분히 분리하지 못했다. 그래서 c089에서는 broad adapter continuation을 반복하지 않고, 이미 구현되어 있던 SigLIP PE-teacher distillation 경로를 hard-shape subset에 적용했다.
+
+### 검증 목표
+
+- heldout 누수 없이 c087 hard-shape crop pair에서 작은 균형 manifest를 만든다.
+- PE teacher prediction, PE token retrieval, PE token alignment 신호가 finite training loss로 작동하는지 본다.
+- loadable SigLIP checkpoint가 만들어지는지 확인한다.
+- 이 pilot이 바로 품질 통과인지가 아니라, 다음 ComfyUI hard-shape generation gate로 넘어갈 자격이 있는지 판단한다.
+
+### 사용 데이터
+
+- source manifest: `training/manifests/c087_expanded_crop_pairs_20260613.jsonl`
+- source rows: `224`
+- c089 manifest: `training/manifests/c089_shape_silhouette_distillation_20260613.jsonl`
+- c089 summary: `training/manifests/c089_shape_silhouette_distillation_20260613.summary.json`
+- scratch image root: `.tmp/c089_shape_silhouette_distillation_root`
+- selected rows: `64`
+- heldout training rows used: `0`
+- selected group counts:
+  - `c082_frog_yokai_guard`: `16`
+  - `c082_goblin_mage`: `16`
+  - `c082_green_oni_scout`: `16`
+  - `c082_jade_lizard_monk`: `16`
+
+teacher source label은 `pe_teacher_prediction`, `pe_token_retrieval`, `edge_projection_silhouette_probe`로 기록했다. 실제 학습에 쓰인 직접 loss는 PE teacher prediction, PE token retrieval, PE token alignment이고, edge/projection/silhouette은 c088에서 다음 방향을 고른 해석 근거로 남겼다.
+
+### 개발한 도구
+
+- `tools/c089_shape_distillation_manifest.py`: c087 hard-shape crop pair에서 group-balanced c089 manifest 생성
+- `tests/test_c089_shape_distillation_manifest.py`: group balance, symlink materialization, heldout leakage block 테스트
+- `tools/c089_pilot_report.py`: training stdout을 `summary.json`, `metrics.json`, `report.md`, `contact_sheet.jpg`로 정리
+- `tests/test_c089_pilot_report.py`: finite/loadable checkpoint 결과가 `proceed_to_siglip_generation_gate`로 판정되는지 테스트
+- plan doc: `docs/c089_shape_silhouette_distillation_pilot_plan_ko.md`
+
+### 학습
+
+```sh
+PYTHONPATH=. /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python training/siglip_teacher_cli.py \
+  --manifest-path training/manifests/c089_shape_silhouette_distillation_20260613.jsonl \
+  --image-root .tmp/c089_shape_silhouette_distillation_root \
+  --output-path checkpoints/anima_siglip_ip_adapter_c089_shape_pe_teacher_0032_20260613.safetensors \
+  --init-checkpoint-path checkpoints/anima_siglip_ip_adapter_pilot_20260610.safetensors \
+  --steps 32 \
+  --max-rows 32 \
+  --resolution 256 \
+  --device cuda:0 \
+  --teacher-weight 0.7 \
+  --pe-retrieval-weight 0.35 \
+  --pe-retrieval-margin 0.2 \
+  --pe-token-weight 0.15 \
+  --pe-token-block-stride 4 \
+  --contrastive-weight 0.15 \
+  --contrastive-margin 0.05 \
+  --pe-kv-init
+```
+
+### 결과
+
+- output checkpoint: `checkpoints/anima_siglip_ip_adapter_c089_shape_pe_teacher_0032_20260613.safetensors`
+- checkpoint size: 약 `830M`
+- steps: `32`
+- rows loaded: `32`
+- finite loss: `true`
+- loadable: `true`
+- PE checkpoint rejected by SigLIP loader: `true`
+- trainable parameters: `217,369,756`
+- frozen base parameters: `2,913,827,059`
+- first loss: `0.2011589110`
+- final loss: `0.1861253381`
+- loss delta: `-0.0150335729`
+- mean teacher loss: `0.0076884054`
+- mean PE token loss: `0.1379632866`
+- mean PE retrieval loss: `0.1999443341`
+
+report artifacts:
+
+- `eval/c089_shape_silhouette_distillation_pilot_20260613/train_stdout.txt`
+- `eval/c089_shape_silhouette_distillation_pilot_20260613/summary.json`
+- `eval/c089_shape_silhouette_distillation_pilot_20260613/metrics.json`
+- `eval/c089_shape_silhouette_distillation_pilot_20260613/report.md`
+- `eval/c089_shape_silhouette_distillation_pilot_20260613/contact_sheet.jpg`
+
+### 판단
+
+c089 decision은 `proceed_to_siglip_generation_gate`이다. 이는 최종 품질 통과가 아니다. 다만 PE teacher와 PE token retrieval 신호가 finite loss로 작동했고, loadable SigLIP checkpoint가 만들어졌으므로 다음 루프에서 ComfyUI hard-shape generation gate를 돌릴 자격은 생겼다.
+
+다음 단계는 c089 checkpoint를 ComfyUI 모델 선택지에 노출하고, c087/c088 hard-shape references와 기존 best baseline을 비교하는 contact-sheet generation gate다. 여기서 frog/yokai/chibi silhouette과 non-human profile이 실제 이미지 결과에 반영되는지 봐야 한다.

@@ -1,0 +1,31 @@
+{
+  "steps": 32,
+  "rows_loaded": 32,
+  "first_loss": 0.20115891098976135,
+  "final_loss": 0.18612533807754517,
+  "mean_loss": 0.24732241686433554,
+  "mean_base_loss": 0.14378283347468823,
+  "mean_contrastive_loss": 0.0498846045229584,
+  "mean_teacher_loss": 0.007688405392400455,
+  "mean_token_loss": 0.7724069710820913,
+  "mean_pe_token_loss": 0.13796328660100698,
+  "mean_pe_retrieval_loss": 0.19994433410465717,
+  "finite_loss": true,
+  "trainable_parameters": 217369756,
+  "frozen_base_parameters": 2913827059,
+  "checkpoint": {
+    "output_path": "checkpoints/anima_siglip_ip_adapter_c089_shape_pe_teacher_0032_20260613.safetensors",
+    "loadable": true,
+    "pe_checkpoint_rejected": true
+  },
+  "init_checkpoint_path": "checkpoints/anima_siglip_ip_adapter_pilot_20260610.safetensors",
+  "contrastive_weight": 0.15,
+  "contrastive_margin": 0.05,
+  "teacher_weight": 0.7,
+  "token_weight": 0.0,
+  "token_max_similarity": 0.2,
+  "pe_token_weight": 0.15,
+  "pe_token_block_stride": 4,
+  "pe_retrieval_weight": 0.35,
+  "pe_retrieval_margin": 0.2
+}

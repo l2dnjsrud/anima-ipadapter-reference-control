@@ -1,0 +1,22 @@
+{
+  "output_manifest_path": "/home/wktwin/anima-ipadapter-reference-control/training/manifests/c089_shape_silhouette_distillation_20260613.jsonl",
+  "scratch_image_root": "/home/wktwin/anima-ipadapter-reference-control/.tmp/c089_shape_silhouette_distillation_root",
+  "source_manifest_path": "/home/wktwin/anima-ipadapter-reference-control/training/manifests/c087_expanded_crop_pairs_20260613.jsonl",
+  "source_rows": 224,
+  "total_rows": 64,
+  "heldout_rows_used": 0,
+  "max_rows_per_group": 16,
+  "selected_group_counts": {
+    "c082_frog_yokai_guard": 16,
+    "c082_goblin_mage": 16,
+    "c082_green_oni_scout": 16,
+    "c082_jade_lizard_monk": 16
+  },
+  "teacher_source_labels": [
+    "pe_teacher_prediction",
+    "pe_token_retrieval",
+    "edge_projection_silhouette_probe"
+  ],
+  "materialized_image_count": 51,
+  "decision": "ready_for_c089_siglip_pe_teacher_pilot"
+}

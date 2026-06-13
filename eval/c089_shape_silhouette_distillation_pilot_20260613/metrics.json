@@ -1,0 +1,14 @@
+{
+  "finite_loss": true,
+  "checkpoint_loadable": true,
+  "pe_checkpoint_rejected": true,
+  "loss_delta": -0.015033572912216187,
+  "first_loss": 0.20115891098976135,
+  "final_loss": 0.18612533807754517,
+  "mean_teacher_loss": 0.007688405392400455,
+  "mean_pe_token_loss": 0.13796328660100698,
+  "mean_pe_retrieval_loss": 0.19994433410465717,
+  "steps": 32,
+  "rows_loaded": 32,
+  "checkpoint_path": "checkpoints/anima_siglip_ip_adapter_c089_shape_pe_teacher_0032_20260613.safetensors"
+}
