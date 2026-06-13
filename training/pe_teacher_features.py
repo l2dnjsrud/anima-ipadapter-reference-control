@@ -4,7 +4,9 @@ from collections.abc import Callable
 
 import torch
 
+from training.hard_negative_rows import explicit_negative_or_fallback
 from training.siglip_real_smoke import PREPARED_ROW_CACHE_LIMIT
+from training.siglip_reference_loss import wrong_reference_index
 from training.siglip_smoke_data import load_anima_pixels, resolve_pair_paths
 from training.siglip_smoke_types import PairRow, SmokeConfig
 
@@ -44,6 +46,35 @@ def get_pe_features(
     row = rows[row_index]
     return encode_pe_features(
         row, config, pe_encoder, encode_pe_from_imageminus1to1, device, dtype
+    )
+
+
+def get_wrong_pe_features(
+    cache: list[torch.Tensor] | None,
+    rows: list[PairRow],
+    row_index: int,
+    config: SmokeConfig,
+    pe_encoder,
+    encode_pe_from_imageminus1to1: PEEncodeFn,
+    device: torch.device,
+    dtype: torch.dtype,
+) -> torch.Tensor:
+    fallback_index = wrong_reference_index(row_index, len(rows))
+    fallback_row = rows[fallback_index]
+    negative_row = explicit_negative_or_fallback(rows[row_index], fallback_row)
+    if negative_row is fallback_row:
+        return get_pe_features(
+            cache,
+            rows,
+            fallback_index,
+            config,
+            pe_encoder,
+            encode_pe_from_imageminus1to1,
+            device,
+            dtype,
+        )
+    return encode_pe_features(
+        negative_row, config, pe_encoder, encode_pe_from_imageminus1to1, device, dtype
     )
 
 

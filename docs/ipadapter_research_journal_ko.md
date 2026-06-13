@@ -3181,3 +3181,178 @@ c092는 SigLIP hard-shape 실험 중 가장 큰 개선이다. c089/c091이 mean 
 - `eval/c092_qwen_target_siglip_generation_gate_20260613/visual_audit.md`
 - `eval/c092_qwen_target_siglip_generation_gate_20260613/visual_audit.json`
 - `eval/c092_qwen_target_siglip_generation_gate_20260613/report.md`
+
+## 26. c093 Qwen-Target Anti-Collapse SigLIP Gate
+
+c092는 SigLIP 계열 중 가장 좋은 결과였지만, contact sheet를 보면 green human face template으로 수렴하는 문제가 남아 있었다. 특히 frog/chibi/mascot/non-human row에서 reference의 몸 비율이나 실루엣을 지키지 못했고, 학습에서 제외한 `heldout07`은 monster side-profile/red-eye/jaw 형태를 거의 반영하지 못했다.
+
+c093의 목표는 c092를 단순 continuation하는 것이 아니라, c092가 만든 실패 이미지를 explicit negative로 넣어 collapse attractor를 밀어내는 것이었다.
+
+### 검증 목표
+
+- C092 checkpoint를 init으로 사용한다.
+- Qwen target supervision은 유지하되, c092 collapse output을 explicit negative로 넣는다.
+- `PairRow.neg_id`를 실제 SigLIP contrastive/teacher path에서 사용하게 만든다.
+- `heldout07`은 계속 학습에서 제외하고 generation gate에서만 확인한다.
+- C093가 C092보다 평균 uplift, heldout07, diversity proxy, contact sheet 품질에서 모두 좋아지는지 본다.
+
+### 데이터와 누수 방지
+
+- source summary: `eval/c092_qwen_target_siglip_generation_gate_20260613/summary.json`
+- positive target: c092의 Qwen-target distillation row
+- explicit negative: c092의 `c092_qwen_target_w14` collapse output
+- train rows: `crop_pair00` to `crop_pair09`
+- heldout excluded: `heldout07`
+- materialized manifest: `training/manifests/c093_siglip_qwen_target_anti_collapse_20260613.jsonl`
+- manifest summary: `training/manifests/c093_siglip_qwen_target_anti_collapse_20260613.summary.json`
+- scratch image root: `.tmp/c093_anti_collapse_root`
+
+manifest 결과는 `total_rows=10`, `explicit_negative_rows=10`, `heldout_rows_used=0`, `excluded_labels=["heldout07"]`이다. 원래 plan은 더 많은 diversity target을 섞는 방향도 포함했지만, `siglip_real_smoke_cli.py`가 `neg_id`를 사용하지 않는 구조였기 때문에 먼저 dormant field였던 `PairRow.neg_id`를 contrastive/teacher path에서 실제로 쓰도록 바꾸는 쪽을 선택했다.
+
+### 개발한 것
+
+- `training/hard_negative_rows.py`
+  - `PairRow.neg_id`가 있으면 명시적 negative row를 만들고, 없으면 기존 wrong-reference fallback을 사용한다.
+- `training/siglip_prepared_cache.py`
+  - `get_wrong_prepared(...)`를 추가해 SigLIP contrastive/teacher path가 explicit negative를 실제 이미지로 encode하게 했다.
+- `training/pe_teacher_features.py`
+  - `get_wrong_pe_features(...)`를 추가해 PE teacher feature path도 같은 negative 선택 규칙을 사용하게 했다.
+- `training/siglip_contrastive_smoke.py`
+  - wrong reference index만 쓰던 로직을 explicit negative aware path로 교체했다.
+- `training/siglip_teacher_smoke.py`
+  - SigLIP prepared row와 PE teacher feature 모두 explicit negative를 사용하게 했다.
+- `training/qwenvl_contrastive_smoke.py`
+  - 기존 중복 helper를 공용 `hard_negative_rows`로 통합했다.
+- `tools/c093_anti_collapse_manifest.py`
+  - c092 결과에서 positive/negative pair를 materialize하는 manifest builder를 추가했다.
+- `tools/c093_siglip_anti_collapse_eval.py`
+  - no_ip, prior SigLIP, c089, c091, c092, c093 weight sweep, Qwen baselines를 한 contact sheet에서 비교하는 ComfyUI API gate를 추가했다.
+- `tools/c093_siglip_anti_collapse_metrics.py`
+  - promotion gate를 metric rollup으로 만든다.
+- tests:
+  - `tests/test_siglip_hard_negative_rows.py`
+  - `tests/test_c093_anti_collapse_manifest.py`
+  - `tests/test_c093_siglip_anti_collapse_eval.py`
+
+### 학습
+
+```sh
+PYTHONPATH=. /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python training/siglip_contrastive_cli.py \
+  --manifest-path training/manifests/c093_siglip_qwen_target_anti_collapse_20260613.jsonl \
+  --image-root .tmp/c093_anti_collapse_root \
+  --init-checkpoint-path checkpoints/anima_siglip_ip_adapter_c092_qwen_target_0064_20260613.safetensors \
+  --output-path checkpoints/anima_siglip_ip_adapter_c093_qwen_target_anti_collapse_0048_20260613.safetensors \
+  --steps 48 \
+  --max-rows 10 \
+  --resolution 256 \
+  --device cuda:0 \
+  --lr 5e-6 \
+  --seed 20260693 \
+  --contrastive-weight 0.35 \
+  --contrastive-margin 0.08
+```
+
+학습 결과:
+
+- rows loaded: `10`
+- explicit negative rows: `10`
+- steps: `48`
+- first loss: `0.1075195968`
+- final loss: `0.0800025016`
+- mean loss: `0.1469476152`
+- mean base loss: `0.1191376546`
+- mean contrastive loss: `0.0794570288`
+- finite loss: `true`
+- trainable parameters: `217,369,756`
+- frozen base parameters: `2,913,827,059`
+- checkpoint: `checkpoints/anima_siglip_ip_adapter_c093_qwen_target_anti_collapse_0048_20260613.safetensors`
+- checkpoint loadable: `true`
+- PE checkpoint rejected by SigLIP loader: `true`
+
+c093 checkpoint도 830MB 실험 artifact이며 promotion하지 않았으므로 local-only checkpoint로 둔다.
+
+### ComfyUI 검증
+
+isolated ComfyUI 서버는 port `8119`에서 실행했다. `tools/comfyui_extra_model_paths.yaml`로 repo `checkpoints/`를 노출했고, `AnimaSigLIPIPAdapterLoader` selector에 `anima_siglip_ip_adapter_c093_qwen_target_anti_collapse_0048_20260613.safetensors`가 표시되는 것을 확인했다.
+
+generation gate:
+
+```sh
+PYTHONPATH=. /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python \
+  tools/c093_siglip_anti_collapse_eval.py \
+  eval/c088_shape_silhouette_feature_probe_20260613/probe_manifest.jsonl \
+  --out-dir eval/c093_siglip_qwen_target_anti_collapse_generation_gate_20260613 \
+  --data-root .tmp/c093_siglip_hard_shape_root \
+  --comfy-input .tmp/comfy_siglip_c093/input \
+  --comfy-output .tmp/comfy_siglip_c093/output \
+  --base-url http://127.0.0.1:8119
+```
+
+결과:
+
+- generated PNG: `110`
+- samples: `11`
+- variants: `10`
+- API prompt/response/history JSON: 각각 `110`
+- contact sheet: `eval/c093_siglip_qwen_target_anti_collapse_generation_gate_20260613/contact_sheet_hard_shape.jpg`
+- metric rollup: `eval/c093_siglip_qwen_target_anti_collapse_generation_gate_20260613/metric_rollup.json`
+- pixel audit: `eval/c093_siglip_qwen_target_anti_collapse_generation_gate_20260613/pixel_nonblank_audit.json`
+- visual audit: `eval/c093_siglip_qwen_target_anti_collapse_generation_gate_20260613/visual_audit.md`
+- cleanup receipt: `eval/c093_siglip_qwen_target_anti_collapse_generation_gate_20260613/cleanup_port_8119.txt`
+
+pixel audit는 `generated_count=110`, `blank_count=1`, `low_variance_count=1`, `nonblank=false`를 기록했다. 저분산 이미지는 `crop_pair00_no_ip`라 c093 자체의 blank는 아니다.
+
+metric rollup:
+
+| variant | mean uplift | improved rate | cases |
+|---|---:|---:|---:|
+| `siglip_pilot_w14` | `-0.0662400384` | `0.1818181818` | `11` |
+| `c089_shape_w14` | `0.0249214356` | `0.7272727273` | `11` |
+| `c091_feature_calibrator_w14` | `0.0240881737` | `0.7272727273` | `11` |
+| `c092_qwen_target_w10` | `0.0738254876` | `0.9090909091` | `11` |
+| `c092_qwen_target_w14` | `0.0852681653` | `1.0` | `11` |
+| `c093_anti_collapse_w08` | `0.0540119484` | `0.8181818182` | `11` |
+| `c093_anti_collapse_w10` | `0.0815319678` | `0.9090909091` | `11` |
+| `c093_anti_collapse_w12` | `0.0840588121` | `1.0` | `11` |
+| `c093_anti_collapse_w14` | `0.0863735780` | `1.0` | `11` |
+| `c087_expanded_crop_positive_w14` | `0.1089544056` | `0.9090909091` | `11` |
+
+### 결과 판단
+
+decision은 `c093_anti_collapse_not_promoted`이다.
+
+c093 w14는 mean uplift `0.0863735780`으로 c092 w14 `0.0852681653`보다 아주 조금 높다. 하지만 차이는 `+0.0011054127`로 실질적인 개선이라고 보기 어렵다. Qwen baseline `0.1089544056`에는 여전히 못 미친다.
+
+가장 중요한 failure case인 `heldout07`도 실패다. c093 best uplift는 `0.0045189584`로 c092 w14 `0.0009986630`보다 조금 높지만, gate 기준인 `0.025`에 한참 부족하다. contact sheet에서도 monster side-profile, red eye, exaggerated jaw silhouette가 보존되지 않고 human warrior profile로 이동한다.
+
+시각적으로도 c093는 frog/chibi/mascot/non-human row의 collapse를 근본적으로 해결하지 못했다. explicit negative는 loss signal을 만들었지만, output prior는 여전히 green human head/bald face template으로 끌린다.
+
+따라서 c093는 "ComfyUI에서 작동하는 SigLIP IP-Adapter checkpoint"로는 성공했지만, "고퀄 reference-control 모델"로는 실패다. 다음 루프는 C094로 분리하고, 단순 contrastive continuation이 아니라 stronger encoder-side adaptation 또는 silhouette/edge/segmentation 같은 target-side shape supervision을 추가해야 한다.
+
+### c093 관련 파일
+
+- `training/hard_negative_rows.py`
+- `training/pe_teacher_features.py`
+- `training/qwenvl_contrastive_smoke.py`
+- `training/siglip_contrastive_smoke.py`
+- `training/siglip_prepared_cache.py`
+- `training/siglip_teacher_smoke.py`
+- `tools/c093_anti_collapse_manifest.py`
+- `tools/c093_siglip_anti_collapse_eval.py`
+- `tools/c093_siglip_anti_collapse_metrics.py`
+- `tests/test_c093_anti_collapse_manifest.py`
+- `tests/test_c093_siglip_anti_collapse_eval.py`
+- `tests/test_siglip_hard_negative_rows.py`
+- `training/manifests/c093_siglip_qwen_target_anti_collapse_20260613.jsonl`
+- `training/manifests/c093_siglip_qwen_target_anti_collapse_20260613.summary.json`
+- `eval/c093_siglip_qwen_target_anti_collapse_training_20260613/train_stdout.txt`
+- `eval/c093_siglip_qwen_target_anti_collapse_training_20260613/summary.json`
+- `eval/c093_siglip_qwen_target_anti_collapse_training_20260613/object_info_siglip_loader.json`
+- `eval/c093_siglip_qwen_target_anti_collapse_generation_gate_20260613/summary.json`
+- `eval/c093_siglip_qwen_target_anti_collapse_generation_gate_20260613/contact_sheet_hard_shape.jpg`
+- `eval/c093_siglip_qwen_target_anti_collapse_generation_gate_20260613/shape_metrics.json`
+- `eval/c093_siglip_qwen_target_anti_collapse_generation_gate_20260613/metric_rollup.json`
+- `eval/c093_siglip_qwen_target_anti_collapse_generation_gate_20260613/pixel_nonblank_audit.json`
+- `eval/c093_siglip_qwen_target_anti_collapse_generation_gate_20260613/visual_audit.md`
+- `eval/c093_siglip_qwen_target_anti_collapse_generation_gate_20260613/visual_audit.json`
+- `eval/c093_siglip_qwen_target_anti_collapse_generation_gate_20260613/report.md`

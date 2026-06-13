@@ -28,6 +28,7 @@ from training.qwenvl_smoke_checkpoint import (  # noqa: E402
     verify_qwenvl_checkpoint,
 )
 from training.qwenvl_step import QwenVLStepWeights, run_qwenvl_step  # noqa: E402
+from training.hard_negative_rows import explicit_negative_or_fallback  # noqa: E402
 from training.siglip_real_smoke import freeze_module, trainable_parameter_count  # noqa: E402
 from training.siglip_reference_loss import wrong_reference_index  # noqa: E402
 from training.siglip_smoke_data import load_pair_rows  # noqa: E402
@@ -36,7 +37,6 @@ from training.siglip_smoke_types import (  # noqa: E402
     CheckpointVerification,
     SmokeConfig,
     SmokeInputError,
-    PairRow,
 )
 
 
@@ -62,12 +62,6 @@ class QwenVLContrastiveSummary:
     calibrator_bottleneck_dim: int | None
     train_calibrator_only: bool
     explicit_negative_rows: int
-
-
-def explicit_negative_or_fallback(row: PairRow, fallback: PairRow) -> PairRow:
-    if row.neg_id is None:
-        return fallback
-    return PairRow(ref_id=row.neg_id, tgt_id=row.tgt_id, prompt=row.prompt)
 
 
 def run_qwenvl_contrastive_smoke(

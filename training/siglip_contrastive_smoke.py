@@ -34,10 +34,8 @@ from training.siglip_real_smoke import (  # noqa: E402
     verify_checkpoint,
 )
 from training.siglip_prepared_cache import get_prepared, prepare_cache  # noqa: E402
-from training.siglip_reference_loss import (  # noqa: E402
-    reference_margin_loss,
-    wrong_reference_index,
-)
+from training.siglip_prepared_cache import get_wrong_prepared  # noqa: E402
+from training.siglip_reference_loss import reference_margin_loss  # noqa: E402
 from training.siglip_smoke_data import load_pair_rows  # noqa: E402
 from training.siglip_smoke_patch import patched_cross_attention  # noqa: E402
 from training.siglip_smoke_runtime import noise_args, seed_everything, validate_config  # noqa: E402
@@ -58,6 +56,7 @@ class ContrastiveSmokeSummary:
     mean_base_loss: float
     mean_contrastive_loss: float
     finite_loss: bool
+    explicit_negative_rows: int
     trainable_parameters: int
     frozen_base_parameters: int
     checkpoint: CheckpointVerification
@@ -81,6 +80,7 @@ def run_contrastive_smoke(
     rows = load_pair_rows(config.manifest_path, limit=config.max_rows)
     if len(rows) < 2:
         raise SmokeInputError("contrastive smoke requires at least two loaded rows")
+    explicit_negative_rows = sum(1 for row in rows if row.neg_id is not None)
     random.Random(config.seed).shuffle(rows)
 
     from library.anima.weights import load_anima_model, load_qwen3_text_encoder
@@ -142,10 +142,10 @@ def run_contrastive_smoke(
             device,
             dtype,
         )
-        wrong_prepared = get_prepared(
+        wrong_prepared = get_wrong_prepared(
             cache,
             rows,
-            wrong_reference_index(row_index, len(rows)),
+            row_index,
             config,
             vae,
             text_encoder,
@@ -204,6 +204,7 @@ def run_contrastive_smoke(
         mean_base_loss=sum(base_losses) / len(base_losses),
         mean_contrastive_loss=sum(contrastive_losses) / len(contrastive_losses),
         finite_loss=all(math.isfinite(loss) for loss in losses),
+        explicit_negative_rows=explicit_negative_rows,
         trainable_parameters=trainable_parameter_count(adapter),
         frozen_base_parameters=frozen_params,
         checkpoint=checkpoint,

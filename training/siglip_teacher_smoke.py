@@ -13,15 +13,14 @@ for candidate in (ROOT, ANIMA_ROOT):
         sys.path.insert(0, str(candidate))
 
 from training.pe_teacher_distillation import predict_with_pe_teacher  # noqa: E402
-from training.pe_teacher_features import get_pe_features, prepare_pe_cache  # noqa: E402
+from training.pe_teacher_features import get_pe_features, get_wrong_pe_features, prepare_pe_cache  # noqa: E402
 from training.siglip_contrastive_smoke import _predict  # noqa: E402
 from training.siglip_real_smoke import (  # noqa: E402
     save_adapter_checkpoint,
     trainable_parameter_count,
     verify_checkpoint,
 )
-from training.siglip_prepared_cache import get_prepared, prepare_cache  # noqa: E402
-from training.siglip_reference_loss import wrong_reference_index  # noqa: E402
+from training.siglip_prepared_cache import get_prepared, get_wrong_prepared, prepare_cache  # noqa: E402
 from training.siglip_smoke_checkpoint import trainable_adapter_parameters  # noqa: E402
 from training.siglip_smoke_data import load_pair_rows  # noqa: E402
 from training.siglip_smoke_runtime import noise_args, seed_everything, validate_config  # noqa: E402
@@ -29,7 +28,6 @@ from training.siglip_smoke_types import SmokeConfig, SmokeInputError  # noqa: E4
 from training.siglip_teacher_summary import TeacherSmokeSummary, build_teacher_smoke_summary  # noqa: E402
 from training.siglip_teacher_step import TeacherLossWeights, compute_teacher_step_losses  # noqa: E402
 from training.siglip_teacher_runtime import load_teacher_runtime  # noqa: E402
-
 
 def run_teacher_smoke(
     config: SmokeConfig,
@@ -109,10 +107,8 @@ def run_teacher_smoke(
         pe_token=pe_token_weight,
         pe_retrieval=pe_retrieval_weight,
     )
-
     for step in range(config.steps):
         row_index = step % len(rows)
-        wrong_index = wrong_reference_index(row_index, len(rows))
         prepared = get_prepared(
             cache,
             rows,
@@ -127,10 +123,10 @@ def run_teacher_smoke(
             device,
             dtype,
         )
-        wrong_prepared = get_prepared(
+        wrong_prepared = get_wrong_prepared(
             cache,
             rows,
-            wrong_index,
+            row_index,
             config,
             runtime.vae,
             runtime.text_encoder,
@@ -160,10 +156,10 @@ def run_teacher_smoke(
             device,
             dtype,
         )
-        wrong_pe_features = get_pe_features(
+        wrong_pe_features = get_wrong_pe_features(
             pe_cache,
             rows,
-            wrong_index,
+            row_index,
             config,
             runtime.pe_encoder,
             runtime.encode_pe_from_imageminus1to1,
@@ -173,7 +169,6 @@ def run_teacher_smoke(
         with torch.no_grad():
             pe_tokens = runtime.pe_network.encode_ip_tokens(pe_features).detach()
             wrong_pe_tokens = runtime.pe_network.encode_ip_tokens(wrong_pe_features).detach()
-
         optimizer.zero_grad(set_to_none=True)
         teacher_pred = predict_with_pe_teacher(
             anima=runtime.anima,

@@ -1,0 +1,15 @@
+{
+  "output_manifest_path": "training/manifests/c093_siglip_qwen_target_anti_collapse_20260613.jsonl",
+  "scratch_image_root": ".tmp/c093_anti_collapse_root",
+  "source_summary_path": "training/manifests/c092_qwen_target_distillation_20260613.jsonl.summary.json",
+  "c092_gate_dir": "eval/c092_qwen_target_siglip_generation_gate_20260613",
+  "total_rows": 10,
+  "explicit_negative_rows": 10,
+  "heldout_rows_used": 0,
+  "excluded_labels": [
+    "heldout07"
+  ],
+  "positive_teacher_variant": "c087_expanded_crop_positive_w14",
+  "negative_variant": "c092_qwen_target_w14",
+  "decision": "ready_for_c093_anti_collapse_training"
+}
