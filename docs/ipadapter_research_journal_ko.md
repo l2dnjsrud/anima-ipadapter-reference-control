@@ -3947,3 +3947,149 @@ pair를 만들거나, SigLIP encoder를 더 깊게 조정하는 stronger encoder
 - `eval/c096_siglip_encoder_lora_generation_gate_20260613/visual_audit.json`
 - `eval/c096_siglip_encoder_lora_generation_gate_20260613/report.md`
 - `eval/c096_siglip_encoder_lora_generation_gate_20260613/cleanup_port_8122.txt`
+
+## 2026-06-13 C097 hard-shape 데이터 확장 gate
+
+### 왜 시작했나
+
+C096은 SigLIP encoder-LoRA가 native ComfyUI 경로에서 실제로 적용된다는 점은 증명했지만,
+학습 입력이 `10`개 hard-shape row뿐이었다. 결과적으로 frog/chibi/mascot/non-human reference가
+여전히 green humanoid bust로 수렴했고, heldout07 non-human side-profile도 C094/C095보다 좋아지지
+않았다.
+
+그래서 C097은 바로 또 학습을 돌리지 않고, 다음 deeper encoder-LoRA가 의미 있게 학습할 수 있는
+hard-shape/non-human/mascot/chibi pair manifest를 먼저 확장하는 데이터 게이트로 설정했다.
+
+핵심 질문은 다음이었다.
+
+1. C087 crop-pair artifact에서 heldout 누수 없이 C096보다 큰 hard-shape 학습 후보를 만들 수 있는가?
+2. 각 positive pair마다 다른 shape group negative를 붙여 collapse 방지용 contrastive 입력을 만들 수 있는가?
+3. 다음 SigLIP encoder adaptation으로 넘어갈 만큼 manifest, 이미지 root, 검토 시트, 리포트가 완결되는가?
+
+### 데이터와 생성 방식
+
+입력:
+
+- source manifest: `training/manifests/c087_expanded_crop_pairs_20260613.jsonl`
+- source summary: `training/manifests/c087_expanded_crop_pairs_20260613.summary.json`
+- source image root: `.tmp/c087_expanded_crop_pairs_root`
+
+preflight 결과 C087 원본은 다음 상태였다.
+
+- source rows: `224`
+- summary selected rows: `224`
+- approved groups: `4`
+- heldout mentions in source manifest: `0`
+- heldout rows used: `0`
+
+C097 도구는 image id에서 `c082_*` shape group과 pose pair를 파싱하고, 같은 group의
+ref/target positive pair를 유지하되 negative는 다른 shape group에서 결정적으로 선택한다. source-pose
+편향을 줄이기 위해 group당 최대 `16`, pose-pair당 최대 `8`개로 제한했다.
+
+### 개발한 것
+
+- `tools/c097_hard_shape_data_expansion.py`
+  - C087 manifest를 읽어 C097 explicit-negative manifest를 만든다.
+  - heldout 문자열 row는 사용하지 않고 rejected count로만 기록한다.
+  - source 이미지가 없거나 id를 파싱할 수 없으면 데이터 게이트를 중단한다.
+- `tools/c097_hard_shape_review.py`
+  - ref/target/negative 3열 검토 시트를 만든다.
+- `tools/c097_hard_shape_report.py`
+  - summary JSON과 Markdown report를 기록한다.
+- `tests/test_c097_hard_shape_data_expansion.py`
+  - balanced selection, cross-group negative, heldout exclusion, malformed id, missing image guard를 검증한다.
+- `docs/c097_hard_shape_data_expansion_plan_ko.md`
+  - C097 목적, 입력, 통과 기준, 결과, 다음 결정을 정리했다.
+
+### 산출물
+
+- output manifest: `training/manifests/c097_siglip_hard_shape_expanded_pairs_20260613.jsonl`
+- summary: `training/manifests/c097_siglip_hard_shape_expanded_pairs_20260613.summary.json`
+- local image root: `.tmp/c097_siglip_hard_shape_expanded_root`
+- review sheet: `eval/c097_hard_shape_data_expansion_20260613/pair_review_sheet.jpg`
+- report: `eval/c097_hard_shape_data_expansion_20260613/report.md`
+
+결과:
+
+- selected rows: `56`
+- explicit negative rows: `56`
+- materialized images: `168`
+- heldout rows rejected: `0`
+- heldout rows used: `0`
+- cross-group rejected rows: `0`
+- blank-like source/materialized images: `0`
+- review sheet size: `540x12320`
+
+group 분포:
+
+| group | selected rows |
+|---|---:|
+| `c082_frog_yokai_guard` | `16` |
+| `c082_goblin_mage` | `16` |
+| `c082_green_oni_scout` | `16` |
+| `c082_jade_lizard_monk` | `8` |
+
+pose-pair 분포:
+
+| pose pair | rows |
+|---|---:|
+| `c082_frog_yokai_guard:action->front` | `8` |
+| `c082_frog_yokai_guard:action->profile` | `8` |
+| `c082_goblin_mage:action->front` | `8` |
+| `c082_goblin_mage:action->profile` | `8` |
+| `c082_green_oni_scout:action->profile` | `8` |
+| `c082_green_oni_scout:action->three_quarter` | `8` |
+| `c082_jade_lizard_monk:front->three_quarter` | `8` |
+
+### 검증
+
+- `pytest tests/test_c097_hard_shape_data_expansion.py -q`: `3 passed`
+- `py_compile`:
+  - `tools/c097_hard_shape_data_expansion.py`
+  - `tools/c097_hard_shape_report.py`
+  - `tools/c097_hard_shape_review.py`
+  - `tests/test_c097_hard_shape_data_expansion.py`
+- pure LOC:
+  - `tools/c097_hard_shape_data_expansion.py`: `244`
+  - `tools/c097_hard_shape_report.py`: `25`
+  - `tools/c097_hard_shape_review.py`: `30`
+  - `tests/test_c097_hard_shape_data_expansion.py`: `136`
+- summary gate:
+  - `selected_rows >= 48`
+  - `explicit_negative_rows == selected_rows`
+  - `heldout_rows_used == 0`
+  - `shape groups >= 4`
+  - decision `data_gate_pass_for_deeper_siglip_encoder_training`
+- materialized audit:
+  - missing images: `[]`
+  - same negative group rows: `[]`
+  - low variance count: `0`
+- heldout grep:
+  - `training/manifests/c097_siglip_hard_shape_expanded_pairs_20260613.jsonl`와
+    `.tmp/c097_siglip_hard_shape_expanded_root`에서 heldout 문자열 없음
+
+### 판단
+
+decision은 `data_gate_pass_for_deeper_siglip_encoder_training`이다.
+
+C097은 생성 품질 승격 실험이 아니라 학습 입력 gate다. 그래도 C096의 가장 큰 약점이던
+`10`개 row 병목은 해소했다. 4개 non-human/mascot 계열 shape group이 유지되고, 각 row마다
+다른 shape group negative가 붙었으며, heldout 누수와 빈 이미지가 없다. review sheet에서도
+ref/target/negative가 구분되어 다음 contrastive 학습을 진단하기 쉬운 형태다.
+
+다음 루프는 이 C097 manifest를 사용해 C096보다 깊은 SigLIP encoder-LoRA를 학습한다. 최소 후보는
+`layer_count=4`, `rank=8` 또는 `rank=16`, C097 explicit-negative row 전체 사용, heldout 누수 0,
+그리고 C094/C095/C096/C087 baseline과 같은 hard-shape generation gate 비교다. C097 자체는 품질
+pass가 아니므로 고퀄 reference-control 목표는 계속 열린다.
+
+### c097 관련 파일
+
+- `docs/c097_hard_shape_data_expansion_plan_ko.md`
+- `tools/c097_hard_shape_data_expansion.py`
+- `tools/c097_hard_shape_report.py`
+- `tools/c097_hard_shape_review.py`
+- `tests/test_c097_hard_shape_data_expansion.py`
+- `training/manifests/c097_siglip_hard_shape_expanded_pairs_20260613.jsonl`
+- `training/manifests/c097_siglip_hard_shape_expanded_pairs_20260613.summary.json`
+- `eval/c097_hard_shape_data_expansion_20260613/pair_review_sheet.jpg`
+- `eval/c097_hard_shape_data_expansion_20260613/report.md`
