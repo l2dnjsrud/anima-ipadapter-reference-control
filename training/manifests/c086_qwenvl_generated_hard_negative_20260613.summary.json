@@ -1,0 +1,13 @@
+{
+  "output_manifest_path": "/home/wktwin/anima-ipadapter-reference-control/training/manifests/c086_qwenvl_generated_hard_negative_20260613.jsonl",
+  "scratch_image_root": "/home/wktwin/anima-ipadapter-reference-control/.tmp/c086_generated_hard_negative_root",
+  "source_manifest_path": "/home/wktwin/anima-ipadapter-reference-control/training/manifests/c085_anchored_full_adapter_20260613.jsonl",
+  "c085_gate_dir": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613",
+  "train_negative_rows": 32,
+  "crop_negative_rows": 10,
+  "generated_negative_rows": 42,
+  "total_rows": 42,
+  "heldout_rows_used": 0,
+  "materialized_negative_images": 42,
+  "decision": "ready_for_c086_hard_negative_training"
+}

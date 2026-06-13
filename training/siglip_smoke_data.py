@@ -27,6 +27,11 @@ def load_pair_rows(path: Path, *, limit: int) -> list[PairRow]:
                         ref_id=str(raw["ref_id"]),
                         tgt_id=str(raw["tgt_id"]),
                         prompt=str(raw["prompt"]),
+                        neg_id=(
+                            str(raw["neg_id"])
+                            if raw.get("neg_id") not in (None, "")
+                            else None
+                        ),
                     )
                 )
             except KeyError as exc:

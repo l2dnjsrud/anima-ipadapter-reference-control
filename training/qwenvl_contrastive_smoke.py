@@ -18,7 +18,10 @@ from training.qwenvl_prepared_cache import (  # noqa: E402
     get_qwenvl_prepared,
     prepare_qwenvl_cache,
 )
-from training.qwenvl_real_smoke import DEFAULT_INSTRUCTION  # noqa: E402
+from training.qwenvl_real_smoke import (  # noqa: E402
+    DEFAULT_INSTRUCTION,
+    prepare_qwenvl_training_row,
+)
 from training.qwenvl_smoke_checkpoint import (  # noqa: E402
     load_trainable_qwenvl_adapter,
     save_qwenvl_adapter_checkpoint,
@@ -33,6 +36,7 @@ from training.siglip_smoke_types import (  # noqa: E402
     CheckpointVerification,
     SmokeConfig,
     SmokeInputError,
+    PairRow,
 )
 
 
@@ -57,6 +61,13 @@ class QwenVLContrastiveSummary:
     retrieval_margin: float
     calibrator_bottleneck_dim: int | None
     train_calibrator_only: bool
+    explicit_negative_rows: int
+
+
+def explicit_negative_or_fallback(row: PairRow, fallback: PairRow) -> PairRow:
+    if row.neg_id is None:
+        return fallback
+    return PairRow(ref_id=row.neg_id, tgt_id=row.tgt_id, prompt=row.prompt)
 
 
 def run_qwenvl_contrastive_smoke(
@@ -79,6 +90,7 @@ def run_qwenvl_contrastive_smoke(
     rows = load_pair_rows(config.manifest_path, limit=config.max_rows)
     if len(rows) < 2:
         raise SmokeInputError("contrastive smoke requires at least two loaded rows")
+    explicit_negative_rows = sum(1 for row in rows if row.neg_id is not None)
     random.Random(config.seed).shuffle(rows)
 
     from library.anima.weights import load_anima_model, load_qwen3_text_encoder
@@ -153,20 +165,37 @@ def run_qwenvl_contrastive_smoke(
             dtype,
             instruction,
         )
-        wrong_prepared = get_qwenvl_prepared(
-            cache,
-            rows,
-            wrong_reference_index(row_index, len(rows)),
-            config,
-            vae,
-            text_encoder,
-            anima,
-            embedder,
-            prepare_text_inputs,
-            device,
-            dtype,
-            instruction,
-        )
+        fallback_index = wrong_reference_index(row_index, len(rows))
+        fallback_row = rows[fallback_index]
+        negative_row = explicit_negative_or_fallback(rows[row_index], fallback_row)
+        if negative_row is fallback_row:
+            wrong_prepared = get_qwenvl_prepared(
+                cache,
+                rows,
+                fallback_index,
+                config,
+                vae,
+                text_encoder,
+                anima,
+                embedder,
+                prepare_text_inputs,
+                device,
+                dtype,
+                instruction,
+            )
+        else:
+            wrong_prepared = prepare_qwenvl_training_row(
+                negative_row,
+                config,
+                vae,
+                text_encoder,
+                anima,
+                embedder,
+                prepare_text_inputs,
+                device,
+                dtype,
+                instruction,
+            )
         step_losses = run_qwenvl_step(
             anima=anima,
             adapter=adapter,
@@ -216,4 +245,5 @@ def run_qwenvl_contrastive_smoke(
         retrieval_margin=retrieval_margin,
         calibrator_bottleneck_dim=calibrator_bottleneck_dim,
         train_calibrator_only=train_calibrator_only,
+        explicit_negative_rows=explicit_negative_rows,
     )

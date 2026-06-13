@@ -21,6 +21,7 @@ class PairRow:
     ref_id: str
     tgt_id: str
     prompt: str
+    neg_id: str | None = None
 
 
 @dataclass(frozen=True, slots=True)

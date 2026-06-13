@@ -2323,3 +2323,126 @@ crop-pair focus에서는 QwenVL 평균 uplift가 c085 `0.0652211845`, blend `0.0
 - `eval/qwenvl_c085_anchored_full_adapter_gate_20260613/qwenvl_similarity_metrics.json`
 - `eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair_pe_similarity_metrics.json`
 - `eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair_qwenvl_similarity_metrics.json`
+
+## 2026-06-13 c086: generated hard-negative explicit negative continuation
+
+### 왜 진행했나
+
+c085는 full adapter를 열었지만 `blend_species_face`를 넘지 못했다. 특히 crop-pair focus에서는 초록 피부를 보존해도 reference의 작은 체형, side-profile, mascot silhouette이 adult humanoid template로 바뀌는 문제가 남았다.
+
+c086의 가설은 간단했다. c085가 실제로 만든 실패 이미지를 같은 reference의 explicit negative로 넣으면, adapter가 "색만 비슷한 실패 결과"를 reference target에서 밀어내는 방향을 배울 수 있다는 것이다.
+
+### 개발한 것
+
+- `training/siglip_smoke_types.py`: `PairRow.neg_id` 추가
+- `training/siglip_smoke_data.py`: manifest의 선택적 `neg_id` 파싱 추가
+- `training/qwenvl_contrastive_smoke.py`: `neg_id`가 있으면 fallback random negative 대신 명시적 hard negative를 사용하도록 변경
+- `tools/c086_generated_hard_negative_manifest.py`: c085 생성 실패 PNG를 hard-negative JPEG로 materialize하고 c086 manifest를 작성
+- `tests/test_qwenvl_hard_negative_rows.py`: `neg_id` 파싱 및 explicit negative routing 테스트
+- `tests/test_c086_generated_hard_negative_manifest.py`: c086 manifest builder 테스트
+
+### Manifest
+
+- manifest: `training/manifests/c086_qwenvl_generated_hard_negative_20260613.jsonl`
+- summary: `training/manifests/c086_qwenvl_generated_hard_negative_20260613.summary.json`
+- source gate: `eval/qwenvl_c085_anchored_full_adapter_gate_20260613`
+- scratch root: `.tmp/c086_generated_hard_negative_root`
+- train negative rows: `32`
+- crop negative rows: `10`
+- generated negative rows: `42`
+- total rows: `42`
+- heldout rows used: `0`
+
+### 학습
+
+- init checkpoint: `checkpoints/anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors`
+- output checkpoint: `checkpoints/anima_qwenvl_ip_adapter_c086_hard_negative_b128_0096_20260613.safetensors`
+- command surface: `training/qwenvl_contrastive_cli.py`
+- rows loaded: `42`
+- steps: `96`
+- resolution: `256`
+- lr: `2e-6`
+- contrastive weight: `0.35`
+- retrieval weight: `0.25`
+- explicit negative rows: `42`
+- train mode: full adapter + calibrator, `train_calibrator_only=false`
+- trainable parameters: 308,176,540
+- final loss: `0.1046228409`
+- finite loss: true
+- checkpoint loadable: true
+- report: `eval/qwenvl_c086_generated_hard_negative_training_20260613/report.md`
+
+### ComfyUI 검증
+
+- isolated API: `http://127.0.0.1:8116`
+- object info: `eval/qwenvl_c086_generated_hard_negative_gate_20260613/object_info_qwenvl_loader.json`
+- 비교 variant:
+  - `no_ip`
+  - `blend_species_face`: previous retrieval `1.4` + c055 mixed `0.4`
+  - `c085_anchored_full_adapter_w14`: c085 checkpoint `1.4`
+  - `c086_hard_negative_w14`: c086 checkpoint `1.4`
+- clean32+heldout8 결과: 160 image
+- crop-pair focus 결과: 40 image
+- blank image: 0
+- min pixel std: `35.8830680847`
+- contact sheets:
+  - `eval/qwenvl_c086_generated_hard_negative_gate_20260613/contact_sheet_train.jpg`
+  - `eval/qwenvl_c086_generated_hard_negative_gate_20260613/contact_sheet_heldout.jpg`
+  - `eval/qwenvl_c086_generated_hard_negative_gate_20260613/contact_sheet_crop_pair_focus.jpg`
+
+object_info에서 c086 checkpoint가 `AnimaQwenVLIPAdapterLoader` 선택지로 정상 노출되는 것을 확인했다. 생성과 object_info 확인 후 server를 종료했고 8116 port가 닫힌 것도 확인했다.
+
+### 결과 판단
+
+clean32+heldout8에서는 c086이 c085보다 크게 좋아졌지만, 기존 최고 `blend_species_face`를 확실히 넘지 못했다.
+
+| encoder | variant | mean uplift | improved rate |
+|---|---|---:|---:|
+| PE | `blend_species_face` | `0.0608932152` | `0.825` |
+| PE | `c085_anchored_full_adapter_w14` | `0.0308974788` | `0.725` |
+| PE | `c086_hard_negative_w14` | `0.0595780790` | `0.750` |
+| QwenVL | `blend_species_face` | `0.0421902567` | `0.800` |
+| QwenVL | `c085_anchored_full_adapter_w14` | `0.0306017444` | `0.775` |
+| QwenVL | `c086_hard_negative_w14` | `0.0388126254` | `0.900` |
+
+heldout8에서는 c086이 PE/QwenVL 양쪽 모두 `blend_species_face`를 넘었다. 이건 generated hard-negative objective가 hard case를 일부 교정한다는 의미 있는 신호다.
+
+| encoder | variant | mean uplift | improved rate |
+|---|---|---:|---:|
+| PE | `blend_species_face` | `0.0535339788` | `0.875` |
+| PE | `c085_anchored_full_adapter_w14` | `0.0370979905` | `0.750` |
+| PE | `c086_hard_negative_w14` | `0.0648405477` | `0.750` |
+| QwenVL | `blend_species_face` | `0.0264708772` | `0.750` |
+| QwenVL | `c085_anchored_full_adapter_w14` | `0.0192572623` | `0.750` |
+| QwenVL | `c086_hard_negative_w14` | `0.0325848311` | `0.750` |
+
+하지만 crop-pair focus에서는 c086이 c085보다 낮았다.
+
+| encoder | variant | mean uplift | improved rate |
+|---|---|---:|---:|
+| PE | `blend_species_face` | `-0.0916786253` | `0.400` |
+| PE | `c085_anchored_full_adapter_w14` | `-0.0143372715` | `0.500` |
+| PE | `c086_hard_negative_w14` | `-0.0233308047` | `0.400` |
+| QwenVL | `blend_species_face` | `0.0194013953` | `0.900` |
+| QwenVL | `c085_anchored_full_adapter_w14` | `0.0466495097` | `0.900` |
+| QwenVL | `c086_hard_negative_w14` | `0.0361481428` | `0.800` |
+
+사람이 봐도 c086은 c085보다 색/비인간 cue를 더 직접적으로 당기지만, reference의 고유 체형, 작은 mascot-like silhouette, side-profile, headwear를 보존하지 못한다. 특히 crop-pair focus는 c085보다 약해졌기 때문에 high-quality checkpoint로 승격할 수 없다.
+
+따라서 c086은 `runtime pass / partial improvement / quality fail`이다. 다음 루프는 generated hard-negative 반복보다, 더 믿을 수 있는 target-positive pair를 확보하거나 encoder-side feature adaptation으로 reference embedding 자체를 개선해야 한다.
+
+### c086 관련 파일
+
+- `tools/c086_generated_hard_negative_manifest.py`
+- `tests/test_c086_generated_hard_negative_manifest.py`
+- `tests/test_qwenvl_hard_negative_rows.py`
+- `training/manifests/c086_qwenvl_generated_hard_negative_20260613.jsonl`
+- `training/manifests/c086_qwenvl_generated_hard_negative_20260613.summary.json`
+- `eval/qwenvl_c086_generated_hard_negative_training_20260613/report.md`
+- `eval/qwenvl_c086_generated_hard_negative_training_20260613/summary.json`
+- `eval/qwenvl_c086_generated_hard_negative_gate_20260613/report.md`
+- `eval/qwenvl_c086_generated_hard_negative_gate_20260613/visual_audit.md`
+- `eval/qwenvl_c086_generated_hard_negative_gate_20260613/pe_similarity_metrics.json`
+- `eval/qwenvl_c086_generated_hard_negative_gate_20260613/qwenvl_similarity_metrics.json`
+- `eval/qwenvl_c086_generated_hard_negative_gate_20260613/crop_pair_pe_similarity_metrics.json`
+- `eval/qwenvl_c086_generated_hard_negative_gate_20260613/crop_pair_qwenvl_similarity_metrics.json`
