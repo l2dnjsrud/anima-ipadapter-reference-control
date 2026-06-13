@@ -1,0 +1,56 @@
+{
+  "source_paths": {
+    "candidate_manifest": "/home/wktwin/anima-ipadapter-reference-control/eval/c101_local_positive_annotation_teacher_gate_20260613/c101_reviewed_candidate_manifest.jsonl",
+    "c101_summary": "/home/wktwin/anima-ipadapter-reference-control/eval/c101_local_positive_annotation_teacher_gate_20260613/c101_candidate_summary.json",
+    "c100_summary": "/home/wktwin/anima-ipadapter-reference-control/eval/c100_local_real_color_positive_acquisition_20260613/c100_candidate_summary.json",
+    "heldout_manifest": "/home/wktwin/anima-ipadapter-reference-control/training/manifests/local_color_single_character_clean32_heldout8_20260611.jsonl",
+    "response_source": ""
+  },
+  "heldout_ids": [
+    "001-100/SG-015/mrcolor_panel_style_v5_edge_trim_strict_00031_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00464_SG-015-14_page_985x1775_s01",
+    "001-100/SG-026/mrcolor_panel_style_v4_split_edge_strict_probe_00166_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00817_SG-026-07_page_2011x2902_s01",
+    "001-100/SG-071/mrcolor_panel_style_v4_split_edge_strict_probe_00444_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02306_SG-071-05_page_1115x1356_s01",
+    "101-200/SG-121/mrcolor_panel_style_v5_edge_trim_strict_00253_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_04078_SG-121-05_page_1965x2851_s01",
+    "201-292 (완결)/SG-221/mrcolor_panel_style_v4_split_edge_strict_probe_01236_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_07442_SG-221-10_page_2087x2877_s03",
+    "201-292 (완결)/SG-244/mrcolor_panel_style_v4_split_edge_strict_probe_01334_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_08090_SG-244-08_page_2130x1528_s01",
+    "201-292 (완결)/SG-263/mrcolor_panel_style_v4_split_edge_strict_probe_01412_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_08482_SG-263-09_page_559x1112_s01",
+    "201-292 (완결)/SG-274/mrcolor_panel_style_v4_split_edge_strict_probe_01452_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_08754_SG-274-04_page_1407x1264_s03"
+  ],
+  "vlm_surfaces_checked": [
+    {
+      "surface": "repo_qwen3vl_embedding",
+      "status": "embedding_only"
+    },
+    {
+      "surface": "repo_c070_caption_search",
+      "status": "sidecar_caption_heuristic_only"
+    },
+    {
+      "surface": "local_qwen3vl_2b_thinking",
+      "status": "runnable_but_verbose_thinking_output"
+    },
+    {
+      "surface": "local_qwen3vl_8b_instruct",
+      "status": "selected"
+    }
+  ],
+  "selected_teacher": {
+    "status": "local_qwen3vl_8b_instruct_runnable",
+    "model_path": "/data/ai/models/LLM/Qwen-VL/Qwen3-VL-8B-Instruct",
+    "reason": "Qwen3-VL-8B-Instruct is a local HF-format generative VLM and follows compact labels better than Qwen3-VL-2B-Thinking."
+  },
+  "greenlight_criteria": {
+    "candidate_rows": 64,
+    "min_confirmed_positive": 8,
+    "teacher_only_positive_count": 0,
+    "heldout_leakage_count": 0,
+    "missing_path_count": 0
+  },
+  "key_metrics": {
+    "c101_decision": "c102_blocked_needs_manual_annotation_or_teacher",
+    "c101_reviewed_local_positive_count": 0,
+    "c100_candidate_rows": 64,
+    "heldout_count": 8,
+    "min_confirmed_positive": 8
+  }
+}
