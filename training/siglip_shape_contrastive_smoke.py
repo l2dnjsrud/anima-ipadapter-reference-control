@@ -36,6 +36,7 @@ from training.siglip_real_smoke import (  # noqa: E402
     load_trainable_adapter,
     save_adapter_checkpoint,
     trainable_parameter_count,
+    trainable_adapter_parameters,
     verify_checkpoint,
 )
 from training.siglip_reference_loss import reference_margin_loss  # noqa: E402
@@ -65,6 +66,7 @@ class ShapeContrastiveSmokeSummary:
     finite_loss: bool
     explicit_negative_rows: int
     trainable_parameters: int
+    trainable_parameter_names: tuple[str, ...]
     frozen_base_parameters: int
     checkpoint: CheckpointVerification
     init_checkpoint_path: str | None
@@ -72,6 +74,8 @@ class ShapeContrastiveSmokeSummary:
     contrastive_margin: float
     shape_weight: float
     reference_shape_weight: float
+    feature_bridge_bottleneck_dim: int | None
+    train_feature_bridge_only: bool
 
 
 def run_shape_contrastive_smoke(
@@ -81,6 +85,8 @@ def run_shape_contrastive_smoke(
     contrastive_margin: float,
     shape_weight: float,
     reference_shape_weight: float,
+    feature_bridge_bottleneck_dim: int | None = None,
+    train_feature_bridge_only: bool = False,
 ) -> ShapeContrastiveSmokeSummary:
     validate_config(config)
     _validate_weights(shape_weight, reference_shape_weight)
@@ -119,8 +125,14 @@ def run_shape_contrastive_smoke(
     processor = AutoImageProcessor.from_pretrained(config.siglip_model_id)
     frozen_params += freeze_module(siglip)
 
-    adapter = load_trainable_adapter(config, device, dtype)
-    optimizer = torch.optim.AdamW(adapter.parameters(), lr=config.lr)
+    adapter = load_trainable_adapter(
+        config,
+        device,
+        dtype,
+        feature_bridge_bottleneck_dim=feature_bridge_bottleneck_dim,
+        train_feature_bridge_only=train_feature_bridge_only,
+    )
+    optimizer = torch.optim.AdamW(trainable_adapter_parameters(adapter), lr=config.lr)
     scheduler = FlowMatchEulerDiscreteScheduler(num_train_timesteps=1000, shift=1.0)
     prepared_cache = prepare_cache(
         rows, config, vae, text_encoder, anima, siglip, processor, prepare_text_inputs, device, dtype
@@ -163,7 +175,8 @@ def run_shape_contrastive_smoke(
         config, len(rows), losses, base_losses, contrastive_losses, shape_losses,
         explicit_negative_rows, trainable_parameter_count(adapter), frozen_params,
         checkpoint, contrastive_weight, contrastive_margin, shape_weight,
-        reference_shape_weight,
+        reference_shape_weight, feature_bridge_bottleneck_dim,
+        train_feature_bridge_only, trainable_parameter_names(adapter),
     )
 
 
@@ -230,6 +243,9 @@ def _summary(
     contrastive_margin: float,
     shape_weight: float,
     reference_shape_weight: float,
+    feature_bridge_bottleneck_dim: int | None,
+    train_feature_bridge_only: bool,
+    trainable_parameter_names: tuple[str, ...],
 ) -> ShapeContrastiveSmokeSummary:
     return ShapeContrastiveSmokeSummary(
         steps=config.steps,
@@ -243,6 +259,7 @@ def _summary(
         finite_loss=all(math.isfinite(loss) for loss in losses),
         explicit_negative_rows=explicit_negative_rows,
         trainable_parameters=trainable_parameters,
+        trainable_parameter_names=trainable_parameter_names,
         frozen_base_parameters=frozen_params,
         checkpoint=checkpoint,
         init_checkpoint_path=str(config.init_checkpoint_path) if config.init_checkpoint_path else None,
@@ -250,4 +267,12 @@ def _summary(
         contrastive_margin=contrastive_margin,
         shape_weight=shape_weight,
         reference_shape_weight=reference_shape_weight,
+        feature_bridge_bottleneck_dim=feature_bridge_bottleneck_dim,
+        train_feature_bridge_only=train_feature_bridge_only,
+    )
+
+
+def trainable_parameter_names(adapter: torch.nn.Module) -> tuple[str, ...]:
+    return tuple(
+        name for name, parameter in adapter.named_parameters() if parameter.requires_grad
     )

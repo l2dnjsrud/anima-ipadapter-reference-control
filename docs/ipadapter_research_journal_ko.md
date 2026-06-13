@@ -3534,3 +3534,242 @@ C095의 방향은 adapter-only continuation이 아니다. 목표는 SigLIP image
 - `eval/c094_siglip_shape_supervised_anti_collapse_generation_gate_20260613/visual_audit.md`
 - `eval/c094_siglip_shape_supervised_anti_collapse_generation_gate_20260613/visual_audit.json`
 - `eval/c094_siglip_shape_supervised_anti_collapse_generation_gate_20260613/report.md`
+
+## 2026-06-13 C095 SigLIP feature-bridge adaptation loop
+
+### 왜 시작했나
+
+C094는 target/reference latent shape supervision을 추가했지만, green human face collapse를
+근본적으로 해결하지 못했다. C094 w14의 mean uplift는 `0.0878832954`로 C093보다
+조금 높았지만, Qwen baseline `0.1089544056`에는 여전히 멀었다. heldout07도
+`0.0085623513`에 그쳐 non-human side-profile 보존 기준을 통과하지 못했다.
+
+그래서 C095의 목표는 adapter-only continuation을 반복하는 것이 아니었다. SigLIP
+intermediate fused token 뒤, TimeResampler 앞에 작은 residual feature bridge를 추가하고
+그 bridge만 학습해서, 기존 SigLIP feature가 resampler로 들어가기 전에 non-human shape
+신호를 조금이라도 보존할 수 있는지 검증했다.
+
+### 데이터와 누수 방지
+
+- train manifest: `training/manifests/c093_siglip_qwen_target_anti_collapse_20260613.jsonl`
+- image root: `.tmp/c093_anti_collapse_root`
+- rows loaded: `10`
+- explicit negative rows: `10`
+- heldout07: 학습에서 제외
+- init checkpoint: `checkpoints/anima_siglip_ip_adapter_c094_shape_supervised_0064_20260613.safetensors`
+- output checkpoint: `checkpoints/anima_siglip_ip_adapter_c095_feature_bridge_b128_0096_20260613.safetensors`
+
+C095 checkpoint는 promotion되지 않은 830MB 실험 artifact이므로 `.gitignore`에서
+`checkpoints/*feature_bridge*.safetensors`로 local-only 처리했다.
+
+### 개발한 것
+
+- `siglip_feature_bridge.py`
+  - `CrossLayerEncoder` 출력 뒤에 들어가는 residual bridge를 추가했다.
+  - 구조는 `LayerNorm -> Linear down -> GELU -> Linear up -> residual add`이고,
+    `up` projection은 zero-init이라 초기 상태에서는 base adapter와 같은 출력을 낸다.
+- `siglip_checkpoint_errors.py`
+  - checkpoint error 타입을 분리해서 `siglip_checkpoint.py` 크기 증가를 막았다.
+- `siglip_checkpoint_variants.py`
+  - `feature_calibrator.*`와 `feature_bridge.*` checkpoint 감지를 분리했다.
+  - calibrator와 bridge가 동시에 들어간 checkpoint는 잘못된 혼합 family로 거부한다.
+- `training/siglip_smoke_checkpoint.py`
+  - `feature_bridge_bottleneck_dim`과 `train_feature_bridge_only` 옵션을 추가했다.
+  - C095에서는 `feature_bridge.*`만 trainable이 되도록 검증했다.
+- `training/siglip_shape_contrastive_smoke.py`
+  - optimizer가 모든 adapter parameter가 아니라 실제 trainable parameter만 받도록 수정했다.
+  - summary에 `trainable_parameter_names`, `feature_bridge_bottleneck_dim`,
+    `train_feature_bridge_only`를 기록한다.
+- `training/siglip_shape_contrastive_cli.py`
+  - C095 bridge-only 학습 옵션을 CLI로 노출했다.
+- `tools/c095_feature_bridge_training_report.py`
+  - bridge-only 학습 결과를 gate summary/report로 정리한다.
+- `tools/c095_feature_bridge_eval.py`
+  - isolated ComfyUI API hard-shape gate를 실행한다.
+- `tools/c095_feature_bridge_metrics.py`
+  - C095/C094/C093/C092/Qwen baseline uplift, heldout07, diversity proxy,
+    blank-like row를 집계한다.
+- tests:
+  - `tests/test_siglip_feature_bridge.py`
+  - `tests/test_c095_feature_bridge_training_report.py`
+  - `tests/test_c095_feature_bridge_eval.py`
+  - `tests/test_siglip_shape_contrastive_smoke.py`
+
+### 학습
+
+```sh
+PYTHONPATH=. /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python training/siglip_shape_contrastive_cli.py \
+  --manifest-path training/manifests/c093_siglip_qwen_target_anti_collapse_20260613.jsonl \
+  --image-root .tmp/c093_anti_collapse_root \
+  --init-checkpoint-path checkpoints/anima_siglip_ip_adapter_c094_shape_supervised_0064_20260613.safetensors \
+  --output-path checkpoints/anima_siglip_ip_adapter_c095_feature_bridge_b128_0096_20260613.safetensors \
+  --steps 96 \
+  --max-rows 10 \
+  --resolution 256 \
+  --device cuda:0 \
+  --lr 8e-5 \
+  --seed 20260695 \
+  --contrastive-weight 0.25 \
+  --contrastive-margin 0.08 \
+  --shape-weight 0.20 \
+  --reference-shape-weight 0.35 \
+  --feature-bridge-bottleneck-dim 128 \
+  --train-feature-bridge-only
+```
+
+학습 gate 결과:
+
+- decision: `proceed_to_c095_generation_gate`
+- steps: `96`
+- rows loaded: `10`
+- explicit negative rows: `10`
+- heldout07 rows: `[]`
+- first loss: `0.1213418096`
+- final loss: `0.0988682881`
+- mean loss: `0.1121593343`
+- mean base loss: `0.1000255272`
+- mean contrastive loss: `0.0482959933`
+- mean shape loss: `0.0002990466`
+- finite loss: `true`
+- train feature bridge only: `true`
+- trainable parameters: `198,144`
+- trainable names:
+  - `feature_bridge.norm.weight`
+  - `feature_bridge.norm.bias`
+  - `feature_bridge.down.weight`
+  - `feature_bridge.up.weight`
+- frozen base parameters: `2,913,827,059`
+- checkpoint loadable: `true`
+- PE checkpoint rejected by SigLIP loader: `true`
+
+### ComfyUI API 검증
+
+isolated ComfyUI 서버는 port `8121`에서 실행했다. 처음에는 isolated
+`--base-directory` 아래 `custom_nodes`가 없어 ComfyUI가 바로 종료되었고, C094와 같은 구조로
+`.tmp/comfy_siglip_c095/base/custom_nodes/anima-ipadapter-reference-control` symlink를 만든 뒤
+정상 실행했다.
+
+object_info에서 `AnimaSigLIPIPAdapterLoader`, `AnimaSigLIPEncodeImage`,
+`AnimaSigLIPIPAdapterApply`가 노출되었고,
+`anima_siglip_ip_adapter_c095_feature_bridge_b128_0096_20260613.safetensors`가 loader
+selector에 표시되는 것을 확인했다.
+
+generation gate:
+
+```sh
+PYTHONPATH=. /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python tools/c095_feature_bridge_eval.py \
+  eval/c088_shape_silhouette_feature_probe_20260613/probe_manifest.jsonl \
+  --out-dir eval/c095_siglip_feature_bridge_generation_gate_20260613 \
+  --data-root .tmp/c095_siglip_hard_shape_root \
+  --comfy-input .tmp/comfy_siglip_c095/input \
+  --comfy-output .tmp/comfy_siglip_c095/output \
+  --base-url http://127.0.0.1:8121
+```
+
+비교 variant는 12개다.
+
+- `no_ip`
+- `siglip_pilot_w14`
+- `c089_shape_w14`
+- `c091_feature_calibrator_w14`
+- `c092_qwen_target_w10`
+- `c092_qwen_target_w14`
+- `c093_anti_collapse_w14`
+- `c094_shape_supervised_w14`
+- `c095_feature_bridge_w08`
+- `c095_feature_bridge_w10`
+- `c095_feature_bridge_w12`
+- `c095_feature_bridge_w14`
+
+결과:
+
+- generated PNG: `132`
+- samples: `11`
+- variants: `12`
+- contact sheet: `eval/c095_siglip_feature_bridge_generation_gate_20260613/contact_sheet_hard_shape.jpg`
+- contact sheet size: `3384x3504`
+- metric rollup: `eval/c095_siglip_feature_bridge_generation_gate_20260613/metric_rollup.json`
+- pixel audit: `eval/c095_siglip_feature_bridge_generation_gate_20260613/pixel_nonblank_audit.json`
+- object info: `eval/c095_siglip_feature_bridge_generation_gate_20260613/object_info_siglip_loader.json`
+- visual audit: `eval/c095_siglip_feature_bridge_generation_gate_20260613/visual_audit.md`
+- cleanup receipt: `eval/c095_siglip_feature_bridge_generation_gate_20260613/cleanup_port_8121.txt`
+
+pixel audit는 `generated_count=132`, `blank_count=1`을 기록했다. 저분산 이미지는
+`crop_pair00_no_ip` baseline이고 C095 이미지는 blank-like row가 없다.
+
+metric rollup:
+
+| variant | mean uplift | improved rate | cases |
+|---|---:|---:|---:|
+| `c087_expanded_crop_positive_w14` | `0.1089544056` | `0.9090909091` | `11` |
+| `c092_qwen_target_w10` | `0.0738254876` | `0.9090909091` | `11` |
+| `c092_qwen_target_w14` | `0.0852681653` | `1.0` | `11` |
+| `c093_anti_collapse_w14` | `0.0863735780` | `1.0` | `11` |
+| `c094_shape_supervised_w14` | `0.0878832954` | `0.9090909091` | `11` |
+| `c095_feature_bridge_w08` | `0.0583697520` | `0.8181818182` | `11` |
+| `c095_feature_bridge_w10` | `0.0802235059` | `0.9090909091` | `11` |
+| `c095_feature_bridge_w12` | `0.0828959675` | `0.8181818182` | `11` |
+| `c095_feature_bridge_w14` | `0.0865223347` | `0.9090909091` | `11` |
+
+heldout07:
+
+- best C095: `c095_feature_bridge_w14`
+- best C095 uplift: `0.0115417034`
+- C094 w14 uplift: `0.0085623513`
+- C093 w14 uplift: `0.0045189584`
+- C092 w14 uplift: `0.0009986630`
+
+### 결과 판단
+
+decision은
+`c095_feature_bridge_not_promoted_requires_siglip_encoder_finetune_or_data_expansion`이다.
+
+C095 w14는 heldout07에서는 C094보다 조금 높아졌지만, 전체 mean uplift는
+`0.0865223347`로 C094 w14 `0.0878832954`보다 낮다. Qwen baseline
+`0.1089544056`과의 격차도 줄지 않았다. C095 promotion 기준인 mean `>=0.100`,
+C094 대비 `+0.010`, Qwen baseline 근접, heldout07 `>=0.030`을 모두 통과하지 못했다.
+
+visual audit도 같은 결론이다. C095는 실제 ComfyUI native SigLIP node에서 load/generate가
+되고, bridge-only checkpoint도 정상적으로 선택된다. 하지만 frog/chibi/mascot/non-human
+row는 여전히 초록색 인간 두상이나 villain portrait로 붕괴한다. heldout07은 side-profile
+cue가 약간 더 남지만, monster jaw, red eye, exaggerated silhouette를 충분히 보존하지 못한다.
+
+따라서 C095는 "작은 residual feature bridge가 작동하는가"에는 yes, "고퀄 reference-control
+gate를 통과할 만큼 충분한가"에는 no이다. 다음 루프는 adapter-only나 tiny bridge를 반복하지
+말고, SigLIP image encoder checkpoint 자체의 anime/reference-control fine-tuning 또는 더 큰
+색상/캐릭터 reference 데이터 확장으로 넘어가야 한다.
+
+### c095 관련 파일
+
+- `.gitignore`
+- `siglip_checkpoint.py`
+- `siglip_checkpoint_errors.py`
+- `siglip_checkpoint_variants.py`
+- `siglip_feature_bridge.py`
+- `training/siglip_smoke_checkpoint.py`
+- `training/siglip_shape_contrastive_smoke.py`
+- `training/siglip_shape_contrastive_cli.py`
+- `training/pe_space_siglip_adapter.py`
+- `tools/c095_feature_bridge_training_report.py`
+- `tools/c095_feature_bridge_metrics.py`
+- `tools/c095_feature_bridge_eval.py`
+- `tests/test_siglip_feature_bridge.py`
+- `tests/test_c095_feature_bridge_training_report.py`
+- `tests/test_c095_feature_bridge_eval.py`
+- `tests/test_siglip_shape_contrastive_smoke.py`
+- `docs/c095_siglip_feature_bridge_plan_ko.md`
+- `eval/c095_siglip_feature_bridge_training_20260613/train_stdout.txt`
+- `eval/c095_siglip_feature_bridge_training_20260613/training_summary.json`
+- `eval/c095_siglip_feature_bridge_training_20260613/summary.json`
+- `eval/c095_siglip_feature_bridge_training_20260613/report.md`
+- `eval/c095_siglip_feature_bridge_generation_gate_20260613/summary.json`
+- `eval/c095_siglip_feature_bridge_generation_gate_20260613/contact_sheet_hard_shape.jpg`
+- `eval/c095_siglip_feature_bridge_generation_gate_20260613/shape_metrics.json`
+- `eval/c095_siglip_feature_bridge_generation_gate_20260613/metric_rollup.json`
+- `eval/c095_siglip_feature_bridge_generation_gate_20260613/pixel_nonblank_audit.json`
+- `eval/c095_siglip_feature_bridge_generation_gate_20260613/object_info_siglip_loader.json`
+- `eval/c095_siglip_feature_bridge_generation_gate_20260613/object_info_AnimaSigLIPIPAdapterLoader.json`
+- `eval/c095_siglip_feature_bridge_generation_gate_20260613/visual_audit.md`
+- `eval/c095_siglip_feature_bridge_generation_gate_20260613/visual_audit.json`
+- `eval/c095_siglip_feature_bridge_generation_gate_20260613/report.md`
+- `eval/c095_siglip_feature_bridge_generation_gate_20260613/cleanup_port_8121.txt`

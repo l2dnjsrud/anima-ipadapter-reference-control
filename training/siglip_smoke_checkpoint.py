@@ -7,6 +7,7 @@ from safetensors.torch import save_file
 
 from siglip_checkpoint import SigLIPCheckpointError, load_siglip_adapter
 from siglip_feature_calibration import wrap_siglip_with_calibrator
+from siglip_feature_bridge import wrap_siglip_with_feature_bridge
 from siglip_model import IPAdapterSigLIP
 from training.siglip_smoke_types import (
     CheckpointVerification,
@@ -22,7 +23,11 @@ def load_trainable_adapter(
     *,
     calibrator_bottleneck_dim: int | None = None,
     train_calibrator_only: bool = False,
+    feature_bridge_bottleneck_dim: int | None = None,
+    train_feature_bridge_only: bool = False,
 ) -> IPAdapterSigLIP:
+    if calibrator_bottleneck_dim is not None and feature_bridge_bottleneck_dim is not None:
+        raise SmokeInputError("SigLIP training cannot combine calibrator and feature bridge")
     adapter = (
         IPAdapterSigLIP()
         if config.init_checkpoint_path is None
@@ -36,11 +41,20 @@ def load_trainable_adapter(
             adapter,
             bottleneck_dim=calibrator_bottleneck_dim,
         )
+    if feature_bridge_bottleneck_dim is not None and not hasattr(
+        adapter,
+        "feature_bridge",
+    ):
+        adapter = wrap_siglip_with_feature_bridge(
+            adapter,
+            bottleneck_dim=feature_bridge_bottleneck_dim,
+        )
     adapter.to(device=device, dtype=torch.float32)
     adapter.train()
     set_siglip_trainable_parameters(
         adapter,
         train_calibrator_only=train_calibrator_only,
+        train_feature_bridge_only=train_feature_bridge_only,
     )
     return adapter
 
@@ -49,17 +63,27 @@ def set_siglip_trainable_parameters(
     adapter: IPAdapterSigLIP,
     *,
     train_calibrator_only: bool,
+    train_feature_bridge_only: bool,
 ) -> None:
-    if not train_calibrator_only:
+    if train_calibrator_only and train_feature_bridge_only:
+        raise SmokeInputError("choose either train_calibrator_only or train_feature_bridge_only")
+    if not train_calibrator_only and not train_feature_bridge_only:
         for parameter in adapter.parameters():
             parameter.requires_grad_(True)
         return
     if not hasattr(adapter, "feature_calibrator"):
-        raise ValueError("train_calibrator_only requires a calibrated SigLIP adapter")
+        if train_calibrator_only:
+            raise ValueError("train_calibrator_only requires a calibrated SigLIP adapter")
+    if train_feature_bridge_only and not hasattr(adapter, "feature_bridge"):
+        raise SmokeInputError("train_feature_bridge_only requires a bridged SigLIP adapter")
     for parameter in adapter.parameters():
         parameter.requires_grad_(False)
-    for parameter in adapter.feature_calibrator.parameters():
-        parameter.requires_grad_(True)
+    if train_calibrator_only:
+        for parameter in adapter.feature_calibrator.parameters():
+            parameter.requires_grad_(True)
+    if train_feature_bridge_only:
+        for parameter in adapter.feature_bridge.parameters():
+            parameter.requires_grad_(True)
 
 
 def trainable_adapter_parameters(

@@ -1,0 +1,38 @@
+{
+  "train_stdout": "eval/c095_siglip_feature_bridge_training_20260613/train_stdout.txt",
+  "training_summary": {
+    "steps": 96,
+    "rows_loaded": 10,
+    "first_loss": 0.12134180963039398,
+    "final_loss": 0.09886828809976578,
+    "mean_loss": 0.11215933427835505,
+    "mean_base_loss": 0.10002552717924118,
+    "mean_contrastive_loss": 0.0482959933190917,
+    "mean_shape_loss": 0.00029904658716380556,
+    "finite_loss": true,
+    "explicit_negative_rows": 10,
+    "trainable_parameters": 198144,
+    "trainable_parameter_names": [
+      "feature_bridge.norm.weight",
+      "feature_bridge.norm.bias",
+      "feature_bridge.down.weight",
+      "feature_bridge.up.weight"
+    ],
+    "frozen_base_parameters": 2913827059,
+    "checkpoint": {
+      "output_path": "checkpoints/anima_siglip_ip_adapter_c095_feature_bridge_b128_0096_20260613.safetensors",
+      "loadable": true,
+      "pe_checkpoint_rejected": true
+    },
+    "init_checkpoint_path": "checkpoints/anima_siglip_ip_adapter_c094_shape_supervised_0064_20260613.safetensors",
+    "contrastive_weight": 0.25,
+    "contrastive_margin": 0.08,
+    "shape_weight": 0.2,
+    "reference_shape_weight": 0.35,
+    "feature_bridge_bottleneck_dim": 128,
+    "train_feature_bridge_only": true,
+    "heldout07_rows": []
+  },
+  "failures": [],
+  "decision": "proceed_to_c095_generation_gate"
+}

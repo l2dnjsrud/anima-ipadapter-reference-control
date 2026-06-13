@@ -68,6 +68,8 @@ def main(
     contrastive_margin: Annotated[float, typer.Option(min=0.0, max=10.0)] = 0.08,
     shape_weight: Annotated[float, typer.Option(min=0.0, max=10.0)] = 0.20,
     reference_shape_weight: Annotated[float, typer.Option(min=0.0, max=10.0)] = 0.35,
+    feature_bridge_bottleneck_dim: Annotated[int | None, typer.Option(min=1)] = None,
+    train_feature_bridge_only: Annotated[bool, typer.Option()] = False,
 ) -> None:
     summary = run_shape_contrastive_smoke(
         SmokeConfig(
@@ -91,6 +93,8 @@ def main(
         contrastive_margin=contrastive_margin,
         shape_weight=shape_weight,
         reference_shape_weight=reference_shape_weight,
+        feature_bridge_bottleneck_dim=feature_bridge_bottleneck_dim,
+        train_feature_bridge_only=train_feature_bridge_only,
     )
     console.print_json(json.dumps(asdict(summary), ensure_ascii=True))
 

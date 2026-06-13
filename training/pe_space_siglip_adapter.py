@@ -81,6 +81,7 @@ def load_teacher_adapter(
     set_siglip_trainable_parameters(
         adapter,
         train_calibrator_only=train_calibrator_only,
+        train_feature_bridge_only=False,
     )
     return adapter
 
