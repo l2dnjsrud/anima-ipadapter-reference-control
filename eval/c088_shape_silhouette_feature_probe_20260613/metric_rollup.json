@@ -1,0 +1,57 @@
+{
+  "experiment": "c088_shape_silhouette_feature_probe",
+  "feature_summaries": {
+    "edge_projection_silhouette": {
+      "cases": 11,
+      "supported_cases": 6,
+      "support_rate": 0.5454545454545454,
+      "source_decision": "shape_silhouette_signal_viable"
+    },
+    "qwenvl": {
+      "cases": 11,
+      "supported_cases": 4,
+      "support_rate": 0.36363636363636365,
+      "source_decision": "embedding_signal_not_viable"
+    },
+    "siglip2": {
+      "cases": 11,
+      "supported_cases": 4,
+      "support_rate": 0.36363636363636365,
+      "source_decision": "embedding_signal_not_viable"
+    },
+    "pe": {
+      "cases": 11,
+      "supported_cases": 7,
+      "support_rate": 0.6363636363636364,
+      "source_decision": "embedding_signal_viable"
+    }
+  },
+  "hard_case_notes": {
+    "edge_projection_silhouette": {
+      "best_variant": "c087_expanded_crop_positive_w14",
+      "best_uplift": 0.024618472899662236,
+      "top_margin": 0.014583258045160363,
+      "decision": "shape_signal_not_enough"
+    },
+    "qwenvl": {
+      "best_variant": "no_ip",
+      "best_uplift": 0.0,
+      "top_margin": 0.00960475206375122,
+      "decision": "embedding_signal_not_enough"
+    },
+    "siglip2": {
+      "best_variant": "c086_hard_negative_w14",
+      "best_uplift": 0.024952709674835205,
+      "top_margin": 0.024952709674835205,
+      "decision": "embedding_signal_not_enough"
+    },
+    "pe": {
+      "best_variant": "c086_hard_negative_w14",
+      "best_uplift": 0.07166695594787598,
+      "top_margin": 0.06360191106796265,
+      "decision": "embedding_signal_supports_supervised_objective"
+    }
+  },
+  "decision": "shape_signal_present_encoder_embedding_not_enough",
+  "next_direction": "distill_edge_silhouette_or_train_encoder_side_shape_checkpoint"
+}

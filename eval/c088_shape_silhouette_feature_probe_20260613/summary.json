@@ -1,0 +1,20 @@
+{
+  "experiment": "c088_shape_silhouette_feature_probe",
+  "manifest_path": "eval/c088_shape_silhouette_feature_probe_20260613/probe_manifest.jsonl",
+  "rows": 11,
+  "crop_focus_rows": 10,
+  "heldout_eval_rows": 1,
+  "heldout_training_rows_used": 0,
+  "shape_group_counts": {
+    "frog_yokai_guard": 10,
+    "heldout07_non_human_profile": 1
+  },
+  "candidate_variants": [
+    "no_ip",
+    "blend_species_face",
+    "c085_anchored_full_adapter_w14",
+    "c086_hard_negative_w14",
+    "c087_expanded_crop_positive_w14"
+  ],
+  "decision": "ready_for_c088_shape_silhouette_scoring"
+}
