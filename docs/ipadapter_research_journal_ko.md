@@ -2446,3 +2446,139 @@ heldout8에서는 c086이 PE/QwenVL 양쪽 모두 `blend_species_face`를 넘었
 - `eval/qwenvl_c086_generated_hard_negative_gate_20260613/qwenvl_similarity_metrics.json`
 - `eval/qwenvl_c086_generated_hard_negative_gate_20260613/crop_pair_pe_similarity_metrics.json`
 - `eval/qwenvl_c086_generated_hard_negative_gate_20260613/crop_pair_qwenvl_similarity_metrics.json`
+
+## 2026-06-13 c087: expanded target-positive crop-pair full-adapter gate
+
+### 왜 진행했나
+
+c086은 generated hard-negative가 heldout 일부를 개선한다는 신호를 보였지만, crop-pair focus에서는 c085보다 약해졌다. 즉 "색만 비슷한 실패 결과를 밀어내는 objective"만으로는 frog/yokai/chibi reference의 작은 체형, 둥근 몸, 모자, side-profile silhouette을 충분히 잠그지 못했다.
+
+c087의 가설은 반대 방향이었다. c083에서 승인된 crop-pair target-positive 데이터를 c084/c085보다 훨씬 많이 사용하면, 모델이 색감뿐 아니라 같은 비인간 캐릭터의 형태적 identity를 더 잘 배울 수 있는지 확인했다.
+
+### 개발한 것
+
+- `tools/c085_anchored_full_adapter_manifest.py`: 기존 80개 crop row 고정 대신 `crop_row_limit`을 받을 수 있게 확장
+- `tests/test_c085_anchored_full_adapter_manifest.py`: 확장 crop row limit 테스트 추가
+- `tools/c087_expanded_crop_positive_manifest.py`: c083 approved pair를 더 넓게 사용해 expanded crop-pair manifest와 anchored full-adapter manifest를 순차 생성
+- `tests/test_c087_expanded_crop_positive_manifest.py`: c087 manifest builder end-to-end 테스트 추가
+- `.tmp/run_c087_qwenvl_expanded_crop_positive_eval.py`: c087 ComfyUI API gate runner 추가
+
+### Manifest
+
+- reviewed labels: `eval/c083_sheet_crop_identity_pair_extraction_20260613/reviewed_crop_labels.jsonl`
+- approved pairs: `eval/c083_sheet_crop_identity_pair_extraction_20260613/approved_pair_manifest.jsonl`
+- expanded crop manifest: `training/manifests/c087_expanded_crop_pairs_20260613.jsonl`
+- expanded crop summary: `training/manifests/c087_expanded_crop_pairs_20260613.summary.json`
+- anchored full-adapter manifest: `training/manifests/c087_expanded_anchored_full_adapter_20260613.jsonl`
+- anchored summary: `training/manifests/c087_expanded_anchored_full_adapter_20260613.summary.json`
+- scratch root: `.tmp/c087_expanded_crop_positive_root`
+- source pairs: `970`
+- expanded crop selected rows: `224`
+- approved groups: `4`
+- clean anchor rows: `32`
+- c052 positive anchor rows: `16`
+- failure anchor rows: `32`
+- total anchored rows: `304`
+- heldout rows used: `0`
+
+목표는 crop row 약 320개였지만, 승인된 source-pair 구조와 per-group/per-source-pair balancing 때문에 실제 선택은 224개가 최대였다. 그래도 c084/c085의 80개보다 2.8배 넓어진 target-positive supervision이다.
+
+### 학습
+
+- init checkpoint: `checkpoints/anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors`
+- output checkpoint: `checkpoints/anima_qwenvl_ip_adapter_c087_expanded_crop_positive_b128_0128_20260613.safetensors`
+- command surface: `training/qwenvl_contrastive_cli.py`
+- rows loaded: `304`
+- steps: `128`
+- resolution: `256`
+- lr: `2e-6`
+- contrastive weight: `0.25`
+- retrieval weight: `0.15`
+- train mode: full adapter + calibrator, `train_calibrator_only=false`
+- calibrator bottleneck dim: `128`
+- trainable parameters: 308,176,540
+- final loss: `0.1393356025`
+- finite loss: true
+- checkpoint loadable: true
+- PE checkpoint rejected: true
+- report: `eval/qwenvl_c087_expanded_crop_positive_training_20260613/report.md`
+
+### ComfyUI 검증
+
+- isolated API: `http://127.0.0.1:8116`
+- object info: `eval/qwenvl_c087_expanded_crop_positive_gate_20260613/object_info.json`
+- 비교 variant:
+  - `no_ip`
+  - `blend_species_face`: previous retrieval `1.4` + c055 mixed `0.4`
+  - `c085_anchored_full_adapter_w14`: c085 checkpoint `1.4`
+  - `c086_hard_negative_w14`: c086 checkpoint `1.4`
+  - `c087_expanded_crop_positive_w14`: c087 checkpoint `1.4`
+- clean32+heldout8 결과: 200 image
+- crop-pair focus 결과: 50 image
+- generated PNG: `250`
+- blank image: `0`
+- min pixel std: `35.8830680847`
+- contact sheets:
+  - `eval/qwenvl_c087_expanded_crop_positive_gate_20260613/contact_sheet_train.jpg`
+  - `eval/qwenvl_c087_expanded_crop_positive_gate_20260613/contact_sheet_heldout.jpg`
+  - `eval/qwenvl_c087_expanded_crop_positive_gate_20260613/contact_sheet_crop_pair_focus.jpg`
+
+object_info에서 c087 checkpoint가 `AnimaQwenVLIPAdapterLoader` 선택지에 정상 노출되는 것을 확인했다. 생성 후 ComfyUI server를 종료했고 8116 port가 닫힌 것도 확인했다.
+
+### 결과 판단
+
+clean32+heldout8 전체에서는 c087이 c085와 거의 같은 수준이지만, `blend_species_face`와 c086을 넘지 못했다.
+
+| encoder | variant | mean uplift | improved rate |
+|---|---|---:|---:|
+| PE | `blend_species_face` | `0.0608932152` | `0.825` |
+| PE | `c085_anchored_full_adapter_w14` | `0.0308974788` | `0.725` |
+| PE | `c086_hard_negative_w14` | `0.0595780790` | `0.750` |
+| PE | `c087_expanded_crop_positive_w14` | `0.0311193079` | `0.725` |
+| QwenVL | `blend_species_face` | `0.0421902567` | `0.800` |
+| QwenVL | `c085_anchored_full_adapter_w14` | `0.0306017444` | `0.775` |
+| QwenVL | `c086_hard_negative_w14` | `0.0388126254` | `0.900` |
+| QwenVL | `c087_expanded_crop_positive_w14` | `0.0310260832` | `0.800` |
+
+heldout8만 보면 PE 기준으로 c087은 `0.0602737069`, improved rate `1.0`으로 긍정적이다. 하지만 QwenVL heldout에서는 c087이 `0.0139362663`으로 가장 낮다.
+
+| encoder | variant | mean uplift | improved rate |
+|---|---|---:|---:|
+| PE | `blend_species_face` | `0.0535339788` | `0.875` |
+| PE | `c086_hard_negative_w14` | `0.0648405477` | `0.750` |
+| PE | `c087_expanded_crop_positive_w14` | `0.0602737069` | `1.000` |
+| QwenVL | `blend_species_face` | `0.0264708772` | `0.750` |
+| QwenVL | `c086_hard_negative_w14` | `0.0325848311` | `0.750` |
+| QwenVL | `c087_expanded_crop_positive_w14` | `0.0139362663` | `0.750` |
+
+crop-pair focus에서는 c087이 c085/c086보다 낮다. c087이 초록 피부와 비인간 cue를 당기는 데는 성공하지만, reference의 frog mascot/chibi silhouette, 둥근 몸, 짧은 비율, 모자를 잠그지 못하고 adult green humanoid template로 바뀐다.
+
+| encoder | variant | mean uplift | improved rate |
+|---|---|---:|---:|
+| PE | `c085_anchored_full_adapter_w14` | `0.0815944552` | `0.700` |
+| PE | `c086_hard_negative_w14` | `0.0940596938` | `0.700` |
+| PE | `c087_expanded_crop_positive_w14` | `0.0536489964` | `0.700` |
+| QwenVL | `c085_anchored_full_adapter_w14` | `0.0222077310` | `0.800` |
+| QwenVL | `c086_hard_negative_w14` | `0.0023720264` | `0.500` |
+| QwenVL | `c087_expanded_crop_positive_w14` | `0.0043545485` | `0.600` |
+
+따라서 c087은 `runtime pass / quality fail`이다. expanded target-positive crop supervision을 늘리는 것만으로는 high-quality reference-control checkpoint를 만들기 어렵다. 다음 루프는 같은 full-adapter continuation을 반복하지 말고, encoder-side checkpoint adaptation 또는 shape/silhouette을 직접 보상하는 feature objective로 이동해야 한다.
+
+### c087 관련 파일
+
+- `tools/c087_expanded_crop_positive_manifest.py`
+- `tests/test_c087_expanded_crop_positive_manifest.py`
+- `training/manifests/c087_expanded_crop_pairs_20260613.jsonl`
+- `training/manifests/c087_expanded_crop_pairs_20260613.summary.json`
+- `training/manifests/c087_expanded_anchored_full_adapter_20260613.jsonl`
+- `training/manifests/c087_expanded_anchored_full_adapter_20260613.summary.json`
+- `eval/qwenvl_c087_expanded_crop_positive_training_20260613/report.md`
+- `eval/qwenvl_c087_expanded_crop_positive_training_20260613/summary.json`
+- `eval/qwenvl_c087_expanded_crop_positive_gate_20260613/report.md`
+- `eval/qwenvl_c087_expanded_crop_positive_gate_20260613/visual_audit.md`
+- `eval/qwenvl_c087_expanded_crop_positive_gate_20260613/metric_rollup.json`
+- `eval/qwenvl_c087_expanded_crop_positive_gate_20260613/pixel_audit.json`
+- `eval/qwenvl_c087_expanded_crop_positive_gate_20260613/pe_similarity_metrics.json`
+- `eval/qwenvl_c087_expanded_crop_positive_gate_20260613/qwenvl_similarity_metrics.json`
+- `eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair_pe_similarity_metrics.json`
+- `eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair_qwenvl_similarity_metrics.json`

@@ -62,6 +62,51 @@ def test_build_c085_manifest_balances_crop_and_anchor_rows(tmp_path: Path) -> No
     assert written_summary["decision"] == "ready_for_c085_full_adapter_training"
 
 
+def test_build_c085_manifest_accepts_expanded_crop_row_limit(tmp_path: Path) -> None:
+    c084_root = tmp_path / "c084_root"
+    color_root = tmp_path / "color_root"
+    c085_root = tmp_path / "c085_root"
+    c084_manifest = tmp_path / "c084.jsonl"
+    c060_manifest = tmp_path / "c060.jsonl"
+    heldout_summary = tmp_path / "heldout.json"
+    output_manifest = tmp_path / "out.jsonl"
+    output_summary = tmp_path / "out.summary.json"
+    c084_rows = [
+        _row(f"external/c084/ref{i:03d}", f"external/c084/tgt{i:03d}")
+        for i in range(120)
+    ]
+    c060_rows = [_row(f"clean/ref{i:03d}", f"clean/ref{i:03d}") for i in range(32)]
+    c060_rows.extend(_row(f"positive/ref{i:03d}", f"positive/tgt{i:03d}") for i in range(58))
+    c060_rows.extend(_row(f"failure/ref{i:03d}", f"failure/tgt{i:03d}") for i in range(64))
+    _write_jsonl(c084_manifest, c084_rows)
+    _write_jsonl(c060_manifest, c060_rows)
+    heldout_summary.write_text(json.dumps({"heldout_ids": []}), encoding="utf-8")
+    for row in c084_rows:
+        _write_image(c084_root / f"{row['ref_id']}.jpg")
+        _write_image(c084_root / f"{row['tgt_id']}.jpg")
+        _write_caption(c084_root / f"{row['tgt_id']}.txt")
+    for row in c060_rows:
+        _write_image(color_root / f"{row['ref_id']}.jpg")
+        _write_image(color_root / f"{row['tgt_id']}.jpg")
+        _write_caption(color_root / f"{row['tgt_id']}.txt")
+
+    summary = build_c085_manifest(
+        c084_manifest=c084_manifest,
+        c060_manifest=c060_manifest,
+        c084_root=c084_root,
+        color_root=color_root,
+        output_root=c085_root,
+        output_manifest=output_manifest,
+        output_summary=output_summary,
+        heldout_summary=heldout_summary,
+        crop_row_limit=120,
+    )
+
+    assert summary.c084_crop_rows == 120
+    assert summary.total_rows == 200
+    assert len(_read_jsonl(output_manifest)) == 200
+
+
 def test_build_c085_manifest_blocks_heldout_leakage(tmp_path: Path) -> None:
     c084_root = tmp_path / "c084_root"
     color_root = tmp_path / "color_root"

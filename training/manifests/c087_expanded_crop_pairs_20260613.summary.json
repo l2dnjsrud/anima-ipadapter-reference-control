@@ -1,0 +1,41 @@
+{
+  "reviewed_labels_path": "/home/wktwin/anima-ipadapter-reference-control/eval/c083_sheet_crop_identity_pair_extraction_20260613/reviewed_crop_labels.jsonl",
+  "approved_pairs_path": "/home/wktwin/anima-ipadapter-reference-control/eval/c083_sheet_crop_identity_pair_extraction_20260613/approved_pair_manifest.jsonl",
+  "scratch_image_root": "/home/wktwin/anima-ipadapter-reference-control/.tmp/c087_expanded_crop_pairs_root",
+  "output_manifest_path": "/home/wktwin/anima-ipadapter-reference-control/training/manifests/c087_expanded_crop_pairs_20260613.jsonl",
+  "output_summary_path": "/home/wktwin/anima-ipadapter-reference-control/training/manifests/c087_expanded_crop_pairs_20260613.summary.json",
+  "source_pairs": 970,
+  "selected_rows": 224,
+  "approved_groups": 4,
+  "target_positive_candidates": 74,
+  "materialized_candidate_count": 65,
+  "direct_self_pair_rows": 0,
+  "same_source_pair_rows": 0,
+  "heldout_rows_used": 0,
+  "max_pairs_per_group": 80,
+  "max_pairs_per_source_pair": 16,
+  "selected_group_counts": {
+    "c082_frog_yokai_guard": 80,
+    "c082_goblin_mage": 80,
+    "c082_green_oni_scout": 48,
+    "c082_jade_lizard_monk": 16
+  },
+  "selected_source_pair_counts": {
+    "c082_frog_yokai_guard_action::c082_frog_yokai_guard_front": 16,
+    "c082_frog_yokai_guard_action::c082_frog_yokai_guard_profile": 16,
+    "c082_frog_yokai_guard_action::c082_frog_yokai_guard_three_quarter": 16,
+    "c082_frog_yokai_guard_front::c082_frog_yokai_guard_profile": 16,
+    "c082_frog_yokai_guard_front::c082_frog_yokai_guard_three_quarter": 16,
+    "c082_goblin_mage_action::c082_goblin_mage_front": 16,
+    "c082_goblin_mage_action::c082_goblin_mage_profile": 16,
+    "c082_goblin_mage_action::c082_goblin_mage_three_quarter": 16,
+    "c082_goblin_mage_front::c082_goblin_mage_profile": 16,
+    "c082_goblin_mage_front::c082_goblin_mage_three_quarter": 16,
+    "c082_green_oni_scout_action::c082_green_oni_scout_profile": 16,
+    "c082_green_oni_scout_action::c082_green_oni_scout_three_quarter": 16,
+    "c082_green_oni_scout_profile::c082_green_oni_scout_three_quarter": 16,
+    "c082_jade_lizard_monk_front::c082_jade_lizard_monk_three_quarter": 16
+  },
+  "raw_crop_images_committed": false,
+  "decision": "ready_for_c084_bounded_qwenvl_training"
+}

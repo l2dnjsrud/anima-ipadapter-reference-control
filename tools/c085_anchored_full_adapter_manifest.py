@@ -45,12 +45,13 @@ def build_c085_manifest(
     output_manifest: Path = DEFAULT_OUTPUT_MANIFEST,
     output_summary: Path = DEFAULT_OUTPUT_SUMMARY,
     heldout_summary: Path = DEFAULT_HELDOUT_SUMMARY,
+    crop_row_limit: int = 80,
 ) -> C085ManifestSummary:
     heldout_ids = _heldout_ids(heldout_summary)
     c084_rows = _jsonl(c084_manifest)
     c060_rows = _jsonl(c060_manifest)
     selected = [
-        *[(row, "c084_crop") for row in c084_rows[:80]],
+        *[(row, "c084_crop") for row in c084_rows[:crop_row_limit]],
         *[(row, "clean_anchor") for row in c060_rows[:32]],
         *[(row, "c052_positive_anchor") for row in c060_rows[32:48]],
         *[(row, "failure_anchor") for row in c060_rows[90:122]],

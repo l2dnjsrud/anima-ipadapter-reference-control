@@ -1,0 +1,1161 @@
+{
+  "summary_path": "eval/qwenvl_c087_expanded_crop_positive_gate_20260613/summary.json",
+  "data_root": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best",
+  "encoder": "Qwen/Qwen3-VL-Embedding-2B",
+  "rows": [
+    {
+      "sample": "train00",
+      "variant": "blend_species_face",
+      "cosine": 0.8197076916694641,
+      "no_ip_cosine": 0.7614182829856873,
+      "uplift": 0.058289408683776855
+    },
+    {
+      "sample": "train00",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.8310895562171936,
+      "no_ip_cosine": 0.7614182829856873,
+      "uplift": 0.06967127323150635
+    },
+    {
+      "sample": "train00",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.8586490750312805,
+      "no_ip_cosine": 0.7614182829856873,
+      "uplift": 0.09723079204559326
+    },
+    {
+      "sample": "train00",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.8356450796127319,
+      "no_ip_cosine": 0.7614182829856873,
+      "uplift": 0.07422679662704468
+    },
+    {
+      "sample": "train01",
+      "variant": "blend_species_face",
+      "cosine": 0.8394825458526611,
+      "no_ip_cosine": 0.8389800786972046,
+      "uplift": 0.000502467155456543
+    },
+    {
+      "sample": "train01",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.8057129979133606,
+      "no_ip_cosine": 0.8389800786972046,
+      "uplift": -0.033267080783843994
+    },
+    {
+      "sample": "train01",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.7644169330596924,
+      "no_ip_cosine": 0.8389800786972046,
+      "uplift": -0.07456314563751221
+    },
+    {
+      "sample": "train01",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.8489871025085449,
+      "no_ip_cosine": 0.8389800786972046,
+      "uplift": 0.010007023811340332
+    },
+    {
+      "sample": "train02",
+      "variant": "blend_species_face",
+      "cosine": 0.8468436598777771,
+      "no_ip_cosine": 0.8059792518615723,
+      "uplift": 0.040864408016204834
+    },
+    {
+      "sample": "train02",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.8765534162521362,
+      "no_ip_cosine": 0.8059792518615723,
+      "uplift": 0.07057416439056396
+    },
+    {
+      "sample": "train02",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.8937981128692627,
+      "no_ip_cosine": 0.8059792518615723,
+      "uplift": 0.08781886100769043
+    },
+    {
+      "sample": "train02",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.7967372536659241,
+      "no_ip_cosine": 0.8059792518615723,
+      "uplift": -0.009241998195648193
+    },
+    {
+      "sample": "train03",
+      "variant": "blend_species_face",
+      "cosine": 0.8520088791847229,
+      "no_ip_cosine": 0.7779722213745117,
+      "uplift": 0.07403665781021118
+    },
+    {
+      "sample": "train03",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.8488604426383972,
+      "no_ip_cosine": 0.7779722213745117,
+      "uplift": 0.0708882212638855
+    },
+    {
+      "sample": "train03",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.8480990529060364,
+      "no_ip_cosine": 0.7779722213745117,
+      "uplift": 0.07012683153152466
+    },
+    {
+      "sample": "train03",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.8015778660774231,
+      "no_ip_cosine": 0.7779722213745117,
+      "uplift": 0.023605644702911377
+    },
+    {
+      "sample": "train04",
+      "variant": "blend_species_face",
+      "cosine": 0.824184775352478,
+      "no_ip_cosine": 0.7405731081962585,
+      "uplift": 0.08361166715621948
+    },
+    {
+      "sample": "train04",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.8055568337440491,
+      "no_ip_cosine": 0.7405731081962585,
+      "uplift": 0.06498372554779053
+    },
+    {
+      "sample": "train04",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.7847435474395752,
+      "no_ip_cosine": 0.7405731081962585,
+      "uplift": 0.04417043924331665
+    },
+    {
+      "sample": "train04",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.7768277525901794,
+      "no_ip_cosine": 0.7405731081962585,
+      "uplift": 0.0362546443939209
+    },
+    {
+      "sample": "train05",
+      "variant": "blend_species_face",
+      "cosine": 0.8309423923492432,
+      "no_ip_cosine": 0.7480494976043701,
+      "uplift": 0.08289289474487305
+    },
+    {
+      "sample": "train05",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.8187509775161743,
+      "no_ip_cosine": 0.7480494976043701,
+      "uplift": 0.0707014799118042
+    },
+    {
+      "sample": "train05",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.7980647683143616,
+      "no_ip_cosine": 0.7480494976043701,
+      "uplift": 0.050015270709991455
+    },
+    {
+      "sample": "train05",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.8256714344024658,
+      "no_ip_cosine": 0.7480494976043701,
+      "uplift": 0.0776219367980957
+    },
+    {
+      "sample": "train06",
+      "variant": "blend_species_face",
+      "cosine": 0.8633881211280823,
+      "no_ip_cosine": 0.8032065629959106,
+      "uplift": 0.06018155813217163
+    },
+    {
+      "sample": "train06",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.8676592707633972,
+      "no_ip_cosine": 0.8032065629959106,
+      "uplift": 0.06445270776748657
+    },
+    {
+      "sample": "train06",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.8323646187782288,
+      "no_ip_cosine": 0.8032065629959106,
+      "uplift": 0.029158055782318115
+    },
+    {
+      "sample": "train06",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.8198217749595642,
+      "no_ip_cosine": 0.8032065629959106,
+      "uplift": 0.016615211963653564
+    },
+    {
+      "sample": "train07",
+      "variant": "blend_species_face",
+      "cosine": 0.8582111597061157,
+      "no_ip_cosine": 0.76890629529953,
+      "uplift": 0.0893048644065857
+    },
+    {
+      "sample": "train07",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.8477751612663269,
+      "no_ip_cosine": 0.76890629529953,
+      "uplift": 0.07886886596679688
+    },
+    {
+      "sample": "train07",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.8615177273750305,
+      "no_ip_cosine": 0.76890629529953,
+      "uplift": 0.09261143207550049
+    },
+    {
+      "sample": "train07",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.8836023807525635,
+      "no_ip_cosine": 0.76890629529953,
+      "uplift": 0.11469608545303345
+    },
+    {
+      "sample": "train08",
+      "variant": "blend_species_face",
+      "cosine": 0.8309264183044434,
+      "no_ip_cosine": 0.7061358690261841,
+      "uplift": 0.12479054927825928
+    },
+    {
+      "sample": "train08",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.7888987064361572,
+      "no_ip_cosine": 0.7061358690261841,
+      "uplift": 0.08276283740997314
+    },
+    {
+      "sample": "train08",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.7781006097793579,
+      "no_ip_cosine": 0.7061358690261841,
+      "uplift": 0.07196474075317383
+    },
+    {
+      "sample": "train08",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.793944239616394,
+      "no_ip_cosine": 0.7061358690261841,
+      "uplift": 0.08780837059020996
+    },
+    {
+      "sample": "train09",
+      "variant": "blend_species_face",
+      "cosine": 0.6575607657432556,
+      "no_ip_cosine": 0.7018641829490662,
+      "uplift": -0.04430341720581055
+    },
+    {
+      "sample": "train09",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.7225071787834167,
+      "no_ip_cosine": 0.7018641829490662,
+      "uplift": 0.020642995834350586
+    },
+    {
+      "sample": "train09",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.7074739336967468,
+      "no_ip_cosine": 0.7018641829490662,
+      "uplift": 0.005609750747680664
+    },
+    {
+      "sample": "train09",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.644957959651947,
+      "no_ip_cosine": 0.7018641829490662,
+      "uplift": -0.05690622329711914
+    },
+    {
+      "sample": "train10",
+      "variant": "blend_species_face",
+      "cosine": 0.7860739231109619,
+      "no_ip_cosine": 0.7643431425094604,
+      "uplift": 0.021730780601501465
+    },
+    {
+      "sample": "train10",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.8067035675048828,
+      "no_ip_cosine": 0.7643431425094604,
+      "uplift": 0.04236042499542236
+    },
+    {
+      "sample": "train10",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.7988762855529785,
+      "no_ip_cosine": 0.7643431425094604,
+      "uplift": 0.034533143043518066
+    },
+    {
+      "sample": "train10",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.8192012310028076,
+      "no_ip_cosine": 0.7643431425094604,
+      "uplift": 0.05485808849334717
+    },
+    {
+      "sample": "train11",
+      "variant": "blend_species_face",
+      "cosine": 0.7017284631729126,
+      "no_ip_cosine": 0.6528011560440063,
+      "uplift": 0.04892730712890625
+    },
+    {
+      "sample": "train11",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.7056002616882324,
+      "no_ip_cosine": 0.6528011560440063,
+      "uplift": 0.052799105644226074
+    },
+    {
+      "sample": "train11",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.7134189009666443,
+      "no_ip_cosine": 0.6528011560440063,
+      "uplift": 0.06061774492263794
+    },
+    {
+      "sample": "train11",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.7122372388839722,
+      "no_ip_cosine": 0.6528011560440063,
+      "uplift": 0.05943608283996582
+    },
+    {
+      "sample": "train12",
+      "variant": "blend_species_face",
+      "cosine": 0.8527074456214905,
+      "no_ip_cosine": 0.7992422580718994,
+      "uplift": 0.053465187549591064
+    },
+    {
+      "sample": "train12",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.8420518636703491,
+      "no_ip_cosine": 0.7992422580718994,
+      "uplift": 0.04280960559844971
+    },
+    {
+      "sample": "train12",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.8101558685302734,
+      "no_ip_cosine": 0.7992422580718994,
+      "uplift": 0.010913610458374023
+    },
+    {
+      "sample": "train12",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.8342136740684509,
+      "no_ip_cosine": 0.7992422580718994,
+      "uplift": 0.034971415996551514
+    },
+    {
+      "sample": "train13",
+      "variant": "blend_species_face",
+      "cosine": 0.8436786532402039,
+      "no_ip_cosine": 0.8530564308166504,
+      "uplift": -0.009377777576446533
+    },
+    {
+      "sample": "train13",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.8400807976722717,
+      "no_ip_cosine": 0.8530564308166504,
+      "uplift": -0.012975633144378662
+    },
+    {
+      "sample": "train13",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.8580979108810425,
+      "no_ip_cosine": 0.8530564308166504,
+      "uplift": 0.00504148006439209
+    },
+    {
+      "sample": "train13",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.8614434003829956,
+      "no_ip_cosine": 0.8530564308166504,
+      "uplift": 0.008386969566345215
+    },
+    {
+      "sample": "train14",
+      "variant": "blend_species_face",
+      "cosine": 0.8094980120658875,
+      "no_ip_cosine": 0.8349358439445496,
+      "uplift": -0.02543783187866211
+    },
+    {
+      "sample": "train14",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.8143283724784851,
+      "no_ip_cosine": 0.8349358439445496,
+      "uplift": -0.020607471466064453
+    },
+    {
+      "sample": "train14",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.8640469312667847,
+      "no_ip_cosine": 0.8349358439445496,
+      "uplift": 0.029111087322235107
+    },
+    {
+      "sample": "train14",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.8316301107406616,
+      "no_ip_cosine": 0.8349358439445496,
+      "uplift": -0.0033057332038879395
+    },
+    {
+      "sample": "train15",
+      "variant": "blend_species_face",
+      "cosine": 0.7879628539085388,
+      "no_ip_cosine": 0.789958655834198,
+      "uplift": -0.0019958019256591797
+    },
+    {
+      "sample": "train15",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.8116574287414551,
+      "no_ip_cosine": 0.789958655834198,
+      "uplift": 0.02169877290725708
+    },
+    {
+      "sample": "train15",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.8116511106491089,
+      "no_ip_cosine": 0.789958655834198,
+      "uplift": 0.02169245481491089
+    },
+    {
+      "sample": "train15",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.7999044060707092,
+      "no_ip_cosine": 0.789958655834198,
+      "uplift": 0.00994575023651123
+    },
+    {
+      "sample": "train16",
+      "variant": "blend_species_face",
+      "cosine": 0.8894049525260925,
+      "no_ip_cosine": 0.7383835911750793,
+      "uplift": 0.15102136135101318
+    },
+    {
+      "sample": "train16",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.7870343923568726,
+      "no_ip_cosine": 0.7383835911750793,
+      "uplift": 0.04865080118179321
+    },
+    {
+      "sample": "train16",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.8220389485359192,
+      "no_ip_cosine": 0.7383835911750793,
+      "uplift": 0.08365535736083984
+    },
+    {
+      "sample": "train16",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.8115379214286804,
+      "no_ip_cosine": 0.7383835911750793,
+      "uplift": 0.07315433025360107
+    },
+    {
+      "sample": "train17",
+      "variant": "blend_species_face",
+      "cosine": 0.8585920333862305,
+      "no_ip_cosine": 0.8270210027694702,
+      "uplift": 0.031571030616760254
+    },
+    {
+      "sample": "train17",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.8361063003540039,
+      "no_ip_cosine": 0.8270210027694702,
+      "uplift": 0.009085297584533691
+    },
+    {
+      "sample": "train17",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.8342835903167725,
+      "no_ip_cosine": 0.8270210027694702,
+      "uplift": 0.007262587547302246
+    },
+    {
+      "sample": "train17",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.8248727321624756,
+      "no_ip_cosine": 0.8270210027694702,
+      "uplift": -0.002148270606994629
+    },
+    {
+      "sample": "train18",
+      "variant": "blend_species_face",
+      "cosine": 0.7653504610061646,
+      "no_ip_cosine": 0.7321053743362427,
+      "uplift": 0.033245086669921875
+    },
+    {
+      "sample": "train18",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.7734609246253967,
+      "no_ip_cosine": 0.7321053743362427,
+      "uplift": 0.04135555028915405
+    },
+    {
+      "sample": "train18",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.7405254244804382,
+      "no_ip_cosine": 0.7321053743362427,
+      "uplift": 0.008420050144195557
+    },
+    {
+      "sample": "train18",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.7644089460372925,
+      "no_ip_cosine": 0.7321053743362427,
+      "uplift": 0.032303571701049805
+    },
+    {
+      "sample": "train19",
+      "variant": "blend_species_face",
+      "cosine": 0.8246603608131409,
+      "no_ip_cosine": 0.750561535358429,
+      "uplift": 0.07409882545471191
+    },
+    {
+      "sample": "train19",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.8207926750183105,
+      "no_ip_cosine": 0.750561535358429,
+      "uplift": 0.07023113965988159
+    },
+    {
+      "sample": "train19",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.8347820043563843,
+      "no_ip_cosine": 0.750561535358429,
+      "uplift": 0.08422046899795532
+    },
+    {
+      "sample": "train19",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.8322630524635315,
+      "no_ip_cosine": 0.750561535358429,
+      "uplift": 0.08170151710510254
+    },
+    {
+      "sample": "train20",
+      "variant": "blend_species_face",
+      "cosine": 0.8711645007133484,
+      "no_ip_cosine": 0.7915643453598022,
+      "uplift": 0.07960015535354614
+    },
+    {
+      "sample": "train20",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.7611227631568909,
+      "no_ip_cosine": 0.7915643453598022,
+      "uplift": -0.030441582202911377
+    },
+    {
+      "sample": "train20",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.8120560050010681,
+      "no_ip_cosine": 0.7915643453598022,
+      "uplift": 0.02049165964126587
+    },
+    {
+      "sample": "train20",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.7881455421447754,
+      "no_ip_cosine": 0.7915643453598022,
+      "uplift": -0.0034188032150268555
+    },
+    {
+      "sample": "train21",
+      "variant": "blend_species_face",
+      "cosine": 0.81976717710495,
+      "no_ip_cosine": 0.7829365730285645,
+      "uplift": 0.0368306040763855
+    },
+    {
+      "sample": "train21",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.7776824235916138,
+      "no_ip_cosine": 0.7829365730285645,
+      "uplift": -0.005254149436950684
+    },
+    {
+      "sample": "train21",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.7945228219032288,
+      "no_ip_cosine": 0.7829365730285645,
+      "uplift": 0.011586248874664307
+    },
+    {
+      "sample": "train21",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.822988748550415,
+      "no_ip_cosine": 0.7829365730285645,
+      "uplift": 0.040052175521850586
+    },
+    {
+      "sample": "train22",
+      "variant": "blend_species_face",
+      "cosine": 0.9179344177246094,
+      "no_ip_cosine": 0.8977473974227905,
+      "uplift": 0.020187020301818848
+    },
+    {
+      "sample": "train22",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.9074292182922363,
+      "no_ip_cosine": 0.8977473974227905,
+      "uplift": 0.0096818208694458
+    },
+    {
+      "sample": "train22",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.9222386479377747,
+      "no_ip_cosine": 0.8977473974227905,
+      "uplift": 0.02449125051498413
+    },
+    {
+      "sample": "train22",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.9076317548751831,
+      "no_ip_cosine": 0.8977473974227905,
+      "uplift": 0.009884357452392578
+    },
+    {
+      "sample": "train23",
+      "variant": "blend_species_face",
+      "cosine": 0.831497848033905,
+      "no_ip_cosine": 0.8004353046417236,
+      "uplift": 0.031062543392181396
+    },
+    {
+      "sample": "train23",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.8138336539268494,
+      "no_ip_cosine": 0.8004353046417236,
+      "uplift": 0.013398349285125732
+    },
+    {
+      "sample": "train23",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.8232024908065796,
+      "no_ip_cosine": 0.8004353046417236,
+      "uplift": 0.022767186164855957
+    },
+    {
+      "sample": "train23",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.8047455549240112,
+      "no_ip_cosine": 0.8004353046417236,
+      "uplift": 0.004310250282287598
+    },
+    {
+      "sample": "train24",
+      "variant": "blend_species_face",
+      "cosine": 0.8712916374206543,
+      "no_ip_cosine": 0.7721895575523376,
+      "uplift": 0.09910207986831665
+    },
+    {
+      "sample": "train24",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.8685092926025391,
+      "no_ip_cosine": 0.7721895575523376,
+      "uplift": 0.09631973505020142
+    },
+    {
+      "sample": "train24",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.8807429671287537,
+      "no_ip_cosine": 0.7721895575523376,
+      "uplift": 0.10855340957641602
+    },
+    {
+      "sample": "train24",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.9042232632637024,
+      "no_ip_cosine": 0.7721895575523376,
+      "uplift": 0.13203370571136475
+    },
+    {
+      "sample": "train25",
+      "variant": "blend_species_face",
+      "cosine": 0.873080313205719,
+      "no_ip_cosine": 0.8300284147262573,
+      "uplift": 0.04305189847946167
+    },
+    {
+      "sample": "train25",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.8403461575508118,
+      "no_ip_cosine": 0.8300284147262573,
+      "uplift": 0.010317742824554443
+    },
+    {
+      "sample": "train25",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.8661994338035583,
+      "no_ip_cosine": 0.8300284147262573,
+      "uplift": 0.036171019077301025
+    },
+    {
+      "sample": "train25",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.8708498477935791,
+      "no_ip_cosine": 0.8300284147262573,
+      "uplift": 0.04082143306732178
+    },
+    {
+      "sample": "train26",
+      "variant": "blend_species_face",
+      "cosine": 0.7945128679275513,
+      "no_ip_cosine": 0.691887378692627,
+      "uplift": 0.10262548923492432
+    },
+    {
+      "sample": "train26",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.7834978103637695,
+      "no_ip_cosine": 0.691887378692627,
+      "uplift": 0.09161043167114258
+    },
+    {
+      "sample": "train26",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.8163947463035583,
+      "no_ip_cosine": 0.691887378692627,
+      "uplift": 0.1245073676109314
+    },
+    {
+      "sample": "train26",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.7277078032493591,
+      "no_ip_cosine": 0.691887378692627,
+      "uplift": 0.03582042455673218
+    },
+    {
+      "sample": "train27",
+      "variant": "blend_species_face",
+      "cosine": 0.7912613153457642,
+      "no_ip_cosine": 0.8022390007972717,
+      "uplift": -0.010977685451507568
+    },
+    {
+      "sample": "train27",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.7352288365364075,
+      "no_ip_cosine": 0.8022390007972717,
+      "uplift": -0.06701016426086426
+    },
+    {
+      "sample": "train27",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.8197253346443176,
+      "no_ip_cosine": 0.8022390007972717,
+      "uplift": 0.0174863338470459
+    },
+    {
+      "sample": "train27",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.8227157592773438,
+      "no_ip_cosine": 0.8022390007972717,
+      "uplift": 0.02047675848007202
+    },
+    {
+      "sample": "train28",
+      "variant": "blend_species_face",
+      "cosine": 0.6986783742904663,
+      "no_ip_cosine": 0.6619516611099243,
+      "uplift": 0.03672671318054199
+    },
+    {
+      "sample": "train28",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.7419277429580688,
+      "no_ip_cosine": 0.6619516611099243,
+      "uplift": 0.07997608184814453
+    },
+    {
+      "sample": "train28",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.7143203020095825,
+      "no_ip_cosine": 0.6619516611099243,
+      "uplift": 0.0523686408996582
+    },
+    {
+      "sample": "train28",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.7421553134918213,
+      "no_ip_cosine": 0.6619516611099243,
+      "uplift": 0.08020365238189697
+    },
+    {
+      "sample": "train29",
+      "variant": "blend_species_face",
+      "cosine": 0.8162795901298523,
+      "no_ip_cosine": 0.8228612542152405,
+      "uplift": -0.006581664085388184
+    },
+    {
+      "sample": "train29",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.7729356288909912,
+      "no_ip_cosine": 0.8228612542152405,
+      "uplift": -0.04992562532424927
+    },
+    {
+      "sample": "train29",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.8015170097351074,
+      "no_ip_cosine": 0.8228612542152405,
+      "uplift": -0.021344244480133057
+    },
+    {
+      "sample": "train29",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.792596697807312,
+      "no_ip_cosine": 0.8228612542152405,
+      "uplift": -0.030264556407928467
+    },
+    {
+      "sample": "train30",
+      "variant": "blend_species_face",
+      "cosine": 0.7670508623123169,
+      "no_ip_cosine": 0.7504708766937256,
+      "uplift": 0.01657998561859131
+    },
+    {
+      "sample": "train30",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.7727564573287964,
+      "no_ip_cosine": 0.7504708766937256,
+      "uplift": 0.0222855806350708
+    },
+    {
+      "sample": "train30",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.7682653665542603,
+      "no_ip_cosine": 0.7504708766937256,
+      "uplift": 0.017794489860534668
+    },
+    {
+      "sample": "train30",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.7815799713134766,
+      "no_ip_cosine": 0.7504708766937256,
+      "uplift": 0.031109094619750977
+    },
+    {
+      "sample": "train31",
+      "variant": "blend_species_face",
+      "cosine": 0.85772705078125,
+      "no_ip_cosine": 0.7775101661682129,
+      "uplift": 0.08021688461303711
+    },
+    {
+      "sample": "train31",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.8208768367767334,
+      "no_ip_cosine": 0.7775101661682129,
+      "uplift": 0.04336667060852051
+    },
+    {
+      "sample": "train31",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.8348521590232849,
+      "no_ip_cosine": 0.7775101661682129,
+      "uplift": 0.05734199285507202
+    },
+    {
+      "sample": "train31",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.8220436573028564,
+      "no_ip_cosine": 0.7775101661682129,
+      "uplift": 0.044533491134643555
+    },
+    {
+      "sample": "heldout00",
+      "variant": "blend_species_face",
+      "cosine": 0.9148097038269043,
+      "no_ip_cosine": 0.8877979516983032,
+      "uplift": 0.027011752128601074
+    },
+    {
+      "sample": "heldout00",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.9102041721343994,
+      "no_ip_cosine": 0.8877979516983032,
+      "uplift": 0.02240622043609619
+    },
+    {
+      "sample": "heldout00",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.9106335639953613,
+      "no_ip_cosine": 0.8877979516983032,
+      "uplift": 0.022835612297058105
+    },
+    {
+      "sample": "heldout00",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.8678473830223083,
+      "no_ip_cosine": 0.8877979516983032,
+      "uplift": -0.019950568675994873
+    },
+    {
+      "sample": "heldout01",
+      "variant": "blend_species_face",
+      "cosine": 0.8042338490486145,
+      "no_ip_cosine": 0.7300467491149902,
+      "uplift": 0.07418709993362427
+    },
+    {
+      "sample": "heldout01",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.7781909108161926,
+      "no_ip_cosine": 0.7300467491149902,
+      "uplift": 0.04814416170120239
+    },
+    {
+      "sample": "heldout01",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.8188347220420837,
+      "no_ip_cosine": 0.7300467491149902,
+      "uplift": 0.0887879729270935
+    },
+    {
+      "sample": "heldout01",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.8153899312019348,
+      "no_ip_cosine": 0.7300467491149902,
+      "uplift": 0.08534318208694458
+    },
+    {
+      "sample": "heldout02",
+      "variant": "blend_species_face",
+      "cosine": 0.8264505863189697,
+      "no_ip_cosine": 0.7866632342338562,
+      "uplift": 0.039787352085113525
+    },
+    {
+      "sample": "heldout02",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.8302545547485352,
+      "no_ip_cosine": 0.7866632342338562,
+      "uplift": 0.043591320514678955
+    },
+    {
+      "sample": "heldout02",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.834779679775238,
+      "no_ip_cosine": 0.7866632342338562,
+      "uplift": 0.048116445541381836
+    },
+    {
+      "sample": "heldout02",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.8315504789352417,
+      "no_ip_cosine": 0.7866632342338562,
+      "uplift": 0.0448872447013855
+    },
+    {
+      "sample": "heldout03",
+      "variant": "blend_species_face",
+      "cosine": 0.8556835055351257,
+      "no_ip_cosine": 0.8071059584617615,
+      "uplift": 0.04857754707336426
+    },
+    {
+      "sample": "heldout03",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.8205493688583374,
+      "no_ip_cosine": 0.8071059584617615,
+      "uplift": 0.013443410396575928
+    },
+    {
+      "sample": "heldout03",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.8637527823448181,
+      "no_ip_cosine": 0.8071059584617615,
+      "uplift": 0.05664682388305664
+    },
+    {
+      "sample": "heldout03",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.824899435043335,
+      "no_ip_cosine": 0.8071059584617615,
+      "uplift": 0.017793476581573486
+    },
+    {
+      "sample": "heldout04",
+      "variant": "blend_species_face",
+      "cosine": 0.8479706048965454,
+      "no_ip_cosine": 0.7805279493331909,
+      "uplift": 0.06744265556335449
+    },
+    {
+      "sample": "heldout04",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.8473910093307495,
+      "no_ip_cosine": 0.7805279493331909,
+      "uplift": 0.0668630599975586
+    },
+    {
+      "sample": "heldout04",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.8411474227905273,
+      "no_ip_cosine": 0.7805279493331909,
+      "uplift": 0.060619473457336426
+    },
+    {
+      "sample": "heldout04",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.8055651783943176,
+      "no_ip_cosine": 0.7805279493331909,
+      "uplift": 0.02503722906112671
+    },
+    {
+      "sample": "heldout05",
+      "variant": "blend_species_face",
+      "cosine": 0.8601299524307251,
+      "no_ip_cosine": 0.8431400060653687,
+      "uplift": 0.016989946365356445
+    },
+    {
+      "sample": "heldout05",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.8681071996688843,
+      "no_ip_cosine": 0.8431400060653687,
+      "uplift": 0.024967193603515625
+    },
+    {
+      "sample": "heldout05",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.824256181716919,
+      "no_ip_cosine": 0.8431400060653687,
+      "uplift": -0.018883824348449707
+    },
+    {
+      "sample": "heldout05",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.8610730171203613,
+      "no_ip_cosine": 0.8431400060653687,
+      "uplift": 0.017933011054992676
+    },
+    {
+      "sample": "heldout06",
+      "variant": "blend_species_face",
+      "cosine": 0.8191876411437988,
+      "no_ip_cosine": 0.8294175863265991,
+      "uplift": -0.010229945182800293
+    },
+    {
+      "sample": "heldout06",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.8196059465408325,
+      "no_ip_cosine": 0.8294175863265991,
+      "uplift": -0.009811639785766602
+    },
+    {
+      "sample": "heldout06",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.841578483581543,
+      "no_ip_cosine": 0.8294175863265991,
+      "uplift": 0.012160897254943848
+    },
+    {
+      "sample": "heldout06",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.8443255424499512,
+      "no_ip_cosine": 0.8294175863265991,
+      "uplift": 0.01490795612335205
+    },
+    {
+      "sample": "heldout07",
+      "variant": "blend_species_face",
+      "cosine": 0.749078094959259,
+      "no_ip_cosine": 0.8010774850845337,
+      "uplift": -0.05199939012527466
+    },
+    {
+      "sample": "heldout07",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.7455318570137024,
+      "no_ip_cosine": 0.8010774850845337,
+      "uplift": -0.0555456280708313
+    },
+    {
+      "sample": "heldout07",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.7914727330207825,
+      "no_ip_cosine": 0.8010774850845337,
+      "uplift": -0.00960475206375122
+    },
+    {
+      "sample": "heldout07",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.7266160845756531,
+      "no_ip_cosine": 0.8010774850845337,
+      "uplift": -0.07446140050888062
+    }
+  ],
+  "variant_summaries": [
+    {
+      "variant": "blend_species_face",
+      "cases": 40,
+      "mean_cosine": 0.8232675865292549,
+      "mean_no_ip_cosine": 0.781077329814434,
+      "mean_uplift": 0.042190256714820865,
+      "improved_rate": 0.8
+    },
+    {
+      "variant": "c085_anchored_full_adapter_w14",
+      "cases": 40,
+      "mean_cosine": 0.8116790741682053,
+      "mean_no_ip_cosine": 0.781077329814434,
+      "mean_uplift": 0.03060174435377121,
+      "improved_rate": 0.775
+    },
+    {
+      "variant": "c086_hard_negative_w14",
+      "cases": 40,
+      "mean_cosine": 0.8198899552226067,
+      "mean_no_ip_cosine": 0.781077329814434,
+      "mean_uplift": 0.03881262540817261,
+      "improved_rate": 0.9
+    },
+    {
+      "variant": "c087_expanded_crop_positive_w14",
+      "cases": 40,
+      "mean_cosine": 0.8121034130454063,
+      "mean_no_ip_cosine": 0.781077329814434,
+      "mean_uplift": 0.03102608323097229,
+      "improved_rate": 0.8
+    }
+  ]
+}

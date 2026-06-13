@@ -1,0 +1,17 @@
+{
+  "output_manifest_path": "/home/wktwin/anima-ipadapter-reference-control/training/manifests/c087_expanded_anchored_full_adapter_20260613.jsonl",
+  "scratch_image_root": "/home/wktwin/anima-ipadapter-reference-control/.tmp/c087_expanded_crop_positive_root",
+  "c084_crop_rows": 224,
+  "clean_anchor_rows": 32,
+  "c052_positive_anchor_rows": 16,
+  "failure_anchor_rows": 32,
+  "total_rows": 304,
+  "heldout_rows_used": 0,
+  "direct_self_pair_rows": 54,
+  "materialized_image_count": 122,
+  "source_manifests": [
+    "/home/wktwin/anima-ipadapter-reference-control/training/manifests/c087_expanded_crop_pairs_20260613.jsonl",
+    "/home/wktwin/anima-ipadapter-reference-control/training/manifests/c060_qwenvl_failure_focused_clean32_c052_20260612.jsonl"
+  ],
+  "decision": "ready_for_c085_full_adapter_training"
+}
