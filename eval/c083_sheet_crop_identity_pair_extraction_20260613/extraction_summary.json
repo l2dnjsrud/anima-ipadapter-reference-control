@@ -1,0 +1,10 @@
+{
+  "source": "c083_sheet_crop_identity_pair_extraction",
+  "source_generated_rows": 24,
+  "crop_candidate_rows": 104,
+  "heldout_rows_used": 0,
+  "training_started": false,
+  "raw_crop_images_committed": false,
+  "contact_sheet_written": true,
+  "decision": "crop_review_required"
+}

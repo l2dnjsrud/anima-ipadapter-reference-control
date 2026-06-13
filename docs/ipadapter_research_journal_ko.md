@@ -1778,7 +1778,19 @@ ComfyUI02 API `http://127.0.0.1:8102`에서 `anima-base-v1.0.safetensors`, `qwen
 
 manual label은 `c082_jade_lizard_monk_action`만 `target_positive`로 두고 나머지 23장은 `useful_proxy_non_human`으로 남겼다. final summary는 `approved_group_count=0`, `approved_pair_rows=0`, `direct_self_pair_rows=0`, decision `more_identity_pairs_required`다. c082는 prompt-only negative constraint 반복으로는 충분한 paired dataset을 확보하기 어렵다는 강한 증거다. 다음 루프는 같은 프롬프트를 더 세게 쓰는 것이 아니라, 생성된 sheet에서 단일 figure crop을 자동 추출하거나 image-to-image/crop 기반으로 단일 target을 만드는 acquisition surface로 바꿔야 한다.
 
-## 34. 근거 파일 색인
+## 34. c083 Sheet Crop Identity Pair Extraction
+
+c083은 c082의 결론을 바로 따른 acquisition gate다. c082에서 프롬프트를 더 세게 써도 generator가 계속 character sheet/turnaround layout으로 수렴했기 때문에, c083은 prompt wording을 반복하지 않고 이미 생성된 sheet-like 이미지에서 단일 인물 crop을 자동 추출하는 방향으로 바꿨다. 목표는 학습을 시작하지 않고, 먼저 c082 산출물에서 실제 `ref_id != tgt_id` paired training rows를 회수할 수 있는지 확인하는 것이었다.
+
+새 도구는 `tools/c083_sheet_crop_extraction.py`이고 테스트는 `tests/test_c083_sheet_crop_extraction.py`다. 도구는 `eval/c082_single_image_pair_acquisition_20260613/generation_manifest.jsonl`의 24개 generated row를 읽고, 흰 배경 대비 non-white foreground connected component를 찾아 crop 후보를 만든다. raw crop PNG는 `.tmp/c083_sheet_crop_identity_pair_extraction/crops/` 아래에만 저장하고 커밋하지 않는다. 커밋 대상은 `crop_candidate_manifest.jsonl`, `extraction_summary.json`, `contact_sheet.jpg`, `manual_visual_labels.csv`, `reviewed_crop_labels.jsonl`, `approved_pair_manifest.jsonl`, `summary.json`, `report.md`, `visual_audit.md`다.
+
+추출 결과는 `source_generated_rows=24`, `crop_candidate_rows=104`, `heldout_rows_used=0`, `training_started=false`, `raw_crop_images_committed=false`다. contact sheet를 group별로 나눠 시각 검수한 결과, `c082_green_oni_scout`, `c082_jade_lizard_monk`, `c082_goblin_mage`, `c082_frog_yokai_guard`는 같은 group identity가 비교적 유지되는 단일 인물 crop을 여러 source view에서 확보했다. 반면 `c082_plant_dryad`는 front-view 단일 crop만 있어 source diversity가 부족했고, `c082_serpent_dancer`는 단일 crop 자체는 있지만 view별 identity/style이 너무 흔들려 same-identity pair supervision에서는 제외했다.
+
+manual label은 104개 crop 중 74개를 `target_positive`로 두고 30개를 `useful_proxy_non_human`으로 남겼다. final summary는 `reviewed_rows=104`, `target_positive_rows=74`, `approved_group_count=4`, `approved_pair_rows=970`, `direct_self_pair_rows=0`, decision `ready_for_c084_paired_training_manifest`다. c083은 c081/c082와 달리 처음으로 paired acquisition gate를 통과했다. 다만 970 directed pair는 중복 crop과 같은 synthetic family가 많으므로, 다음 c084 학습에서는 전체를 무작정 쓰지 말고 group/source 균형을 맞춰 downsample한 manifest로 시작해야 한다.
+
+검증은 `py_compile`, `tests/test_c083_sheet_crop_extraction.py`, c080-c083 acquisition focused pytest, artifact consistency, `git diff --check`로 진행했다. 이 단계에서는 학습/checkpoint를 만들지 않았고, c084에서 c083 approved pairs를 balanced paired manifest로 변환해 training gate를 진행하는 것이 다음 결정이다.
+
+## 35. 근거 파일 색인
 
 핵심 문서:
 
@@ -2027,6 +2039,11 @@ QwenVL 주요 평가:
 - `eval/c082_single_image_pair_acquisition_20260613/generation_summary.json`
 - `eval/c082_single_image_pair_acquisition_20260613/contact_sheet.jpg`
 - `eval/c082_single_image_pair_acquisition_20260613/visual_audit.md`
+- `eval/c083_sheet_crop_identity_pair_extraction_20260613/report.md`
+- `eval/c083_sheet_crop_identity_pair_extraction_20260613/extraction_summary.json`
+- `eval/c083_sheet_crop_identity_pair_extraction_20260613/summary.json`
+- `eval/c083_sheet_crop_identity_pair_extraction_20260613/contact_sheet.jpg`
+- `eval/c083_sheet_crop_identity_pair_extraction_20260613/visual_audit.md`
 
 생성/학습 manifest:
 
@@ -2062,6 +2079,10 @@ QwenVL 주요 평가:
 - `eval/c082_single_image_pair_acquisition_20260613/reviewed_pair_labels.jsonl`
 - `eval/c082_single_image_pair_acquisition_20260613/approved_pair_manifest.jsonl`
 - `eval/c082_single_image_pair_acquisition_20260613/manual_visual_labels.csv`
+- `eval/c083_sheet_crop_identity_pair_extraction_20260613/crop_candidate_manifest.jsonl`
+- `eval/c083_sheet_crop_identity_pair_extraction_20260613/reviewed_crop_labels.jsonl`
+- `eval/c083_sheet_crop_identity_pair_extraction_20260613/approved_pair_manifest.jsonl`
+- `eval/c083_sheet_crop_identity_pair_extraction_20260613/manual_visual_labels.csv`
 
 현재 가장 중요한 실행 레시피 근거:
 
@@ -2112,6 +2133,8 @@ QwenVL 주요 평가:
 - `tools/c082_single_image_pair_acquisition.py`
 - `tools/c082_comfy_generation.py`
 - `tests/test_c082_single_image_pair_acquisition.py`
+- `tools/c083_sheet_crop_extraction.py`
+- `tests/test_c083_sheet_crop_extraction.py`
 - `tools/siglip_auto_caption_eval.py`
 - `tools/score_siglip_auto_caption_metrics.py`
 - `workflows/anima_ipadapter_siglip_native_reference.json`
