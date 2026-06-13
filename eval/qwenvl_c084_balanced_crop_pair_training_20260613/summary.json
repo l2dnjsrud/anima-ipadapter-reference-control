@@ -1,0 +1,48 @@
+{
+  "steps": 128,
+  "rows_loaded": 80,
+  "first_loss": 0.10930567234754562,
+  "final_loss": 0.20897169411182404,
+  "mean_loss": 0.20867666404228657,
+  "mean_base_loss": 0.15149623539764434,
+  "mean_contrastive_loss": 0.05000535165891051,
+  "mean_retrieval_loss": 0.19839277071878314,
+  "finite_loss": true,
+  "trainable_parameters": 528384,
+  "frozen_base_parameters": 4947838963,
+  "checkpoint": {
+    "output_path": "checkpoints/anima_qwenvl_ip_adapter_c084_balanced_crop_pairs_b128_0128_20260613.safetensors",
+    "loadable": true,
+    "pe_checkpoint_rejected": true
+  },
+  "init_checkpoint_path": "checkpoints/anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors",
+  "contrastive_weight": 0.35,
+  "contrastive_margin": 0.05,
+  "retrieval_weight": 0.2,
+  "retrieval_margin": 0.2,
+  "calibrator_bottleneck_dim": 128,
+  "train_calibrator_only": true,
+  "decision": "qwenvl_c084_balanced_crop_pair_training_passed_generation_gate_pending",
+  "dataset": {
+    "manifest_path": "training/manifests/c084_balanced_crop_pairs_20260613.jsonl",
+    "manifest_summary_path": "training/manifests/c084_balanced_crop_pairs_20260613.summary.json",
+    "image_root": ".tmp/c084_balanced_crop_pairs_root",
+    "source_pairs": 970,
+    "selected_rows": 80,
+    "approved_groups": 4,
+    "target_positive_candidates": 74,
+    "heldout_rows_used": 0,
+    "direct_self_pair_rows": 0,
+    "same_source_pair_rows": 0,
+    "selected_group_counts": {
+      "c082_frog_yokai_guard": 24,
+      "c082_goblin_mage": 24,
+      "c082_green_oni_scout": 24,
+      "c082_jade_lizard_monk": 8
+    },
+    "max_pairs_per_group": 24,
+    "max_pairs_per_source_pair": 8
+  },
+  "command_surface": "training/qwenvl_contrastive_cli.py, train_calibrator_only=true, calibrator_bottleneck_dim=128, c061 species_face instruction, init=single_character_retrieval_0128",
+  "generation_gate": "pending"
+}

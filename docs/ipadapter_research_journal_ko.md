@@ -2138,3 +2138,92 @@ QwenVL 주요 평가:
 - `tools/siglip_auto_caption_eval.py`
 - `tools/score_siglip_auto_caption_metrics.py`
 - `workflows/anima_ipadapter_siglip_native_reference.json`
+
+## 2026-06-13 c084 balanced crop-pair 학습 및 ComfyUI gate
+
+c083에서 만든 sheet crop identity pair는 기존 c081/c082보다 더 직접적인 pair 후보를 제공했다. 이번 c084의 목적은 이 crop 후보들을 균형 있게 뽑아 calibrator-only QwenVL IP-Adapter를 다시 학습하면, 기존 최고 기준인 `blend_species_face`보다 비인간 캐릭터 reference-control이 좋아지는지 확인하는 것이었다.
+
+### 사용 데이터와 manifest
+
+- 원천 라벨: `eval/c083_sheet_crop_identity_pair_extraction_20260613/reviewed_crop_labels.jsonl`
+- 원천 pair: `eval/c083_sheet_crop_identity_pair_extraction_20260613/approved_pair_manifest.jsonl`
+- 새 manifest: `training/manifests/c084_balanced_crop_pairs_20260613.jsonl`
+- summary: `training/manifests/c084_balanced_crop_pairs_20260613.summary.json`
+- materialized image root: `.tmp/c084_balanced_crop_pairs_root`
+
+`tools/c084_balanced_crop_pair_manifest.py`를 새로 만들어 c083 approved pair에서 group별 균형을 맞춘 80 row를 뽑았다. 직접 self-pair는 제거했고, 최종 분포는 `frog_yokai_guard 24`, `goblin_mage 24`, `green_oni_scout 24`, `jade_lizard_monk 8`이었다.
+
+### 학습
+
+- init checkpoint: `checkpoints/anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors`
+- output checkpoint: `checkpoints/anima_qwenvl_ip_adapter_c084_balanced_crop_pairs_b128_0128_20260613.safetensors`
+- command surface: `training/qwenvl_contrastive_cli.py`
+- rows: 80
+- steps: 128
+- resolution: 256
+- lr: `5e-6`
+- contrastive weight: `0.35`
+- retrieval weight: `0.2`
+- train mode: `--train-calibrator-only`
+- trainable parameters: 528,384
+- final loss: `0.2089716941`
+- report: `eval/qwenvl_c084_balanced_crop_pair_training_20260613/report.md`
+
+c080 checkpoint에서 이어가지 않고 single-character retrieval checkpoint에서 다시 시작했다. 이유는 c080이 direct-green 방향을 내긴 했지만 성인형 green humanoid template로 수렴하는 실패를 보였기 때문이다.
+
+### ComfyUI 검증
+
+- isolated API: `http://127.0.0.1:8116`
+- object info: `eval/qwenvl_c084_balanced_crop_pair_gate_20260613/object_info_qwenvl_loader.json`
+- 비교 variant:
+  - `no_ip`
+  - `blend_species_face`: previous retrieval `1.4` + c055 mixed `0.4`
+  - `c084_balanced_crop_pair_w14`: c084 checkpoint `1.4`
+- clean32+heldout8 결과: 120 image
+- crop-pair focus 결과: 30 image
+- blank image: 0
+- contact sheets:
+  - `eval/qwenvl_c084_balanced_crop_pair_gate_20260613/contact_sheet_train.jpg`
+  - `eval/qwenvl_c084_balanced_crop_pair_gate_20260613/contact_sheet_heldout.jpg`
+  - `eval/qwenvl_c084_balanced_crop_pair_gate_20260613/contact_sheet_crop_pair_focus.jpg`
+
+ComfyUI02 venv에는 `sentence_transformers`가 없고 root 소유라 직접 설치할 수 없었다. 그래서 repo-local `.tmp/comfy_py312_site`에 `sentence-transformers==5.5.1`을 target install하고, 8116 격리 서버 PYTHONPATH에만 포함했다. 이 설정으로 QwenVL image encoder node가 정상 동작했다. 생성 후 서버를 종료했고 8116 port가 닫힌 것도 확인했다.
+
+### 결과 판단
+
+clean32+heldout8에서는 c084가 기존 `blend_species_face`보다 낮았다.
+
+| encoder | variant | mean uplift | improved rate |
+|---|---|---:|---:|
+| PE | `blend_species_face` | `0.0608932152` | `0.825` |
+| PE | `c084_balanced_crop_pair_w14` | `0.0272349045` | `0.650` |
+| QwenVL | `blend_species_face` | `0.0421902567` | `0.800` |
+| QwenVL | `c084_balanced_crop_pair_w14` | `0.0336157218` | `0.725` |
+
+crop-pair focus에서는 QwenVL 기준으로만 c084가 조금 높았지만 PE 기준은 더 나빴다.
+
+| encoder | variant | mean uplift | improved rate |
+|---|---|---:|---:|
+| PE | `blend_species_face` | `-0.0046628684` | `0.600` |
+| PE | `c084_balanced_crop_pair_w14` | `-0.0372054994` | `0.400` |
+| QwenVL | `blend_species_face` | `0.0186477482` | `0.600` |
+| QwenVL | `c084_balanced_crop_pair_w14` | `0.0302898765` | `0.700` |
+
+시각적으로도 c084는 frog/yokai/chibi reference를 성인형 green humanoid villain으로 바꾸는 경향이 강했다. headwear, 작은 체형, costume palette, side-profile 정보가 안정적으로 보존되지 않았다. 따라서 c084는 `runtime pass / quality fail`이며 high-quality reference-control checkpoint로 승격하지 않는다.
+
+다음 결정은 같은 crop-pair calibrator-only 반복을 중단하고, adapter-side trainable 범위를 넓히거나 stronger encoder/objective를 쓰는 쪽으로 이동하는 것이다.
+
+### c084 관련 파일
+
+- `tools/c084_balanced_crop_pair_manifest.py`
+- `tests/test_c084_balanced_crop_pair_manifest.py`
+- `training/manifests/c084_balanced_crop_pairs_20260613.jsonl`
+- `training/manifests/c084_balanced_crop_pairs_20260613.summary.json`
+- `eval/qwenvl_c084_balanced_crop_pair_training_20260613/report.md`
+- `eval/qwenvl_c084_balanced_crop_pair_training_20260613/summary.json`
+- `eval/qwenvl_c084_balanced_crop_pair_gate_20260613/report.md`
+- `eval/qwenvl_c084_balanced_crop_pair_gate_20260613/visual_audit.md`
+- `eval/qwenvl_c084_balanced_crop_pair_gate_20260613/pe_similarity_metrics.json`
+- `eval/qwenvl_c084_balanced_crop_pair_gate_20260613/qwenvl_similarity_metrics.json`
+- `eval/qwenvl_c084_balanced_crop_pair_gate_20260613/crop_pair_pe_similarity_metrics.json`
+- `eval/qwenvl_c084_balanced_crop_pair_gate_20260613/crop_pair_qwenvl_similarity_metrics.json`
