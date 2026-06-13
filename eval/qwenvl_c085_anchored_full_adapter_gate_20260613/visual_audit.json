@@ -1,0 +1,55 @@
+{
+  "date": "2026-06-13",
+  "decision": "not_promoted_c085_full_adapter_weaker_than_blend",
+  "runtime": {
+    "comfyui_api": "http://127.0.0.1:8116",
+    "generated_png": 200,
+    "blank_image": 0,
+    "min_pixel_std": 35.3214362316,
+    "cleanup": "ComfyUI server stopped; port 8116 closed"
+  },
+  "metric_summary": {
+    "clean40": {
+      "pe": {
+        "blend_species_face": 0.0608932152,
+        "c084_balanced_crop_pair_w14": 0.0272349045,
+        "c085_anchored_full_adapter_w14": 0.0308974788
+      },
+      "qwenvl": {
+        "blend_species_face": 0.0421902567,
+        "c084_balanced_crop_pair_w14": 0.0336157218,
+        "c085_anchored_full_adapter_w14": 0.0306017444
+      }
+    },
+    "heldout8": {
+      "pe": {
+        "blend_species_face": 0.0535339788,
+        "c084_balanced_crop_pair_w14": -0.0063817352,
+        "c085_anchored_full_adapter_w14": 0.0370979905
+      },
+      "qwenvl": {
+        "blend_species_face": 0.0264708772,
+        "c084_balanced_crop_pair_w14": 0.0235493183,
+        "c085_anchored_full_adapter_w14": 0.0192572623
+      }
+    },
+    "crop_pair_focus10": {
+      "pe": {
+        "blend_species_face": 0.1395019785,
+        "c084_balanced_crop_pair_w14": 0.1503805324,
+        "c085_anchored_full_adapter_w14": 0.1288137928
+      },
+      "qwenvl": {
+        "blend_species_face": 0.0649063945,
+        "c084_balanced_crop_pair_w14": 0.0639641464,
+        "c085_anchored_full_adapter_w14": 0.0652211845
+      }
+    }
+  },
+  "visual_findings": [
+    "heldout hard cases still lose age, speech-bubble context, beard/headwear geometry, and non-human side-profile identity",
+    "crop-pair focus preserves green skin but collapses frog/yokai/chibi references into adult green humanoid templates",
+    "c085 is runtime-valid but not high-quality reference-control"
+  ],
+  "next_decision": "move_to_hard_negative_or_encoder_side_feature_adaptation"
+}

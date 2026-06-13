@@ -1,0 +1,243 @@
+{
+  "summary_path": "eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair_summary.json",
+  "data_root": ".tmp/c085_anchored_full_adapter_root",
+  "encoder": "Qwen/Qwen3-VL-Embedding-2B",
+  "rows": [
+    {
+      "sample": "crop_pair00",
+      "variant": "blend_species_face",
+      "cosine": 0.6158568859100342,
+      "no_ip_cosine": 0.5555175542831421,
+      "uplift": 0.06033933162689209
+    },
+    {
+      "sample": "crop_pair00",
+      "variant": "c084_balanced_crop_pair_w14",
+      "cosine": 0.6147803068161011,
+      "no_ip_cosine": 0.5555175542831421,
+      "uplift": 0.059262752532958984
+    },
+    {
+      "sample": "crop_pair00",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.6101300716400146,
+      "no_ip_cosine": 0.5555175542831421,
+      "uplift": 0.05461251735687256
+    },
+    {
+      "sample": "crop_pair01",
+      "variant": "blend_species_face",
+      "cosine": 0.633108913898468,
+      "no_ip_cosine": 0.556493878364563,
+      "uplift": 0.07661503553390503
+    },
+    {
+      "sample": "crop_pair01",
+      "variant": "c084_balanced_crop_pair_w14",
+      "cosine": 0.5902834534645081,
+      "no_ip_cosine": 0.556493878364563,
+      "uplift": 0.03378957509994507
+    },
+    {
+      "sample": "crop_pair01",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.6269817352294922,
+      "no_ip_cosine": 0.556493878364563,
+      "uplift": 0.0704878568649292
+    },
+    {
+      "sample": "crop_pair02",
+      "variant": "blend_species_face",
+      "cosine": 0.7307925820350647,
+      "no_ip_cosine": 0.6562656164169312,
+      "uplift": 0.07452696561813354
+    },
+    {
+      "sample": "crop_pair02",
+      "variant": "c084_balanced_crop_pair_w14",
+      "cosine": 0.7305703163146973,
+      "no_ip_cosine": 0.6562656164169312,
+      "uplift": 0.07430469989776611
+    },
+    {
+      "sample": "crop_pair02",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.7651557326316833,
+      "no_ip_cosine": 0.6562656164169312,
+      "uplift": 0.1088901162147522
+    },
+    {
+      "sample": "crop_pair03",
+      "variant": "blend_species_face",
+      "cosine": 0.7164127230644226,
+      "no_ip_cosine": 0.6804812550544739,
+      "uplift": 0.03593146800994873
+    },
+    {
+      "sample": "crop_pair03",
+      "variant": "c084_balanced_crop_pair_w14",
+      "cosine": 0.7129906415939331,
+      "no_ip_cosine": 0.6804812550544739,
+      "uplift": 0.03250938653945923
+    },
+    {
+      "sample": "crop_pair03",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.7589783668518066,
+      "no_ip_cosine": 0.6804812550544739,
+      "uplift": 0.07849711179733276
+    },
+    {
+      "sample": "crop_pair04",
+      "variant": "blend_species_face",
+      "cosine": 0.7436812520027161,
+      "no_ip_cosine": 0.6861926913261414,
+      "uplift": 0.05748856067657471
+    },
+    {
+      "sample": "crop_pair04",
+      "variant": "c084_balanced_crop_pair_w14",
+      "cosine": 0.6923567056655884,
+      "no_ip_cosine": 0.6861926913261414,
+      "uplift": 0.0061640143394470215
+    },
+    {
+      "sample": "crop_pair04",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.7135713696479797,
+      "no_ip_cosine": 0.6861926913261414,
+      "uplift": 0.02737867832183838
+    },
+    {
+      "sample": "crop_pair05",
+      "variant": "blend_species_face",
+      "cosine": 0.741417646408081,
+      "no_ip_cosine": 0.7298337817192078,
+      "uplift": 0.011583864688873291
+    },
+    {
+      "sample": "crop_pair05",
+      "variant": "c084_balanced_crop_pair_w14",
+      "cosine": 0.7097790837287903,
+      "no_ip_cosine": 0.7298337817192078,
+      "uplift": -0.02005469799041748
+    },
+    {
+      "sample": "crop_pair05",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.5972878932952881,
+      "no_ip_cosine": 0.7298337817192078,
+      "uplift": -0.13254588842391968
+    },
+    {
+      "sample": "crop_pair06",
+      "variant": "blend_species_face",
+      "cosine": 0.6910248398780823,
+      "no_ip_cosine": 0.6170907616615295,
+      "uplift": 0.07393407821655273
+    },
+    {
+      "sample": "crop_pair06",
+      "variant": "c084_balanced_crop_pair_w14",
+      "cosine": 0.7382709980010986,
+      "no_ip_cosine": 0.6170907616615295,
+      "uplift": 0.12118023633956909
+    },
+    {
+      "sample": "crop_pair06",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.7170819044113159,
+      "no_ip_cosine": 0.6170907616615295,
+      "uplift": 0.09999114274978638
+    },
+    {
+      "sample": "crop_pair07",
+      "variant": "blend_species_face",
+      "cosine": 0.7168795466423035,
+      "no_ip_cosine": 0.6144891977310181,
+      "uplift": 0.1023903489112854
+    },
+    {
+      "sample": "crop_pair07",
+      "variant": "c084_balanced_crop_pair_w14",
+      "cosine": 0.7134169340133667,
+      "no_ip_cosine": 0.6144891977310181,
+      "uplift": 0.09892773628234863
+    },
+    {
+      "sample": "crop_pair07",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.7531401515007019,
+      "no_ip_cosine": 0.6144891977310181,
+      "uplift": 0.13865095376968384
+    },
+    {
+      "sample": "crop_pair08",
+      "variant": "blend_species_face",
+      "cosine": 0.7821394205093384,
+      "no_ip_cosine": 0.6645858883857727,
+      "uplift": 0.11755353212356567
+    },
+    {
+      "sample": "crop_pair08",
+      "variant": "c084_balanced_crop_pair_w14",
+      "cosine": 0.8021902441978455,
+      "no_ip_cosine": 0.6645858883857727,
+      "uplift": 0.13760435581207275
+    },
+    {
+      "sample": "crop_pair08",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.7677747011184692,
+      "no_ip_cosine": 0.6645858883857727,
+      "uplift": 0.10318881273269653
+    },
+    {
+      "sample": "crop_pair09",
+      "variant": "blend_species_face",
+      "cosine": 0.6816844344139099,
+      "no_ip_cosine": 0.6429836750030518,
+      "uplift": 0.038700759410858154
+    },
+    {
+      "sample": "crop_pair09",
+      "variant": "c084_balanced_crop_pair_w14",
+      "cosine": 0.7389370799064636,
+      "no_ip_cosine": 0.6429836750030518,
+      "uplift": 0.09595340490341187
+    },
+    {
+      "sample": "crop_pair09",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.7460442185401917,
+      "no_ip_cosine": 0.6429836750030518,
+      "uplift": 0.10306054353713989
+    }
+  ],
+  "variant_summaries": [
+    {
+      "variant": "blend_species_face",
+      "cases": 10,
+      "mean_cosine": 0.7052998244762421,
+      "mean_no_ip_cosine": 0.6403934299945832,
+      "mean_uplift": 0.06490639448165894,
+      "improved_rate": 1.0
+    },
+    {
+      "variant": "c084_balanced_crop_pair_w14",
+      "cases": 10,
+      "mean_cosine": 0.7043575763702392,
+      "mean_no_ip_cosine": 0.6403934299945832,
+      "mean_uplift": 0.06396414637565613,
+      "improved_rate": 0.9
+    },
+    {
+      "variant": "c085_anchored_full_adapter_w14",
+      "cases": 10,
+      "mean_cosine": 0.7056146144866944,
+      "mean_no_ip_cosine": 0.6403934299945832,
+      "mean_uplift": 0.0652211844921112,
+      "improved_rate": 0.9
+    }
+  ]
+}

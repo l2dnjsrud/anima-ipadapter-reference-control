@@ -1,0 +1,508 @@
+{
+  "base_url": "http://127.0.0.1:8116",
+  "data_root": "/home/wktwin/anima-ipadapter-reference-control/.tmp/c085_anchored_full_adapter_root",
+  "checkpoints": {
+    "previous_retrieval": "anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors",
+    "c055_mixed": "anima_qwenvl_ip_adapter_c055_mixed_retrieval_0064_20260612.safetensors",
+    "c084": "anima_qwenvl_ip_adapter_c084_balanced_crop_pairs_b128_0128_20260613.safetensors",
+    "c085": "anima_qwenvl_ip_adapter_c085_anchored_full_adapter_b128_0096_20260613.safetensors"
+  },
+  "comparison": "reference / no_ip / blend_species_face / c084_balanced_crop_pair_w14 / c085_anchored_full_adapter_w14",
+  "samples": [
+    {
+      "label": "crop_pair00",
+      "split": "direct_green",
+      "ref_id": "external/c084_sheet_crop_pairs/c083_c082_frog_yokai_guard_action_crop01",
+      "seed": 20260850,
+      "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+      "selected_attributes": [
+        "c085_crop_pair_focus",
+        "direct_green",
+        "non_human",
+        "target_positive"
+      ]
+    },
+    {
+      "label": "crop_pair01",
+      "split": "direct_green",
+      "ref_id": "external/c084_sheet_crop_pairs/c083_c082_frog_yokai_guard_action_crop02",
+      "seed": 20260851,
+      "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+      "selected_attributes": [
+        "c085_crop_pair_focus",
+        "direct_green",
+        "non_human",
+        "target_positive"
+      ]
+    },
+    {
+      "label": "crop_pair02",
+      "split": "direct_green",
+      "ref_id": "external/c084_sheet_crop_pairs/c083_c082_goblin_mage_action_crop01",
+      "seed": 20260852,
+      "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+      "selected_attributes": [
+        "c085_crop_pair_focus",
+        "direct_green",
+        "non_human",
+        "target_positive"
+      ]
+    },
+    {
+      "label": "crop_pair03",
+      "split": "direct_green",
+      "ref_id": "external/c084_sheet_crop_pairs/c083_c082_goblin_mage_action_crop02",
+      "seed": 20260853,
+      "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+      "selected_attributes": [
+        "c085_crop_pair_focus",
+        "direct_green",
+        "non_human",
+        "target_positive"
+      ]
+    },
+    {
+      "label": "crop_pair04",
+      "split": "direct_green",
+      "ref_id": "external/c084_sheet_crop_pairs/c083_c082_green_oni_scout_action_crop01",
+      "seed": 20260854,
+      "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+      "selected_attributes": [
+        "c085_crop_pair_focus",
+        "direct_green",
+        "non_human",
+        "target_positive"
+      ]
+    },
+    {
+      "label": "crop_pair05",
+      "split": "direct_green",
+      "ref_id": "external/c084_sheet_crop_pairs/c083_c082_green_oni_scout_action_crop02",
+      "seed": 20260855,
+      "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+      "selected_attributes": [
+        "c085_crop_pair_focus",
+        "direct_green",
+        "non_human",
+        "target_positive"
+      ]
+    },
+    {
+      "label": "crop_pair06",
+      "split": "direct_green",
+      "ref_id": "external/c084_sheet_crop_pairs/c083_c082_green_oni_scout_action_crop03",
+      "seed": 20260856,
+      "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+      "selected_attributes": [
+        "c085_crop_pair_focus",
+        "direct_green",
+        "non_human",
+        "target_positive"
+      ]
+    },
+    {
+      "label": "crop_pair07",
+      "split": "direct_green",
+      "ref_id": "external/c084_sheet_crop_pairs/c083_c082_green_oni_scout_profile_crop04",
+      "seed": 20260857,
+      "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+      "selected_attributes": [
+        "c085_crop_pair_focus",
+        "direct_green",
+        "non_human",
+        "target_positive"
+      ]
+    },
+    {
+      "label": "crop_pair08",
+      "split": "direct_green",
+      "ref_id": "external/c084_sheet_crop_pairs/c083_c082_green_oni_scout_profile_crop05",
+      "seed": 20260858,
+      "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+      "selected_attributes": [
+        "c085_crop_pair_focus",
+        "direct_green",
+        "non_human",
+        "target_positive"
+      ]
+    },
+    {
+      "label": "crop_pair09",
+      "split": "direct_green",
+      "ref_id": "external/c084_sheet_crop_pairs/c083_c082_green_oni_scout_profile_crop06",
+      "seed": 20260859,
+      "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+      "selected_attributes": [
+        "c085_crop_pair_focus",
+        "direct_green",
+        "non_human",
+        "target_positive"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "label": "no_ip",
+      "steps": [],
+      "instruction": "Represent this reference for strict visual identity retrieval in a manhwa panel. Prioritize non-human species, monster or demon traits, facial structure, profile silhouette, beard and headwear, skin tone, glowing eyes, hand props, fan or weapon cues, speech bubble context, pose crop, costume palette, and line/color style."
+    },
+    {
+      "label": "blend_species_face",
+      "steps": [
+        {
+          "checkpoint": "anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors",
+          "weight": 1.4
+        },
+        {
+          "checkpoint": "anima_qwenvl_ip_adapter_c055_mixed_retrieval_0064_20260612.safetensors",
+          "weight": 0.4
+        }
+      ],
+      "instruction": "Represent this reference for strict visual identity retrieval in a manhwa panel. Prioritize non-human species, monster or demon traits, facial structure, profile silhouette, beard and headwear, skin tone, glowing eyes, hand props, fan or weapon cues, speech bubble context, pose crop, costume palette, and line/color style."
+    },
+    {
+      "label": "c084_balanced_crop_pair_w14",
+      "steps": [
+        {
+          "checkpoint": "anima_qwenvl_ip_adapter_c084_balanced_crop_pairs_b128_0128_20260613.safetensors",
+          "weight": 1.4
+        }
+      ],
+      "instruction": "Represent this reference for strict visual identity retrieval in a manhwa panel. Prioritize non-human species, monster or demon traits, facial structure, profile silhouette, beard and headwear, skin tone, glowing eyes, hand props, fan or weapon cues, speech bubble context, pose crop, costume palette, and line/color style."
+    },
+    {
+      "label": "c085_anchored_full_adapter_w14",
+      "steps": [
+        {
+          "checkpoint": "anima_qwenvl_ip_adapter_c085_anchored_full_adapter_b128_0096_20260613.safetensors",
+          "weight": 1.4
+        }
+      ],
+      "instruction": "Represent this reference for strict visual identity retrieval in a manhwa panel. Prioritize non-human species, monster or demon traits, facial structure, profile silhouette, beard and headwear, skin tone, glowing eyes, hand props, fan or weapon cues, speech bubble context, pose crop, costume palette, and line/color style."
+    }
+  ],
+  "results": {
+    "crop_pair00_no_ip": {
+      "prompt_id": "2a26ed89-8063-411a-85fd-b36835db1584",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair00_no_ip.png",
+      "image_info": {
+        "filename": "crop_pair00_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair00_blend_species_face": {
+      "prompt_id": "a0b7ffa1-cf54-4173-9c65-5999d3ce3f76",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair00_blend_species_face.png",
+      "image_info": {
+        "filename": "crop_pair00_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair00_c084_balanced_crop_pair_w14": {
+      "prompt_id": "7a1feb01-843b-48d3-b2d7-343d019f2372",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair00_c084_balanced_crop_pair_w14.png",
+      "image_info": {
+        "filename": "crop_pair00_c084_balanced_crop_pair_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair00_c085_anchored_full_adapter_w14": {
+      "prompt_id": "bbdf6bcc-3201-4674-8dec-bd6ea54d51d7",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair00_c085_anchored_full_adapter_w14.png",
+      "image_info": {
+        "filename": "crop_pair00_c085_anchored_full_adapter_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair01_no_ip": {
+      "prompt_id": "7f2b8f48-346d-4a41-ba3c-a7765b388b5c",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair01_no_ip.png",
+      "image_info": {
+        "filename": "crop_pair01_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair01_blend_species_face": {
+      "prompt_id": "5bdba9a1-d8b9-4c55-827c-122155cf0654",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair01_blend_species_face.png",
+      "image_info": {
+        "filename": "crop_pair01_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair01_c084_balanced_crop_pair_w14": {
+      "prompt_id": "c7cbfde7-bc63-45ea-a4dd-b743835f0f15",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair01_c084_balanced_crop_pair_w14.png",
+      "image_info": {
+        "filename": "crop_pair01_c084_balanced_crop_pair_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair01_c085_anchored_full_adapter_w14": {
+      "prompt_id": "1a4bfac3-2f0a-41f8-8b3b-d19d5dc43060",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair01_c085_anchored_full_adapter_w14.png",
+      "image_info": {
+        "filename": "crop_pair01_c085_anchored_full_adapter_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair02_no_ip": {
+      "prompt_id": "763ceea0-15c3-4fb5-a275-dfdd212f00aa",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair02_no_ip.png",
+      "image_info": {
+        "filename": "crop_pair02_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair02_blend_species_face": {
+      "prompt_id": "cf41224f-2763-4072-984b-a3482ff9dfc0",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair02_blend_species_face.png",
+      "image_info": {
+        "filename": "crop_pair02_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair02_c084_balanced_crop_pair_w14": {
+      "prompt_id": "f974e305-32bd-4170-8928-e744777316c6",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair02_c084_balanced_crop_pair_w14.png",
+      "image_info": {
+        "filename": "crop_pair02_c084_balanced_crop_pair_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair02_c085_anchored_full_adapter_w14": {
+      "prompt_id": "eea42ec9-9fe0-45c0-97bc-f37c24a20e81",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair02_c085_anchored_full_adapter_w14.png",
+      "image_info": {
+        "filename": "crop_pair02_c085_anchored_full_adapter_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair03_no_ip": {
+      "prompt_id": "8a136c77-55ac-45c3-a241-7126b5165cc4",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair03_no_ip.png",
+      "image_info": {
+        "filename": "crop_pair03_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair03_blend_species_face": {
+      "prompt_id": "8a8ddae5-dd17-4b3c-a1d6-7a011a2c94a0",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair03_blend_species_face.png",
+      "image_info": {
+        "filename": "crop_pair03_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair03_c084_balanced_crop_pair_w14": {
+      "prompt_id": "23892f7c-ebda-425f-a716-e6b19acb474e",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair03_c084_balanced_crop_pair_w14.png",
+      "image_info": {
+        "filename": "crop_pair03_c084_balanced_crop_pair_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair03_c085_anchored_full_adapter_w14": {
+      "prompt_id": "2880ff21-8a6e-43d2-aef6-165a849f3651",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair03_c085_anchored_full_adapter_w14.png",
+      "image_info": {
+        "filename": "crop_pair03_c085_anchored_full_adapter_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair04_no_ip": {
+      "prompt_id": "8789a9f6-9884-4e84-abdc-5b11442c9f94",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair04_no_ip.png",
+      "image_info": {
+        "filename": "crop_pair04_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair04_blend_species_face": {
+      "prompt_id": "f91ed391-43b8-4f14-91f4-4ed28c3b0e4b",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair04_blend_species_face.png",
+      "image_info": {
+        "filename": "crop_pair04_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair04_c084_balanced_crop_pair_w14": {
+      "prompt_id": "0b4787d0-3761-48fc-9ace-52200ca74f76",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair04_c084_balanced_crop_pair_w14.png",
+      "image_info": {
+        "filename": "crop_pair04_c084_balanced_crop_pair_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair04_c085_anchored_full_adapter_w14": {
+      "prompt_id": "3fbc6afa-6510-419a-9d48-3b240f48aecc",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair04_c085_anchored_full_adapter_w14.png",
+      "image_info": {
+        "filename": "crop_pair04_c085_anchored_full_adapter_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair05_no_ip": {
+      "prompt_id": "9e5752c4-a26e-4969-aa83-e91ae180a355",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair05_no_ip.png",
+      "image_info": {
+        "filename": "crop_pair05_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair05_blend_species_face": {
+      "prompt_id": "ee085ce3-bf6f-40cc-9140-41e610947a8e",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair05_blend_species_face.png",
+      "image_info": {
+        "filename": "crop_pair05_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair05_c084_balanced_crop_pair_w14": {
+      "prompt_id": "80933733-1018-4f25-89da-8386ea150246",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair05_c084_balanced_crop_pair_w14.png",
+      "image_info": {
+        "filename": "crop_pair05_c084_balanced_crop_pair_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair05_c085_anchored_full_adapter_w14": {
+      "prompt_id": "42ebb2c9-77da-45ab-a1c4-51ea98017e81",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair05_c085_anchored_full_adapter_w14.png",
+      "image_info": {
+        "filename": "crop_pair05_c085_anchored_full_adapter_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair06_no_ip": {
+      "prompt_id": "b02ac2e5-ef27-4db0-aff3-145a76ee159d",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair06_no_ip.png",
+      "image_info": {
+        "filename": "crop_pair06_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair06_blend_species_face": {
+      "prompt_id": "effbf040-e346-427e-945a-25c78e407205",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair06_blend_species_face.png",
+      "image_info": {
+        "filename": "crop_pair06_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair06_c084_balanced_crop_pair_w14": {
+      "prompt_id": "9404d57a-ab28-4fa5-b2f4-922263b004e7",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair06_c084_balanced_crop_pair_w14.png",
+      "image_info": {
+        "filename": "crop_pair06_c084_balanced_crop_pair_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair06_c085_anchored_full_adapter_w14": {
+      "prompt_id": "00c341d9-66b2-4fd3-830e-7f03f675a04f",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair06_c085_anchored_full_adapter_w14.png",
+      "image_info": {
+        "filename": "crop_pair06_c085_anchored_full_adapter_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair07_no_ip": {
+      "prompt_id": "aff15970-833c-493c-98fd-52c5cebff008",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair07_no_ip.png",
+      "image_info": {
+        "filename": "crop_pair07_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair07_blend_species_face": {
+      "prompt_id": "1623bc0d-f6f7-4c54-919c-5bc2ad8d5a88",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair07_blend_species_face.png",
+      "image_info": {
+        "filename": "crop_pair07_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair07_c084_balanced_crop_pair_w14": {
+      "prompt_id": "101d1dc9-2c21-4ffd-aeac-fc0a98ee96c9",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair07_c084_balanced_crop_pair_w14.png",
+      "image_info": {
+        "filename": "crop_pair07_c084_balanced_crop_pair_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair07_c085_anchored_full_adapter_w14": {
+      "prompt_id": "03a5a384-4510-4813-87ec-fc1fd3b4932e",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair07_c085_anchored_full_adapter_w14.png",
+      "image_info": {
+        "filename": "crop_pair07_c085_anchored_full_adapter_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair08_no_ip": {
+      "prompt_id": "df9425c8-09a4-4541-b9dc-65607b79825b",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair08_no_ip.png",
+      "image_info": {
+        "filename": "crop_pair08_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair08_blend_species_face": {
+      "prompt_id": "cc11e293-2295-44c7-aa3a-2bf7eb2b1580",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair08_blend_species_face.png",
+      "image_info": {
+        "filename": "crop_pair08_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair08_c084_balanced_crop_pair_w14": {
+      "prompt_id": "49fb6ec9-a5ba-43fd-b35a-d8c3b867219f",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair08_c084_balanced_crop_pair_w14.png",
+      "image_info": {
+        "filename": "crop_pair08_c084_balanced_crop_pair_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair08_c085_anchored_full_adapter_w14": {
+      "prompt_id": "476b5976-a27e-4cb3-8054-43322aaaf0eb",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair08_c085_anchored_full_adapter_w14.png",
+      "image_info": {
+        "filename": "crop_pair08_c085_anchored_full_adapter_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair09_no_ip": {
+      "prompt_id": "eb40a55b-ccbc-46f0-82ae-5a24a0f52a9b",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair09_no_ip.png",
+      "image_info": {
+        "filename": "crop_pair09_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair09_blend_species_face": {
+      "prompt_id": "bb880401-120c-40ea-8f2f-2bbb46f23e32",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair09_blend_species_face.png",
+      "image_info": {
+        "filename": "crop_pair09_blend_species_face_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair09_c084_balanced_crop_pair_w14": {
+      "prompt_id": "8fda1367-095c-4058-8c32-3a6c95ea9e42",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair09_c084_balanced_crop_pair_w14.png",
+      "image_info": {
+        "filename": "crop_pair09_c084_balanced_crop_pair_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    },
+    "crop_pair09_c085_anchored_full_adapter_w14": {
+      "prompt_id": "84649c77-d14d-496b-8a0a-f7cc29c01028",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/crop_pair09_c085_anchored_full_adapter_w14.png",
+      "image_info": {
+        "filename": "crop_pair09_c085_anchored_full_adapter_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c085_anchored_full_adapter_gate_20260613"
+      }
+    }
+  },
+  "contact_sheet": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c085_anchored_full_adapter_gate_20260613/contact_sheet_crop_pair_focus.jpg",
+  "focus_set": "c085 anchored full-adapter c084 crop-pair reference crops"
+}
