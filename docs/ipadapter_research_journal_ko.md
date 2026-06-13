@@ -1738,7 +1738,23 @@ metric 결과는 부분 개선과 미승격을 동시에 보여준다. clean32+h
 
 c079 decision은 `not_promoted_c079_synthetic_positive_calibrator_partial_direct_green_gain`이다. runtime은 pass이고 direct-green QwenVL에서는 c075를 아주 조금 앞섰지만, current best `blend_species_face`를 넘지 못했고 high-quality reference-control checkpoint로 승격할 수 없다. 다음 루프는 synthetic-positive 단순 반복이 아니라 실제 paired direct-green 데이터, synthetic source-target identity pair, 또는 QwenVL/SigLIP encoder-side reference feature objective 쪽으로 가야 한다.
 
-## 31. 근거 파일 색인
+## 31. c080 Paired Direct-Green Identity Supervision
+
+c080은 c079의 한계를 받은 다음 루프다. c079는 c074 real target-positive 10장과 c078 synthetic target-positive 23장을 `ref_id == tgt_id`에 가까운 target-positive 방식으로 넣어 녹색/비인간 속성은 조금 보강했지만, 참조별 identity 다양성은 유지하지 못했다. 따라서 c080의 목표는 같은 synthetic-positive 반복이 아니라, c074 Neeko 계열 real direct-green 샘플을 `ref_id != tgt_id`인 paired supervision으로 바꿔 reference identity가 다른 target view로 전달되는지 확인하는 것이었다.
+
+새 도구는 `tools/c080_paired_direct_green_manifest.py`이고 테스트는 `tests/test_c080_paired_direct_green_manifest.py`다. manifest는 `training/manifests/c080_paired_direct_green_identity_20260613.jsonl`에 만들었다. 구성은 c074 pair source `10`, c074 paired training rows `80`, c078 unpaired positive count `23`, c078 training rows `0`, guard/proxy rows `36`, source rows `80`, 총 `196` rows다. 핵심 조건인 `direct_self_pair_rows=0`, `heldout_rows_used=0`을 기록했다. c078 synthetic direct-green 이미지는 같은 identity의 다른 target view가 없어서 이번 paired 학습에는 넣지 않았다.
+
+학습은 previous retrieval checkpoint `checkpoints/anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors`에서 시작했고, c063에서 만든 `--train-calibrator-only` 경로를 사용했다. 출력 checkpoint는 `checkpoints/anima_qwenvl_ip_adapter_c080_paired_direct_green_b128_0128_20260613.safetensors`다. 학습 조건은 `steps=128`, `max_rows=196`, `lr=5e-6`, `contrastive_weight=0.35`, `retrieval_weight=0.2`, `calibrator_bottleneck_dim=128`이다. 최종 summary는 `rows_loaded=196`, `final_loss=0.2474229336`, `finite_loss=true`, `trainable_parameters=528384`, checkpoint `loadable=true`, `pe_checkpoint_rejected=true`를 기록했다.
+
+ComfyUI gate는 isolated `127.0.0.1:8116`에서 진행했다. 비교 column은 `no_ip`, current best `blend_species_face`, c075 baseline `c075_tag_positive_w14`, c079 baseline `c079_synthetic_positive_w14`, 신규 `c080_paired_direct_green_w14`다. clean32+heldout8 `40` samples에서 `200` PNG를 만들고, c074 paired direct-green focus `10` samples에서 `50` PNG를 추가로 만들었다. 총 generated PNG는 `250`, blank image는 `0`이다. 초기 runner에서 `c079_synthetic_positive_w14` 라벨이 c080 checkpoint를 가리키는 mapping bug를 발견했고, c079 산출물 50개를 삭제한 뒤 실제 c079 checkpoint로 재생성했다. 생성 후 ComfyUI server를 종료했고 port `8116`은 닫혔다.
+
+metric 결과는 c080이 목표에 실패했음을 보여준다. clean32+heldout8 PE mean uplift는 `blend_species_face=0.0608932152`, `c075=0.0262199253`, `c079=0.0329968661`, `c080=0.0229417309`이고, QwenVL mean uplift는 `blend_species_face=0.0421902567`, `c075=0.0349742755`, `c079=0.0338256791`, `c080=0.0341175169`다. QwenVL clean aggregate에서 c080이 c079보다 아주 조금 높지만 `0.00029` 수준이라 실질 개선으로 보기 어렵다. direct-green focus에서는 PE mean uplift가 `blend_species_face=0.0844765946`, `c075=0.0325176731`, `c079=0.0640649319`, `c080=0.0482934043`이고, QwenVL mean uplift는 `blend_species_face=-0.0102016628`, `c075=-0.0095478654`, `c079=0.0040470958`, `c080=-0.0087357759`다.
+
+시각 검수 기준으로도 c080은 미승격이다. `contact_sheet_direct_green.jpg`에서 c080은 녹색 피부, 뿔/귀, 어두운 무협풍 복식 같은 큰 속성은 유지하지만 reference column의 밝은 색감, 여성형 얼굴, 작은 체형, 과장된 장식, 귀여운 표정, 캐릭터별 다른 실루엣은 거의 전달하지 못한다. 대부분 성인형 green humanoid villain으로 수렴하며, c079보다 안정적으로 낫다고 볼 수 없다. `contact_sheet_heldout.jpg`에서도 c080은 c075/c079와 거의 같은 결과를 내고, 핵심 실패인 비인간 side-profile/monster face는 여전히 인간형 dark villain으로 흡수된다.
+
+c080 decision은 `not_promoted_c080_paired_direct_green_weaker_than_c079_and_blend`다. runtime은 pass지만 품질은 pass가 아니다. c074 10장 규모의 작은 paired supervision만으로는 QwenVL calibrator가 참조별 identity를 분리해 전달하지 못했다. 다음 루프는 c074 pair 반복이 아니라, 실제 paired source-target color/reference 데이터 확보, identity-preserving synthetic pair generation, 또는 QwenVL/SigLIP encoder-side reference feature objective 강화로 이동해야 한다.
+
+## 32. 근거 파일 색인
 
 핵심 문서:
 
@@ -1969,6 +1985,14 @@ QwenVL 주요 평가:
 - `eval/qwenvl_c079_synthetic_positive_gate_20260612/qwenvl_similarity_metrics.json`
 - `eval/qwenvl_c079_synthetic_positive_gate_20260612/direct_green_pe_similarity_metrics.json`
 - `eval/qwenvl_c079_synthetic_positive_gate_20260612/direct_green_qwenvl_similarity_metrics.json`
+- `eval/qwenvl_c080_paired_direct_green_training_20260613/report.md`
+- `eval/qwenvl_c080_paired_direct_green_training_20260613/summary.json`
+- `eval/qwenvl_c080_paired_direct_green_gate_20260613/report.md`
+- `eval/qwenvl_c080_paired_direct_green_gate_20260613/visual_audit.md`
+- `eval/qwenvl_c080_paired_direct_green_gate_20260613/pe_similarity_metrics.json`
+- `eval/qwenvl_c080_paired_direct_green_gate_20260613/qwenvl_similarity_metrics.json`
+- `eval/qwenvl_c080_paired_direct_green_gate_20260613/direct_green_pe_similarity_metrics.json`
+- `eval/qwenvl_c080_paired_direct_green_gate_20260613/direct_green_qwenvl_similarity_metrics.json`
 
 생성/학습 manifest:
 
@@ -1990,6 +2014,8 @@ QwenVL 주요 평가:
 - `training/manifests/c075_tag_positive_direct_green_20260612.summary.json`
 - `training/manifests/c079_synthetic_positive_direct_green_20260612.jsonl`
 - `training/manifests/c079_synthetic_positive_direct_green_20260612.summary.json`
+- `training/manifests/c080_paired_direct_green_identity_20260613.jsonl`
+- `training/manifests/c080_paired_direct_green_identity_20260613.summary.json`
 - `eval/c067_attribute_teacher_reranker_seed_20260612/attribute_query_manifest.jsonl`
 - `eval/c068_reviewed_attribute_label_seed_20260612/reviewed_attribute_labels.jsonl`
 
@@ -2034,6 +2060,8 @@ QwenVL 주요 평가:
 - `tools/c079_manifest_io.py`
 - `tools/c079_synthetic_positive_manifest.py`
 - `tests/test_c079_synthetic_positive_manifest.py`
+- `tools/c080_paired_direct_green_manifest.py`
+- `tests/test_c080_paired_direct_green_manifest.py`
 - `tools/siglip_auto_caption_eval.py`
 - `tools/score_siglip_auto_caption_metrics.py`
 - `workflows/anima_ipadapter_siglip_native_reference.json`
