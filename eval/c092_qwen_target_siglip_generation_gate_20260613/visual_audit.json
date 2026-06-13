@@ -1,0 +1,22 @@
+{
+  "decision": "c092_improves_c089_but_not_qwen_baseline",
+  "promoted": false,
+  "best_c092_variant": "c092_qwen_target_w14",
+  "observations": [
+    "c092 is the strongest SigLIP hard-shape result so far by aggregate metric.",
+    "c092 w14 improves c089/c091 substantially and reaches improved_rate 1.0.",
+    "c092 collapses many training rows toward bald green human faces, losing chibi/frog body diversity.",
+    "heldout07 remains weak because monster side-profile and red-eye jaw silhouette are not preserved."
+  ],
+  "metric_summary": {
+    "c089_shape_w14_mean_uplift": 0.024921435615903164,
+    "c091_feature_calibrator_w14_mean_uplift": 0.024088173699299265,
+    "c092_qwen_target_w10_mean_uplift": 0.07382548763785077,
+    "c092_qwen_target_w14_mean_uplift": 0.08526816531384505,
+    "c087_expanded_crop_positive_w14_mean_uplift": 0.10895440559772807,
+    "c092_qwen_target_w14_improved_rate": 1.0,
+    "heldout07_c092_qwen_target_w14_uplift": 0.0009986629992987384,
+    "heldout07_c087_expanded_crop_positive_w14_uplift": 0.09803324868423646
+  },
+  "next_decision": "continue_qwen_target_supervision_with_anti_collapse_and_hard_shape_diversity"
+}

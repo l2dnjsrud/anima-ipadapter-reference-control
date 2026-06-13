@@ -1,0 +1,93 @@
+{
+  "decision": "ready_for_c092_qwen_target_siglip_distillation",
+  "source_summary_path": "eval/c091_siglip_feature_calibrator_hard_shape_gate_20260613/summary.json",
+  "output_manifest_path": "training/manifests/c092_qwen_target_distillation_20260613.jsonl",
+  "scratch_image_root": ".tmp/c092_qwen_target_distillation_root",
+  "teacher_variant": "c087_expanded_crop_positive_w14",
+  "total_rows": 10,
+  "excluded_labels": [
+    "heldout07"
+  ],
+  "rows": [
+    {
+      "label": "crop_pair00",
+      "ref_id": "c092_qwen_target/crop_pair00_ref",
+      "tgt_id": "c092_qwen_target/crop_pair00_c087_expanded_crop_positive_w14",
+      "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+      "reference_source": ".tmp/c091_siglip_hard_shape_root/c090_refs/crop_pair00.jpg",
+      "target_source": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair00_c087_expanded_crop_positive_w14.png"
+    },
+    {
+      "label": "crop_pair01",
+      "ref_id": "c092_qwen_target/crop_pair01_ref",
+      "tgt_id": "c092_qwen_target/crop_pair01_c087_expanded_crop_positive_w14",
+      "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+      "reference_source": ".tmp/c091_siglip_hard_shape_root/c090_refs/crop_pair01.jpg",
+      "target_source": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair01_c087_expanded_crop_positive_w14.png"
+    },
+    {
+      "label": "crop_pair02",
+      "ref_id": "c092_qwen_target/crop_pair02_ref",
+      "tgt_id": "c092_qwen_target/crop_pair02_c087_expanded_crop_positive_w14",
+      "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+      "reference_source": ".tmp/c091_siglip_hard_shape_root/c090_refs/crop_pair02.jpg",
+      "target_source": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair02_c087_expanded_crop_positive_w14.png"
+    },
+    {
+      "label": "crop_pair03",
+      "ref_id": "c092_qwen_target/crop_pair03_ref",
+      "tgt_id": "c092_qwen_target/crop_pair03_c087_expanded_crop_positive_w14",
+      "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+      "reference_source": ".tmp/c091_siglip_hard_shape_root/c090_refs/crop_pair03.jpg",
+      "target_source": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair03_c087_expanded_crop_positive_w14.png"
+    },
+    {
+      "label": "crop_pair04",
+      "ref_id": "c092_qwen_target/crop_pair04_ref",
+      "tgt_id": "c092_qwen_target/crop_pair04_c087_expanded_crop_positive_w14",
+      "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+      "reference_source": ".tmp/c091_siglip_hard_shape_root/c090_refs/crop_pair04.jpg",
+      "target_source": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair04_c087_expanded_crop_positive_w14.png"
+    },
+    {
+      "label": "crop_pair05",
+      "ref_id": "c092_qwen_target/crop_pair05_ref",
+      "tgt_id": "c092_qwen_target/crop_pair05_c087_expanded_crop_positive_w14",
+      "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+      "reference_source": ".tmp/c091_siglip_hard_shape_root/c090_refs/crop_pair05.jpg",
+      "target_source": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair05_c087_expanded_crop_positive_w14.png"
+    },
+    {
+      "label": "crop_pair06",
+      "ref_id": "c092_qwen_target/crop_pair06_ref",
+      "tgt_id": "c092_qwen_target/crop_pair06_c087_expanded_crop_positive_w14",
+      "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+      "reference_source": ".tmp/c091_siglip_hard_shape_root/c090_refs/crop_pair06.jpg",
+      "target_source": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair06_c087_expanded_crop_positive_w14.png"
+    },
+    {
+      "label": "crop_pair07",
+      "ref_id": "c092_qwen_target/crop_pair07_ref",
+      "tgt_id": "c092_qwen_target/crop_pair07_c087_expanded_crop_positive_w14",
+      "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+      "reference_source": ".tmp/c091_siglip_hard_shape_root/c090_refs/crop_pair07.jpg",
+      "target_source": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair07_c087_expanded_crop_positive_w14.png"
+    },
+    {
+      "label": "crop_pair08",
+      "ref_id": "c092_qwen_target/crop_pair08_ref",
+      "tgt_id": "c092_qwen_target/crop_pair08_c087_expanded_crop_positive_w14",
+      "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+      "reference_source": ".tmp/c091_siglip_hard_shape_root/c090_refs/crop_pair08.jpg",
+      "target_source": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair08_c087_expanded_crop_positive_w14.png"
+    },
+    {
+      "label": "crop_pair09",
+      "ref_id": "c092_qwen_target/crop_pair09_ref",
+      "tgt_id": "c092_qwen_target/crop_pair09_c087_expanded_crop_positive_w14",
+      "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+      "reference_source": ".tmp/c091_siglip_hard_shape_root/c090_refs/crop_pair09.jpg",
+      "target_source": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair09_c087_expanded_crop_positive_w14.png"
+    }
+  ]
+}

@@ -3037,3 +3037,147 @@ QwenVL baseline인 `c087_expanded_crop_positive_w14`는 여전히 mean uplift `0
 - `eval/c091_siglip_feature_calibrator_hard_shape_gate_20260613/visual_audit.md`
 - `eval/c091_siglip_feature_calibrator_hard_shape_gate_20260613/visual_audit.json`
 - `eval/c091_siglip_feature_calibrator_hard_shape_gate_20260613/report.md`
+
+## 25. c092 Qwen-Target SigLIP Distillation Gate
+
+c091 결론은 명확했다. feature-calibrator-only route는 학습과 로드는 되지만 c089를 넘지 못했다. c092는 같은 SigLIP 구조 안에서 더 강한 supervision을 주기 위해, QwenVL hard-shape baseline인 `c087_expanded_crop_positive_w14` 결과 이미지를 target image로 materialize하고 SigLIP full adapter를 c089에서 짧게 continuation했다.
+
+### 검증 목표
+
+- c091처럼 frozen SigLIP feature 보정만 반복하지 않는다.
+- QwenVL baseline이 만든 hard-shape target image를 실제 target image로 사용한다.
+- `heldout07`은 학습에서 제외하고 generation gate에서만 본다.
+- c092가 c089/c091을 넘는지, 그리고 Qwen baseline에 접근하는지 본다.
+- 숫자 상승이 실제 reference fidelity 상승인지 contact sheet와 visual audit로 확인한다.
+
+### 데이터와 누수 방지
+
+- source summary: `eval/c091_siglip_feature_calibrator_hard_shape_gate_20260613/summary.json`
+- teacher target: `c087_expanded_crop_positive_w14`
+- train rows: `crop_pair00` to `crop_pair09`
+- heldout excluded: `heldout07`
+- materialized manifest: `training/manifests/c092_qwen_target_distillation_20260613.jsonl`
+- manifest summary: `training/manifests/c092_qwen_target_distillation_20260613.jsonl.summary.json`
+- scratch image root: `.tmp/c092_qwen_target_distillation_root`
+
+materializer 결과는 `total_rows=10`, `excluded_labels=["heldout07"]`이다. manifest에는 heldout 문자열이 없고, 모든 ref/target jpg 및 target txt가 존재하는 것을 확인했다.
+
+### 개발한 것
+
+- `tools/c092_qwen_target_manifest.py`
+  - c091 summary의 reference image와 baseline candidate mapping을 읽어 Qwen teacher target dataset을 만든다.
+  - target caption txt도 함께 작성해 기존 `siglip_real_smoke` 데이터 로더를 그대로 사용할 수 있게 했다.
+- `tests/test_c092_qwen_target_manifest.py`
+  - heldout 제외, image/caption materialization을 검증한다.
+- `tools/c092_siglip_qwen_target_eval.py`
+  - c092 checkpoint를 `no_ip`, prior SigLIP, c089, c091, Qwen baseline과 같은 hard-shape gate에서 비교한다.
+- `tests/test_c092_siglip_qwen_target_eval.py`
+  - c092 decision logic을 검증한다.
+- plan doc: `docs/c092_qwen_target_siglip_distillation_plan_ko.md`
+
+### 학습
+
+```sh
+PYTHONPATH=. /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python training/siglip_real_smoke_cli.py \
+  --manifest-path training/manifests/c092_qwen_target_distillation_20260613.jsonl \
+  --image-root .tmp/c092_qwen_target_distillation_root \
+  --init-checkpoint-path checkpoints/anima_siglip_ip_adapter_c089_shape_pe_teacher_0032_20260613.safetensors \
+  --output-path checkpoints/anima_siglip_ip_adapter_c092_qwen_target_0064_20260613.safetensors \
+  --steps 64 \
+  --max-rows 10 \
+  --resolution 256 \
+  --device cuda:0 \
+  --lr 1e-5 \
+  --seed 20260692
+```
+
+학습 결과:
+
+- rows loaded: `10`
+- steps: `64`
+- first loss: `0.1554806978`
+- final loss: `0.0792997926`
+- loss delta: `-0.0761809051`
+- finite loss: `true`
+- trainable parameters: `217,369,756`
+- checkpoint: `checkpoints/anima_siglip_ip_adapter_c092_qwen_target_0064_20260613.safetensors`
+- checkpoint loadable: `true`
+- PE checkpoint rejected by SigLIP loader: `true`
+
+c092 checkpoint는 830MB 실험 artifact이며, 아직 promotion하지 않았으므로 `.gitignore`의 `checkpoints/*qwen_target*.safetensors`로 local-only 처리했다.
+
+### ComfyUI 검증
+
+isolated ComfyUI 서버는 port `8118`에서 실행했다. `tools/comfyui_extra_model_paths.yaml`로 repo `checkpoints/`를 노출했고, `AnimaSigLIPIPAdapterLoader` selector에 c089, c091, c092, pilot checkpoint가 보이는 것을 확인했다.
+
+generation gate:
+
+```sh
+PYTHONPATH=. /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python \
+  tools/c092_siglip_qwen_target_eval.py \
+  eval/c088_shape_silhouette_feature_probe_20260613/probe_manifest.jsonl \
+  --out-dir eval/c092_qwen_target_siglip_generation_gate_20260613 \
+  --data-root .tmp/c092_siglip_hard_shape_root \
+  --comfy-input .tmp/comfy_siglip_c092/input \
+  --comfy-output .tmp/comfy_siglip_c092/output \
+  --base-url http://127.0.0.1:8118
+```
+
+결과:
+
+- generated PNG: `66`
+- samples: `11`
+- variants: `6`
+- API prompt/response/history JSON: 각각 `66`
+- contact sheet: `eval/c092_qwen_target_siglip_generation_gate_20260613/contact_sheet_hard_shape.jpg`
+- metric rollup: `eval/c092_qwen_target_siglip_generation_gate_20260613/metric_rollup.json`
+- pixel audit: `eval/c092_qwen_target_siglip_generation_gate_20260613/pixel_nonblank_audit.json`
+- visual audit: `eval/c092_qwen_target_siglip_generation_gate_20260613/visual_audit.md`
+- cleanup receipt: `eval/c092_qwen_target_siglip_generation_gate_20260613/cleanup_port_8118.txt`
+
+pixel audit는 `generated_count=66`, `blank_count=1`, `low_variance_count=1`을 기록했다. 저분산 이미지는 `crop_pair00_no_ip`라 c092 자체의 blank는 아니다.
+
+metric rollup:
+
+| variant | mean uplift | improved rate | cases |
+|---|---:|---:|---:|
+| `siglip_pilot_w14` | `-0.0662400384` | `0.1818181818` | `11` |
+| `c089_shape_w14` | `0.0249214356` | `0.7272727273` | `11` |
+| `c091_feature_calibrator_w14` | `0.0240881737` | `0.7272727273` | `11` |
+| `c092_qwen_target_w10` | `0.0738254876` | `0.9090909091` | `11` |
+| `c092_qwen_target_w14` | `0.0852681653` | `1.0` | `11` |
+| `c087_expanded_crop_positive_w14` | `0.1089544056` | `0.9090909091` | `11` |
+
+### 결과 판단
+
+decision은 `c092_improves_c089_but_not_qwen_baseline`이다.
+
+c092는 SigLIP hard-shape 실험 중 가장 큰 개선이다. c089/c091이 mean uplift `0.024` 근처에 머문 반면, c092 w14는 `0.0853`까지 올라갔고 improved rate도 `1.0`이다. 즉 Qwen-generated target image supervision은 PE teacher/feature calibrator보다 훨씬 강한 신호다.
+
+다만 최종 promotion은 아니다. contact sheet를 보면 c092는 여러 row에서 강한 green character 얼굴을 만들지만, bald green human face template으로 수렴하는 경향이 있다. frog/chibi body, mascot silhouette, reference-specific non-human proportion은 아직 Qwen baseline보다 약하다.
+
+특히 `heldout07`은 학습에서 제외한 진짜 확인용 case인데, c092 w14 uplift는 `0.0009986630`에 그쳤다. 이는 c089 `0.0196462829`, c091 `0.0208515791`, Qwen baseline `0.0980332487`보다 낮다. 시각적으로도 monster side-profile, red eye, exaggerated jaw silhouette가 보존되지 않고 human warrior profile로 이동한다.
+
+따라서 c092는 방향성 성공이지만 고품질 reference-control 완성은 아니다. 다음 루프는 Qwen-target supervision을 유지하되, green human face collapse를 막는 hard negative/diversity/shape preservation objective를 넣어야 한다. 즉 c093은 단순 continuation이 아니라 anti-collapse hard-shape diversity route가 되어야 한다.
+
+### c092 관련 파일
+
+- `docs/c092_qwen_target_siglip_distillation_plan_ko.md`
+- `tools/c092_qwen_target_manifest.py`
+- `tools/c092_siglip_qwen_target_eval.py`
+- `tests/test_c092_qwen_target_manifest.py`
+- `tests/test_c092_siglip_qwen_target_eval.py`
+- `training/manifests/c092_qwen_target_distillation_20260613.jsonl`
+- `training/manifests/c092_qwen_target_distillation_20260613.jsonl.summary.json`
+- `eval/c092_qwen_target_siglip_distillation_20260613/train_stdout.txt`
+- `eval/c092_qwen_target_siglip_distillation_20260613/training_summary.json`
+- `eval/c092_qwen_target_siglip_distillation_20260613/summary.json`
+- `eval/c092_qwen_target_siglip_distillation_20260613/report.md`
+- `eval/c092_qwen_target_siglip_generation_gate_20260613/summary.json`
+- `eval/c092_qwen_target_siglip_generation_gate_20260613/contact_sheet_hard_shape.jpg`
+- `eval/c092_qwen_target_siglip_generation_gate_20260613/shape_metrics.json`
+- `eval/c092_qwen_target_siglip_generation_gate_20260613/metric_rollup.json`
+- `eval/c092_qwen_target_siglip_generation_gate_20260613/pixel_nonblank_audit.json`
+- `eval/c092_qwen_target_siglip_generation_gate_20260613/visual_audit.md`
+- `eval/c092_qwen_target_siglip_generation_gate_20260613/visual_audit.json`
+- `eval/c092_qwen_target_siglip_generation_gate_20260613/report.md`

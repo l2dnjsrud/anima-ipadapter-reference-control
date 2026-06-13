@@ -1,0 +1,204 @@
+{
+  "prompt": {
+    "5": {
+      "class_type": "UNETLoader",
+      "inputs": {
+        "unet_name": "anima-base-v1.0.safetensors",
+        "weight_dtype": "default"
+      }
+    },
+    "6": {
+      "class_type": "CLIPLoader",
+      "inputs": {
+        "clip_name": "qwen_3_06b_base.safetensors",
+        "type": "qwen_image",
+        "device": "default"
+      }
+    },
+    "7": {
+      "class_type": "CLIPTextEncodeFlux",
+      "inputs": {
+        "clip": [
+          "6",
+          0
+        ],
+        "clip_l": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, green monster face with red glowing eye, angry tense expression, angry martial artist close-up, side profile portrait, green eerie cave lighting, androgynous elegant warrior, metal shoulder armor, old bearded martial arts master, dark armored robe, clenched fist foreground, messy black hair, night palace rooftop, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+        "t5xxl": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, green monster face with red glowing eye, angry tense expression, angry martial artist close-up, side profile portrait, green eerie cave lighting, androgynous elegant warrior, metal shoulder armor, old bearded martial arts master, dark armored robe, clenched fist foreground, messy black hair, night palace rooftop, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+        "guidance": 3.5
+      }
+    },
+    "8": {
+      "class_type": "CLIPTextEncodeFlux",
+      "inputs": {
+        "clip": [
+          "6",
+          0
+        ],
+        "clip_l": "low quality, blurry, bad anatomy, deformed face, text, watermark, extra limbs, abstract, washed out, noise, nude, explicit, gore, multiple people",
+        "t5xxl": "low quality, blurry, bad anatomy, deformed face, text, watermark, extra limbs, abstract, washed out, noise, nude, explicit, gore, multiple people",
+        "guidance": 3.5
+      }
+    },
+    "9": {
+      "class_type": "EmptySD3LatentImage",
+      "inputs": {
+        "width": 768,
+        "height": 1024,
+        "batch_size": 1
+      }
+    },
+    "10": {
+      "class_type": "CFGGuider",
+      "inputs": {
+        "model": [
+          "4",
+          0
+        ],
+        "positive": [
+          "7",
+          0
+        ],
+        "negative": [
+          "8",
+          0
+        ],
+        "cfg": 3.2
+      }
+    },
+    "11": {
+      "class_type": "RandomNoise",
+      "inputs": {
+        "noise_seed": 20260910
+      }
+    },
+    "12": {
+      "class_type": "BasicScheduler",
+      "inputs": {
+        "model": [
+          "4",
+          0
+        ],
+        "scheduler": "simple",
+        "steps": 18,
+        "denoise": 1.0
+      }
+    },
+    "13": {
+      "class_type": "KSamplerSelect",
+      "inputs": {
+        "sampler_name": "er_sde"
+      }
+    },
+    "14": {
+      "class_type": "SamplerCustomAdvanced",
+      "inputs": {
+        "noise": [
+          "11",
+          0
+        ],
+        "guider": [
+          "10",
+          0
+        ],
+        "sampler": [
+          "13",
+          0
+        ],
+        "sigmas": [
+          "12",
+          0
+        ],
+        "latent_image": [
+          "9",
+          0
+        ]
+      }
+    },
+    "15": {
+      "class_type": "VAELoader",
+      "inputs": {
+        "vae_name": "qwen/qwen_image_vae.safetensors"
+      }
+    },
+    "16": {
+      "class_type": "VAEDecode",
+      "inputs": {
+        "samples": [
+          "14",
+          0
+        ],
+        "vae": [
+          "15",
+          0
+        ]
+      }
+    },
+    "17": {
+      "class_type": "SaveImage",
+      "inputs": {
+        "images": [
+          "16",
+          0
+        ],
+        "filename_prefix": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613/heldout07_siglip_pilot_w14"
+      }
+    },
+    "18": {
+      "class_type": "ModelSamplingFlux",
+      "inputs": {
+        "model": [
+          "5",
+          0
+        ],
+        "max_shift": 3.0,
+        "base_shift": 3.0,
+        "width": 768,
+        "height": 1024
+      }
+    },
+    "1": {
+      "class_type": "LoadImage",
+      "inputs": {
+        "image": "c092_qwen_target_siglip_generation_gate_20260613_heldout07.jpg"
+      }
+    },
+    "2": {
+      "class_type": "AnimaSigLIPIPAdapterLoader",
+      "inputs": {
+        "ipadapter_name": "anima_siglip_ip_adapter_pilot_20260610.safetensors"
+      }
+    },
+    "3": {
+      "class_type": "AnimaSigLIPEncodeImage",
+      "inputs": {
+        "image": [
+          "1",
+          0
+        ],
+        "siglip_model_id": "google/siglip2-base-patch16-512",
+        "include_shallow": true
+      }
+    },
+    "4": {
+      "class_type": "AnimaSigLIPIPAdapterApply",
+      "inputs": {
+        "model": [
+          "18",
+          0
+        ],
+        "ipadapter": [
+          "2",
+          0
+        ],
+        "siglip_features": [
+          "3",
+          0
+        ],
+        "weight": 1.4,
+        "start_at": 0.0,
+        "end_at": 0.85
+      }
+    }
+  },
+  "client_id": "51c4ec40-0669-4d2b-a01b-f478ff449327"
+}

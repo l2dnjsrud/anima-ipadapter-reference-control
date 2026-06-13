@@ -1,0 +1,10 @@
+{
+  "decision": "proceed_to_c092_generation_gate",
+  "loss_delta": -0.07618090510368347,
+  "finite_loss": true,
+  "checkpoint_loadable": true,
+  "pe_checkpoint_rejected": true,
+  "rows_loaded": 10,
+  "steps": 64,
+  "checkpoint_path": "checkpoints/anima_siglip_ip_adapter_c092_qwen_target_0064_20260613.safetensors"
+}
