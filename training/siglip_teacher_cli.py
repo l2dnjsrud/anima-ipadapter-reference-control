@@ -78,6 +78,8 @@ def main(
     pe_retrieval_margin: Annotated[float, typer.Option(min=0.0, max=2.0)] = 0.2,
     pe_kv_init: Annotated[bool, typer.Option()] = False,
     pe_encoder_name: Annotated[str, typer.Option()] = "pe",
+    calibrator_bottleneck_dim: Annotated[int | None, typer.Option(min=1)] = None,
+    train_calibrator_only: Annotated[bool, typer.Option()] = False,
 ) -> None:
     summary = run_teacher_smoke(
         SmokeConfig(
@@ -108,6 +110,8 @@ def main(
         pe_retrieval_margin=pe_retrieval_margin,
         pe_kv_init=pe_kv_init,
         pe_encoder_name=pe_encoder_name,
+        calibrator_bottleneck_dim=calibrator_bottleneck_dim,
+        train_calibrator_only=train_calibrator_only,
     )
     console.print_json(json.dumps(asdict(summary), ensure_ascii=True))
 

@@ -41,6 +41,8 @@ def load_teacher_runtime(
     dtype: torch.dtype,
     pe_kv_init: bool,
     pe_encoder_name: str,
+    calibrator_bottleneck_dim: int | None,
+    train_calibrator_only: bool,
 ) -> TeacherRuntime:
     from library.anima.weights import load_anima_model, load_qwen3_text_encoder
     from library.inference.text import prepare_text_inputs
@@ -63,7 +65,15 @@ def load_teacher_runtime(
     frozen_params += freeze_module(siglip)
     pe_spec = load_pe_adapter_spec(config.pe_checkpoint_path)
     pe_network = load_network(pe_spec, strength=1.0).to(device=device, dtype=dtype)
-    adapter = load_teacher_adapter(config, pe_network, device, dtype, pe_kv_init=pe_kv_init)
+    adapter = load_teacher_adapter(
+        config,
+        pe_network,
+        device,
+        dtype,
+        pe_kv_init=pe_kv_init,
+        calibrator_bottleneck_dim=calibrator_bottleneck_dim,
+        train_calibrator_only=train_calibrator_only,
+    )
     return TeacherRuntime(
         anima=anima,
         vae=vae,

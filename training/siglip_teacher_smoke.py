@@ -12,9 +12,7 @@ for candidate in (ROOT, ANIMA_ROOT):
     if str(candidate) not in sys.path:
         sys.path.insert(0, str(candidate))
 
-from training.pe_teacher_distillation import (  # noqa: E402
-    predict_with_pe_teacher,
-)
+from training.pe_teacher_distillation import predict_with_pe_teacher  # noqa: E402
 from training.pe_teacher_features import get_pe_features, prepare_pe_cache  # noqa: E402
 from training.siglip_contrastive_smoke import _predict  # noqa: E402
 from training.siglip_real_smoke import (  # noqa: E402
@@ -24,20 +22,12 @@ from training.siglip_real_smoke import (  # noqa: E402
 )
 from training.siglip_prepared_cache import get_prepared, prepare_cache  # noqa: E402
 from training.siglip_reference_loss import wrong_reference_index  # noqa: E402
+from training.siglip_smoke_checkpoint import trainable_adapter_parameters  # noqa: E402
 from training.siglip_smoke_data import load_pair_rows  # noqa: E402
 from training.siglip_smoke_runtime import noise_args, seed_everything, validate_config  # noqa: E402
-from training.siglip_smoke_types import (  # noqa: E402
-    SmokeConfig,
-    SmokeInputError,
-)
-from training.siglip_teacher_summary import (  # noqa: E402
-    TeacherSmokeSummary,
-    build_teacher_smoke_summary,
-)
-from training.siglip_teacher_step import (  # noqa: E402
-    TeacherLossWeights,
-    compute_teacher_step_losses,
-)
+from training.siglip_smoke_types import SmokeConfig, SmokeInputError  # noqa: E402
+from training.siglip_teacher_summary import TeacherSmokeSummary, build_teacher_smoke_summary  # noqa: E402
+from training.siglip_teacher_step import TeacherLossWeights, compute_teacher_step_losses  # noqa: E402
 from training.siglip_teacher_runtime import load_teacher_runtime  # noqa: E402
 
 
@@ -55,6 +45,8 @@ def run_teacher_smoke(
     pe_retrieval_margin: float = 0.2,
     pe_kv_init: bool = False,
     pe_encoder_name: str = "pe",
+    calibrator_bottleneck_dim: int | None = None,
+    train_calibrator_only: bool = False,
 ) -> TeacherSmokeSummary:
     validate_config(config)
     if config.max_rows < 2:
@@ -78,8 +70,10 @@ def run_teacher_smoke(
         dtype=dtype,
         pe_kv_init=pe_kv_init,
         pe_encoder_name=pe_encoder_name,
+        calibrator_bottleneck_dim=calibrator_bottleneck_dim,
+        train_calibrator_only=train_calibrator_only,
     )
-    optimizer = torch.optim.AdamW(runtime.adapter.parameters(), lr=config.lr)
+    optimizer = torch.optim.AdamW(trainable_adapter_parameters(runtime.adapter), lr=config.lr)
     scheduler = FlowMatchEulerDiscreteScheduler(num_train_timesteps=1000, shift=1.0)
     cache = prepare_cache(
         rows,
@@ -255,4 +249,6 @@ def run_teacher_smoke(
         pe_token_block_stride=pe_token_block_stride,
         pe_retrieval_weight=pe_retrieval_weight,
         pe_retrieval_margin=pe_retrieval_margin,
+        calibrator_bottleneck_dim=calibrator_bottleneck_dim,
+        train_calibrator_only=train_calibrator_only,
     )

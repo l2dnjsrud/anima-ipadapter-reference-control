@@ -2900,3 +2900,140 @@ c089는 prior SigLIP pilot보다 분명 나아졌다. 특히 `c089_shape_w14`는
 - `eval/c090_siglip_hard_shape_generation_gate_20260613/visual_audit.md`
 - `eval/c090_siglip_hard_shape_generation_gate_20260613/visual_audit.json`
 - `eval/c090_siglip_hard_shape_generation_gate_20260613/report.md`
+
+## 24. c091 SigLIP Feature-Calibrator Hard-Shape Gate
+
+c090에서 c089는 prior SigLIP pilot보다 나아졌지만 QwenVL hard-shape baseline에는 못 미쳤다. c091의 목적은 전체 adapter를 다시 흔드는 대신, SigLIP image feature 앞단에 작은 trainable calibrator를 붙이고 `feature_calibrator.*`만 학습했을 때 hard-shape/non-human reference fidelity가 실제로 올라가는지 확인하는 것이었다.
+
+### 검증 목표
+
+- 기존 c089 checkpoint를 초기값으로 사용한다.
+- base SigLIP adapter와 Anima patch 쪽 파라미터는 동결하고, feature calibrator만 학습 가능하게 한다.
+- 학습/로드가 되는 것뿐 아니라 ComfyUI native SigLIP workflow에서 `no_ip`, prior SigLIP, c089, c091, QwenVL baseline을 같은 contact sheet에 놓고 비교한다.
+- 결과가 collapsed/low-variance이면 숨기지 않고 pixel audit와 visual audit에 실패 신호로 남긴다.
+
+### 개발한 것
+
+- `training/siglip_smoke_checkpoint.py`
+  - SigLIP adapter 로드, trainable parameter 선택, checkpoint 저장/검증을 공통 helper로 분리했다.
+  - `train_calibrator_only=True`일 때 `feature_calibrator.*` 외 파라미터를 동결한다.
+- `training/siglip_real_smoke_cli.py`
+  - `siglip_real_smoke.py`의 Typer CLI를 분리해서 학습 모듈 pure LOC를 낮췄다.
+- `training/siglip_teacher_cli.py`, `training/siglip_teacher_runtime.py`, `training/siglip_teacher_smoke.py`
+  - `--calibrator-bottleneck-dim`, `--train-calibrator-only` 옵션을 추가했다.
+- `training/pe_space_siglip_adapter.py`
+  - PE-space 초기화 경로에서도 calibrator-only trainability를 보존하도록 수정했다.
+- `tests/test_siglip_feature_calibration.py`
+  - feature calibrator 추가, calibrator-only trainable parameter 선택, calibrator 없이 train-only 요청 시 실패하는 케이스를 검증한다.
+- `tools/c091_siglip_hard_shape_eval.py`
+  - c091 전용 ComfyUI hard-shape gate runner를 만들었다.
+  - 비교 variant는 `no_ip`, `siglip_pilot_w14`, `c089_shape_w14`, `c091_feature_calibrator_w10`, `c091_feature_calibrator_w14`, 그리고 기존 QwenVL baseline들이다.
+
+### 학습
+
+사용 데이터는 c089와 같은 shape/silhouette distillation manifest다.
+
+- manifest: `training/manifests/c089_shape_silhouette_distillation_20260613.jsonl`
+- rows: `64`
+- heldout rows used: `0`
+- init checkpoint: `checkpoints/anima_siglip_ip_adapter_c089_shape_pe_teacher_0032_20260613.safetensors`
+- output checkpoint: `checkpoints/anima_siglip_ip_adapter_c091_feature_calibrator_b64_0064_20260613.safetensors`
+- feature calibrator bottleneck: `64`
+- train calibrator only: `true`
+- trainable parameters: `199,680`
+- frozen base parameters: `2,913,827,059`
+- steps: `64`
+- first loss: `0.2653019428`
+- final loss: `0.1954212785`
+- loss delta: `-0.0698806643`
+- finite loss: `true`
+- checkpoint loadable: `true`
+- PE checkpoint rejected by SigLIP loader: `true`
+- checkpoint class: `CalibratedIPAdapterSigLIP`
+- feature calibrator key count: `8`
+
+훈련 gate decision은 `proceed_to_c091_generation_gate`이다. 이것은 품질 통과가 아니라, calibrator-only route가 정상적으로 학습되고 로드된다는 뜻이다.
+
+### ComfyUI 검증
+
+isolated ComfyUI 서버를 port `8117`에서 띄우고 repo-local `checkpoints/`를 `tools/comfyui_extra_model_paths.yaml`로 노출했다. `/data/ai/models/ipadapter`에 직접 복사하지 않고도 loader selector에서 c089/c091/pilot checkpoint가 보이는 것을 확인했다.
+
+generation gate:
+
+```sh
+PYTHONPATH=. /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python \
+  tools/c091_siglip_hard_shape_eval.py \
+  eval/c088_shape_silhouette_feature_probe_20260613/probe_manifest.jsonl \
+  --out-dir eval/c091_siglip_feature_calibrator_hard_shape_gate_20260613 \
+  --data-root .tmp/c091_siglip_hard_shape_root \
+  --comfy-input .tmp/comfy_siglip_c091/input \
+  --comfy-output .tmp/comfy_siglip_c091/output \
+  --base-url http://127.0.0.1:8117
+```
+
+결과:
+
+- generated PNG: `55`
+- samples: `11`
+- variants: `5`
+- API prompt/response/history JSON: 각각 `55`
+- contact sheet: `eval/c091_siglip_feature_calibrator_hard_shape_gate_20260613/contact_sheet_hard_shape.jpg`
+- shape metrics: `eval/c091_siglip_feature_calibrator_hard_shape_gate_20260613/shape_metrics.json`
+- metric rollup: `eval/c091_siglip_feature_calibrator_hard_shape_gate_20260613/metric_rollup.json`
+- pixel audit: `eval/c091_siglip_feature_calibrator_hard_shape_gate_20260613/pixel_nonblank_audit.json`
+- visual audit: `eval/c091_siglip_feature_calibrator_hard_shape_gate_20260613/visual_audit.md`
+- report: `eval/c091_siglip_feature_calibrator_hard_shape_gate_20260613/report.md`
+- cleanup receipt: `.omo/evidence/task-5-c091-comfy-cleanup.txt`
+
+pixel audit는 `generated_count=55`, `blank_count=2`, `low_variance_count=2`, `min_pixel_std=5.0`을 기록했다. 저분산 이미지는 infrastructure 실패가 아니라 실제 품질 실패 신호다. 특히 `crop_pair00_c091_feature_calibrator_w10`은 거의 단색 green block으로 붕괴했다.
+
+metric rollup:
+
+| variant | mean uplift | improved rate | cases |
+|---|---:|---:|---:|
+| `siglip_pilot_w14` | `-0.0662400384` | `0.1818181818` | `11` |
+| `c089_shape_w14` | `0.0249214356` | `0.7272727273` | `11` |
+| `c091_feature_calibrator_w10` | `0.0022065425` | `0.6363636364` | `11` |
+| `c091_feature_calibrator_w14` | `0.0240881737` | `0.7272727273` | `11` |
+| `c086_hard_negative_w14` | `0.0501749091` | `0.7272727273` | `11` |
+| `c087_expanded_crop_positive_w14` | `0.1089544056` | `0.9090909091` | `11` |
+
+### 결과 판단
+
+decision은 `c091_matches_c089_not_qwen_baseline`이다.
+
+시각적으로도 c091 w14는 c089와 거의 같은 수준이다. prior SigLIP pilot보다는 흐린 근접 얼굴/과한 zoom이 줄고 green character 형태가 안정되는 row가 있지만, c089를 의미 있게 넘지는 못했다. 수치도 `c091_feature_calibrator_w14` mean uplift `0.0240881737`로 `c089_shape_w14`의 `0.0249214356`보다 낮다.
+
+QwenVL baseline인 `c087_expanded_crop_positive_w14`는 여전히 mean uplift `0.1089544056`, improved rate `0.9090909091`로 훨씬 앞선다. contact sheet에서도 chibi/frog mascot body, non-human silhouette, heldout07 side-profile monster identity는 c091보다 QwenVL baseline이 더 강하다.
+
+따라서 c091은 trainability proof로는 성공했지만 promotion하지 않는다. 결론은 “SigLIP feature-calibrator-only로는 c089의 한계를 넘기 어렵다”이다. 다음 루프는 frozen SigLIP feature 보정만 반복하지 않고, supervised shape/identity feature adaptation, QwenVL/SigLIP hybrid encoder route, 또는 hard-shape positive/negative가 들어간 stronger encoder-side checkpoint로 넘어간다.
+
+### c091 관련 파일
+
+- `.omo/plans/c091_siglip_encoder_side_hard_shape_adaptation.md`
+- `.omo/evidence/task-1-c091-cli-help.txt`
+- `.omo/evidence/task-1-c091-trainability-tests.txt`
+- `.omo/evidence/task-5-c091-preflight.txt`
+- `.omo/evidence/task-5-c091-comfy-cleanup.txt`
+- `training/siglip_smoke_checkpoint.py`
+- `training/siglip_real_smoke_cli.py`
+- `training/siglip_real_smoke.py`
+- `training/siglip_teacher_cli.py`
+- `training/siglip_teacher_runtime.py`
+- `training/siglip_teacher_smoke.py`
+- `training/siglip_teacher_summary.py`
+- `training/pe_space_siglip_adapter.py`
+- `tests/test_siglip_feature_calibration.py`
+- `tools/c091_siglip_hard_shape_eval.py`
+- `eval/c091_siglip_feature_calibrator_training_20260613/summary.json`
+- `eval/c091_siglip_feature_calibrator_training_20260613/training_summary.json`
+- `eval/c091_siglip_feature_calibrator_training_20260613/checkpoint_audit.json`
+- `eval/c091_siglip_feature_calibrator_training_20260613/report.md`
+- `eval/c091_siglip_feature_calibrator_hard_shape_gate_20260613/summary.json`
+- `eval/c091_siglip_feature_calibrator_hard_shape_gate_20260613/contact_sheet_hard_shape.jpg`
+- `eval/c091_siglip_feature_calibrator_hard_shape_gate_20260613/shape_metrics.json`
+- `eval/c091_siglip_feature_calibrator_hard_shape_gate_20260613/metric_rollup.json`
+- `eval/c091_siglip_feature_calibrator_hard_shape_gate_20260613/pixel_nonblank_audit.json`
+- `eval/c091_siglip_feature_calibrator_hard_shape_gate_20260613/visual_audit.md`
+- `eval/c091_siglip_feature_calibrator_hard_shape_gate_20260613/visual_audit.json`
+- `eval/c091_siglip_feature_calibrator_hard_shape_gate_20260613/report.md`

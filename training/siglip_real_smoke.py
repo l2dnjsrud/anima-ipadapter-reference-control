@@ -10,25 +10,20 @@
 # ]
 # ///
 # --- How to run -----------------------------------------------------
-# /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python training/siglip_real_smoke.py \
+# /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python training/siglip_real_smoke_cli.py \
 #   --manifest-path training/manifests/local_color_pairs_pilot_20260610.jsonl \
 #   --image-root /home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best \
 #   --steps 1 --resolution 256 --device cuda:0
 
 from __future__ import annotations
 
-import json
 import math
 import random
 import sys
-from dataclasses import asdict, dataclass
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Annotated
 
 import torch
-import typer
-from rich.console import Console
-from safetensors.torch import save_file
 
 ROOT = Path(__file__).resolve().parents[1]
 ANIMA_ROOT = Path("/home/wktwin/anima-lora-training-bundle/anima_lora")
@@ -36,8 +31,13 @@ for candidate in (ROOT, ANIMA_ROOT):
     if str(candidate) not in sys.path:
         sys.path.insert(0, str(candidate))
 
-from siglip_checkpoint import SigLIPCheckpointError, load_siglip_adapter  # noqa: E402
 from siglip_model import IPAdapterSigLIP, SigLIPFeatures  # noqa: E402
+from training.siglip_smoke_checkpoint import (  # noqa: E402
+    load_trainable_adapter,
+    save_adapter_checkpoint,
+    trainable_adapter_parameters,
+    verify_checkpoint,
+)
 from training.siglip_smoke_data import load_pair_rows, resolve_pair_paths  # noqa: E402
 from training.siglip_smoke_patch import patched_cross_attention  # noqa: E402
 from training.siglip_smoke_runtime import (  # noqa: E402
@@ -49,9 +49,6 @@ from training.siglip_smoke_runtime import (  # noqa: E402
     validate_config,
 )
 from training.siglip_smoke_types import (  # noqa: E402
-    CheckpointVerification,
-    MAX_PILOT_ROWS,
-    MAX_PILOT_STEPS,
     SmokeConfig,
     SmokeInputError,
     SmokeSummary,
@@ -70,9 +67,6 @@ DEFAULT_PE = Path(
 )
 DEFAULT_SIGLIP = "google/siglip2-base-patch16-512"
 PREPARED_ROW_CACHE_LIMIT = 128
-
-app = typer.Typer(add_completion=False)
-console = Console()
 
 
 @dataclass(slots=True)
@@ -96,53 +90,6 @@ def trainable_parameter_count(module: torch.nn.Module) -> int:
         parameter.numel()
         for parameter in module.parameters()
         if parameter.requires_grad
-    )
-
-
-def load_trainable_adapter(
-    config: SmokeConfig, device: torch.device, dtype: torch.dtype
-) -> IPAdapterSigLIP:
-    if config.init_checkpoint_path is None:
-        adapter = IPAdapterSigLIP()
-    else:
-        adapter = load_siglip_adapter(config.init_checkpoint_path)
-    adapter.to(device=device, dtype=torch.float32)
-    adapter.train()
-    for parameter in adapter.parameters():
-        parameter.requires_grad_(True)
-    return adapter
-
-
-def save_adapter_checkpoint(adapter: IPAdapterSigLIP, output_path: Path) -> None:
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    state = {
-        key: value.detach().cpu().contiguous()
-        for key, value in adapter.state_dict().items()
-    }
-    save_file(
-        state,
-        str(output_path),
-        metadata={
-            "format": "pt",
-            "ss_encoder": "siglip2",
-            "ss_adapter": "IPAdapterSigLIP",
-        },
-    )
-
-
-def verify_checkpoint(
-    output_path: Path, pe_checkpoint_path: Path
-) -> CheckpointVerification:
-    load_siglip_adapter(output_path)
-    pe_rejected = False
-    try:
-        load_siglip_adapter(pe_checkpoint_path)
-    except SigLIPCheckpointError:
-        pe_rejected = True
-    return CheckpointVerification(
-        output_path=str(output_path),
-        loadable=True,
-        pe_checkpoint_rejected=pe_rejected,
     )
 
 
@@ -225,7 +172,7 @@ def run_real_smoke(config: SmokeConfig) -> SmokeSummary:
     frozen_params += freeze_module(siglip)
 
     adapter = load_trainable_adapter(config, device, dtype)
-    optimizer = torch.optim.AdamW(adapter.parameters(), lr=config.lr)
+    optimizer = torch.optim.AdamW(trainable_adapter_parameters(adapter), lr=config.lr)
     scheduler = FlowMatchEulerDiscreteScheduler(num_train_timesteps=1000, shift=1.0)
     losses: list[float] = []
     prepared_cache = (
@@ -325,48 +272,7 @@ def run_real_smoke(config: SmokeConfig) -> SmokeSummary:
     )
 
 
-@app.command()
-def main(
-    manifest_path: Annotated[Path, typer.Option()] = Path(
-        "training/manifests/local_color_pairs_pilot_20260610.jsonl"
-    ),
-    image_root: Annotated[Path, typer.Option()] = Path(
-        "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best"
-    ),
-    output_path: Annotated[Path, typer.Option()] = DEFAULT_OUTPUT,
-    dit_path: Annotated[Path, typer.Option()] = DEFAULT_DIT,
-    text_encoder_path: Annotated[Path, typer.Option()] = DEFAULT_TEXT,
-    vae_path: Annotated[Path, typer.Option()] = DEFAULT_VAE,
-    pe_checkpoint_path: Annotated[Path, typer.Option()] = DEFAULT_PE,
-    siglip_model_id: Annotated[str, typer.Option()] = DEFAULT_SIGLIP,
-    device: Annotated[str, typer.Option()] = "cuda:0",
-    steps: Annotated[int, typer.Option(min=1, max=MAX_PILOT_STEPS)] = 1,
-    resolution: Annotated[int, typer.Option(min=64, max=512)] = 256,
-    lr: Annotated[float, typer.Option(min=1e-7, max=1e-2)] = 1e-5,
-    seed: Annotated[int, typer.Option()] = 20260610,
-    max_rows: Annotated[int, typer.Option(min=1, max=MAX_PILOT_ROWS)] = 4,
-    init_checkpoint_path: Annotated[Path | None, typer.Option()] = None,
-) -> None:
-    config = SmokeConfig(
-        manifest_path=manifest_path,
-        image_root=image_root,
-        output_path=output_path,
-        dit_path=dit_path,
-        text_encoder_path=text_encoder_path,
-        vae_path=vae_path,
-        pe_checkpoint_path=pe_checkpoint_path,
-        siglip_model_id=siglip_model_id,
-        device=device,
-        steps=steps,
-        resolution=resolution,
-        lr=lr,
-        seed=seed,
-        max_rows=max_rows,
-        init_checkpoint_path=init_checkpoint_path,
-    )
-    summary = run_real_smoke(config)
-    console.print_json(json.dumps(asdict(summary), ensure_ascii=True))
-
-
 if __name__ == "__main__":
+    from training.siglip_real_smoke_cli import app
+
     app()

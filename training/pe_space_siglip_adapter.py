@@ -8,7 +8,10 @@ import torch
 
 from siglip_feature_calibration import CalibratedIPAdapterSigLIP
 from siglip_model import IPAdapterSigLIP
-from training.siglip_real_smoke import load_trainable_adapter
+from training.siglip_smoke_checkpoint import (
+    load_trainable_adapter,
+    set_siglip_trainable_parameters,
+)
 from training.siglip_smoke_types import SmokeConfig
 from training.siglip_smoke_types import SmokeInputError
 
@@ -63,13 +66,22 @@ def load_teacher_adapter(
     dtype: torch.dtype,
     *,
     pe_kv_init: bool,
+    calibrator_bottleneck_dim: int | None = None,
+    train_calibrator_only: bool = False,
 ) -> IPAdapterSigLIP:
-    base_adapter = load_trainable_adapter(config, device, dtype)
+    base_adapter = load_trainable_adapter(
+        config,
+        device,
+        dtype,
+        calibrator_bottleneck_dim=calibrator_bottleneck_dim,
+    )
     adapter = build_pe_space_siglip_adapter(base_adapter, pe_network) if pe_kv_init else base_adapter
     adapter.to(device=device, dtype=torch.float32)
     adapter.train()
-    for parameter in adapter.parameters():
-        parameter.requires_grad_(True)
+    set_siglip_trainable_parameters(
+        adapter,
+        train_calibrator_only=train_calibrator_only,
+    )
     return adapter
 
 

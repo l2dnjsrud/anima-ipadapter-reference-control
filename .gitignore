@@ -12,6 +12,7 @@ checkpoints/*identity128*.safetensors
 checkpoints/*fp32*.safetensors
 checkpoints/*contrastive*.safetensors
 checkpoints/*teacher*.safetensors
+checkpoints/*feature_calibrator*.safetensors
 checkpoints/*qwenvl*.safetensors
 checkpoints/*single_character*.safetensors
 training/overfit_inputs/

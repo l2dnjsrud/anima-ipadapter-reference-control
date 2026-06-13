@@ -34,6 +34,8 @@ class TeacherSmokeSummary:
     pe_token_block_stride: int
     pe_retrieval_weight: float
     pe_retrieval_margin: float
+    calibrator_bottleneck_dim: int | None
+    train_calibrator_only: bool
 
 
 def build_teacher_smoke_summary(
@@ -60,6 +62,8 @@ def build_teacher_smoke_summary(
     pe_token_block_stride: int,
     pe_retrieval_weight: float,
     pe_retrieval_margin: float,
+    calibrator_bottleneck_dim: int | None,
+    train_calibrator_only: bool,
 ) -> TeacherSmokeSummary:
     return TeacherSmokeSummary(
         steps=steps,
@@ -87,6 +91,8 @@ def build_teacher_smoke_summary(
         pe_token_block_stride=pe_token_block_stride,
         pe_retrieval_weight=pe_retrieval_weight,
         pe_retrieval_margin=pe_retrieval_margin,
+        calibrator_bottleneck_dim=calibrator_bottleneck_dim,
+        train_calibrator_only=train_calibrator_only,
     )
 
 

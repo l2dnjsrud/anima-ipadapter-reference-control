@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from pathlib import Path
+
 import pytest
 import torch
 
@@ -13,6 +15,8 @@ from siglip_feature_calibration import (
     wrap_siglip_with_calibrator,
 )
 from siglip_model import IPAdapterSigLIP, SigLIPFeatures
+from training.siglip_real_smoke import load_trainable_adapter, save_adapter_checkpoint
+from training.siglip_smoke_types import SmokeConfig
 
 
 def _tiny_adapter() -> IPAdapterSigLIP:
@@ -53,6 +57,26 @@ def _tiny_calibrated_adapter() -> CalibratedIPAdapterSigLIP:
         time_embed_dim=10,
         use_intermediate_encoder=True,
         calibrator_bottleneck_dim=4,
+    )
+
+
+def _smoke_config(tmp_path: Path, *, init_checkpoint_path: Path) -> SmokeConfig:
+    return SmokeConfig(
+        manifest_path=tmp_path / "manifest.jsonl",
+        image_root=tmp_path,
+        output_path=tmp_path / "out.safetensors",
+        dit_path=tmp_path / "dit.safetensors",
+        text_encoder_path=tmp_path / "text.safetensors",
+        vae_path=tmp_path / "vae.safetensors",
+        pe_checkpoint_path=tmp_path / "pe.safetensors",
+        siglip_model_id="google/siglip2-base-patch16-512",
+        device="cpu",
+        steps=1,
+        resolution=128,
+        lr=1e-5,
+        seed=1,
+        max_rows=1,
+        init_checkpoint_path=init_checkpoint_path,
     )
 
 
@@ -124,6 +148,64 @@ def test_wrap_siglip_with_calibrator_keeps_existing_calibrator() -> None:
     wrapped = wrap_siglip_with_calibrator(calibrated, bottleneck_dim=2)
 
     assert wrapped is calibrated
+
+
+def test_trainable_loader_can_add_siglip_calibrator(tmp_path: Path) -> None:
+    checkpoint = tmp_path / "base.safetensors"
+    save_adapter_checkpoint(_tiny_adapter(), checkpoint)
+
+    adapter = load_trainable_adapter(
+        _smoke_config(tmp_path, init_checkpoint_path=checkpoint),
+        torch.device("cpu"),
+        torch.bfloat16,
+        calibrator_bottleneck_dim=4,
+    )
+
+    assert isinstance(adapter, CalibratedIPAdapterSigLIP)
+    assert adapter.training is True
+    assert all(parameter.requires_grad for parameter in adapter.parameters())
+
+
+def test_trainable_loader_can_freeze_siglip_except_calibrator(tmp_path: Path) -> None:
+    checkpoint = tmp_path / "base.safetensors"
+    save_adapter_checkpoint(_tiny_adapter(), checkpoint)
+
+    adapter = load_trainable_adapter(
+        _smoke_config(tmp_path, init_checkpoint_path=checkpoint),
+        torch.device("cpu"),
+        torch.bfloat16,
+        calibrator_bottleneck_dim=4,
+        train_calibrator_only=True,
+    )
+
+    trainable_names = {
+        name for name, parameter in adapter.named_parameters() if parameter.requires_grad
+    }
+    assert trainable_names == {
+        "feature_calibrator.deep_norm.weight",
+        "feature_calibrator.deep_norm.bias",
+        "feature_calibrator.deep_down.weight",
+        "feature_calibrator.deep_up.weight",
+        "feature_calibrator.shallow_norm.weight",
+        "feature_calibrator.shallow_norm.bias",
+        "feature_calibrator.shallow_down.weight",
+        "feature_calibrator.shallow_up.weight",
+    }
+
+
+def test_trainable_loader_rejects_siglip_calibrator_only_without_calibrator(
+    tmp_path: Path,
+) -> None:
+    checkpoint = tmp_path / "base.safetensors"
+    save_adapter_checkpoint(_tiny_adapter(), checkpoint)
+
+    with pytest.raises(ValueError, match="requires a calibrated SigLIP adapter"):
+        load_trainable_adapter(
+            _smoke_config(tmp_path, init_checkpoint_path=checkpoint),
+            torch.device("cpu"),
+            torch.bfloat16,
+            train_calibrator_only=True,
+        )
 
 
 def test_checkpoint_builder_rejects_malformed_calibration_shape() -> None:
