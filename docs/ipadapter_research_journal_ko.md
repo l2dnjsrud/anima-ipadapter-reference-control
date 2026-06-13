@@ -4976,3 +4976,84 @@ margin과 AUC 모두 C105 학습을 시작할 만큼 강하지 않다.
 따라서 C104 결과만 놓고는 “C097을 더 크게 돌리면 SigLIP adapter가 좋아질 것”이라고 보기 어렵다.
 다음 루프는 단순 SigLIP adapter 재학습보다 더 강한 encoder checkpoint adaptation, Qwen/VL teacher 기반
 feature distillation, 또는 manual/external annotation 보강 쪽으로 가야 한다.
+
+## 2026-06-13 C105 stronger encoder / teacher route decision gate
+
+### 왜 시작했나
+
+C104는 C097 explicit negative 데이터가 잘 정리되어 있다는 점은 확인했지만, SigLIP2 token feature
+공간이 positive target과 explicit negative를 충분히 분리하지 못했다. 가장 좋은 metric도 margin
+`0.01997534079211105`, AUC `0.7228954081632653`으로, pass threshold `0.1089544056`과 AUC gate
+`0.85`에 못 미쳤다.
+
+그래서 C105는 긴 학습을 바로 시작하지 않고, 지금까지의 evidence를 정리해서 C106에서 어떤 route를
+돌릴지 먼저 결정하는 gate로 진행했다.
+
+### 사용한 근거
+
+생성한 inventory:
+
+- `eval/c105_stronger_encoder_teacher_route_gate_20260613/source_inventory.json`
+
+핵심 근거:
+
+| 근거 | 결과 | 판단 |
+|---|---:|---|
+| C102 local-real QA | confirmed local positives `0`, minimum `8` | local-real direct training 불가 |
+| C087 Qwen baseline | mean uplift `0.10895440559772807` | 현재 hard-shape 최강 baseline |
+| C098 SigLIP encoder-LoRA | best mean uplift `0.08653138633881173` | 학습은 됐지만 Qwen baseline 아래 |
+| C104 SigLIP token probe | margin `0.01997534079211105`, AUC `0.7228954081632653` | SigLIP-only 추가 학습 신호 부족 |
+| C064 hard failure embedding | QwenVL `1/3`, SigLIP `0/3`, PE `1/3` | 기존 embedding만으로 hard failure 전체 해결 불가 |
+
+### 선택한 route
+
+선택한 C106 route는 `qwen_teacher_distillation`이다.
+
+결정 파일:
+
+- `eval/c105_stronger_encoder_teacher_route_gate_20260613/route_decision.json`
+- `docs/c105_stronger_encoder_teacher_route_decision_ko.md`
+
+선택 이유:
+
+1. C087 QwenVL 쪽 baseline이 C098 generation gate에서 여전히 가장 강하다.
+2. C102가 local-real positive `0`개를 기록했기 때문에 local-real 후보를 직접 학습 positive로 쓰면 안 된다.
+3. C104가 SigLIP-only feature signal 부족을 보여줬으므로, C106은 Qwen/VL teacher target 또는 teacher
+   feature를 사용해 student projection/adapter를 먼저 검증해야 한다.
+
+### C106 gate
+
+C106은 바로 장시간 학습으로 가지 않는다. 먼저 Qwen-teacher manifest/probe를 만든다.
+
+pre-training gate:
+
+- positive rows >= `48`
+- explicit negative rows == positive rows
+- heldout rows used == `0`
+- missing path count == `0`
+- teacher feature margin >= `0.05`
+- teacher feature AUC >= `0.85`
+- C104 best margin `0.01997534079211105` 초과
+
+training이 진행될 경우 generation promotion gate:
+
+- mean uplift >= `0.1089544056`
+- heldout07 uplift >= `0.025`
+- improved rate >= `0.91`
+- blank-like rows == `0`
+- visual audit에서 non-human silhouette, side-profile, frog/chibi body collapse 개선
+
+### 기각한 route
+
+- `stronger_siglip_checkpoint_adaptation`: C098과 C104가 모두 SigLIP-only route의 한계를 보여줬기 때문에
+  지금 primary로 선택하지 않는다.
+- `manual_or_external_annotation`: fallback으로 유지하지만, 새 annotation 또는 권리 검토가 필요해서 즉시
+  자동 루프에서 돌릴 branch는 아니다.
+- `local_real_direct_green_training_from_c102`: C102 confirmed local positive가 `0`개라서 기각한다.
+
+### 다음 루프
+
+C106은 `qwen_teacher_distillation` branch로 시작한다. 첫 산출물은
+`docs/c106_qwen_teacher_feature_distillation_plan_ko.md`와
+`eval/c106_qwen_teacher_feature_distillation_20260613/manifest_summary.json` /
+`probe_summary.json`이다.

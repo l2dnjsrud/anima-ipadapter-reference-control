@@ -1,0 +1,125 @@
+{
+  "gate": "c105_stronger_encoder_teacher_route_gate",
+  "date": "2026-06-13",
+  "selected_route": "qwen_teacher_distillation",
+  "c106_ready": true,
+  "decision_summary": "Proceed to a bounded C106 Qwen/VL teacher feature-distillation route. Do not repeat C097 SigLIP-only training from the C104 signal, and do not train on local-real C102 candidates until manual or external annotation provides enough confirmed positives.",
+  "required_dataset": {
+    "primary_hard_shape_manifest": "training/manifests/c097_siglip_hard_shape_expanded_pairs_20260613.jsonl",
+    "primary_hard_shape_summary": "training/manifests/c097_siglip_hard_shape_expanded_pairs_20260613.summary.json",
+    "source_image_root": ".tmp/c097_siglip_hard_shape_expanded_root",
+    "selected_rows": 56,
+    "explicit_negative_rows": 56,
+    "heldout_rows_used": 0,
+    "supporting_qwen_baseline_artifacts": [
+      "eval/qwenvl_c087_expanded_crop_positive_training_20260613/summary.json",
+      "eval/qwenvl_c087_expanded_crop_positive_gate_20260613/summary.json",
+      "eval/qwenvl_c087_expanded_crop_positive_gate_20260613/qwenvl_similarity_metrics.json",
+      "eval/qwenvl_c087_expanded_crop_positive_gate_20260613/pe_similarity_metrics.json"
+    ],
+    "evaluation_only_hard_failures": [
+      "heldout01",
+      "heldout05",
+      "heldout07"
+    ]
+  },
+  "base_model_or_checkpoint": {
+    "teacher_encoder": "Qwen/Qwen3-VL-Embedding-2B",
+    "teacher_generation_checkpoint": "checkpoints/anima_qwenvl_ip_adapter_c087_expanded_crop_positive_b128_0128_20260613.safetensors",
+    "student_runtime_surface": "native ComfyUI reference-control adapter path, initially as a Qwen-teacher feature bridge or Qwen-target projection probe",
+    "do_not_start_from": [
+      "C104 SigLIP-only token probe as a sufficient training signal",
+      "C102 local-real candidates as direct positives"
+    ]
+  },
+  "train_or_probe_command_surface": {
+    "c106_first_step": "Build a Qwen-teacher distillation manifest from C097 train rows, C087 hard-shape target evidence, and explicit negatives.",
+    "c106_probe_before_training": "Score teacher-positive versus explicit-negative separability in Qwen/VL teacher feature space and in the student feature projection space; block if the route cannot beat C104's weak margin and C098's generation ceiling.",
+    "training_if_probe_passes": "Run a bounded Qwen-teacher feature bridge or target-projection training stage with heldout rows excluded, then evaluate in the C098-style hard-shape generation gate.",
+    "candidate_commands": [
+      "PYTHONPATH=. /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python tools/c106_qwen_teacher_feature_distillation.py build",
+      "PYTHONPATH=. /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python tools/c106_qwen_teacher_feature_distillation.py probe",
+      "PYTHONPATH=. /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/bin/python tools/c106_qwen_teacher_feature_distillation.py train --if-probe-passes"
+    ]
+  },
+  "eval_gate": {
+    "pre_training_gate": {
+      "minimum_rows": 48,
+      "explicit_negative_rows_must_equal_positive_rows": true,
+      "heldout_rows_used": 0,
+      "missing_path_count": 0,
+      "minimum_teacher_margin": 0.05,
+      "minimum_teacher_auc": 0.85,
+      "must_exceed_c104_margin": 0.01997534079211105
+    },
+    "generation_gate_if_training_runs": {
+      "variants": [
+        "no_ip",
+        "c087_qwen_baseline_w14",
+        "c098_lora_c094_w14",
+        "c106_candidate"
+      ],
+      "minimum_mean_uplift": 0.1089544056,
+      "minimum_heldout07_uplift": 0.025,
+      "blank_like_rows": 0,
+      "promotion_requires_visual_pass": true
+    },
+    "visual_focus": [
+      "non-human body and jaw silhouette",
+      "side-profile heldout07 red-eye shape",
+      "frog/chibi/mascot proportions",
+      "avoid collapse into green adult humanoid portrait"
+    ]
+  },
+  "pass_thresholds": {
+    "probe_ready": {
+      "teacher_auc": 0.85,
+      "teacher_margin": 0.05,
+      "student_projection_auc": 0.8,
+      "student_projection_margin": 0.03
+    },
+    "generation_promotion": {
+      "mean_uplift": 0.1089544056,
+      "heldout07_uplift": 0.025,
+      "improved_rate": 0.91,
+      "blank_like_rows": 0
+    }
+  },
+  "stop_conditions": [
+    "Any heldout row appears in the C106 training manifest.",
+    "Required C097/C087/C098/C104/C064 artifacts are missing.",
+    "Qwen teacher feature probe does not exceed C104 margin or cannot reach AUC 0.85.",
+    "Student projection remains below margin 0.03 or AUC 0.8 after the bounded probe.",
+    "Training loss is non-finite or checkpoint loadability fails.",
+    "Generation repeats C098/C104 green humanoid collapse or produces blank-like outputs."
+  ],
+  "no_heldout_leakage_policy": "C106 may use C097 train rows, explicit negatives, C087 train hard-shape target evidence, and C104/C098 train-only artifacts. heldout01/05/07 and clean32 heldout rows remain evaluation-only and must not enter training rows.",
+  "rejected_routes": [
+    {
+      "route": "stronger_siglip_checkpoint_adaptation",
+      "decision": "rejected_as_next_primary_route",
+      "reason": "C104 best SigLIP margin 0.0199753408 and AUC 0.7228954082 are below the pass threshold; C098 also failed to beat the Qwen baseline."
+    },
+    {
+      "route": "manual_or_external_annotation",
+      "decision": "kept_as_fallback",
+      "reason": "It directly addresses the C102 zero-positive blocker but requires new manual/external labels before autonomous training can run."
+    },
+    {
+      "route": "local_real_direct_green_training_from_c102",
+      "decision": "rejected_until_annotation",
+      "reason": "C102 confirmed_local_positive_count=0 and min_confirmed_positive=8."
+    },
+    {
+      "route": "repeat_c097_siglip_only_lora",
+      "decision": "rejected_as_redundant",
+      "reason": "C098 trained successfully but stayed below C087, and C104 did not find enough pre-training feature signal."
+    }
+  ],
+  "first_c106_artifacts": {
+    "plan_doc": "docs/c106_qwen_teacher_feature_distillation_plan_ko.md",
+    "manifest_summary": "eval/c106_qwen_teacher_feature_distillation_20260613/manifest_summary.json",
+    "probe_summary": "eval/c106_qwen_teacher_feature_distillation_20260613/probe_summary.json",
+    "decision_report": "eval/c106_qwen_teacher_feature_distillation_20260613/report.md"
+  }
+}
