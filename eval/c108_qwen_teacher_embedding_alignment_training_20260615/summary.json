@@ -1,0 +1,50 @@
+{
+  "train_stdout": "eval/c108_qwen_teacher_embedding_alignment_training_20260615/train_stdout.txt",
+  "manifest_summary_path": "training/manifests/c108_qwen_teacher_embedding_alignment_20260615.summary.json",
+  "manifest_summary": {
+    "source": "C107 Qwen teacher distillation manifest with C108 target-embedding fields",
+    "source_manifest": "training/manifests/c107_qwen_teacher_distillation_20260613.jsonl",
+    "source_summary": "training/manifests/c107_qwen_teacher_distillation_20260613.summary.json",
+    "image_root": ".tmp/c097_siglip_hard_shape_expanded_root",
+    "output_manifest": "training/manifests/c108_qwen_teacher_embedding_alignment_20260615.jsonl",
+    "rows_written": 56,
+    "explicit_negative_rows": 56,
+    "heldout_rows_used": 0,
+    "missing_path_count": 0,
+    "teacher_source": "C106/C107",
+    "teacher_target": "target_image_qwenvl_embedding",
+    "teacher_margin_mean": 0.21772855200937816,
+    "decision": "c108_manifest_ready_for_teacher_embedding_alignment",
+    "missing_paths": []
+  },
+  "training_summary": {
+    "steps": 128,
+    "rows_loaded": 56,
+    "first_loss": 0.6143436431884766,
+    "final_loss": 0.5449631214141846,
+    "mean_loss": 0.6113223081920296,
+    "mean_base_loss": 0.16380906524136662,
+    "mean_contrastive_loss": 0.04992517028586008,
+    "mean_retrieval_loss": 0.18998930417001247,
+    "mean_teacher_loss": 1.003852569963783,
+    "finite_loss": true,
+    "trainable_parameters": 528384,
+    "frozen_base_parameters": 4947838963,
+    "checkpoint": {
+      "output_path": "checkpoints/anima_qwenvl_ip_adapter_c108_teacher_alignment_b128_0128_20260615.safetensors",
+      "loadable": true,
+      "pe_checkpoint_rejected": true
+    },
+    "init_checkpoint_path": "checkpoints/anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors",
+    "contrastive_weight": 0.35,
+    "contrastive_margin": 0.05,
+    "retrieval_weight": 0.15,
+    "retrieval_margin": 0.2,
+    "teacher_weight": 0.4,
+    "calibrator_bottleneck_dim": 128,
+    "train_calibrator_only": true,
+    "explicit_negative_rows": 56
+  },
+  "failures": [],
+  "decision": "proceed_to_c108_generation_gate"
+}
