@@ -1,0 +1,67 @@
+{
+  "experiment": "qwenvl_c059_checkpoint_merge_gate_20260612",
+  "decision": "single_checkpoint_merge_not_quality_pass_runtime_blend_remains_best",
+  "metric_summary": {
+    "pe": {
+      "blend_prev14_c05504": {
+        "mean_uplift": 0.04959603399038315,
+        "improved_rate": 0.725
+      },
+      "prev_w14": {
+        "mean_uplift": 0.02924041748046875,
+        "improved_rate": 0.75
+      },
+      "merge_a025_w14": {
+        "mean_uplift": 0.025643234327435493,
+        "improved_rate": 0.6
+      },
+      "merge_a040_w14": {
+        "mean_uplift": 0.025836823135614397,
+        "improved_rate": 0.475
+      }
+    },
+    "qwenvl": {
+      "merge_a040_w14": {
+        "mean_uplift": 0.041614118218421936,
+        "improved_rate": 0.8
+      },
+      "blend_prev14_c05504": {
+        "mean_uplift": 0.04158879667520523,
+        "improved_rate": 0.8
+      },
+      "merge_a025_w14": {
+        "mean_uplift": 0.038866627216339114,
+        "improved_rate": 0.8
+      },
+      "prev_w14": {
+        "mean_uplift": 0.036187461018562316,
+        "improved_rate": 0.725
+      }
+    }
+  },
+  "visual_summary": {
+    "strengths": [
+      "merged checkpoints are loadable and generate through the native QwenVL ComfyUI patch path",
+      "merge_a040_w14 reaches runtime-blend-level QwenVL mean uplift",
+      "human character color, costume, hair, headwear, and face cues are often transferred"
+    ],
+    "failures": [
+      "PE similarity and PE improved rate do not match the runtime blend",
+      "exact pose and crop remain unreliable",
+      "speech bubbles and page/panel layout are not preserved",
+      "distinctive hand/fan props remain unstable",
+      "non-human silhouette still collapses to a dark full-body humanoid template"
+    ]
+  },
+  "heldout_notes": {
+    "heldout00": "merge_a040 keeps broad long-haired villain colors, but fan and side/back composition are weak",
+    "heldout01": "angry male cue transfers, but old face, speech bubble, and original profile are not preserved",
+    "heldout02": "bald old monk cue is one of the better merge cases, though close-up fidelity is still off",
+    "heldout03": "red seated woman cue transfers, but pose and speech bubble are not preserved",
+    "heldout04": "black-haired side-face and hand gesture transfer, but bubble/crop/layout fail",
+    "heldout05": "official hat and shouting cue transfer, but profile and speech bubble fail",
+    "heldout06": "headwear and mustache transfer, but expression/crop drift toward a villain template",
+    "heldout07": "structural fail remains: green demon side-head close-up becomes full-body dark demon/assassin"
+  },
+  "next_step": "Stop simple parameter-space checkpoint merges; use failure-focused continuation or stronger encoder/feature adaptation with explicit pressure on pose, crop, speech bubbles, props, and non-human silhouettes."
+}

@@ -1,0 +1,505 @@
+running train00_no_ip
+running train00_blend_species_face
+Traceback (most recent call last):
+  File "/home/wktwin/anima-ipadapter-reference-control/.tmp/run_c084_qwenvl_balanced_crop_pair_eval.py", line 168, in <module>
+    main()
+    ~~~~^^
+  File "/home/wktwin/anima-ipadapter-reference-control/.tmp/run_c084_qwenvl_balanced_crop_pair_eval.py", line 162, in main
+    module.main()
+    ~~~~~~~~~~~^^
+  File "/home/wktwin/anima-ipadapter-reference-control/.tmp/run_c079_qwenvl_synthetic_positive_eval.py", line 241, in main
+    clean_results[f"{sample.label}_{variant.label}"] = _run_or_reuse(
+                                                       ~~~~~~~~~~~~~^
+        c058,
+        ^^^^^
+    ...<3 lines>...
+        image_name,
+        ^^^^^^^^^^^
+    )
+    ^
+  File "/home/wktwin/anima-ipadapter-reference-control/.tmp/run_c079_qwenvl_synthetic_positive_eval.py", line 117, in _run_or_reuse
+    return c058._run_prompt(c030, sample, variant, image_name)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/wktwin/anima-ipadapter-reference-control/.tmp/run_c058_qwenvl_larger_blend_eval.py", line 181, in _run_prompt
+    history = module.wait_history(prompt_id)
+  File "/home/wktwin/anima-ipadapter-reference-control/.tmp/run_c030_qwenvl_single_character_eval.py", line 87, in wait_history
+    raise RuntimeError(json.dumps(record, indent=2))
+RuntimeError: {
+  "prompt": [
+    1,
+    "d245376d-c420-4ef4-b202-8b5a6f780f15",
+    {
+      "5": {
+        "class_type": "UNETLoader",
+        "inputs": {
+          "unet_name": "anima-base-v1.0.safetensors",
+          "weight_dtype": "default"
+        }
+      },
+      "6": {
+        "class_type": "CLIPLoader",
+        "inputs": {
+          "clip_name": "qwen_3_06b_base.safetensors",
+          "type": "qwen_image",
+          "device": "default"
+        }
+      },
+      "7": {
+        "class_type": "CLIPTextEncodeFlux",
+        "inputs": {
+          "clip": [
+            "6",
+            0
+          ],
+          "clip_l": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, angry martial artist close-up, angry tense expression, androgynous elegant warrior, arm thrust forward action pose, raised hand martial arts gesture, long flowing black hair, young clean-shaven warrior, dark armored robe, folding fan in hand, sharp fangs visible, outdoor martial arts courtyard, purple villain aura lighting, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+          "t5xxl": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, angry martial artist close-up, angry tense expression, androgynous elegant warrior, arm thrust forward action pose, raised hand martial arts gesture, long flowing black hair, young clean-shaven warrior, dark armored robe, folding fan in hand, sharp fangs visible, outdoor martial arts courtyard, purple villain aura lighting, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+          "guidance": 3.5
+        }
+      },
+      "8": {
+        "class_type": "CLIPTextEncodeFlux",
+        "inputs": {
+          "clip": [
+            "6",
+            0
+          ],
+          "clip_l": "low quality, blurry, bad anatomy, deformed face, text, watermark, extra limbs, abstract, washed out, noise, nude, explicit, gore, multiple people",
+          "t5xxl": "low quality, blurry, bad anatomy, deformed face, text, watermark, extra limbs, abstract, washed out, noise, nude, explicit, gore, multiple people",
+          "guidance": 3.5
+        }
+      },
+      "9": {
+        "class_type": "EmptySD3LatentImage",
+        "inputs": {
+          "width": 768,
+          "height": 1024,
+          "batch_size": 1
+        }
+      },
+      "10": {
+        "class_type": "CFGGuider",
+        "inputs": {
+          "model": [
+            "23",
+            0
+          ],
+          "positive": [
+            "7",
+            0
+          ],
+          "negative": [
+            "8",
+            0
+          ],
+          "cfg": 3.2
+        }
+      },
+      "11": {
+        "class_type": "RandomNoise",
+        "inputs": {
+          "noise_seed": 20260680
+        }
+      },
+      "12": {
+        "class_type": "BasicScheduler",
+        "inputs": {
+          "model": [
+            "23",
+            0
+          ],
+          "scheduler": "simple",
+          "steps": 18,
+          "denoise": 1.0
+        }
+      },
+      "13": {
+        "class_type": "KSamplerSelect",
+        "inputs": {
+          "sampler_name": "er_sde"
+        }
+      },
+      "14": {
+        "class_type": "SamplerCustomAdvanced",
+        "inputs": {
+          "noise": [
+            "11",
+            0
+          ],
+          "guider": [
+            "10",
+            0
+          ],
+          "sampler": [
+            "13",
+            0
+          ],
+          "sigmas": [
+            "12",
+            0
+          ],
+          "latent_image": [
+            "9",
+            0
+          ]
+        }
+      },
+      "15": {
+        "class_type": "VAELoader",
+        "inputs": {
+          "vae_name": "qwen/qwen_image_vae.safetensors"
+        }
+      },
+      "16": {
+        "class_type": "VAEDecode",
+        "inputs": {
+          "samples": [
+            "14",
+            0
+          ],
+          "vae": [
+            "15",
+            0
+          ]
+        }
+      },
+      "17": {
+        "class_type": "SaveImage",
+        "inputs": {
+          "images": [
+            "16",
+            0
+          ],
+          "filename_prefix": "anima_ipadapter/qwenvl_c084_balanced_crop_pair_gate_20260613/train00_blend_species_face"
+        }
+      },
+      "18": {
+        "class_type": "ModelSamplingFlux",
+        "inputs": {
+          "model": [
+            "5",
+            0
+          ],
+          "max_shift": 3.0,
+          "base_shift": 3.0,
+          "width": 768,
+          "height": 1024
+        }
+      },
+      "1": {
+        "class_type": "LoadImage",
+        "inputs": {
+          "image": "c058_train00.jpg"
+        }
+      },
+      "3": {
+        "class_type": "AnimaQwenVLEncodeImage",
+        "inputs": {
+          "image": [
+            "1",
+            0
+          ],
+          "qwenvl_model_id": "Qwen/Qwen3-VL-Embedding-2B",
+          "instruction": "Represent this reference for strict visual identity retrieval in a manhwa panel. Prioritize non-human species, monster or demon traits, facial structure, profile silhouette, beard and headwear, skin tone, glowing eyes, hand props, fan or weapon cues, speech bubble context, pose crop, costume palette, and line/color style."
+        }
+      },
+      "20": {
+        "class_type": "AnimaQwenVLIPAdapterLoader",
+        "inputs": {
+          "ipadapter_name": "anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors"
+        }
+      },
+      "21": {
+        "class_type": "AnimaQwenVLIPAdapterApply",
+        "inputs": {
+          "model": [
+            "18",
+            0
+          ],
+          "ipadapter": [
+            "20",
+            0
+          ],
+          "embedding": [
+            "3",
+            0
+          ],
+          "weight": 1.4,
+          "start_at": 0.0,
+          "end_at": 0.85
+        }
+      },
+      "22": {
+        "class_type": "AnimaQwenVLIPAdapterLoader",
+        "inputs": {
+          "ipadapter_name": "anima_qwenvl_ip_adapter_c055_mixed_retrieval_0064_20260612.safetensors"
+        }
+      },
+      "23": {
+        "class_type": "AnimaQwenVLIPAdapterApply",
+        "inputs": {
+          "model": [
+            "21",
+            0
+          ],
+          "ipadapter": [
+            "22",
+            0
+          ],
+          "embedding": [
+            "3",
+            0
+          ],
+          "weight": 0.4,
+          "start_at": 0.0,
+          "end_at": 0.85
+        }
+      }
+    },
+    {
+      "client_id": "2e453c89-fadd-4b37-a8f7-01383854e731",
+      "create_time": 1781316756225
+    },
+    [
+      "17"
+    ]
+  ],
+  "outputs": {},
+  "status": {
+    "status_str": "error",
+    "completed": false,
+    "messages": [
+      [
+        "execution_start",
+        {
+          "prompt_id": "d245376d-c420-4ef4-b202-8b5a6f780f15",
+          "timestamp": 1781316756226
+        }
+      ],
+      [
+        "execution_cached",
+        {
+          "nodes": [
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "11",
+            "13",
+            "15",
+            "18"
+          ],
+          "prompt_id": "d245376d-c420-4ef4-b202-8b5a6f780f15",
+          "timestamp": 1781316756230
+        }
+      ],
+      [
+        "execution_error",
+        {
+          "prompt_id": "d245376d-c420-4ef4-b202-8b5a6f780f15",
+          "node_id": "3",
+          "node_type": "AnimaQwenVLEncodeImage",
+          "executed": [
+            "1"
+          ],
+          "exception_message": "No module named 'sentence_transformers'\n",
+          "exception_type": "ModuleNotFoundError",
+          "traceback": [
+            "  File \"/data/ai/comfyui02/execution.py\", line 535, in execute\n    output_data, output_ui, has_subgraph, has_pending_tasks = await get_output_data(prompt_id, unique_id, obj, input_data_all, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)\n                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n",
+            "  File \"/data/ai/comfyui02/execution.py\", line 335, in get_output_data\n    return_values = await _async_map_node_over_list(prompt_id, unique_id, obj, input_data_all, obj.FUNCTION, allow_interrupt=True, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n",
+            "  File \"/data/ai/comfyui02/execution.py\", line 309, in _async_map_node_over_list\n    await process_inputs(input_dict, i)\n",
+            "  File \"/data/ai/comfyui02/execution.py\", line 297, in process_inputs\n    result = f(**inputs)\n             ^^^^^^^^^^^\n",
+            "  File \"/home/wktwin/anima-ipadapter-reference-control/.tmp/comfy_siglip_base/custom_nodes/anima-ipadapter-reference-control/native_qwenvl.py\", line 131, in encode\n    model = self._embedding_stack(qwenvl_model_id)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n",
+            "  File \"/home/wktwin/anima-ipadapter-reference-control/.tmp/comfy_siglip_base/custom_nodes/anima-ipadapter-reference-control/native_qwenvl.py\", line 145, in _embedding_stack\n    from sentence_transformers import SentenceTransformer\n"
+          ],
+          "current_inputs": {
+            "image": [
+              "tensor([[[[1.0000, 1.0000, 1.0000],\n          [1.0000, 1.0000, 1.0000],\n          [1.0000, 1.0000, 1.0000],\n          ...,\n          [0.6392, 0.6392, 0.6392],\n          [0.6510, 0.6510, 0.6431],\n          [0.6980, 0.6980, 0.6980]],\n\n         [[1.0000, 1.0000, 1.0000],\n          [1.0000, 1.0000, 1.0000],\n          [1.0000, 1.0000, 1.0000],\n          ...,\n          [0.0000, 0.0000, 0.0078],\n          [0.0000, 0.0000, 0.0000],\n          [0.0392, 0.0392, 0.0392]],\n\n         [[1.0000, 1.0000, 1.0000],\n          [1.0000, 1.0000, 1.0000],\n          [1.0000, 1.0000, 1.0000],\n          ...,\n          [0.0235, 0.0235, 0.0314],\n          [0.0118, 0.0118, 0.0118],\n          [0.1255, 0.1255, 0.1255]],\n\n         ...,\n\n         [[1.0000, 1.0000, 1.0000],\n          [1.0000, 1.0000, 1.0000],\n          [1.0000, 1.0000, 1.0000],\n          ...,\n          [0.9961, 0.9961, 0.9961],\n          [0.9961, 0.9961, 0.9961],\n          [1.0000, 1.0000, 1.0000]],\n\n         [[1.0000, 1.0000, 1.0000],\n          [1.0000, 1.0000, 1.0000],\n          [1.0000, 1.0000, 1.0000],\n          ...,\n          [1.0000, 1.0000, 1.0000],\n          [1.0000, 1.0000, 1.0000],\n          [1.0000, 1.0000, 1.0000]],\n\n         [[1.0000, 1.0000, 1.0000],\n          [1.0000, 1.0000, 1.0000],\n          [1.0000, 1.0000, 1.0000],\n          ...,\n          [1.0000, 1.0000, 1.0000],\n          [1.0000, 1.0000, 1.0000],\n          [0.9922, 0.9922, 0.9922]]]])"
+            ],
+            "qwenvl_model_id": [
+              "Qwen/Qwen3-VL-Embedding-2B"
+            ],
+            "instruction": [
+              "Represent this reference for strict visual identity retrieval in a manhwa panel. Prioritize non-human species, monster or demon traits, facial structure, profile silhouette, beard and headwear, skin tone, glowing eyes, hand props, fan or weapon cues, speech bubble context, pose crop, costume palette, and line/color style."
+            ]
+          },
+          "current_outputs": [
+            "13",
+            "9",
+            "12",
+            "1",
+            "17",
+            "5",
+            "8",
+            "22",
+            "7",
+            "11",
+            "10",
+            "16",
+            "6",
+            "14",
+            "21",
+            "15",
+            "3",
+            "23",
+            "20",
+            "18"
+          ],
+          "timestamp": 1781316756252
+        }
+      ]
+    ]
+  },
+  "meta": {}
+}
+running train00_no_ip
+reusing train00_no_ip
+running train00_blend_species_face
+running train00_c084_balanced_crop_pair_w14
+running train01_no_ip
+running train01_blend_species_face
+running train01_c084_balanced_crop_pair_w14
+running train02_no_ip
+running train02_blend_species_face
+running train02_c084_balanced_crop_pair_w14
+running train03_no_ip
+running train03_blend_species_face
+running train03_c084_balanced_crop_pair_w14
+running train04_no_ip
+running train04_blend_species_face
+running train04_c084_balanced_crop_pair_w14
+running train05_no_ip
+running train05_blend_species_face
+running train05_c084_balanced_crop_pair_w14
+running train06_no_ip
+running train06_blend_species_face
+running train06_c084_balanced_crop_pair_w14
+running train07_no_ip
+running train07_blend_species_face
+running train07_c084_balanced_crop_pair_w14
+running train08_no_ip
+running train08_blend_species_face
+running train08_c084_balanced_crop_pair_w14
+running train09_no_ip
+running train09_blend_species_face
+running train09_c084_balanced_crop_pair_w14
+running train10_no_ip
+running train10_blend_species_face
+running train10_c084_balanced_crop_pair_w14
+running train11_no_ip
+running train11_blend_species_face
+running train11_c084_balanced_crop_pair_w14
+running train12_no_ip
+running train12_blend_species_face
+running train12_c084_balanced_crop_pair_w14
+running train13_no_ip
+running train13_blend_species_face
+running train13_c084_balanced_crop_pair_w14
+running train14_no_ip
+running train14_blend_species_face
+running train14_c084_balanced_crop_pair_w14
+running train15_no_ip
+running train15_blend_species_face
+running train15_c084_balanced_crop_pair_w14
+running train16_no_ip
+running train16_blend_species_face
+running train16_c084_balanced_crop_pair_w14
+running train17_no_ip
+running train17_blend_species_face
+running train17_c084_balanced_crop_pair_w14
+running train18_no_ip
+running train18_blend_species_face
+running train18_c084_balanced_crop_pair_w14
+running train19_no_ip
+running train19_blend_species_face
+running train19_c084_balanced_crop_pair_w14
+running train20_no_ip
+running train20_blend_species_face
+running train20_c084_balanced_crop_pair_w14
+running train21_no_ip
+running train21_blend_species_face
+running train21_c084_balanced_crop_pair_w14
+running train22_no_ip
+running train22_blend_species_face
+running train22_c084_balanced_crop_pair_w14
+running train23_no_ip
+running train23_blend_species_face
+running train23_c084_balanced_crop_pair_w14
+running train24_no_ip
+running train24_blend_species_face
+running train24_c084_balanced_crop_pair_w14
+running train25_no_ip
+running train25_blend_species_face
+running train25_c084_balanced_crop_pair_w14
+running train26_no_ip
+running train26_blend_species_face
+running train26_c084_balanced_crop_pair_w14
+running train27_no_ip
+running train27_blend_species_face
+running train27_c084_balanced_crop_pair_w14
+running train28_no_ip
+running train28_blend_species_face
+running train28_c084_balanced_crop_pair_w14
+running train29_no_ip
+running train29_blend_species_face
+running train29_c084_balanced_crop_pair_w14
+running train30_no_ip
+running train30_blend_species_face
+running train30_c084_balanced_crop_pair_w14
+running train31_no_ip
+running train31_blend_species_face
+running train31_c084_balanced_crop_pair_w14
+running heldout00_no_ip
+running heldout00_blend_species_face
+running heldout00_c084_balanced_crop_pair_w14
+running heldout01_no_ip
+running heldout01_blend_species_face
+running heldout01_c084_balanced_crop_pair_w14
+running heldout02_no_ip
+running heldout02_blend_species_face
+running heldout02_c084_balanced_crop_pair_w14
+running heldout03_no_ip
+running heldout03_blend_species_face
+running heldout03_c084_balanced_crop_pair_w14
+running heldout04_no_ip
+running heldout04_blend_species_face
+running heldout04_c084_balanced_crop_pair_w14
+running heldout05_no_ip
+running heldout05_blend_species_face
+running heldout05_c084_balanced_crop_pair_w14
+running heldout06_no_ip
+running heldout06_blend_species_face
+running heldout06_c084_balanced_crop_pair_w14
+running heldout07_no_ip
+running heldout07_blend_species_face
+running heldout07_c084_balanced_crop_pair_w14
+running crop_pair00_no_ip
+running crop_pair00_blend_species_face
+running crop_pair00_c084_balanced_crop_pair_w14
+running crop_pair01_no_ip
+running crop_pair01_blend_species_face
+running crop_pair01_c084_balanced_crop_pair_w14
+running crop_pair02_no_ip
+running crop_pair02_blend_species_face
+running crop_pair02_c084_balanced_crop_pair_w14
+running crop_pair03_no_ip
+running crop_pair03_blend_species_face
+running crop_pair03_c084_balanced_crop_pair_w14
+running crop_pair04_no_ip
+running crop_pair04_blend_species_face
+running crop_pair04_c084_balanced_crop_pair_w14
+running crop_pair05_no_ip
+running crop_pair05_blend_species_face
+running crop_pair05_c084_balanced_crop_pair_w14
+running crop_pair06_no_ip
+running crop_pair06_blend_species_face
+running crop_pair06_c084_balanced_crop_pair_w14
+running crop_pair07_no_ip
+running crop_pair07_blend_species_face
+running crop_pair07_c084_balanced_crop_pair_w14
+running crop_pair08_no_ip
+running crop_pair08_blend_species_face
+running crop_pair08_c084_balanced_crop_pair_w14
+running crop_pair09_no_ip
+running crop_pair09_blend_species_face
+running crop_pair09_c084_balanced_crop_pair_w14

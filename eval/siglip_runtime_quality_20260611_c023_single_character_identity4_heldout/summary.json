@@ -1,0 +1,78 @@
+{
+  "pre_checkpoint": "anima_siglip_ip_adapter_identity128_pe_query_patch_0064_20260611.safetensors",
+  "post_checkpoint": "anima_siglip_ip_adapter_single_character_identity4_pe_query_patch_0256_20260611.safetensors",
+  "weight": 1.0,
+  "references": [
+    {
+      "label": "heldout_old_face",
+      "path": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/001-100/SG-017/mrcolor_panel_style_v5_edge_trim_strict_00037_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00506_SG-017-01_page_2064x1800_s03.jpg"
+    },
+    {
+      "label": "heldout_black_profile",
+      "path": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/001-100/SG-015/mrcolor_panel_style_v5_edge_trim_strict_00031_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00464_SG-015-14_page_985x1775_s01.jpg"
+    },
+    {
+      "label": "heldout_bearded_table",
+      "path": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/001-100/SG-021/mrcolor_panel_style_v5_edge_trim_strict_00052_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00651_SG-021-06_page_652x1186_s01.jpg"
+    },
+    {
+      "label": "heldout_black_fullbody",
+      "path": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-267/mrcolor_panel_style_v5_edge_trim_strict_00522_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_08609_SG-267-09_page_975x1437_s01.jpg"
+    }
+  ],
+  "results": {
+    "no_ip": {
+      "prompt_id": "e52f3994-2627-460d-bcf7-5538488ffa82",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c023_single_character_identity4_heldout/no_ip.png",
+      "mode": "no_ip"
+    },
+    "heldout_old_face_pre": {
+      "prompt_id": "c2101338-eb4d-47dd-b10e-e4faf51c7cf2",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c023_single_character_identity4_heldout/heldout_old_face_pre_w1p0.png",
+      "checkpoint": "anima_siglip_ip_adapter_identity128_pe_query_patch_0064_20260611.safetensors",
+      "weight": 1.0
+    },
+    "heldout_old_face_post": {
+      "prompt_id": "7078cb10-83f7-480d-a094-912e5ba3aab1",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c023_single_character_identity4_heldout/heldout_old_face_post_w1p0.png",
+      "checkpoint": "anima_siglip_ip_adapter_single_character_identity4_pe_query_patch_0256_20260611.safetensors",
+      "weight": 1.0
+    },
+    "heldout_black_profile_pre": {
+      "prompt_id": "aeb44c98-83cf-48ac-bab7-b8014a0679a2",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c023_single_character_identity4_heldout/heldout_black_profile_pre_w1p0.png",
+      "checkpoint": "anima_siglip_ip_adapter_identity128_pe_query_patch_0064_20260611.safetensors",
+      "weight": 1.0
+    },
+    "heldout_black_profile_post": {
+      "prompt_id": "b19dc7aa-a5a8-4f5c-96a5-0a7b828d686d",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c023_single_character_identity4_heldout/heldout_black_profile_post_w1p0.png",
+      "checkpoint": "anima_siglip_ip_adapter_single_character_identity4_pe_query_patch_0256_20260611.safetensors",
+      "weight": 1.0
+    },
+    "heldout_bearded_table_pre": {
+      "prompt_id": "52a27aa6-f7a9-4ce2-89f1-19bd9a589b86",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c023_single_character_identity4_heldout/heldout_bearded_table_pre_w1p0.png",
+      "checkpoint": "anima_siglip_ip_adapter_identity128_pe_query_patch_0064_20260611.safetensors",
+      "weight": 1.0
+    },
+    "heldout_bearded_table_post": {
+      "prompt_id": "e82a02f3-f4ed-4662-9bfd-1ca69f609bee",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c023_single_character_identity4_heldout/heldout_bearded_table_post_w1p0.png",
+      "checkpoint": "anima_siglip_ip_adapter_single_character_identity4_pe_query_patch_0256_20260611.safetensors",
+      "weight": 1.0
+    },
+    "heldout_black_fullbody_pre": {
+      "prompt_id": "0b02cd91-c366-4323-a8ee-23777c1ee302",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c023_single_character_identity4_heldout/heldout_black_fullbody_pre_w1p0.png",
+      "checkpoint": "anima_siglip_ip_adapter_identity128_pe_query_patch_0064_20260611.safetensors",
+      "weight": 1.0
+    },
+    "heldout_black_fullbody_post": {
+      "prompt_id": "540b14de-2852-4adf-95b1-81b5677f6a64",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c023_single_character_identity4_heldout/heldout_black_fullbody_post_w1p0.png",
+      "checkpoint": "anima_siglip_ip_adapter_single_character_identity4_pe_query_patch_0256_20260611.safetensors",
+      "weight": 1.0
+    }
+  }
+}

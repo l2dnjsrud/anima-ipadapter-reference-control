@@ -1,0 +1,14 @@
+candidate_id,manual_label,manual_note
+c076_seed_c074_neeko_c1_0,target_positive,prior c074 visually confirmed green-skin non-human seed
+c076_seed_c074_neeko_c1_1,target_positive,prior c074 visually confirmed green-skin non-human seed
+c076_seed_c074_neeko_c1_2,target_positive,prior c074 visually confirmed green-skin non-human seed
+c076_seed_c074_neeko_c1_3,target_positive,prior c074 visually confirmed green-skin non-human seed
+c076_seed_c074_neeko_c1_4,target_positive,prior c074 visually confirmed green-skin non-human seed
+c076_seed_c074_neeko_c2_0,target_positive,prior c074 visually confirmed green-skin non-human seed
+c076_seed_c074_neeko_c2_1,target_positive,prior c074 visually confirmed green-skin non-human seed
+c076_seed_c074_neeko_c2_2,target_positive,prior c074 visually confirmed green-skin non-human seed
+c076_seed_c074_neeko_c2_3,target_positive,prior c074 visually confirmed green-skin non-human seed
+c076_seed_c074_neeko_c2_4,target_positive,prior c074 visually confirmed green-skin non-human seed
+c076_meta_002,guard_false_positive_human,anime human with green hair gradient; not visible green skin or non-human species
+c076_meta_000,guard_false_positive_background_object,3D glove/object-like character; not mrblue/manhwa direct-green non-human reference positive
+c076_meta_001,useful_proxy_non_human,non-human monster proxy but off-domain style and not enough for target-positive training

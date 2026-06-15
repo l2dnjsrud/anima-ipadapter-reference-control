@@ -1,0 +1,20 @@
+{
+  "experiment_id": "c055",
+  "created_at": "2026-06-12",
+  "manifest_path": "training/manifests/c055_qwenvl_mixed_clean32_c052_positive_20260612.jsonl",
+  "source_manifests": [
+    {
+      "path": "training/manifests/local_color_single_character_clean32_20260611.jsonl",
+      "role": "clean32_train_self_pairs",
+      "rows": 32
+    },
+    {
+      "path": "training/manifests/c052_positive_identity_pairs_20260612.jsonl",
+      "role": "c052_reviewed_positive_identity_pairs",
+      "rows": 58
+    }
+  ],
+  "total_rows": 90,
+  "heldout_rows_used": 0,
+  "hypothesis": "Mix clean single-character train rows with c052 positives, initialize from previous retrieval checkpoint, and reduce retrieval weight to preserve aggregate reference-control while nudging distinctive traits."
+}

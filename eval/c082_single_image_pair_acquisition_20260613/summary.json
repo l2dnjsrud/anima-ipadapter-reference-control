@@ -1,0 +1,18 @@
+{
+  "source": "c082_single_image_pair_acquisition",
+  "prompt_count": 24,
+  "generated_count": 24,
+  "blank_count": 0,
+  "reviewed_rows": 24,
+  "approved_group_count": 0,
+  "approved_pair_rows": 0,
+  "direct_self_pair_rows": 0,
+  "minimum_approved_groups": 4,
+  "minimum_approved_pairs": 24,
+  "heldout_rows_used": 0,
+  "training_started": false,
+  "raw_generated_images_committed": false,
+  "contact_sheet_path": ".tmp/c082_single_image_pair_acquisition/contact_sheet.jpg",
+  "contact_sheet_written": true,
+  "decision": "more_identity_pairs_required"
+}

@@ -1,0 +1,13 @@
+{
+  "experiment": "c090_siglip_hard_shape_generation_gate",
+  "decision": "c089_partial_siglip_improvement_not_promoted_escalate_encoder_side",
+  "generated_count": 44,
+  "sample_count": 11,
+  "siglip_variant_count": 4,
+  "low_variance_count": 2,
+  "metric_decision": "c089_improves_prior_siglip_but_not_qwen_baseline",
+  "best_c089_variant": "c089_shape_w14",
+  "best_qwen_baseline_variant": "c087_expanded_crop_positive_w14",
+  "visual_summary": "c089_shape_w14 is visibly better than the prior SigLIP pilot on multiple frog/yokai rows, but it remains below QwenVL hard-shape baselines, collapses non-human references into green humanoid faces, and does not preserve heldout07 side-profile monster identity.",
+  "next_decision": "escalate_to_encoder_side_or_feature_adaptation"
+}

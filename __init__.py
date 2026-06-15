@@ -36,5 +36,6 @@ def _merge(module_name: str) -> None:
 _merge("nodes")
 _merge("native_pe")
 _merge("native_siglip")
+_merge("native_qwenvl")
 
 __all__ = ["NODE_CLASS_MAPPINGS", "NODE_DISPLAY_NAME_MAPPINGS"]

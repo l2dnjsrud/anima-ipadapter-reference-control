@@ -1,0 +1,12 @@
+{
+  "decision": "c093_anti_collapse_not_promoted",
+  "best_c093_variant": "c093_anti_collapse_w14",
+  "c093_w14_mean_uplift": 0.08637357797831002,
+  "c092_w14_mean_uplift": 0.08526816531384505,
+  "qwen_baseline_mean_uplift": 0.10895440559772807,
+  "heldout07_best_c093_uplift": 0.004518958388039396,
+  "heldout07_c092_w14_uplift": 0.0009986629992987384,
+  "pixel_audit_note": "The only blank-like image is crop_pair00_no_ip, not a c093 output.",
+  "visual_verdict": "C093 works through the ComfyUI SigLIP IP-Adapter path, but does not materially improve reference fidelity over C092. Non-human/chibi/frog rows still collapse toward green human faces, and heldout07 remains structurally weak.",
+  "next_step": "Start C094 as a stronger encoder/shape-supervised experiment instead of promoting C093."
+}

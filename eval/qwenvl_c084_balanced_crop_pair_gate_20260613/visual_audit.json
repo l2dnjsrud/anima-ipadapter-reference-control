@@ -1,0 +1,24 @@
+{
+  "date": "2026-06-13",
+  "gate": "qwenvl_c084_balanced_crop_pair_gate_20260613",
+  "decision": "not_promoted_c084_balanced_crop_pair_weaker_than_blend",
+  "runtime_status": "pass",
+  "quality_status": "fail",
+  "checked_contact_sheets": [
+    "eval/qwenvl_c084_balanced_crop_pair_gate_20260613/contact_sheet_train.jpg",
+    "eval/qwenvl_c084_balanced_crop_pair_gate_20260613/contact_sheet_heldout.jpg",
+    "eval/qwenvl_c084_balanced_crop_pair_gate_20260613/contact_sheet_crop_pair_focus.jpg"
+  ],
+  "pixel_audit": {
+    "generated_png_count": 150,
+    "blank_image_count": 0,
+    "min_pixel_std": 35.8830680847168
+  },
+  "observations": [
+    "clean32+heldout8에서는 c084가 기존 blend_species_face보다 PE와 QwenVL uplift 모두 낮다.",
+    "crop-pair focus에서는 QwenVL uplift가 c084에서 약간 높지만, PE uplift는 오히려 악화된다.",
+    "시각적으로 c084는 frog/yokai/chibi silhouette, headwear, costume, body proportion을 안정적으로 보존하지 못하고 성인형 green humanoid villain 형태로 수렴한다.",
+    "heldout에서는 c084와 blend_species_face의 차이가 작고, reference-specific identity 개선으로 볼 만한 일관된 사례가 부족하다."
+  ],
+  "next_decision": "calibrator-only crop-pair repetition should stop; next loop should test stronger adapter-side training or stronger encoder/objective rather than another small crop calibrator pass."
+}

@@ -1,0 +1,33 @@
+{
+  "decision": "c060_failure_focused_not_quality_pass_runtime_blend_remains_best",
+  "gate": "c060_qwenvl_failure_focused",
+  "samples": 40,
+  "variants": [
+    "no_ip",
+    "prev_w14",
+    "blend_prev14_c05504",
+    "c060_w14"
+  ],
+  "metrics": {
+    "pe_mean_uplift": {
+      "blend_prev14_c05504": 0.04959603399038315,
+      "prev_w14": 0.02924041748046875,
+      "c060_w14": 0.021859632432460786
+    },
+    "qwenvl_mean_uplift": {
+      "blend_prev14_c05504": 0.04158879667520523,
+      "prev_w14": 0.036187461018562316,
+      "c060_w14": 0.031796395778656006
+    }
+  },
+  "visual_result": {
+    "reference_active": true,
+    "quality_pass": false,
+    "best_current_recipe": "blend_prev14_c05504",
+    "main_failures": [
+      "specific face structure is not stable enough",
+      "non-human side-profile identity still collapses to human dark-villain template",
+      "failure-focused continuation transfers palette and costume more than exact identity"
+    ]
+  }
+}

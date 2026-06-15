@@ -1,0 +1,57 @@
+{
+  "date": "2026-06-13",
+  "decision": "not_promoted_c086_hard_negative_partial_improvement_not_quality_pass",
+  "runtime": {
+    "comfyui_api": "http://127.0.0.1:8116",
+    "generated_png": 200,
+    "blank_image": 0,
+    "min_pixel_std": 35.8830680847168,
+    "cleanup": "ComfyUI server stopped; port 8116 closed",
+    "loader_object_info": "eval/qwenvl_c086_generated_hard_negative_gate_20260613/object_info_qwenvl_loader.json"
+  },
+  "metric_summary": {
+    "clean40": {
+      "pe": {
+        "blend_species_face": 0.0608932152,
+        "c085_anchored_full_adapter_w14": 0.0308974788,
+        "c086_hard_negative_w14": 0.059578079
+      },
+      "qwenvl": {
+        "blend_species_face": 0.0421902567,
+        "c085_anchored_full_adapter_w14": 0.0306017444,
+        "c086_hard_negative_w14": 0.0388126254
+      }
+    },
+    "heldout8": {
+      "pe": {
+        "blend_species_face": 0.0535339788,
+        "c085_anchored_full_adapter_w14": 0.0370979905,
+        "c086_hard_negative_w14": 0.0648405477
+      },
+      "qwenvl": {
+        "blend_species_face": 0.0264708772,
+        "c085_anchored_full_adapter_w14": 0.0192572623,
+        "c086_hard_negative_w14": 0.0325848311
+      }
+    },
+    "crop_pair_focus10": {
+      "pe": {
+        "blend_species_face": -0.0916786253,
+        "c085_anchored_full_adapter_w14": -0.0143372715,
+        "c086_hard_negative_w14": -0.0233308047
+      },
+      "qwenvl": {
+        "blend_species_face": 0.0194013953,
+        "c085_anchored_full_adapter_w14": 0.0466495097,
+        "c086_hard_negative_w14": 0.0361481428
+      }
+    }
+  },
+  "visual_findings": [
+    "c086 improves c085 on heldout color and non-human cue transfer",
+    "heldout07 pulls in the green reference cue but does not preserve full reference identity",
+    "crop-pair focus regresses against c085 and often collapses small mascot or side-profile references into generic green humanoid faces",
+    "generated hard-negative training is useful but not sufficient for high-quality reference-control"
+  ],
+  "next_decision": "move_to_more_reliable_target_positive_pairs_or_encoder_side_feature_adaptation"
+}

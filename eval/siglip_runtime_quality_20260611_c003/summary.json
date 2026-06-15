@@ -1,0 +1,95 @@
+{
+  "base_url": "http://127.0.0.1:8114",
+  "positive": "masterpiece, best quality, score_7, colored wuxia manhwa comic panel, a martial arts master in a dramatic palace interior, speech bubble, clean ink lines, cel shaded anime style, cinematic lighting",
+  "negative": "low quality, blurry, bad anatomy, deformed face, text, watermark, extra limbs, abstract, washed out, noise",
+  "steps": 16,
+  "results": {
+    "no_ip": {
+      "prompt_id": "e009dccc-b326-4382-9579-fee62d52d720",
+      "image": "eval/siglip_runtime_quality_20260611_c003/no_ip.png",
+      "weight": null
+    },
+    "siglip_w0": {
+      "prompt_id": "0f3b59e4-09a9-4488-93a2-d9b833cf8063",
+      "image": "eval/siglip_runtime_quality_20260611_c003/siglip_w0.png",
+      "weight": 0.0
+    },
+    "siglip_w04": {
+      "prompt_id": "62a7e800-cbfa-47de-b161-69d4bbffb21c",
+      "image": "eval/siglip_runtime_quality_20260611_c003/siglip_w04.png",
+      "weight": 0.4
+    },
+    "siglip_w08": {
+      "prompt_id": "dbc602db-0b53-46a6-b1de-489b9d4c4e53",
+      "image": "eval/siglip_runtime_quality_20260611_c003/siglip_w08.png",
+      "weight": 0.8
+    },
+    "siglip_w12": {
+      "prompt_id": "a95bbfbf-0faf-4274-be9f-b3654c86f42b",
+      "image": "eval/siglip_runtime_quality_20260611_c003/siglip_w12.png",
+      "weight": 1.2
+    },
+    "siglip_w16": {
+      "prompt_id": "ab888f35-ba8c-426a-9115-7147eaf0c33a",
+      "image": "eval/siglip_runtime_quality_20260611_c003/siglip_w16.png",
+      "weight": 1.6
+    }
+  },
+  "metrics": {
+    "no_ip": {
+      "mean_abs_vs_no_ip": 0.0,
+      "rms_vs_no_ip": 0.0,
+      "max_abs_vs_no_ip": 0,
+      "size": [
+        1344,
+        800
+      ]
+    },
+    "siglip_w0": {
+      "mean_abs_vs_no_ip": 0.0,
+      "rms_vs_no_ip": 0.0,
+      "max_abs_vs_no_ip": 0,
+      "size": [
+        1344,
+        800
+      ]
+    },
+    "siglip_w04": {
+      "mean_abs_vs_no_ip": 35.83715649801587,
+      "rms_vs_no_ip": 59.27993392944336,
+      "max_abs_vs_no_ip": 255,
+      "size": [
+        1344,
+        800
+      ]
+    },
+    "siglip_w08": {
+      "mean_abs_vs_no_ip": 41.95937468998016,
+      "rms_vs_no_ip": 65.16590118408203,
+      "max_abs_vs_no_ip": 255,
+      "size": [
+        1344,
+        800
+      ]
+    },
+    "siglip_w12": {
+      "mean_abs_vs_no_ip": 43.46676928323413,
+      "rms_vs_no_ip": 67.64310455322266,
+      "max_abs_vs_no_ip": 255,
+      "size": [
+        1344,
+        800
+      ]
+    },
+    "siglip_w16": {
+      "mean_abs_vs_no_ip": 47.006905691964285,
+      "rms_vs_no_ip": 73.00298309326172,
+      "max_abs_vs_no_ip": 255,
+      "size": [
+        1344,
+        800
+      ]
+    }
+  },
+  "contact_sheet": "eval/siglip_runtime_quality_20260611_c003/contact_sheet.jpg"
+}

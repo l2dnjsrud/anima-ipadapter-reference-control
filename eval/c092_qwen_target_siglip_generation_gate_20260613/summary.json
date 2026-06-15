@@ -1,0 +1,899 @@
+{
+  "base_url": "http://127.0.0.1:8118",
+  "probe_manifest": "eval/c088_shape_silhouette_feature_probe_20260613/probe_manifest.jsonl",
+  "prompt_manifest": "eval/c092_qwen_target_siglip_generation_gate_20260613/auto_reference_prompts.jsonl",
+  "contact_sheet": "eval/c092_qwen_target_siglip_generation_gate_20260613/contact_sheet_hard_shape.jpg",
+  "variants": [
+    {
+      "label": "no_ip",
+      "checkpoint": null,
+      "weight": 0.0
+    },
+    {
+      "label": "siglip_pilot_w14",
+      "checkpoint": "anima_siglip_ip_adapter_pilot_20260610.safetensors",
+      "weight": 1.4
+    },
+    {
+      "label": "c089_shape_w14",
+      "checkpoint": "anima_siglip_ip_adapter_c089_shape_pe_teacher_0032_20260613.safetensors",
+      "weight": 1.4
+    },
+    {
+      "label": "c091_feature_calibrator_w14",
+      "checkpoint": "anima_siglip_ip_adapter_c091_feature_calibrator_b64_0064_20260613.safetensors",
+      "weight": 1.4
+    },
+    {
+      "label": "c092_qwen_target_w10",
+      "checkpoint": "anima_siglip_ip_adapter_c092_qwen_target_0064_20260613.safetensors",
+      "weight": 1.0
+    },
+    {
+      "label": "c092_qwen_target_w14",
+      "checkpoint": "anima_siglip_ip_adapter_c092_qwen_target_0064_20260613.safetensors",
+      "weight": 1.4
+    }
+  ],
+  "samples": [
+    {
+      "label": "crop_pair00",
+      "ref_id": "c090_refs/crop_pair00",
+      "seed": 20260900,
+      "reference_path": ".tmp/c092_siglip_hard_shape_root/c090_refs/crop_pair00.jpg",
+      "prompt_row": {
+        "ref_id": "c090_refs/crop_pair00",
+        "tgt_id": "crop_pair00",
+        "source_prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "selected_attributes": [
+          "c087_crop_pair_focus",
+          "direct_green",
+          "non_human",
+          "expanded_target_positive"
+        ]
+      }
+    },
+    {
+      "label": "crop_pair01",
+      "ref_id": "c090_refs/crop_pair01",
+      "seed": 20260901,
+      "reference_path": ".tmp/c092_siglip_hard_shape_root/c090_refs/crop_pair01.jpg",
+      "prompt_row": {
+        "ref_id": "c090_refs/crop_pair01",
+        "tgt_id": "crop_pair01",
+        "source_prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "selected_attributes": [
+          "c087_crop_pair_focus",
+          "direct_green",
+          "non_human",
+          "expanded_target_positive"
+        ]
+      }
+    },
+    {
+      "label": "crop_pair02",
+      "ref_id": "c090_refs/crop_pair02",
+      "seed": 20260902,
+      "reference_path": ".tmp/c092_siglip_hard_shape_root/c090_refs/crop_pair02.jpg",
+      "prompt_row": {
+        "ref_id": "c090_refs/crop_pair02",
+        "tgt_id": "crop_pair02",
+        "source_prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "selected_attributes": [
+          "c087_crop_pair_focus",
+          "direct_green",
+          "non_human",
+          "expanded_target_positive"
+        ]
+      }
+    },
+    {
+      "label": "crop_pair03",
+      "ref_id": "c090_refs/crop_pair03",
+      "seed": 20260903,
+      "reference_path": ".tmp/c092_siglip_hard_shape_root/c090_refs/crop_pair03.jpg",
+      "prompt_row": {
+        "ref_id": "c090_refs/crop_pair03",
+        "tgt_id": "crop_pair03",
+        "source_prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "selected_attributes": [
+          "c087_crop_pair_focus",
+          "direct_green",
+          "non_human",
+          "expanded_target_positive"
+        ]
+      }
+    },
+    {
+      "label": "crop_pair04",
+      "ref_id": "c090_refs/crop_pair04",
+      "seed": 20260904,
+      "reference_path": ".tmp/c092_siglip_hard_shape_root/c090_refs/crop_pair04.jpg",
+      "prompt_row": {
+        "ref_id": "c090_refs/crop_pair04",
+        "tgt_id": "crop_pair04",
+        "source_prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "selected_attributes": [
+          "c087_crop_pair_focus",
+          "direct_green",
+          "non_human",
+          "expanded_target_positive"
+        ]
+      }
+    },
+    {
+      "label": "crop_pair05",
+      "ref_id": "c090_refs/crop_pair05",
+      "seed": 20260905,
+      "reference_path": ".tmp/c092_siglip_hard_shape_root/c090_refs/crop_pair05.jpg",
+      "prompt_row": {
+        "ref_id": "c090_refs/crop_pair05",
+        "tgt_id": "crop_pair05",
+        "source_prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "selected_attributes": [
+          "c087_crop_pair_focus",
+          "direct_green",
+          "non_human",
+          "expanded_target_positive"
+        ]
+      }
+    },
+    {
+      "label": "crop_pair06",
+      "ref_id": "c090_refs/crop_pair06",
+      "seed": 20260906,
+      "reference_path": ".tmp/c092_siglip_hard_shape_root/c090_refs/crop_pair06.jpg",
+      "prompt_row": {
+        "ref_id": "c090_refs/crop_pair06",
+        "tgt_id": "crop_pair06",
+        "source_prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "selected_attributes": [
+          "c087_crop_pair_focus",
+          "direct_green",
+          "non_human",
+          "expanded_target_positive"
+        ]
+      }
+    },
+    {
+      "label": "crop_pair07",
+      "ref_id": "c090_refs/crop_pair07",
+      "seed": 20260907,
+      "reference_path": ".tmp/c092_siglip_hard_shape_root/c090_refs/crop_pair07.jpg",
+      "prompt_row": {
+        "ref_id": "c090_refs/crop_pair07",
+        "tgt_id": "crop_pair07",
+        "source_prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "selected_attributes": [
+          "c087_crop_pair_focus",
+          "direct_green",
+          "non_human",
+          "expanded_target_positive"
+        ]
+      }
+    },
+    {
+      "label": "crop_pair08",
+      "ref_id": "c090_refs/crop_pair08",
+      "seed": 20260908,
+      "reference_path": ".tmp/c092_siglip_hard_shape_root/c090_refs/crop_pair08.jpg",
+      "prompt_row": {
+        "ref_id": "c090_refs/crop_pair08",
+        "tgt_id": "crop_pair08",
+        "source_prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "selected_attributes": [
+          "c087_crop_pair_focus",
+          "direct_green",
+          "non_human",
+          "expanded_target_positive"
+        ]
+      }
+    },
+    {
+      "label": "crop_pair09",
+      "ref_id": "c090_refs/crop_pair09",
+      "seed": 20260909,
+      "reference_path": ".tmp/c092_siglip_hard_shape_root/c090_refs/crop_pair09.jpg",
+      "prompt_row": {
+        "ref_id": "c090_refs/crop_pair09",
+        "tgt_id": "crop_pair09",
+        "source_prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "prompt": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "selected_attributes": [
+          "c087_crop_pair_focus",
+          "direct_green",
+          "non_human",
+          "expanded_target_positive"
+        ]
+      }
+    },
+    {
+      "label": "heldout07",
+      "ref_id": "c090_refs/heldout07",
+      "seed": 20260910,
+      "reference_path": ".tmp/c092_siglip_hard_shape_root/c090_refs/heldout07.jpg",
+      "prompt_row": {
+        "ref_id": "c090_refs/heldout07",
+        "tgt_id": "heldout07",
+        "source_prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, green monster face with red glowing eye, angry tense expression, angry martial artist close-up, side profile portrait, green eerie cave lighting, androgynous elegant warrior, metal shoulder armor, old bearded martial arts master, dark armored robe, clenched fist foreground, messy black hair, night palace rooftop, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+        "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, green monster face with red glowing eye, angry tense expression, angry martial artist close-up, side profile portrait, green eerie cave lighting, androgynous elegant warrior, metal shoulder armor, old bearded martial arts master, dark armored robe, clenched fist foreground, messy black hair, night palace rooftop, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+        "selected_attributes": [
+          "green monster face with red glowing eye",
+          "angry tense expression",
+          "angry martial artist close-up",
+          "side profile portrait",
+          "green eerie cave lighting",
+          "androgynous elegant warrior",
+          "metal shoulder armor",
+          "old bearded martial arts master",
+          "dark armored robe",
+          "clenched fist foreground",
+          "messy black hair",
+          "night palace rooftop"
+        ]
+      }
+    }
+  ],
+  "results": {
+    "crop_pair00_no_ip": {
+      "prompt_id": "221b19e4-c6c9-41fc-9bcd-9cb8f12824cf",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair00_no_ip.png",
+      "image_info": {
+        "filename": "crop_pair00_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair00_siglip_pilot_w14": {
+      "prompt_id": "898bc35c-f837-467c-9f1e-d672e89a1011",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair00_siglip_pilot_w14.png",
+      "image_info": {
+        "filename": "crop_pair00_siglip_pilot_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair00_c089_shape_w14": {
+      "prompt_id": "dfd46a0c-2d3f-4677-b1c7-5564f638cc0b",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair00_c089_shape_w14.png",
+      "image_info": {
+        "filename": "crop_pair00_c089_shape_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair00_c091_feature_calibrator_w14": {
+      "prompt_id": "fa64c68d-271e-4915-ae4f-a83b4639a8f0",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair00_c091_feature_calibrator_w14.png",
+      "image_info": {
+        "filename": "crop_pair00_c091_feature_calibrator_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair00_c092_qwen_target_w10": {
+      "prompt_id": "98f13a92-84a7-42eb-9263-11ef710febdc",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair00_c092_qwen_target_w10.png",
+      "image_info": {
+        "filename": "crop_pair00_c092_qwen_target_w10_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair00_c092_qwen_target_w14": {
+      "prompt_id": "ac13743d-accb-4c96-b3dd-da498c0616d2",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair00_c092_qwen_target_w14.png",
+      "image_info": {
+        "filename": "crop_pair00_c092_qwen_target_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair01_no_ip": {
+      "prompt_id": "a982ce95-92c7-46b3-a672-9bf2503a6bc4",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair01_no_ip.png",
+      "image_info": {
+        "filename": "crop_pair01_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair01_siglip_pilot_w14": {
+      "prompt_id": "25721a4c-35c6-448f-9875-1eed619f50fa",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair01_siglip_pilot_w14.png",
+      "image_info": {
+        "filename": "crop_pair01_siglip_pilot_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair01_c089_shape_w14": {
+      "prompt_id": "c0d70c1a-49fa-4fea-8c82-98aea128e65f",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair01_c089_shape_w14.png",
+      "image_info": {
+        "filename": "crop_pair01_c089_shape_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair01_c091_feature_calibrator_w14": {
+      "prompt_id": "211432dd-7b8f-451f-b329-687a76317943",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair01_c091_feature_calibrator_w14.png",
+      "image_info": {
+        "filename": "crop_pair01_c091_feature_calibrator_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair01_c092_qwen_target_w10": {
+      "prompt_id": "c6a59768-f47b-4137-9ae5-8311deb1d440",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair01_c092_qwen_target_w10.png",
+      "image_info": {
+        "filename": "crop_pair01_c092_qwen_target_w10_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair01_c092_qwen_target_w14": {
+      "prompt_id": "d8572f90-53f9-4c25-b03e-8cee14964659",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair01_c092_qwen_target_w14.png",
+      "image_info": {
+        "filename": "crop_pair01_c092_qwen_target_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair02_no_ip": {
+      "prompt_id": "4b2e7293-d988-4e81-9e2c-33a5538e2859",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair02_no_ip.png",
+      "image_info": {
+        "filename": "crop_pair02_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair02_siglip_pilot_w14": {
+      "prompt_id": "b7360b6a-7a0b-43e2-86ab-ef168f08b4c6",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair02_siglip_pilot_w14.png",
+      "image_info": {
+        "filename": "crop_pair02_siglip_pilot_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair02_c089_shape_w14": {
+      "prompt_id": "26030f27-73e2-4748-9032-66cda123bda8",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair02_c089_shape_w14.png",
+      "image_info": {
+        "filename": "crop_pair02_c089_shape_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair02_c091_feature_calibrator_w14": {
+      "prompt_id": "0438767e-a4b0-4ec1-8863-b85fbe173b6c",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair02_c091_feature_calibrator_w14.png",
+      "image_info": {
+        "filename": "crop_pair02_c091_feature_calibrator_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair02_c092_qwen_target_w10": {
+      "prompt_id": "685393b5-3986-4e1f-8af0-86db02775e8c",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair02_c092_qwen_target_w10.png",
+      "image_info": {
+        "filename": "crop_pair02_c092_qwen_target_w10_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair02_c092_qwen_target_w14": {
+      "prompt_id": "576bb80e-92c5-4e53-b988-a14ae0289857",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair02_c092_qwen_target_w14.png",
+      "image_info": {
+        "filename": "crop_pair02_c092_qwen_target_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair03_no_ip": {
+      "prompt_id": "c439e170-c44b-4c63-b53f-79bb248681d8",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair03_no_ip.png",
+      "image_info": {
+        "filename": "crop_pair03_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair03_siglip_pilot_w14": {
+      "prompt_id": "a7a6e073-d5b4-4957-9729-5e5eeb46ad37",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair03_siglip_pilot_w14.png",
+      "image_info": {
+        "filename": "crop_pair03_siglip_pilot_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair03_c089_shape_w14": {
+      "prompt_id": "e106165c-8e3b-4d5d-a28e-5a668b3d2221",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair03_c089_shape_w14.png",
+      "image_info": {
+        "filename": "crop_pair03_c089_shape_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair03_c091_feature_calibrator_w14": {
+      "prompt_id": "1855f329-1624-460c-a65a-08e64a6d8a46",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair03_c091_feature_calibrator_w14.png",
+      "image_info": {
+        "filename": "crop_pair03_c091_feature_calibrator_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair03_c092_qwen_target_w10": {
+      "prompt_id": "83333508-fc43-48a0-a1ea-6eba9c3ddf91",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair03_c092_qwen_target_w10.png",
+      "image_info": {
+        "filename": "crop_pair03_c092_qwen_target_w10_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair03_c092_qwen_target_w14": {
+      "prompt_id": "a565ae29-905f-47f7-969a-6b9525ef9590",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair03_c092_qwen_target_w14.png",
+      "image_info": {
+        "filename": "crop_pair03_c092_qwen_target_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair04_no_ip": {
+      "prompt_id": "77bc38a4-fb5d-4f8a-9529-2f3643050b29",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair04_no_ip.png",
+      "image_info": {
+        "filename": "crop_pair04_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair04_siglip_pilot_w14": {
+      "prompt_id": "aececab8-8a15-4a3a-a765-00f03301e129",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair04_siglip_pilot_w14.png",
+      "image_info": {
+        "filename": "crop_pair04_siglip_pilot_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair04_c089_shape_w14": {
+      "prompt_id": "1ec83630-6886-4c93-807f-0c29c6c6fa58",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair04_c089_shape_w14.png",
+      "image_info": {
+        "filename": "crop_pair04_c089_shape_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair04_c091_feature_calibrator_w14": {
+      "prompt_id": "176d5ac5-91cc-43f4-a72f-e2856fb76dc7",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair04_c091_feature_calibrator_w14.png",
+      "image_info": {
+        "filename": "crop_pair04_c091_feature_calibrator_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair04_c092_qwen_target_w10": {
+      "prompt_id": "61e374ee-853d-4e95-83cf-191ad8daea42",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair04_c092_qwen_target_w10.png",
+      "image_info": {
+        "filename": "crop_pair04_c092_qwen_target_w10_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair04_c092_qwen_target_w14": {
+      "prompt_id": "28ed0c64-eefc-48e6-b505-1f0aec27ab3d",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair04_c092_qwen_target_w14.png",
+      "image_info": {
+        "filename": "crop_pair04_c092_qwen_target_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair05_no_ip": {
+      "prompt_id": "6b8bd359-d4c7-4059-8196-c7396f63e13a",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair05_no_ip.png",
+      "image_info": {
+        "filename": "crop_pair05_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair05_siglip_pilot_w14": {
+      "prompt_id": "5bab649a-44e0-4672-85bb-cb8b6d7600ef",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair05_siglip_pilot_w14.png",
+      "image_info": {
+        "filename": "crop_pair05_siglip_pilot_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair05_c089_shape_w14": {
+      "prompt_id": "08bb0983-d8bf-4d47-8d11-806869b8c747",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair05_c089_shape_w14.png",
+      "image_info": {
+        "filename": "crop_pair05_c089_shape_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair05_c091_feature_calibrator_w14": {
+      "prompt_id": "be5e16b6-132c-48e9-803d-5bcea66c1f92",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair05_c091_feature_calibrator_w14.png",
+      "image_info": {
+        "filename": "crop_pair05_c091_feature_calibrator_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair05_c092_qwen_target_w10": {
+      "prompt_id": "f5372be7-d3cc-4e47-9766-e3607e6fe850",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair05_c092_qwen_target_w10.png",
+      "image_info": {
+        "filename": "crop_pair05_c092_qwen_target_w10_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair05_c092_qwen_target_w14": {
+      "prompt_id": "0c443bda-3bb6-4ea6-9ce9-4c35d7686d65",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair05_c092_qwen_target_w14.png",
+      "image_info": {
+        "filename": "crop_pair05_c092_qwen_target_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair06_no_ip": {
+      "prompt_id": "1a0db2a6-e3ef-4b32-85ed-76b34e7273d0",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair06_no_ip.png",
+      "image_info": {
+        "filename": "crop_pair06_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair06_siglip_pilot_w14": {
+      "prompt_id": "98dae006-4a40-4c73-91be-572b369054e9",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair06_siglip_pilot_w14.png",
+      "image_info": {
+        "filename": "crop_pair06_siglip_pilot_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair06_c089_shape_w14": {
+      "prompt_id": "81decbb9-ed6e-4c93-a267-6fe81ecccac7",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair06_c089_shape_w14.png",
+      "image_info": {
+        "filename": "crop_pair06_c089_shape_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair06_c091_feature_calibrator_w14": {
+      "prompt_id": "8d053660-8900-4624-89a4-69bc0800c423",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair06_c091_feature_calibrator_w14.png",
+      "image_info": {
+        "filename": "crop_pair06_c091_feature_calibrator_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair06_c092_qwen_target_w10": {
+      "prompt_id": "3004a053-961e-44e9-a713-8b3e1fb130e5",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair06_c092_qwen_target_w10.png",
+      "image_info": {
+        "filename": "crop_pair06_c092_qwen_target_w10_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair06_c092_qwen_target_w14": {
+      "prompt_id": "02c8856c-9feb-49d8-a9b7-27ea5d1307ad",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair06_c092_qwen_target_w14.png",
+      "image_info": {
+        "filename": "crop_pair06_c092_qwen_target_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair07_no_ip": {
+      "prompt_id": "ca003f2c-de58-4f68-bdf0-9df8ac3d629e",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair07_no_ip.png",
+      "image_info": {
+        "filename": "crop_pair07_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair07_siglip_pilot_w14": {
+      "prompt_id": "ccd31a03-9d63-4f42-a3be-735e63fafc3e",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair07_siglip_pilot_w14.png",
+      "image_info": {
+        "filename": "crop_pair07_siglip_pilot_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair07_c089_shape_w14": {
+      "prompt_id": "8ee80766-e748-422c-bfb0-e7937cfe44fd",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair07_c089_shape_w14.png",
+      "image_info": {
+        "filename": "crop_pair07_c089_shape_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair07_c091_feature_calibrator_w14": {
+      "prompt_id": "80c3ef98-002a-471a-bd46-d13370591a95",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair07_c091_feature_calibrator_w14.png",
+      "image_info": {
+        "filename": "crop_pair07_c091_feature_calibrator_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair07_c092_qwen_target_w10": {
+      "prompt_id": "bd849710-706d-4316-ac4c-2f31e1cbdbdb",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair07_c092_qwen_target_w10.png",
+      "image_info": {
+        "filename": "crop_pair07_c092_qwen_target_w10_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair07_c092_qwen_target_w14": {
+      "prompt_id": "c245fe97-9a9b-40bd-ab79-9fe5b8019474",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair07_c092_qwen_target_w14.png",
+      "image_info": {
+        "filename": "crop_pair07_c092_qwen_target_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair08_no_ip": {
+      "prompt_id": "b1bc083b-27e5-49b1-ba5b-79348f49a7fa",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair08_no_ip.png",
+      "image_info": {
+        "filename": "crop_pair08_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair08_siglip_pilot_w14": {
+      "prompt_id": "9b82e2d4-3333-4d3b-9fe6-22ab0ac251c5",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair08_siglip_pilot_w14.png",
+      "image_info": {
+        "filename": "crop_pair08_siglip_pilot_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair08_c089_shape_w14": {
+      "prompt_id": "394f573f-9aba-42b4-9b14-a39f53254c91",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair08_c089_shape_w14.png",
+      "image_info": {
+        "filename": "crop_pair08_c089_shape_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair08_c091_feature_calibrator_w14": {
+      "prompt_id": "30fe3024-7fc5-4667-b2f8-f0e6d516c25f",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair08_c091_feature_calibrator_w14.png",
+      "image_info": {
+        "filename": "crop_pair08_c091_feature_calibrator_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair08_c092_qwen_target_w10": {
+      "prompt_id": "2465c4b5-a8b8-4e36-a10d-fcc692175758",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair08_c092_qwen_target_w10.png",
+      "image_info": {
+        "filename": "crop_pair08_c092_qwen_target_w10_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair08_c092_qwen_target_w14": {
+      "prompt_id": "8820dcd9-d775-4419-94f2-ad1c7516d5c4",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair08_c092_qwen_target_w14.png",
+      "image_info": {
+        "filename": "crop_pair08_c092_qwen_target_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair09_no_ip": {
+      "prompt_id": "36cdb931-92dc-40b7-9139-6110d9db179e",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair09_no_ip.png",
+      "image_info": {
+        "filename": "crop_pair09_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair09_siglip_pilot_w14": {
+      "prompt_id": "9a6a63ba-313c-4672-ab6e-3cddebb100aa",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair09_siglip_pilot_w14.png",
+      "image_info": {
+        "filename": "crop_pair09_siglip_pilot_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair09_c089_shape_w14": {
+      "prompt_id": "faddb0ce-606b-4a1d-8ebe-758a3c771f3d",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair09_c089_shape_w14.png",
+      "image_info": {
+        "filename": "crop_pair09_c089_shape_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair09_c091_feature_calibrator_w14": {
+      "prompt_id": "ce8c5c66-1d34-4b84-a19f-5c7994b82796",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair09_c091_feature_calibrator_w14.png",
+      "image_info": {
+        "filename": "crop_pair09_c091_feature_calibrator_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair09_c092_qwen_target_w10": {
+      "prompt_id": "310f3517-42b4-4b60-b813-14f543643c41",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair09_c092_qwen_target_w10.png",
+      "image_info": {
+        "filename": "crop_pair09_c092_qwen_target_w10_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "crop_pair09_c092_qwen_target_w14": {
+      "prompt_id": "27771c4d-5fd6-4a4f-b55a-bc5da51a915b",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/crop_pair09_c092_qwen_target_w14.png",
+      "image_info": {
+        "filename": "crop_pair09_c092_qwen_target_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "heldout07_no_ip": {
+      "prompt_id": "15d2f851-bca4-4a52-af48-aaa1d73dcfb3",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/heldout07_no_ip.png",
+      "image_info": {
+        "filename": "heldout07_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "heldout07_siglip_pilot_w14": {
+      "prompt_id": "35efbc5f-fa39-4c5a-a9e6-55b60732e9a1",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/heldout07_siglip_pilot_w14.png",
+      "image_info": {
+        "filename": "heldout07_siglip_pilot_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "heldout07_c089_shape_w14": {
+      "prompt_id": "2d53b24e-7449-4ac7-9332-60a92ca44f47",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/heldout07_c089_shape_w14.png",
+      "image_info": {
+        "filename": "heldout07_c089_shape_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "heldout07_c091_feature_calibrator_w14": {
+      "prompt_id": "650c1949-54ec-4ad8-84d5-dc68278f844c",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/heldout07_c091_feature_calibrator_w14.png",
+      "image_info": {
+        "filename": "heldout07_c091_feature_calibrator_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "heldout07_c092_qwen_target_w10": {
+      "prompt_id": "52681919-3294-4ed7-bdbf-524de7dbf0cc",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/heldout07_c092_qwen_target_w10.png",
+      "image_info": {
+        "filename": "heldout07_c092_qwen_target_w10_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    },
+    "heldout07_c092_qwen_target_w14": {
+      "prompt_id": "fbadf365-b09e-4cb2-b7a7-b08e2bc4b7cc",
+      "image": "eval/c092_qwen_target_siglip_generation_gate_20260613/heldout07_c092_qwen_target_w14.png",
+      "image_info": {
+        "filename": "heldout07_c092_qwen_target_w14_00001_.png",
+        "subfolder": "anima_ipadapter/c092_qwen_target_siglip_generation_gate_20260613",
+        "type": "output"
+      }
+    }
+  },
+  "baseline_candidates": {
+    "crop_pair00": {
+      "blend_species_face": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair00_blend_species_face.png",
+      "c086_hard_negative_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair00_c086_hard_negative_w14.png",
+      "c087_expanded_crop_positive_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair00_c087_expanded_crop_positive_w14.png"
+    },
+    "crop_pair01": {
+      "blend_species_face": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair01_blend_species_face.png",
+      "c086_hard_negative_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair01_c086_hard_negative_w14.png",
+      "c087_expanded_crop_positive_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair01_c087_expanded_crop_positive_w14.png"
+    },
+    "crop_pair02": {
+      "blend_species_face": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair02_blend_species_face.png",
+      "c086_hard_negative_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair02_c086_hard_negative_w14.png",
+      "c087_expanded_crop_positive_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair02_c087_expanded_crop_positive_w14.png"
+    },
+    "crop_pair03": {
+      "blend_species_face": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair03_blend_species_face.png",
+      "c086_hard_negative_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair03_c086_hard_negative_w14.png",
+      "c087_expanded_crop_positive_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair03_c087_expanded_crop_positive_w14.png"
+    },
+    "crop_pair04": {
+      "blend_species_face": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair04_blend_species_face.png",
+      "c086_hard_negative_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair04_c086_hard_negative_w14.png",
+      "c087_expanded_crop_positive_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair04_c087_expanded_crop_positive_w14.png"
+    },
+    "crop_pair05": {
+      "blend_species_face": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair05_blend_species_face.png",
+      "c086_hard_negative_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair05_c086_hard_negative_w14.png",
+      "c087_expanded_crop_positive_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair05_c087_expanded_crop_positive_w14.png"
+    },
+    "crop_pair06": {
+      "blend_species_face": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair06_blend_species_face.png",
+      "c086_hard_negative_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair06_c086_hard_negative_w14.png",
+      "c087_expanded_crop_positive_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair06_c087_expanded_crop_positive_w14.png"
+    },
+    "crop_pair07": {
+      "blend_species_face": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair07_blend_species_face.png",
+      "c086_hard_negative_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair07_c086_hard_negative_w14.png",
+      "c087_expanded_crop_positive_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair07_c087_expanded_crop_positive_w14.png"
+    },
+    "crop_pair08": {
+      "blend_species_face": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair08_blend_species_face.png",
+      "c086_hard_negative_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair08_c086_hard_negative_w14.png",
+      "c087_expanded_crop_positive_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair08_c087_expanded_crop_positive_w14.png"
+    },
+    "crop_pair09": {
+      "blend_species_face": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair09_blend_species_face.png",
+      "c086_hard_negative_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair09_c086_hard_negative_w14.png",
+      "c087_expanded_crop_positive_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/crop_pair09_c087_expanded_crop_positive_w14.png"
+    },
+    "heldout07": {
+      "blend_species_face": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/heldout07_blend_species_face.png",
+      "c086_hard_negative_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/heldout07_c086_hard_negative_w14.png",
+      "c087_expanded_crop_positive_w14": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c087_expanded_crop_positive_gate_20260613/heldout07_c087_expanded_crop_positive_w14.png"
+    }
+  }
+}

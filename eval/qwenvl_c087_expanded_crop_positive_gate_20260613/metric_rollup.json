@@ -1,0 +1,214 @@
+{
+  "pe_clean": {
+    "all": [
+      {
+        "variant": "blend_species_face",
+        "cases": 40,
+        "mean_uplift": 0.060893215239048004,
+        "improved_rate": 0.825,
+        "mean_cosine": 0.8150266468524933,
+        "mean_no_ip_cosine": 0.7541334316134453
+      },
+      {
+        "variant": "c085_anchored_full_adapter_w14",
+        "cases": 40,
+        "mean_uplift": 0.030897478759288787,
+        "improved_rate": 0.725,
+        "mean_cosine": 0.7850309103727341,
+        "mean_no_ip_cosine": 0.7541334316134453
+      },
+      {
+        "variant": "c086_hard_negative_w14",
+        "cases": 40,
+        "mean_uplift": 0.059578078985214236,
+        "improved_rate": 0.75,
+        "mean_cosine": 0.8137115105986595,
+        "mean_no_ip_cosine": 0.7541334316134453
+      },
+      {
+        "variant": "c087_expanded_crop_positive_w14",
+        "cases": 40,
+        "mean_uplift": 0.03111930787563324,
+        "improved_rate": 0.725,
+        "mean_cosine": 0.7852527394890785,
+        "mean_no_ip_cosine": 0.7541334316134453
+      }
+    ],
+    "heldout": [
+      {
+        "variant": "blend_species_face",
+        "cases": 8,
+        "mean_uplift": 0.05353397876024246,
+        "improved_rate": 0.875,
+        "mean_cosine": 0.8040817752480507,
+        "mean_no_ip_cosine": 0.7505477964878082
+      },
+      {
+        "variant": "c085_anchored_full_adapter_w14",
+        "cases": 8,
+        "mean_uplift": 0.0370979905128479,
+        "improved_rate": 0.75,
+        "mean_cosine": 0.7876457870006561,
+        "mean_no_ip_cosine": 0.7505477964878082
+      },
+      {
+        "variant": "c086_hard_negative_w14",
+        "cases": 8,
+        "mean_uplift": 0.06484054774045944,
+        "improved_rate": 0.75,
+        "mean_cosine": 0.8153883442282677,
+        "mean_no_ip_cosine": 0.7505477964878082
+      },
+      {
+        "variant": "c087_expanded_crop_positive_w14",
+        "cases": 8,
+        "mean_uplift": 0.060273706912994385,
+        "improved_rate": 1.0,
+        "mean_cosine": 0.8108215034008026,
+        "mean_no_ip_cosine": 0.7505477964878082
+      }
+    ]
+  },
+  "qwenvl_clean": {
+    "all": [
+      {
+        "variant": "blend_species_face",
+        "cases": 40,
+        "mean_uplift": 0.042190256714820865,
+        "improved_rate": 0.8,
+        "mean_cosine": 0.8232675865292549,
+        "mean_no_ip_cosine": 0.781077329814434
+      },
+      {
+        "variant": "c085_anchored_full_adapter_w14",
+        "cases": 40,
+        "mean_uplift": 0.03060174435377121,
+        "improved_rate": 0.775,
+        "mean_cosine": 0.8116790741682053,
+        "mean_no_ip_cosine": 0.781077329814434
+      },
+      {
+        "variant": "c086_hard_negative_w14",
+        "cases": 40,
+        "mean_uplift": 0.03881262540817261,
+        "improved_rate": 0.9,
+        "mean_cosine": 0.8198899552226067,
+        "mean_no_ip_cosine": 0.781077329814434
+      },
+      {
+        "variant": "c087_expanded_crop_positive_w14",
+        "cases": 40,
+        "mean_uplift": 0.03102608323097229,
+        "improved_rate": 0.8,
+        "mean_cosine": 0.8121034130454063,
+        "mean_no_ip_cosine": 0.781077329814434
+      }
+    ],
+    "heldout": [
+      {
+        "variant": "blend_species_face",
+        "cases": 8,
+        "mean_uplift": 0.02647087723016739,
+        "improved_rate": 0.75,
+        "mean_cosine": 0.8346929922699928,
+        "mean_no_ip_cosine": 0.8082221150398254
+      },
+      {
+        "variant": "c085_anchored_full_adapter_w14",
+        "cases": 8,
+        "mean_uplift": 0.019257262349128723,
+        "improved_rate": 0.75,
+        "mean_cosine": 0.8274793773889542,
+        "mean_no_ip_cosine": 0.8082221150398254
+      },
+      {
+        "variant": "c086_hard_negative_w14",
+        "cases": 8,
+        "mean_uplift": 0.03258483111858368,
+        "improved_rate": 0.75,
+        "mean_cosine": 0.8408069461584091,
+        "mean_no_ip_cosine": 0.8082221150398254
+      },
+      {
+        "variant": "c087_expanded_crop_positive_w14",
+        "cases": 8,
+        "mean_uplift": 0.013936266303062439,
+        "improved_rate": 0.75,
+        "mean_cosine": 0.8221583813428879,
+        "mean_no_ip_cosine": 0.8082221150398254
+      }
+    ]
+  },
+  "pe_crop": {
+    "all": [
+      {
+        "variant": "blend_species_face",
+        "cases": 10,
+        "mean_uplift": -0.05496852174401283,
+        "improved_rate": 0.4,
+        "mean_cosine": 0.49259503111243247,
+        "mean_no_ip_cosine": 0.5475635528564453
+      },
+      {
+        "variant": "c085_anchored_full_adapter_w14",
+        "cases": 10,
+        "mean_uplift": 0.08159445524215699,
+        "improved_rate": 0.7,
+        "mean_cosine": 0.6291580080986023,
+        "mean_no_ip_cosine": 0.5475635528564453
+      },
+      {
+        "variant": "c086_hard_negative_w14",
+        "cases": 10,
+        "mean_uplift": 0.09405969381332398,
+        "improved_rate": 0.7,
+        "mean_cosine": 0.6416232466697693,
+        "mean_no_ip_cosine": 0.5475635528564453
+      },
+      {
+        "variant": "c087_expanded_crop_positive_w14",
+        "cases": 10,
+        "mean_uplift": 0.05364899635314942,
+        "improved_rate": 0.7,
+        "mean_cosine": 0.6012125492095948,
+        "mean_no_ip_cosine": 0.5475635528564453
+      }
+    ]
+  },
+  "qwenvl_crop": {
+    "all": [
+      {
+        "variant": "blend_species_face",
+        "cases": 10,
+        "mean_uplift": -0.0043623924255371095,
+        "improved_rate": 0.5,
+        "mean_cosine": 0.5839921772480011,
+        "mean_no_ip_cosine": 0.5883545696735382
+      },
+      {
+        "variant": "c085_anchored_full_adapter_w14",
+        "cases": 10,
+        "mean_uplift": 0.022207731008529664,
+        "improved_rate": 0.8,
+        "mean_cosine": 0.6105623006820678,
+        "mean_no_ip_cosine": 0.5883545696735382
+      },
+      {
+        "variant": "c086_hard_negative_w14",
+        "cases": 10,
+        "mean_uplift": 0.0023720264434814453,
+        "improved_rate": 0.5,
+        "mean_cosine": 0.5907265961170196,
+        "mean_no_ip_cosine": 0.5883545696735382
+      },
+      {
+        "variant": "c087_expanded_crop_positive_w14",
+        "cases": 10,
+        "mean_uplift": 0.004354548454284668,
+        "improved_rate": 0.6,
+        "mean_cosine": 0.5927091181278229,
+        "mean_no_ip_cosine": 0.5883545696735382
+      }
+    ]
+  }
+}

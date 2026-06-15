@@ -1,0 +1,13 @@
+candidate_id,manual_label,manual_note
+c072_036_0016,useful_proxy_non_human,cartoon non human green limbs proxy only not anime target
+c072_044_0009,guard_false_positive_human,human cat girl green outfit not target
+c072_045_0044,guard_false_positive_human,human fox girl no direct green skin
+c072_045_0045,guard_false_positive_human,human girl no direct green non human trait
+c072_045_0064,guard_false_positive_human,human fox girl no direct green skin
+c072_045_0083,guard_false_positive_human,human child cat girl no direct green skin
+c072_045_0097,guard_false_positive_human,human animal ear girl with green clothing only
+c072_036_0020,useful_proxy_non_human,non human monster proxy but red brown body not direct green
+c072_036_0078,guard_false_positive_human,monochrome human manga woman not target
+c072_036_0083,useful_proxy_non_human,monochrome creepy non human proxy but no green color
+c072_036_0092,useful_proxy_non_human,small non human scene proxy low clarity no direct green body
+c072_036_0098,useful_proxy_non_human,monochrome unsettling humanoid proxy but no green color

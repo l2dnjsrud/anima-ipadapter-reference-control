@@ -1,0 +1,26 @@
+{
+  "steps": 128,
+  "rows_loaded": 304,
+  "first_loss": 0.11275840550661087,
+  "final_loss": 0.13933560252189636,
+  "mean_loss": 0.20897179545136169,
+  "mean_base_loss": 0.15929224516730756,
+  "mean_contrastive_loss": 0.04817592288600281,
+  "mean_retrieval_loss": 0.25090378802269697,
+  "finite_loss": true,
+  "trainable_parameters": 308176540,
+  "frozen_base_parameters": 4947838963,
+  "checkpoint": {
+    "output_path": "checkpoints/anima_qwenvl_ip_adapter_c087_expanded_crop_positive_b128_0128_20260613.safetensors",
+    "loadable": true,
+    "pe_checkpoint_rejected": true
+  },
+  "init_checkpoint_path": "checkpoints/anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors",
+  "contrastive_weight": 0.25,
+  "contrastive_margin": 0.05,
+  "retrieval_weight": 0.15,
+  "retrieval_margin": 0.25,
+  "calibrator_bottleneck_dim": 128,
+  "train_calibrator_only": false,
+  "explicit_negative_rows": 0
+}

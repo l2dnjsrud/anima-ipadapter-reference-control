@@ -1,0 +1,50 @@
+{
+  "experiment": "qwenvl_c055_larger_blend_gate_20260612_c058",
+  "decision": "best_runtime_candidate_not_final_quality_pass_distillation_or_training_next",
+  "metric_summary": {
+    "pe": {
+      "blend_prev14_c05504": {
+        "mean_uplift": 0.04959603399038315,
+        "improved_rate": 0.725
+      },
+      "prev_w14": {
+        "mean_uplift": 0.02924041748046875,
+        "improved_rate": 0.75
+      }
+    },
+    "qwenvl": {
+      "blend_prev14_c05504": {
+        "mean_uplift": 0.04158879667520523,
+        "improved_rate": 0.8
+      },
+      "prev_w14": {
+        "mean_uplift": 0.036187461018562316,
+        "improved_rate": 0.725
+      }
+    }
+  },
+  "visual_summary": {
+    "strengths": [
+      "broad character cue transfer",
+      "hair/costume/color cue transfer",
+      "old/bald/headwear cue recovery on several heldout samples"
+    ],
+    "failures": [
+      "exact pose and crop are not reliable",
+      "speech bubble and panel layout are not preserved",
+      "distinctive props such as fan/hand details are unstable",
+      "non-human silhouette can regress even when metric improves"
+    ]
+  },
+  "heldout_notes": {
+    "heldout00": "blend is slightly closer than prev on silhouette, but pale face direction, fan, and side/back composition are not preserved",
+    "heldout01": "angry male cue is transferred, but age, beard density, and speech bubble are weak",
+    "heldout02": "bald old monk cue improves over no_ip and blend is slightly stronger than prev, but crop/style are still off",
+    "heldout03": "red seated woman cue transfers; blend is cleaner, but hand pose and bubble/page details are not preserved",
+    "heldout04": "black-haired side-face cue transfers; blend has cleaner costume, but speech bubbles and exact crop fail",
+    "heldout05": "official hat/shouting cue transfers; blend is cleaner, but profile composition and speech bubble fail",
+    "heldout06": "official headwear/mustache cue transfers; blend is stronger than prev but expression/crop still drift",
+    "heldout07": "structural fail: reference green demon side head becomes full-body dark demon/assassin under prev/blend"
+  },
+  "next_step": "Use c058 as evidence that runtime blend is current best but insufficient; proceed to distillation or failure-focused continuation rather than more simple runtime weight sweeps."
+}

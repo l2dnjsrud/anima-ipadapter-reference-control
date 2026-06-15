@@ -1,0 +1,95 @@
+{
+  "base_url": "http://127.0.0.1:8114",
+  "positive": "masterpiece, best quality, score_7, colored wuxia manhwa comic panel, stern old bald martial arts monk, long white beard, thick eyebrows, prayer beads necklace, traditional robe, dramatic palace interior background, speech bubble, clean ink lines, cel shaded anime style, cinematic lighting",
+  "negative": "low quality, blurry, bad anatomy, deformed face, text, watermark, extra limbs, abstract, washed out, noise",
+  "steps": 16,
+  "results": {
+    "no_ip": {
+      "prompt_id": "9dbd8591-d7d4-410e-8a53-596f90620cec",
+      "image": "eval/siglip_runtime_quality_20260611_c002/no_ip.png",
+      "weight": null
+    },
+    "siglip_w0": {
+      "prompt_id": "eeaeaf37-6a35-40c6-bbe5-67bc6295fdb2",
+      "image": "eval/siglip_runtime_quality_20260611_c002/siglip_w0.png",
+      "weight": 0.0
+    },
+    "siglip_w04": {
+      "prompt_id": "a8982200-3731-4cad-b285-e1b567641d46",
+      "image": "eval/siglip_runtime_quality_20260611_c002/siglip_w04.png",
+      "weight": 0.4
+    },
+    "siglip_w08": {
+      "prompt_id": "19cae0bf-32f0-4749-9812-f78e776379fe",
+      "image": "eval/siglip_runtime_quality_20260611_c002/siglip_w08.png",
+      "weight": 0.8
+    },
+    "siglip_w12": {
+      "prompt_id": "475d5823-eb2d-47d8-8bc8-0c5b1204f392",
+      "image": "eval/siglip_runtime_quality_20260611_c002/siglip_w12.png",
+      "weight": 1.2
+    },
+    "siglip_w16": {
+      "prompt_id": "92a30e96-e2ba-4c5a-b7d8-c7bdcd10bda0",
+      "image": "eval/siglip_runtime_quality_20260611_c002/siglip_w16.png",
+      "weight": 1.6
+    }
+  },
+  "metrics": {
+    "no_ip": {
+      "mean_abs_vs_no_ip": 0.0,
+      "rms_vs_no_ip": 0.0,
+      "max_abs_vs_no_ip": 0,
+      "size": [
+        1344,
+        800
+      ]
+    },
+    "siglip_w0": {
+      "mean_abs_vs_no_ip": 0.0,
+      "rms_vs_no_ip": 0.0,
+      "max_abs_vs_no_ip": 0,
+      "size": [
+        1344,
+        800
+      ]
+    },
+    "siglip_w04": {
+      "mean_abs_vs_no_ip": 27.26995814732143,
+      "rms_vs_no_ip": 44.18889236450195,
+      "max_abs_vs_no_ip": 252,
+      "size": [
+        1344,
+        800
+      ]
+    },
+    "siglip_w08": {
+      "mean_abs_vs_no_ip": 35.765756448412695,
+      "rms_vs_no_ip": 54.37331771850586,
+      "max_abs_vs_no_ip": 255,
+      "size": [
+        1344,
+        800
+      ]
+    },
+    "siglip_w12": {
+      "mean_abs_vs_no_ip": 41.32002945188492,
+      "rms_vs_no_ip": 60.948543548583984,
+      "max_abs_vs_no_ip": 254,
+      "size": [
+        1344,
+        800
+      ]
+    },
+    "siglip_w16": {
+      "mean_abs_vs_no_ip": 44.065653211805554,
+      "rms_vs_no_ip": 60.154197692871094,
+      "max_abs_vs_no_ip": 248,
+      "size": [
+        1344,
+        800
+      ]
+    }
+  },
+  "contact_sheet": "eval/siglip_runtime_quality_20260611_c002/contact_sheet.jpg"
+}

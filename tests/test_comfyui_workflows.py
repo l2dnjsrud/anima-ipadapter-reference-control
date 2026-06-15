@@ -10,6 +10,8 @@ LEGACY_WORKFLOWS = (
     "anima_ipadapter_contactsheet_ref03_ersde.json",
 )
 NATIVE_WORKFLOW = "anima_ipadapter_pe_native_reference.json"
+SIGLIP_NATIVE_WORKFLOW = "anima_ipadapter_siglip_native_reference.json"
+SIGLIP_ATTRIBUTE_WORKFLOW = "anima_ipadapter_siglip_attribute_reference.json"
 
 
 def _load_workflow(workflow_name: str) -> dict:
@@ -122,3 +124,117 @@ def test_native_workflow_matches_reference_eval_sampling_shift() -> None:
         if input_slot.get("link") is not None
     }
     assert nodes[input_sources["model"]]["type"] == "UNETLoader"
+
+
+def test_siglip_native_workflow_is_normal_comfyui_graph() -> None:
+    workflow = _load_workflow(SIGLIP_NATIVE_WORKFLOW)
+    node_types = {node["type"] for node in workflow["nodes"]}
+
+    required = {
+        "LoadImage",
+        "AnimaSigLIPIPAdapterLoader",
+        "AnimaSigLIPEncodeImage",
+        "AnimaSigLIPIPAdapterApply",
+        "UNETLoader",
+        "CLIPLoader",
+        "CLIPTextEncodeFlux",
+        "EmptySD3LatentImage",
+        "RandomNoise",
+        "CFGGuider",
+        "ModelSamplingFlux",
+        "KSamplerSelect",
+        "BasicScheduler",
+        "SamplerCustomAdvanced",
+        "VAELoader",
+        "VAEDecode",
+        "SaveImage",
+    }
+
+    assert required <= node_types
+    assert "AnimaIPAdapterGenerate" not in node_types
+    assert "AnimaPEIPAdapterLoader" not in node_types
+    assert "AnimaPEEncodeImage" not in node_types
+    assert "AnimaPEIPAdapterApply" not in node_types
+
+
+def test_siglip_native_workflow_uses_selector_name_not_raw_path() -> None:
+    workflow = _load_workflow(SIGLIP_NATIVE_WORKFLOW)
+    loader = next(
+        node for node in workflow["nodes"] if node["type"] == "AnimaSigLIPIPAdapterLoader"
+    )
+    values_text = "\n".join(str(value) for value in loader["widgets_values"])
+
+    assert loader["widgets_values"] == [
+        "anima_siglip_ip_adapter_c089_shape_pe_teacher_0032_20260613.safetensors"
+    ]
+    assert "/home/wktwin/" not in values_text
+    assert "/data/ai/" not in values_text
+
+
+def test_siglip_native_workflow_links_apply_model_to_sampler_path() -> None:
+    workflow = _load_workflow(SIGLIP_NATIVE_WORKFLOW)
+    nodes = {node["id"]: node for node in workflow["nodes"]}
+    links = {link[0]: link for link in workflow["links"]}
+
+    apply_node = next(
+        node for node in workflow["nodes"] if node["type"] == "AnimaSigLIPIPAdapterApply"
+    )
+    output_link_ids = set(apply_node["outputs"][0]["links"])
+    destinations = {(links[link_id][3], links[link_id][4]) for link_id in output_link_ids}
+
+    assert any(
+        nodes[node_id]["type"] == "CFGGuider" and slot == 0
+        for node_id, slot in destinations
+    )
+    assert any(
+        nodes[node_id]["type"] == "BasicScheduler" and slot == 0
+        for node_id, slot in destinations
+    )
+
+    input_sources = {
+        input_slot["name"]: links[input_slot["link"]][1]
+        for input_slot in apply_node["inputs"]
+        if input_slot.get("link") is not None
+    }
+    assert nodes[input_sources["model"]]["type"] == "ModelSamplingFlux"
+    assert nodes[input_sources["ipadapter"]]["type"] == "AnimaSigLIPIPAdapterLoader"
+    assert nodes[input_sources["siglip_features"]]["type"] == "AnimaSigLIPEncodeImage"
+
+
+def test_siglip_attribute_workflow_uses_siglip_ref_retrieval_recipe() -> None:
+    workflow = _load_workflow(SIGLIP_ATTRIBUTE_WORKFLOW)
+    loader = next(
+        node for node in workflow["nodes"] if node["type"] == "AnimaSigLIPIPAdapterLoader"
+    )
+    apply_node = next(
+        node for node in workflow["nodes"] if node["type"] == "AnimaSigLIPIPAdapterApply"
+    )
+    values_text = "\n".join(str(value) for node in workflow["nodes"] for value in node["widgets_values"])
+
+    assert loader["widgets_values"] == [
+        "anima_siglip_ip_adapter_single_character_clean32_pe_retrieval_0128_20260611.safetensors"
+    ]
+    assert apply_node["widgets_values"] == [1.4, 0.0, 0.85]
+    assert "/home/wktwin/" not in values_text
+    assert "/data/ai/" not in values_text
+
+
+def test_siglip_attribute_workflow_links_apply_model_to_sampler_path() -> None:
+    workflow = _load_workflow(SIGLIP_ATTRIBUTE_WORKFLOW)
+    nodes = {node["id"]: node for node in workflow["nodes"]}
+    links = {link[0]: link for link in workflow["links"]}
+
+    apply_node = next(
+        node for node in workflow["nodes"] if node["type"] == "AnimaSigLIPIPAdapterApply"
+    )
+    output_link_ids = set(apply_node["outputs"][0]["links"])
+    destinations = {(links[link_id][3], links[link_id][4]) for link_id in output_link_ids}
+
+    assert any(
+        nodes[node_id]["type"] == "CFGGuider" and slot == 0
+        for node_id, slot in destinations
+    )
+    assert any(
+        nodes[node_id]["type"] == "BasicScheduler" and slot == 0
+        for node_id, slot in destinations
+    )

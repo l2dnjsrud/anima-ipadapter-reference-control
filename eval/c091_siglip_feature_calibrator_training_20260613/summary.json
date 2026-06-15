@@ -1,0 +1,79 @@
+{
+  "experiment": "c091_siglip_feature_calibrator_pilot",
+  "decision": "proceed_to_c091_generation_gate",
+  "manifest": {
+    "output_manifest_path": "/home/wktwin/anima-ipadapter-reference-control/training/manifests/c089_shape_silhouette_distillation_20260613.jsonl",
+    "scratch_image_root": "/home/wktwin/anima-ipadapter-reference-control/.tmp/c089_shape_silhouette_distillation_root",
+    "source_manifest_path": "/home/wktwin/anima-ipadapter-reference-control/training/manifests/c087_expanded_crop_pairs_20260613.jsonl",
+    "source_rows": 224,
+    "total_rows": 64,
+    "heldout_rows_used": 0,
+    "max_rows_per_group": 16,
+    "selected_group_counts": {
+      "c082_frog_yokai_guard": 16,
+      "c082_goblin_mage": 16,
+      "c082_green_oni_scout": 16,
+      "c082_jade_lizard_monk": 16
+    },
+    "teacher_source_labels": [
+      "pe_teacher_prediction",
+      "pe_token_retrieval",
+      "edge_projection_silhouette_probe"
+    ],
+    "materialized_image_count": 51,
+    "decision": "ready_for_c089_siglip_pe_teacher_pilot"
+  },
+  "training": {
+    "steps": 64,
+    "rows_loaded": 64,
+    "first_loss": 0.2653019428253174,
+    "final_loss": 0.1954212784767151,
+    "mean_loss": 0.2397075854241848,
+    "mean_base_loss": 0.1392745333723724,
+    "mean_contrastive_loss": 0.05009647650877014,
+    "mean_teacher_loss": 0.00796114100739942,
+    "mean_token_loss": 0.7639477364718914,
+    "mean_pe_token_loss": 0.11584814125671983,
+    "mean_pe_retrieval_loss": 0.19991017691791058,
+    "finite_loss": true,
+    "trainable_parameters": 199680,
+    "frozen_base_parameters": 2913827059,
+    "checkpoint": {
+      "output_path": "checkpoints/anima_siglip_ip_adapter_c091_feature_calibrator_b64_0064_20260613.safetensors",
+      "loadable": true,
+      "pe_checkpoint_rejected": true
+    },
+    "init_checkpoint_path": "checkpoints/anima_siglip_ip_adapter_c089_shape_pe_teacher_0032_20260613.safetensors",
+    "contrastive_weight": 0.15,
+    "contrastive_margin": 0.05,
+    "teacher_weight": 0.7,
+    "token_weight": 0.0,
+    "token_max_similarity": 0.2,
+    "pe_token_weight": 0.15,
+    "pe_token_block_stride": 4,
+    "pe_retrieval_weight": 0.35,
+    "pe_retrieval_margin": 0.2,
+    "calibrator_bottleneck_dim": 64,
+    "train_calibrator_only": true
+  },
+  "metrics": {
+    "finite_loss": true,
+    "checkpoint_loadable": true,
+    "pe_checkpoint_rejected": true,
+    "loss_delta": -0.0698806643486023,
+    "first_loss": 0.2653019428253174,
+    "final_loss": 0.1954212784767151,
+    "trainable_parameters": 199680,
+    "calibrator_bottleneck_dim": 64,
+    "train_calibrator_only": true,
+    "rows_loaded": 64,
+    "steps": 64,
+    "checkpoint_path": "checkpoints/anima_siglip_ip_adapter_c091_feature_calibrator_b64_0064_20260613.safetensors"
+  },
+  "artifacts": {
+    "train_stdout": "eval/c091_siglip_feature_calibrator_training_20260613/train_stdout.txt",
+    "summary": "eval/c091_siglip_feature_calibrator_training_20260613/summary.json",
+    "training_summary": "eval/c091_siglip_feature_calibrator_training_20260613/training_summary.json",
+    "report": "eval/c091_siglip_feature_calibrator_training_20260613/report.md"
+  }
+}

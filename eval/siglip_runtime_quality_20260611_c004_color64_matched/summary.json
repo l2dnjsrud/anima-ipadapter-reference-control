@@ -1,0 +1,71 @@
+{
+  "base_url": "http://127.0.0.1:8114",
+  "checkpoint": "anima_siglip_ip_adapter_color64_continue_20260611.safetensors",
+  "positive": "masterpiece, best quality, score_7, colored wuxia manhwa comic panel, stern old bald martial arts monk, long white beard, thick eyebrows, prayer beads necklace, traditional robe, dramatic palace interior background, speech bubble, clean ink lines, cel shaded anime style, cinematic lighting",
+  "steps": 16,
+  "results": {
+    "color64_w04": {
+      "prompt_id": "d3b9e03b-00a1-4577-9054-a68c2912e083",
+      "image": "eval/siglip_runtime_quality_20260611_c004_color64_matched/color64_w04.png",
+      "weight": 0.4
+    },
+    "color64_w08": {
+      "prompt_id": "4649692a-89b9-4771-878f-bea22181ca8e",
+      "image": "eval/siglip_runtime_quality_20260611_c004_color64_matched/color64_w08.png",
+      "weight": 0.8
+    },
+    "color64_w12": {
+      "prompt_id": "6ce486b2-8ea3-4a39-b2fa-dd8b3a0fb593",
+      "image": "eval/siglip_runtime_quality_20260611_c004_color64_matched/color64_w12.png",
+      "weight": 1.2
+    },
+    "color64_w16": {
+      "prompt_id": "ab92afa7-9602-4740-bbaf-5ab9f3e7283e",
+      "image": "eval/siglip_runtime_quality_20260611_c004_color64_matched/color64_w16.png",
+      "weight": 1.6
+    }
+  },
+  "metrics": {
+    "no_ip": {
+      "mean_abs_vs_no_ip": 0.0,
+      "rms_vs_no_ip": 0.0,
+      "max_abs_vs_no_ip": 0
+    },
+    "pilot_w04": {
+      "mean_abs_vs_no_ip": 27.26995814732143,
+      "rms_vs_no_ip": 44.18889236450195,
+      "max_abs_vs_no_ip": 252
+    },
+    "color64_w04": {
+      "mean_abs_vs_no_ip": 34.08520523313492,
+      "rms_vs_no_ip": 53.38187789916992,
+      "max_abs_vs_no_ip": 251
+    },
+    "pilot_w08": {
+      "mean_abs_vs_no_ip": 35.765756448412695,
+      "rms_vs_no_ip": 54.37331771850586,
+      "max_abs_vs_no_ip": 255
+    },
+    "color64_w08": {
+      "mean_abs_vs_no_ip": 53.2948775421627,
+      "rms_vs_no_ip": 73.41506958007812,
+      "max_abs_vs_no_ip": 251
+    },
+    "pilot_w12": {
+      "mean_abs_vs_no_ip": 41.32002945188492,
+      "rms_vs_no_ip": 60.948543548583984,
+      "max_abs_vs_no_ip": 254
+    },
+    "color64_w12": {
+      "mean_abs_vs_no_ip": 58.664987289186506,
+      "rms_vs_no_ip": 79.11320495605469,
+      "max_abs_vs_no_ip": 255
+    },
+    "color64_w16": {
+      "mean_abs_vs_no_ip": 60.12768260168651,
+      "rms_vs_no_ip": 82.46515655517578,
+      "max_abs_vs_no_ip": 255
+    }
+  },
+  "contact_sheet": "eval/siglip_runtime_quality_20260611_c004_color64_matched/contact_sheet.jpg"
+}

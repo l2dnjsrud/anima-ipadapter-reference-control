@@ -1,0 +1,54 @@
+{
+  "variant_summaries": {
+    "blend_species_face": {
+      "cases": 11,
+      "mean_uplift": -0.04365191457847577,
+      "improved_rate": 0.36363636363636365
+    },
+    "c086_hard_negative_w14": {
+      "cases": 11,
+      "mean_uplift": 0.050174909082205704,
+      "improved_rate": 0.7272727272727273
+    },
+    "c087_expanded_crop_positive_w14": {
+      "cases": 11,
+      "mean_uplift": 0.10895440559772807,
+      "improved_rate": 0.9090909090909091
+    },
+    "c089_shape_w14": {
+      "cases": 11,
+      "mean_uplift": 0.024921435615903164,
+      "improved_rate": 0.7272727272727273
+    },
+    "c091_feature_calibrator_w14": {
+      "cases": 11,
+      "mean_uplift": 0.024088173699299265,
+      "improved_rate": 0.7272727272727273
+    },
+    "c092_qwen_target_w10": {
+      "cases": 11,
+      "mean_uplift": 0.07382548763785077,
+      "improved_rate": 0.9090909090909091
+    },
+    "c092_qwen_target_w14": {
+      "cases": 11,
+      "mean_uplift": 0.08526816531384505,
+      "improved_rate": 1.0
+    },
+    "no_ip": {
+      "cases": 11,
+      "mean_uplift": 0.0,
+      "improved_rate": 0.0
+    },
+    "siglip_pilot_w14": {
+      "cases": 11,
+      "mean_uplift": -0.06624003835926072,
+      "improved_rate": 0.18181818181818182
+    }
+  },
+  "best_c092_variant": "c092_qwen_target_w14",
+  "best_c091_variant": "c091_feature_calibrator_w14",
+  "best_c089_variant": "c089_shape_w14",
+  "best_qwen_baseline_variant": "c087_expanded_crop_positive_w14",
+  "decision": "c092_improves_c089_but_not_qwen_baseline"
+}

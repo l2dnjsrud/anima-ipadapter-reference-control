@@ -1,0 +1,4 @@
+curl_exit=7
+lsof_8116_listener=none
+c108_generation_runner_exited=true
+comfyui_session_stopped=true

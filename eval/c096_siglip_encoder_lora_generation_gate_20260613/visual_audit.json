@@ -1,0 +1,28 @@
+{
+  "date": "2026-06-13",
+  "decision": "c096_encoder_lora_not_promoted_requires_data_expansion_or_deeper_encoder_training",
+  "promoted": false,
+  "contact_sheet": "contact_sheet_hard_shape.jpg",
+  "contact_sheet_size": [2334, 3504],
+  "samples": 11,
+  "variants": 7,
+  "generated_images": 77,
+  "best_c096_variant": "c096_lora_c094_w14",
+  "best_c096_mean_uplift": 0.08808495528618471,
+  "c094_w14_mean_uplift": 0.08788329540499396,
+  "c095_w14_mean_uplift": 0.08652233470140815,
+  "qwen_baseline_mean_uplift": 0.10895440559772807,
+  "heldout07": {
+    "best_c096_uplift": 0.005656986085992688,
+    "c094_w14_uplift": 0.008562351254518985,
+    "c095_w14_uplift": 0.01154170337811311
+  },
+  "c096_blank_like_rows": [],
+  "visual_findings": [
+    "The native SigLIP encoder LoRA path works and generates nonblank C096 images.",
+    "Frog, chibi, mascot, and yokai references still collapse toward a green adult humanoid face or bust.",
+    "Heldout07 remains a failure: non-human side-profile and jaw silhouette are not preserved.",
+    "C096 w1.4 is visually close to C094/C095 and does not add a decisive new reference-control signal."
+  ],
+  "next_decision": "Use larger reviewed hard-shape pairs or deeper encoder adaptation instead of repeating shallow encoder LoRA at this data scale."
+}

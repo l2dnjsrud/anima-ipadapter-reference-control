@@ -1,0 +1,393 @@
+{
+  "base_url": "http://127.0.0.1:8116",
+  "variants": [
+    {
+      "label": "no_ip",
+      "checkpoint": null,
+      "weight": 0.0
+    },
+    {
+      "label": "siglip_pe_space_w14",
+      "checkpoint": "anima_siglip_ip_adapter_single_character_clean32_pe_space_init_0512_20260611.safetensors",
+      "weight": 1.4
+    },
+    {
+      "label": "siglip_pe_retrieval_w14",
+      "checkpoint": "anima_siglip_ip_adapter_single_character_clean32_pe_retrieval_0128_20260611.safetensors",
+      "weight": 1.4
+    }
+  ],
+  "samples": [
+    {
+      "label": "auto00",
+      "ref_id": "001-100/SG-015/mrcolor_panel_style_v5_edge_trim_strict_00031_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00464_SG-015-14_page_985x1775_s01",
+      "seed": 20260650,
+      "prompt_row": {
+        "ref_id": "001-100/SG-015/mrcolor_panel_style_v5_edge_trim_strict_00031_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00464_SG-015-14_page_985x1775_s01",
+        "tgt_id": "001-100/SG-015/mrcolor_panel_style_v5_edge_trim_strict_00031_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00464_SG-015-14_page_985x1775_s01",
+        "source_prompt": "mrcolor_panel_style, full color manga panel, clean webtoon coloring, manhwa panel art, character panel, action panel, single panel",
+        "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, long black-haired wuxia swordsman, long flowing black hair, stern serious expression, side profile portrait, black martial robe with red trim, dark night palace background, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+        "selected_attributes": [
+          "long black-haired wuxia swordsman",
+          "long flowing black hair",
+          "stern serious expression",
+          "side profile portrait",
+          "black martial robe with red trim",
+          "dark night palace background"
+        ]
+      }
+    },
+    {
+      "label": "auto01",
+      "ref_id": "001-100/SG-026/mrcolor_panel_style_v4_split_edge_strict_probe_00166_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00817_SG-026-07_page_2011x2902_s01",
+      "seed": 20260651,
+      "prompt_row": {
+        "ref_id": "001-100/SG-026/mrcolor_panel_style_v4_split_edge_strict_probe_00166_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00817_SG-026-07_page_2011x2902_s01",
+        "tgt_id": "001-100/SG-026/mrcolor_panel_style_v4_split_edge_strict_probe_00166_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00817_SG-026-07_page_2011x2902_s01",
+        "source_prompt": "mrcolor_panel_style, full color manga panel, clean webtoon coloring, manhwa panel art, character panel, close-up panel, action panel, single panel",
+        "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, angry martial artist close-up, angry tense expression, sharp eyebrows and stern eyes, upper body close-up portrait, tan traditional robe, warm orange firelit background, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+        "selected_attributes": [
+          "angry martial artist close-up",
+          "angry tense expression",
+          "sharp eyebrows and stern eyes",
+          "upper body close-up portrait",
+          "tan traditional robe",
+          "warm orange firelit background"
+        ]
+      }
+    },
+    {
+      "label": "auto02",
+      "ref_id": "001-100/SG-071/mrcolor_panel_style_v4_split_edge_strict_probe_00444_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02306_SG-071-05_page_1115x1356_s01",
+      "seed": 20260652,
+      "prompt_row": {
+        "ref_id": "001-100/SG-071/mrcolor_panel_style_v4_split_edge_strict_probe_00444_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02306_SG-071-05_page_1115x1356_s01",
+        "tgt_id": "001-100/SG-071/mrcolor_panel_style_v4_split_edge_strict_probe_00444_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02306_SG-071-05_page_1115x1356_s01",
+        "source_prompt": "mrcolor_panel_style, full color manga panel, clean webtoon coloring, manhwa panel art, character panel, close-up panel, action panel, single panel",
+        "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, old bearded martial arts master, white gray beard and thick eyebrows, stern serious expression, upper body close-up portrait, tan traditional robe, cool blue gray palace lighting, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+        "selected_attributes": [
+          "old bearded martial arts master",
+          "white gray beard and thick eyebrows",
+          "stern serious expression",
+          "upper body close-up portrait",
+          "tan traditional robe",
+          "cool blue gray palace lighting"
+        ]
+      }
+    },
+    {
+      "label": "auto03",
+      "ref_id": "101-200/SG-121/mrcolor_panel_style_v5_edge_trim_strict_00253_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_04078_SG-121-05_page_1965x2851_s01",
+      "seed": 20260653,
+      "prompt_row": {
+        "ref_id": "101-200/SG-121/mrcolor_panel_style_v5_edge_trim_strict_00253_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_04078_SG-121-05_page_1965x2851_s01",
+        "tgt_id": "101-200/SG-121/mrcolor_panel_style_v5_edge_trim_strict_00253_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_04078_SG-121-05_page_1965x2851_s01",
+        "source_prompt": "mrcolor_panel_style, full color manga panel, clean webtoon coloring, manhwa panel art, character panel, close-up panel, action panel, single panel",
+        "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, tan traditional robe, angry tense expression, upper body close-up portrait, angry martial artist close-up, open screaming mouth, dark night palace background, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+        "selected_attributes": [
+          "tan traditional robe",
+          "angry tense expression",
+          "upper body close-up portrait",
+          "angry martial artist close-up",
+          "open screaming mouth",
+          "dark night palace background"
+        ]
+      }
+    },
+    {
+      "label": "auto04",
+      "ref_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-221/mrcolor_panel_style_v4_split_edge_strict_probe_01236_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_07442_SG-221-10_page_2087x2877_s03",
+      "seed": 20260654,
+      "prompt_row": {
+        "ref_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-221/mrcolor_panel_style_v4_split_edge_strict_probe_01236_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_07442_SG-221-10_page_2087x2877_s03",
+        "tgt_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-221/mrcolor_panel_style_v4_split_edge_strict_probe_01236_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_07442_SG-221-10_page_2087x2877_s03",
+        "source_prompt": "mrcolor_panel_style, full color manga panel, clean webtoon coloring, manhwa panel art, character panel, close-up panel, action panel, single panel",
+        "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, angry martial artist close-up, angry tense expression, sharp eyebrows and stern eyes, side profile portrait, black martial robe with red trim, dark night palace background, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+        "selected_attributes": [
+          "angry martial artist close-up",
+          "angry tense expression",
+          "sharp eyebrows and stern eyes",
+          "side profile portrait",
+          "black martial robe with red trim",
+          "dark night palace background"
+        ]
+      }
+    },
+    {
+      "label": "auto05",
+      "ref_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-244/mrcolor_panel_style_v4_split_edge_strict_probe_01334_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_08090_SG-244-08_page_2130x1528_s01",
+      "seed": 20260655,
+      "prompt_row": {
+        "ref_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-244/mrcolor_panel_style_v4_split_edge_strict_probe_01334_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_08090_SG-244-08_page_2130x1528_s01",
+        "tgt_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-244/mrcolor_panel_style_v4_split_edge_strict_probe_01334_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_08090_SG-244-08_page_2130x1528_s01",
+        "source_prompt": "mrcolor_panel_style, full color manga panel, clean webtoon coloring, manhwa panel art, character panel, close-up panel, action panel, single panel",
+        "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, angry martial artist close-up, angry tense expression, open screaming mouth, upper body close-up portrait, blue gray scholar robe and official hat, dark night palace background, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+        "selected_attributes": [
+          "angry martial artist close-up",
+          "angry tense expression",
+          "open screaming mouth",
+          "upper body close-up portrait",
+          "blue gray scholar robe and official hat",
+          "dark night palace background"
+        ]
+      }
+    },
+    {
+      "label": "auto06",
+      "ref_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-263/mrcolor_panel_style_v4_split_edge_strict_probe_01412_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_08482_SG-263-09_page_559x1112_s01",
+      "seed": 20260656,
+      "prompt_row": {
+        "ref_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-263/mrcolor_panel_style_v4_split_edge_strict_probe_01412_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_08482_SG-263-09_page_559x1112_s01",
+        "tgt_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-263/mrcolor_panel_style_v4_split_edge_strict_probe_01412_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_08482_SG-263-09_page_559x1112_s01",
+        "source_prompt": "mrcolor_panel_style, full color manga panel, clean webtoon coloring, manhwa panel art, character panel, close-up panel, action panel, single panel",
+        "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, angry martial artist close-up, stern serious expression, blue gray scholar robe and official hat, sharp eyebrows and stern eyes, upper body close-up portrait, cool blue gray palace lighting, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+        "selected_attributes": [
+          "angry martial artist close-up",
+          "stern serious expression",
+          "blue gray scholar robe and official hat",
+          "sharp eyebrows and stern eyes",
+          "upper body close-up portrait",
+          "cool blue gray palace lighting"
+        ]
+      }
+    },
+    {
+      "label": "auto07",
+      "ref_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-274/mrcolor_panel_style_v4_split_edge_strict_probe_01452_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_08754_SG-274-04_page_1407x1264_s03",
+      "seed": 20260657,
+      "prompt_row": {
+        "ref_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-274/mrcolor_panel_style_v4_split_edge_strict_probe_01452_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_08754_SG-274-04_page_1407x1264_s03",
+        "tgt_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-274/mrcolor_panel_style_v4_split_edge_strict_probe_01452_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_08754_SG-274-04_page_1407x1264_s03",
+        "source_prompt": "mrcolor_panel_style, full color manga panel, clean webtoon coloring, manhwa panel art, character panel, close-up panel, action panel, single panel",
+        "prompt": "masterpiece, best quality, score_7, safe, mrcolor_panel_style, solo character portrait, angry tense expression, angry martial artist close-up, open screaming mouth, side profile portrait, dark armored robe, cool blue gray palace lighting, full color manhwa comic panel, clean ink lines, cel shaded anime style, dramatic lighting, simple palace background, no text",
+        "selected_attributes": [
+          "angry tense expression",
+          "angry martial artist close-up",
+          "open screaming mouth",
+          "side profile portrait",
+          "dark armored robe",
+          "cool blue gray palace lighting"
+        ]
+      }
+    }
+  ],
+  "results": {
+    "auto00_no_ip": {
+      "prompt_id": "f8c3b84c-00c0-46e9-a1ce-950c4c38db15",
+      "image": "eval/siglip_runtime_quality_20260612_c033_auto_caption_runtime/auto00_no_ip.png",
+      "image_info": {
+        "filename": "auto00_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260612_c033_auto_caption_runtime",
+        "type": "output"
+      }
+    },
+    "auto00_siglip_pe_space_w14": {
+      "prompt_id": "75387b7a-fbea-42df-9242-7837cb0d00dd",
+      "image": "eval/siglip_runtime_quality_20260612_c033_auto_caption_runtime/auto00_siglip_pe_space_w14.png",
+      "image_info": {
+        "filename": "auto00_siglip_pe_space_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260612_c033_auto_caption_runtime",
+        "type": "output"
+      }
+    },
+    "auto00_siglip_pe_retrieval_w14": {
+      "prompt_id": "2d111fbe-2b42-4219-b2f9-331e5a6e482f",
+      "image": "eval/siglip_runtime_quality_20260612_c033_auto_caption_runtime/auto00_siglip_pe_retrieval_w14.png",
+      "image_info": {
+        "filename": "auto00_siglip_pe_retrieval_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260612_c033_auto_caption_runtime",
+        "type": "output"
+      }
+    },
+    "auto01_no_ip": {
+      "prompt_id": "96757488-1875-4518-b964-5a4da43ecbc5",
+      "image": "eval/siglip_runtime_quality_20260612_c033_auto_caption_runtime/auto01_no_ip.png",
+      "image_info": {
+        "filename": "auto01_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260612_c033_auto_caption_runtime",
+        "type": "output"
+      }
+    },
+    "auto01_siglip_pe_space_w14": {
+      "prompt_id": "0788486e-9370-4143-908d-43622c81036b",
+      "image": "eval/siglip_runtime_quality_20260612_c033_auto_caption_runtime/auto01_siglip_pe_space_w14.png",
+      "image_info": {
+        "filename": "auto01_siglip_pe_space_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260612_c033_auto_caption_runtime",
+        "type": "output"
+      }
+    },
+    "auto01_siglip_pe_retrieval_w14": {
+      "prompt_id": "1a83d8d0-8103-4684-8f2f-5bb8dd0721b3",
+      "image": "eval/siglip_runtime_quality_20260612_c033_auto_caption_runtime/auto01_siglip_pe_retrieval_w14.png",
+      "image_info": {
+        "filename": "auto01_siglip_pe_retrieval_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260612_c033_auto_caption_runtime",
+        "type": "output"
+      }
+    },
+    "auto02_no_ip": {
+      "prompt_id": "a6ece1fc-95ca-4e35-85c7-2c22645b1a53",
+      "image": "eval/siglip_runtime_quality_20260612_c033_auto_caption_runtime/auto02_no_ip.png",
+      "image_info": {
+        "filename": "auto02_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260612_c033_auto_caption_runtime",
+        "type": "output"
+      }
+    },
+    "auto02_siglip_pe_space_w14": {
+      "prompt_id": "bcc962ee-8ebf-4a34-ada5-65b0bc63be3a",
+      "image": "eval/siglip_runtime_quality_20260612_c033_auto_caption_runtime/auto02_siglip_pe_space_w14.png",
+      "image_info": {
+        "filename": "auto02_siglip_pe_space_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260612_c033_auto_caption_runtime",
+        "type": "output"
+      }
+    },
+    "auto02_siglip_pe_retrieval_w14": {
+      "prompt_id": "d049c267-6c9c-4682-bf35-346a312e186f",
+      "image": "eval/siglip_runtime_quality_20260612_c033_auto_caption_runtime/auto02_siglip_pe_retrieval_w14.png",
+      "image_info": {
+        "filename": "auto02_siglip_pe_retrieval_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260612_c033_auto_caption_runtime",
+        "type": "output"
+      }
+    },
+    "auto03_no_ip": {
+      "prompt_id": "c06635b1-360b-475a-bdce-8bf328bd79ee",
+      "image": "eval/siglip_runtime_quality_20260612_c033_auto_caption_runtime/auto03_no_ip.png",
+      "image_info": {
+        "filename": "auto03_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260612_c033_auto_caption_runtime",
+        "type": "output"
+      }
+    },
+    "auto03_siglip_pe_space_w14": {
+      "prompt_id": "5a62b465-e3ca-47a1-85a7-f6ca010baa66",
+      "image": "eval/siglip_runtime_quality_20260612_c033_auto_caption_runtime/auto03_siglip_pe_space_w14.png",
+      "image_info": {
+        "filename": "auto03_siglip_pe_space_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260612_c033_auto_caption_runtime",
+        "type": "output"
+      }
+    },
+    "auto03_siglip_pe_retrieval_w14": {
+      "prompt_id": "1a2d83b4-1448-43a2-a278-b335c9a8cff7",
+      "image": "eval/siglip_runtime_quality_20260612_c033_auto_caption_runtime/auto03_siglip_pe_retrieval_w14.png",
+      "image_info": {
+        "filename": "auto03_siglip_pe_retrieval_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260612_c033_auto_caption_runtime",
+        "type": "output"
+      }
+    },
+    "auto04_no_ip": {
+      "prompt_id": "783b6033-7fd2-4bc6-854c-9fa7b2cfb757",
+      "image": "eval/siglip_runtime_quality_20260612_c033_auto_caption_runtime/auto04_no_ip.png",
+      "image_info": {
+        "filename": "auto04_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260612_c033_auto_caption_runtime",
+        "type": "output"
+      }
+    },
+    "auto04_siglip_pe_space_w14": {
+      "prompt_id": "d1e62110-e182-4de6-a96d-fcada66f6eaf",
+      "image": "eval/siglip_runtime_quality_20260612_c033_auto_caption_runtime/auto04_siglip_pe_space_w14.png",
+      "image_info": {
+        "filename": "auto04_siglip_pe_space_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260612_c033_auto_caption_runtime",
+        "type": "output"
+      }
+    },
+    "auto04_siglip_pe_retrieval_w14": {
+      "prompt_id": "81da673b-2d31-40ca-a580-de0a2c09db04",
+      "image": "eval/siglip_runtime_quality_20260612_c033_auto_caption_runtime/auto04_siglip_pe_retrieval_w14.png",
+      "image_info": {
+        "filename": "auto04_siglip_pe_retrieval_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260612_c033_auto_caption_runtime",
+        "type": "output"
+      }
+    },
+    "auto05_no_ip": {
+      "prompt_id": "cd918790-8f68-4212-a64b-4e4953d39837",
+      "image": "eval/siglip_runtime_quality_20260612_c033_auto_caption_runtime/auto05_no_ip.png",
+      "image_info": {
+        "filename": "auto05_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260612_c033_auto_caption_runtime",
+        "type": "output"
+      }
+    },
+    "auto05_siglip_pe_space_w14": {
+      "prompt_id": "825fc7a8-7daa-4a62-9a14-b312eb093f57",
+      "image": "eval/siglip_runtime_quality_20260612_c033_auto_caption_runtime/auto05_siglip_pe_space_w14.png",
+      "image_info": {
+        "filename": "auto05_siglip_pe_space_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260612_c033_auto_caption_runtime",
+        "type": "output"
+      }
+    },
+    "auto05_siglip_pe_retrieval_w14": {
+      "prompt_id": "fc145b0a-84d9-4db6-b29e-b4860789524d",
+      "image": "eval/siglip_runtime_quality_20260612_c033_auto_caption_runtime/auto05_siglip_pe_retrieval_w14.png",
+      "image_info": {
+        "filename": "auto05_siglip_pe_retrieval_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260612_c033_auto_caption_runtime",
+        "type": "output"
+      }
+    },
+    "auto06_no_ip": {
+      "prompt_id": "cc65ac5c-2153-476c-8175-0fb09cfae2c4",
+      "image": "eval/siglip_runtime_quality_20260612_c033_auto_caption_runtime/auto06_no_ip.png",
+      "image_info": {
+        "filename": "auto06_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260612_c033_auto_caption_runtime",
+        "type": "output"
+      }
+    },
+    "auto06_siglip_pe_space_w14": {
+      "prompt_id": "ce672ec1-3963-44a5-a3c4-370ace3451fa",
+      "image": "eval/siglip_runtime_quality_20260612_c033_auto_caption_runtime/auto06_siglip_pe_space_w14.png",
+      "image_info": {
+        "filename": "auto06_siglip_pe_space_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260612_c033_auto_caption_runtime",
+        "type": "output"
+      }
+    },
+    "auto06_siglip_pe_retrieval_w14": {
+      "prompt_id": "13533a4b-73bf-42b2-8820-85f5059bce8e",
+      "image": "eval/siglip_runtime_quality_20260612_c033_auto_caption_runtime/auto06_siglip_pe_retrieval_w14.png",
+      "image_info": {
+        "filename": "auto06_siglip_pe_retrieval_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260612_c033_auto_caption_runtime",
+        "type": "output"
+      }
+    },
+    "auto07_no_ip": {
+      "prompt_id": "1950395a-7be9-4a42-bf8e-57e10b5e61ca",
+      "image": "eval/siglip_runtime_quality_20260612_c033_auto_caption_runtime/auto07_no_ip.png",
+      "image_info": {
+        "filename": "auto07_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260612_c033_auto_caption_runtime",
+        "type": "output"
+      }
+    },
+    "auto07_siglip_pe_space_w14": {
+      "prompt_id": "75780c7b-d418-43f5-ac5c-a29aabd53662",
+      "image": "eval/siglip_runtime_quality_20260612_c033_auto_caption_runtime/auto07_siglip_pe_space_w14.png",
+      "image_info": {
+        "filename": "auto07_siglip_pe_space_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260612_c033_auto_caption_runtime",
+        "type": "output"
+      }
+    },
+    "auto07_siglip_pe_retrieval_w14": {
+      "prompt_id": "886f688e-1aa5-4028-bdf5-15f93d1e18a1",
+      "image": "eval/siglip_runtime_quality_20260612_c033_auto_caption_runtime/auto07_siglip_pe_retrieval_w14.png",
+      "image_info": {
+        "filename": "auto07_siglip_pe_retrieval_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260612_c033_auto_caption_runtime",
+        "type": "output"
+      }
+    }
+  },
+  "contact_sheet": "eval/siglip_runtime_quality_20260612_c033_auto_caption_runtime/contact_sheet.jpg"
+}

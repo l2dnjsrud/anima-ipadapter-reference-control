@@ -1,0 +1,10 @@
+{
+  "source": "c078_synthetic_direct_green_bootstrap_generation",
+  "base_url": "http://127.0.0.1:8102",
+  "prompt_count": 24,
+  "generated_count": 24,
+  "failed_count": 0,
+  "generation_manifest": "eval/c078_synthetic_direct_green_bootstrap_20260612/generation_manifest.jsonl",
+  "heldout_rows_used": 0,
+  "training_started": false
+}

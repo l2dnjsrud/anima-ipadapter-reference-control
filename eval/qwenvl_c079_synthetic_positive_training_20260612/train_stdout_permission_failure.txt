@@ -1,0 +1,1418 @@
+2026-06-13 07:11:16 INFO     Loading DiT model from               weights.py:167
+                             /home/wktwin/anima-lora-training-bun
+                             dle/anima_lora/models/diffusion_mode
+                             ls/anima-base-v1.0.safetensors,
+                             device=cuda:0
+                    INFO     Loading model files:              lora_utils.py:163
+                             ['/home/wktwin/anima-lora-trainin
+                             g-bundle/anima_lora/models/diffus
+                             ion_models/anima-base-v1.0.safete
+                             nsors']
+                    INFO     Loading state dict. Dtype of      lora_utils.py:320
+                             weight: torch.float32, hook
+                             enabled: False
+Loading anima-base-v1.0.safetensors:   0%|          | 0/545 [00:00<?, ?it/s]Loading anima-base-v1.0.safetensors:   0%|          | 1/545 [00:00<01:09,  7.79it/s]Loading anima-base-v1.0.safetensors:   8%|▊         | 41/545 [00:00<00:02, 210.44it/s]Loading anima-base-v1.0.safetensors:  16%|█▌        | 86/545 [00:00<00:01, 304.82it/s]Loading anima-base-v1.0.safetensors:  24%|██▍       | 131/545 [00:00<00:01, 349.98it/s]Loading anima-base-v1.0.safetensors:  32%|███▏      | 175/545 [00:00<00:00, 378.58it/s]Loading anima-base-v1.0.safetensors:  40%|████      | 219/545 [00:00<00:00, 396.35it/s]Loading anima-base-v1.0.safetensors:  48%|████▊     | 261/545 [00:00<00:00, 403.22it/s]Loading anima-base-v1.0.safetensors:  55%|█████▌    | 302/545 [00:00<00:00, 400.53it/s]Loading anima-base-v1.0.safetensors:  63%|██████▎   | 343/545 [00:00<00:00, 393.49it/s]Loading anima-base-v1.0.safetensors:  71%|███████   | 388/545 [00:01<00:00, 405.49it/s]Loading anima-base-v1.0.safetensors:  86%|████████▌ | 469/545 [00:01<00:00, 523.97it/s]                                                                                       2026-06-13 07:11:17 INFO     Loaded DiT model from                weights.py:210
+                             /home/wktwin/anima-lora-training-bun
+                             dle/anima_lora/models/diffusion_mode
+                             ls/anima-base-v1.0.safetensors,
+                             unexpected missing keys: 0,
+                             unexpected keys: 0
+                    INFO     Initializing VAE                   qwen_vae.py:1880
+                    INFO     Loading VAE from                   qwen_vae.py:1904
+                             /home/wktwin/anima-lora-training-b
+                             undle/anima_lora/models/vae/qwen_i
+                             mage_vae.safetensors
+                    INFO     Converted ComfyUI AutoencoderKL    qwen_vae.py:1800
+                             state dict keys to official format
+                    INFO     Loaded VAE: <All keys matched      qwen_vae.py:1911
+                             successfully>
+                    INFO     Loading Qwen3 text encoder from      weights.py:397
+                             /home/wktwin/anima-lora-training-bun
+                             dle/anima_lora/models/text_encoders/
+                             qwen_3_06b_base.safetensors
+2026-06-13 07:11:25 INFO     Loaded Qwen3 state dict: <All keys   weights.py:450
+                             matched successfully>
+2026-06-13 07:11:26 INFO     Loaded Qwen3 text encoder.           weights.py:458
+                             Parameters: 596,049,920
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V
+                             L-Embedding-2B/resolve/main/modules
+                             .json "HTTP/1.1 307 Temporary
+                             Redirect"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+                    WARNING  Warning: You are sending               _http.py:916
+                             unauthenticated requests to the HF
+                             Hub. Please set a HF_TOKEN to enable
+                             higher rate limits and faster
+                             downloads.
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-
+                             cache/models/Qwen/Qwen3-VL-Embeddin
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764
+                             fec6bb7bda/modules.json "HTTP/1.1
+                             200 OK"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V
+                             L-Embedding-2B/resolve/main/config_
+                             sentence_transformers.json
+                             "HTTP/1.1 307 Temporary Redirect"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-
+                             cache/models/Qwen/Qwen3-VL-Embeddin
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764
+                             fec6bb7bda/config_sentence_transfor
+                             mers.json "HTTP/1.1 200 OK"
+                    INFO     Loading SentenceTransformer model from model.py:992
+                             Qwen/Qwen3-VL-Embedding-2B.
+2026-06-13 07:11:27 INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V
+                             L-Embedding-2B/resolve/main/config_
+                             sentence_transformers.json
+                             "HTTP/1.1 307 Temporary Redirect"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-
+                             cache/models/Qwen/Qwen3-VL-Embeddin
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764
+                             fec6bb7bda/config_sentence_transfor
+                             mers.json "HTTP/1.1 200 OK"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V
+                             L-Embedding-2B/resolve/main/README.
+                             md "HTTP/1.1 307 Temporary
+                             Redirect"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-
+                             cache/models/Qwen/Qwen3-VL-Embeddin
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764
+                             fec6bb7bda/README.md "HTTP/1.1 200
+                             OK"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V
+                             L-Embedding-2B/resolve/main/modules
+                             .json "HTTP/1.1 307 Temporary
+                             Redirect"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-
+                             cache/models/Qwen/Qwen3-VL-Embeddin
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764
+                             fec6bb7bda/modules.json "HTTP/1.1
+                             200 OK"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V
+                             L-Embedding-2B/resolve/main/sentenc
+                             e_bert_config.json "HTTP/1.1 307
+                             Temporary Redirect"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-
+                             cache/models/Qwen/Qwen3-VL-Embeddin
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764
+                             fec6bb7bda/sentence_bert_config.jso
+                             n "HTTP/1.1 200 OK"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V
+                             L-Embedding-2B/resolve/main/adapter
+                             _config.json "HTTP/1.1 404 Not
+                             Found"
+2026-06-13 07:11:28 INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V
+                             L-Embedding-2B/resolve/main/config.
+                             json "HTTP/1.1 307 Temporary
+                             Redirect"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-
+                             cache/models/Qwen/Qwen3-VL-Embeddin
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764
+                             fec6bb7bda/config.json "HTTP/1.1
+                             200 OK"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V
+                             L-Embedding-2B/resolve/main/config.
+                             json "HTTP/1.1 307 Temporary
+                             Redirect"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-
+                             cache/models/Qwen/Qwen3-VL-Embeddin
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764
+                             fec6bb7bda/config.json "HTTP/1.1
+                             200 OK"
+Loading weights:   0%|          | 0/625 [00:00<?, ?it/s]Loading weights:  34%|███▍      | 215/625 [00:00<00:00, 2141.34it/s]Loading weights: 100%|██████████| 625/625 [00:00<00:00, 4740.65it/s]
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V
+                             L-Embedding-2B/resolve/main/process
+                             or_config.json "HTTP/1.1 404 Not
+                             Found"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V
+                             L-Embedding-2B/resolve/main/preproc
+                             essor_config.json "HTTP/1.1 307
+                             Temporary Redirect"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-
+                             cache/models/Qwen/Qwen3-VL-Embeddin
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764
+                             fec6bb7bda/preprocessor_config.json
+                              "HTTP/1.1 200 OK"
+2026-06-13 07:11:29 INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V
+                             L-Embedding-2B/resolve/main/process
+                             or_config.json "HTTP/1.1 404 Not
+                             Found"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V
+                             L-Embedding-2B/resolve/main/preproc
+                             essor_config.json "HTTP/1.1 307
+                             Temporary Redirect"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-
+                             cache/models/Qwen/Qwen3-VL-Embeddin
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764
+                             fec6bb7bda/preprocessor_config.json
+                              "HTTP/1.1 200 OK"
+                    INFO     HTTP Request: GET                   _client.py:1025
+                             https://huggingface.co/api/models/Q
+                             wen/Qwen3-VL-Embedding-2B/tree/main
+                             /additional_chat_templates?recursiv
+                             e=false&expand=false "HTTP/1.1 404
+                             Not Found"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V
+                             L-Embedding-2B/resolve/main/process
+                             or_config.json "HTTP/1.1 404 Not
+                             Found"
+2026-06-13 07:11:30 INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V
+                             L-Embedding-2B/resolve/main/chat_te
+                             mplate.json "HTTP/1.1 404 Not
+                             Found"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V
+                             L-Embedding-2B/resolve/main/chat_te
+                             mplate.jinja "HTTP/1.1 307
+                             Temporary Redirect"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-
+                             cache/models/Qwen/Qwen3-VL-Embeddin
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764
+                             fec6bb7bda/chat_template.jinja
+                             "HTTP/1.1 200 OK"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V
+                             L-Embedding-2B/resolve/main/audio_t
+                             okenizer_config.json "HTTP/1.1 404
+                             Not Found"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V
+                             L-Embedding-2B/resolve/main/process
+                             or_config.json "HTTP/1.1 404 Not
+                             Found"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V
+                             L-Embedding-2B/resolve/main/preproc
+                             essor_config.json "HTTP/1.1 307
+                             Temporary Redirect"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-
+                             cache/models/Qwen/Qwen3-VL-Embeddin
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764
+                             fec6bb7bda/preprocessor_config.json
+                              "HTTP/1.1 200 OK"
+2026-06-13 07:11:31 INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V
+                             L-Embedding-2B/resolve/main/process
+                             or_config.json "HTTP/1.1 404 Not
+                             Found"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V
+                             L-Embedding-2B/resolve/main/preproc
+                             essor_config.json "HTTP/1.1 307
+                             Temporary Redirect"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-
+                             cache/models/Qwen/Qwen3-VL-Embeddin
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764
+                             fec6bb7bda/preprocessor_config.json
+                              "HTTP/1.1 200 OK"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V
+                             L-Embedding-2B/resolve/main/config.
+                             json "HTTP/1.1 307 Temporary
+                             Redirect"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-
+                             cache/models/Qwen/Qwen3-VL-Embeddin
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764
+                             fec6bb7bda/config.json "HTTP/1.1
+                             200 OK"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V
+                             L-Embedding-2B/resolve/main/tokeniz
+                             er_config.json "HTTP/1.1 307
+                             Temporary Redirect"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-
+                             cache/models/Qwen/Qwen3-VL-Embeddin
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764
+                             fec6bb7bda/tokenizer_config.json
+                             "HTTP/1.1 200 OK"
+                    INFO     HTTP Request: GET                   _client.py:1025
+                             https://huggingface.co/api/models/Q
+                             wen/Qwen3-VL-Embedding-2B/tree/main
+                             /additional_chat_templates?recursiv
+                             e=false&expand=false "HTTP/1.1 404
+                             Not Found"
+2026-06-13 07:11:32 INFO     HTTP Request: GET                   _client.py:1025
+                             https://huggingface.co/api/models/Q
+                             wen/Qwen3-VL-Embedding-2B/tree/main
+                             ?recursive=true&expand=false
+                             "HTTP/1.1 200 OK"
+                    INFO     HTTP Request: GET                   _client.py:1025
+                             https://huggingface.co/api/models/Q
+                             wen/Qwen3-VL-Embedding-2B "HTTP/1.1
+                             200 OK"
+2026-06-13 07:11:33 INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V
+                             L-Embedding-2B/resolve/main/process
+                             or_config.json "HTTP/1.1 404 Not
+                             Found"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V
+                             L-Embedding-2B/resolve/main/video_p
+                             reprocessor_config.json "HTTP/1.1
+                             307 Temporary Redirect"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-
+                             cache/models/Qwen/Qwen3-VL-Embeddin
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764
+                             fec6bb7bda/video_preprocessor_confi
+                             g.json "HTTP/1.1 200 OK"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V
+                             L-Embedding-2B/resolve/main/preproc
+                             essor_config.json "HTTP/1.1 307
+                             Temporary Redirect"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-
+                             cache/models/Qwen/Qwen3-VL-Embeddin
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764
+                             fec6bb7bda/preprocessor_config.json
+                              "HTTP/1.1 200 OK"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V
+                             L-Embedding-2B/resolve/main/process
+                             or_config.json "HTTP/1.1 404 Not
+                             Found"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V
+                             L-Embedding-2B/resolve/main/video_p
+                             reprocessor_config.json "HTTP/1.1
+                             307 Temporary Redirect"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-
+                             cache/models/Qwen/Qwen3-VL-Embeddin
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764
+                             fec6bb7bda/video_preprocessor_confi
+                             g.json "HTTP/1.1 200 OK"
+2026-06-13 07:11:34 INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V
+                             L-Embedding-2B/resolve/main/preproc
+                             essor_config.json "HTTP/1.1 307
+                             Temporary Redirect"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-
+                             cache/models/Qwen/Qwen3-VL-Embeddin
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764
+                             fec6bb7bda/preprocessor_config.json
+                              "HTTP/1.1 200 OK"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/Qwen/Qwen3-V
+                             L-Embedding-2B/resolve/main/1_Pooli
+                             ng/config.json "HTTP/1.1 307
+                             Temporary Redirect"
+                    INFO     HTTP Request: HEAD                  _client.py:1025
+                             https://huggingface.co/api/resolve-
+                             cache/models/Qwen/Qwen3-VL-Embeddin
+                             g-2B/9f2f7e710d6d81056aa5c0a4f04764
+                             fec6bb7bda/1_Pooling%2Fconfig.json
+                             "HTTP/1.1 200 OK"
+                    INFO     HTTP Request: GET                   _client.py:1025
+                             https://huggingface.co/api/models/Q
+                             wen/Qwen3-VL-Embedding-2B "HTTP/1.1
+                             200 OK"
+2026-06-13 07:11:35 INFO     Loaded 1 prompt with these keys:       model.py:259
+                             ['default']
+                    WARNING  Default prompt name is set to        logging.py:333
+                             'default'. This prompt will be
+                             applied to all inference calls,
+                             except if a `prompt` or
+                             `prompt_name` parameter is provided.
+2026-06-13 07:11:37 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  3.00it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  3.00it/s]
+2026-06-13 07:11:38 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 20.82it/s]
+2026-06-13 07:11:39 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 20.42it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.21it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 19.88it/s]
+2026-06-13 07:11:40 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 16.71it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.19it/s]
+2026-06-13 07:11:41 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 19.53it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.83it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.82it/s]
+2026-06-13 07:11:42 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.78it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.77it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 11.52it/s]
+2026-06-13 07:11:43 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.26it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.56it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.57it/s]
+2026-06-13 07:11:44 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.38it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.49it/s]
+2026-06-13 07:11:45 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.94it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.55it/s]
+2026-06-13 07:11:46 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.21it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.56it/s]
+2026-06-13 07:11:47 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.38it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.37it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.50it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.48it/s]
+2026-06-13 07:11:48 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.75it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.74it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.87it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.86it/s]
+2026-06-13 07:11:49 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.73it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.71it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 10.27it/s]
+2026-06-13 07:11:50 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.71it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.69it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.52it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.22it/s]
+2026-06-13 07:11:51 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 20.17it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 10.35it/s]
+2026-06-13 07:11:52 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.81it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.80it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.66it/s]
+2026-06-13 07:11:53 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.08it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.56it/s]
+2026-06-13 07:11:54 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.58it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.22it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.10it/s]
+2026-06-13 07:11:55 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.81it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.05it/s]
+2026-06-13 07:11:56 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.57it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.60it/s]
+2026-06-13 07:11:57 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.43it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.37it/s]
+2026-06-13 07:11:58 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.52it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 20.91it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.17it/s]
+2026-06-13 07:11:59 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.50it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.18it/s]
+2026-06-13 07:12:00 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.21it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.43it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.62it/s]
+2026-06-13 07:12:01 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 16.74it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 19.79it/s]
+2026-06-13 07:12:02 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.36it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 20.72it/s]
+2026-06-13 07:12:03 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.72it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.69it/s]
+2026-06-13 07:12:04 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.53it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.52it/s]
+2026-06-13 07:12:05 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.48it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.43it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.18it/s]
+2026-06-13 07:12:06 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.23it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.99it/s]
+2026-06-13 07:12:07 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.34it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.41it/s]
+2026-06-13 07:12:08 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.44it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.34it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 20.71it/s]
+2026-06-13 07:12:09 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 10.37it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 14.94it/s]
+2026-06-13 07:12:10 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.70it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.68it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.15it/s]
+2026-06-13 07:12:11 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.95it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.11it/s]
+2026-06-13 07:12:12 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.53it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.52it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 11.49it/s]
+2026-06-13 07:12:13 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.66it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.65it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.71it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.70it/s]
+2026-06-13 07:12:14 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.78it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.76it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 10.10it/s]
+2026-06-13 07:12:15 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.22it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.88it/s]
+2026-06-13 07:12:16 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.76it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.33it/s]
+2026-06-13 07:12:17 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.32it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.52it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.32it/s]
+2026-06-13 07:12:18 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.60it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.36it/s]
+2026-06-13 07:12:19 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.32it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.94it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.31it/s]
+2026-06-13 07:12:20 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.01it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.65it/s]
+2026-06-13 07:12:21 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 20.45it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 20.73it/s]
+2026-06-13 07:12:22 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.05it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.27it/s]
+2026-06-13 07:12:23 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.36it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.28it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.54it/s]
+2026-06-13 07:12:24 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.32it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.79it/s]
+2026-06-13 07:12:25 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.08it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.75it/s]
+2026-06-13 07:12:26 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.06it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.09it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.02it/s]
+2026-06-13 07:12:27 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.21it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.14it/s]
+2026-06-13 07:12:28 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 18.99it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.15it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.13it/s]
+2026-06-13 07:12:29 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 11.25it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.96it/s]
+2026-06-13 07:12:30 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.06it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.94it/s]
+2026-06-13 07:12:31 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.34it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.18it/s]
+2026-06-13 07:12:32 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 10.02it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.59it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.06it/s]
+2026-06-13 07:12:33 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.08it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.40it/s]
+2026-06-13 07:12:34 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.82it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.89it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.78it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.76it/s]
+2026-06-13 07:12:35 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 10.39it/s]
+2026-06-13 07:12:36 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 10.14it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 10.17it/s]
+2026-06-13 07:12:37 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.89it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.88it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.58it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.57it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.76it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.74it/s]
+2026-06-13 07:12:38 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.80it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.79it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.34it/s]
+2026-06-13 07:12:39 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.27it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.44it/s]
+2026-06-13 07:12:40 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.20it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.13it/s]
+2026-06-13 07:12:41 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.45it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.43it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.44it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.43it/s]
+2026-06-13 07:12:42 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.67it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.66it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.85it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.84it/s]
+2026-06-13 07:12:43 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.94it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.92it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 12.10it/s]
+2026-06-13 07:12:44 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.43it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.22it/s]
+2026-06-13 07:12:45 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.17it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.13it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.28it/s]
+2026-06-13 07:12:46 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.23it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.91it/s]
+2026-06-13 07:12:47 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.14it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.48it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.21it/s]
+2026-06-13 07:12:48 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.40it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.02it/s]
+2026-06-13 07:12:49 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.27it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.38it/s]
+2026-06-13 07:12:50 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.96it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.83it/s]
+2026-06-13 07:12:51 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.31it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.47it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.19it/s]
+2026-06-13 07:12:52 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.08it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.73it/s]
+2026-06-13 07:12:53 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.17it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.25it/s]
+2026-06-13 07:12:54 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.22it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.69it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.83it/s]
+2026-06-13 07:12:55 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.15it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.04it/s]
+2026-06-13 07:12:56 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.32it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.74it/s]
+2026-06-13 07:12:57 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.66it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.65it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.70it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.68it/s]
+2026-06-13 07:12:58 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.84it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.81it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.56it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.54it/s]
+2026-06-13 07:12:59 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.81it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.79it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 10.57it/s]
+2026-06-13 07:13:00 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 11.20it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.69it/s]
+2026-06-13 07:13:01 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.38it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.39it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.42it/s]
+2026-06-13 07:13:02 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.28it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 20.43it/s]
+2026-06-13 07:13:03 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.06it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.31it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.36it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.34it/s]
+2026-06-13 07:13:04 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 10.24it/s]
+2026-06-13 07:13:05 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.18it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.62it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.09it/s]
+2026-06-13 07:13:06 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.61it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.61it/s]
+2026-06-13 07:13:07 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.76it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.67it/s]
+2026-06-13 07:13:08 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.72it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 23.03it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.68it/s]
+2026-06-13 07:13:09 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.93it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.36it/s]
+2026-06-13 07:13:10 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.94it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.84it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.82it/s]
+2026-06-13 07:13:11 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.10it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 14.74it/s]
+2026-06-13 07:13:12 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.67it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.66it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 10.14it/s]
+2026-06-13 07:13:13 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.95it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.94it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 10.19it/s]
+2026-06-13 07:13:14 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.80it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.78it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.66it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.64it/s]
+2026-06-13 07:13:15 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.80it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.78it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 10.52it/s]
+2026-06-13 07:13:16 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.94it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.93it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.81it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.80it/s]
+2026-06-13 07:13:17 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.61it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.60it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.91it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.90it/s]
+2026-06-13 07:13:18 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.70it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.69it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.91it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.89it/s]
+2026-06-13 07:13:19 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.89it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.88it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.56it/s]
+2026-06-13 07:13:20 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.27it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.54it/s]
+2026-06-13 07:13:21 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.45it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.57it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.24it/s]
+2026-06-13 07:13:22 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.74it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.07it/s]
+2026-06-13 07:13:23 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.68it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.29it/s]
+2026-06-13 07:13:24 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.93it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.87it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.20it/s]
+2026-06-13 07:13:25 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.85it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.47it/s]
+2026-06-13 07:13:26 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.24it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.68it/s]
+2026-06-13 07:13:27 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.01it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.73it/s]
+2026-06-13 07:13:28 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.62it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.57it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  9.55it/s]
+2026-06-13 07:13:29 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 21.49it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.92it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.30it/s]
+2026-06-13 07:13:30 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 23.21it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.88it/s]
+2026-06-13 07:13:31 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.30it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.77it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.74it/s]
+2026-06-13 07:13:32 INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 22.71it/s]
+                    INFO     Encoding prompt with Text Encoder       text.py:128
+                    INFO     Moving Text Encoder to appropriate      text.py:125
+                             device: cuda:0
+Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 23.02it/s]
+╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+│ /home/wktwin/anima-ipadapter-reference-control/training/qwenvl_contrastive_c │
+│ li.py:89 in train                                                            │
+│                                                                              │
+│    86 │   │   max_rows=max_rows,                                             │
+│    87 │   │   init_checkpoint_path=init_checkpoint_path,                     │
+│    88 │   )                                                                  │
+│ ❱  89 │   summary = run_qwenvl_contrastive_smoke(                            │
+│    90 │   │   config,                                                        │
+│    91 │   │   contrastive_weight=contrastive_weight,                         │
+│    92 │   │   contrastive_margin=contrastive_margin,                         │
+│                                                                              │
+│ /home/wktwin/anima-ipadapter-reference-control/training/qwenvl_contrastive_s │
+│ moke.py:195 in run_qwenvl_contrastive_smoke                                  │
+│                                                                              │
+│   192 │   │   contrastive_losses.append(float(step_losses.contrastive.detach │
+│   193 │   │   retrieval_losses.append(float(step_losses.retrieval.detach().c │
+│   194 │                                                                      │
+│ ❱ 195 │   save_qwenvl_adapter_checkpoint(adapter, config.output_path)        │
+│   196 │   checkpoint = verify_qwenvl_checkpoint(config.output_path, config.p │
+│   197 │   return QwenVLContrastiveSummary(                                   │
+│   198 │   │   steps=config.steps,                                            │
+│                                                                              │
+│ /home/wktwin/anima-ipadapter-reference-control/training/qwenvl_smoke_checkpo │
+│ int.py:68 in save_qwenvl_adapter_checkpoint                                  │
+│                                                                              │
+│   65 │   │   key: value.detach().cpu().contiguous()                          │
+│   66 │   │   for key, value in adapter.state_dict().items()                  │
+│   67 │   }                                                                   │
+│ ❱ 68 │   save_file(                                                          │
+│   69 │   │   state,                                                          │
+│   70 │   │   str(output_path),                                               │
+│   71 │   │   metadata={                                                      │
+│                                                                              │
+│ /home/wktwin/anima-lora-training-bundle/anima_lora/.venv/lib/python3.13/site │
+│ -packages/safetensors/torch.py:307 in save_file                              │
+│                                                                              │
+│   304 │   save_file(tensors, "model.safetensors")                            │
+│   305 │   ```                                                                │
+│   306 │   """                                                                │
+│ ❱ 307 │   serialize_file(_flatten(tensors), filename, metadata=metadata)     │
+│   308                                                                        │
+│   309                                                                        │
+│   310 def load_file(                                                         │
+╰──────────────────────────────────────────────────────────────────────────────╯
+SafetensorError: Error while serializing: I/O error: Permission denied (os error
+13)

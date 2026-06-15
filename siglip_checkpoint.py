@@ -7,8 +7,22 @@ from typing import Mapping
 import torch
 
 try:
+    from .siglip_checkpoint_errors import SigLIPCheckpointError
+    from .siglip_checkpoint_variants import (
+        detect_calibrator_bottleneck,
+        detect_feature_bridge_bottleneck,
+    )
+    from .siglip_feature_calibration import CalibratedIPAdapterSigLIP
+    from .siglip_feature_bridge import BridgedIPAdapterSigLIP
     from .siglip_model import IPAdapterSigLIP
 except ImportError:
+    from siglip_checkpoint_errors import SigLIPCheckpointError
+    from siglip_checkpoint_variants import (
+        detect_calibrator_bottleneck,
+        detect_feature_bridge_bottleneck,
+    )
+    from siglip_feature_calibration import CalibratedIPAdapterSigLIP
+    from siglip_feature_bridge import BridgedIPAdapterSigLIP
     from siglip_model import IPAdapterSigLIP
 
 
@@ -16,18 +30,11 @@ TensorState = Mapping[str, torch.Tensor]
 
 
 @dataclass(frozen=True, slots=True)
-class SigLIPCheckpointError(RuntimeError):
-    reason: str
-
-    def __str__(self) -> str:
-        return self.reason
-
-
-@dataclass(frozen=True, slots=True)
 class SigLIPCheckpointSpec:
     siglip_dim: int
     siglip_shallow_dim: int
     dit_dim: int
+    ip_hidden_dim: int
     num_blocks: int
     num_queries: int
     resampler_depth: int
@@ -40,6 +47,8 @@ class SigLIPCheckpointSpec:
     ip_heads: int
     time_embed_dim: int
     use_intermediate_encoder: bool
+    calibrator_bottleneck_dim: int | None
+    feature_bridge_bottleneck_dim: int | None
 
 
 def detect_siglip_checkpoint(state: TensorState) -> SigLIPCheckpointSpec:
@@ -50,6 +59,10 @@ def detect_siglip_checkpoint(state: TensorState) -> SigLIPCheckpointSpec:
         raise SigLIPCheckpointError(
             "This is the PE-Core Anima IP-Adapter checkpoint, not a SigLIP2 "
             "TimeResampler/IPCrossAttn checkpoint. Use the PE loader for it."
+        )
+    if "qwenvl_family" in keys:
+        raise SigLIPCheckpointError(
+            "This is a QwenVL embedding IP-Adapter checkpoint, not a SigLIP2 checkpoint."
         )
     if "resampler.latents" in keys and "resampler.time_proj.weight" not in keys:
         raise SigLIPCheckpointError(
@@ -78,7 +91,8 @@ def detect_siglip_checkpoint(state: TensorState) -> SigLIPCheckpointSpec:
         raise SigLIPCheckpointError("Malformed SigLIP checkpoint: no TimeResampler layers found.")
 
     resampler_dim = state["resampler.latents"].shape[2]
-    dit_dim = state["resampler.proj_out.weight"].shape[0]
+    ip_hidden_dim = state["resampler.proj_out.weight"].shape[0]
+    dit_dim = _first_tensor_shape(state, "ip_cross_attns.0.to_k_ip.weight")[0]
     inner_dim = _first_tensor_shape(state, "resampler.layers.0.0.to_q.weight")[0]
     resampler_heads, resampler_dim_head = _infer_attention_split(inner_dim)
     use_intermediate = "intermediate_encoder.shallow_proj.weight" in keys
@@ -101,11 +115,26 @@ def detect_siglip_checkpoint(state: TensorState) -> SigLIPCheckpointSpec:
     siglip_shallow_dim = (
         state["intermediate_encoder.shallow_proj.weight"].shape[1] if use_intermediate else siglip_dim
     )
+    calibrator_bottleneck_dim = detect_calibrator_bottleneck(
+        state, siglip_dim, siglip_shallow_dim
+    )
+    feature_bridge_bottleneck_dim = detect_feature_bridge_bottleneck(
+        state, intermediate_dim
+    )
+    if (
+        calibrator_bottleneck_dim is not None
+        and feature_bridge_bottleneck_dim is not None
+    ):
+        raise SigLIPCheckpointError(
+            "Malformed SigLIP checkpoint: feature_calibrator and feature_bridge "
+            "variants cannot be combined."
+        )
     head_dim = _optional_first_dim(state, "ip_cross_attns.0.norm_ip_q.scale")
     return SigLIPCheckpointSpec(
         siglip_dim=siglip_dim,
         siglip_shallow_dim=siglip_shallow_dim,
         dit_dim=dit_dim,
+        ip_hidden_dim=ip_hidden_dim,
         num_blocks=max(block_indices) + 1,
         num_queries=state["resampler.latents"].shape[1],
         resampler_depth=max(layer_indices) + 1,
@@ -120,28 +149,43 @@ def detect_siglip_checkpoint(state: TensorState) -> SigLIPCheckpointSpec:
         ip_heads=dit_dim // head_dim if head_dim > 0 and dit_dim % head_dim == 0 else _default_heads(dit_dim),
         time_embed_dim=state["resampler.time_proj.weight"].shape[0],
         use_intermediate_encoder=use_intermediate,
+        calibrator_bottleneck_dim=calibrator_bottleneck_dim,
+        feature_bridge_bottleneck_dim=feature_bridge_bottleneck_dim,
     )
 
 
 def build_siglip_adapter_from_state(state: TensorState) -> IPAdapterSigLIP:
     spec = detect_siglip_checkpoint(state)
-    adapter = IPAdapterSigLIP(
-        siglip_dim=spec.siglip_dim,
-        siglip_shallow_dim=spec.siglip_shallow_dim,
-        dit_dim=spec.dit_dim,
-        num_blocks=spec.num_blocks,
-        num_queries=spec.num_queries,
-        resampler_depth=spec.resampler_depth,
-        resampler_heads=spec.resampler_heads,
-        resampler_dim=spec.resampler_dim,
-        resampler_dim_head=spec.resampler_dim_head,
-        intermediate_dim=spec.intermediate_dim,
-        intermediate_layers=max(spec.intermediate_layers, 1),
-        intermediate_heads=spec.intermediate_heads,
-        ip_heads=spec.ip_heads,
-        time_embed_dim=spec.time_embed_dim,
-        use_intermediate_encoder=spec.use_intermediate_encoder,
-    )
+    kwargs = {
+        "siglip_dim": spec.siglip_dim,
+        "siglip_shallow_dim": spec.siglip_shallow_dim,
+        "dit_dim": spec.dit_dim,
+        "ip_hidden_dim": spec.ip_hidden_dim,
+        "num_blocks": spec.num_blocks,
+        "num_queries": spec.num_queries,
+        "resampler_depth": spec.resampler_depth,
+        "resampler_heads": spec.resampler_heads,
+        "resampler_dim": spec.resampler_dim,
+        "resampler_dim_head": spec.resampler_dim_head,
+        "intermediate_dim": spec.intermediate_dim,
+        "intermediate_layers": max(spec.intermediate_layers, 1),
+        "intermediate_heads": spec.intermediate_heads,
+        "ip_heads": spec.ip_heads,
+        "time_embed_dim": spec.time_embed_dim,
+        "use_intermediate_encoder": spec.use_intermediate_encoder,
+    }
+    if spec.feature_bridge_bottleneck_dim is not None:
+        adapter = BridgedIPAdapterSigLIP(
+            **kwargs,
+            feature_bridge_bottleneck_dim=spec.feature_bridge_bottleneck_dim,
+        )
+    elif spec.calibrator_bottleneck_dim is not None:
+        adapter = CalibratedIPAdapterSigLIP(
+            **kwargs,
+            calibrator_bottleneck_dim=spec.calibrator_bottleneck_dim,
+        )
+    else:
+        adapter = IPAdapterSigLIP(**kwargs)
     adapter.load_state_dict(dict(state), strict=True)
     adapter.eval()
     for parameter in adapter.parameters():

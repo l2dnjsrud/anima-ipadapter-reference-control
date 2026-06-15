@@ -1,0 +1,23 @@
+{
+  "source_manifest_path": "training/manifests/c060_qwenvl_failure_focused_clean32_c052_20260612.jsonl",
+  "source_image_root": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best",
+  "c074_labels_path": "eval/c074_tag_backed_direct_green_source_acquisition_20260612/reviewed_external_labels.jsonl",
+  "c073_labels_path": "eval/c073_external_candidate_visual_review_20260612/reviewed_external_labels.jsonl",
+  "scratch_image_root": ".tmp/c075_tag_positive_direct_green_root",
+  "output_manifest_path": "training/manifests/c075_tag_positive_direct_green_20260612.jsonl",
+  "output_summary_path": "training/manifests/c075_tag_positive_direct_green_20260612.summary.json",
+  "target_positive_count": 10,
+  "target_positive_training_rows": 40,
+  "source_training_rows": 80,
+  "total_rows": 120,
+  "heldout_rows_used": 0,
+  "missing_paths": 0,
+  "committed_external_image_count": 0,
+  "positive_repeat": 4,
+  "c073_guard_label_counts": {
+    "useful_proxy_non_human": 5,
+    "guard_false_positive_human": 7
+  },
+  "license_caution": "mit; not-for-all-audiences; source copyright should be reviewed before redistribution",
+  "decision": "ready_for_bounded_qwenvl_training"
+}

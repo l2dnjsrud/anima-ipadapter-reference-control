@@ -1,0 +1,130 @@
+{
+  "gate": "c105_stronger_encoder_teacher_route_gate",
+  "date": "2026-06-13",
+  "purpose": "Choose the next C106-ready route after C104 showed weak SigLIP2 hard-shape separation.",
+  "missing_required_path_count": 0,
+  "required_artifacts": [
+    "eval/c102_stronger_vlm_qa_teacher_gate_20260613/c102_teacher_summary.json",
+    "eval/c103_post_c102_c098_branch_gate_20260613/source_inventory.json",
+    "eval/c103_post_c102_c098_branch_gate_20260613/branch_decision.json",
+    "eval/c104_expanded_qwen_target_siglip_probe_20260613/manifest_summary.json",
+    "eval/c104_expanded_qwen_target_siglip_probe_20260613/summary.json",
+    "eval/c098_siglip_encoder_lora_generation_gate_20260613/metric_rollup.json",
+    "eval/qwenvl_c064_failure_attribute_embedding_probe_20260612/summary.json",
+    "training/manifests/c097_siglip_hard_shape_expanded_pairs_20260613.summary.json",
+    "eval/qwenvl_c087_expanded_crop_positive_training_20260613/summary.json",
+    "docs/ipadapter_research_journal_ko.md"
+  ],
+  "c102_local_real_positive_gate": {
+    "candidate_rows": 64,
+    "covered_rows": 64,
+    "confirmed_local_positive_count": 0,
+    "qa_positive_candidate_count": 0,
+    "teacher_only_positive_count": 0,
+    "heldout_leakage_count": 0,
+    "missing_path_count": 0,
+    "min_confirmed_positive": 8,
+    "decision": "c103_blocked_needs_manual_annotation_or_external_teacher",
+    "interpretation": "Local-real direct green training is not safe without manual or external annotation because no confirmed positives were found."
+  },
+  "c097_hard_shape_dataset": {
+    "source_rows": 224,
+    "selected_rows": 56,
+    "explicit_negative_rows": 56,
+    "heldout_rows_used": 0,
+    "materialized_image_count": 168,
+    "selected_group_counts": {
+      "c082_frog_yokai_guard": 16,
+      "c082_goblin_mage": 16,
+      "c082_green_oni_scout": 16,
+      "c082_jade_lizard_monk": 8
+    },
+    "decision": "data_gate_pass_for_deeper_siglip_encoder_training"
+  },
+  "qwen_baseline_evidence": {
+    "baseline_variant": "c087_expanded_crop_positive_w14",
+    "baseline_checkpoint": "checkpoints/anima_qwenvl_ip_adapter_c087_expanded_crop_positive_b128_0128_20260613.safetensors",
+    "qwen_baseline_mean_uplift": 0.10895440559772807,
+    "improved_rate": 0.9090909090909091,
+    "training_rows_loaded": 304,
+    "training_finite_loss": true,
+    "checkpoint_loadable": true,
+    "interpretation": "QwenVL-side C087 remains the strongest hard-shape reference-control baseline among completed C098 variants."
+  },
+  "c098_siglip_encoder_lora_evidence": {
+    "decision": "c098_encoder_lora_not_promoted_requires_stronger_encoder_or_better_data",
+    "best_variant": "c098_lora_c094_w14",
+    "best_mean_uplift": 0.08653138633881173,
+    "best_improved_rate": 0.9090909090909091,
+    "heldout07_best_c098_uplift": 0.007146254842123723,
+    "c098_blank_like_rows": [],
+    "interpretation": "The deeper SigLIP encoder-LoRA trained and generated, but it remained below the Qwen hard-shape baseline and did not solve non-human heldout07."
+  },
+  "c104_expanded_siglip_probe": {
+    "decision": "c104_probe_not_enough_signal",
+    "rows_evaluated": 56,
+    "explicit_negative_rows": 56,
+    "finite_metrics": true,
+    "best_siglip_metric": "mean_max_token",
+    "best_siglip_margin_or_uplift": 0.01997534079211105,
+    "best_pairwise_auc": 0.7228954081632653,
+    "pass_threshold": 0.1089544056,
+    "min_pass_auc": 0.85,
+    "qwen_baseline_mean_uplift": 0.1089544056,
+    "interpretation": "Current SigLIP2 layer -6 token space does not separate positives from explicit negatives strongly enough to justify another SigLIP-only training run."
+  },
+  "c064_hard_failure_embedding_probe": {
+    "decision": "encoder_side_checkpoint_required_for_hard_failures",
+    "qwen_supported_cases": 1,
+    "siglip_supported_cases": 0,
+    "pe_supported_cases": 1,
+    "hard_failure_count": 3,
+    "rationale": [
+      "QwenVL supports only heldout01.",
+      "PE supports only heldout05.",
+      "SigLIP2 supports 0/3 hard failures.",
+      "heldout07 non-human green side-profile has no positive uplift for any tested encoder."
+    ],
+    "next_branch": "c065_encoder_side_failure_attribute_checkpoint_or_attribute_teacher"
+  },
+  "candidate_routes": [
+    {
+      "route": "qwen_teacher_distillation",
+      "status": "recommended",
+      "pros": [
+        "QwenVL-side C087 is the strongest current hard-shape baseline.",
+        "C102 proves local positives are unavailable, so teacher-derived supervision is safer than local direct-green training.",
+        "C104 shows SigLIP-only token separation is weak, so C106 should use Qwen/VL teacher targets or features instead of repeating SigLIP-only LoRA."
+      ],
+      "risks": [
+        "C064 shows QwenVL is only partial on hard heldout failures.",
+        "C106 must keep heldout rows evaluation-only and use explicit negatives to avoid overfitting green humanoid collapse."
+      ]
+    },
+    {
+      "route": "stronger_siglip_checkpoint_adaptation",
+      "status": "fallback_not_selected",
+      "pros": [
+        "Native ComfyUI SigLIP patch path already exists.",
+        "C097 explicit negatives are clean and usable."
+      ],
+      "risks": [
+        "C098 and C104 both show insufficient SigLIP-side signal.",
+        "A larger SigLIP-only run is likely redundant without a better teacher or checkpoint."
+      ]
+    },
+    {
+      "route": "manual_or_external_annotation",
+      "status": "fallback_not_selected",
+      "pros": [
+        "Could create conflict-free real positives for C102-style local training.",
+        "Would directly address the current zero-local-positive blocker."
+      ],
+      "risks": [
+        "Requires manual work or external rights review before autonomous training.",
+        "Not immediately runnable as the next loop without new labeled data."
+      ]
+    }
+  ],
+  "inventory_decision": "ready_for_c105_route_decision"
+}

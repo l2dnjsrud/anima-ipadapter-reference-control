@@ -1,0 +1,161 @@
+{
+  "prompt": {
+    "5": {
+      "class_type": "UNETLoader",
+      "inputs": {
+        "unet_name": "anima-base-v1.0.safetensors",
+        "weight_dtype": "default"
+      }
+    },
+    "6": {
+      "class_type": "CLIPLoader",
+      "inputs": {
+        "clip_name": "qwen_3_06b_base.safetensors",
+        "type": "qwen_image",
+        "device": "default"
+      }
+    },
+    "7": {
+      "class_type": "CLIPTextEncodeFlux",
+      "inputs": {
+        "clip": [
+          "6",
+          0
+        ],
+        "clip_l": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "t5xxl": "mrcolor_panel_style, full color manhwa comic panel, same direct-green non-human character identity, visible green skin, consistent face structure, clean webtoon coloring, cel shaded illustration, safe",
+        "guidance": 3.5
+      }
+    },
+    "8": {
+      "class_type": "CLIPTextEncodeFlux",
+      "inputs": {
+        "clip": [
+          "6",
+          0
+        ],
+        "clip_l": "low quality, blurry, bad anatomy, deformed face, text, watermark, extra limbs, abstract, washed out, noise, nude, explicit, gore, multiple people",
+        "t5xxl": "low quality, blurry, bad anatomy, deformed face, text, watermark, extra limbs, abstract, washed out, noise, nude, explicit, gore, multiple people",
+        "guidance": 3.5
+      }
+    },
+    "9": {
+      "class_type": "EmptySD3LatentImage",
+      "inputs": {
+        "width": 768,
+        "height": 1024,
+        "batch_size": 1
+      }
+    },
+    "10": {
+      "class_type": "CFGGuider",
+      "inputs": {
+        "model": [
+          "18",
+          0
+        ],
+        "positive": [
+          "7",
+          0
+        ],
+        "negative": [
+          "8",
+          0
+        ],
+        "cfg": 3.2
+      }
+    },
+    "11": {
+      "class_type": "RandomNoise",
+      "inputs": {
+        "noise_seed": 20260907
+      }
+    },
+    "12": {
+      "class_type": "BasicScheduler",
+      "inputs": {
+        "model": [
+          "18",
+          0
+        ],
+        "scheduler": "simple",
+        "steps": 18,
+        "denoise": 1.0
+      }
+    },
+    "13": {
+      "class_type": "KSamplerSelect",
+      "inputs": {
+        "sampler_name": "er_sde"
+      }
+    },
+    "14": {
+      "class_type": "SamplerCustomAdvanced",
+      "inputs": {
+        "noise": [
+          "11",
+          0
+        ],
+        "guider": [
+          "10",
+          0
+        ],
+        "sampler": [
+          "13",
+          0
+        ],
+        "sigmas": [
+          "12",
+          0
+        ],
+        "latent_image": [
+          "9",
+          0
+        ]
+      }
+    },
+    "15": {
+      "class_type": "VAELoader",
+      "inputs": {
+        "vae_name": "qwen/qwen_image_vae.safetensors"
+      }
+    },
+    "16": {
+      "class_type": "VAEDecode",
+      "inputs": {
+        "samples": [
+          "14",
+          0
+        ],
+        "vae": [
+          "15",
+          0
+        ]
+      }
+    },
+    "17": {
+      "class_type": "SaveImage",
+      "inputs": {
+        "images": [
+          "16",
+          0
+        ],
+        "filename_prefix": "anima_ipadapter/c093_siglip_qwen_target_anti_collapse_generation_gate_20260613/crop_pair07_no_ip"
+      }
+    },
+    "18": {
+      "class_type": "ModelSamplingFlux",
+      "inputs": {
+        "model": [
+          "5",
+          0
+        ],
+        "max_shift": 3.0,
+        "base_shift": 3.0,
+        "width": 768,
+        "height": 1024
+      }
+    }
+  },
+  "client_id": "c7485ac4-061c-4799-9e32-f84c8f760d3b"
+}

@@ -1,0 +1,16 @@
+{
+  "source": "C107 Qwen teacher distillation manifest with C108 target-embedding fields",
+  "source_manifest": "training/manifests/c107_qwen_teacher_distillation_20260613.jsonl",
+  "source_summary": "training/manifests/c107_qwen_teacher_distillation_20260613.summary.json",
+  "image_root": ".tmp/c097_siglip_hard_shape_expanded_root",
+  "output_manifest": "training/manifests/c108_qwen_teacher_embedding_alignment_20260615.jsonl",
+  "rows_written": 56,
+  "explicit_negative_rows": 56,
+  "heldout_rows_used": 0,
+  "missing_path_count": 0,
+  "teacher_source": "C106/C107",
+  "teacher_target": "target_image_qwenvl_embedding",
+  "teacher_margin_mean": 0.21772855200937816,
+  "decision": "c108_manifest_ready_for_teacher_embedding_alignment",
+  "missing_paths": []
+}

@@ -1,0 +1,28 @@
+{
+  "input_candidate_rows": 64,
+  "reviewed_rows": 64,
+  "review_required_count": 0,
+  "heldout_leakage_count": 0,
+  "missing_path_count": 0,
+  "teacher_only_positive_count": 0,
+  "reviewed_local_positive_count": 0,
+  "local_negative_count": 25,
+  "unclear_count": 39,
+  "min_reviewed_positive": 8,
+  "label_counts": {
+    "local_negative": 25,
+    "unclear": 39
+  },
+  "source_bucket_counts": {
+    "direct_green_pixel_candidate": 40,
+    "pale_non_human_proxy": 11,
+    "fang_profile_proxy": 13
+  },
+  "review_source_counts": {
+    "prior_visual_review": 36,
+    "conservative_auto": 28
+  },
+  "decision": "c102_blocked_needs_manual_annotation_or_teacher",
+  "blocker_reason": "C101 found no sufficient reviewed local direct-green/non-human positives; C102 training remains blocked until manual annotation or stronger VLM teacher confirms at least 8 positives.",
+  "next_c102_command_surface": ""
+}

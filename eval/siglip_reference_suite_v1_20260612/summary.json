@@ -1,0 +1,12 @@
+{
+  "dataset_root": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best",
+  "source_manifests": [
+    "training/manifests/local_color_single_character_clean32_heldout8_20260611.jsonl",
+    "training/manifests/local_color_single_character_clean32_20260611.jsonl:first24"
+  ],
+  "suite_rows": 32,
+  "unused_clean32_rows": 8,
+  "selection_method": "curated single-character heldout8 plus first 24 clean32 rows",
+  "source_images_scanned_previous_selection": 1571,
+  "candidates_kept_previous_selection": 418
+}

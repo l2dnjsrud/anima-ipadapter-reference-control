@@ -1,0 +1,101 @@
+{
+  "decision": "not_promoted_c087_expanded_crop_positive_not_quality_pass",
+  "runtime_pass": true,
+  "quality_pass": false,
+  "clean32_heldout8": {
+    "pe": {
+      "blend_species_face": {
+        "mean_uplift": 0.0608932152,
+        "improved_rate": 0.825
+      },
+      "c086_hard_negative_w14": {
+        "mean_uplift": 0.059578079,
+        "improved_rate": 0.75
+      },
+      "c087_expanded_crop_positive_w14": {
+        "mean_uplift": 0.0311193079,
+        "improved_rate": 0.725
+      }
+    },
+    "qwenvl": {
+      "blend_species_face": {
+        "mean_uplift": 0.0421902567,
+        "improved_rate": 0.8
+      },
+      "c086_hard_negative_w14": {
+        "mean_uplift": 0.0388126254,
+        "improved_rate": 0.9
+      },
+      "c087_expanded_crop_positive_w14": {
+        "mean_uplift": 0.0310260832,
+        "improved_rate": 0.8
+      }
+    }
+  },
+  "heldout8": {
+    "pe": {
+      "blend_species_face": {
+        "mean_uplift": 0.0535339788,
+        "improved_rate": 0.875
+      },
+      "c086_hard_negative_w14": {
+        "mean_uplift": 0.0648405477,
+        "improved_rate": 0.75
+      },
+      "c087_expanded_crop_positive_w14": {
+        "mean_uplift": 0.0602737069,
+        "improved_rate": 1.0
+      }
+    },
+    "qwenvl": {
+      "blend_species_face": {
+        "mean_uplift": 0.0264708772,
+        "improved_rate": 0.75
+      },
+      "c086_hard_negative_w14": {
+        "mean_uplift": 0.0325848311,
+        "improved_rate": 0.75
+      },
+      "c087_expanded_crop_positive_w14": {
+        "mean_uplift": 0.0139362663,
+        "improved_rate": 0.75
+      }
+    }
+  },
+  "crop_focus": {
+    "pe": {
+      "c085_anchored_full_adapter_w14": {
+        "mean_uplift": 0.0815944552,
+        "improved_rate": 0.7
+      },
+      "c086_hard_negative_w14": {
+        "mean_uplift": 0.0940596938,
+        "improved_rate": 0.7
+      },
+      "c087_expanded_crop_positive_w14": {
+        "mean_uplift": 0.0536489964,
+        "improved_rate": 0.7
+      }
+    },
+    "qwenvl": {
+      "c085_anchored_full_adapter_w14": {
+        "mean_uplift": 0.022207731,
+        "improved_rate": 0.8
+      },
+      "c086_hard_negative_w14": {
+        "mean_uplift": 0.0023720264,
+        "improved_rate": 0.5
+      },
+      "c087_expanded_crop_positive_w14": {
+        "mean_uplift": 0.0043545485,
+        "improved_rate": 0.6
+      }
+    }
+  },
+  "visual_notes": [
+    "c087 keeps color and non-human cues but does not lock frog mascot/chibi silhouette.",
+    "heldout07 still collapses into a human villain template with green cues.",
+    "expanded target-positive crop supervision did not beat blend/c086 on the overall gate."
+  ],
+  "next_direction": "encoder_side_checkpoint_adaptation_or_shape_silhouette_feature_objective"
+}

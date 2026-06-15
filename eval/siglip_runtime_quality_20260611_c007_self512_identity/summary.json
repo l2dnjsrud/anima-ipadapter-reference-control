@@ -1,0 +1,72 @@
+{
+  "base_url": "http://127.0.0.1:8114",
+  "checkpoint": "anima_siglip_ip_adapter_self512_continue_20260611.safetensors",
+  "positive": "masterpiece, best quality, score_7, safe, colored wuxia manhwa comic panel, male martial arts master in a dramatic palace interior, fully clothed traditional robe, speech bubble, clean ink lines, cel shaded anime style, cinematic lighting",
+  "negative": "low quality, blurry, bad anatomy, deformed face, text, watermark, extra limbs, abstract, washed out, noise, female, woman, girl, breasts, cleavage, nude, bare skin, bed, romance, kissing",
+  "steps": 16,
+  "results": {
+    "self512_w04": {
+      "prompt_id": "132d5a9e-f5d5-4aa3-a5b5-8a106850d268",
+      "image": "eval/siglip_runtime_quality_20260611_c007_self512_identity/self512_w04.png",
+      "weight": 0.4
+    },
+    "self512_w08": {
+      "prompt_id": "f0503089-3c9a-4bcd-804a-b02c873f2cc2",
+      "image": "eval/siglip_runtime_quality_20260611_c007_self512_identity/self512_w08.png",
+      "weight": 0.8
+    },
+    "self512_w12": {
+      "prompt_id": "4ecafd22-2cc8-40c6-a714-8b8007c9b380",
+      "image": "eval/siglip_runtime_quality_20260611_c007_self512_identity/self512_w12.png",
+      "weight": 1.2
+    },
+    "self512_w16": {
+      "prompt_id": "52f3b60e-3576-4703-a1be-97feab0d94de",
+      "image": "eval/siglip_runtime_quality_20260611_c007_self512_identity/self512_w16.png",
+      "weight": 1.6
+    }
+  },
+  "metrics": {
+    "no_ip": {
+      "mean_abs_vs_no_ip": 0.0,
+      "rms_vs_no_ip": 0.0,
+      "max_abs_vs_no_ip": 0
+    },
+    "color64_w08": {
+      "mean_abs_vs_no_ip": 51.47761408730159,
+      "rms_vs_no_ip": 73.18136596679688,
+      "max_abs_vs_no_ip": 255
+    },
+    "self64_w08": {
+      "mean_abs_vs_no_ip": 47.10883928571429,
+      "rms_vs_no_ip": 69.27173614501953,
+      "max_abs_vs_no_ip": 255
+    },
+    "self512_w08": {
+      "mean_abs_vs_no_ip": 42.54408234126984,
+      "rms_vs_no_ip": 62.883968353271484,
+      "max_abs_vs_no_ip": 255
+    },
+    "color64_w12": {
+      "mean_abs_vs_no_ip": 56.461277901785714,
+      "rms_vs_no_ip": 78.15794372558594,
+      "max_abs_vs_no_ip": 255
+    },
+    "self64_w12": {
+      "mean_abs_vs_no_ip": 47.77905071924603,
+      "rms_vs_no_ip": 68.13623809814453,
+      "max_abs_vs_no_ip": 255
+    },
+    "self512_w12": {
+      "mean_abs_vs_no_ip": 46.089532490079364,
+      "rms_vs_no_ip": 65.40202331542969,
+      "max_abs_vs_no_ip": 255
+    },
+    "self512_w16": {
+      "mean_abs_vs_no_ip": 54.33038814484127,
+      "rms_vs_no_ip": 74.12350463867188,
+      "max_abs_vs_no_ip": 255
+    }
+  },
+  "contact_sheet": "eval/siglip_runtime_quality_20260611_c007_self512_identity/contact_sheet.jpg"
+}

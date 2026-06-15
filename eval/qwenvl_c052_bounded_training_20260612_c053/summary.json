@@ -1,0 +1,42 @@
+{
+  "experiment": "qwenvl_c052_bounded_training_20260612_c053",
+  "date": "2026-06-12",
+  "base_commit": "de879b2",
+  "decision": "qwenvl_c052_bounded_training_smoke_passed_generation_gate_pending",
+  "manifest": {
+    "path": "training/manifests/c052_positive_identity_pairs_20260612.jsonl",
+    "source": "eval/qwenvl_combined_diverse_feature_probe_20260612_c052/usable_positive_pairs.jsonl",
+    "positive_pairs": 29,
+    "rows": 58,
+    "direction": "bidirectional_anchor_candidate",
+    "prompt": "mrcolor_panel_style, full color manga panel, clean webtoon coloring, manhwa panel art, character panel, close-up panel, action panel, single panel"
+  },
+  "training": {
+    "init_checkpoint_path": "checkpoints/anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors",
+    "output_path": "checkpoints/anima_qwenvl_ip_adapter_c052_identity_retrieval_0064_20260612.safetensors",
+    "output_bytes": 1232727316,
+    "steps": 64,
+    "rows_loaded": 58,
+    "first_loss": 0.2666643261909485,
+    "final_loss": 0.20333166420459747,
+    "mean_loss": 0.26166787440888584,
+    "mean_base_loss": 0.17217512452043593,
+    "mean_contrastive_loss": 0.049985086312517524,
+    "mean_retrieval_loss": 0.20570848579518497,
+    "finite_loss": true,
+    "trainable_parameters": 308176540,
+    "frozen_base_parameters": 4947838963,
+    "contrastive_weight": 0.35,
+    "contrastive_margin": 0.05,
+    "retrieval_weight": 0.35,
+    "retrieval_margin": 0.2,
+    "checkpoint_loadable": true,
+    "pe_checkpoint_rejected": true
+  },
+  "notes": [
+    "The QwenVL training CLI required local package import hardening because a site-package named training can shadow the repository training directory when the script is invoked directly.",
+    "The checkpoint is a local ignored artifact because .gitignore excludes checkpoints/*qwenvl*.safetensors.",
+    "This experiment proves bounded training and checkpoint compatibility, not final reference-control generation quality."
+  ],
+  "next": "Install or expose the c053 checkpoint to ComfyUI and run a c035-style single-character generation/contact-sheet gate."
+}

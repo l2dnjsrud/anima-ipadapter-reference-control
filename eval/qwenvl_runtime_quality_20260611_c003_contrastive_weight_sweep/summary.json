@@ -1,0 +1,306 @@
+{
+  "base_url": "http://127.0.0.1:8118",
+  "checkpoint": "anima_qwenvl_ip_adapter_identity128_contrastive_0064_20260611.safetensors",
+  "results": {
+    "no_ip": {
+      "prompt_id": "bb7a4b2e-382a-46d0-8396-942c06165149",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c003_contrastive_weight_sweep/no_ip.png",
+      "image_info": {
+        "filename": "no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c003",
+        "type": "output"
+      }
+    },
+    "train000_w035": {
+      "prompt_id": "2b398b69-28e9-451a-a868-2205fb331ba6",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c003_contrastive_weight_sweep/train000_w035.png",
+      "image_info": {
+        "filename": "train000_w035_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c003",
+        "type": "output"
+      }
+    },
+    "train000_w07": {
+      "prompt_id": "8fca263f-b340-4a76-b62e-e515a2025c60",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c003_contrastive_weight_sweep/train000_w07.png",
+      "image_info": {
+        "filename": "train000_w07_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c003",
+        "type": "output"
+      }
+    },
+    "train000_w1": {
+      "prompt_id": "6dfccf00-f2ff-4483-a655-246938d6d944",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c003_contrastive_weight_sweep/train000_w1.png",
+      "image_info": {
+        "filename": "train000_w1_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c003",
+        "type": "output"
+      }
+    },
+    "train064_w035": {
+      "prompt_id": "86c2f991-a777-4495-acf9-4db3314b4c86",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c003_contrastive_weight_sweep/train064_w035.png",
+      "image_info": {
+        "filename": "train064_w035_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c003",
+        "type": "output"
+      }
+    },
+    "train064_w07": {
+      "prompt_id": "b9347c4b-5155-4e2f-96b2-67a02db0c20a",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c003_contrastive_weight_sweep/train064_w07.png",
+      "image_info": {
+        "filename": "train064_w07_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c003",
+        "type": "output"
+      }
+    },
+    "train064_w1": {
+      "prompt_id": "29f4bdf5-7f73-449b-b018-129e8ad236d8",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c003_contrastive_weight_sweep/train064_w1.png",
+      "image_info": {
+        "filename": "train064_w1_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c003",
+        "type": "output"
+      }
+    },
+    "train127_w035": {
+      "prompt_id": "64f43ae8-8fc3-423d-9a34-16df75f6b55b",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c003_contrastive_weight_sweep/train127_w035.png",
+      "image_info": {
+        "filename": "train127_w035_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c003",
+        "type": "output"
+      }
+    },
+    "train127_w07": {
+      "prompt_id": "5e2584a8-3f95-42d2-94e8-7bc76cbde3a1",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c003_contrastive_weight_sweep/train127_w07.png",
+      "image_info": {
+        "filename": "train127_w07_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c003",
+        "type": "output"
+      }
+    },
+    "train127_w1": {
+      "prompt_id": "db2e98e8-c92b-419c-b224-714d9e1d43eb",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c003_contrastive_weight_sweep/train127_w1.png",
+      "image_info": {
+        "filename": "train127_w1_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c003",
+        "type": "output"
+      }
+    },
+    "heldout0112_w035": {
+      "prompt_id": "505cd019-145c-4748-98a5-46e5567c6cbc",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c003_contrastive_weight_sweep/heldout0112_w035.png",
+      "image_info": {
+        "filename": "heldout0112_w035_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c003",
+        "type": "output"
+      }
+    },
+    "heldout0112_w07": {
+      "prompt_id": "e1546ede-4393-4b77-8ed4-615b0d329fbe",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c003_contrastive_weight_sweep/heldout0112_w07.png",
+      "image_info": {
+        "filename": "heldout0112_w07_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c003",
+        "type": "output"
+      }
+    },
+    "heldout0112_w1": {
+      "prompt_id": "ee4a1466-c989-4936-9262-33b806b7c8d8",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c003_contrastive_weight_sweep/heldout0112_w1.png",
+      "image_info": {
+        "filename": "heldout0112_w1_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c003",
+        "type": "output"
+      }
+    },
+    "heldout0560_w035": {
+      "prompt_id": "07836e5f-b284-49d2-8fe1-739a941ebebb",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c003_contrastive_weight_sweep/heldout0560_w035.png",
+      "image_info": {
+        "filename": "heldout0560_w035_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c003",
+        "type": "output"
+      }
+    },
+    "heldout0560_w07": {
+      "prompt_id": "03c6f28f-1df3-41ce-8118-270fe4b9c4c7",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c003_contrastive_weight_sweep/heldout0560_w07.png",
+      "image_info": {
+        "filename": "heldout0560_w07_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c003",
+        "type": "output"
+      }
+    },
+    "heldout0560_w1": {
+      "prompt_id": "18a99ce7-45d3-4185-bd22-27f29c4b49c4",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c003_contrastive_weight_sweep/heldout0560_w1.png",
+      "image_info": {
+        "filename": "heldout0560_w1_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c003",
+        "type": "output"
+      }
+    },
+    "heldout1008_w035": {
+      "prompt_id": "26aa17da-6e80-4fc5-b285-c0886ff99f7c",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c003_contrastive_weight_sweep/heldout1008_w035.png",
+      "image_info": {
+        "filename": "heldout1008_w035_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c003",
+        "type": "output"
+      }
+    },
+    "heldout1008_w07": {
+      "prompt_id": "bb1228ed-34e8-46aa-81a5-99dc0861d889",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c003_contrastive_weight_sweep/heldout1008_w07.png",
+      "image_info": {
+        "filename": "heldout1008_w07_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c003",
+        "type": "output"
+      }
+    },
+    "heldout1008_w1": {
+      "prompt_id": "fdf27bbe-6ba4-4ca2-8df0-b4d9a1f30a66",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c003_contrastive_weight_sweep/heldout1008_w1.png",
+      "image_info": {
+        "filename": "heldout1008_w1_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_runtime_quality_20260611_c003",
+        "type": "output"
+      }
+    }
+  },
+  "rows": [
+    {
+      "label": "train000",
+      "weight": 0.35,
+      "d_no_ip": 37.66828155517578,
+      "d_ref": 98.25678253173828,
+      "stddev": 78.34445946892566
+    },
+    {
+      "label": "train000",
+      "weight": 0.7,
+      "d_no_ip": 48.16555404663086,
+      "d_ref": 98.47210693359375,
+      "stddev": 75.74676718500574
+    },
+    {
+      "label": "train000",
+      "weight": 1.0,
+      "d_no_ip": 48.65803527832031,
+      "d_ref": 100.05892944335938,
+      "stddev": 76.12453436575721
+    },
+    {
+      "label": "train064",
+      "weight": 0.35,
+      "d_no_ip": 36.750003814697266,
+      "d_ref": 75.5669937133789,
+      "stddev": 78.20604421678307
+    },
+    {
+      "label": "train064",
+      "weight": 0.7,
+      "d_no_ip": 48.69731140136719,
+      "d_ref": 69.16608428955078,
+      "stddev": 74.32340685496422
+    },
+    {
+      "label": "train064",
+      "weight": 1.0,
+      "d_no_ip": 50.39299774169922,
+      "d_ref": 69.3506088256836,
+      "stddev": 76.31034320313329
+    },
+    {
+      "label": "train127",
+      "weight": 0.35,
+      "d_no_ip": 36.45380401611328,
+      "d_ref": 81.0895767211914,
+      "stddev": 78.03476347175126
+    },
+    {
+      "label": "train127",
+      "weight": 0.7,
+      "d_no_ip": 46.46126937866211,
+      "d_ref": 76.14940643310547,
+      "stddev": 72.58997938852433
+    },
+    {
+      "label": "train127",
+      "weight": 1.0,
+      "d_no_ip": 48.71198272705078,
+      "d_ref": 79.04644012451172,
+      "stddev": 75.37357685696995
+    },
+    {
+      "label": "heldout0112",
+      "weight": 0.35,
+      "d_no_ip": 38.3388786315918,
+      "d_ref": 127.08988952636719,
+      "stddev": 79.0126396547969
+    },
+    {
+      "label": "heldout0112",
+      "weight": 0.7,
+      "d_no_ip": 45.644859313964844,
+      "d_ref": 127.0881118774414,
+      "stddev": 72.40272221731293
+    },
+    {
+      "label": "heldout0112",
+      "weight": 1.0,
+      "d_no_ip": 49.82979202270508,
+      "d_ref": 131.79940795898438,
+      "stddev": 75.91603212680677
+    },
+    {
+      "label": "heldout0560",
+      "weight": 0.35,
+      "d_no_ip": 37.42723846435547,
+      "d_ref": 127.40909576416016,
+      "stddev": 78.51101878619788
+    },
+    {
+      "label": "heldout0560",
+      "weight": 0.7,
+      "d_no_ip": 44.41547775268555,
+      "d_ref": 126.17607879638672,
+      "stddev": 71.18765014835627
+    },
+    {
+      "label": "heldout0560",
+      "weight": 1.0,
+      "d_no_ip": 49.162837982177734,
+      "d_ref": 129.4727020263672,
+      "stddev": 75.85188007749646
+    },
+    {
+      "label": "heldout1008",
+      "weight": 0.35,
+      "d_no_ip": 38.17649841308594,
+      "d_ref": 82.37837982177734,
+      "stddev": 79.01354629446672
+    },
+    {
+      "label": "heldout1008",
+      "weight": 0.7,
+      "d_no_ip": 48.55838394165039,
+      "d_ref": 78.29805755615234,
+      "stddev": 77.60051123334523
+    },
+    {
+      "label": "heldout1008",
+      "weight": 1.0,
+      "d_no_ip": 48.49047088623047,
+      "d_ref": 77.29591369628906,
+      "stddev": 75.72017683267906
+    }
+  ],
+  "contact_sheet": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_runtime_quality_20260611_c003_contrastive_weight_sweep/contact_sheet.jpg"
+}

@@ -1,0 +1,15 @@
+{
+  "score_path": "eval/c106_qwen_teacher_feature_distillation_20260613/qwenvl_pair_scores.json",
+  "manifest_summary_path": "eval/c106_qwen_teacher_feature_distillation_20260613/manifest_summary.json",
+  "rows_evaluated": 56,
+  "explicit_negative_rows": 56,
+  "finite_metrics": true,
+  "teacher_margin": 0.21772855200937813,
+  "teacher_auc": 1.0,
+  "minimum_teacher_margin": 0.05,
+  "minimum_teacher_auc": 0.85,
+  "c104_margin": 0.01997534079211105,
+  "blockers": [],
+  "decision": "c106_probe_pass_prepare_training",
+  "next_branch": "c107_bounded_qwen_teacher_distillation_training"
+}

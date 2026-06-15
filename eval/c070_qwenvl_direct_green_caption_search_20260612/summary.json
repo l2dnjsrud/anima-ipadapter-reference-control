@@ -1,0 +1,29 @@
+{
+  "source": "local_color_caption_search_plus_visual_fallback",
+  "caption_signal_source": "sidecar_template_no_hits_fallback_visual_heuristics",
+  "scanned_image_count": 1563,
+  "heldout_ids_count": 8,
+  "heldout_rows_used": 0,
+  "missing_paths": 0,
+  "c069_reviewed_ids_count": 33,
+  "c069_seed_excluded_or_annotated": "excluded_from_visual_fallback_buckets",
+  "caption_keyword_hit_images": 0,
+  "candidate_count": 36,
+  "reviewed_rows": 36,
+  "search_bucket_counts": {
+    "semantic_target_fallback": 12,
+    "red_green_proxy": 12,
+    "background_green_guard": 12
+  },
+  "label_counts": {
+    "false_positive_human": 12,
+    "useful_proxy_non_human": 12,
+    "false_positive_background_object": 12
+  },
+  "direct_green_target_positive_count": 0,
+  "useful_proxy_non_human_count": 12,
+  "false_positive_background_object_count": 12,
+  "false_positive_human_count": 12,
+  "minimum_target_positive_required": 4,
+  "decision": "external_manual_data_required"
+}

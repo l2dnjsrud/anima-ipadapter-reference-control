@@ -1,0 +1,79 @@
+{
+  "results": {
+    "train064_w10_w0p35": {
+      "prompt_id": "b7b00974-1cc5-47d9-a5b5-6b8059c02378",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c020_pe_query_patch_trained_weight_sweep/train064_w10_w0p35.png",
+      "weight": 0.35
+    },
+    "train064_w10_w0p7": {
+      "prompt_id": "05106cd4-eabe-48f2-b37b-f59e3c93b247",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c020_pe_query_patch_trained_weight_sweep/train064_w10_w0p7.png",
+      "weight": 0.7
+    },
+    "train064_w10_w1p0": {
+      "prompt_id": "ac6ac1a8-f0f8-49af-8084-bac95e0ba9b4",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c020_pe_query_patch_trained_weight_sweep/train064_w10_w1p0.png",
+      "weight": 1.0
+    },
+    "train064_w10_w1p4": {
+      "prompt_id": "52483810-57bd-4117-b4c1-91b35ac6aa5d",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c020_pe_query_patch_trained_weight_sweep/train064_w10_w1p4.png",
+      "weight": 1.4
+    },
+    "train064_w10_w2p0": {
+      "prompt_id": "2a354acc-4063-4cb7-96ed-2afbf23b4717",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c020_pe_query_patch_trained_weight_sweep/train064_w10_w2p0.png",
+      "weight": 2.0
+    },
+    "heldout0560_w10_w0p35": {
+      "prompt_id": "07b877e0-fb3e-4d66-adf5-391fd7ffe173",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c020_pe_query_patch_trained_weight_sweep/heldout0560_w10_w0p35.png",
+      "weight": 0.35
+    },
+    "heldout0560_w10_w0p7": {
+      "prompt_id": "613ee6ae-8d2f-417a-b550-f0b8fe7bed7f",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c020_pe_query_patch_trained_weight_sweep/heldout0560_w10_w0p7.png",
+      "weight": 0.7
+    },
+    "heldout0560_w10_w1p0": {
+      "prompt_id": "11a8d654-6188-45f8-a6e6-baeaef1f524d",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c020_pe_query_patch_trained_weight_sweep/heldout0560_w10_w1p0.png",
+      "weight": 1.0
+    },
+    "heldout0560_w10_w1p4": {
+      "prompt_id": "ae709a88-46e8-420a-b1f8-38d2dfad3c8b",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c020_pe_query_patch_trained_weight_sweep/heldout0560_w10_w1p4.png",
+      "weight": 1.4
+    },
+    "heldout0560_w10_w2p0": {
+      "prompt_id": "7a69fa18-d050-4adf-8966-9428bcad2f4c",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c020_pe_query_patch_trained_weight_sweep/heldout0560_w10_w2p0.png",
+      "weight": 2.0
+    },
+    "heldout1008_w10_w0p35": {
+      "prompt_id": "b9c6f65e-5229-493c-8a5c-3dbe57d03b17",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c020_pe_query_patch_trained_weight_sweep/heldout1008_w10_w0p35.png",
+      "weight": 0.35
+    },
+    "heldout1008_w10_w0p7": {
+      "prompt_id": "3492970c-1fb0-4ca5-b47f-ce7676b9881c",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c020_pe_query_patch_trained_weight_sweep/heldout1008_w10_w0p7.png",
+      "weight": 0.7
+    },
+    "heldout1008_w10_w1p0": {
+      "prompt_id": "8e060e46-92fb-42a7-98d1-d833a3539d38",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c020_pe_query_patch_trained_weight_sweep/heldout1008_w10_w1p0.png",
+      "weight": 1.0
+    },
+    "heldout1008_w10_w1p4": {
+      "prompt_id": "7f12a974-e45f-4e6f-9e3a-32f316035a33",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c020_pe_query_patch_trained_weight_sweep/heldout1008_w10_w1p4.png",
+      "weight": 1.4
+    },
+    "heldout1008_w10_w2p0": {
+      "prompt_id": "ef5df152-795c-4aa4-a6fd-0febceb8b541",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c020_pe_query_patch_trained_weight_sweep/heldout1008_w10_w2p0.png",
+      "weight": 2.0
+    }
+  }
+}

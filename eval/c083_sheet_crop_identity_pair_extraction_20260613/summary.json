@@ -1,0 +1,14 @@
+{
+  "source": "c083_sheet_crop_identity_pair_extraction",
+  "reviewed_rows": 104,
+  "target_positive_rows": 74,
+  "approved_group_count": 4,
+  "approved_pair_rows": 970,
+  "direct_self_pair_rows": 0,
+  "heldout_rows_used": 0,
+  "training_started": false,
+  "raw_crop_images_committed": false,
+  "minimum_approved_groups": 4,
+  "minimum_approved_pairs": 24,
+  "decision": "ready_for_c084_paired_training_manifest"
+}

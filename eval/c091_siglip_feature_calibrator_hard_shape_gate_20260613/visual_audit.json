@@ -1,0 +1,22 @@
+{
+  "decision": "c091_matches_c089_not_qwen_baseline",
+  "promoted": false,
+  "best_c091_variant": "c091_feature_calibrator_w14",
+  "baseline_to_match": "c089_shape_w14",
+  "baseline_to_beat": "c087_expanded_crop_positive_w14",
+  "observations": [
+    "c091_feature_calibrator_w14 visually matches c089-level broad green-character control but does not improve it.",
+    "c091_feature_calibrator_w10 is unstable and includes a low-variance collapsed output on crop_pair00.",
+    "c087_expanded_crop_positive_w14 remains clearly stronger for hard-shape/non-human references.",
+    "Heldout side-profile monster and exact chibi/frog body proportions remain unresolved."
+  ],
+  "metric_summary": {
+    "c089_shape_w14_mean_uplift": 0.024921435615903164,
+    "c091_feature_calibrator_w10_mean_uplift": 0.0022065424565951386,
+    "c091_feature_calibrator_w14_mean_uplift": 0.024088173699299265,
+    "c087_expanded_crop_positive_w14_mean_uplift": 0.10895440559772807,
+    "c091_feature_calibrator_w14_improved_rate": 0.7272727272727273,
+    "c087_expanded_crop_positive_w14_improved_rate": 0.9090909090909091
+  },
+  "next_decision": "move_to_stronger_encoder_or_supervised_shape_identity_feature_adaptation"
+}

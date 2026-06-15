@@ -1,0 +1,672 @@
+{
+  "base_url": "http://127.0.0.1:8115",
+  "checkpoint": "anima_siglip_ip_adapter_identity128_contrastive_0512_20260611.safetensors",
+  "source_eval": "eval/siglip_runtime_quality_20260611_c014_identity128_contrastive_neutral_prompt",
+  "weights": [
+    0.6,
+    1.0,
+    1.4,
+    1.8
+  ],
+  "refs": {
+    "train000": {
+      "label": "train000",
+      "image": "identity128_train000.jpg",
+      "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/001-100/SG-001/mrcolor_panel_style_v5_edge_trim_strict_00001_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00012_SG-001-08_page_1965x1714_s01.jpg",
+      "in_train": true,
+      "ref_id": "001-100/SG-001/mrcolor_panel_style_v5_edge_trim_strict_00001_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00012_SG-001-08_page_1965x1714_s01"
+    },
+    "train064": {
+      "label": "train064",
+      "image": "identity128_train064.jpg",
+      "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/101-200/SG-126/mrcolor_panel_style_v5_edge_trim_strict_00274_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_04273_SG-126-09_page_1965x906_s01.jpg",
+      "in_train": true,
+      "ref_id": "101-200/SG-126/mrcolor_panel_style_v5_edge_trim_strict_00274_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_04273_SG-126-09_page_1965x906_s01"
+    },
+    "train127": {
+      "label": "train127",
+      "image": "identity128_train127.jpg",
+      "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/201-292 (완결)/SG-292/mrcolor_panel_style_v5_edge_trim_strict_00555_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_09319_SG-292-11_page_1211x899_s01.jpg",
+      "in_train": true,
+      "ref_id": "201-292 (완결)/SG-292/mrcolor_panel_style_v5_edge_trim_strict_00555_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_09319_SG-292-11_page_1211x899_s01"
+    },
+    "heldout0112": {
+      "label": "heldout0112",
+      "image": "identity128_heldout0112.jpg",
+      "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/001-100/SG-019/mrcolor_panel_style_v4_split_edge_strict_probe_00112_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00564_SG-019-02_page_2079x2879_s03.jpg",
+      "in_train": false,
+      "ref_id": "001-100/SG-019/mrcolor_panel_style_v4_split_edge_strict_probe_00112_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00564_SG-019-02_page_2079x2879_s03"
+    },
+    "heldout0560": {
+      "label": "heldout0560",
+      "image": "identity128_heldout0560.jpg",
+      "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/001-100/SG-089/mrcolor_panel_style_v4_split_edge_strict_probe_00543_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03009_SG-089-11_page_2079x2907_s01.jpg",
+      "in_train": false,
+      "ref_id": "001-100/SG-089/mrcolor_panel_style_v4_split_edge_strict_probe_00543_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03009_SG-089-11_page_2079x2907_s01"
+    },
+    "heldout1008": {
+      "label": "heldout1008",
+      "image": "identity128_heldout1008.jpg",
+      "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/101-200/SG-159/mrcolor_panel_style_v4_split_edge_strict_probe_00959_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05392_SG-159-04_page_1965x1112_s01.jpg",
+      "in_train": false,
+      "ref_id": "101-200/SG-159/mrcolor_panel_style_v4_split_edge_strict_probe_00959_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05392_SG-159-04_page_1965x1112_s01"
+    }
+  },
+  "results": {
+    "no_ip": {
+      "prompt_id": "30aeb9da-1cf8-4e45-833b-1d335d1d8347",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep/no_ip.png",
+      "image_info": {
+        "filename": "no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep",
+        "type": "output"
+      }
+    },
+    "train000_w06": {
+      "prompt_id": "3abaa3da-ade3-4a9c-acd9-6652a559130d",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep/train000_w06.png",
+      "image_info": {
+        "filename": "train000_w06_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep",
+        "type": "output"
+      },
+      "weight": 0.6,
+      "reference": {
+        "label": "train000",
+        "image": "identity128_train000.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/001-100/SG-001/mrcolor_panel_style_v5_edge_trim_strict_00001_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00012_SG-001-08_page_1965x1714_s01.jpg",
+        "in_train": true,
+        "ref_id": "001-100/SG-001/mrcolor_panel_style_v5_edge_trim_strict_00001_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00012_SG-001-08_page_1965x1714_s01"
+      }
+    },
+    "train000_w10": {
+      "prompt_id": "fc598e14-cec4-4632-b628-16bcf97f937f",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep/train000_w10.png",
+      "image_info": {
+        "filename": "train000_w10_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep",
+        "type": "output"
+      },
+      "weight": 1.0,
+      "reference": {
+        "label": "train000",
+        "image": "identity128_train000.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/001-100/SG-001/mrcolor_panel_style_v5_edge_trim_strict_00001_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00012_SG-001-08_page_1965x1714_s01.jpg",
+        "in_train": true,
+        "ref_id": "001-100/SG-001/mrcolor_panel_style_v5_edge_trim_strict_00001_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00012_SG-001-08_page_1965x1714_s01"
+      }
+    },
+    "train000_w14": {
+      "prompt_id": "a8048329-894d-425f-9e29-76a3df08eaae",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep/train000_w14.png",
+      "image_info": {
+        "filename": "train000_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep",
+        "type": "output"
+      },
+      "weight": 1.4,
+      "reference": {
+        "label": "train000",
+        "image": "identity128_train000.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/001-100/SG-001/mrcolor_panel_style_v5_edge_trim_strict_00001_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00012_SG-001-08_page_1965x1714_s01.jpg",
+        "in_train": true,
+        "ref_id": "001-100/SG-001/mrcolor_panel_style_v5_edge_trim_strict_00001_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00012_SG-001-08_page_1965x1714_s01"
+      }
+    },
+    "train000_w18": {
+      "prompt_id": "150e64f6-7351-41b9-b6d0-ea67a75f66f0",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep/train000_w18.png",
+      "image_info": {
+        "filename": "train000_w18_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep",
+        "type": "output"
+      },
+      "weight": 1.8,
+      "reference": {
+        "label": "train000",
+        "image": "identity128_train000.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/001-100/SG-001/mrcolor_panel_style_v5_edge_trim_strict_00001_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00012_SG-001-08_page_1965x1714_s01.jpg",
+        "in_train": true,
+        "ref_id": "001-100/SG-001/mrcolor_panel_style_v5_edge_trim_strict_00001_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00012_SG-001-08_page_1965x1714_s01"
+      }
+    },
+    "train064_w06": {
+      "prompt_id": "67b53317-4346-4094-9ac5-f4e91e8fecae",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep/train064_w06.png",
+      "image_info": {
+        "filename": "train064_w06_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep",
+        "type": "output"
+      },
+      "weight": 0.6,
+      "reference": {
+        "label": "train064",
+        "image": "identity128_train064.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/101-200/SG-126/mrcolor_panel_style_v5_edge_trim_strict_00274_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_04273_SG-126-09_page_1965x906_s01.jpg",
+        "in_train": true,
+        "ref_id": "101-200/SG-126/mrcolor_panel_style_v5_edge_trim_strict_00274_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_04273_SG-126-09_page_1965x906_s01"
+      }
+    },
+    "train064_w10": {
+      "prompt_id": "177fa6a6-3b91-4526-a062-a8bbec5a18b6",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep/train064_w10.png",
+      "image_info": {
+        "filename": "train064_w10_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep",
+        "type": "output"
+      },
+      "weight": 1.0,
+      "reference": {
+        "label": "train064",
+        "image": "identity128_train064.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/101-200/SG-126/mrcolor_panel_style_v5_edge_trim_strict_00274_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_04273_SG-126-09_page_1965x906_s01.jpg",
+        "in_train": true,
+        "ref_id": "101-200/SG-126/mrcolor_panel_style_v5_edge_trim_strict_00274_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_04273_SG-126-09_page_1965x906_s01"
+      }
+    },
+    "train064_w14": {
+      "prompt_id": "4487ae56-0420-4959-9eff-efb78cbed1db",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep/train064_w14.png",
+      "image_info": {
+        "filename": "train064_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep",
+        "type": "output"
+      },
+      "weight": 1.4,
+      "reference": {
+        "label": "train064",
+        "image": "identity128_train064.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/101-200/SG-126/mrcolor_panel_style_v5_edge_trim_strict_00274_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_04273_SG-126-09_page_1965x906_s01.jpg",
+        "in_train": true,
+        "ref_id": "101-200/SG-126/mrcolor_panel_style_v5_edge_trim_strict_00274_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_04273_SG-126-09_page_1965x906_s01"
+      }
+    },
+    "train064_w18": {
+      "prompt_id": "f61eec9d-dd6a-4088-9c52-b7648efac2c5",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep/train064_w18.png",
+      "image_info": {
+        "filename": "train064_w18_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep",
+        "type": "output"
+      },
+      "weight": 1.8,
+      "reference": {
+        "label": "train064",
+        "image": "identity128_train064.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/101-200/SG-126/mrcolor_panel_style_v5_edge_trim_strict_00274_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_04273_SG-126-09_page_1965x906_s01.jpg",
+        "in_train": true,
+        "ref_id": "101-200/SG-126/mrcolor_panel_style_v5_edge_trim_strict_00274_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_04273_SG-126-09_page_1965x906_s01"
+      }
+    },
+    "train127_w06": {
+      "prompt_id": "63ca2702-413b-4923-8c0c-77e534676cb4",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep/train127_w06.png",
+      "image_info": {
+        "filename": "train127_w06_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep",
+        "type": "output"
+      },
+      "weight": 0.6,
+      "reference": {
+        "label": "train127",
+        "image": "identity128_train127.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/201-292 (완결)/SG-292/mrcolor_panel_style_v5_edge_trim_strict_00555_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_09319_SG-292-11_page_1211x899_s01.jpg",
+        "in_train": true,
+        "ref_id": "201-292 (완결)/SG-292/mrcolor_panel_style_v5_edge_trim_strict_00555_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_09319_SG-292-11_page_1211x899_s01"
+      }
+    },
+    "train127_w10": {
+      "prompt_id": "873181dd-bd22-4dcc-a1c1-642f642e8c47",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep/train127_w10.png",
+      "image_info": {
+        "filename": "train127_w10_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep",
+        "type": "output"
+      },
+      "weight": 1.0,
+      "reference": {
+        "label": "train127",
+        "image": "identity128_train127.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/201-292 (완결)/SG-292/mrcolor_panel_style_v5_edge_trim_strict_00555_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_09319_SG-292-11_page_1211x899_s01.jpg",
+        "in_train": true,
+        "ref_id": "201-292 (완결)/SG-292/mrcolor_panel_style_v5_edge_trim_strict_00555_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_09319_SG-292-11_page_1211x899_s01"
+      }
+    },
+    "train127_w14": {
+      "prompt_id": "84c3d09d-7c80-411e-aa68-0b77ae6e99d0",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep/train127_w14.png",
+      "image_info": {
+        "filename": "train127_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep",
+        "type": "output"
+      },
+      "weight": 1.4,
+      "reference": {
+        "label": "train127",
+        "image": "identity128_train127.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/201-292 (완결)/SG-292/mrcolor_panel_style_v5_edge_trim_strict_00555_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_09319_SG-292-11_page_1211x899_s01.jpg",
+        "in_train": true,
+        "ref_id": "201-292 (완결)/SG-292/mrcolor_panel_style_v5_edge_trim_strict_00555_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_09319_SG-292-11_page_1211x899_s01"
+      }
+    },
+    "train127_w18": {
+      "prompt_id": "e3de18a4-3d0d-4675-8edc-14b5b4330a1f",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep/train127_w18.png",
+      "image_info": {
+        "filename": "train127_w18_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep",
+        "type": "output"
+      },
+      "weight": 1.8,
+      "reference": {
+        "label": "train127",
+        "image": "identity128_train127.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/201-292 (완결)/SG-292/mrcolor_panel_style_v5_edge_trim_strict_00555_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_09319_SG-292-11_page_1211x899_s01.jpg",
+        "in_train": true,
+        "ref_id": "201-292 (완결)/SG-292/mrcolor_panel_style_v5_edge_trim_strict_00555_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_09319_SG-292-11_page_1211x899_s01"
+      }
+    },
+    "heldout0112_w06": {
+      "prompt_id": "3b5cd02a-14d5-482e-bbc3-ec1366220f43",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep/heldout0112_w06.png",
+      "image_info": {
+        "filename": "heldout0112_w06_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep",
+        "type": "output"
+      },
+      "weight": 0.6,
+      "reference": {
+        "label": "heldout0112",
+        "image": "identity128_heldout0112.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/001-100/SG-019/mrcolor_panel_style_v4_split_edge_strict_probe_00112_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00564_SG-019-02_page_2079x2879_s03.jpg",
+        "in_train": false,
+        "ref_id": "001-100/SG-019/mrcolor_panel_style_v4_split_edge_strict_probe_00112_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00564_SG-019-02_page_2079x2879_s03"
+      }
+    },
+    "heldout0112_w10": {
+      "prompt_id": "517a0c9d-f1f2-4928-b889-f363495f2826",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep/heldout0112_w10.png",
+      "image_info": {
+        "filename": "heldout0112_w10_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep",
+        "type": "output"
+      },
+      "weight": 1.0,
+      "reference": {
+        "label": "heldout0112",
+        "image": "identity128_heldout0112.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/001-100/SG-019/mrcolor_panel_style_v4_split_edge_strict_probe_00112_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00564_SG-019-02_page_2079x2879_s03.jpg",
+        "in_train": false,
+        "ref_id": "001-100/SG-019/mrcolor_panel_style_v4_split_edge_strict_probe_00112_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00564_SG-019-02_page_2079x2879_s03"
+      }
+    },
+    "heldout0112_w14": {
+      "prompt_id": "7564d0b7-52ad-4a56-b5f2-d393b8a96f90",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep/heldout0112_w14.png",
+      "image_info": {
+        "filename": "heldout0112_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep",
+        "type": "output"
+      },
+      "weight": 1.4,
+      "reference": {
+        "label": "heldout0112",
+        "image": "identity128_heldout0112.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/001-100/SG-019/mrcolor_panel_style_v4_split_edge_strict_probe_00112_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00564_SG-019-02_page_2079x2879_s03.jpg",
+        "in_train": false,
+        "ref_id": "001-100/SG-019/mrcolor_panel_style_v4_split_edge_strict_probe_00112_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00564_SG-019-02_page_2079x2879_s03"
+      }
+    },
+    "heldout0112_w18": {
+      "prompt_id": "71e3b7f0-d591-4e0d-9acd-0b1ec17e291c",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep/heldout0112_w18.png",
+      "image_info": {
+        "filename": "heldout0112_w18_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep",
+        "type": "output"
+      },
+      "weight": 1.8,
+      "reference": {
+        "label": "heldout0112",
+        "image": "identity128_heldout0112.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/001-100/SG-019/mrcolor_panel_style_v4_split_edge_strict_probe_00112_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00564_SG-019-02_page_2079x2879_s03.jpg",
+        "in_train": false,
+        "ref_id": "001-100/SG-019/mrcolor_panel_style_v4_split_edge_strict_probe_00112_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00564_SG-019-02_page_2079x2879_s03"
+      }
+    },
+    "heldout0560_w06": {
+      "prompt_id": "5148b980-f6e1-48b8-beb7-de9391eb40d0",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep/heldout0560_w06.png",
+      "image_info": {
+        "filename": "heldout0560_w06_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep",
+        "type": "output"
+      },
+      "weight": 0.6,
+      "reference": {
+        "label": "heldout0560",
+        "image": "identity128_heldout0560.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/001-100/SG-089/mrcolor_panel_style_v4_split_edge_strict_probe_00543_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03009_SG-089-11_page_2079x2907_s01.jpg",
+        "in_train": false,
+        "ref_id": "001-100/SG-089/mrcolor_panel_style_v4_split_edge_strict_probe_00543_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03009_SG-089-11_page_2079x2907_s01"
+      }
+    },
+    "heldout0560_w10": {
+      "prompt_id": "7a2be5e8-1590-4fb3-a3ac-ef4fa3a4b360",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep/heldout0560_w10.png",
+      "image_info": {
+        "filename": "heldout0560_w10_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep",
+        "type": "output"
+      },
+      "weight": 1.0,
+      "reference": {
+        "label": "heldout0560",
+        "image": "identity128_heldout0560.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/001-100/SG-089/mrcolor_panel_style_v4_split_edge_strict_probe_00543_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03009_SG-089-11_page_2079x2907_s01.jpg",
+        "in_train": false,
+        "ref_id": "001-100/SG-089/mrcolor_panel_style_v4_split_edge_strict_probe_00543_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03009_SG-089-11_page_2079x2907_s01"
+      }
+    },
+    "heldout0560_w14": {
+      "prompt_id": "0baa6cf7-6483-47d1-8009-62cafd9862fd",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep/heldout0560_w14.png",
+      "image_info": {
+        "filename": "heldout0560_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep",
+        "type": "output"
+      },
+      "weight": 1.4,
+      "reference": {
+        "label": "heldout0560",
+        "image": "identity128_heldout0560.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/001-100/SG-089/mrcolor_panel_style_v4_split_edge_strict_probe_00543_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03009_SG-089-11_page_2079x2907_s01.jpg",
+        "in_train": false,
+        "ref_id": "001-100/SG-089/mrcolor_panel_style_v4_split_edge_strict_probe_00543_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03009_SG-089-11_page_2079x2907_s01"
+      }
+    },
+    "heldout0560_w18": {
+      "prompt_id": "7c46e0ee-394a-4819-8c20-09c71bf6a3aa",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep/heldout0560_w18.png",
+      "image_info": {
+        "filename": "heldout0560_w18_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep",
+        "type": "output"
+      },
+      "weight": 1.8,
+      "reference": {
+        "label": "heldout0560",
+        "image": "identity128_heldout0560.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/001-100/SG-089/mrcolor_panel_style_v4_split_edge_strict_probe_00543_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03009_SG-089-11_page_2079x2907_s01.jpg",
+        "in_train": false,
+        "ref_id": "001-100/SG-089/mrcolor_panel_style_v4_split_edge_strict_probe_00543_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03009_SG-089-11_page_2079x2907_s01"
+      }
+    },
+    "heldout1008_w06": {
+      "prompt_id": "039a4b0e-50ac-4dca-844c-6461d93c8ec6",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep/heldout1008_w06.png",
+      "image_info": {
+        "filename": "heldout1008_w06_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep",
+        "type": "output"
+      },
+      "weight": 0.6,
+      "reference": {
+        "label": "heldout1008",
+        "image": "identity128_heldout1008.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/101-200/SG-159/mrcolor_panel_style_v4_split_edge_strict_probe_00959_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05392_SG-159-04_page_1965x1112_s01.jpg",
+        "in_train": false,
+        "ref_id": "101-200/SG-159/mrcolor_panel_style_v4_split_edge_strict_probe_00959_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05392_SG-159-04_page_1965x1112_s01"
+      }
+    },
+    "heldout1008_w10": {
+      "prompt_id": "cf399f70-6745-4dac-92f9-0fd7a8638db1",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep/heldout1008_w10.png",
+      "image_info": {
+        "filename": "heldout1008_w10_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep",
+        "type": "output"
+      },
+      "weight": 1.0,
+      "reference": {
+        "label": "heldout1008",
+        "image": "identity128_heldout1008.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/101-200/SG-159/mrcolor_panel_style_v4_split_edge_strict_probe_00959_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05392_SG-159-04_page_1965x1112_s01.jpg",
+        "in_train": false,
+        "ref_id": "101-200/SG-159/mrcolor_panel_style_v4_split_edge_strict_probe_00959_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05392_SG-159-04_page_1965x1112_s01"
+      }
+    },
+    "heldout1008_w14": {
+      "prompt_id": "49b6a1fa-ac5f-409d-a73b-5c69aa3080ad",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep/heldout1008_w14.png",
+      "image_info": {
+        "filename": "heldout1008_w14_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep",
+        "type": "output"
+      },
+      "weight": 1.4,
+      "reference": {
+        "label": "heldout1008",
+        "image": "identity128_heldout1008.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/101-200/SG-159/mrcolor_panel_style_v4_split_edge_strict_probe_00959_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05392_SG-159-04_page_1965x1112_s01.jpg",
+        "in_train": false,
+        "ref_id": "101-200/SG-159/mrcolor_panel_style_v4_split_edge_strict_probe_00959_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05392_SG-159-04_page_1965x1112_s01"
+      }
+    },
+    "heldout1008_w18": {
+      "prompt_id": "ac356c27-7719-46b1-8aee-d3155ba3d826",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep/heldout1008_w18.png",
+      "image_info": {
+        "filename": "heldout1008_w18_00001_.png",
+        "subfolder": "anima_ipadapter/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep",
+        "type": "output"
+      },
+      "weight": 1.8,
+      "reference": {
+        "label": "heldout1008",
+        "image": "identity128_heldout1008.jpg",
+        "source": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best/101-200/SG-159/mrcolor_panel_style_v4_split_edge_strict_probe_00959_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05392_SG-159-04_page_1965x1112_s01.jpg",
+        "in_train": false,
+        "ref_id": "101-200/SG-159/mrcolor_panel_style_v4_split_edge_strict_probe_00959_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05392_SG-159-04_page_1965x1112_s01"
+      }
+    }
+  },
+  "metrics": {
+    "no_ip": {
+      "mean_abs_vs_no_ip": 0.0
+    },
+    "train000_w06": {
+      "reference": "train000",
+      "weight": 0.6,
+      "in_train": true,
+      "mean_abs_vs_no_ip": 59.10927200317383,
+      "mean_abs_vs_reference": 90.1260986328125,
+      "rms_vs_reference": 112.41388702392578
+    },
+    "train000_w10": {
+      "reference": "train000",
+      "weight": 1.0,
+      "in_train": true,
+      "mean_abs_vs_no_ip": 74.86688995361328,
+      "mean_abs_vs_reference": 68.63994598388672,
+      "rms_vs_reference": 89.96942901611328
+    },
+    "train000_w14": {
+      "reference": "train000",
+      "weight": 1.4,
+      "in_train": true,
+      "mean_abs_vs_no_ip": 106.5843505859375,
+      "mean_abs_vs_reference": 54.08668899536133,
+      "rms_vs_reference": 72.41661071777344
+    },
+    "train000_w18": {
+      "reference": "train000",
+      "weight": 1.8,
+      "in_train": true,
+      "mean_abs_vs_no_ip": 105.7221908569336,
+      "mean_abs_vs_reference": 53.25361251831055,
+      "rms_vs_reference": 69.75453186035156
+    },
+    "train064_w06": {
+      "reference": "train064",
+      "weight": 0.6,
+      "in_train": true,
+      "mean_abs_vs_no_ip": 47.38713455200195,
+      "mean_abs_vs_reference": 62.28385925292969,
+      "rms_vs_reference": 83.84199523925781
+    },
+    "train064_w10": {
+      "reference": "train064",
+      "weight": 1.0,
+      "in_train": true,
+      "mean_abs_vs_no_ip": 56.5636100769043,
+      "mean_abs_vs_reference": 63.90182113647461,
+      "rms_vs_reference": 87.09036254882812
+    },
+    "train064_w14": {
+      "reference": "train064",
+      "weight": 1.4,
+      "in_train": true,
+      "mean_abs_vs_no_ip": 65.64775848388672,
+      "mean_abs_vs_reference": 67.08165740966797,
+      "rms_vs_reference": 91.21435546875
+    },
+    "train064_w18": {
+      "reference": "train064",
+      "weight": 1.8,
+      "in_train": true,
+      "mean_abs_vs_no_ip": 78.90626525878906,
+      "mean_abs_vs_reference": 77.47235107421875,
+      "rms_vs_reference": 100.7613296508789
+    },
+    "train127_w06": {
+      "reference": "train127",
+      "weight": 0.6,
+      "in_train": true,
+      "mean_abs_vs_no_ip": 44.3740234375,
+      "mean_abs_vs_reference": 73.9003677368164,
+      "rms_vs_reference": 94.35945129394531
+    },
+    "train127_w10": {
+      "reference": "train127",
+      "weight": 1.0,
+      "in_train": true,
+      "mean_abs_vs_no_ip": 50.19431686401367,
+      "mean_abs_vs_reference": 67.81747436523438,
+      "rms_vs_reference": 85.5735855102539
+    },
+    "train127_w14": {
+      "reference": "train127",
+      "weight": 1.4,
+      "in_train": true,
+      "mean_abs_vs_no_ip": 59.47293472290039,
+      "mean_abs_vs_reference": 67.8701171875,
+      "rms_vs_reference": 82.75920104980469
+    },
+    "train127_w18": {
+      "reference": "train127",
+      "weight": 1.8,
+      "in_train": true,
+      "mean_abs_vs_no_ip": 92.83980560302734,
+      "mean_abs_vs_reference": 86.0840835571289,
+      "rms_vs_reference": 102.78338623046875
+    },
+    "heldout0112_w06": {
+      "reference": "heldout0112",
+      "weight": 0.6,
+      "in_train": false,
+      "mean_abs_vs_no_ip": 56.830596923828125,
+      "mean_abs_vs_reference": 120.58829498291016,
+      "rms_vs_reference": 143.9731903076172
+    },
+    "heldout0112_w10": {
+      "reference": "heldout0112",
+      "weight": 1.0,
+      "in_train": false,
+      "mean_abs_vs_no_ip": 73.67113494873047,
+      "mean_abs_vs_reference": 118.86773681640625,
+      "rms_vs_reference": 139.49229431152344
+    },
+    "heldout0112_w14": {
+      "reference": "heldout0112",
+      "weight": 1.4,
+      "in_train": false,
+      "mean_abs_vs_no_ip": 95.576171875,
+      "mean_abs_vs_reference": 100.1982421875,
+      "rms_vs_reference": 125.3073501586914
+    },
+    "heldout0112_w18": {
+      "reference": "heldout0112",
+      "weight": 1.8,
+      "in_train": false,
+      "mean_abs_vs_no_ip": 110.2942123413086,
+      "mean_abs_vs_reference": 80.30756378173828,
+      "rms_vs_reference": 107.29591369628906
+    },
+    "heldout0560_w06": {
+      "reference": "heldout0560",
+      "weight": 0.6,
+      "in_train": false,
+      "mean_abs_vs_no_ip": 56.64558792114258,
+      "mean_abs_vs_reference": 113.69915771484375,
+      "rms_vs_reference": 138.26856994628906
+    },
+    "heldout0560_w10": {
+      "reference": "heldout0560",
+      "weight": 1.0,
+      "in_train": false,
+      "mean_abs_vs_no_ip": 76.54300689697266,
+      "mean_abs_vs_reference": 99.52679443359375,
+      "rms_vs_reference": 121.51313781738281
+    },
+    "heldout0560_w14": {
+      "reference": "heldout0560",
+      "weight": 1.4,
+      "in_train": false,
+      "mean_abs_vs_no_ip": 108.29190826416016,
+      "mean_abs_vs_reference": 78.25369262695312,
+      "rms_vs_reference": 103.5859603881836
+    },
+    "heldout0560_w18": {
+      "reference": "heldout0560",
+      "weight": 1.8,
+      "in_train": false,
+      "mean_abs_vs_no_ip": 119.21556854248047,
+      "mean_abs_vs_reference": 69.96220397949219,
+      "rms_vs_reference": 94.5222396850586
+    },
+    "heldout1008_w06": {
+      "reference": "heldout1008",
+      "weight": 0.6,
+      "in_train": false,
+      "mean_abs_vs_no_ip": 48.3902473449707,
+      "mean_abs_vs_reference": 66.47425079345703,
+      "rms_vs_reference": 86.41093444824219
+    },
+    "heldout1008_w10": {
+      "reference": "heldout1008",
+      "weight": 1.0,
+      "in_train": false,
+      "mean_abs_vs_no_ip": 59.86680221557617,
+      "mean_abs_vs_reference": 66.16776275634766,
+      "rms_vs_reference": 87.82560729980469
+    },
+    "heldout1008_w14": {
+      "reference": "heldout1008",
+      "weight": 1.4,
+      "in_train": false,
+      "mean_abs_vs_no_ip": 69.45967864990234,
+      "mean_abs_vs_reference": 69.47885131835938,
+      "rms_vs_reference": 89.75914001464844
+    },
+    "heldout1008_w18": {
+      "reference": "heldout1008",
+      "weight": 1.8,
+      "in_train": false,
+      "mean_abs_vs_no_ip": 72.46904754638672,
+      "mean_abs_vs_reference": 70.28421020507812,
+      "rms_vs_reference": 89.80046844482422
+    }
+  },
+  "contact_sheet": "/home/wktwin/anima-ipadapter-reference-control/eval/siglip_runtime_quality_20260611_c015_contrastive_weight_sweep/contact_sheet.jpg"
+}

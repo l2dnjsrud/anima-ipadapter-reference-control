@@ -1,0 +1,30 @@
+{
+  "source_manifest_path": "training/manifests/c060_qwenvl_failure_focused_clean32_c052_20260612.jsonl",
+  "source_image_root": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best",
+  "c074_labels_path": "eval/c074_tag_backed_direct_green_source_acquisition_20260612/reviewed_external_labels.jsonl",
+  "c078_labels_path": "eval/c078_synthetic_direct_green_bootstrap_20260612/reviewed_synthetic_labels.jsonl",
+  "c077_labels_path": "eval/c077_direct_green_target_positive_acquisition_20260612/reviewed_external_labels.jsonl",
+  "scratch_image_root": ".tmp/c080_paired_direct_green_identity_root",
+  "output_manifest_path": "training/manifests/c080_paired_direct_green_identity_20260613.jsonl",
+  "output_summary_path": "training/manifests/c080_paired_direct_green_identity_20260613.summary.json",
+  "c074_pair_source_count": 10,
+  "c074_paired_training_rows": 80,
+  "c078_unpaired_positive_count": 23,
+  "c078_training_rows": 0,
+  "guard_proxy_count": 36,
+  "guard_proxy_training_rows": 36,
+  "source_training_rows": 80,
+  "total_rows": 196,
+  "direct_self_pair_rows": 0,
+  "heldout_rows_used": 0,
+  "committed_raw_image_count": 0,
+  "c074_pair_repeat": 8,
+  "guard_repeat": 1,
+  "c077_label_counts": {
+    "target_positive": 10,
+    "guard_false_positive_human": 8,
+    "useful_proxy_non_human": 28
+  },
+  "license_caution": "local synthetic/internal artifact | mit; not-for-all-audiences | mit; not-for-all-audiences; source copyright should be reviewed before redistribution",
+  "decision": "ready_for_c080_bounded_paired_qwenvl_training"
+}

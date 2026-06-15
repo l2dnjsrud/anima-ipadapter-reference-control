@@ -1,0 +1,22 @@
+{
+  "base_checkpoint_path": "checkpoints/anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors",
+  "update_checkpoint_path": "checkpoints/anima_qwenvl_ip_adapter_c055_mixed_retrieval_0064_20260612.safetensors",
+  "outputs": [
+    {
+      "alpha": 0.25,
+      "output_path": "checkpoints/anima_qwenvl_ip_adapter_c059_merge_prev_c055_a0250.safetensors",
+      "file_size_bytes": 1232727348,
+      "tensor_count": 208,
+      "float_tensor_count": 208,
+      "skipped_non_float_count": 0
+    },
+    {
+      "alpha": 0.4,
+      "output_path": "checkpoints/anima_qwenvl_ip_adapter_c059_merge_prev_c055_a0400.safetensors",
+      "file_size_bytes": 1232727348,
+      "tensor_count": 208,
+      "float_tensor_count": 208,
+      "skipped_non_float_count": 0
+    }
+  ]
+}

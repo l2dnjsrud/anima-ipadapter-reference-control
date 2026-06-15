@@ -1,0 +1,92 @@
+{
+  "decision": "not_promoted_c075_tag_positive_calibrator_weaker_than_blend_species_face",
+  "runtime_pass": true,
+  "blank_count": 0,
+  "clean_samples": 40,
+  "direct_green_samples": 10,
+  "variants": [
+    "no_ip",
+    "blend_species_face",
+    "c075_tag_positive_w14"
+  ],
+  "metric_summaries": {
+    "pe_similarity_metrics.json": [
+      {
+        "variant": "blend_species_face",
+        "cases": 40,
+        "mean_cosine": 0.8150266468524933,
+        "mean_no_ip_cosine": 0.7541334316134453,
+        "mean_uplift": 0.060893215239048004,
+        "improved_rate": 0.825
+      },
+      {
+        "variant": "c075_tag_positive_w14",
+        "cases": 40,
+        "mean_cosine": 0.7803533568978309,
+        "mean_no_ip_cosine": 0.7541334316134453,
+        "mean_uplift": 0.02621992528438568,
+        "improved_rate": 0.65
+      }
+    ],
+    "qwenvl_similarity_metrics.json": [
+      {
+        "variant": "blend_species_face",
+        "cases": 40,
+        "mean_cosine": 0.8232675865292549,
+        "mean_no_ip_cosine": 0.781077329814434,
+        "mean_uplift": 0.042190256714820865,
+        "improved_rate": 0.8
+      },
+      {
+        "variant": "c075_tag_positive_w14",
+        "cases": 40,
+        "mean_cosine": 0.8160516053438187,
+        "mean_no_ip_cosine": 0.781077329814434,
+        "mean_uplift": 0.03497427552938461,
+        "improved_rate": 0.75
+      }
+    ],
+    "direct_green_pe_similarity_metrics.json": [
+      {
+        "variant": "blend_species_face",
+        "cases": 10,
+        "mean_cosine": 0.6920124769210816,
+        "mean_no_ip_cosine": 0.6540207505226135,
+        "mean_uplift": 0.03799172639846802,
+        "improved_rate": 0.7
+      },
+      {
+        "variant": "c075_tag_positive_w14",
+        "cases": 10,
+        "mean_cosine": 0.6333326905965805,
+        "mean_no_ip_cosine": 0.6540207505226135,
+        "mean_uplift": -0.02068805992603302,
+        "improved_rate": 0.4
+      }
+    ],
+    "direct_green_qwenvl_similarity_metrics.json": [
+      {
+        "variant": "blend_species_face",
+        "cases": 10,
+        "mean_cosine": 0.6499574065208436,
+        "mean_no_ip_cosine": 0.6620660901069642,
+        "mean_uplift": -0.012108683586120605,
+        "improved_rate": 0.2
+      },
+      {
+        "variant": "c075_tag_positive_w14",
+        "cases": 10,
+        "mean_cosine": 0.6476810693740844,
+        "mean_no_ip_cosine": 0.6620660901069642,
+        "mean_uplift": -0.014385020732879639,
+        "improved_rate": 0.4
+      }
+    ]
+  },
+  "visual_findings": [
+    "direct_green c075 keeps green skin/tail signals but collapses many references into wuxia humanoid designs instead of preserving the target reference style and silhouette",
+    "heldout07 remains a failure: the monster side-profile reference becomes a human dark-villain profile",
+    "heldout01 QwenVL score improves over blend, but aggregate PE and visual identity remain below current baseline"
+  ],
+  "next_decision": "do_not_continue_calibrator_only_on_same_signal; need stronger encoder-side/reference feature objective or better paired direct-green data"
+}

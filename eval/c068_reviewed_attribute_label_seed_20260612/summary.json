@@ -1,0 +1,25 @@
+{
+  "source_c067_commit": "9b53041",
+  "reviewed_rows": 48,
+  "query_count": 6,
+  "heldout_rows_used": 0,
+  "label_counts": {
+    "false_positive_human_old_face": 4,
+    "false_positive_red_eye_human": 1,
+    "false_positive_background_object": 11,
+    "target_positive": 1,
+    "false_positive_human_face": 9,
+    "useful_proxy_positive": 14,
+    "negative_anchor": 8
+  },
+  "query_counts": {
+    "direct_green_non_human_face": 8,
+    "red_glowing_eye": 8,
+    "side_profile_silhouette": 8,
+    "beard_headwear_crop": 8,
+    "human_negative": 8,
+    "background_object_green": 8
+  },
+  "direct_green_target_positive_count": 0,
+  "decision": "direct_green_reviewed_seed_insufficient_new_annotation_required"
+}

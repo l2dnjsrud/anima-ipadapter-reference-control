@@ -1,0 +1,259 @@
+# Agentic Reference-Control 개선 계획
+
+작성일: 2026-06-12
+범위: `/home/wktwin/anima-ipadapter-reference-control`
+
+## 목적
+
+c035 이후의 문제는 “학습을 더 오래 돌릴지”가 아니라 “무엇이 실패했는지 보고 다음 모델/데이터/프롬프트 경로를 고르는 루프가 있는지”다. 그래서 다음 반복은 InterleaveThinker의 planner/critic 운영 방식을 참고해 `agentic_reference_control_loop`를 먼저 만든다. 이 루프는 모델 자체가 아니라 평가와 다음 행동 선택을 담당한다.
+
+## 외부 연구 반영
+
+| 자료 | 2026-06-12 확인 내용 | 적용 방식 |
+|---|---|---|
+| `zhengdian1/InterleaveThinker` | planner agent가 입력 순서를 조직하고 critic agent가 생성 결과의 deviation을 찾아 instruction을 고치는 interleaved generation pipeline이다. 공식 저장소는 paper, models, training, inference 공개를 공지했다. | 참조 제어 실패를 `critic`이 구조화하고, 다음 prompt/model/data route를 고르는 루프 아이디어만 가져온다. |
+| `zlab-princeton/i1` | 3B T2I 모델을 위한 open recipe, data processing, recaptioning, JAX training, PyTorch inference 구조를 공개한다. | reference pair mining, recaption, long attribute prompt 품질 개선과 향후 open T2I backbone 비교 근거로 쓴다. |
+
+둘 다 IP-Adapter checkpoint나 Anima native K/V 주입 구조를 직접 제공하지 않는다. 따라서 현재 SigLIP/QwenVL adapter를 완성 모델로 포장하거나, 두 repo를 바로 대체 모델로 부르는 것은 금지한다.
+
+공식 확인 출처:
+
+- `https://github.com/zhengdian1/InterleaveThinker`, 확인 SHA `440c1b879cd4913b0382761f7bfa8297a32dc7d6`
+- `https://github.com/zlab-princeton/i1`, 확인 SHA `cd6a34fd8e7fa7a0b7de36ff4602363e607f8a72`
+
+## 다음 코드 작업
+
+1. `reference-control audit manifest`를 만든다.
+   - 입력: c035 reference suite, no-IP output, SigLIP output, PE metric, visual audit.
+   - 출력: JSONL row마다 `case_id`, `reference`, `target_prompt`, `no_ip_output`, `ip_output`, `metric_delta`, `visual_flags`, `failure_tags`, `next_route`를 기록한다.
+   - `next_route` 후보는 `prompt_patch`, `pair_mining`, `stronger_encoder`, `line_control`, `hold`로 제한한다.
+
+2. `critic rules v1`을 만든다.
+   - `identity/distinctive trait` 실패면 `stronger_encoder` 또는 `pair_mining`으로 보낸다.
+   - palette/costume만 실패면 `prompt_patch`와 attribute vocab 확장을 먼저 시도한다.
+   - line/page 구조 실패면 IP-Adapter가 아니라 `line_control`로 보낸다.
+   - metric은 좋아도 visual audit가 실패하면 성공으로 기록하지 않는다.
+
+3. 다음 학습 후보를 audit 결과로 고른다.
+   - `stronger_encoder`가 다수면 anime/manhwa 특화 encoder 또는 image encoder adaptation을 준비한다.
+   - `pair_mining`이 다수면 same-character positive/negative mining을 먼저 실행한다.
+   - `prompt_patch`가 다수면 QwenVL attribute prompt vocabulary를 확장한다.
+
+## 통과 기준
+
+첫 번째 audit loop는 새 모델 학습 성공을 주장하지 않는다. 통과 기준은 다음 네 가지다.
+
+1. c035 전체 케이스를 누락 없이 JSONL로 묶는다.
+2. 각 row가 사람이 읽을 수 있는 실패 태그와 다음 route를 가진다.
+3. route 분포가 다음 학습 또는 데이터 작업을 하나 이상 명확히 선택한다.
+4. 기존 c035 decision인 `not_ready`와 완성 모델 아님 판단을 유지한다.
+
+## 다음 루프 산출물
+
+- `tools/build_reference_control_audit_manifest.py`
+- `tests/test_reference_control_audit_manifest.py`
+- `eval/siglip_runtime_quality_20260612_c035_suite_v1/reference_control_audit_manifest.jsonl`
+- `eval/siglip_runtime_quality_20260612_c035_suite_v1/reference_control_audit_summary.md`
+
+이 산출물이 만들어진 뒤에야 새 학습을 시작한다. 학습 시작 전에는 어떤 실패가 encoder 문제인지, pair mining 문제인지, prompt 문제인지 먼저 나누는 것이 우선이다.
+
+## 2026-06-12 실행 결과
+
+v1 산출물은 생성 완료됐다. c035 32 row 기준 route 분포는 다음과 같다.
+
+| route | rows |
+|---|---:|
+| `prompt_patch` | 6 |
+| `pair_mining` | 0 |
+| `stronger_encoder` | 16 |
+| `line_control` | 0 |
+| `hold` | 10 |
+
+해석: 다음 학습 후보는 `stronger_encoder`가 우선이다. prompt patch만으로 해결될 케이스보다 identity/distinctive trait 실패가 더 많기 때문이다.
+
+## 2026-06-12 c036 metric gate 추가
+
+audit v1 이후 QwenVL pooled embedding이 stronger-encoder 학습의 주 지표가 될 수 있는지 확인했다.
+
+- 도구: `tools/score_auto_caption_qwenvl_metrics.py`
+- 산출물: `eval/qwenvl_metric_probe_20260612_c036_c035/report.md`
+- 결정: `qwenvl_pooled_metric_auxiliary_only`
+
+QwenVL pooled metric은 c035에서 `siglip_ref_retrieval_w14`를 improved rate `0.90625`로 높게 평가했지만, identity-fail row의 평균 uplift가 identity-pass row보다 높았다. 따라서 agentic loop의 다음 route는 장기 학습이 아니라 `identity_positive_negative_feature_probe`다. 같은 캐릭터/다른 캐릭터 pair를 만들고 QwenVL, SigLIP, PE feature가 실제 identity를 분리하는지 먼저 확인한다.
+
+## 2026-06-12 c037 identity feature probe 추가
+
+c036에서 정한 `identity_positive_negative_feature_probe`를 실행했다.
+
+- 도구: `tools/build_identity_pair_probe_manifest.py`
+- feature wrapper: `tools/image_feature_embedders.py`
+- scoring: `tools/score_identity_pair_probe.py`
+- 산출물: `eval/identity_feature_probe_20260612_c037/report.md`
+- 결정: `pooled_identity_feature_not_ready`
+
+결과:
+
+| encoder | margin | pairwise AUC | decision |
+|---|---:|---:|---|
+| PE | 0.0156 | 0.5806 | `feature_not_sufficiently_separated` |
+| Qwen/Qwen3-VL-Embedding-2B | 0.0326 | 0.5913 | `feature_not_sufficiently_separated` |
+| SigLIP2 base patch16 512 | 0.0132 | 0.5759 | `feature_not_sufficiently_separated` |
+
+해석: pooled image feature만으로는 약한 SG positive/negative pair도 충분히 벌리지 못했다. 다음 loop는 pooled cosine 기반 장기 학습이 아니라 더 엄격한 same-character mining, token/layer feature probe, 또는 작은 metric head/calibrator 학습으로 간다.
+
+## 2026-06-12 c038 strict panel sanity probe 추가
+
+c037 실패가 feature pipeline 자체 문제인지 확인하기 위해 strict duplicate panel probe를 실행했다.
+
+- 도구: `tools/build_strict_panel_pair_probe_manifest.py`
+- token scorer: `tools/score_siglip_token_pair_probe.py`
+- 산출물: `eval/strict_identity_feature_probe_20260612_c038/report.md`
+- 결정: `strict_duplicate_feature_sanity_pass_identity_unsolved`
+
+결과:
+
+| encoder/metric | margin | pairwise AUC | decision |
+|---|---:|---:|---|
+| Qwen3-VL pooled | 0.2061 | 1.0000 | pass |
+| SigLIP2 pooled | 0.1058 | 1.0000 | pass |
+| PE pooled | 0.1404 | 0.9998 | pass |
+| SigLIP2 `mean_max_token` | 0.3170 | 1.0000 | pass |
+| SigLIP2 layer `-6` pooled | 0.4739 | 0.9998 | pass |
+
+해석: encoder feature는 near-duplicate panel crop을 분리할 수 있다. c037 실패는 same-SG proxy가 true identity label로 약한 문제와, pooled feature가 character identity를 자동 보장하지 않는 문제로 본다. 다음 loop는 duplicate crop을 제외한 true same-character positive와 같은 장면/스타일 hard negative manifest를 만들고, SigLIP layer `-6` pooled 및 `mean_max_token` 후보를 true identity 기준에서 다시 검증하는 것이다.
+
+## 2026-06-12 c039 true identity candidate review 추가
+
+duplicate panel을 제외한 same-page candidate sheet를 만들고 시각 리뷰했다.
+
+- 도구: `tools/build_true_identity_candidate_review.py`
+- 산출물: `eval/true_identity_candidate_review_20260612_c039/report.md`
+- 결정: `same_page_candidates_need_character_filtering`
+
+해석: 같은 `SG-page` 안의 후보는 scene continuity가 있지만, 다른 인물/배경/소품 crop이 많이 섞인다. 자동 same-page mining을 학습용 true same-character positive로 바로 쓰면 identity metric이 오염될 수 있다. 다음 loop는 QwenVL caption 또는 visual classifier로 양쪽 crop이 모두 캐릭터 중심인지 먼저 필터링하는 `character_filtered_identity_candidate_mining`이다.
+
+## 2026-06-12 c040 character filter 추가
+
+Qwen3-VL image-text retrieval로 candidate pair 양쪽이 캐릭터 중심인지 필터링했다.
+
+- 도구: `tools/filter_character_candidate_pairs.py`
+- 산출물: `eval/character_filtered_identity_candidates_20260612_c040/report.md`
+- 결정: `character_filter_reduces_noise_not_identity_labels`
+
+결과: threshold `0.15` 기준 24개 후보 중 14개가 남았다. 배경/소품 후보는 일부 줄었지만, 다른 인물과 몸통 crop이 남아 true same-character label을 자동 확정하기에는 부족하다. 다음 loop는 kept sheet를 reviewed manifest로 바꾸고 `same_character`, `different_character`, `unclear` 라벨을 명시하는 것이다.
+
+## 2026-06-12 c041 reviewed seed 추가
+
+c040 kept 후보 14개를 reviewed identity manifest로 변환했다.
+
+- 도구: `tools/build_reviewed_identity_manifest.py`
+- 산출물: `eval/reviewed_identity_candidates_20260612_c041/report.md`
+- 결정: `reviewed_seed_too_small_for_training_gate`
+
+결과: same-character 6개, different-character 3개, unclear 5개, 학습/검증 positive로 안전하게 쓸 수 있는 pair는 4개뿐이다. 다음 loop는 이 작은 seed로 feature separation sanity probe를 돌리되, adapter 학습은 더 큰 reviewed identity manifest가 만들어질 때까지 보류한다.
+
+## 2026-06-12 c042 reviewed seed feature probe
+
+c041 seed를 positive/negative pair probe로 변환해 SigLIP/QwenVL/PE feature separation을 확인했다.
+
+- 도구: `tools/build_reviewed_pair_probe_manifest.py`
+- 산출물: `eval/reviewed_seed_feature_probe_20260612_c042/report.md`
+- 결정: `reviewed_seed_feature_gate_not_passed`
+
+결과: QwenVL pooled는 margin `0.024015`, AUC `0.666667`로 fail이다. SigLIP layer `-6` `mean_max_token`은 AUC `0.916667`로 흥미롭지만 margin `0.043225`라 기준 `0.05` 미달이고 seed가 너무 작다. 다음 loop는 face/upper-body 중심 후보를 더 넓게 mining해 reviewed positive를 늘린다.
+
+## 2026-06-12 c043 broad face/upper-body candidate mining
+
+c042가 underpowered였기 때문에 같은 `SG-page` non-duplicate 후보를 `160`개까지 넓히고 Qwen3-VL image-text retrieval로 양쪽 crop이 모두 얼굴/상반신 후보인지 필터링했다.
+
+- 도구: `tools/filter_face_upper_body_candidates.py`
+- 산출물: `eval/broad_identity_candidate_mining_20260612_c043/report.md`
+- 결정: `face_upper_body_filter_expands_review_pool_not_identity_labels`
+
+결과: threshold `0.08` 기준 `30/160`개를 남겼고, kept set은 `22`개 SG page에 분산됐다. contact sheet 기준 얼굴/상반신 crop 비율은 좋아졌지만, 동일 인물 라벨은 여전히 자동 확정할 수 없다. 다음 loop는 30쌍을 `same_character`, `different_character`, `unclear`로 수동 라벨링하고, SigLIP layer `-6` `mean_max_token`과 QwenVL pooled를 더 큰 reviewed seed에서 다시 검증하는 것이다.
+
+## 2026-06-12 c044-c045 reviewed face seed feature gate
+
+c043 kept 30쌍을 보수적으로 라벨링하고 feature gate를 반복했다.
+
+- reviewed seed: `eval/reviewed_face_identity_candidates_20260612_c044/report.md`
+- feature probe: `eval/reviewed_face_seed_feature_probe_20260612_c045/report.md`
+- 결정: `qwenvl_pooled_passes_small_reviewed_identity_proxy`
+
+c044 결과는 `same_character=12`, `different_character=15`, `unclear=3`, `positive_usable=8`이다. c045에서 QwenVL pooled는 margin `0.066209`, AUC `0.791667`로 gate를 통과했다. SigLIP pooled, PE pooled, SigLIP layer `-6` token metric은 fail이다.
+
+해석: QwenVL pooled를 후보 ranking metric으로 쓰는 것은 정당화됐다. 하지만 seed가 작고 일부 캐릭터에 편중되어 있으므로 adapter 학습을 시작하지 않는다. 다음 loop는 QwenVL pooled로 broader same-page/near-page 후보를 rank하고 더 큰 reviewed identity manifest를 만드는 것이다.
+
+## 2026-06-12 c046 QwenVL-ranked candidate mining
+
+c045 결과를 사용해 전체 same-page 후보를 QwenVL pooled로 rank했다.
+
+- ranking tool: `tools/rank_identity_candidate_pairs.py`
+- 산출물: `eval/qwenvl_ranked_identity_candidates_20260612_c046/report.md`
+- 결정: `qwenvl_ranking_improves_candidate_precision_top20`
+
+raw same-page 후보는 `372`쌍이고, face/upper-body filter threshold `0.08` 후 `65`쌍이 남았다. QwenVL top40은 `27`개 SG page에 분산됐다. visual review 결과 top10은 대부분 clean same-character pair이고 top20까지는 라벨링 효율이 좋다. rank 21 이후부터는 group panel, partial/back crop, different-character noise가 늘어난다.
+
+다음 loop는 top20을 우선 수동 라벨링한 뒤 더 큰 reviewed feature gate를 반복한다.
+
+## 2026-06-12 c047-c048 QwenVL reviewed seed expansion
+
+c046 top20을 수동 라벨링하고 c044 hard negatives와 결합해 QwenVL pooled gate를 반복했다.
+
+- top20 review: `eval/qwenvl_top20_reviewed_identity_20260612_c047/report.md`
+- combined gate: `eval/qwenvl_combined_seed_feature_probe_20260612_c048/report.md`
+- 결정: `qwenvl_pooled_identity_gate_stable_on_combined_seed`
+
+c047 결과는 `20`개 중 `positive_usable=14`다. c048 combined seed는 `18 positive / 15 negative`이고, QwenVL pooled는 margin `0.087629`, AUC `0.907407`로 통과했다.
+
+다음 loop는 QwenVL pooled를 primary ranking/gating metric으로 채택하고, 더 다양한 캐릭터가 포함된 larger reviewed identity set을 만든다. 이 단계가 끝나기 전에는 IP-Adapter K/V 학습을 시작하지 않는다.
+
+## 2026-06-12 c049-c050 rank40 stability check
+
+c046 rank 21-40을 수동 라벨링하고 c048 seed와 결합해 QwenVL pooled gate를 다시 확인했다.
+
+- rank21-40 review: `eval/qwenvl_rank21_40_reviewed_identity_20260612_c049/report.md`
+- combined rank40 gate: `eval/qwenvl_combined_rank40_feature_probe_20260612_c050/report.md`
+- combined rank40 QwenVL detail: `eval/qwenvl_combined_rank40_feature_probe_20260612_c050/qwenvl_pooled_report.md`
+- 결정: `qwenvl_pooled_identity_gate_stable_on_rank40_combined_seed`
+
+c049는 `20`개 중 `positive_usable=3`, `different_character=9`, `unclear=2`로 top20 대비 precision이 크게 낮다. c050 combined seed는 `19 positive / 17 negative`이고 QwenVL pooled는 margin `0.081599`, AUC `0.900929`로 통과했다.
+
+해석: QwenVL pooled metric은 안정적이지만, 단순히 rank를 아래로 더 내려 보는 방식은 positive 효율이 떨어진다. 다음 loop는 새 SG page/새 캐릭터 다양성을 늘리는 broader mining으로 바꾼다.
+
+## 2026-06-12 c051-c052 diverse seed expansion
+
+새 SG page를 우선하는 diverse sampler를 만들고, c050 seed에 결합해 QwenVL pooled gate를 다시 확인했다.
+
+- sampler: `tools/select_diverse_review_candidates.py`
+- sampler test: `tests/test_select_diverse_review_candidates.py`
+- diverse review: `eval/qwenvl_diverse_identity_candidates_20260612_c051/report.md`
+- combined diverse gate: `eval/qwenvl_combined_diverse_feature_probe_20260612_c052/report.md`
+- 결정: `qwenvl_pooled_identity_gate_stable_on_diverse_seed`
+
+c051은 `32`개 모두 새 SG page이고 `positive_usable=10`, `different_character=12`, `unclear=3`이다. c052 combined seed는 `29 positive / 29 negative`이고 QwenVL pooled는 margin `0.072203`, AUC `0.913199`로 통과했다.
+
+해석: 더 다양한 reviewed seed에서도 QwenVL pooled feature gate가 유지된다. 다음 loop는 이 seed를 사용한 bounded adapter/metric-head training pilot과 실제 c035-style generation audit이다.
+
+## 2026-06-12 c053 QwenVL bounded training pilot
+
+c052의 usable positive pair를 양방향 `58` row training manifest로 변환하고, QwenVL adapter continuation을 `64` step으로 제한해 실행했다.
+
+- manifest: `training/manifests/c052_positive_identity_pairs_20260612.jsonl`
+- report: `eval/qwenvl_c052_bounded_training_20260612_c053/report.md`
+- summary: `eval/qwenvl_c052_bounded_training_20260612_c053/summary.json`
+- local checkpoint: `checkpoints/anima_qwenvl_ip_adapter_c052_identity_retrieval_0064_20260612.safetensors`
+- 결정: `qwenvl_c052_bounded_training_smoke_passed_generation_gate_pending`
+
+결과는 finite loss, loadable checkpoint, QwenVL/PE family separation 모두 통과했다. 다만 agentic loop의 품질 판단은 여전히 generation/contact-sheet gate가 기준이다. 다음 loop는 c053 checkpoint를 ComfyUI가 볼 수 있게 하고, c035-style single-character suite에서 no-IP baseline 대비 실제 reference 반영을 검증한다.
+
+## 2026-06-12 c054 QwenVL generation smoke gate
+
+c053 checkpoint를 isolated ComfyUI API에서 실제 생성했다.
+
+- contact sheet: `eval/qwenvl_c052_generation_gate_20260612_c054/contact_sheet.jpg`
+- metrics: `eval/qwenvl_c052_generation_gate_20260612_c054/pe_similarity_metrics.json`, `eval/qwenvl_c052_generation_gate_20260612_c054/qwenvl_similarity_metrics.json`
+- audit: `eval/qwenvl_c052_generation_gate_20260612_c054/visual_audit.md`
+- 결정: `qwen_c052_partial_visual_improvement_metric_regression_not_quality_pass`
+
+해석: c053은 노승/비인간/보라 피부 villain 같은 hard trait에서 개선 신호를 냈다. 그러나 aggregate PE/QwenVL metric은 이전 retrieval checkpoint보다 낮다. 다음 loop는 c053을 그대로 scale-up하지 말고, c052 positive-only continuation의 단점을 보정하기 위해 hard negatives, previous-retrieval distillation, 또는 QwenVL feature calibrator를 추가한다.

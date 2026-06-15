@@ -1,0 +1,17 @@
+{
+  "path": "checkpoints/anima_siglip_ip_adapter_c091_feature_calibrator_b64_0064_20260613.safetensors",
+  "size_bytes": 870305160,
+  "loaded_class": "CalibratedIPAdapterSigLIP",
+  "is_calibrated": true,
+  "feature_calibrator_key_count": 8,
+  "feature_calibrator_keys": [
+    "feature_calibrator.deep_down.weight",
+    "feature_calibrator.deep_norm.bias",
+    "feature_calibrator.deep_norm.weight",
+    "feature_calibrator.deep_up.weight",
+    "feature_calibrator.shallow_down.weight",
+    "feature_calibrator.shallow_norm.bias",
+    "feature_calibrator.shallow_norm.weight",
+    "feature_calibrator.shallow_up.weight"
+  ]
+}

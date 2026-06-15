@@ -1,0 +1,296 @@
+{
+  "summary_path": "eval/qwenvl_c055_generation_gate_20260612_c056/summary.json",
+  "data_root": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best",
+  "rows": [
+    {
+      "sample": "train00",
+      "variant": "qwen_prev_retrieval_w14",
+      "cosine": 0.902219295501709,
+      "no_ip_cosine": 0.8921704888343811,
+      "uplift": 0.01004880666732788,
+      "pixel_std": 84.96575927734375
+    },
+    {
+      "sample": "train00",
+      "variant": "qwen_c052_w14",
+      "cosine": 0.8587526082992554,
+      "no_ip_cosine": 0.8921704888343811,
+      "uplift": -0.03341788053512573,
+      "pixel_std": 84.68869018554688
+    },
+    {
+      "sample": "train00",
+      "variant": "qwen_c055_w1",
+      "cosine": 0.8166540861129761,
+      "no_ip_cosine": 0.8921704888343811,
+      "uplift": -0.07551640272140503,
+      "pixel_std": 82.91210174560547
+    },
+    {
+      "sample": "train00",
+      "variant": "qwen_c055_w14",
+      "cosine": 0.8724465370178223,
+      "no_ip_cosine": 0.8921704888343811,
+      "uplift": -0.019723951816558838,
+      "pixel_std": 86.36727142333984
+    },
+    {
+      "sample": "train07",
+      "variant": "qwen_prev_retrieval_w14",
+      "cosine": 0.829938530921936,
+      "no_ip_cosine": 0.7183694243431091,
+      "uplift": 0.1115691065788269,
+      "pixel_std": 36.598052978515625
+    },
+    {
+      "sample": "train07",
+      "variant": "qwen_c052_w14",
+      "cosine": 0.8507436513900757,
+      "no_ip_cosine": 0.7183694243431091,
+      "uplift": 0.13237422704696655,
+      "pixel_std": 42.22475051879883
+    },
+    {
+      "sample": "train07",
+      "variant": "qwen_c055_w1",
+      "cosine": 0.8092933893203735,
+      "no_ip_cosine": 0.7183694243431091,
+      "uplift": 0.0909239649772644,
+      "pixel_std": 39.81631851196289
+    },
+    {
+      "sample": "train07",
+      "variant": "qwen_c055_w14",
+      "cosine": 0.8118487000465393,
+      "no_ip_cosine": 0.7183694243431091,
+      "uplift": 0.09347927570343018,
+      "pixel_std": 42.217987060546875
+    },
+    {
+      "sample": "train14",
+      "variant": "qwen_prev_retrieval_w14",
+      "cosine": 0.7392341494560242,
+      "no_ip_cosine": 0.7229628562927246,
+      "uplift": 0.01627129316329956,
+      "pixel_std": 91.61263275146484
+    },
+    {
+      "sample": "train14",
+      "variant": "qwen_c052_w14",
+      "cosine": 0.5735784769058228,
+      "no_ip_cosine": 0.7229628562927246,
+      "uplift": -0.14938437938690186,
+      "pixel_std": 94.2614517211914
+    },
+    {
+      "sample": "train14",
+      "variant": "qwen_c055_w1",
+      "cosine": 0.8223371505737305,
+      "no_ip_cosine": 0.7229628562927246,
+      "uplift": 0.09937429428100586,
+      "pixel_std": 92.44776153564453
+    },
+    {
+      "sample": "train14",
+      "variant": "qwen_c055_w14",
+      "cosine": 0.7275046110153198,
+      "no_ip_cosine": 0.7229628562927246,
+      "uplift": 0.004541754722595215,
+      "pixel_std": 94.0813217163086
+    },
+    {
+      "sample": "train23",
+      "variant": "qwen_prev_retrieval_w14",
+      "cosine": 0.8904259204864502,
+      "no_ip_cosine": 0.6355655193328857,
+      "uplift": 0.25486040115356445,
+      "pixel_std": 65.55096435546875
+    },
+    {
+      "sample": "train23",
+      "variant": "qwen_c052_w14",
+      "cosine": 0.8346453309059143,
+      "no_ip_cosine": 0.6355655193328857,
+      "uplift": 0.19907981157302856,
+      "pixel_std": 75.5592269897461
+    },
+    {
+      "sample": "train23",
+      "variant": "qwen_c055_w1",
+      "cosine": 0.826690673828125,
+      "no_ip_cosine": 0.6355655193328857,
+      "uplift": 0.19112515449523926,
+      "pixel_std": 78.15492248535156
+    },
+    {
+      "sample": "train23",
+      "variant": "qwen_c055_w14",
+      "cosine": 0.8026885390281677,
+      "no_ip_cosine": 0.6355655193328857,
+      "uplift": 0.16712301969528198,
+      "pixel_std": 78.11054229736328
+    },
+    {
+      "sample": "heldout00",
+      "variant": "qwen_prev_retrieval_w14",
+      "cosine": 0.9293291568756104,
+      "no_ip_cosine": 0.7715967893600464,
+      "uplift": 0.15773236751556396,
+      "pixel_std": 42.527015686035156
+    },
+    {
+      "sample": "heldout00",
+      "variant": "qwen_c052_w14",
+      "cosine": 0.8596774339675903,
+      "no_ip_cosine": 0.7715967893600464,
+      "uplift": 0.08808064460754395,
+      "pixel_std": 41.97747802734375
+    },
+    {
+      "sample": "heldout00",
+      "variant": "qwen_c055_w1",
+      "cosine": 0.7730566263198853,
+      "no_ip_cosine": 0.7715967893600464,
+      "uplift": 0.0014598369598388672,
+      "pixel_std": 39.95253372192383
+    },
+    {
+      "sample": "heldout00",
+      "variant": "qwen_c055_w14",
+      "cosine": 0.7956587076187134,
+      "no_ip_cosine": 0.7715967893600464,
+      "uplift": 0.024061918258666992,
+      "pixel_std": 41.435794830322266
+    },
+    {
+      "sample": "heldout02",
+      "variant": "qwen_prev_retrieval_w14",
+      "cosine": 0.8854552507400513,
+      "no_ip_cosine": 0.7367998361587524,
+      "uplift": 0.14865541458129883,
+      "pixel_std": 83.86746215820312
+    },
+    {
+      "sample": "heldout02",
+      "variant": "qwen_c052_w14",
+      "cosine": 0.9081140756607056,
+      "no_ip_cosine": 0.7367998361587524,
+      "uplift": 0.17131423950195312,
+      "pixel_std": 81.74229431152344
+    },
+    {
+      "sample": "heldout02",
+      "variant": "qwen_c055_w1",
+      "cosine": 0.8814626336097717,
+      "no_ip_cosine": 0.7367998361587524,
+      "uplift": 0.1446627974510193,
+      "pixel_std": 81.37368774414062
+    },
+    {
+      "sample": "heldout02",
+      "variant": "qwen_c055_w14",
+      "cosine": 0.8620246052742004,
+      "no_ip_cosine": 0.7367998361587524,
+      "uplift": 0.125224769115448,
+      "pixel_std": 88.0318832397461
+    },
+    {
+      "sample": "heldout05",
+      "variant": "qwen_prev_retrieval_w14",
+      "cosine": 0.6797906160354614,
+      "no_ip_cosine": 0.7804048657417297,
+      "uplift": -0.10061424970626831,
+      "pixel_std": 66.30554962158203
+    },
+    {
+      "sample": "heldout05",
+      "variant": "qwen_c052_w14",
+      "cosine": 0.6443549394607544,
+      "no_ip_cosine": 0.7804048657417297,
+      "uplift": -0.13604992628097534,
+      "pixel_std": 60.44479751586914
+    },
+    {
+      "sample": "heldout05",
+      "variant": "qwen_c055_w1",
+      "cosine": 0.8271295428276062,
+      "no_ip_cosine": 0.7804048657417297,
+      "uplift": 0.046724677085876465,
+      "pixel_std": 80.02163696289062
+    },
+    {
+      "sample": "heldout05",
+      "variant": "qwen_c055_w14",
+      "cosine": 0.8214173913002014,
+      "no_ip_cosine": 0.7804048657417297,
+      "uplift": 0.04101252555847168,
+      "pixel_std": 73.50532531738281
+    },
+    {
+      "sample": "heldout07",
+      "variant": "qwen_prev_retrieval_w14",
+      "cosine": 0.758894681930542,
+      "no_ip_cosine": 0.5707826614379883,
+      "uplift": 0.1881120204925537,
+      "pixel_std": 78.05947875976562
+    },
+    {
+      "sample": "heldout07",
+      "variant": "qwen_c052_w14",
+      "cosine": 0.614329993724823,
+      "no_ip_cosine": 0.5707826614379883,
+      "uplift": 0.04354733228683472,
+      "pixel_std": 80.26275634765625
+    },
+    {
+      "sample": "heldout07",
+      "variant": "qwen_c055_w1",
+      "cosine": 0.47335460782051086,
+      "no_ip_cosine": 0.5707826614379883,
+      "uplift": -0.09742805361747742,
+      "pixel_std": 79.42156982421875
+    },
+    {
+      "sample": "heldout07",
+      "variant": "qwen_c055_w14",
+      "cosine": 0.5031642317771912,
+      "no_ip_cosine": 0.5707826614379883,
+      "uplift": -0.06761842966079712,
+      "pixel_std": 73.8148193359375
+    }
+  ],
+  "variant_summaries": [
+    {
+      "variant": "qwen_c052_w14",
+      "cases": 8,
+      "mean_cosine": 0.7680245637893677,
+      "mean_no_ip_cosine": 0.7285815551877022,
+      "mean_uplift": 0.0394430086016655,
+      "improved_rate": 0.625
+    },
+    {
+      "variant": "qwen_c055_w1",
+      "cases": 8,
+      "mean_cosine": 0.7787473388016224,
+      "mean_no_ip_cosine": 0.7285815551877022,
+      "mean_uplift": 0.05016578361392021,
+      "improved_rate": 0.75
+    },
+    {
+      "variant": "qwen_c055_w14",
+      "cases": 8,
+      "mean_cosine": 0.7745941653847694,
+      "mean_no_ip_cosine": 0.7285815551877022,
+      "mean_uplift": 0.04601261019706726,
+      "improved_rate": 0.75
+    },
+    {
+      "variant": "qwen_prev_retrieval_w14",
+      "cases": 8,
+      "mean_cosine": 0.826910950243473,
+      "mean_no_ip_cosine": 0.7285815551877022,
+      "mean_uplift": 0.09832939505577087,
+      "improved_rate": 0.875
+    }
+  ]
+}

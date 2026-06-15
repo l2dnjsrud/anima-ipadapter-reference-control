@@ -1,0 +1,2 @@
+$ install -m 0644 checkpoints/anima_siglip_ip_adapter_pilot_20260610.safetensors /data/ai/models/ipadapter/anima_siglip_ip_adapter_pilot_20260610.safetensors
+install: cannot create regular file '/data/ai/models/ipadapter/anima_siglip_ip_adapter_pilot_20260610.safetensors': Permission denied

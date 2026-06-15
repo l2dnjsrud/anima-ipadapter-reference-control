@@ -1,0 +1,41 @@
+{
+  "steps": 128,
+  "rows_loaded": 248,
+  "first_loss": 0.22466200590133667,
+  "final_loss": 0.20414608716964722,
+  "mean_loss": 0.27194672741461545,
+  "mean_base_loss": 0.21551979810465127,
+  "mean_contrastive_loss": 0.04866428952664137,
+  "mean_retrieval_loss": 0.19697214430198073,
+  "finite_loss": true,
+  "trainable_parameters": 528384,
+  "frozen_base_parameters": 4947838963,
+  "checkpoint": {
+    "output_path": "checkpoints/anima_qwenvl_ip_adapter_c079_synthetic_positive_calibrator_b128_0128_20260612.safetensors",
+    "loadable": true,
+    "pe_checkpoint_rejected": true
+  },
+  "init_checkpoint_path": "checkpoints/anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors",
+  "contrastive_weight": 0.35,
+  "contrastive_margin": 0.05,
+  "retrieval_weight": 0.2,
+  "retrieval_margin": 0.2,
+  "calibrator_bottleneck_dim": 128,
+  "train_calibrator_only": true,
+  "decision": "qwenvl_c079_synthetic_positive_training_passed_generation_gate_pending",
+  "manifest_path": "training/manifests/c079_synthetic_positive_direct_green_20260612.jsonl",
+  "manifest_summary_path": "training/manifests/c079_synthetic_positive_direct_green_20260612.summary.json",
+  "image_root": ".tmp/c079_synthetic_positive_direct_green_root",
+  "c074_real_positive_count": 10,
+  "c078_synthetic_target_positive_count": 23,
+  "guard_proxy_count": 36,
+  "target_positive_training_rows": 132,
+  "guard_proxy_training_rows": 36,
+  "source_training_rows": 80,
+  "heldout_rows_used": 0,
+  "permission_recovery": {
+    "initial_failure_log": "eval/qwenvl_c079_synthetic_positive_training_20260612/train_stdout_permission_failure.txt",
+    "failure": "Permission denied while writing /data/ai/models/ipadapter; /data is root-owned",
+    "recovery": "reran same command and wrote checkpoint under repo checkpoints/ ignored local artifacts"
+  }
+}

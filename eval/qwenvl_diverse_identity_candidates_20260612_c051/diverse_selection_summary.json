@@ -1,0 +1,11 @@
+{
+  "input_ranked_rows": 109,
+  "eligible_rows": 45,
+  "selected_rows": 32,
+  "unique_sg_pages": 32,
+  "new_page_rows": 32,
+  "old_page_rows": 0,
+  "skipped_seen_pair_ids": 52,
+  "min_face_score": 0.07,
+  "min_similarity": 0.78
+}

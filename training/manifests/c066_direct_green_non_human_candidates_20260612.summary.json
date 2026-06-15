@@ -1,0 +1,20 @@
+{
+  "total_candidates": 120,
+  "positive_candidates": 78,
+  "negative_candidates": 42,
+  "direct_green_positive_count": 0,
+  "direct_green_pixel_candidate_count": 40,
+  "non_human_positive_count": 38,
+  "heldout_rows_used": 0,
+  "missing_paths": 0,
+  "sidecar_caption_keyword_hits": 0,
+  "source_buckets": {
+    "direct_green_pixel_candidate": 40,
+    "fang_profile_proxy": 17,
+    "human_negative": 20,
+    "old_headwear_negative": 22,
+    "pale_non_human_proxy": 11,
+    "red_eye_proxy": 10
+  },
+  "pair_rows": 156
+}

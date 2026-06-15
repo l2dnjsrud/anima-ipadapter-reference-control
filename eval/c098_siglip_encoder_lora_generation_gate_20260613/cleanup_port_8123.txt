@@ -1,0 +1,7 @@
+# C098 ComfyUI cleanup
+
+curl_object_info=connection_refused_or_closed
+
+lsof:
+
+ss:

@@ -1,0 +1,29 @@
+{
+  "train_stdout": "eval/c094_siglip_shape_supervised_anti_collapse_training_20260613/train_stdout.txt",
+  "training_summary": {
+    "steps": 64,
+    "rows_loaded": 10,
+    "first_loss": 0.2693069875240326,
+    "final_loss": 0.09548800438642502,
+    "mean_loss": 0.1448897757800296,
+    "mean_base_loss": 0.12565948662813753,
+    "mean_contrastive_loss": 0.0766582569340244,
+    "mean_shape_loss": 0.0003286187895810144,
+    "finite_loss": true,
+    "explicit_negative_rows": 10,
+    "trainable_parameters": 217369756,
+    "frozen_base_parameters": 2913827059,
+    "checkpoint": {
+      "output_path": "checkpoints/anima_siglip_ip_adapter_c094_shape_supervised_0064_20260613.safetensors",
+      "loadable": true,
+      "pe_checkpoint_rejected": true
+    },
+    "init_checkpoint_path": "checkpoints/anima_siglip_ip_adapter_c093_qwen_target_anti_collapse_0048_20260613.safetensors",
+    "contrastive_weight": 0.25,
+    "contrastive_margin": 0.08,
+    "shape_weight": 0.2,
+    "reference_shape_weight": 0.35
+  },
+  "failures": [],
+  "decision": "proceed_to_c094_generation_gate"
+}

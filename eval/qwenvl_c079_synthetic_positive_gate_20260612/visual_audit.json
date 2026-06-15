@@ -1,0 +1,86 @@
+{
+  "decision": "not_promoted_c079_synthetic_positive_calibrator_partial_direct_green_gain",
+  "runtime_status": "pass",
+  "quality_status": "not_promoted",
+  "visual_findings": [
+    "c079 slightly strengthens direct-green target traits compared with c075, especially green skin and horn/ear silhouettes.",
+    "Reference diversity collapses into adult green humanoid villain portraits; small body, bright/cute palettes, decorations, and non-human facial geometry are not preserved reliably.",
+    "heldout clean32+heldout8 outputs are visually close to c075 and do not beat the current blend_species_face preset.",
+    "heldout07 still fails the key non-human side-profile monster case by converting the reference into a human dark-villain portrait."
+  ],
+  "metric_summary": {
+    "clean32_heldout8": {
+      "pe": {
+        "blend_species_face": {
+          "cases": 40,
+          "mean_uplift": 0.060893215239048004,
+          "improved_rate": 0.825
+        },
+        "c075_tag_positive_w14": {
+          "cases": 40,
+          "mean_uplift": 0.02621992528438568,
+          "improved_rate": 0.65
+        },
+        "c079_synthetic_positive_w14": {
+          "cases": 40,
+          "mean_uplift": 0.032996866106987,
+          "improved_rate": 0.7
+        }
+      },
+      "qwenvl": {
+        "blend_species_face": {
+          "cases": 40,
+          "mean_uplift": 0.042190256714820865,
+          "improved_rate": 0.8
+        },
+        "c075_tag_positive_w14": {
+          "cases": 40,
+          "mean_uplift": 0.03497427552938461,
+          "improved_rate": 0.75
+        },
+        "c079_synthetic_positive_w14": {
+          "cases": 40,
+          "mean_uplift": 0.03382567912340164,
+          "improved_rate": 0.725
+        }
+      }
+    },
+    "direct_green_focus": {
+      "pe": {
+        "blend_species_face": {
+          "cases": 33,
+          "mean_uplift": 0.3416856170603723,
+          "improved_rate": 0.7575757575757576
+        },
+        "c075_tag_positive_w14": {
+          "cases": 33,
+          "mean_uplift": 0.2800143618475307,
+          "improved_rate": 0.7272727272727273
+        },
+        "c079_synthetic_positive_w14": {
+          "cases": 33,
+          "mean_uplift": 0.2937260229479183,
+          "improved_rate": 0.7575757575757576
+        }
+      },
+      "qwenvl": {
+        "blend_species_face": {
+          "cases": 33,
+          "mean_uplift": 0.029183369694334087,
+          "improved_rate": 0.7272727272727273
+        },
+        "c075_tag_positive_w14": {
+          "cases": 33,
+          "mean_uplift": 0.03862070134191802,
+          "improved_rate": 0.7272727272727273
+        },
+        "c079_synthetic_positive_w14": {
+          "cases": 33,
+          "mean_uplift": 0.03887066335389108,
+          "improved_rate": 0.7575757575757576
+        }
+      }
+    }
+  },
+  "next_decision": "do_not_promote_c079_continue_with_more_precise_pair_or_encoder_objective"
+}

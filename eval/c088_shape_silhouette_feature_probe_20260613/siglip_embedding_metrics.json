@@ -1,0 +1,597 @@
+{
+  "manifest_path": "eval/c088_shape_silhouette_feature_probe_20260613/probe_manifest.jsonl",
+  "encoder": "google/siglip2-base-patch16-512",
+  "rows": [
+    {
+      "sample": "crop_pair00",
+      "shape_group": "frog_yokai_guard",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.8417969346046448,
+      "no_ip_cosine": 0.7878642678260803,
+      "uplift": 0.05393266677856445,
+      "rank": 1
+    },
+    {
+      "sample": "crop_pair00",
+      "shape_group": "frog_yokai_guard",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.8065091967582703,
+      "no_ip_cosine": 0.7878642678260803,
+      "uplift": 0.01864492893218994,
+      "rank": 2
+    },
+    {
+      "sample": "crop_pair00",
+      "shape_group": "frog_yokai_guard",
+      "variant": "blend_species_face",
+      "cosine": 0.7913313508033752,
+      "no_ip_cosine": 0.7878642678260803,
+      "uplift": 0.003467082977294922,
+      "rank": 3
+    },
+    {
+      "sample": "crop_pair00",
+      "shape_group": "frog_yokai_guard",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.7907905578613281,
+      "no_ip_cosine": 0.7878642678260803,
+      "uplift": 0.0029262900352478027,
+      "rank": 4
+    },
+    {
+      "sample": "crop_pair00",
+      "shape_group": "frog_yokai_guard",
+      "variant": "no_ip",
+      "cosine": 0.7878642678260803,
+      "no_ip_cosine": 0.7878642678260803,
+      "uplift": 0.0,
+      "rank": 5
+    },
+    {
+      "sample": "crop_pair01",
+      "shape_group": "frog_yokai_guard",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.8633798360824585,
+      "no_ip_cosine": 0.813863217830658,
+      "uplift": 0.04951661825180054,
+      "rank": 1
+    },
+    {
+      "sample": "crop_pair01",
+      "shape_group": "frog_yokai_guard",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.8253796696662903,
+      "no_ip_cosine": 0.813863217830658,
+      "uplift": 0.011516451835632324,
+      "rank": 2
+    },
+    {
+      "sample": "crop_pair01",
+      "shape_group": "frog_yokai_guard",
+      "variant": "no_ip",
+      "cosine": 0.813863217830658,
+      "no_ip_cosine": 0.813863217830658,
+      "uplift": 0.0,
+      "rank": 3
+    },
+    {
+      "sample": "crop_pair01",
+      "shape_group": "frog_yokai_guard",
+      "variant": "blend_species_face",
+      "cosine": 0.7858740091323853,
+      "no_ip_cosine": 0.813863217830658,
+      "uplift": -0.027989208698272705,
+      "rank": 4
+    },
+    {
+      "sample": "crop_pair01",
+      "shape_group": "frog_yokai_guard",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.7523503303527832,
+      "no_ip_cosine": 0.813863217830658,
+      "uplift": -0.061512887477874756,
+      "rank": 5
+    },
+    {
+      "sample": "crop_pair02",
+      "shape_group": "frog_yokai_guard",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.8532305955886841,
+      "no_ip_cosine": 0.7934446334838867,
+      "uplift": 0.05978596210479736,
+      "rank": 1
+    },
+    {
+      "sample": "crop_pair02",
+      "shape_group": "frog_yokai_guard",
+      "variant": "blend_species_face",
+      "cosine": 0.8327513337135315,
+      "no_ip_cosine": 0.7934446334838867,
+      "uplift": 0.039306700229644775,
+      "rank": 2
+    },
+    {
+      "sample": "crop_pair02",
+      "shape_group": "frog_yokai_guard",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.820925772190094,
+      "no_ip_cosine": 0.7934446334838867,
+      "uplift": 0.027481138706207275,
+      "rank": 3
+    },
+    {
+      "sample": "crop_pair02",
+      "shape_group": "frog_yokai_guard",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.8144142627716064,
+      "no_ip_cosine": 0.7934446334838867,
+      "uplift": 0.020969629287719727,
+      "rank": 4
+    },
+    {
+      "sample": "crop_pair02",
+      "shape_group": "frog_yokai_guard",
+      "variant": "no_ip",
+      "cosine": 0.7934446334838867,
+      "no_ip_cosine": 0.7934446334838867,
+      "uplift": 0.0,
+      "rank": 5
+    },
+    {
+      "sample": "crop_pair03",
+      "shape_group": "frog_yokai_guard",
+      "variant": "blend_species_face",
+      "cosine": 0.8398050665855408,
+      "no_ip_cosine": 0.7909389734268188,
+      "uplift": 0.048866093158721924,
+      "rank": 1
+    },
+    {
+      "sample": "crop_pair03",
+      "shape_group": "frog_yokai_guard",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.83658766746521,
+      "no_ip_cosine": 0.7909389734268188,
+      "uplift": 0.04564869403839111,
+      "rank": 2
+    },
+    {
+      "sample": "crop_pair03",
+      "shape_group": "frog_yokai_guard",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.8354588150978088,
+      "no_ip_cosine": 0.7909389734268188,
+      "uplift": 0.04451984167098999,
+      "rank": 3
+    },
+    {
+      "sample": "crop_pair03",
+      "shape_group": "frog_yokai_guard",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.8181028962135315,
+      "no_ip_cosine": 0.7909389734268188,
+      "uplift": 0.027163922786712646,
+      "rank": 4
+    },
+    {
+      "sample": "crop_pair03",
+      "shape_group": "frog_yokai_guard",
+      "variant": "no_ip",
+      "cosine": 0.7909389734268188,
+      "no_ip_cosine": 0.7909389734268188,
+      "uplift": 0.0,
+      "rank": 5
+    },
+    {
+      "sample": "crop_pair04",
+      "shape_group": "frog_yokai_guard",
+      "variant": "no_ip",
+      "cosine": 0.8370928764343262,
+      "no_ip_cosine": 0.8370928764343262,
+      "uplift": 0.0,
+      "rank": 1
+    },
+    {
+      "sample": "crop_pair04",
+      "shape_group": "frog_yokai_guard",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.821078360080719,
+      "no_ip_cosine": 0.8370928764343262,
+      "uplift": -0.016014516353607178,
+      "rank": 2
+    },
+    {
+      "sample": "crop_pair04",
+      "shape_group": "frog_yokai_guard",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.8063793182373047,
+      "no_ip_cosine": 0.8370928764343262,
+      "uplift": -0.030713558197021484,
+      "rank": 3
+    },
+    {
+      "sample": "crop_pair04",
+      "shape_group": "frog_yokai_guard",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.7797457575798035,
+      "no_ip_cosine": 0.8370928764343262,
+      "uplift": -0.057347118854522705,
+      "rank": 4
+    },
+    {
+      "sample": "crop_pair04",
+      "shape_group": "frog_yokai_guard",
+      "variant": "blend_species_face",
+      "cosine": 0.7504114508628845,
+      "no_ip_cosine": 0.8370928764343262,
+      "uplift": -0.08668142557144165,
+      "rank": 5
+    },
+    {
+      "sample": "crop_pair05",
+      "shape_group": "frog_yokai_guard",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.8270156979560852,
+      "no_ip_cosine": 0.7864908576011658,
+      "uplift": 0.040524840354919434,
+      "rank": 1
+    },
+    {
+      "sample": "crop_pair05",
+      "shape_group": "frog_yokai_guard",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.8253713250160217,
+      "no_ip_cosine": 0.7864908576011658,
+      "uplift": 0.03888046741485596,
+      "rank": 2
+    },
+    {
+      "sample": "crop_pair05",
+      "shape_group": "frog_yokai_guard",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.8048021197319031,
+      "no_ip_cosine": 0.7864908576011658,
+      "uplift": 0.018311262130737305,
+      "rank": 3
+    },
+    {
+      "sample": "crop_pair05",
+      "shape_group": "frog_yokai_guard",
+      "variant": "no_ip",
+      "cosine": 0.7864908576011658,
+      "no_ip_cosine": 0.7864908576011658,
+      "uplift": 0.0,
+      "rank": 4
+    },
+    {
+      "sample": "crop_pair05",
+      "shape_group": "frog_yokai_guard",
+      "variant": "blend_species_face",
+      "cosine": 0.7571483254432678,
+      "no_ip_cosine": 0.7864908576011658,
+      "uplift": -0.02934253215789795,
+      "rank": 5
+    },
+    {
+      "sample": "crop_pair06",
+      "shape_group": "frog_yokai_guard",
+      "variant": "no_ip",
+      "cosine": 0.8522249460220337,
+      "no_ip_cosine": 0.8522249460220337,
+      "uplift": 0.0,
+      "rank": 1
+    },
+    {
+      "sample": "crop_pair06",
+      "shape_group": "frog_yokai_guard",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.7715101838111877,
+      "no_ip_cosine": 0.8522249460220337,
+      "uplift": -0.08071476221084595,
+      "rank": 2
+    },
+    {
+      "sample": "crop_pair06",
+      "shape_group": "frog_yokai_guard",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.7601384520530701,
+      "no_ip_cosine": 0.8522249460220337,
+      "uplift": -0.09208649396896362,
+      "rank": 3
+    },
+    {
+      "sample": "crop_pair06",
+      "shape_group": "frog_yokai_guard",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.7568761706352234,
+      "no_ip_cosine": 0.8522249460220337,
+      "uplift": -0.0953487753868103,
+      "rank": 4
+    },
+    {
+      "sample": "crop_pair06",
+      "shape_group": "frog_yokai_guard",
+      "variant": "blend_species_face",
+      "cosine": 0.7345747947692871,
+      "no_ip_cosine": 0.8522249460220337,
+      "uplift": -0.11765015125274658,
+      "rank": 5
+    },
+    {
+      "sample": "crop_pair07",
+      "shape_group": "frog_yokai_guard",
+      "variant": "no_ip",
+      "cosine": 0.7680091857910156,
+      "no_ip_cosine": 0.7680091857910156,
+      "uplift": 0.0,
+      "rank": 1
+    },
+    {
+      "sample": "crop_pair07",
+      "shape_group": "frog_yokai_guard",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.760606050491333,
+      "no_ip_cosine": 0.7680091857910156,
+      "uplift": -0.007403135299682617,
+      "rank": 2
+    },
+    {
+      "sample": "crop_pair07",
+      "shape_group": "frog_yokai_guard",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.7602057456970215,
+      "no_ip_cosine": 0.7680091857910156,
+      "uplift": -0.007803440093994141,
+      "rank": 3
+    },
+    {
+      "sample": "crop_pair07",
+      "shape_group": "frog_yokai_guard",
+      "variant": "blend_species_face",
+      "cosine": 0.7544018030166626,
+      "no_ip_cosine": 0.7680091857910156,
+      "uplift": -0.013607382774353027,
+      "rank": 4
+    },
+    {
+      "sample": "crop_pair07",
+      "shape_group": "frog_yokai_guard",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.742285430431366,
+      "no_ip_cosine": 0.7680091857910156,
+      "uplift": -0.025723755359649658,
+      "rank": 5
+    },
+    {
+      "sample": "crop_pair08",
+      "shape_group": "frog_yokai_guard",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.8853093385696411,
+      "no_ip_cosine": 0.7932862639427185,
+      "uplift": 0.09202307462692261,
+      "rank": 1
+    },
+    {
+      "sample": "crop_pair08",
+      "shape_group": "frog_yokai_guard",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.8330061435699463,
+      "no_ip_cosine": 0.7932862639427185,
+      "uplift": 0.03971987962722778,
+      "rank": 2
+    },
+    {
+      "sample": "crop_pair08",
+      "shape_group": "frog_yokai_guard",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.8204891085624695,
+      "no_ip_cosine": 0.7932862639427185,
+      "uplift": 0.027202844619750977,
+      "rank": 3
+    },
+    {
+      "sample": "crop_pair08",
+      "shape_group": "frog_yokai_guard",
+      "variant": "blend_species_face",
+      "cosine": 0.8190177083015442,
+      "no_ip_cosine": 0.7932862639427185,
+      "uplift": 0.025731444358825684,
+      "rank": 4
+    },
+    {
+      "sample": "crop_pair08",
+      "shape_group": "frog_yokai_guard",
+      "variant": "no_ip",
+      "cosine": 0.7932862639427185,
+      "no_ip_cosine": 0.7932862639427185,
+      "uplift": 0.0,
+      "rank": 5
+    },
+    {
+      "sample": "crop_pair09",
+      "shape_group": "frog_yokai_guard",
+      "variant": "blend_species_face",
+      "cosine": 0.8361840844154358,
+      "no_ip_cosine": 0.7601597905158997,
+      "uplift": 0.07602429389953613,
+      "rank": 1
+    },
+    {
+      "sample": "crop_pair09",
+      "shape_group": "frog_yokai_guard",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.8158385157585144,
+      "no_ip_cosine": 0.7601597905158997,
+      "uplift": 0.055678725242614746,
+      "rank": 2
+    },
+    {
+      "sample": "crop_pair09",
+      "shape_group": "frog_yokai_guard",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.7852327823638916,
+      "no_ip_cosine": 0.7601597905158997,
+      "uplift": 0.025072991847991943,
+      "rank": 3
+    },
+    {
+      "sample": "crop_pair09",
+      "shape_group": "frog_yokai_guard",
+      "variant": "no_ip",
+      "cosine": 0.7601597905158997,
+      "no_ip_cosine": 0.7601597905158997,
+      "uplift": 0.0,
+      "rank": 4
+    },
+    {
+      "sample": "crop_pair09",
+      "shape_group": "frog_yokai_guard",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.755953311920166,
+      "no_ip_cosine": 0.7601597905158997,
+      "uplift": -0.004206478595733643,
+      "rank": 5
+    },
+    {
+      "sample": "heldout07",
+      "shape_group": "heldout07_non_human_profile",
+      "variant": "c086_hard_negative_w14",
+      "cosine": 0.8601565361022949,
+      "no_ip_cosine": 0.8352038264274597,
+      "uplift": 0.024952709674835205,
+      "rank": 1
+    },
+    {
+      "sample": "heldout07",
+      "shape_group": "heldout07_non_human_profile",
+      "variant": "no_ip",
+      "cosine": 0.8352038264274597,
+      "no_ip_cosine": 0.8352038264274597,
+      "uplift": 0.0,
+      "rank": 2
+    },
+    {
+      "sample": "heldout07",
+      "shape_group": "heldout07_non_human_profile",
+      "variant": "blend_species_face",
+      "cosine": 0.8210219144821167,
+      "no_ip_cosine": 0.8352038264274597,
+      "uplift": -0.014181911945343018,
+      "rank": 3
+    },
+    {
+      "sample": "heldout07",
+      "shape_group": "heldout07_non_human_profile",
+      "variant": "c087_expanded_crop_positive_w14",
+      "cosine": 0.8208127021789551,
+      "no_ip_cosine": 0.8352038264274597,
+      "uplift": -0.014391124248504639,
+      "rank": 4
+    },
+    {
+      "sample": "heldout07",
+      "shape_group": "heldout07_non_human_profile",
+      "variant": "c085_anchored_full_adapter_w14",
+      "cosine": 0.7942109704017639,
+      "no_ip_cosine": 0.8352038264274597,
+      "uplift": -0.0409928560256958,
+      "rank": 5
+    }
+  ],
+  "case_decisions": [
+    {
+      "sample": "crop_pair00",
+      "shape_group": "frog_yokai_guard",
+      "best_variant": "c086_hard_negative_w14",
+      "best_uplift": 0.05393266677856445,
+      "top_margin": 0.03528773784637451,
+      "decision": "embedding_signal_supports_supervised_objective"
+    },
+    {
+      "sample": "crop_pair01",
+      "shape_group": "frog_yokai_guard",
+      "best_variant": "c085_anchored_full_adapter_w14",
+      "best_uplift": 0.04951661825180054,
+      "top_margin": 0.03800016641616821,
+      "decision": "embedding_signal_not_enough"
+    },
+    {
+      "sample": "crop_pair02",
+      "shape_group": "frog_yokai_guard",
+      "best_variant": "c086_hard_negative_w14",
+      "best_uplift": 0.05978596210479736,
+      "top_margin": 0.020479261875152588,
+      "decision": "embedding_signal_supports_supervised_objective"
+    },
+    {
+      "sample": "crop_pair03",
+      "shape_group": "frog_yokai_guard",
+      "best_variant": "blend_species_face",
+      "best_uplift": 0.048866093158721924,
+      "top_margin": 0.0032173991203308105,
+      "decision": "embedding_signal_not_enough"
+    },
+    {
+      "sample": "crop_pair04",
+      "shape_group": "frog_yokai_guard",
+      "best_variant": "no_ip",
+      "best_uplift": 0.0,
+      "top_margin": 0.016014516353607178,
+      "decision": "embedding_signal_not_enough"
+    },
+    {
+      "sample": "crop_pair05",
+      "shape_group": "frog_yokai_guard",
+      "best_variant": "c086_hard_negative_w14",
+      "best_uplift": 0.040524840354919434,
+      "top_margin": 0.0016443729400634766,
+      "decision": "embedding_signal_not_enough"
+    },
+    {
+      "sample": "crop_pair06",
+      "shape_group": "frog_yokai_guard",
+      "best_variant": "no_ip",
+      "best_uplift": 0.0,
+      "top_margin": 0.08071476221084595,
+      "decision": "embedding_signal_not_enough"
+    },
+    {
+      "sample": "crop_pair07",
+      "shape_group": "frog_yokai_guard",
+      "best_variant": "no_ip",
+      "best_uplift": 0.0,
+      "top_margin": 0.007403135299682617,
+      "decision": "embedding_signal_not_enough"
+    },
+    {
+      "sample": "crop_pair08",
+      "shape_group": "frog_yokai_guard",
+      "best_variant": "c085_anchored_full_adapter_w14",
+      "best_uplift": 0.09202307462692261,
+      "top_margin": 0.052303194999694824,
+      "decision": "embedding_signal_supports_supervised_objective"
+    },
+    {
+      "sample": "crop_pair09",
+      "shape_group": "frog_yokai_guard",
+      "best_variant": "blend_species_face",
+      "best_uplift": 0.07602429389953613,
+      "top_margin": 0.020345568656921387,
+      "decision": "embedding_signal_supports_supervised_objective"
+    },
+    {
+      "sample": "heldout07",
+      "shape_group": "heldout07_non_human_profile",
+      "best_variant": "c086_hard_negative_w14",
+      "best_uplift": 0.024952709674835205,
+      "top_margin": 0.024952709674835205,
+      "decision": "embedding_signal_not_enough"
+    }
+  ],
+  "summary": {
+    "cases": 11,
+    "supported_cases": 4,
+    "support_rate": 0.36363636363636365,
+    "decision": "embedding_signal_not_viable"
+  }
+}

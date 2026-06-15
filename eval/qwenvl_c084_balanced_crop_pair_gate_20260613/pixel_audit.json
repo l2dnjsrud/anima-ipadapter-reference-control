@@ -1,0 +1,9 @@
+{
+  "generated_png_count": 150,
+  "blank_threshold_pixel_std": 5.0,
+  "blank_image_count": 0,
+  "min_pixel_std": 35.8830680847168,
+  "max_pixel_std": 112.75064086914062,
+  "mean_pixel_std": 74.56331339518229,
+  "blank_images": []
+}

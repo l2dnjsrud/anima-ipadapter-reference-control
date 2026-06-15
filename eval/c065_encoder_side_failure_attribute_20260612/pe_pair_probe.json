@@ -1,0 +1,1187 @@
+{
+  "manifest_path": "training/manifests/c065_failure_attribute_pairs_20260612.jsonl",
+  "data_root": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best",
+  "encoder": "pe",
+  "rows": [
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_p0000",
+      "label": "positive",
+      "anchor_id": "001-100/SG-017/mrcolor_panel_style_v5_edge_trim_strict_00037_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00506_SG-017-01_page_2064x1800_s03",
+      "candidate_id": "001-100/SG-029/mrcolor_panel_style_v4_split_edge_strict_probe_00185_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00902_SG-029-07_page_998x1412_s01",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "non_human_red_pale_profile_proxy",
+      "cosine": 0.8675904273986816
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_n0001",
+      "label": "negative",
+      "anchor_id": "001-100/SG-017/mrcolor_panel_style_v5_edge_trim_strict_00037_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00506_SG-017-01_page_2064x1800_s03",
+      "candidate_id": "001-100/SG-005/mrcolor_panel_style_v4_split_edge_strict_probe_00027_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00117_SG-005-13_page_2062x2105_s02",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.8240528106689453
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_p0002",
+      "label": "positive",
+      "anchor_id": "001-100/SG-029/mrcolor_panel_style_v4_split_edge_strict_probe_00185_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00902_SG-029-07_page_998x1412_s01",
+      "candidate_id": "001-100/SG-037/mrcolor_panel_style_v4_split_edge_strict_probe_00257_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01199_SG-037-07_page_1092x2841_s02",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "non_human_red_pale_profile_proxy",
+      "cosine": 0.9403786659240723
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_n0003",
+      "label": "negative",
+      "anchor_id": "001-100/SG-029/mrcolor_panel_style_v4_split_edge_strict_probe_00185_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00902_SG-029-07_page_998x1412_s01",
+      "candidate_id": "001-100/SG-011/mrcolor_panel_style_v4_split_edge_strict_probe_00061_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00309_SG-011-13_page_2067x2907_s02",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.8670200109481812
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_p0004",
+      "label": "positive",
+      "anchor_id": "001-100/SG-037/mrcolor_panel_style_v4_split_edge_strict_probe_00257_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01199_SG-037-07_page_1092x2841_s02",
+      "candidate_id": "001-100/SG-060/mrcolor_panel_style_v4_split_edge_strict_probe_00394_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02023_SG-060-13_page_960x1757_s01",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "non_human_red_pale_profile_proxy",
+      "cosine": 0.9027895927429199
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_n0005",
+      "label": "negative",
+      "anchor_id": "001-100/SG-037/mrcolor_panel_style_v4_split_edge_strict_probe_00257_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01199_SG-037-07_page_1092x2841_s02",
+      "candidate_id": "001-100/SG-020/mrcolor_panel_style_v5_edge_trim_strict_00048_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00604_SG-020-03_page_1993x1630_s03",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.8157390356063843
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_p0006",
+      "label": "positive",
+      "anchor_id": "001-100/SG-060/mrcolor_panel_style_v4_split_edge_strict_probe_00394_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02023_SG-060-13_page_960x1757_s01",
+      "candidate_id": "001-100/SG-068/mrcolor_panel_style_v4_split_edge_strict_probe_00427_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02213_SG-068-06_page_1003x1412_s01",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "non_human_red_pale_profile_proxy",
+      "cosine": 0.891261637210846
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_n0007",
+      "label": "negative",
+      "anchor_id": "001-100/SG-060/mrcolor_panel_style_v4_split_edge_strict_probe_00394_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02023_SG-060-13_page_960x1757_s01",
+      "candidate_id": "001-100/SG-022/mrcolor_panel_style_v4_split_edge_strict_probe_00134_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00687_SG-022-06_page_1965x2841_s01",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.907854437828064
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_p0008",
+      "label": "positive",
+      "anchor_id": "001-100/SG-068/mrcolor_panel_style_v4_split_edge_strict_probe_00427_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02213_SG-068-06_page_1003x1412_s01",
+      "candidate_id": "001-100/SG-077/mrcolor_panel_style_v4_split_edge_strict_probe_00468_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02524_SG-077-13_page_2084x2871_s02",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "non_human_red_pale_profile_proxy",
+      "cosine": 0.8174718618392944
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_n0009",
+      "label": "negative",
+      "anchor_id": "001-100/SG-068/mrcolor_panel_style_v4_split_edge_strict_probe_00427_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02213_SG-068-06_page_1003x1412_s01",
+      "candidate_id": "001-100/SG-047/mrcolor_panel_style_v4_split_edge_strict_probe_00320_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01571_SG-047-12_page_1965x2897_s03",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.8910613059997559
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_p0010",
+      "label": "positive",
+      "anchor_id": "001-100/SG-077/mrcolor_panel_style_v4_split_edge_strict_probe_00468_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02524_SG-077-13_page_2084x2871_s02",
+      "candidate_id": "001-100/SG-083/mrcolor_panel_style_v4_split_edge_strict_probe_00494_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02718_SG-083-10_page_719x957_s01",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "non_human_red_pale_profile_proxy",
+      "cosine": 0.7383499145507812
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_n0011",
+      "label": "negative",
+      "anchor_id": "001-100/SG-077/mrcolor_panel_style_v4_split_edge_strict_probe_00468_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02524_SG-077-13_page_2084x2871_s02",
+      "candidate_id": "001-100/SG-056/mrcolor_panel_style_v4_split_edge_strict_probe_00366_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01869_SG-056-14_page_998x1815_s01",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.75578773021698
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_p0012",
+      "label": "positive",
+      "anchor_id": "001-100/SG-083/mrcolor_panel_style_v4_split_edge_strict_probe_00494_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02718_SG-083-10_page_719x957_s01",
+      "candidate_id": "001-100/SG-087/mrcolor_panel_style_v4_split_edge_strict_probe_00522_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02913_SG-087-15_page_878x1036_s01",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "non_human_red_pale_profile_proxy",
+      "cosine": 0.7550483345985413
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_n0013",
+      "label": "negative",
+      "anchor_id": "001-100/SG-083/mrcolor_panel_style_v4_split_edge_strict_probe_00494_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02718_SG-083-10_page_719x957_s01",
+      "candidate_id": "001-100/SG-074/mrcolor_panel_style_v4_split_edge_strict_probe_00454_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02404_SG-074-01_page_1965x1462_s02",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.8383813500404358
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_p0014",
+      "label": "positive",
+      "anchor_id": "001-100/SG-087/mrcolor_panel_style_v4_split_edge_strict_probe_00522_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02913_SG-087-15_page_878x1036_s01",
+      "candidate_id": "001-100/SG-097/mrcolor_panel_style_v4_split_edge_strict_probe_00581_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03363_SG-097-05_page_1084x2841_s02",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "non_human_red_pale_profile_proxy",
+      "cosine": 0.5697755217552185
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_n0015",
+      "label": "negative",
+      "anchor_id": "001-100/SG-087/mrcolor_panel_style_v4_split_edge_strict_probe_00522_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02913_SG-087-15_page_878x1036_s01",
+      "candidate_id": "001-100/SG-081/mrcolor_panel_style_v4_split_edge_strict_probe_00486_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02635_SG-081-10_page_2148x2902_s01",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.4861114025115967
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_p0016",
+      "label": "positive",
+      "anchor_id": "001-100/SG-097/mrcolor_panel_style_v4_split_edge_strict_probe_00581_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03363_SG-097-05_page_1084x2841_s02",
+      "candidate_id": "101-200/SG-110/mrcolor_panel_style_v4_split_edge_strict_probe_00645_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03808_SG-110-13_page_901x1038_s01",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "non_human_red_pale_profile_proxy",
+      "cosine": 0.7373741865158081
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_n0017",
+      "label": "negative",
+      "anchor_id": "001-100/SG-097/mrcolor_panel_style_v4_split_edge_strict_probe_00581_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03363_SG-097-05_page_1084x2841_s02",
+      "candidate_id": "001-100/SG-090/mrcolor_panel_style_v4_split_edge_strict_probe_00550_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03067_SG-090-12_page_2143x2915_s02",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.877755880355835
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_p0018",
+      "label": "positive",
+      "anchor_id": "101-200/SG-110/mrcolor_panel_style_v4_split_edge_strict_probe_00645_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03808_SG-110-13_page_901x1038_s01",
+      "candidate_id": "101-200/SG-119/mrcolor_panel_style_v4_split_edge_strict_probe_00691_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04037_SG-119-15_page_2059x2874_s02",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "non_human_red_pale_profile_proxy",
+      "cosine": 0.8126859068870544
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_n0019",
+      "label": "negative",
+      "anchor_id": "101-200/SG-110/mrcolor_panel_style_v4_split_edge_strict_probe_00645_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03808_SG-110-13_page_901x1038_s01",
+      "candidate_id": "101-200/SG-132/mrcolor_panel_style_v4_split_edge_strict_probe_00825_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04508_SG-132-07_page_2140x2892_s02",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.7840781211853027
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_p0020",
+      "label": "positive",
+      "anchor_id": "101-200/SG-119/mrcolor_panel_style_v4_split_edge_strict_probe_00691_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04037_SG-119-15_page_2059x2874_s02",
+      "candidate_id": "101-200/SG-129/mrcolor_panel_style_v4_split_edge_strict_probe_00803_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04403_SG-129-05_page_2054x2904_s03",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "non_human_red_pale_profile_proxy",
+      "cosine": 0.9233462810516357
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_n0021",
+      "label": "negative",
+      "anchor_id": "101-200/SG-119/mrcolor_panel_style_v4_split_edge_strict_probe_00691_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04037_SG-119-15_page_2059x2874_s02",
+      "candidate_id": "101-200/SG-173/mrcolor_panel_style_v4_split_edge_strict_probe_01010_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05850_SG-173-13_page_652x1043_s01",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.8538696765899658
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_p0022",
+      "label": "positive",
+      "anchor_id": "101-200/SG-129/mrcolor_panel_style_v4_split_edge_strict_probe_00803_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04403_SG-129-05_page_2054x2904_s03",
+      "candidate_id": "101-200/SG-137/mrcolor_panel_style_v5_edge_trim_strict_00317_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_04679_SG-137-02_page_2105x2899_s04",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "non_human_red_pale_profile_proxy",
+      "cosine": 0.8889804482460022
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_n0023",
+      "label": "negative",
+      "anchor_id": "101-200/SG-129/mrcolor_panel_style_v4_split_edge_strict_probe_00803_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04403_SG-129-05_page_2054x2904_s03",
+      "candidate_id": "001-100/SG-005/mrcolor_panel_style_v4_split_edge_strict_probe_00027_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00117_SG-005-13_page_2062x2105_s02",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.9004590511322021
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_p0024",
+      "label": "positive",
+      "anchor_id": "101-200/SG-137/mrcolor_panel_style_v5_edge_trim_strict_00317_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_04679_SG-137-02_page_2105x2899_s04",
+      "candidate_id": "101-200/SG-145/mrcolor_panel_style_v4_split_edge_strict_probe_00907_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04994_SG-145-03_page_2150x2955_s01",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "non_human_red_pale_profile_proxy",
+      "cosine": 0.8621649146080017
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_n0025",
+      "label": "negative",
+      "anchor_id": "101-200/SG-137/mrcolor_panel_style_v5_edge_trim_strict_00317_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_04679_SG-137-02_page_2105x2899_s04",
+      "candidate_id": "001-100/SG-011/mrcolor_panel_style_v4_split_edge_strict_probe_00061_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00309_SG-011-13_page_2067x2907_s02",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.9337072372436523
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_p0026",
+      "label": "positive",
+      "anchor_id": "101-200/SG-145/mrcolor_panel_style_v4_split_edge_strict_probe_00907_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04994_SG-145-03_page_2150x2955_s01",
+      "candidate_id": "101-200/SG-147/mrcolor_panel_style_v4_split_edge_strict_probe_00923_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05101_SG-147-15_page_2186x2889_s02",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "non_human_red_pale_profile_proxy",
+      "cosine": 0.8338662385940552
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_n0027",
+      "label": "negative",
+      "anchor_id": "101-200/SG-145/mrcolor_panel_style_v4_split_edge_strict_probe_00907_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04994_SG-145-03_page_2150x2955_s01",
+      "candidate_id": "001-100/SG-020/mrcolor_panel_style_v5_edge_trim_strict_00048_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00604_SG-020-03_page_1993x1630_s03",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.8519566059112549
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_p0028",
+      "label": "positive",
+      "anchor_id": "101-200/SG-147/mrcolor_panel_style_v4_split_edge_strict_probe_00923_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05101_SG-147-15_page_2186x2889_s02",
+      "candidate_id": "101-200/SG-167/mrcolor_panel_style_v4_split_edge_strict_probe_00989_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05659_SG-167-15_page_2016x2902_s03",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "non_human_red_pale_profile_proxy",
+      "cosine": 0.8908308744430542
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_n0029",
+      "label": "negative",
+      "anchor_id": "101-200/SG-147/mrcolor_panel_style_v4_split_edge_strict_probe_00923_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05101_SG-147-15_page_2186x2889_s02",
+      "candidate_id": "001-100/SG-022/mrcolor_panel_style_v4_split_edge_strict_probe_00134_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00687_SG-022-06_page_1965x2841_s01",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.8391644954681396
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_p0030",
+      "label": "positive",
+      "anchor_id": "101-200/SG-167/mrcolor_panel_style_v4_split_edge_strict_probe_00989_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05659_SG-167-15_page_2016x2902_s03",
+      "candidate_id": "101-200/SG-185/mrcolor_panel_style_v4_split_edge_strict_probe_01066_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_06197_SG-185-13_page_2036x2841_s03",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "non_human_red_pale_profile_proxy",
+      "cosine": 0.9591374397277832
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_n0031",
+      "label": "negative",
+      "anchor_id": "101-200/SG-167/mrcolor_panel_style_v4_split_edge_strict_probe_00989_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05659_SG-167-15_page_2016x2902_s03",
+      "candidate_id": "001-100/SG-047/mrcolor_panel_style_v4_split_edge_strict_probe_00320_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01571_SG-047-12_page_1965x2897_s03",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.9295358061790466
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_p0032",
+      "label": "positive",
+      "anchor_id": "101-200/SG-185/mrcolor_panel_style_v4_split_edge_strict_probe_01066_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_06197_SG-185-13_page_2036x2841_s03",
+      "candidate_id": "101-200/SG-188/mrcolor_panel_style_v5_edge_trim_strict_00406_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_06328_SG-188-15_page_2023x1813_s05",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "non_human_red_pale_profile_proxy",
+      "cosine": 0.6564561724662781
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_n0033",
+      "label": "negative",
+      "anchor_id": "101-200/SG-185/mrcolor_panel_style_v4_split_edge_strict_probe_01066_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_06197_SG-185-13_page_2036x2841_s03",
+      "candidate_id": "001-100/SG-056/mrcolor_panel_style_v4_split_edge_strict_probe_00366_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01869_SG-056-14_page_998x1815_s01",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.8378862738609314
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_p0034",
+      "label": "positive",
+      "anchor_id": "101-200/SG-188/mrcolor_panel_style_v5_edge_trim_strict_00406_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_06328_SG-188-15_page_2023x1813_s05",
+      "candidate_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-205/mrcolor_panel_style_v5_edge_trim_strict_00430_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_06875_SG-205-12_page_2110x2892_s02",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "non_human_red_pale_profile_proxy",
+      "cosine": 0.7144091725349426
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_n0035",
+      "label": "negative",
+      "anchor_id": "101-200/SG-188/mrcolor_panel_style_v5_edge_trim_strict_00406_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_06328_SG-188-15_page_2023x1813_s05",
+      "candidate_id": "001-100/SG-074/mrcolor_panel_style_v4_split_edge_strict_probe_00454_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02404_SG-074-01_page_1965x1462_s02",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.687323808670044
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_p0036",
+      "label": "positive",
+      "anchor_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-205/mrcolor_panel_style_v5_edge_trim_strict_00430_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_06875_SG-205-12_page_2110x2892_s02",
+      "candidate_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-210/mrcolor_panel_style_v4_split_edge_strict_probe_01178_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_07048_SG-210-06_page_1965x2841_s02",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "non_human_red_pale_profile_proxy",
+      "cosine": 0.8808304071426392
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_n0037",
+      "label": "negative",
+      "anchor_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-205/mrcolor_panel_style_v5_edge_trim_strict_00430_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_06875_SG-205-12_page_2110x2892_s02",
+      "candidate_id": "001-100/SG-081/mrcolor_panel_style_v4_split_edge_strict_probe_00486_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02635_SG-081-10_page_2148x2902_s01",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.8398240208625793
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_p0038",
+      "label": "positive",
+      "anchor_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-210/mrcolor_panel_style_v4_split_edge_strict_probe_01178_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_07048_SG-210-06_page_1965x2841_s02",
+      "candidate_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-226/mrcolor_panel_style_v4_split_edge_strict_probe_01276_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_07596_SG-226-13_page_998x1668_s01",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "non_human_red_pale_profile_proxy",
+      "cosine": 0.8910302519798279
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_n0039",
+      "label": "negative",
+      "anchor_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-210/mrcolor_panel_style_v4_split_edge_strict_probe_01178_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_07048_SG-210-06_page_1965x2841_s02",
+      "candidate_id": "001-100/SG-090/mrcolor_panel_style_v4_split_edge_strict_probe_00550_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03067_SG-090-12_page_2143x2915_s02",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.7709924578666687
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_p0040",
+      "label": "positive",
+      "anchor_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-226/mrcolor_panel_style_v4_split_edge_strict_probe_01276_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_07596_SG-226-13_page_998x1668_s01",
+      "candidate_id": "001-100/SG-017/mrcolor_panel_style_v5_edge_trim_strict_00037_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00506_SG-017-01_page_2064x1800_s03",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "non_human_red_pale_profile_proxy",
+      "cosine": 0.8368799686431885
+    },
+    {
+      "pair_id": "c065_non_human_red_pale_profile_proxy_n0041",
+      "label": "negative",
+      "anchor_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-226/mrcolor_panel_style_v4_split_edge_strict_probe_01276_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_07596_SG-226-13_page_998x1668_s01",
+      "candidate_id": "101-200/SG-132/mrcolor_panel_style_v4_split_edge_strict_probe_00825_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04508_SG-132-07_page_2140x2892_s02",
+      "anchor_group": "non_human_red_pale_profile_proxy",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.9079396724700928
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_p0042",
+      "label": "positive",
+      "anchor_id": "001-100/SG-017/mrcolor_panel_style_v5_edge_trim_strict_00037_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00506_SG-017-01_page_2064x1800_s03",
+      "candidate_id": "001-100/SG-020/mrcolor_panel_style_v5_edge_trim_strict_00048_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00604_SG-020-03_page_1993x1630_s03",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "beard_headwear_crop",
+      "cosine": 0.8185405731201172
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_n0043",
+      "label": "negative",
+      "anchor_id": "001-100/SG-017/mrcolor_panel_style_v5_edge_trim_strict_00037_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00506_SG-017-01_page_2064x1800_s03",
+      "candidate_id": "001-100/SG-005/mrcolor_panel_style_v4_split_edge_strict_probe_00027_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00117_SG-005-13_page_2062x2105_s02",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.8240528106689453
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_p0044",
+      "label": "positive",
+      "anchor_id": "001-100/SG-020/mrcolor_panel_style_v5_edge_trim_strict_00048_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00604_SG-020-03_page_1993x1630_s03",
+      "candidate_id": "001-100/SG-029/mrcolor_panel_style_v4_split_edge_strict_probe_00185_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00902_SG-029-07_page_998x1412_s01",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "beard_headwear_crop",
+      "cosine": 0.7837743759155273
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_n0045",
+      "label": "negative",
+      "anchor_id": "001-100/SG-020/mrcolor_panel_style_v5_edge_trim_strict_00048_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00604_SG-020-03_page_1993x1630_s03",
+      "candidate_id": "001-100/SG-011/mrcolor_panel_style_v4_split_edge_strict_probe_00061_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00309_SG-011-13_page_2067x2907_s02",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.8670364618301392
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_p0046",
+      "label": "positive",
+      "anchor_id": "001-100/SG-029/mrcolor_panel_style_v4_split_edge_strict_probe_00185_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00902_SG-029-07_page_998x1412_s01",
+      "candidate_id": "001-100/SG-047/mrcolor_panel_style_v4_split_edge_strict_probe_00320_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01571_SG-047-12_page_1965x2897_s03",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "beard_headwear_crop",
+      "cosine": 0.9344236850738525
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_n0047",
+      "label": "negative",
+      "anchor_id": "001-100/SG-029/mrcolor_panel_style_v4_split_edge_strict_probe_00185_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00902_SG-029-07_page_998x1412_s01",
+      "candidate_id": "001-100/SG-022/mrcolor_panel_style_v4_split_edge_strict_probe_00134_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00687_SG-022-06_page_1965x2841_s01",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.9695134162902832
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_p0048",
+      "label": "positive",
+      "anchor_id": "001-100/SG-047/mrcolor_panel_style_v4_split_edge_strict_probe_00320_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01571_SG-047-12_page_1965x2897_s03",
+      "candidate_id": "001-100/SG-056/mrcolor_panel_style_v4_split_edge_strict_probe_00366_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01869_SG-056-14_page_998x1815_s01",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "beard_headwear_crop",
+      "cosine": 0.9027122259140015
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_n0049",
+      "label": "negative",
+      "anchor_id": "001-100/SG-047/mrcolor_panel_style_v4_split_edge_strict_probe_00320_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01571_SG-047-12_page_1965x2897_s03",
+      "candidate_id": "001-100/SG-037/mrcolor_panel_style_v4_split_edge_strict_probe_00257_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01199_SG-037-07_page_1092x2841_s02",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.9769234657287598
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_p0050",
+      "label": "positive",
+      "anchor_id": "001-100/SG-056/mrcolor_panel_style_v4_split_edge_strict_probe_00366_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01869_SG-056-14_page_998x1815_s01",
+      "candidate_id": "001-100/SG-074/mrcolor_panel_style_v4_split_edge_strict_probe_00454_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02404_SG-074-01_page_1965x1462_s02",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "beard_headwear_crop",
+      "cosine": 0.797122597694397
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_n0051",
+      "label": "negative",
+      "anchor_id": "001-100/SG-056/mrcolor_panel_style_v4_split_edge_strict_probe_00366_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01869_SG-056-14_page_998x1815_s01",
+      "candidate_id": "001-100/SG-060/mrcolor_panel_style_v4_split_edge_strict_probe_00394_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02023_SG-060-13_page_960x1757_s01",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.8619276285171509
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_p0052",
+      "label": "positive",
+      "anchor_id": "001-100/SG-074/mrcolor_panel_style_v4_split_edge_strict_probe_00454_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02404_SG-074-01_page_1965x1462_s02",
+      "candidate_id": "001-100/SG-077/mrcolor_panel_style_v4_split_edge_strict_probe_00468_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02524_SG-077-13_page_2084x2871_s02",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "beard_headwear_crop",
+      "cosine": 0.8546131253242493
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_n0053",
+      "label": "negative",
+      "anchor_id": "001-100/SG-074/mrcolor_panel_style_v4_split_edge_strict_probe_00454_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02404_SG-074-01_page_1965x1462_s02",
+      "candidate_id": "001-100/SG-068/mrcolor_panel_style_v4_split_edge_strict_probe_00427_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02213_SG-068-06_page_1003x1412_s01",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.9007963538169861
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_p0054",
+      "label": "positive",
+      "anchor_id": "001-100/SG-077/mrcolor_panel_style_v4_split_edge_strict_probe_00468_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02524_SG-077-13_page_2084x2871_s02",
+      "candidate_id": "001-100/SG-083/mrcolor_panel_style_v4_split_edge_strict_probe_00494_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02718_SG-083-10_page_719x957_s01",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "beard_headwear_crop",
+      "cosine": 0.7383499145507812
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_n0055",
+      "label": "negative",
+      "anchor_id": "001-100/SG-077/mrcolor_panel_style_v4_split_edge_strict_probe_00468_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02524_SG-077-13_page_2084x2871_s02",
+      "candidate_id": "001-100/SG-081/mrcolor_panel_style_v4_split_edge_strict_probe_00486_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02635_SG-081-10_page_2148x2902_s01",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.9679709672927856
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_p0056",
+      "label": "positive",
+      "anchor_id": "001-100/SG-083/mrcolor_panel_style_v4_split_edge_strict_probe_00494_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02718_SG-083-10_page_719x957_s01",
+      "candidate_id": "001-100/SG-087/mrcolor_panel_style_v4_split_edge_strict_probe_00522_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02913_SG-087-15_page_878x1036_s01",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "beard_headwear_crop",
+      "cosine": 0.7550483345985413
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_n0057",
+      "label": "negative",
+      "anchor_id": "001-100/SG-083/mrcolor_panel_style_v4_split_edge_strict_probe_00494_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02718_SG-083-10_page_719x957_s01",
+      "candidate_id": "101-200/SG-132/mrcolor_panel_style_v4_split_edge_strict_probe_00825_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04508_SG-132-07_page_2140x2892_s02",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.7691360712051392
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_p0058",
+      "label": "positive",
+      "anchor_id": "001-100/SG-087/mrcolor_panel_style_v4_split_edge_strict_probe_00522_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02913_SG-087-15_page_878x1036_s01",
+      "candidate_id": "001-100/SG-090/mrcolor_panel_style_v4_split_edge_strict_probe_00550_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03067_SG-090-12_page_2143x2915_s02",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "beard_headwear_crop",
+      "cosine": 0.47409242391586304
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_n0059",
+      "label": "negative",
+      "anchor_id": "001-100/SG-087/mrcolor_panel_style_v4_split_edge_strict_probe_00522_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02913_SG-087-15_page_878x1036_s01",
+      "candidate_id": "101-200/SG-188/mrcolor_panel_style_v5_edge_trim_strict_00406_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_06328_SG-188-15_page_2023x1813_s05",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.8332326412200928
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_p0060",
+      "label": "positive",
+      "anchor_id": "001-100/SG-090/mrcolor_panel_style_v4_split_edge_strict_probe_00550_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03067_SG-090-12_page_2143x2915_s02",
+      "candidate_id": "001-100/SG-097/mrcolor_panel_style_v4_split_edge_strict_probe_00581_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03363_SG-097-05_page_1084x2841_s02",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "beard_headwear_crop",
+      "cosine": 0.877755880355835
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_n0061",
+      "label": "negative",
+      "anchor_id": "001-100/SG-090/mrcolor_panel_style_v4_split_edge_strict_probe_00550_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03067_SG-090-12_page_2143x2915_s02",
+      "candidate_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-210/mrcolor_panel_style_v4_split_edge_strict_probe_01178_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_07048_SG-210-06_page_1965x2841_s02",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.7709924578666687
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_p0062",
+      "label": "positive",
+      "anchor_id": "001-100/SG-097/mrcolor_panel_style_v4_split_edge_strict_probe_00581_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03363_SG-097-05_page_1084x2841_s02",
+      "candidate_id": "101-200/SG-110/mrcolor_panel_style_v4_split_edge_strict_probe_00645_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03808_SG-110-13_page_901x1038_s01",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "beard_headwear_crop",
+      "cosine": 0.7373741865158081
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_n0063",
+      "label": "negative",
+      "anchor_id": "001-100/SG-097/mrcolor_panel_style_v4_split_edge_strict_probe_00581_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03363_SG-097-05_page_1084x2841_s02",
+      "candidate_id": "001-100/SG-005/mrcolor_panel_style_v4_split_edge_strict_probe_00027_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00117_SG-005-13_page_2062x2105_s02",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.9093539714813232
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_p0064",
+      "label": "positive",
+      "anchor_id": "101-200/SG-110/mrcolor_panel_style_v4_split_edge_strict_probe_00645_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03808_SG-110-13_page_901x1038_s01",
+      "candidate_id": "101-200/SG-119/mrcolor_panel_style_v4_split_edge_strict_probe_00691_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04037_SG-119-15_page_2059x2874_s02",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "beard_headwear_crop",
+      "cosine": 0.8126859068870544
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_n0065",
+      "label": "negative",
+      "anchor_id": "101-200/SG-110/mrcolor_panel_style_v4_split_edge_strict_probe_00645_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03808_SG-110-13_page_901x1038_s01",
+      "candidate_id": "001-100/SG-011/mrcolor_panel_style_v4_split_edge_strict_probe_00061_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00309_SG-011-13_page_2067x2907_s02",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.7392784953117371
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_p0066",
+      "label": "positive",
+      "anchor_id": "101-200/SG-119/mrcolor_panel_style_v4_split_edge_strict_probe_00691_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04037_SG-119-15_page_2059x2874_s02",
+      "candidate_id": "101-200/SG-129/mrcolor_panel_style_v4_split_edge_strict_probe_00803_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04403_SG-129-05_page_2054x2904_s03",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "beard_headwear_crop",
+      "cosine": 0.9233462810516357
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_n0067",
+      "label": "negative",
+      "anchor_id": "101-200/SG-119/mrcolor_panel_style_v4_split_edge_strict_probe_00691_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04037_SG-119-15_page_2059x2874_s02",
+      "candidate_id": "001-100/SG-022/mrcolor_panel_style_v4_split_edge_strict_probe_00134_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00687_SG-022-06_page_1965x2841_s01",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.9366639852523804
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_p0068",
+      "label": "positive",
+      "anchor_id": "101-200/SG-129/mrcolor_panel_style_v4_split_edge_strict_probe_00803_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04403_SG-129-05_page_2054x2904_s03",
+      "candidate_id": "101-200/SG-137/mrcolor_panel_style_v5_edge_trim_strict_00317_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_04679_SG-137-02_page_2105x2899_s04",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "beard_headwear_crop",
+      "cosine": 0.8889804482460022
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_n0069",
+      "label": "negative",
+      "anchor_id": "101-200/SG-129/mrcolor_panel_style_v4_split_edge_strict_probe_00803_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04403_SG-129-05_page_2054x2904_s03",
+      "candidate_id": "001-100/SG-037/mrcolor_panel_style_v4_split_edge_strict_probe_00257_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01199_SG-037-07_page_1092x2841_s02",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.8665546178817749
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_p0070",
+      "label": "positive",
+      "anchor_id": "101-200/SG-137/mrcolor_panel_style_v5_edge_trim_strict_00317_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_04679_SG-137-02_page_2105x2899_s04",
+      "candidate_id": "101-200/SG-145/mrcolor_panel_style_v4_split_edge_strict_probe_00907_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04994_SG-145-03_page_2150x2955_s01",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "beard_headwear_crop",
+      "cosine": 0.8621649146080017
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_n0071",
+      "label": "negative",
+      "anchor_id": "101-200/SG-137/mrcolor_panel_style_v5_edge_trim_strict_00317_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_04679_SG-137-02_page_2105x2899_s04",
+      "candidate_id": "001-100/SG-060/mrcolor_panel_style_v4_split_edge_strict_probe_00394_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02023_SG-060-13_page_960x1757_s01",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.8204272985458374
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_p0072",
+      "label": "positive",
+      "anchor_id": "101-200/SG-145/mrcolor_panel_style_v4_split_edge_strict_probe_00907_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04994_SG-145-03_page_2150x2955_s01",
+      "candidate_id": "101-200/SG-147/mrcolor_panel_style_v4_split_edge_strict_probe_00923_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05101_SG-147-15_page_2186x2889_s02",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "beard_headwear_crop",
+      "cosine": 0.8338662385940552
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_n0073",
+      "label": "negative",
+      "anchor_id": "101-200/SG-145/mrcolor_panel_style_v4_split_edge_strict_probe_00907_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04994_SG-145-03_page_2150x2955_s01",
+      "candidate_id": "001-100/SG-068/mrcolor_panel_style_v4_split_edge_strict_probe_00427_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02213_SG-068-06_page_1003x1412_s01",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.8896467089653015
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_p0074",
+      "label": "positive",
+      "anchor_id": "101-200/SG-147/mrcolor_panel_style_v4_split_edge_strict_probe_00923_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05101_SG-147-15_page_2186x2889_s02",
+      "candidate_id": "101-200/SG-167/mrcolor_panel_style_v4_split_edge_strict_probe_00989_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05659_SG-167-15_page_2016x2902_s03",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "beard_headwear_crop",
+      "cosine": 0.8908308744430542
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_n0075",
+      "label": "negative",
+      "anchor_id": "101-200/SG-147/mrcolor_panel_style_v4_split_edge_strict_probe_00923_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05101_SG-147-15_page_2186x2889_s02",
+      "candidate_id": "001-100/SG-081/mrcolor_panel_style_v4_split_edge_strict_probe_00486_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02635_SG-081-10_page_2148x2902_s01",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.8851086497306824
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_p0076",
+      "label": "positive",
+      "anchor_id": "101-200/SG-167/mrcolor_panel_style_v4_split_edge_strict_probe_00989_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05659_SG-167-15_page_2016x2902_s03",
+      "candidate_id": "101-200/SG-173/mrcolor_panel_style_v4_split_edge_strict_probe_01010_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05850_SG-173-13_page_652x1043_s01",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "beard_headwear_crop",
+      "cosine": 0.7379926443099976
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_n0077",
+      "label": "negative",
+      "anchor_id": "101-200/SG-167/mrcolor_panel_style_v4_split_edge_strict_probe_00989_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05659_SG-167-15_page_2016x2902_s03",
+      "candidate_id": "101-200/SG-132/mrcolor_panel_style_v4_split_edge_strict_probe_00825_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04508_SG-132-07_page_2140x2892_s02",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.9504286646842957
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_p0078",
+      "label": "positive",
+      "anchor_id": "101-200/SG-173/mrcolor_panel_style_v4_split_edge_strict_probe_01010_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05850_SG-173-13_page_652x1043_s01",
+      "candidate_id": "101-200/SG-185/mrcolor_panel_style_v4_split_edge_strict_probe_01066_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_06197_SG-185-13_page_2036x2841_s03",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "beard_headwear_crop",
+      "cosine": 0.8481920957565308
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_n0079",
+      "label": "negative",
+      "anchor_id": "101-200/SG-173/mrcolor_panel_style_v4_split_edge_strict_probe_01010_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05850_SG-173-13_page_652x1043_s01",
+      "candidate_id": "101-200/SG-188/mrcolor_panel_style_v5_edge_trim_strict_00406_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_06328_SG-188-15_page_2023x1813_s05",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.7755465507507324
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_p0080",
+      "label": "positive",
+      "anchor_id": "101-200/SG-185/mrcolor_panel_style_v4_split_edge_strict_probe_01066_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_06197_SG-185-13_page_2036x2841_s03",
+      "candidate_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-205/mrcolor_panel_style_v5_edge_trim_strict_00430_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_06875_SG-205-12_page_2110x2892_s02",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "beard_headwear_crop",
+      "cosine": 0.9112998843193054
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_n0081",
+      "label": "negative",
+      "anchor_id": "101-200/SG-185/mrcolor_panel_style_v4_split_edge_strict_probe_01066_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_06197_SG-185-13_page_2036x2841_s03",
+      "candidate_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-210/mrcolor_panel_style_v4_split_edge_strict_probe_01178_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_07048_SG-210-06_page_1965x2841_s02",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.8843338489532471
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_p0082",
+      "label": "positive",
+      "anchor_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-205/mrcolor_panel_style_v5_edge_trim_strict_00430_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_06875_SG-205-12_page_2110x2892_s02",
+      "candidate_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-226/mrcolor_panel_style_v4_split_edge_strict_probe_01276_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_07596_SG-226-13_page_998x1668_s01",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "beard_headwear_crop",
+      "cosine": 0.924691915512085
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_n0083",
+      "label": "negative",
+      "anchor_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-205/mrcolor_panel_style_v5_edge_trim_strict_00430_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_06875_SG-205-12_page_2110x2892_s02",
+      "candidate_id": "001-100/SG-005/mrcolor_panel_style_v4_split_edge_strict_probe_00027_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00117_SG-005-13_page_2062x2105_s02",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.9054509997367859
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_p0084",
+      "label": "positive",
+      "anchor_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-226/mrcolor_panel_style_v4_split_edge_strict_probe_01276_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_07596_SG-226-13_page_998x1668_s01",
+      "candidate_id": "001-100/SG-017/mrcolor_panel_style_v5_edge_trim_strict_00037_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00506_SG-017-01_page_2064x1800_s03",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "beard_headwear_crop",
+      "cosine": 0.8368799686431885
+    },
+    {
+      "pair_id": "c065_beard_headwear_crop_n0085",
+      "label": "negative",
+      "anchor_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-226/mrcolor_panel_style_v4_split_edge_strict_probe_01276_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_07596_SG-226-13_page_998x1668_s01",
+      "candidate_id": "001-100/SG-011/mrcolor_panel_style_v4_split_edge_strict_probe_00061_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00309_SG-011-13_page_2067x2907_s02",
+      "anchor_group": "beard_headwear_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.8591319918632507
+    },
+    {
+      "pair_id": "c065_old_face_crop_p0086",
+      "label": "positive",
+      "anchor_id": "001-100/SG-017/mrcolor_panel_style_v5_edge_trim_strict_00037_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00506_SG-017-01_page_2064x1800_s03",
+      "candidate_id": "001-100/SG-020/mrcolor_panel_style_v5_edge_trim_strict_00048_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00604_SG-020-03_page_1993x1630_s03",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "old_face_crop",
+      "cosine": 0.8185405731201172
+    },
+    {
+      "pair_id": "c065_old_face_crop_n0087",
+      "label": "negative",
+      "anchor_id": "001-100/SG-017/mrcolor_panel_style_v5_edge_trim_strict_00037_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00506_SG-017-01_page_2064x1800_s03",
+      "candidate_id": "001-100/SG-005/mrcolor_panel_style_v4_split_edge_strict_probe_00027_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00117_SG-005-13_page_2062x2105_s02",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.8240528106689453
+    },
+    {
+      "pair_id": "c065_old_face_crop_p0088",
+      "label": "positive",
+      "anchor_id": "001-100/SG-020/mrcolor_panel_style_v5_edge_trim_strict_00048_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00604_SG-020-03_page_1993x1630_s03",
+      "candidate_id": "001-100/SG-029/mrcolor_panel_style_v4_split_edge_strict_probe_00185_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00902_SG-029-07_page_998x1412_s01",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "old_face_crop",
+      "cosine": 0.7837743759155273
+    },
+    {
+      "pair_id": "c065_old_face_crop_n0089",
+      "label": "negative",
+      "anchor_id": "001-100/SG-020/mrcolor_panel_style_v5_edge_trim_strict_00048_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00604_SG-020-03_page_1993x1630_s03",
+      "candidate_id": "001-100/SG-011/mrcolor_panel_style_v4_split_edge_strict_probe_00061_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00309_SG-011-13_page_2067x2907_s02",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.8670364618301392
+    },
+    {
+      "pair_id": "c065_old_face_crop_p0090",
+      "label": "positive",
+      "anchor_id": "001-100/SG-029/mrcolor_panel_style_v4_split_edge_strict_probe_00185_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00902_SG-029-07_page_998x1412_s01",
+      "candidate_id": "001-100/SG-047/mrcolor_panel_style_v4_split_edge_strict_probe_00320_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01571_SG-047-12_page_1965x2897_s03",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "old_face_crop",
+      "cosine": 0.9344236850738525
+    },
+    {
+      "pair_id": "c065_old_face_crop_n0091",
+      "label": "negative",
+      "anchor_id": "001-100/SG-029/mrcolor_panel_style_v4_split_edge_strict_probe_00185_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00902_SG-029-07_page_998x1412_s01",
+      "candidate_id": "001-100/SG-022/mrcolor_panel_style_v4_split_edge_strict_probe_00134_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00687_SG-022-06_page_1965x2841_s01",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.9695134162902832
+    },
+    {
+      "pair_id": "c065_old_face_crop_p0092",
+      "label": "positive",
+      "anchor_id": "001-100/SG-047/mrcolor_panel_style_v4_split_edge_strict_probe_00320_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01571_SG-047-12_page_1965x2897_s03",
+      "candidate_id": "001-100/SG-056/mrcolor_panel_style_v4_split_edge_strict_probe_00366_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01869_SG-056-14_page_998x1815_s01",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "old_face_crop",
+      "cosine": 0.9027122259140015
+    },
+    {
+      "pair_id": "c065_old_face_crop_n0093",
+      "label": "negative",
+      "anchor_id": "001-100/SG-047/mrcolor_panel_style_v4_split_edge_strict_probe_00320_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01571_SG-047-12_page_1965x2897_s03",
+      "candidate_id": "001-100/SG-037/mrcolor_panel_style_v4_split_edge_strict_probe_00257_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01199_SG-037-07_page_1092x2841_s02",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.9769234657287598
+    },
+    {
+      "pair_id": "c065_old_face_crop_p0094",
+      "label": "positive",
+      "anchor_id": "001-100/SG-056/mrcolor_panel_style_v4_split_edge_strict_probe_00366_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01869_SG-056-14_page_998x1815_s01",
+      "candidate_id": "001-100/SG-074/mrcolor_panel_style_v4_split_edge_strict_probe_00454_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02404_SG-074-01_page_1965x1462_s02",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "old_face_crop",
+      "cosine": 0.797122597694397
+    },
+    {
+      "pair_id": "c065_old_face_crop_n0095",
+      "label": "negative",
+      "anchor_id": "001-100/SG-056/mrcolor_panel_style_v4_split_edge_strict_probe_00366_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01869_SG-056-14_page_998x1815_s01",
+      "candidate_id": "001-100/SG-060/mrcolor_panel_style_v4_split_edge_strict_probe_00394_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02023_SG-060-13_page_960x1757_s01",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.8619276285171509
+    },
+    {
+      "pair_id": "c065_old_face_crop_p0096",
+      "label": "positive",
+      "anchor_id": "001-100/SG-074/mrcolor_panel_style_v4_split_edge_strict_probe_00454_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02404_SG-074-01_page_1965x1462_s02",
+      "candidate_id": "001-100/SG-077/mrcolor_panel_style_v4_split_edge_strict_probe_00468_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02524_SG-077-13_page_2084x2871_s02",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "old_face_crop",
+      "cosine": 0.8546131253242493
+    },
+    {
+      "pair_id": "c065_old_face_crop_n0097",
+      "label": "negative",
+      "anchor_id": "001-100/SG-074/mrcolor_panel_style_v4_split_edge_strict_probe_00454_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02404_SG-074-01_page_1965x1462_s02",
+      "candidate_id": "001-100/SG-068/mrcolor_panel_style_v4_split_edge_strict_probe_00427_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02213_SG-068-06_page_1003x1412_s01",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.9007963538169861
+    },
+    {
+      "pair_id": "c065_old_face_crop_p0098",
+      "label": "positive",
+      "anchor_id": "001-100/SG-077/mrcolor_panel_style_v4_split_edge_strict_probe_00468_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02524_SG-077-13_page_2084x2871_s02",
+      "candidate_id": "001-100/SG-083/mrcolor_panel_style_v4_split_edge_strict_probe_00494_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02718_SG-083-10_page_719x957_s01",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "old_face_crop",
+      "cosine": 0.7383499145507812
+    },
+    {
+      "pair_id": "c065_old_face_crop_n0099",
+      "label": "negative",
+      "anchor_id": "001-100/SG-077/mrcolor_panel_style_v4_split_edge_strict_probe_00468_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02524_SG-077-13_page_2084x2871_s02",
+      "candidate_id": "001-100/SG-081/mrcolor_panel_style_v4_split_edge_strict_probe_00486_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02635_SG-081-10_page_2148x2902_s01",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.9679709672927856
+    },
+    {
+      "pair_id": "c065_old_face_crop_p0100",
+      "label": "positive",
+      "anchor_id": "001-100/SG-083/mrcolor_panel_style_v4_split_edge_strict_probe_00494_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02718_SG-083-10_page_719x957_s01",
+      "candidate_id": "001-100/SG-087/mrcolor_panel_style_v4_split_edge_strict_probe_00522_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02913_SG-087-15_page_878x1036_s01",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "old_face_crop",
+      "cosine": 0.7550483345985413
+    },
+    {
+      "pair_id": "c065_old_face_crop_n0101",
+      "label": "negative",
+      "anchor_id": "001-100/SG-083/mrcolor_panel_style_v4_split_edge_strict_probe_00494_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02718_SG-083-10_page_719x957_s01",
+      "candidate_id": "101-200/SG-132/mrcolor_panel_style_v4_split_edge_strict_probe_00825_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04508_SG-132-07_page_2140x2892_s02",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.7691360712051392
+    },
+    {
+      "pair_id": "c065_old_face_crop_p0102",
+      "label": "positive",
+      "anchor_id": "001-100/SG-087/mrcolor_panel_style_v4_split_edge_strict_probe_00522_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02913_SG-087-15_page_878x1036_s01",
+      "candidate_id": "001-100/SG-090/mrcolor_panel_style_v4_split_edge_strict_probe_00550_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03067_SG-090-12_page_2143x2915_s02",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "old_face_crop",
+      "cosine": 0.47409242391586304
+    },
+    {
+      "pair_id": "c065_old_face_crop_n0103",
+      "label": "negative",
+      "anchor_id": "001-100/SG-087/mrcolor_panel_style_v4_split_edge_strict_probe_00522_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02913_SG-087-15_page_878x1036_s01",
+      "candidate_id": "101-200/SG-145/mrcolor_panel_style_v4_split_edge_strict_probe_00907_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04994_SG-145-03_page_2150x2955_s01",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.7092503905296326
+    },
+    {
+      "pair_id": "c065_old_face_crop_p0104",
+      "label": "positive",
+      "anchor_id": "001-100/SG-090/mrcolor_panel_style_v4_split_edge_strict_probe_00550_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03067_SG-090-12_page_2143x2915_s02",
+      "candidate_id": "001-100/SG-097/mrcolor_panel_style_v4_split_edge_strict_probe_00581_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03363_SG-097-05_page_1084x2841_s02",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "old_face_crop",
+      "cosine": 0.877755880355835
+    },
+    {
+      "pair_id": "c065_old_face_crop_n0105",
+      "label": "negative",
+      "anchor_id": "001-100/SG-090/mrcolor_panel_style_v4_split_edge_strict_probe_00550_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03067_SG-090-12_page_2143x2915_s02",
+      "candidate_id": "101-200/SG-188/mrcolor_panel_style_v5_edge_trim_strict_00406_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_06328_SG-188-15_page_2023x1813_s05",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.4825676679611206
+    },
+    {
+      "pair_id": "c065_old_face_crop_p0106",
+      "label": "positive",
+      "anchor_id": "001-100/SG-097/mrcolor_panel_style_v4_split_edge_strict_probe_00581_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03363_SG-097-05_page_1084x2841_s02",
+      "candidate_id": "101-200/SG-110/mrcolor_panel_style_v4_split_edge_strict_probe_00645_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03808_SG-110-13_page_901x1038_s01",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "old_face_crop",
+      "cosine": 0.7373741865158081
+    },
+    {
+      "pair_id": "c065_old_face_crop_n0107",
+      "label": "negative",
+      "anchor_id": "001-100/SG-097/mrcolor_panel_style_v4_split_edge_strict_probe_00581_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03363_SG-097-05_page_1084x2841_s02",
+      "candidate_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-205/mrcolor_panel_style_v5_edge_trim_strict_00430_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_06875_SG-205-12_page_2110x2892_s02",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.8923442363739014
+    },
+    {
+      "pair_id": "c065_old_face_crop_p0108",
+      "label": "positive",
+      "anchor_id": "101-200/SG-110/mrcolor_panel_style_v4_split_edge_strict_probe_00645_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03808_SG-110-13_page_901x1038_s01",
+      "candidate_id": "101-200/SG-119/mrcolor_panel_style_v4_split_edge_strict_probe_00691_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04037_SG-119-15_page_2059x2874_s02",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "old_face_crop",
+      "cosine": 0.8126859068870544
+    },
+    {
+      "pair_id": "c065_old_face_crop_n0109",
+      "label": "negative",
+      "anchor_id": "101-200/SG-110/mrcolor_panel_style_v4_split_edge_strict_probe_00645_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_03808_SG-110-13_page_901x1038_s01",
+      "candidate_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-210/mrcolor_panel_style_v4_split_edge_strict_probe_01178_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_07048_SG-210-06_page_1965x2841_s02",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.7618165016174316
+    },
+    {
+      "pair_id": "c065_old_face_crop_p0110",
+      "label": "positive",
+      "anchor_id": "101-200/SG-119/mrcolor_panel_style_v4_split_edge_strict_probe_00691_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04037_SG-119-15_page_2059x2874_s02",
+      "candidate_id": "101-200/SG-129/mrcolor_panel_style_v4_split_edge_strict_probe_00803_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04403_SG-129-05_page_2054x2904_s03",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "old_face_crop",
+      "cosine": 0.9233462810516357
+    },
+    {
+      "pair_id": "c065_old_face_crop_n0111",
+      "label": "negative",
+      "anchor_id": "101-200/SG-119/mrcolor_panel_style_v4_split_edge_strict_probe_00691_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04037_SG-119-15_page_2059x2874_s02",
+      "candidate_id": "001-100/SG-005/mrcolor_panel_style_v4_split_edge_strict_probe_00027_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00117_SG-005-13_page_2062x2105_s02",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.9172658920288086
+    },
+    {
+      "pair_id": "c065_old_face_crop_p0112",
+      "label": "positive",
+      "anchor_id": "101-200/SG-129/mrcolor_panel_style_v4_split_edge_strict_probe_00803_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04403_SG-129-05_page_2054x2904_s03",
+      "candidate_id": "101-200/SG-137/mrcolor_panel_style_v5_edge_trim_strict_00317_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_04679_SG-137-02_page_2105x2899_s04",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "old_face_crop",
+      "cosine": 0.8889804482460022
+    },
+    {
+      "pair_id": "c065_old_face_crop_n0113",
+      "label": "negative",
+      "anchor_id": "101-200/SG-129/mrcolor_panel_style_v4_split_edge_strict_probe_00803_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04403_SG-129-05_page_2054x2904_s03",
+      "candidate_id": "001-100/SG-011/mrcolor_panel_style_v4_split_edge_strict_probe_00061_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00309_SG-011-13_page_2067x2907_s02",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.8890291452407837
+    },
+    {
+      "pair_id": "c065_old_face_crop_p0114",
+      "label": "positive",
+      "anchor_id": "101-200/SG-137/mrcolor_panel_style_v5_edge_trim_strict_00317_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_04679_SG-137-02_page_2105x2899_s04",
+      "candidate_id": "101-200/SG-147/mrcolor_panel_style_v4_split_edge_strict_probe_00923_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05101_SG-147-15_page_2186x2889_s02",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "old_face_crop",
+      "cosine": 0.9431142210960388
+    },
+    {
+      "pair_id": "c065_old_face_crop_n0115",
+      "label": "negative",
+      "anchor_id": "101-200/SG-137/mrcolor_panel_style_v5_edge_trim_strict_00317_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_04679_SG-137-02_page_2105x2899_s04",
+      "candidate_id": "001-100/SG-022/mrcolor_panel_style_v4_split_edge_strict_probe_00134_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00687_SG-022-06_page_1965x2841_s01",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.8695852160453796
+    },
+    {
+      "pair_id": "c065_old_face_crop_p0116",
+      "label": "positive",
+      "anchor_id": "101-200/SG-147/mrcolor_panel_style_v4_split_edge_strict_probe_00923_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05101_SG-147-15_page_2186x2889_s02",
+      "candidate_id": "101-200/SG-167/mrcolor_panel_style_v4_split_edge_strict_probe_00989_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05659_SG-167-15_page_2016x2902_s03",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "old_face_crop",
+      "cosine": 0.8908308744430542
+    },
+    {
+      "pair_id": "c065_old_face_crop_n0117",
+      "label": "negative",
+      "anchor_id": "101-200/SG-147/mrcolor_panel_style_v4_split_edge_strict_probe_00923_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05101_SG-147-15_page_2186x2889_s02",
+      "candidate_id": "001-100/SG-037/mrcolor_panel_style_v4_split_edge_strict_probe_00257_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01199_SG-037-07_page_1092x2841_s02",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.8868156671524048
+    },
+    {
+      "pair_id": "c065_old_face_crop_p0118",
+      "label": "positive",
+      "anchor_id": "101-200/SG-167/mrcolor_panel_style_v4_split_edge_strict_probe_00989_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05659_SG-167-15_page_2016x2902_s03",
+      "candidate_id": "101-200/SG-173/mrcolor_panel_style_v4_split_edge_strict_probe_01010_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05850_SG-173-13_page_652x1043_s01",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "old_face_crop",
+      "cosine": 0.7379926443099976
+    },
+    {
+      "pair_id": "c065_old_face_crop_n0119",
+      "label": "negative",
+      "anchor_id": "101-200/SG-167/mrcolor_panel_style_v4_split_edge_strict_probe_00989_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05659_SG-167-15_page_2016x2902_s03",
+      "candidate_id": "001-100/SG-060/mrcolor_panel_style_v4_split_edge_strict_probe_00394_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02023_SG-060-13_page_960x1757_s01",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.8281605839729309
+    },
+    {
+      "pair_id": "c065_old_face_crop_p0120",
+      "label": "positive",
+      "anchor_id": "101-200/SG-173/mrcolor_panel_style_v4_split_edge_strict_probe_01010_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05850_SG-173-13_page_652x1043_s01",
+      "candidate_id": "101-200/SG-185/mrcolor_panel_style_v4_split_edge_strict_probe_01066_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_06197_SG-185-13_page_2036x2841_s03",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "old_face_crop",
+      "cosine": 0.8481920957565308
+    },
+    {
+      "pair_id": "c065_old_face_crop_n0121",
+      "label": "negative",
+      "anchor_id": "101-200/SG-173/mrcolor_panel_style_v4_split_edge_strict_probe_01010_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_05850_SG-173-13_page_652x1043_s01",
+      "candidate_id": "001-100/SG-068/mrcolor_panel_style_v4_split_edge_strict_probe_00427_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02213_SG-068-06_page_1003x1412_s01",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.8533024787902832
+    },
+    {
+      "pair_id": "c065_old_face_crop_p0122",
+      "label": "positive",
+      "anchor_id": "101-200/SG-185/mrcolor_panel_style_v4_split_edge_strict_probe_01066_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_06197_SG-185-13_page_2036x2841_s03",
+      "candidate_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-226/mrcolor_panel_style_v4_split_edge_strict_probe_01276_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_07596_SG-226-13_page_998x1668_s01",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "old_face_crop",
+      "cosine": 0.9186251163482666
+    },
+    {
+      "pair_id": "c065_old_face_crop_n0123",
+      "label": "negative",
+      "anchor_id": "101-200/SG-185/mrcolor_panel_style_v4_split_edge_strict_probe_01066_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_06197_SG-185-13_page_2036x2841_s03",
+      "candidate_id": "001-100/SG-081/mrcolor_panel_style_v4_split_edge_strict_probe_00486_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02635_SG-081-10_page_2148x2902_s01",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.9575270414352417
+    },
+    {
+      "pair_id": "c065_old_face_crop_p0124",
+      "label": "positive",
+      "anchor_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-226/mrcolor_panel_style_v4_split_edge_strict_probe_01276_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_07596_SG-226-13_page_998x1668_s01",
+      "candidate_id": "001-100/SG-017/mrcolor_panel_style_v5_edge_trim_strict_00037_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00506_SG-017-01_page_2064x1800_s03",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "old_face_crop",
+      "cosine": 0.8368799686431885
+    },
+    {
+      "pair_id": "c065_old_face_crop_n0125",
+      "label": "negative",
+      "anchor_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-226/mrcolor_panel_style_v4_split_edge_strict_probe_01276_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_07596_SG-226-13_page_998x1668_s01",
+      "candidate_id": "101-200/SG-132/mrcolor_panel_style_v4_split_edge_strict_probe_00825_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04508_SG-132-07_page_2140x2892_s02",
+      "anchor_group": "old_face_crop",
+      "candidate_group": "train_not_in_bucket",
+      "cosine": 0.9079396724700928
+    }
+  ],
+  "summary": {
+    "pairs": 126,
+    "positive_pairs": 63,
+    "negative_pairs": 63,
+    "positive_mean": 0.8252357395868453,
+    "negative_mean": 0.8516979510821994,
+    "separation_margin": -0.026462211495354104,
+    "pairwise_auc": 0.41219450743260266,
+    "midpoint_accuracy": 0.42857142857142855,
+    "decision": "feature_not_sufficiently_separated"
+  },
+  "group_summaries": {
+    "beard_headwear_crop": {
+      "pairs": 44,
+      "positive_pairs": 22,
+      "negative_pairs": 22,
+      "positive_mean": 0.824760840697722,
+      "negative_mean": 0.8710685480724681,
+      "separation_margin": -0.0463077073747461,
+      "pairwise_auc": 0.3615702479338843,
+      "midpoint_accuracy": 0.4090909090909091,
+      "decision": "feature_not_sufficiently_separated"
+    },
+    "non_human_red_pale_profile_proxy": {
+      "pairs": 42,
+      "positive_pairs": 21,
+      "negative_pairs": 21,
+      "positive_mean": 0.8271742008981251,
+      "negative_mean": 0.82859529483886,
+      "separation_margin": -0.0014210939407348633,
+      "pairwise_auc": 0.4897959183673469,
+      "midpoint_accuracy": 0.47619047619047616,
+      "decision": "feature_not_sufficiently_separated"
+    },
+    "old_face_crop": {
+      "pairs": 40,
+      "positive_pairs": 20,
+      "negative_pairs": 20,
+      "positive_mean": 0.8237227439880371,
+      "negative_mean": 0.85464808344841,
+      "separation_margin": -0.030925339460372903,
+      "pairwise_auc": 0.385,
+      "midpoint_accuracy": 0.4,
+      "decision": "feature_not_sufficiently_separated"
+    }
+  }
+}

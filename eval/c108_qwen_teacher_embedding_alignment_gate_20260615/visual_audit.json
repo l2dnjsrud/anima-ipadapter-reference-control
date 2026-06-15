@@ -1,0 +1,37 @@
+{
+  "decision": "c108_generation_gate_not_promoted",
+  "candidate": "c108_qwen_teacher_alignment_w14",
+  "baseline": "blend_species_face",
+  "nonblank": true,
+  "visual_summary": [
+    "C108 is visibly active: black/red palette, purple aura, long hair, red eyes, beard/headwear cues often move away from no_ip toward the reference.",
+    "C108 does not clearly beat blend_species_face. Most train rows are visually close to blend, and several heldout rows are weaker on identity lock or shape specificity.",
+    "Heldout02 bald/bearded old man is closer in blend_species_face; C108 keeps the bald head but loses beard/age/detail balance.",
+    "Heldout05 official/bearded crop remains close to blend but is not better; both miss speech-bubble/crop context.",
+    "Heldout07 non-human green side-profile remains unresolved: C108 still collapses into a human dark warrior rather than preserving creature snout/profile."
+  ],
+  "metric_interpretation": {
+    "pe_all_c108_mean_uplift": 0.03910136818885803,
+    "pe_all_blend_mean_uplift": 0.060893215239048004,
+    "pe_all_c108_vs_blend": {
+      "cases": 40,
+      "left_wins": 14,
+      "ties": 0,
+      "mean_left_minus_right": -0.021791847050189973
+    },
+    "qwenvl_all_c108_mean_uplift": 0.03223021030426025,
+    "qwenvl_all_blend_mean_uplift": 0.042190256714820865,
+    "qwenvl_all_c108_vs_blend": {
+      "cases": 40,
+      "left_wins": 13,
+      "ties": 0,
+      "mean_left_minus_right": -0.009960046410560608
+    }
+  },
+  "promotion_blockers": [
+    "PE mean uplift remains below blend_species_face by about 0.0218 overall.",
+    "QwenVL mean uplift remains below blend_species_face by about 0.0100 overall.",
+    "Direct wins against blend are only 14/40 in PE and 13/40 in QwenVL.",
+    "Non-human side-profile and speech-bubble/crop context are still not robustly controlled."
+  ]
+}

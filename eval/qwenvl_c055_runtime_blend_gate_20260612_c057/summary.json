@@ -1,0 +1,587 @@
+{
+  "base_url": "http://127.0.0.1:8116",
+  "checkpoints": {
+    "previous_retrieval": "anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors",
+    "c055_mixed": "anima_qwenvl_ip_adapter_c055_mixed_retrieval_0064_20260612.safetensors"
+  },
+  "comparison": "reference / no_ip / prev_w14 / c055_w06 / c055_w08 / c055_w12 / blend_prev10_c05506 / blend_prev14_c05504",
+  "attribute_prompts": {
+    "train00": "long black-haired wuxia swordsman in a black sleeveless robe with red trim, stern face, arm thrust forward, warm orange sky",
+    "train07": "angry long black-haired martial artist close-up, dark robe, sharp eyebrows, tense expression, night palace background",
+    "train14": "old wrinkled bearded man with messy black and gray hair, tan robe, exaggerated surprised face, rough comic portrait",
+    "train23": "young scholar with square glasses, black official hat, folding fan, pale face, blue gray robe",
+    "heldout00": "pale purple-skinned villain with very long black hair, black armored robe, side-facing stern face, night background",
+    "heldout02": "bald old monk with long white gray beard, thick eyebrows, prayer beads, angry stern face",
+    "heldout05": "screaming black-haired man close-up, open mouth, side profile, intense speed lines",
+    "heldout07": "green non-human demon face with red glowing eye, sharp nose, orange background"
+  },
+  "samples": [
+    {
+      "label": "train00",
+      "split": "train",
+      "ref_id": "001-100/SG-005/mrcolor_panel_style_v4_split_edge_strict_probe_00027_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_00117_SG-005-13_page_2062x2105_s02",
+      "seed": 20260658
+    },
+    {
+      "label": "train07",
+      "split": "train",
+      "ref_id": "001-100/SG-047/mrcolor_panel_style_v4_split_edge_strict_probe_00320_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_01571_SG-047-12_page_1965x2897_s03",
+      "seed": 20260659
+    },
+    {
+      "label": "train14",
+      "split": "train",
+      "ref_id": "001-100/SG-083/mrcolor_panel_style_v4_split_edge_strict_probe_00494_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02718_SG-083-10_page_719x957_s01",
+      "seed": 20260660
+    },
+    {
+      "label": "train23",
+      "split": "train",
+      "ref_id": "101-200/SG-145/mrcolor_panel_style_v4_split_edge_strict_probe_00907_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_04994_SG-145-03_page_2150x2955_s01",
+      "seed": 20260661
+    },
+    {
+      "label": "heldout00",
+      "split": "heldout",
+      "ref_id": "001-100/SG-015/mrcolor_panel_style_v5_edge_trim_strict_00031_mrcolor_panel_style_v5_split_candidate_mrcolor_panel_style_v5_candidate_00464_SG-015-14_page_985x1775_s01",
+      "seed": 20260662
+    },
+    {
+      "label": "heldout02",
+      "split": "heldout",
+      "ref_id": "001-100/SG-071/mrcolor_panel_style_v4_split_edge_strict_probe_00444_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_02306_SG-071-05_page_1115x1356_s01",
+      "seed": 20260663
+    },
+    {
+      "label": "heldout05",
+      "split": "heldout",
+      "ref_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-244/mrcolor_panel_style_v4_split_edge_strict_probe_01334_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_08090_SG-244-08_page_2130x1528_s01",
+      "seed": 20260664
+    },
+    {
+      "label": "heldout07",
+      "split": "heldout",
+      "ref_id": "201-292 (\u110b\u116a\u11ab\u1100\u1167\u11af)/SG-274/mrcolor_panel_style_v4_split_edge_strict_probe_01452_mrcolor_panel_style_v4_split_candidate_mrcolor_panel_style_v4_candidate_08754_SG-274-04_page_1407x1264_s03",
+      "seed": 20260665
+    }
+  ],
+  "variants": [
+    {
+      "label": "no_ip",
+      "steps": []
+    },
+    {
+      "label": "prev_w14",
+      "steps": [
+        {
+          "checkpoint": "anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors",
+          "weight": 1.4
+        }
+      ]
+    },
+    {
+      "label": "c055_w06",
+      "steps": [
+        {
+          "checkpoint": "anima_qwenvl_ip_adapter_c055_mixed_retrieval_0064_20260612.safetensors",
+          "weight": 0.6
+        }
+      ]
+    },
+    {
+      "label": "c055_w08",
+      "steps": [
+        {
+          "checkpoint": "anima_qwenvl_ip_adapter_c055_mixed_retrieval_0064_20260612.safetensors",
+          "weight": 0.8
+        }
+      ]
+    },
+    {
+      "label": "c055_w12",
+      "steps": [
+        {
+          "checkpoint": "anima_qwenvl_ip_adapter_c055_mixed_retrieval_0064_20260612.safetensors",
+          "weight": 1.2
+        }
+      ]
+    },
+    {
+      "label": "blend_prev10_c05506",
+      "steps": [
+        {
+          "checkpoint": "anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors",
+          "weight": 1.0
+        },
+        {
+          "checkpoint": "anima_qwenvl_ip_adapter_c055_mixed_retrieval_0064_20260612.safetensors",
+          "weight": 0.6
+        }
+      ]
+    },
+    {
+      "label": "blend_prev14_c05504",
+      "steps": [
+        {
+          "checkpoint": "anima_qwenvl_ip_adapter_single_character_retrieval_0128_20260611.safetensors",
+          "weight": 1.4
+        },
+        {
+          "checkpoint": "anima_qwenvl_ip_adapter_c055_mixed_retrieval_0064_20260612.safetensors",
+          "weight": 0.4
+        }
+      ]
+    }
+  ],
+  "results": {
+    "train00_no_ip": {
+      "prompt_id": "2e8d3947-047d-4260-be55-d983c44de7f2",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/train00_no_ip.png",
+      "image_info": {
+        "filename": "train00_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "train00_prev_w14": {
+      "prompt_id": "ac8e6760-630e-4414-b4b3-2e412a778712",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/train00_prev_w14.png",
+      "image_info": {
+        "filename": "train00_prev_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "train00_c055_w06": {
+      "prompt_id": "eda74880-44ac-41d3-9627-ace360f49b5f",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/train00_c055_w06.png",
+      "image_info": {
+        "filename": "train00_c055_w06_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "train00_c055_w08": {
+      "prompt_id": "fb858bc5-8ab7-4d35-805a-45c8ae257971",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/train00_c055_w08.png",
+      "image_info": {
+        "filename": "train00_c055_w08_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "train00_c055_w12": {
+      "prompt_id": "6bca3f85-7ed5-4c14-891f-2fa149fe0267",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/train00_c055_w12.png",
+      "image_info": {
+        "filename": "train00_c055_w12_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "train00_blend_prev10_c05506": {
+      "prompt_id": "fe724200-75f6-476b-a55d-0b9b545cea80",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/train00_blend_prev10_c05506.png",
+      "image_info": {
+        "filename": "train00_blend_prev10_c05506_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "train00_blend_prev14_c05504": {
+      "prompt_id": "1a533356-4417-4810-9611-99a03c4efa94",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/train00_blend_prev14_c05504.png",
+      "image_info": {
+        "filename": "train00_blend_prev14_c05504_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "train07_no_ip": {
+      "prompt_id": "69649691-af71-4306-b056-74009755552a",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/train07_no_ip.png",
+      "image_info": {
+        "filename": "train07_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "train07_prev_w14": {
+      "prompt_id": "cca85bce-d1bf-4014-a490-a484aab620b1",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/train07_prev_w14.png",
+      "image_info": {
+        "filename": "train07_prev_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "train07_c055_w06": {
+      "prompt_id": "42f692c8-9e97-4aad-9382-c3ccb6b8c4db",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/train07_c055_w06.png",
+      "image_info": {
+        "filename": "train07_c055_w06_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "train07_c055_w08": {
+      "prompt_id": "cf5845a8-7933-4fe8-9906-f99a9f3134f2",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/train07_c055_w08.png",
+      "image_info": {
+        "filename": "train07_c055_w08_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "train07_c055_w12": {
+      "prompt_id": "d4c89d0e-5731-4a41-b424-47f88376cf6b",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/train07_c055_w12.png",
+      "image_info": {
+        "filename": "train07_c055_w12_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "train07_blend_prev10_c05506": {
+      "prompt_id": "b3c1cef2-f7cb-4585-a893-7d93153d8bb2",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/train07_blend_prev10_c05506.png",
+      "image_info": {
+        "filename": "train07_blend_prev10_c05506_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "train07_blend_prev14_c05504": {
+      "prompt_id": "1a6d3d3f-576f-4754-bbb6-355c658b9804",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/train07_blend_prev14_c05504.png",
+      "image_info": {
+        "filename": "train07_blend_prev14_c05504_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "train14_no_ip": {
+      "prompt_id": "c593bb82-a4df-42c9-8cb7-c5d31a7049fb",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/train14_no_ip.png",
+      "image_info": {
+        "filename": "train14_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "train14_prev_w14": {
+      "prompt_id": "7547fe11-551a-41fc-b148-e40bcd1d13c5",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/train14_prev_w14.png",
+      "image_info": {
+        "filename": "train14_prev_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "train14_c055_w06": {
+      "prompt_id": "ddfebb9f-55ef-4fa8-ab3c-d57c8e9b05a8",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/train14_c055_w06.png",
+      "image_info": {
+        "filename": "train14_c055_w06_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "train14_c055_w08": {
+      "prompt_id": "47f59542-4dd0-482e-a882-0a880f122ddb",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/train14_c055_w08.png",
+      "image_info": {
+        "filename": "train14_c055_w08_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "train14_c055_w12": {
+      "prompt_id": "a81a9a81-36b4-4e7c-805d-1fb81ad6c7c2",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/train14_c055_w12.png",
+      "image_info": {
+        "filename": "train14_c055_w12_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "train14_blend_prev10_c05506": {
+      "prompt_id": "be9425d4-03cd-437f-9cd4-b83e138d96fe",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/train14_blend_prev10_c05506.png",
+      "image_info": {
+        "filename": "train14_blend_prev10_c05506_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "train14_blend_prev14_c05504": {
+      "prompt_id": "bf2524c3-9857-4a77-a996-4acbe5c1eff0",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/train14_blend_prev14_c05504.png",
+      "image_info": {
+        "filename": "train14_blend_prev14_c05504_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "train23_no_ip": {
+      "prompt_id": "bf3e1f39-09af-4b54-b36c-6859ff38af0b",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/train23_no_ip.png",
+      "image_info": {
+        "filename": "train23_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "train23_prev_w14": {
+      "prompt_id": "91295cfd-c377-40f6-a592-176fd5630ec1",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/train23_prev_w14.png",
+      "image_info": {
+        "filename": "train23_prev_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "train23_c055_w06": {
+      "prompt_id": "931ec449-10b6-4945-8d1c-88c9b6c931f1",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/train23_c055_w06.png",
+      "image_info": {
+        "filename": "train23_c055_w06_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "train23_c055_w08": {
+      "prompt_id": "2a5735af-2adc-4d8e-ad9d-a507cdf020dc",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/train23_c055_w08.png",
+      "image_info": {
+        "filename": "train23_c055_w08_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "train23_c055_w12": {
+      "prompt_id": "94fb74e9-96c7-4194-8e74-0d964c362b14",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/train23_c055_w12.png",
+      "image_info": {
+        "filename": "train23_c055_w12_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "train23_blend_prev10_c05506": {
+      "prompt_id": "ae764a96-098f-4167-afc2-3bda8c84513f",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/train23_blend_prev10_c05506.png",
+      "image_info": {
+        "filename": "train23_blend_prev10_c05506_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "train23_blend_prev14_c05504": {
+      "prompt_id": "a3ee4117-45ee-4dcc-b47f-787b24cb4c15",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/train23_blend_prev14_c05504.png",
+      "image_info": {
+        "filename": "train23_blend_prev14_c05504_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "heldout00_no_ip": {
+      "prompt_id": "3e7d06b7-a89d-4be2-a163-698a04dab95e",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/heldout00_no_ip.png",
+      "image_info": {
+        "filename": "heldout00_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "heldout00_prev_w14": {
+      "prompt_id": "b4362695-bdfc-4b9c-b633-203c8fd6d0a3",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/heldout00_prev_w14.png",
+      "image_info": {
+        "filename": "heldout00_prev_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "heldout00_c055_w06": {
+      "prompt_id": "7ac2576d-d4e9-4966-8e2d-532128da26a3",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/heldout00_c055_w06.png",
+      "image_info": {
+        "filename": "heldout00_c055_w06_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "heldout00_c055_w08": {
+      "prompt_id": "dd11ceac-7741-4b69-9970-f3c07540ab9c",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/heldout00_c055_w08.png",
+      "image_info": {
+        "filename": "heldout00_c055_w08_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "heldout00_c055_w12": {
+      "prompt_id": "dd04d2f2-17ac-493a-b090-747772be8a4b",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/heldout00_c055_w12.png",
+      "image_info": {
+        "filename": "heldout00_c055_w12_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "heldout00_blend_prev10_c05506": {
+      "prompt_id": "2cd48bf8-9ae3-4265-a8c6-931a4a725580",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/heldout00_blend_prev10_c05506.png",
+      "image_info": {
+        "filename": "heldout00_blend_prev10_c05506_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "heldout00_blend_prev14_c05504": {
+      "prompt_id": "e3ab685e-a4ac-4848-8aa1-652195989ee8",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/heldout00_blend_prev14_c05504.png",
+      "image_info": {
+        "filename": "heldout00_blend_prev14_c05504_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "heldout02_no_ip": {
+      "prompt_id": "771ae7db-2585-44c6-ae11-5534582787a0",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/heldout02_no_ip.png",
+      "image_info": {
+        "filename": "heldout02_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "heldout02_prev_w14": {
+      "prompt_id": "9d1b3d17-ce06-4413-beec-3f9da4df305d",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/heldout02_prev_w14.png",
+      "image_info": {
+        "filename": "heldout02_prev_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "heldout02_c055_w06": {
+      "prompt_id": "44bc09d1-c66e-4b16-a4c6-31d9276892c9",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/heldout02_c055_w06.png",
+      "image_info": {
+        "filename": "heldout02_c055_w06_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "heldout02_c055_w08": {
+      "prompt_id": "ac8cb72b-e3e8-4a36-bec7-ddceaa8db813",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/heldout02_c055_w08.png",
+      "image_info": {
+        "filename": "heldout02_c055_w08_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "heldout02_c055_w12": {
+      "prompt_id": "dc16c05e-f712-4088-934c-16c7faef52e3",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/heldout02_c055_w12.png",
+      "image_info": {
+        "filename": "heldout02_c055_w12_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "heldout02_blend_prev10_c05506": {
+      "prompt_id": "fb0ba2c0-24a2-4f0a-b2be-00ff2570a6c1",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/heldout02_blend_prev10_c05506.png",
+      "image_info": {
+        "filename": "heldout02_blend_prev10_c05506_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "heldout02_blend_prev14_c05504": {
+      "prompt_id": "795c9e16-1dee-4be9-91c2-4932799be5f2",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/heldout02_blend_prev14_c05504.png",
+      "image_info": {
+        "filename": "heldout02_blend_prev14_c05504_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "heldout05_no_ip": {
+      "prompt_id": "47a0a9bd-cc3d-401e-85be-50c31a018691",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/heldout05_no_ip.png",
+      "image_info": {
+        "filename": "heldout05_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "heldout05_prev_w14": {
+      "prompt_id": "03fe38e8-3213-4289-a220-58bd41e3835a",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/heldout05_prev_w14.png",
+      "image_info": {
+        "filename": "heldout05_prev_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "heldout05_c055_w06": {
+      "prompt_id": "bed65136-9051-4191-bda8-5c32d4fb1c20",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/heldout05_c055_w06.png",
+      "image_info": {
+        "filename": "heldout05_c055_w06_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "heldout05_c055_w08": {
+      "prompt_id": "587b16e9-871d-4f9d-af10-abfdcac9e9dd",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/heldout05_c055_w08.png",
+      "image_info": {
+        "filename": "heldout05_c055_w08_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "heldout05_c055_w12": {
+      "prompt_id": "1d776972-ad87-40a6-925a-638e154d1fe2",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/heldout05_c055_w12.png",
+      "image_info": {
+        "filename": "heldout05_c055_w12_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "heldout05_blend_prev10_c05506": {
+      "prompt_id": "be40694c-a614-44ac-8673-bb74843371ed",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/heldout05_blend_prev10_c05506.png",
+      "image_info": {
+        "filename": "heldout05_blend_prev10_c05506_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "heldout05_blend_prev14_c05504": {
+      "prompt_id": "d1be00ea-7558-4f8c-acd2-d45e24d6df3c",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/heldout05_blend_prev14_c05504.png",
+      "image_info": {
+        "filename": "heldout05_blend_prev14_c05504_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "heldout07_no_ip": {
+      "prompt_id": "566bd42a-9b6c-4714-8477-94bfad483cb6",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/heldout07_no_ip.png",
+      "image_info": {
+        "filename": "heldout07_no_ip_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "heldout07_prev_w14": {
+      "prompt_id": "d63fd5fa-05d3-4c49-bac5-1caca9754b0d",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/heldout07_prev_w14.png",
+      "image_info": {
+        "filename": "heldout07_prev_w14_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "heldout07_c055_w06": {
+      "prompt_id": "db8dbeaf-80ca-46bb-812e-02a73d1f9c5e",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/heldout07_c055_w06.png",
+      "image_info": {
+        "filename": "heldout07_c055_w06_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "heldout07_c055_w08": {
+      "prompt_id": "c18001eb-7932-4e0e-9baf-1dd5d356fc43",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/heldout07_c055_w08.png",
+      "image_info": {
+        "filename": "heldout07_c055_w08_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "heldout07_c055_w12": {
+      "prompt_id": "22b489df-bdc5-4cf4-ad58-e9d0928f3def",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/heldout07_c055_w12.png",
+      "image_info": {
+        "filename": "heldout07_c055_w12_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "heldout07_blend_prev10_c05506": {
+      "prompt_id": "ae503ea8-acbd-4e81-94d3-692c3bdf1f52",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/heldout07_blend_prev10_c05506.png",
+      "image_info": {
+        "filename": "heldout07_blend_prev10_c05506_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    },
+    "heldout07_blend_prev14_c05504": {
+      "prompt_id": "f74e1921-0f14-4635-9047-439fdc5d5faf",
+      "image": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/heldout07_blend_prev14_c05504.png",
+      "image_info": {
+        "filename": "heldout07_blend_prev14_c05504_00001_.png",
+        "subfolder": "anima_ipadapter/qwenvl_c055_runtime_blend_gate_20260612_c057"
+      }
+    }
+  },
+  "contact_sheet": "/home/wktwin/anima-ipadapter-reference-control/eval/qwenvl_c055_runtime_blend_gate_20260612_c057/contact_sheet.jpg"
+}

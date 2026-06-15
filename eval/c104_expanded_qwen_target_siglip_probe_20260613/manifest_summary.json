@@ -1,0 +1,16 @@
+{
+  "source": "C097/C087/C092",
+  "source_manifest": "training/manifests/c097_siglip_hard_shape_expanded_pairs_20260613.jsonl",
+  "image_root": ".tmp/c097_siglip_hard_shape_expanded_root",
+  "probe_manifest": "eval/c104_expanded_qwen_target_siglip_probe_20260613/probe_manifest.jsonl",
+  "selected_rows": 56,
+  "positive_rows": 56,
+  "explicit_negative_rows": 56,
+  "token_probe_rows": 112,
+  "heldout_rows_used": 0,
+  "heldout_rows_rejected": 0,
+  "missing_path_count": 0,
+  "c098_best_mean_uplift": 0.0865313863,
+  "qwen_baseline_mean_uplift": 0.1089544056,
+  "decision": "ready_for_c104_siglip_token_probe"
+}

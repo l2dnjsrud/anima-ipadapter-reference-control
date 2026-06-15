@@ -1,0 +1,26 @@
+{
+  "source": "c072_external_direct_green_source_discovery",
+  "inspected_source_count": 5,
+  "large_downloads_performed": false,
+  "heldout_ids_count": 8,
+  "heldout_rows_used": 0,
+  "source_candidate_counts": {
+    "Wenaka/anima-ip-adapter-dataset": 0,
+    "mrzjy/AniGamePersonaCaps": 63,
+    "mrzjy/AnimeMangaCharacters-247K": 7,
+    "alfredplpl/anime-with-caption-cc0": 21,
+    "CaptionEmporium/furry-e621-safe-llama3.2-11b": 0
+  },
+  "candidate_package_status": "metadata_only_manual_review_required",
+  "unique_potential_target_positive_count": 12,
+  "target_positive_confirmed_count": 0,
+  "minimum_target_positive_required": 4,
+  "label_schema": [
+    "target_positive",
+    "useful_proxy_non_human",
+    "guard_false_positive_human",
+    "guard_false_positive_background_object",
+    "reject_unclear"
+  ],
+  "decision": "external_candidates_found_manual_confirmation_required"
+}

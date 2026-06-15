@@ -1,0 +1,47 @@
+{
+  "input": {
+    "required": {
+      "image": [
+        "IMAGE"
+      ],
+      "qwenvl_model_id": [
+        "STRING",
+        {
+          "default": "Qwen/Qwen3-VL-Embedding-2B"
+        }
+      ],
+      "instruction": [
+        "STRING",
+        {
+          "default": "Represent this manhwa/anime reference image for visual style, color palette, composition, character identity, and panel layout.",
+          "multiline": true
+        }
+      ]
+    }
+  },
+  "input_order": {
+    "required": [
+      "image",
+      "qwenvl_model_id",
+      "instruction"
+    ]
+  },
+  "is_input_list": false,
+  "output": [
+    "QWENVL_EMBEDDING"
+  ],
+  "output_is_list": [
+    false
+  ],
+  "output_name": [
+    "embedding"
+  ],
+  "name": "AnimaQwenVLEncodeImage",
+  "display_name": "Anima Qwen3-VL Encode Image",
+  "description": "",
+  "python_module": "custom_nodes.anima-ipadapter-reference-control",
+  "category": "anima/ip-adapter",
+  "output_node": false,
+  "has_intermediate_output": false,
+  "search_aliases": []
+}

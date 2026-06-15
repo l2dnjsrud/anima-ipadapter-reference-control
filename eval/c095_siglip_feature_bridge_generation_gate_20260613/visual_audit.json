@@ -1,0 +1,31 @@
+{
+  "decision": "not_promoted",
+  "contact_sheet": "eval/c095_siglip_feature_bridge_generation_gate_20260613/contact_sheet_hard_shape.jpg",
+  "sheet_size": "3384x3504",
+  "generated_images": 132,
+  "blank_like_rows": [
+    "crop_pair00_no_ip"
+  ],
+  "c095_blank_like_rows": [],
+  "best_c095_variant": "c095_feature_bridge_w14",
+  "mean_uplift": {
+    "c095_feature_bridge_w14": 0.08652233470140815,
+    "c094_shape_supervised_w14": 0.08788329540499396,
+    "c087_expanded_crop_positive_w14": 0.10895440559772807
+  },
+  "heldout07": {
+    "best_c095_variant": "c095_feature_bridge_w14",
+    "best_c095_uplift": 0.01154170337811311,
+    "c094_w14_uplift": 0.008562351254518985,
+    "c093_w14_uplift": 0.004518958388039396,
+    "c092_w14_uplift": 0.0009986629992987384,
+    "visual_judgement": "partial side-profile cue but still not enough non-human face geometry"
+  },
+  "visual_failures": [
+    "frog and chibi rows still collapse into green human heads",
+    "non-human monster geometry remains weak",
+    "speech-bubble and crop context are not recovered",
+    "C095 does not beat C094 aggregate mean uplift"
+  ],
+  "next_decision": "requires_deeper_siglip_encoder_checkpoint_adaptation_or_data_expansion"
+}

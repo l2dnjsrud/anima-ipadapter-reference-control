@@ -1,0 +1,16 @@
+{
+  "summary_results": 160,
+  "crop_pair_results": 40,
+  "png_count": 200,
+  "contact_sheet_count": 4,
+  "blank_count": 0,
+  "min_pixel_std": 35.8830680847168,
+  "max_pixel_std": 116.79000091552734,
+  "expected_png_count": 200,
+  "contact_sheets": [
+    "eval/qwenvl_c086_generated_hard_negative_gate_20260613/contact_sheet_crop_pair_focus.jpg",
+    "eval/qwenvl_c086_generated_hard_negative_gate_20260613/contact_sheet_direct_green.jpg",
+    "eval/qwenvl_c086_generated_hard_negative_gate_20260613/contact_sheet_heldout.jpg",
+    "eval/qwenvl_c086_generated_hard_negative_gate_20260613/contact_sheet_train.jpg"
+  ]
+}

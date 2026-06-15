@@ -1,0 +1,10 @@
+{
+  "source": "c081_identity_preserving_pair_generation",
+  "base_url": "http://127.0.0.1:8102",
+  "prompt_count": 24,
+  "generated_count": 24,
+  "failed_count": 0,
+  "generation_manifest": "eval/c081_identity_preserving_pair_acquisition_20260613/generation_manifest.jsonl",
+  "heldout_rows_used": 0,
+  "training_started": false
+}

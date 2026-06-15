@@ -1,0 +1,104 @@
+{
+  "decision": "runtime_blend_prev14_c05504_best_so_far_larger_gate_required",
+  "generated_images": 56,
+  "blank_images": 0,
+  "best_single_runtime_recipe": "blend_prev14_c05504",
+  "final_high_quality_pass": false,
+  "metric_summary": {
+    "pe": {
+      "prev_w14": {
+        "mean_uplift": 0.0983,
+        "improved_rate": 0.875
+      },
+      "c055_w06": {
+        "mean_uplift": 0.0543,
+        "improved_rate": 0.875
+      },
+      "c055_w08": {
+        "mean_uplift": 0.0282,
+        "improved_rate": 0.625
+      },
+      "c055_w12": {
+        "mean_uplift": 0.0583,
+        "improved_rate": 0.75
+      },
+      "blend_prev10_c05506": {
+        "mean_uplift": 0.0768,
+        "improved_rate": 0.75
+      },
+      "blend_prev14_c05504": {
+        "mean_uplift": 0.1064,
+        "improved_rate": 0.875
+      }
+    },
+    "qwenvl": {
+      "prev_w14": {
+        "mean_uplift": 0.0377,
+        "improved_rate": 0.875
+      },
+      "c055_w06": {
+        "mean_uplift": 0.0096,
+        "improved_rate": 0.5
+      },
+      "c055_w08": {
+        "mean_uplift": 0.0136,
+        "improved_rate": 0.75
+      },
+      "c055_w12": {
+        "mean_uplift": 0.0289,
+        "improved_rate": 0.75
+      },
+      "blend_prev10_c05506": {
+        "mean_uplift": 0.0357,
+        "improved_rate": 0.875
+      },
+      "blend_prev14_c05504": {
+        "mean_uplift": 0.0375,
+        "improved_rate": 0.875
+      }
+    }
+  },
+  "case_notes": [
+    {
+      "sample": "train00",
+      "judgment": "blend_better_but_imperfect",
+      "note": "Blend variants restore more action pressure, but exact hand and pose control remain weak."
+    },
+    {
+      "sample": "train07",
+      "judgment": "weak",
+      "note": "All variants remain generic angry close-ups."
+    },
+    {
+      "sample": "train14",
+      "judgment": "c055_low_weight_best",
+      "note": "c055_w06 gives the best exaggerated old bearded expression."
+    },
+    {
+      "sample": "train23",
+      "judgment": "c055_low_weight_prop_win",
+      "note": "c055_w06/w08 recover the fan better than the blend."
+    },
+    {
+      "sample": "heldout00",
+      "judgment": "blend_or_c055_better",
+      "note": "Side-facing dark-armored villain traits are stronger than previous retrieval."
+    },
+    {
+      "sample": "heldout02",
+      "judgment": "blend_prev14_c05504_better",
+      "note": "Bald head, white beard, and monk silhouette survive cleanly."
+    },
+    {
+      "sample": "heldout05",
+      "judgment": "blend_prev14_c05504_better",
+      "note": "Strong shouting side profile, but speech bubble and exact mouth/beard remain off."
+    },
+    {
+      "sample": "heldout07",
+      "judgment": "blend_prev14_c05504_better",
+      "note": "Green demon skin and red eye survive with a better full-head silhouette."
+    }
+  ],
+  "next_branch": "larger_blend_gate_or_single_adapter_distillation"
+}

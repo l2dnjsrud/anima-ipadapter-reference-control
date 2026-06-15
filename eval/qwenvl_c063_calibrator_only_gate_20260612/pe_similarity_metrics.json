@@ -1,0 +1,585 @@
+{
+  "summary_path": "eval/qwenvl_c063_calibrator_only_gate_20260612/summary.json",
+  "data_root": "/home/wktwin/anima-lora-training-bundle/image_dataset_color_panel_style_v5_best",
+  "encoder": "pe",
+  "rows": [
+    {
+      "sample": "train00",
+      "variant": "blend_species_face",
+      "cosine": 0.8498870134353638,
+      "no_ip_cosine": 0.8059154748916626,
+      "uplift": 0.04397153854370117
+    },
+    {
+      "sample": "train00",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.8062302470207214,
+      "no_ip_cosine": 0.8059154748916626,
+      "uplift": 0.0003147721290588379
+    },
+    {
+      "sample": "train01",
+      "variant": "blend_species_face",
+      "cosine": 0.8360893130302429,
+      "no_ip_cosine": 0.8444724678993225,
+      "uplift": -0.00838315486907959
+    },
+    {
+      "sample": "train01",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.7673357725143433,
+      "no_ip_cosine": 0.8444724678993225,
+      "uplift": -0.07713669538497925
+    },
+    {
+      "sample": "train02",
+      "variant": "blend_species_face",
+      "cosine": 0.7680635452270508,
+      "no_ip_cosine": 0.642274796962738,
+      "uplift": 0.12578874826431274
+    },
+    {
+      "sample": "train02",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.8249391317367554,
+      "no_ip_cosine": 0.642274796962738,
+      "uplift": 0.18266433477401733
+    },
+    {
+      "sample": "train03",
+      "variant": "blend_species_face",
+      "cosine": 0.8774614930152893,
+      "no_ip_cosine": 0.8163393139839172,
+      "uplift": 0.06112217903137207
+    },
+    {
+      "sample": "train03",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.8626911044120789,
+      "no_ip_cosine": 0.8163393139839172,
+      "uplift": 0.04635179042816162
+    },
+    {
+      "sample": "train04",
+      "variant": "blend_species_face",
+      "cosine": 0.8478444814682007,
+      "no_ip_cosine": 0.7274971604347229,
+      "uplift": 0.12034732103347778
+    },
+    {
+      "sample": "train04",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.8138964176177979,
+      "no_ip_cosine": 0.7274971604347229,
+      "uplift": 0.08639925718307495
+    },
+    {
+      "sample": "train05",
+      "variant": "blend_species_face",
+      "cosine": 0.8205388784408569,
+      "no_ip_cosine": 0.8102275133132935,
+      "uplift": 0.010311365127563477
+    },
+    {
+      "sample": "train05",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.8098188638687134,
+      "no_ip_cosine": 0.8102275133132935,
+      "uplift": -0.0004086494445800781
+    },
+    {
+      "sample": "train06",
+      "variant": "blend_species_face",
+      "cosine": 0.9051939249038696,
+      "no_ip_cosine": 0.8887654542922974,
+      "uplift": 0.016428470611572266
+    },
+    {
+      "sample": "train06",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.9330192804336548,
+      "no_ip_cosine": 0.8887654542922974,
+      "uplift": 0.04425382614135742
+    },
+    {
+      "sample": "train07",
+      "variant": "blend_species_face",
+      "cosine": 0.8968799710273743,
+      "no_ip_cosine": 0.6111747026443481,
+      "uplift": 0.2857052683830261
+    },
+    {
+      "sample": "train07",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.8422994613647461,
+      "no_ip_cosine": 0.6111747026443481,
+      "uplift": 0.23112475872039795
+    },
+    {
+      "sample": "train08",
+      "variant": "blend_species_face",
+      "cosine": 0.8123042583465576,
+      "no_ip_cosine": 0.7498020529747009,
+      "uplift": 0.06250220537185669
+    },
+    {
+      "sample": "train08",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.7640816569328308,
+      "no_ip_cosine": 0.7498020529747009,
+      "uplift": 0.014279603958129883
+    },
+    {
+      "sample": "train09",
+      "variant": "blend_species_face",
+      "cosine": 0.7552585005760193,
+      "no_ip_cosine": 0.7369662523269653,
+      "uplift": 0.018292248249053955
+    },
+    {
+      "sample": "train09",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.6849308013916016,
+      "no_ip_cosine": 0.7369662523269653,
+      "uplift": -0.05203545093536377
+    },
+    {
+      "sample": "train10",
+      "variant": "blend_species_face",
+      "cosine": 0.8243621587753296,
+      "no_ip_cosine": 0.7511272430419922,
+      "uplift": 0.0732349157333374
+    },
+    {
+      "sample": "train10",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.8553984761238098,
+      "no_ip_cosine": 0.7511272430419922,
+      "uplift": 0.10427123308181763
+    },
+    {
+      "sample": "train11",
+      "variant": "blend_species_face",
+      "cosine": 0.749972939491272,
+      "no_ip_cosine": 0.7337350845336914,
+      "uplift": 0.016237854957580566
+    },
+    {
+      "sample": "train11",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.7887884378433228,
+      "no_ip_cosine": 0.7337350845336914,
+      "uplift": 0.05505335330963135
+    },
+    {
+      "sample": "train12",
+      "variant": "blend_species_face",
+      "cosine": 0.8732008337974548,
+      "no_ip_cosine": 0.874268651008606,
+      "uplift": -0.001067817211151123
+    },
+    {
+      "sample": "train12",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.756850004196167,
+      "no_ip_cosine": 0.874268651008606,
+      "uplift": -0.11741864681243896
+    },
+    {
+      "sample": "train13",
+      "variant": "blend_species_face",
+      "cosine": 0.818052351474762,
+      "no_ip_cosine": 0.7835526466369629,
+      "uplift": 0.03449970483779907
+    },
+    {
+      "sample": "train13",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.8255382180213928,
+      "no_ip_cosine": 0.7835526466369629,
+      "uplift": 0.04198557138442993
+    },
+    {
+      "sample": "train14",
+      "variant": "blend_species_face",
+      "cosine": 0.7819950580596924,
+      "no_ip_cosine": 0.8061842322349548,
+      "uplift": -0.02418917417526245
+    },
+    {
+      "sample": "train14",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.6602663397789001,
+      "no_ip_cosine": 0.8061842322349548,
+      "uplift": -0.1459178924560547
+    },
+    {
+      "sample": "train15",
+      "variant": "blend_species_face",
+      "cosine": 0.5494981408119202,
+      "no_ip_cosine": 0.4355572462081909,
+      "uplift": 0.11394089460372925
+    },
+    {
+      "sample": "train15",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.5766940712928772,
+      "no_ip_cosine": 0.4355572462081909,
+      "uplift": 0.14113682508468628
+    },
+    {
+      "sample": "train16",
+      "variant": "blend_species_face",
+      "cosine": 0.8538353443145752,
+      "no_ip_cosine": 0.746603786945343,
+      "uplift": 0.10723155736923218
+    },
+    {
+      "sample": "train16",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.8335566520690918,
+      "no_ip_cosine": 0.746603786945343,
+      "uplift": 0.08695286512374878
+    },
+    {
+      "sample": "train17",
+      "variant": "blend_species_face",
+      "cosine": 0.8421267867088318,
+      "no_ip_cosine": 0.7007077932357788,
+      "uplift": 0.14141899347305298
+    },
+    {
+      "sample": "train17",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.8070335388183594,
+      "no_ip_cosine": 0.7007077932357788,
+      "uplift": 0.10632574558258057
+    },
+    {
+      "sample": "train18",
+      "variant": "blend_species_face",
+      "cosine": 0.7015586495399475,
+      "no_ip_cosine": 0.6118576526641846,
+      "uplift": 0.08970099687576294
+    },
+    {
+      "sample": "train18",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.5986525416374207,
+      "no_ip_cosine": 0.6118576526641846,
+      "uplift": -0.013205111026763916
+    },
+    {
+      "sample": "train19",
+      "variant": "blend_species_face",
+      "cosine": 0.7379575371742249,
+      "no_ip_cosine": 0.5874066352844238,
+      "uplift": 0.15055090188980103
+    },
+    {
+      "sample": "train19",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.6831273436546326,
+      "no_ip_cosine": 0.5874066352844238,
+      "uplift": 0.09572070837020874
+    },
+    {
+      "sample": "train20",
+      "variant": "blend_species_face",
+      "cosine": 0.890390157699585,
+      "no_ip_cosine": 0.8354917764663696,
+      "uplift": 0.05489838123321533
+    },
+    {
+      "sample": "train20",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.8923861384391785,
+      "no_ip_cosine": 0.8354917764663696,
+      "uplift": 0.05689436197280884
+    },
+    {
+      "sample": "train21",
+      "variant": "blend_species_face",
+      "cosine": 0.7898454666137695,
+      "no_ip_cosine": 0.8037662506103516,
+      "uplift": -0.013920783996582031
+    },
+    {
+      "sample": "train21",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.8096376657485962,
+      "no_ip_cosine": 0.8037662506103516,
+      "uplift": 0.005871415138244629
+    },
+    {
+      "sample": "train22",
+      "variant": "blend_species_face",
+      "cosine": 0.9346773028373718,
+      "no_ip_cosine": 0.8140254020690918,
+      "uplift": 0.12065190076828003
+    },
+    {
+      "sample": "train22",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.9293642044067383,
+      "no_ip_cosine": 0.8140254020690918,
+      "uplift": 0.11533880233764648
+    },
+    {
+      "sample": "train23",
+      "variant": "blend_species_face",
+      "cosine": 0.8268299102783203,
+      "no_ip_cosine": 0.7163050174713135,
+      "uplift": 0.11052489280700684
+    },
+    {
+      "sample": "train23",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.7183499336242676,
+      "no_ip_cosine": 0.7163050174713135,
+      "uplift": 0.0020449161529541016
+    },
+    {
+      "sample": "train24",
+      "variant": "blend_species_face",
+      "cosine": 0.8474483489990234,
+      "no_ip_cosine": 0.8135510683059692,
+      "uplift": 0.0338972806930542
+    },
+    {
+      "sample": "train24",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.9281180500984192,
+      "no_ip_cosine": 0.8135510683059692,
+      "uplift": 0.11456698179244995
+    },
+    {
+      "sample": "train25",
+      "variant": "blend_species_face",
+      "cosine": 0.9020237326622009,
+      "no_ip_cosine": 0.7954779267311096,
+      "uplift": 0.10654580593109131
+    },
+    {
+      "sample": "train25",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.7821382284164429,
+      "no_ip_cosine": 0.7954779267311096,
+      "uplift": -0.013339698314666748
+    },
+    {
+      "sample": "train26",
+      "variant": "blend_species_face",
+      "cosine": 0.7521895170211792,
+      "no_ip_cosine": 0.8013520240783691,
+      "uplift": -0.04916250705718994
+    },
+    {
+      "sample": "train26",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.7502304911613464,
+      "no_ip_cosine": 0.8013520240783691,
+      "uplift": -0.051121532917022705
+    },
+    {
+      "sample": "train27",
+      "variant": "blend_species_face",
+      "cosine": 0.8477051854133606,
+      "no_ip_cosine": 0.7403456568717957,
+      "uplift": 0.10735952854156494
+    },
+    {
+      "sample": "train27",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.834923505783081,
+      "no_ip_cosine": 0.7403456568717957,
+      "uplift": 0.0945778489112854
+    },
+    {
+      "sample": "train28",
+      "variant": "blend_species_face",
+      "cosine": 0.8154045343399048,
+      "no_ip_cosine": 0.9204881191253662,
+      "uplift": -0.10508358478546143
+    },
+    {
+      "sample": "train28",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.7914913296699524,
+      "no_ip_cosine": 0.9204881191253662,
+      "uplift": -0.12899678945541382
+    },
+    {
+      "sample": "train29",
+      "variant": "blend_species_face",
+      "cosine": 0.9062503576278687,
+      "no_ip_cosine": 0.8367348909378052,
+      "uplift": 0.06951546669006348
+    },
+    {
+      "sample": "train29",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.8649498820304871,
+      "no_ip_cosine": 0.8367348909378052,
+      "uplift": 0.028214991092681885
+    },
+    {
+      "sample": "train30",
+      "variant": "blend_species_face",
+      "cosine": 0.7691351175308228,
+      "no_ip_cosine": 0.7518814206123352,
+      "uplift": 0.01725369691848755
+    },
+    {
+      "sample": "train30",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.7589592933654785,
+      "no_ip_cosine": 0.7518814206123352,
+      "uplift": 0.0070778727531433105
+    },
+    {
+      "sample": "train31",
+      "variant": "blend_species_face",
+      "cosine": 0.7844308614730835,
+      "no_ip_cosine": 0.6670991778373718,
+      "uplift": 0.11733168363571167
+    },
+    {
+      "sample": "train31",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.7428988814353943,
+      "no_ip_cosine": 0.6670991778373718,
+      "uplift": 0.07579970359802246
+    },
+    {
+      "sample": "heldout00",
+      "variant": "blend_species_face",
+      "cosine": 0.8624987602233887,
+      "no_ip_cosine": 0.8537920713424683,
+      "uplift": 0.00870668888092041
+    },
+    {
+      "sample": "heldout00",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.7800283432006836,
+      "no_ip_cosine": 0.8537920713424683,
+      "uplift": -0.07376372814178467
+    },
+    {
+      "sample": "heldout01",
+      "variant": "blend_species_face",
+      "cosine": 0.8729920387268066,
+      "no_ip_cosine": 0.8289942741394043,
+      "uplift": 0.043997764587402344
+    },
+    {
+      "sample": "heldout01",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.8520408868789673,
+      "no_ip_cosine": 0.8289942741394043,
+      "uplift": 0.02304661273956299
+    },
+    {
+      "sample": "heldout02",
+      "variant": "blend_species_face",
+      "cosine": 0.7922154664993286,
+      "no_ip_cosine": 0.7272197008132935,
+      "uplift": 0.06499576568603516
+    },
+    {
+      "sample": "heldout02",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.8187445402145386,
+      "no_ip_cosine": 0.7272197008132935,
+      "uplift": 0.09152483940124512
+    },
+    {
+      "sample": "heldout03",
+      "variant": "blend_species_face",
+      "cosine": 0.8789849281311035,
+      "no_ip_cosine": 0.7700284719467163,
+      "uplift": 0.10895645618438721
+    },
+    {
+      "sample": "heldout03",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.7725698947906494,
+      "no_ip_cosine": 0.7700284719467163,
+      "uplift": 0.0025414228439331055
+    },
+    {
+      "sample": "heldout04",
+      "variant": "blend_species_face",
+      "cosine": 0.8456374406814575,
+      "no_ip_cosine": 0.7306021451950073,
+      "uplift": 0.1150352954864502
+    },
+    {
+      "sample": "heldout04",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.7907322645187378,
+      "no_ip_cosine": 0.7306021451950073,
+      "uplift": 0.06013011932373047
+    },
+    {
+      "sample": "heldout05",
+      "variant": "blend_species_face",
+      "cosine": 0.7794915437698364,
+      "no_ip_cosine": 0.6860760450363159,
+      "uplift": 0.09341549873352051
+    },
+    {
+      "sample": "heldout05",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.6694658994674683,
+      "no_ip_cosine": 0.6860760450363159,
+      "uplift": -0.016610145568847656
+    },
+    {
+      "sample": "heldout06",
+      "variant": "blend_species_face",
+      "cosine": 0.8090711236000061,
+      "no_ip_cosine": 0.7203173637390137,
+      "uplift": 0.08875375986099243
+    },
+    {
+      "sample": "heldout06",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.7838956117630005,
+      "no_ip_cosine": 0.7203173637390137,
+      "uplift": 0.06357824802398682
+    },
+    {
+      "sample": "heldout07",
+      "variant": "blend_species_face",
+      "cosine": 0.591762900352478,
+      "no_ip_cosine": 0.6873522996902466,
+      "uplift": -0.09558939933776855
+    },
+    {
+      "sample": "heldout07",
+      "variant": "c063_calibrator_only_w14",
+      "cosine": 0.5778734683990479,
+      "no_ip_cosine": 0.6873522996902466,
+      "uplift": -0.10947883129119873
+    }
+  ],
+  "variant_summaries": [
+    {
+      "variant": "blend_species_face",
+      "cases": 40,
+      "mean_cosine": 0.8150266468524933,
+      "mean_no_ip_cosine": 0.7541334316134453,
+      "mean_uplift": 0.060893215239048004,
+      "improved_rate": 0.825
+    },
+    {
+      "variant": "c063_calibrator_only_w14",
+      "cases": 40,
+      "mean_cosine": 0.7835986718535424,
+      "mean_no_ip_cosine": 0.7541334316134453,
+      "mean_uplift": 0.029465240240097047,
+      "improved_rate": 0.7
+    }
+  ]
+}
